@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-from fedmsg.text.base import BaseProcessor
+from fedmsg.meta.base import BaseProcessor
 from fasshim import gravatar_url
 
 
@@ -67,7 +67,7 @@ class FASProcessor(BaseProcessor):
                 ),
             }
             tmpl = tmpls.get(action, self._(
-                '<unhandled action in fedmsg.text.fas>'
+                '<unhandled action in fedmsg.meta.fas>'
             ))
             return tmpl.format(agent=agent, user=user, group=group)
         elif 'fas.group.create' in msg['topic']:

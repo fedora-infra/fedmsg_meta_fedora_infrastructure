@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for fedmsg.text """
+""" Tests for fedmsg.meta """
 
 import unittest
 
