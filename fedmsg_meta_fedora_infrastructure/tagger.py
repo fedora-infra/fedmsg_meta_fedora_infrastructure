@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-from fedmsg.text.base import BaseProcessor
+from fedmsg.meta.base import BaseProcessor
 from fasshim import gravatar_url
 
 
