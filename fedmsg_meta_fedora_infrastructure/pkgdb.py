@@ -46,11 +46,24 @@ class PkgdbProcessor(BaseProcessor):
                 agent=agent, acl=acl,
                 user=user, status=status,
                 package=package, branch=branch)
+        elif 'pkgdb.branch.clone' in msg['topic']:
+            tmpl = self._(u"{agent} branched {package} {branch} from {master}")
+            agent = msg['msg']['agent']
+            package = msg['msg']['package']
+            branch = msg['msg']['branch']
+            master = msg['msg']['master']
+            return tmpl.format(agent=agent, package=package,
+                               branch=branch, master=master)
         elif 'pkgdb.package.update' in msg['topic']:
             tmpl = self._(u"{agent} made some updates to {package}")
             agent = msg['msg']['agent']
             package = msg['msg']['package']
             return tmpl.format(agent=agent, package=package)
+        elif 'pkgdb.critpath.update' in msg['topic']:
+            tmpl = self._(
+                u"{agent} altered the critpath status for some packages")
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent)
         elif 'pkgdb.package.new' in msg['topic']:
             tmpl = self._(
                 u"{agent} added a new package '{package}' ({branch})")
@@ -191,6 +204,8 @@ class PkgdbProcessor(BaseProcessor):
             ))
         elif 'pkgdb.package.update' in msg['topic']:
             objs.add('{package}/update'.format(package=_msg['package']))
+        elif 'pkgdb.branch.clone' in msg['topic']:
+            objs.add('{package}/branch'.format(package=_msg['package']))
 
         return objs
 
@@ -239,6 +254,7 @@ class PkgdbProcessor(BaseProcessor):
 
         if any(map(msg['topic'].__contains__, [
             'pkgdb.package.update',
+            'pkgdb.branch.clone',
         ])):
             return tmpl.format(package=msg['msg']['package'])
 

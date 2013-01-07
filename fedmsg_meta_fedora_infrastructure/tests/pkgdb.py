@@ -23,23 +23,6 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
-"""
-Done:
-
-    - acl.update
-    - acl.request.toggle
-    - acl.user.remove
-    - owner.update
-    - package.retire
-    - package.new
-    - package.update
-
-Need these, still:
-
-    - branch.clone
-    - critpath.update
-"""
-
 
 class TestPkgdbACLUpdate(Base):
     expected_title = "pkgdb.acl.update (unsigned)"
@@ -243,6 +226,58 @@ class TestPkgdbPackageUpdate(Base):
             "acl_action": "requested",
             "package": "php-zmq",
             "agent": "ralph",
+        },
+    }
+
+
+class TestPkgdbBranchClone(Base):
+    expected_title = "pkgdb.branch.clone (unsigned)"
+    expected_subti = "ralph branched php-zmq f18 from devel"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['php-zmq'])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['php-zmq/branch'])
+
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1357581512.006664,
+        "topic": "org.fedoraproject.stg.pkgdb.branch.clone",
+        "msg": {
+            "package": "php-zmq",
+            "branch": "f18",
+            "master": "devel",
+            "agent": "ralph",
+        },
+    }
+
+
+class TestPkgdbCritpathUpdate(Base):
+    expected_title = "pkgdb.critpath.update (unsigned)"
+    expected_subti = "ralph altered the critpath status for some packages"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([])
+
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1357581512.006664,
+        "topic": "org.fedoraproject.stg.pkgdb.critpath.update",
+        "msg": {
+            "package_listing_ids": [],
+            "agent": "ralph",
+            "critpath": True,
         },
     }
 
