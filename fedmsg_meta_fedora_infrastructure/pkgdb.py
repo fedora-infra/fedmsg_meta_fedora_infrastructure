@@ -46,6 +46,18 @@ class PkgdbProcessor(BaseProcessor):
                 agent=agent, acl=acl,
                 user=user, status=status,
                 package=package, branch=branch)
+        elif 'pkgdb.acl.request.toggle' in msg['topic']:
+            tmpl = self._(
+                u"{agent} {action} '{acl}' on {package} ({branch})"
+            )
+            package = msg['msg']['package_listing']['package']['name']
+            acl = msg['msg']['acl']
+            agent = msg['msg']['agent']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            action = msg['msg']['acl_action']
+            return tmpl.format(
+                agent=agent, acl=acl, action=action,
+                package=package, branch=branch)
         elif 'pkgdb.owner.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} changed owner of {package} ({branch}) to '{owner}'")
@@ -105,17 +117,28 @@ class PkgdbProcessor(BaseProcessor):
     def objects(self, msg, **config):
         objs = set()
 
+        _msg = msg['msg']
+
         if 'pkgdb.acl.update' in msg['topic']:
-            objs.add('acls/{package}/{acl}/{user}'.format(
-                package=msg['msg']['package_listing']['package']['name'],
-                acl=msg['msg']['acl'],
-                user=msg['msg']['username']
+            objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
+                package=_msg['package_listing']['package']['name'],
+                branch=_msg['package_listing']['collection']['branchname'],
+                acl=_msg['acl'],
+                user=_msg['username']
+            ))
+
+        if 'pkgdb.acl.request.toggle' in msg['topic']:
+            objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
+                package=_msg['package_listing']['package']['name'],
+                branch=_msg['package_listing']['collection']['branchname'],
+                acl=_msg['acl'],
+                user=_msg['agent']
             ))
 
         if 'pkgdb.owner.update' in msg['topic']:
             objs.add('{package}/owner/{branch}'.format(
-                package=msg['msg']['package_listing']['package']['name'],
-                branch=msg['msg']['package_listing']['collection']['branchname'],
+                package=_msg['package_listing']['package']['name'],
+                branch=_msg['package_listing']['collection']['branchname'],
             ))
 
         return objs
@@ -135,6 +158,7 @@ class PkgdbProcessor(BaseProcessor):
 
         if any(map(msg['topic'].__contains__, [
             'pkgdb.acl.update',
+            'pkgdb.acl.request.toggle',
             'pkgdb.owner.update',
         ])):
             return tmpl.format(

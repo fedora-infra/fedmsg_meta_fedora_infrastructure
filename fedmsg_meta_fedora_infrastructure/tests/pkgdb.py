@@ -27,11 +27,11 @@ from fedmsg.tests.test_meta import Base
 Done:
 
     - acl.update
+    - acl.request.toggle
     - owner.update
 
 Need these, still:
 
-    - acl.request.toggle
     - acl.user.remove
     - branch.clone
     - package.new
@@ -89,7 +89,7 @@ class TestPkgdbACLUpdate(Base):
     }
 
 
-class TestPkgdbACLUpdate(Base):
+class TestPkgdbOwnerUpdate(Base):
     expected_title = "pkgdb.owner.update (unsigned)"
     expected_subti = "ralph changed owner of php-zmq (EL-6) to 'orphan'"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
@@ -130,6 +130,53 @@ class TestPkgdbACLUpdate(Base):
             "agent": "ralph"
         }
     }
+
+
+class TestPkgdbACLRequestToggle(Base):
+    expected_title = "pkgdb.acl.request.toggle (unsigned)"
+    expected_subti = "ralph requested 'commit' on php-zmq (EL-6)"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['php-zmq'])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['php-zmq/acls/EL-6/commit/ralph'])
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1357581512.006664,
+        "topic": "org.fedoraproject.stg.pkgdb.acl.request.toggle",
+        "msg": {
+            "acl_action": "requested",
+            "package_listing": {
+                "owner": "orphan",
+                "package": {
+                    "upstreamurl": None,
+                    "name": "php-zmq",
+                    "description": None,
+                    "reviewurl": None,
+                    "summary": "PHP 0MQ/zmq/zeromq extension"
+                },
+                "qacontact": None,
+                "collection": {
+                    "pendingurltemplate": None,
+                    "name": "Fedora EPEL",
+                    "publishurltemplate": None,
+                    "version": "6",
+                    "disttag": ".el6",
+                    "branchname": "EL-6"
+                },
+                "specfile": None
+            },
+            "acl_status": "Awaiting Review",
+            "agent": "ralph",
+            "acl": "commit"
+        }
+    }
+
 
 if __name__ == '__main__':
     unittest.main()
