@@ -21,7 +21,7 @@
 
 import unittest
 
-from fedmsg.tests.test_text import Base
+from fedmsg.tests.test_meta import Base
 
 class TestFASUserCreate(Base):
     expected_title = "fas.user.create (unsigned)"
