@@ -222,5 +222,83 @@ class TestPkgdbPackageRetire(Base):
     }
 
 
+
+"""
+        # Emit an event to the fedmsg bus.
+        fedmsg.publish(topic="acl.user.remove", msg=dict(
+            package=pkg.api_repr(version=1),
+            package_listings=[pl.api_repr(version=1) for pl in package_listings],
+            username=username,
+            collections=collectn_list,
+            agent=identity.current.user_name,
+        ))
+"""
+class TestPkgdbUserRemove(Base):
+    expected_title = "pkgdb.acl.user.remove (unsigned)"
+    expected_subti = "ralph removed ralph from php-zmq (EL-6, F18)"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['php-zmq'])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['php-zmq/remove/ralph'])
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1357583297.886945,
+        "topic": "org.fedoraproject.stg.pkgdb.acl.user.remove",
+        "msg": {
+            "package_listings": [{
+                "owner": "orphan",
+                "package": {
+                    "upstreamurl": None,
+                    "name": "php-zmq",
+                    "description": None,
+                    "reviewurl": None,
+                    "summary": "PHP 0MQ/zmq/zeromq extension"
+                },
+                "qacontact": None,
+                "collection": {
+                    "pendingurltemplate": None,
+                    "name": "Fedora EPEL",
+                    "publishurltemplate": None,
+                    "version": "6",
+                    "disttag": ".el6",
+                    "branchname": "EL-6"
+                },
+                "specfile": None
+            }, {
+                "owner": "orphan",
+                "package": {
+                    "upstreamurl": None,
+                    "name": "php-zmq",
+                    "description": None,
+                    "reviewurl": None,
+                    "summary": "PHP 0MQ/zmq/zeromq extension"
+                },
+                "qacontact": None,
+                "collection": {
+                    "pendingurltemplate": None,
+                    "name": "Fedora",
+                    "publishurltemplate": None,
+                    "version": "18",
+                    "disttag": ".f18",
+                    "branchname": "F18"
+                },
+                "specfile": None
+            }],
+            "collections": [
+                # This actually has stuff in it in prod.
+            ],
+            "username": "ralph",
+            "agent": "ralph",
+        }
+    }
+
+
+
 if __name__ == '__main__':
     unittest.main()

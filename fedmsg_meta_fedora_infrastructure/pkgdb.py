@@ -81,6 +81,21 @@ class PkgdbProcessor(BaseProcessor):
                 owner=owner,
                 package=package,
                 branch=branch)
+        elif 'pkgdb.acl.user.remove' in msg['topic']:
+            tmpl = self._(
+                u"{agent} removed {user} from {package} ({branches})")
+            package = msg['msg']['package_listings'][0]['package']['name']
+            user = msg['msg']['username']
+            agent = msg['msg']['agent']
+            branches = ", ".join([
+                p['collection']['branchname']
+                for p in msg['msg']['package_listings']
+            ])
+            return tmpl.format(
+                agent=agent,
+                user=user,
+                package=package,
+                branches=branches)
         else:
             raise NotImplementedError
 
@@ -151,6 +166,12 @@ class PkgdbProcessor(BaseProcessor):
                 package=_msg['package_listing']['package']['name'],
             ))
 
+        if 'pkgdb.acl.user.remove' in msg['topic']:
+            objs.add('{package}/remove/{user}'.format(
+                package=_msg['package_listings'][0]['package']['name'],
+                user=_msg['username'],
+            ))
+
         if 'pkgdb.owner.update' in msg['topic']:
             objs.add('{package}/owner/{branch}'.format(
                 package=_msg['package_listing']['package']['name'],
@@ -167,6 +188,12 @@ class PkgdbProcessor(BaseProcessor):
         except KeyError:
             pass
 
+        try:
+            for package in msg['msg']['package_listings']:
+                packages.add(package['package']['name'])
+        except KeyError:
+            pass
+
         return packages
 
     def link(self, msg, **config):
@@ -180,6 +207,13 @@ class PkgdbProcessor(BaseProcessor):
         ])):
             return tmpl.format(
                 package=msg['msg']['package_listing']['package']['name']
+            )
+
+        if any(map(msg['topic'].__contains__, [
+            'pkgdb.acl.user.remove',
+        ])):
+            return tmpl.format(
+                package=msg['msg']['package_listings'][0]['package']['name']
             )
 
         return ""
