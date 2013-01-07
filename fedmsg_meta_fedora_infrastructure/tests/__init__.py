@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
+
 class TestFASUserCreate(Base):
     expected_title = "fas.user.create (unsigned)"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"

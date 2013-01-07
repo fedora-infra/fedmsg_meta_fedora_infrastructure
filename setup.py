@@ -86,6 +86,7 @@ setup(
             "wiki=fedmsg_meta_fedora_infrastructure.mediawiki:WikiProcessor",
             "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
             "comp=fedmsg_meta_fedora_infrastructure.compose:ComposeProcessor",
+            "pkgdb=fedmsg_meta_fedora_infrastructure.pkgdb:PkgdbProcessor",
         ]
     }
 )
