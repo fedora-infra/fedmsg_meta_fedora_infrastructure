@@ -46,6 +46,13 @@ class PkgdbProcessor(BaseProcessor):
                 agent=agent, acl=acl,
                 user=user, status=status,
                 package=package, branch=branch)
+        elif 'pkgdb.package.new' in msg['topic']:
+            tmpl = self._(
+                u"{agent} added a new package '{package}' ({branch})")
+            agent = msg['msg']['agent']
+            package = msg['msg']['package_listing']['package']['name']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            return tmpl.format(agent=agent, package=package, branch=branch)
         elif 'pkgdb.acl.request.toggle' in msg['topic']:
             tmpl = self._(
                 u"{agent} has {action} '{acl}' on {package} ({branch})"
@@ -153,6 +160,11 @@ class PkgdbProcessor(BaseProcessor):
                 user=_msg['username']
             ))
 
+        if 'pkgdb.package.new' in msg['topic']:
+            objs.add('{package}/create'.format(
+                package=_msg['package_listing']['package']['name'],
+            ))
+
         if 'pkgdb.acl.request.toggle' in msg['topic']:
             objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
                 package=_msg['package_listing']['package']['name'],
@@ -204,6 +216,7 @@ class PkgdbProcessor(BaseProcessor):
             'pkgdb.acl.request.toggle',
             'pkgdb.owner.update',
             'pkgdb.package.retire',
+            'pkgdb.package.new',
         ])):
             return tmpl.format(
                 package=msg['msg']['package_listing']['package']['name']

@@ -28,12 +28,12 @@ Done:
 
     - acl.update
     - acl.request.toggle
+    - acl.user.remove
     - owner.update
     - package.retire
 
 Need these, still:
 
-    - acl.user.remove
     - branch.clone
     - package.new
     - package.update
@@ -85,6 +85,49 @@ class TestPkgdbACLUpdate(Base):
             },
             "agent": "ralph",
             "acl": "watchbugzilla"
+        }
+    }
+
+
+class TestPkgdbPackageNew(Base):
+    expected_title = "pkgdb.package.new (unsigned)"
+    expected_subti = "ralph added a new package 'php-zmq' (devel)"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['php-zmq'])
+    expected_usernames = set(['ralph', 'lmacken'])
+    expected_objects = set(['php-zmq/create'])
+    msg = {
+        "username": "apache",
+        "i": 3,
+        "timestamp": 1357580533.5999,
+        "topic": "org.fedoraproject.stg.pkgdb.package.new",
+        "msg": {
+            "package_listing": {
+                "owner": "lmacken",
+                "package": {
+                    "upstreamurl": None,
+                    "name": "php-zmq",
+                    "description": None,
+                    "reviewurl": None,
+                    "summary": "PHP 0MQ/zmq/zeromq extension"
+                },
+                "qacontact": None,
+                "collection": {
+                    "pendingurltemplate": None,
+                    "name": "Fedora",
+                    "publishurltemplate": None,
+                    "version": "19",
+                    "disttag": ".f19",
+                    "branchname": "devel"
+                },
+                "specfile": None
+            },
+            "agent": "ralph"
         }
     }
 
@@ -222,17 +265,6 @@ class TestPkgdbPackageRetire(Base):
     }
 
 
-
-"""
-        # Emit an event to the fedmsg bus.
-        fedmsg.publish(topic="acl.user.remove", msg=dict(
-            package=pkg.api_repr(version=1),
-            package_listings=[pl.api_repr(version=1) for pl in package_listings],
-            username=username,
-            collections=collectn_list,
-            agent=identity.current.user_name,
-        ))
-"""
 class TestPkgdbUserRemove(Base):
     expected_title = "pkgdb.acl.user.remove (unsigned)"
     expected_subti = "ralph removed ralph from php-zmq (EL-6, F18)"
@@ -297,7 +329,6 @@ class TestPkgdbUserRemove(Base):
             "agent": "ralph",
         }
     }
-
 
 
 if __name__ == '__main__':
