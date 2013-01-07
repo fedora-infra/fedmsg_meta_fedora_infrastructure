@@ -60,7 +60,7 @@ if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.0.3',
+    version='0.0.4',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
@@ -86,6 +86,7 @@ setup(
             "wiki=fedmsg_meta_fedora_infrastructure.mediawiki:WikiProcessor",
             "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
             "comp=fedmsg_meta_fedora_infrastructure.compose:ComposeProcessor",
+            "pkgdb=fedmsg_meta_fedora_infrastructure.pkgdb:PkgdbProcessor",
         ]
     }
 )
