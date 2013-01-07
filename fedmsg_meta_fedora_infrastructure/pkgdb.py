@@ -34,17 +34,30 @@ class PkgdbProcessor(BaseProcessor):
         if 'pkgdb.acl.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} changed {user}'s '{acl}' permission " +
-                "on {package} to '{status}'"
+                "on {package} ({branch}) to '{status}'"
             )
             user = msg['msg']['username']
             status = msg['msg']['status']
             package = msg['msg']['package_listing']['package']['name']
             acl = msg['msg']['acl']
             agent = msg['msg']['agent']
+            branch = msg['msg']['package_listing']['collection']['branchname']
             return tmpl.format(
                 agent=agent, acl=acl,
                 user=user, status=status,
-                package=package)
+                package=package, branch=branch)
+        elif 'pkgdb.owner.update' in msg['topic']:
+            tmpl = self._(
+                u"{agent} changed owner of {package} ({branch}) to '{owner}'")
+            owner = msg['msg']['package_listing']['owner']
+            package = msg['msg']['package_listing']['package']['name']
+            agent = msg['msg']['agent']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            return tmpl.format(
+                agent=agent,
+                owner=owner,
+                package=package,
+                branch=branch)
         else:
             raise NotImplementedError
 
@@ -67,24 +80,27 @@ class PkgdbProcessor(BaseProcessor):
         return gravatar_url(username=user)
 
     def usernames(self, msg, **config):
-        users = []
+        users = set()
 
         try:
-            users.append(msg['msg']['agent'])
+            users.add(msg['msg']['agent'])
         except KeyError:
             pass
 
         try:
-            users.append(msg['msg']['package_listing']['owner'])
+            users.add(msg['msg']['package_listing']['owner'])
         except KeyError:
             pass
 
         try:
-            users.append(msg['msg']['username'])
+            users.add(msg['msg']['username'])
         except KeyError:
             pass
 
-        return set(users)
+        if 'orphan' in users:
+            users.remove('orphan')
+
+        return users
 
     def objects(self, msg, **config):
         objs = set()
@@ -96,18 +112,31 @@ class PkgdbProcessor(BaseProcessor):
                 user=msg['msg']['username']
             ))
 
+        if 'pkgdb.owner.update' in msg['topic']:
+            objs.add('{package}/owner/{branch}'.format(
+                package=msg['msg']['package_listing']['package']['name'],
+                branch=msg['msg']['package_listing']['collection']['branchname'],
+            ))
+
         return objs
 
     def packages(self, msg, **config):
-        if 'pkgdb.acl.update' in msg['topic']:
-            return set([msg['msg']['package_listing']['package']['name']])
+        packages = set()
 
-        return set()
+        try:
+            packages.add(msg['msg']['package_listing']['package']['name'])
+        except KeyError:
+            pass
+
+        return packages
 
     def link(self, msg, **config):
         tmpl = "https://admin.fedoraproject.org/pkgdb/acls/name/{package}"
 
-        if 'pkgdb.acl.update' in msg['topic']:
+        if any(map(msg['topic'].__contains__, [
+            'pkgdb.acl.update',
+            'pkgdb.owner.update',
+        ])):
             return tmpl.format(
                 package=msg['msg']['package_listing']['package']['name']
             )

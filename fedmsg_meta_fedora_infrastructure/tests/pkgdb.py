@@ -27,12 +27,12 @@ from fedmsg.tests.test_meta import Base
 Done:
 
     - acl.update
+    - owner.update
 
 Need these, still:
 
     - acl.request.toggle
     - acl.user.remove
-    - owner.update
     - branch.clone
     - package.new
     - package.update
@@ -40,10 +40,11 @@ Need these, still:
     - critpath.update
 """
 
+
 class TestPkgdbACLUpdate(Base):
     expected_title = "pkgdb.acl.update (unsigned)"
     expected_subti = "ralph changed ralph's 'watchbugzilla' permission on " + \
-        "python-sh to 'Awaiting Review'"
+        "python-sh (EL-6) to 'Awaiting Review'"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/python-sh"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
         "package_128x128.png"
@@ -52,7 +53,7 @@ class TestPkgdbACLUpdate(Base):
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set(['python-sh'])
     expected_usernames = set(['ralph', 'grover'])
-    expected_objects = set(['acls/python-sh/watchbugzilla/ralph'])
+    expected_objects = set(['python-sh/acls/EL-6/watchbugzilla/ralph'])
     msg = {
         "username": "apache",
         "i": 2,
@@ -84,6 +85,49 @@ class TestPkgdbACLUpdate(Base):
             },
             "agent": "ralph",
             "acl": "watchbugzilla"
+        }
+    }
+
+
+class TestPkgdbACLUpdate(Base):
+    expected_title = "pkgdb.owner.update (unsigned)"
+    expected_subti = "ralph changed owner of php-zmq (EL-6) to 'orphan'"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['php-zmq'])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['php-zmq/owner/EL-6'])
+    msg = {
+        "username": "apache",
+        "i": 3,
+        "timestamp": 1357580533.5999,
+        "topic": "org.fedoraproject.stg.pkgdb.owner.update",
+        "msg": {
+            "package_listing": {
+                "owner": "orphan",
+                "package": {
+                    "upstreamurl": None,
+                    "name": "php-zmq",
+                    "description": None,
+                    "reviewurl": None,
+                    "summary": "PHP 0MQ/zmq/zeromq extension"
+                },
+                "qacontact": None,
+                "collection": {
+                    "pendingurltemplate": None,
+                    "name": "Fedora EPEL",
+                    "publishurltemplate": None,
+                    "version": "6",
+                    "disttag": ".el6",
+                    "branchname": "EL-6"
+                },
+                "specfile": None
+            },
+            "agent": "ralph"
         }
     }
 
