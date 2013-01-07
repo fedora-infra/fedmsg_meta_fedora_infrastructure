@@ -46,6 +46,11 @@ class PkgdbProcessor(BaseProcessor):
                 agent=agent, acl=acl,
                 user=user, status=status,
                 package=package, branch=branch)
+        elif 'pkgdb.package.update' in msg['topic']:
+            tmpl = self._(u"{agent} made some updates to {package}")
+            agent = msg['msg']['agent']
+            package = msg['msg']['package']
+            return tmpl.format(agent=agent, package=package)
         elif 'pkgdb.package.new' in msg['topic']:
             tmpl = self._(
                 u"{agent} added a new package '{package}' ({branch})")
@@ -159,36 +164,33 @@ class PkgdbProcessor(BaseProcessor):
                 acl=_msg['acl'],
                 user=_msg['username']
             ))
-
-        if 'pkgdb.package.new' in msg['topic']:
+        elif 'pkgdb.package.new' in msg['topic']:
             objs.add('{package}/create'.format(
                 package=_msg['package_listing']['package']['name'],
             ))
-
-        if 'pkgdb.acl.request.toggle' in msg['topic']:
+        elif 'pkgdb.acl.request.toggle' in msg['topic']:
             objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
                 package=_msg['package_listing']['package']['name'],
                 branch=_msg['package_listing']['collection']['branchname'],
                 acl=_msg['acl'],
                 user=_msg['agent']
             ))
-
-        if 'pkgdb.package.retire' in msg['topic']:
+        elif 'pkgdb.package.retire' in msg['topic']:
             objs.add('{package}/retire'.format(
                 package=_msg['package_listing']['package']['name'],
             ))
-
-        if 'pkgdb.acl.user.remove' in msg['topic']:
+        elif 'pkgdb.acl.user.remove' in msg['topic']:
             objs.add('{package}/remove/{user}'.format(
                 package=_msg['package_listings'][0]['package']['name'],
                 user=_msg['username'],
             ))
-
-        if 'pkgdb.owner.update' in msg['topic']:
+        elif 'pkgdb.owner.update' in msg['topic']:
             objs.add('{package}/owner/{branch}'.format(
                 package=_msg['package_listing']['package']['name'],
                 branch=_msg['package_listing']['collection']['branchname'],
             ))
+        elif 'pkgdb.package.update' in msg['topic']:
+            objs.add('{package}/update'.format(package=_msg['package']))
 
         return objs
 
@@ -203,6 +205,12 @@ class PkgdbProcessor(BaseProcessor):
         try:
             for package in msg['msg']['package_listings']:
                 packages.add(package['package']['name'])
+        except KeyError:
+            pass
+
+        try:
+            if isinstance(msg['msg']['package'], basestring):
+                packages.add(msg['msg']['package'])
         except KeyError:
             pass
 
@@ -228,5 +236,10 @@ class PkgdbProcessor(BaseProcessor):
             return tmpl.format(
                 package=msg['msg']['package_listings'][0]['package']['name']
             )
+
+        if any(map(msg['topic'].__contains__, [
+            'pkgdb.package.update',
+        ])):
+            return tmpl.format(package=msg['msg']['package'])
 
         return ""

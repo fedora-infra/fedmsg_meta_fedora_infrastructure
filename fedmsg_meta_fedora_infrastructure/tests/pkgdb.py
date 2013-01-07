@@ -31,12 +31,12 @@ Done:
     - acl.user.remove
     - owner.update
     - package.retire
+    - package.new
+    - package.update
 
 Need these, still:
 
     - branch.clone
-    - package.new
-    - package.update
     - critpath.update
 """
 
@@ -218,6 +218,32 @@ class TestPkgdbACLRequestToggle(Base):
             "agent": "ralph",
             "acl": "commit"
         }
+    }
+
+
+class TestPkgdbPackageUpdate(Base):
+    expected_title = "pkgdb.package.update (unsigned)"
+    expected_subti = "ralph made some updates to php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['php-zmq'])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['php-zmq/update'])
+
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1357581512.006664,
+        "topic": "org.fedoraproject.stg.pkgdb.package.update",
+        "msg": {
+            "acl_action": "requested",
+            "package": "php-zmq",
+            "agent": "ralph",
+        },
     }
 
 
