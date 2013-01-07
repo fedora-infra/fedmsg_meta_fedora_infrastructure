@@ -58,6 +58,17 @@ class PkgdbProcessor(BaseProcessor):
             return tmpl.format(
                 agent=agent, acl=acl, action=action,
                 package=package, branch=branch)
+        elif 'pkgdb.package.retire' in msg['topic']:
+            tmpl = self._(
+                u"{agent} {action} {package} ({branch})!"
+            )
+            package = msg['msg']['package_listing']['package']['name']
+            action = msg['msg']['retirement']
+            agent = msg['msg']['agent']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            return tmpl.format(
+                agent=agent, action=action,
+                package=package, branch=branch)
         elif 'pkgdb.owner.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} changed owner of {package} ({branch}) to '{owner}'")
@@ -135,6 +146,11 @@ class PkgdbProcessor(BaseProcessor):
                 user=_msg['agent']
             ))
 
+        if 'pkgdb.package.retire' in msg['topic']:
+            objs.add('{package}/retire'.format(
+                package=_msg['package_listing']['package']['name'],
+            ))
+
         if 'pkgdb.owner.update' in msg['topic']:
             objs.add('{package}/owner/{branch}'.format(
                 package=_msg['package_listing']['package']['name'],
@@ -160,6 +176,7 @@ class PkgdbProcessor(BaseProcessor):
             'pkgdb.acl.update',
             'pkgdb.acl.request.toggle',
             'pkgdb.owner.update',
+            'pkgdb.package.retire',
         ])):
             return tmpl.format(
                 package=msg['msg']['package_listing']['package']['name']
