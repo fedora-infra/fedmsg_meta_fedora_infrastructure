@@ -29,6 +29,7 @@ Done:
     - acl.update
     - acl.request.toggle
     - owner.update
+    - package.retire
 
 Need these, still:
 
@@ -36,7 +37,6 @@ Need these, still:
     - branch.clone
     - package.new
     - package.update
-    - package.retire
     - critpath.update
 """
 
