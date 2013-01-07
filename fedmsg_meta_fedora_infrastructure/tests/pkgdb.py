@@ -23,6 +23,22 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+"""
+Done:
+
+    - acl.update
+
+Need these, still:
+
+    - acl.request.toggle
+    - acl.user.remove
+    - owner.update
+    - branch.clone
+    - package.new
+    - package.update
+    - package.retire
+    - critpath.update
+"""
 
 class TestPkgdbACLUpdate(Base):
     expected_title = "pkgdb.acl.update (unsigned)"
