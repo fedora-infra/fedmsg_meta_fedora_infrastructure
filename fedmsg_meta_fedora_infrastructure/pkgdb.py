@@ -48,7 +48,7 @@ class PkgdbProcessor(BaseProcessor):
                 package=package, branch=branch)
         elif 'pkgdb.acl.request.toggle' in msg['topic']:
             tmpl = self._(
-                u"{agent} {action} '{acl}' on {package} ({branch})"
+                u"{agent} has {action} '{acl}' on {package} ({branch})"
             )
             package = msg['msg']['package_listing']['package']['name']
             acl = msg['msg']['acl']

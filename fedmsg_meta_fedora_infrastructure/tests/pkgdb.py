@@ -134,7 +134,7 @@ class TestPkgdbOwnerUpdate(Base):
 
 class TestPkgdbACLRequestToggle(Base):
     expected_title = "pkgdb.acl.request.toggle (unsigned)"
-    expected_subti = "ralph requested 'commit' on php-zmq (EL-6)"
+    expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
         "package_128x128.png"
