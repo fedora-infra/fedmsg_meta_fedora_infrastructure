@@ -1269,6 +1269,30 @@ class TestPkgdb2BrCreate(Base):
 
 
 class TestLookaside(Base):
+    expected_title = "git.lookaside.new (unsigned)"
+    expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
+    expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
+        'texlive/pst-diffraction.doc.tar.xz/' + \
+        'dacad985394b3977f9dcf0c75f51a357/' + \
+        'pst-diffraction.doc.tar.xz'
+    expected_usernames = set(['jnovy'])
+    expected_packages = set(['texlive'])
+    expected_objects = set(['texlive/pst-diffraction.doc.tar.xz'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1349197866.215465,
+        "topic": "org.fedoraproject.prod.git.lookaside.new",
+        "msg": {
+            "agent": "jnovy",
+            "md5sum": "dacad985394b3977f9dcf0c75f51a357",
+            "name": "texlive",
+            "filename": "pst-diffraction.doc.tar.xz"
+        }
+    }
+
+
+class TestLookasideLegacy(Base):
     expected_title = "git.lookaside.texlive.new (unsigned)"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
@@ -1339,6 +1363,7 @@ class TestSCMSuperLegacy(Base):
             }
         }
     }
+
 
 class TestSCMLegacy(Base):
     expected_title = "git.receive.valgrind.master (unsigned)"
