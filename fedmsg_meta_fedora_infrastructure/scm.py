@@ -33,7 +33,7 @@ class SCMProcessor(BaseProcessor):
     __icon__ = "http://git-scm.com/images/logo.png"
 
     def secondary_icon(self, msg, **config):
-        if '.git.receive.' in msg['topic']:
+        if '.git.receive' in msg['topic']:
             query_string = urllib.urlencode({
                 's': 64,
                 'd': "http://git-scm.com/images/logo.png",
@@ -44,8 +44,11 @@ class SCMProcessor(BaseProcessor):
             return tmpl % (hash, query_string)
 
     def subtitle(self, msg, **config):
-        if '.git.receive.' in msg['topic']:
-            repo = '.'.join(msg['topic'].split('.')[5:-1])
+        if '.git.receive' in msg['topic']:
+            try:
+                repo = msg['msg']['commit']['repo']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
             user = msg['msg']['commit']['username']
 
             summ = msg['msg']['commit']['summary']
@@ -100,8 +103,11 @@ class SCMProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         prefix = "http://pkgs.fedoraproject.org/cgit"
-        if '.git.receive.' in msg['topic']:
-            repo = '.'.join(msg['topic'].split('.')[5:-1])
+        if '.git.receive' in msg['topic']:
+            try:
+                repo = msg['msg']['commit']['repo']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
             rev = msg['msg']['commit']['rev']
             branch = msg['msg']['commit']['branch']
             tmpl = "{prefix}/{repo}.git/commit/?h={branch}&id={rev}"
@@ -128,8 +134,13 @@ class SCMProcessor(BaseProcessor):
             return set([msg['msg']['commit']['username']])
 
     def packages(self, msg, **config):
-        if 'git.receive.' in msg['topic'] or 'git.branch.' in msg['topic']:
-            return set(['.'.join(msg['topic'].split('.')[5:-1])])
+        if 'git.receive' in msg['topic'] or 'git.branch.' in msg['topic']:
+            try:
+                # Newer fedmsg
+                return set([msg['msg']['commit']['repo']])
+            except KeyError:
+                # Legacy support
+                return set(['.'.join(msg['topic'].split('.')[5:-1])])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
             return set(msg['msg']['unbranchedPackages'] +
                        msg['msg']['branchedPackages'])
@@ -139,8 +150,11 @@ class SCMProcessor(BaseProcessor):
         return set()
 
     def objects(self, msg, **config):
-        if 'git.receive.' in msg['topic']:
-            repo = '.'.join(msg['topic'].split('.')[5:-1])
+        if 'git.receive' in msg['topic']:
+            try:
+                repo = msg['msg']['commit']['repo']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
             return set([
                 repo + '/' + filename for filename in
                 msg['msg']['commit']['stats']['files']
