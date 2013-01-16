@@ -25,6 +25,7 @@ from fedmsg.tests.test_meta import Base
 
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
 
+
 class TestFASUserCreate(Base):
     expected_title = "fas.user.create (unsigned)"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
@@ -1291,7 +1292,7 @@ class TestLookaside(Base):
     }
 
 
-class TestSCM(Base):
+class TestSCMSuperLegacy(Base):
     expected_title = "git.receive.valgrind.master (unsigned)"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
@@ -1339,9 +1340,108 @@ class TestSCM(Base):
         }
     }
 
+class TestSCMLegacy(Base):
+    expected_title = "git.receive.valgrind.master (unsigned)"
+    expected_subti = 'mjw pushed to valgrind (master).  ' + \
+        '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
+    expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
+        "valgrind.git/commit/" + \
+        "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
+    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "923419d315c8f23eface39852bf32a5f?s=64&" + \
+        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+    expected_usernames = set(['mjw'])
+    expected_packages = set(['valgrind'])
+    expected_objects = set(['valgrind/valgrind.spec'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1344350850.8867381,
+        "topic": "org.fedoraproject.prod.git.receive.valgrind.master",
+        "msg": {
+            "commit": {
+                "stats": {
+                    "files": {
+                        "valgrind.spec": {
+                            "deletions": 2,
+                            "lines": 3,
+                            "insertions": 1
+                        }
+                    },
+                    "total": {
+                        "deletions": 2,
+                        "files": 1,
+                        "insertions": 1,
+                        "lines": 3
+                    }
+                },
+                "name": "Mark Wielaard",
+                "rev": "7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1",
+                "summary": "Clear CFLAGS CXXFLAGS LDFLAGS.",
+                "message": """Clear CFLAGS CXXFLAGS LDFLAGS.
+                This is a bit of a hammer.""",
+                "email": "mjw@redhat.com",
+                "username": "mjw",
+                "branch": "master",
+                "repo": "valgrind",
+            }
+        }
+    }
+
+
+class TestSCM(Base):
+    expected_title = "git.receive (unsigned)"
+    expected_subti = 'mjw pushed to valgrind (master).  ' + \
+        '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
+    expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
+        "valgrind.git/commit/" + \
+        "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
+    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "923419d315c8f23eface39852bf32a5f?s=64&" + \
+        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+    expected_usernames = set(['mjw'])
+    expected_packages = set(['valgrind'])
+    expected_objects = set(['valgrind/valgrind.spec'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1344350850.8867381,
+        "topic": "org.fedoraproject.prod.git.receive",
+        "msg": {
+            "commit": {
+                "stats": {
+                    "files": {
+                        "valgrind.spec": {
+                            "deletions": 2,
+                            "lines": 3,
+                            "insertions": 1
+                        }
+                    },
+                    "total": {
+                        "deletions": 2,
+                        "files": 1,
+                        "insertions": 1,
+                        "lines": 3
+                    }
+                },
+                "name": "Mark Wielaard",
+                "rev": "7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1",
+                "summary": "Clear CFLAGS CXXFLAGS LDFLAGS.",
+                "message": """Clear CFLAGS CXXFLAGS LDFLAGS.
+                This is a bit of a hammer.""",
+                "email": "mjw@redhat.com",
+                "username": "mjw",
+                "branch": "master",
+                "repo": "valgrind",
+            }
+        }
+    }
+
 
 class TestSCMSingleLine(Base):
-    expected_title = "git.receive.ember.master (unsigned)"
+    expected_title = "git.receive (unsigned)"
     expected_subti = 'spot pushed to ember (master).  ' + \
         '"another missing patch? ridiculous."'
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
@@ -1358,7 +1458,7 @@ class TestSCMSingleLine(Base):
     msg = {
         "i": 1,
         "timestamp": 1352998154.368305,
-        "topic": "org.fedoraproject.prod.git.receive.ember.master",
+        "topic": "org.fedoraproject.prod.git.receive",
         "msg": {
             "commit": {
                 "username": "spot",
@@ -1381,6 +1481,7 @@ class TestSCMSingleLine(Base):
                 "rev": "aa2df80f3d8dd217c7cbfe2d3451190028f3fe14",
                 "summary": "another missing patch? ridiculous.",
                 "branch": "master",
+                "repo": "ember",
                 "message": "another missing patch? ridiculous.\n",
                 "email": "spot@fedoraproject.org"
             }
