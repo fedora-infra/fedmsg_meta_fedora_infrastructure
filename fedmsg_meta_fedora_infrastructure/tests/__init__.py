@@ -1248,7 +1248,7 @@ class TestPkgdb2BrRunCompleteWithErrors(Base):
     }
 
 
-class TestPkgdb2BrCreate(Base):
+class TestPkgdb2BrCreateLegacy(Base):
     expected_title = "git.branch.valgrind.master (unsigned)"
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
@@ -1264,6 +1264,28 @@ class TestPkgdb2BrCreate(Base):
         "topic": "org.fedoraproject.prod.git.branch.valgrind.master",
         "msg": {
             "agent": "limburgher",
+        },
+    }
+
+
+class TestPkgdb2BrCreate(Base):
+    expected_title = "git.branch (unsigned)"
+    expected_subti = \
+        "limburgher created branch 'master' for the 'valgrind' package"
+    expected_link = \
+        "http://pkgs.fedoraproject.org/cgit/valgrind.git/log/?h=master"
+    expected_usernames = set(['limburgher'])
+    expected_packages = set(['valgrind'])
+    expected_objects = set(['valgrind/__git__'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1344350850.8867381,
+        "topic": "org.fedoraproject.prod.git.branch",
+        "msg": {
+            "agent": "limburgher",
+            "name": "valgrind",
+            "branch": "master",
         },
     }
 

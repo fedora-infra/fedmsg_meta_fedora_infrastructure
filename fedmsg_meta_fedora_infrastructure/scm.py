@@ -60,9 +60,14 @@ class SCMProcessor(BaseProcessor):
             tmpl = self._('{user} pushed to {repo} ({branch}).  "{summary}"')
             return tmpl.format(user=user, repo=repo,
                                branch=branch, summary=summ)
-        elif '.git.branch.' in msg['topic']:
-            repo = '.'.join(msg['topic'].split('.')[5:-1])
-            branch = msg['topic'].split('.')[-1]
+        elif '.git.branch' in msg['topic']:
+            try:
+                repo = msg['msg']['name']
+                branch = msg['msg']['branch']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
+                branch = msg['topic'].split('.')[-1]
+
             agent = msg['msg']['agent']
             tmpl = self._(
                 "{agent} created branch '{branch}' for the '{repo}' package"
@@ -113,9 +118,13 @@ class SCMProcessor(BaseProcessor):
             tmpl = "{prefix}/{repo}.git/commit/?h={branch}&id={rev}"
             return tmpl.format(prefix=prefix, repo=repo,
                                branch=branch, rev=rev)
-        elif '.git.branch.' in msg['topic']:
-            repo = '.'.join(msg['topic'].split('.')[5:-1])
-            branch = msg['topic'].split('.')[-1]
+        elif '.git.branch' in msg['topic']:
+            try:
+                repo = msg['msg']['name']
+                branch = msg['msg']['branch']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
+                branch = msg['topic'].split('.')[-1]
             tmpl = "{prefix}/{repo}.git/log/?h={branch}"
             return tmpl.format(prefix=prefix, repo=repo, branch=branch)
         elif '.git.lookaside.' in msg['topic']:
@@ -134,12 +143,17 @@ class SCMProcessor(BaseProcessor):
             return set([msg['msg']['commit']['username']])
 
     def packages(self, msg, **config):
-        if 'git.receive' in msg['topic'] or 'git.branch.' in msg['topic']:
+        if 'git.receive' in msg['topic']:
             try:
                 # Newer fedmsg
                 return set([msg['msg']['commit']['repo']])
             except KeyError:
                 # Legacy support
+                return set(['.'.join(msg['topic'].split('.')[5:-1])])
+        if 'git.branch' in msg['topic']:
+            try:
+                return set([msg['msg']['name']])
+            except KeyError:
                 return set(['.'.join(msg['topic'].split('.')[5:-1])])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
             return set(msg['msg']['unbranchedPackages'] +
@@ -159,8 +173,11 @@ class SCMProcessor(BaseProcessor):
                 repo + '/' + filename for filename in
                 msg['msg']['commit']['stats']['files']
             ])
-        elif '.git.branch.' in msg['topic']:
-            repo = '.'.join(msg['topic'].split('.')[5:-1])
+        elif '.git.branch' in msg['topic']:
+            try:
+                repo = msg['msg']['name']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
             return set([repo + '/__git__'])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
             return set([
