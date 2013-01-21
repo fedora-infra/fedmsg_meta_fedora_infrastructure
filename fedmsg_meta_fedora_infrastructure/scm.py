@@ -73,7 +73,7 @@ class SCMProcessor(BaseProcessor):
                 "{agent} created branch '{branch}' for the '{repo}' package"
             )
             return tmpl.format(agent=agent, branch=branch, repo=repo)
-        elif '.git.lookaside.' in msg['topic']:
+        elif '.git.lookaside' in msg['topic']:
             name = msg['msg']['name']
             agent = msg['msg']['agent']
             filename = msg['msg']['filename']
@@ -127,7 +127,7 @@ class SCMProcessor(BaseProcessor):
                 branch = msg['topic'].split('.')[-1]
             tmpl = "{prefix}/{repo}.git/log/?h={branch}"
             return tmpl.format(prefix=prefix, repo=repo, branch=branch)
-        elif '.git.lookaside.' in msg['topic']:
+        elif '.git.lookaside' in msg['topic']:
             prefix = "http://pkgs.fedoraproject.org/lookaside/pkgs"
             name = msg['msg']['name']
             md5sum = msg['msg']['md5sum']
@@ -158,7 +158,7 @@ class SCMProcessor(BaseProcessor):
         elif '.git.pkgdb2branch.complete' in msg['topic']:
             return set(msg['msg']['unbranchedPackages'] +
                        msg['msg']['branchedPackages'])
-        elif '.git.lookaside.' in msg['topic']:
+        elif '.git.lookaside' in msg['topic']:
             return set([msg['msg']['name']])
 
         return set()
@@ -185,7 +185,7 @@ class SCMProcessor(BaseProcessor):
                 msg['msg']['unbranchedPackages'] +
                 msg['msg']['branchedPackages']
             ])
-        elif '.git.lookaside.' in msg['topic']:
+        elif '.git.lookaside' in msg['topic']:
             return set([msg['msg']['name'] + '/' + msg['msg']['filename']])
 
         return set()
