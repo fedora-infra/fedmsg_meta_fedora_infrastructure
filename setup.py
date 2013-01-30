@@ -82,6 +82,7 @@ setup(
             "bodhi=fedmsg_meta_fedora_infrastructure.bodhi:BodhiProcessor",
             "scm=fedmsg_meta_fedora_infrastructure.scm:SCMProcessor",
             "tagger=fedmsg_meta_fedora_infrastructure.tagger:TaggerProcessor",
+            "planet=fedmsg_meta_fedora_infrastructure.planet:PlanetProcessor",
             "bot=fedmsg_meta_fedora_infrastructure.supybot:SupybotProcessor",
             "wiki=fedmsg_meta_fedora_infrastructure.mediawiki:WikiProcessor",
             "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
