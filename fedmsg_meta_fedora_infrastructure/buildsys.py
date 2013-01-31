@@ -42,6 +42,9 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.repo.init' in msg['topic']:
             tmpl = self._('Repo initialized:  {tag}')
             return tmpl.format(**msg['msg'])
+        elif 'buildsys.repo.done' in msg['topic']:
+            tmpl = self._('Repo done:  {tag}')
+            return tmpl.format(**msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
             # assert msg['msg']['attribute'] == 'state'
             templates = [
@@ -81,6 +84,9 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.repo.init' in msg['topic']:
             #raise NotImplementedError("We need owner usernames in the messages...")
             return set()
+        elif 'buildsys.repo.done' in msg['topic']:
+            #raise NotImplementedError("We need owner usernames in the messages...")
+            return set()
         elif 'buildsys.build.state.change' in msg['topic']:
             #raise NotImplementedError("We need owner usernames in the messages...")
             return set()
@@ -93,6 +99,8 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.untag' in msg['topic']:
             return set([msg['msg']['name']])
         elif 'buildsys.repo.init' in msg['topic']:
+            return set([])
+        elif 'buildsys.repo.done' in msg['topic']:
             return set([])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
@@ -123,6 +131,11 @@ class KojiProcessor(BaseProcessor):
                 msg['msg']['release'],
             ])])
         elif 'buildsys.repo.init' in msg['topic']:
+            return set(['/'.join([
+                'repos',
+                msg['msg']['tag'],
+            ])])
+        elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
                 'repos',
                 msg['msg']['tag'],

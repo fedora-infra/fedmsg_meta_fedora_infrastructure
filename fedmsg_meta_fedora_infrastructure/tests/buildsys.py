@@ -120,6 +120,7 @@ class TestKojiBuildStateChangeFail(Base):
         }
     }
 
+
 class TestKojiRepoInit(Base):
     expected_title = "buildsys.repo.init (unsigned)"
     expected_subti = 'Repo initialized:  f19-build'
@@ -133,6 +134,25 @@ class TestKojiRepoInit(Base):
         "i": 2,
         "timestamp": 1359655886.353586,
         "topic": "org.fedoraproject.prod.buildsys.repo.init",
+        "msg": {
+            "tag": "f19-build"
+        }
+    }
+
+
+class TestKojiRepoDone(Base):
+    expected_title = "buildsys.repo.done (unsigned)"
+    expected_subti = 'Repo done:  f19-build'
+    expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
+        "Artwork_DesignService_koji-icon-48.png"
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['repos/f19-build'])
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1359655886.353586,
+        "topic": "org.fedoraproject.prod.buildsys.repo.done",
         "msg": {
             "tag": "f19-build"
         }
