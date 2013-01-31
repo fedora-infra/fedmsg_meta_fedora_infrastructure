@@ -36,17 +36,31 @@ class KojiProcessor(BaseProcessor):
         if 'buildsys.tag' in msg['topic']:
             tmpl = self._('{name}-{version}-{release} tagged {tag}')
             return tmpl.format(**msg['msg'])
+        elif 'buildsys.build.state.change' in msg['topic']:
+            # assert msg['msg']['attribute'] == 'state'
+            templates = [
+                self._('{name}-{version}-{release} started building'),
+                self._('TODO'),
+                self._('TODO'),
+                self._('{name}-{version}-{release} failed to build'),
+            ]
+            tmpl = templates[msg['msg']['new']]
+            return tmpl.format(**msg['msg'])
         else:
             raise NotImplementedError()
 
     def link(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
             raise NotImplementedError("We need build ids in the messages...")
+        elif 'buildsys.build.state.change' in msg['topic']:
+            raise NotImplementedError("We need owner usernames in the messages...")
         else:
             raise NotImplementedError()
 
     def usernames(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
+            raise NotImplementedError("We need owner usernames in the messages...")
+        elif 'buildsys.build.state.change' in msg['topic']:
             raise NotImplementedError("We need owner usernames in the messages...")
         else:
             raise NotImplementedError()
@@ -54,11 +68,21 @@ class KojiProcessor(BaseProcessor):
     def packages(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
             return set([msg['msg']['name']])
+        elif 'buildsys.build.state.change' in msg['topic']:
+            return set([msg['msg']['name']])
         else:
             raise NotImplementedError()
 
     def objects(self, msg, **config):
+        # TODO -- consider collapsing these
         if 'buildsys.tag' in msg['topic']:
+            return set(['/'.join([
+                'builds',
+                msg['msg']['name'],
+                msg['msg']['version'],
+                msg['msg']['release'],
+            ])])
+        elif 'buildsys.build.state.change' in msg['topic']:
             return set(['/'.join([
                 'builds',
                 msg['msg']['name'],
