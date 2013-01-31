@@ -36,12 +36,18 @@ class KojiProcessor(BaseProcessor):
         if 'buildsys.tag' in msg['topic']:
             tmpl = self._('{name}-{version}-{release} tagged {tag}')
             return tmpl.format(**msg['msg'])
+        elif 'buildsys.untag' in msg['topic']:
+            tmpl = self._('{name}-{version}-{release} untagged from {tag}')
+            return tmpl.format(**msg['msg'])
+        elif 'buildsys.repo.init' in msg['topic']:
+            tmpl = self._('Repo initialized:  {tag}')
+            return tmpl.format(**msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
             # assert msg['msg']['attribute'] == 'state'
             templates = [
                 self._('{name}-{version}-{release} started building'),
-                self._('TODO'),
-                self._('TODO'),
+                self._('{name}-{version}-{release} entered STATE 1'),
+                self._('{name}-{version}-{release} entered STATE 2'),
                 self._('{name}-{version}-{release} failed to build'),
             ]
             tmpl = templates[msg['msg']['new']]
@@ -51,23 +57,43 @@ class KojiProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            raise NotImplementedError("We need build ids in the messages...")
+            #raise NotImplementedError("We need build ids in the messages...")
+            return ''
+        elif 'buildsys.untag' in msg['topic']:
+            #raise NotImplementedError("We need build ids in the messages...")
+            return ''
+        elif 'buildsys.repo.ini' in msg['topic']:
+            #raise NotImplementedError("We need build ids in the messages...")
+            return ''
         elif 'buildsys.build.state.change' in msg['topic']:
-            raise NotImplementedError("We need owner usernames in the messages...")
+            #raise NotImplementedError("We need owner usernames in the messages...")
+            return ''
         else:
             raise NotImplementedError()
 
     def usernames(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            raise NotImplementedError("We need owner usernames in the messages...")
+            #raise NotImplementedError("We need owner usernames in the messages...")
+            return set()
+        elif 'buildsys.untag' in msg['topic']:
+            #raise NotImplementedError("We need owner usernames in the messages...")
+            return set()
+        elif 'buildsys.repo.init' in msg['topic']:
+            #raise NotImplementedError("We need owner usernames in the messages...")
+            return set()
         elif 'buildsys.build.state.change' in msg['topic']:
-            raise NotImplementedError("We need owner usernames in the messages...")
+            #raise NotImplementedError("We need owner usernames in the messages...")
+            return set()
         else:
             raise NotImplementedError()
 
     def packages(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
             return set([msg['msg']['name']])
+        elif 'buildsys.untag' in msg['topic']:
+            return set([msg['msg']['name']])
+        elif 'buildsys.repo.init' in msg['topic']:
+            return set([])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
         else:
@@ -82,12 +108,24 @@ class KojiProcessor(BaseProcessor):
                 msg['msg']['version'],
                 msg['msg']['release'],
             ])])
+        elif 'buildsys.untag' in msg['topic']:
+            return set(['/'.join([
+                'builds',
+                msg['msg']['name'],
+                msg['msg']['version'],
+                msg['msg']['release'],
+            ])])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set(['/'.join([
                 'builds',
                 msg['msg']['name'],
                 msg['msg']['version'],
                 msg['msg']['release'],
+            ])])
+        elif 'buildsys.repo.init' in msg['topic']:
+            return set(['/'.join([
+                'repos',
+                msg['msg']['tag'],
             ])])
         else:
             raise NotImplementedError()

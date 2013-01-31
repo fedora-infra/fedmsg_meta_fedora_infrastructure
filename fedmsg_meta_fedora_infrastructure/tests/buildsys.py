@@ -30,10 +30,9 @@ class TestKojiBuildTag(Base):
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
     expected_packages = set(['stage'])
-    expected_usernames = set(['rmattes'])
     expected_objects = set(['builds/stage/4.1.1/3.fc18'])
-    expected_link = "http://koji.fedoraproject.org/koji/" + \
-        "buildinfo?buildID=342074"
+    #expected_link = "http://koji.fedoraproject.org/koji/" + \
+    #    "buildinfo?buildID=342074"
     msg = {
         "username": "apache",
         "i": 1,
@@ -48,16 +47,38 @@ class TestKojiBuildTag(Base):
         }
     }
 
+class TestKojiBuildUnTag(Base):
+    expected_title = "buildsys.untag (unsigned)"
+    expected_subti = 'globus-gram-job-manager-sge-1.5-2.fc16 untagged from f16-updates-pending'
+    expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
+        "Artwork_DesignService_koji-icon-48.png"
+    expected_packages = set(['globus-gram-job-manager-sge'])
+    expected_objects = set(['builds/globus-gram-job-manager-sge/1.5/2.fc16'])
+    #expected_link = "http://koji.fedoraproject.org/koji/" + \
+    #    "buildinfo?buildID=342074"
+    msg = {
+        "username": "apache",
+        "i": 85,
+        "timestamp": 1359655345.774982,
+        "topic": "org.fedoraproject.prod.buildsys.untag",
+        "msg": {
+            "release": "2.fc16",
+            "tag": "f16-updates-pending",
+            "name": "globus-gram-job-manager-sge",
+            "version": "1.5",
+            "user": "bodhi"
+        }
+    }
+
 class TestKojiBuildStateChangeStart(Base):
     expected_title = "buildsys.build.state.change (unsigned)"
     expected_subti = 'eclipse-ptp-6.0.3-1.fc19 started building'
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
     expected_packages = set(['eclipse-ptp'])
-    expected_usernames = set(['rmattes'])
     expected_objects = set(['builds/eclipse-ptp/6.0.3/1.fc19'])
-    expected_link = "http://koji.fedoraproject.org/koji/" + \
-        "buildinfo?buildID=342074"
+    #expected_link = "http://koji.fedoraproject.org/koji/" + \
+    #    "buildinfo?buildID=342074"
     msg = {
         "username": "apache",
         "i": 1,
@@ -80,10 +101,10 @@ class TestKojiBuildStateChangeFail(Base):
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
     expected_packages = set(['eclipse-ptp'])
-    expected_usernames = set(['rmattes'])
+    #expected_usernames = set(['rmattes'])
     expected_objects = set(['builds/eclipse-ptp/6.0.3/1.fc19'])
-    expected_link = "http://koji.fedoraproject.org/koji/" + \
-        "buildinfo?buildID=342074"
+    #expected_link = "http://koji.fedoraproject.org/koji/" + \
+    #    "buildinfo?buildID=342074"
     msg = {
         "username": "apache",
         "i": 1,
@@ -99,6 +120,23 @@ class TestKojiBuildStateChangeFail(Base):
         }
     }
 
+class TestKojiRepoInit(Base):
+    expected_title = "buildsys.repo.init (unsigned)"
+    expected_subti = 'Repo initialized:  f19-build'
+    expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
+        "Artwork_DesignService_koji-icon-48.png"
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['repos/f19-build'])
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1359655886.353586,
+        "topic": "org.fedoraproject.prod.buildsys.repo.init",
+        "msg": {
+            "tag": "f19-build"
+        }
+    }
 
 if __name__ == '__main__':
     unittest.main()
