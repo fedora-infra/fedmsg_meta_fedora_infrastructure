@@ -88,6 +88,7 @@ setup(
             "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
             "comp=fedmsg_meta_fedora_infrastructure.compose:ComposeProcessor",
             "pkgdb=fedmsg_meta_fedora_infrastructure.pkgdb:PkgdbProcessor",
+            "buildsys=fedmsg_meta_fedora_infrastructure.buildsys:KojiProcessor",
         ]
     }
 )
