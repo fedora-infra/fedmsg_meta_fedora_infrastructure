@@ -21,6 +21,16 @@ from fedmsg.meta.base import BaseProcessor
 from fasshim import gravatar_url
 
 
+def string_or_dict(msg, key):
+    if isinstance(msg[key], basestring):
+        return msg[key]
+    else:
+        if 'username' in msg[key]:
+            return msg[key]['username']
+        else:
+            return msg[key]['name']
+
+
 class FASProcessor(BaseProcessor):
     __name__ = "FAS"
     __description__ = "the Fedora Account System"
@@ -32,15 +42,15 @@ class FASProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         if 'fas.user.create' in msg['topic']:
-            agent = msg['msg']['agent']['username']
-            user = msg['msg']['user']['username']
+            agent = string_or_dict(msg['msg'], 'agent')
+            user = string_or_dict(msg['msg'], 'user')
             tmpl = self._(
                 "New FAS account:  '{user}'  (created by '{agent}')"
             )
             return tmpl.format(agent=agent, user=user)
         elif 'fas.user.update' in msg['topic']:
-            agent = msg['msg']['agent']['username']
-            user = msg['msg']['user']['username']
+            agent = string_or_dict(msg['msg'], 'agent')
+            user = string_or_dict(msg['msg'], 'user')
             fields = ", ".join(msg['msg']['fields'])
             tmpl = self._(
                 "{agent} edited the following fields of " +
@@ -49,9 +59,9 @@ class FASProcessor(BaseProcessor):
             return tmpl.format(agent=agent, user=user, fields=fields)
         elif 'fas.group.member.' in msg['topic']:
             action = msg['topic'].split('.')[-1]
-            agent = msg['msg']['agent']['username']
-            user = msg['msg']['user']['username']
-            group = msg['msg']['group']['name']
+            agent = string_or_dict(msg['msg'], 'agent')
+            user = string_or_dict(msg['msg'], 'user')
+            group = string_or_dict(msg['msg'], 'group')
             tmpls = {
                 'apply': self._(
                     "{agent} applied for {user}'s membership " +
@@ -71,13 +81,13 @@ class FASProcessor(BaseProcessor):
             ))
             return tmpl.format(agent=agent, user=user, group=group)
         elif 'fas.group.create' in msg['topic']:
-            agent = msg['msg']['agent']['username']
-            group = msg['msg']['group']['name']
+            agent = string_or_dict(msg['msg'], 'agent')
+            group = string_or_dict(msg['msg'], 'group')
             tmpl = self._("{agent} created new FAS group {group}")
             return tmpl.format(agent=agent, group=group)
         elif 'fas.group.update' in msg['topic']:
-            agent = msg['msg']['agent']['username']
-            group = msg['msg']['group']['name']
+            agent = string_or_dict(msg['msg'], 'agent')
+            group = string_or_dict(msg['msg'], 'group')
             fields = ", ".join(msg['msg']['fields'])
             tmpl = self._(
                 "{agent} edited the following fields of the {group} " +
@@ -85,9 +95,9 @@ class FASProcessor(BaseProcessor):
             )
             return tmpl.format(agent=agent, group=group, fields=fields)
         elif 'fas.role.update' in msg['topic']:
-            agent = msg['msg']['agent']['username']
-            user = msg['msg']['user']['username']
-            group = msg['msg']['group']['name']
+            agent = string_or_dict(msg['msg'], 'agent')
+            user = string_or_dict(msg['msg'], 'user')
+            group = string_or_dict(msg['msg'], 'group')
             tmpl = self._(
                 "{agent} changed {user}'s role in the {group} group"
             )
@@ -97,18 +107,18 @@ class FASProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         # Every fas fedmsg message has an "agent" field.. "whodunnit"
-        return gravatar_url(username=msg['msg']['agent']['username'])
+        return gravatar_url(username=string_or_dict(msg['msg'], 'agent'))
 
     def usernames(self, msg, **config):
         users = []
 
         try:
-            users.append(msg['msg']['agent']['username'])
+            users.append(string_or_dict(msg['msg'], 'agent'))
         except KeyError:
             pass
 
         try:
-            users.append(msg['msg']['user']['username'])
+            users.append(string_or_dict(msg['msg'], 'user'))
         except KeyError:
             pass
 
@@ -118,9 +128,9 @@ class FASProcessor(BaseProcessor):
         objs = set()
 
         if 'user' in msg['msg']:
-            objs.add('users/' + msg['msg']['user']['username'])
+            objs.add('users/' + string_or_dict(msg['msg'], 'user'))
 
         if 'group' in msg['msg']:
-            objs.add('groups/' + msg['msg']['group']['name'])
+            objs.add('groups/' + string_or_dict(msg['msg'], 'group'))
 
         return objs
