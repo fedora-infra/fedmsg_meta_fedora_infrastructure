@@ -49,9 +49,10 @@ class KojiProcessor(BaseProcessor):
             # assert msg['msg']['attribute'] == 'state'
             templates = [
                 self._('{name}-{version}-{release} started building'),
-                self._('{name}-{version}-{release} closed'),
-                self._('{name}-{version}-{release} entered STATE 2'),
+                self._('{name}-{version}-{release} completed'),
+                self._('{name}-{version}-{release} was deleted'),
                 self._('{name}-{version}-{release} failed to build'),
+                self._('{name}-{version}-{release} was cancelled'),
             ]
             tmpl = templates[msg['msg']['new']]
             return tmpl.format(**msg['msg'])
