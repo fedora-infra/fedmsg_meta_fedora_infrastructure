@@ -21,7 +21,7 @@ from fedmsg.meta.base import BaseProcessor
 
 
 class KojiProcessor(BaseProcessor):
-    __name__ = "koji"
+    __name__ = "buildsys"
     __description__ = "the Fedora build system"
     __link__ = "https://koji.fedoraproject.org/koji"
     __docs__ = "https://fedoraproject.org/wiki/Using_the_Koji_build_system"
