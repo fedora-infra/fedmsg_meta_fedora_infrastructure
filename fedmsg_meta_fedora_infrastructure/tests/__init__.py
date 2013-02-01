@@ -28,7 +28,7 @@ from fedmsg_meta_fedora_infrastructure.tests.planet import *
 from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
 
 
-class TestFASUserCreate(Base):
+class TestFASUserCreateOldStyle(Base):
     expected_title = "fas.user.create (unsigned)"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -49,6 +49,27 @@ class TestFASUserCreate(Base):
             u'agent': {
                 u'username': u'ralph'
             }
+        }
+    }
+
+
+class TestFASUserCreate(Base):
+    expected_title = "fas.user.create (unsigned)"
+    expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['users/ralph'])
+    msg = {
+        u'i': 1,
+        u'timestamp': 1344432054.8098609,
+        u'topic': u'org.fedoraproject.stg.fas.user.create',
+        u'msg': {
+            u'user': u'ralph',
+            u'agent': u'ralph',
         }
     }
 
@@ -74,7 +95,7 @@ class TestFASEditProfile(Base):
     }
 
 
-class TestFASEditGroup(Base):
+class TestFASEditGroupOldStyle(Base):
     expected_title = "fas.group.update (unsigned)"
     expected_subti = "ralph edited the following fields of the " + \
         "ambassadors FAS group:  display_name"
@@ -91,6 +112,27 @@ class TestFASEditGroup(Base):
             u'fields': [u'display_name'],
             u'group': {u'name': u'ambassadors'},
             u'agent': {u'username': u'ralph'},
+        }
+    }
+
+
+class TestFASEditGroup(Base):
+    expected_title = "fas.group.update (unsigned)"
+    expected_subti = "ralph edited the following fields of the " + \
+        "ambassadors FAS group:  display_name"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['groups/ambassadors'])
+    msg = {
+        u'topic': u'org.fedoraproject.stg.fas.group.update',
+        u'msg': {
+            u'fields': [u'display_name'],
+            u'group': u'ambassadors',
+            u'agent': u'ralph',
         }
     }
 
