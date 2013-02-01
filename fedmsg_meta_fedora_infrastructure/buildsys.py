@@ -34,10 +34,12 @@ class KojiProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            tmpl = self._('{name}-{version}-{release} tagged {tag}')
+            tmpl = self._("{owner}'s {name}-{version}-{release} tagged {tag}")
             return tmpl.format(**msg['msg'])
         elif 'buildsys.untag' in msg['topic']:
-            tmpl = self._('{name}-{version}-{release} untagged from {tag}')
+            tmpl = self._(
+                "{owner}'s {name}-{version}-{release} untagged from {tag}"
+            )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.repo.init' in msg['topic']:
             tmpl = self._('Repo initialized:  {tag}')
@@ -46,51 +48,39 @@ class KojiProcessor(BaseProcessor):
             tmpl = self._('Repo done:  {tag}')
             return tmpl.format(**msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
-            # assert msg['msg']['attribute'] == 'state'
             templates = [
-                self._('{name}-{version}-{release} started building'),
-                self._('{name}-{version}-{release} completed'),
-                self._('{name}-{version}-{release} was deleted'),
-                self._('{name}-{version}-{release} failed to build'),
-                self._('{name}-{version}-{release} was cancelled'),
+                self._(
+                    "{owner}'s {name}-{version}-{release} started building"
+                ),
+                self._("{owner}'s {name}-{version}-{release} completed"),
+                self._("{owner}'s {name}-{version}-{release} was deleted"),
+                self._("{owner}'s {name}-{version}-{release} failed to build"),
+                self._("{owner}'s {name}-{version}-{release} was cancelled"),
             ]
             tmpl = templates[msg['msg']['new']]
             return tmpl.format(**msg['msg'])
         else:
             raise NotImplementedError()
 
-    def link(self, msg, **config):
-        if 'buildsys.tag' in msg['topic']:
-            #raise NotImplementedError("We need build ids in the messages...")
-            return ''
-        elif 'buildsys.untag' in msg['topic']:
-            #raise NotImplementedError("We need build ids in the messages...")
-            return ''
-        elif 'buildsys.repo.ini' in msg['topic']:
-            #raise NotImplementedError("We need build ids in the messages...")
-            return ''
-        elif 'buildsys.build.state.change' in msg['topic']:
-            #raise NotImplementedError("We need owner usernames in the messages...")
-            return ''
-        else:
-            raise NotImplementedError()
-
     def usernames(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            #raise NotImplementedError("We need owner usernames in the messages...")
-            return set()
+            return set([
+                msg['msg']['owner'],
+                msg['msg']['user'],
+            ])
         elif 'buildsys.untag' in msg['topic']:
-            #raise NotImplementedError("We need owner usernames in the messages...")
-            return set()
+            return set([
+                msg['msg']['owner'],
+                msg['msg']['user'],
+            ])
         elif 'buildsys.repo.init' in msg['topic']:
-            #raise NotImplementedError("We need owner usernames in the messages...")
             return set()
         elif 'buildsys.repo.done' in msg['topic']:
-            #raise NotImplementedError("We need owner usernames in the messages...")
             return set()
         elif 'buildsys.build.state.change' in msg['topic']:
-            #raise NotImplementedError("We need owner usernames in the messages...")
-            return set()
+            return set([
+                msg['msg']['owner'],
+            ])
         else:
             raise NotImplementedError()
 
@@ -108,37 +98,67 @@ class KojiProcessor(BaseProcessor):
         else:
             raise NotImplementedError()
 
-    def objects(self, msg, **config):
-        # TODO -- consider collapsing these
+    def link(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            return set(['/'.join([
-                'builds',
-                msg['msg']['name'],
-                msg['msg']['version'],
-                msg['msg']['release'],
-            ])])
+            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+                msg['msg']['tag_id'])
         elif 'buildsys.untag' in msg['topic']:
-            return set(['/'.join([
-                'builds',
-                msg['msg']['name'],
-                msg['msg']['version'],
-                msg['msg']['release'],
-            ])])
+            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+                msg['msg']['tag_id'])
+        elif 'buildsys.repo.init' in msg['topic']:
+            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+                msg['msg']['tag_id'])
+        elif 'buildsys.repo.done' in msg['topic']:
+            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+                msg['msg']['tag_id'])
+        elif 'buildsys.build.state.change' in msg['topic']:
+            return "https://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
+                % (msg['msg']['build_id'])
+        else:
+            raise NotImplementedError()
+
+    def objects(self, msg, **config):
+        if 'buildsys.tag' in msg['topic']:
+            return set([
+                '/'.join([
+                    'koji', 'builds',
+                    msg['msg']['name'],
+                    msg['msg']['version'],
+                    msg['msg']['release'],
+                ]),
+                '/'.join([
+                    'koji', 'tags',
+                    msg['msg']['tag'],
+                ]),
+            ])
+        elif 'buildsys.untag' in msg['topic']:
+            return set([
+                '/'.join([
+                    'koji', 'builds',
+                    msg['msg']['name'],
+                    msg['msg']['version'],
+                    msg['msg']['release'],
+                ]),
+                '/'.join([
+                    'koji', 'tags',
+                    msg['msg']['tag'],
+                ]),
+            ])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set(['/'.join([
-                'builds',
+                'koji', 'builds',
                 msg['msg']['name'],
                 msg['msg']['version'],
                 msg['msg']['release'],
             ])])
         elif 'buildsys.repo.init' in msg['topic']:
             return set(['/'.join([
-                'repos',
+                'koji', 'repos',
                 msg['msg']['tag'],
             ])])
         elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
-                'repos',
+                'koji', 'repos',
                 msg['msg']['tag'],
             ])])
         else:
