@@ -489,7 +489,7 @@ class TestBodhiUpdateComplete(Base):
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     expected_title = "bodhi.update.request.testing (unsigned)"
-    expected_subti = "hadess submitted " + \
+    expected_subti = "lmacken submitted " + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18" + \
         " to testing"
     expected_link = "https://admin.fedoraproject.org/updates/" + \
@@ -509,6 +509,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     msg = {
         "topic": "org.fedoraproject.prod.bodhi.update.request.testing",
         "msg": {
+            'agent': 'lmacken',
             "update": {
                 "status": "pending",
                 "critpath": False,
@@ -679,6 +680,7 @@ class TestBodhiRequestUnpush(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.unpush",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -703,6 +705,7 @@ class TestBodhiRequestObsolete(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.obsolete",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -727,6 +730,7 @@ class TestBodhiRequestStable(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.stable",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -751,6 +755,7 @@ class TestBodhiRequestRevoke(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.revoke",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -775,6 +780,7 @@ class TestBodhiRequestTesting(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.testing",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
