@@ -73,10 +73,7 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(author=author, package=package, status=status)
         elif 'bodhi.update.request' in msg['topic']:
             status = msg['topic'].split('.')[-1]
-            # TODO -- use msg['msg']['agent'] which should be available once
-            # bodhi-0.9.3 is deployed.  The 'submitter' might not actually be
-            # the one who 'unpushes' an update, for instance.
-            author = msg['msg']['update']['submitter']
+            author = msg['msg']['agent']
             title = msg['msg']['update']['title']
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
