@@ -26,8 +26,8 @@ from fedmsg.tests.test_meta import Base
 
 class TestKojiBuildTag(Base):
     expected_title = "buildsys.tag (unsigned)"
-    expected_subti = "ralph's stage-4.1.1-3.fc18 tagged " + \
-        "f18-updates-testing-pending"
+    expected_subti = "ralph's stage-4.1.1-3.fc18 tagged into " + \
+        "f18-updates-testing-pending by bodhi"
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
     expected_packages = set(['stage'])
@@ -58,7 +58,7 @@ class TestKojiBuildTag(Base):
 class TestKojiBuildUnTag(Base):
     expected_title = "buildsys.untag (unsigned)"
     expected_subti = "ralph's globus-gram-job-manager-sge-1.5-2.fc16 " + \
-        "untagged from f16-updates-pending"
+        "untagged from f16-updates-pending by bodhi"
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
     expected_packages = set(['globus-gram-job-manager-sge'])

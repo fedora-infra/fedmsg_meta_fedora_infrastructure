@@ -34,11 +34,15 @@ class KojiProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            tmpl = self._("{owner}'s {name}-{version}-{release} tagged {tag}")
+            tmpl = self._(
+                "{owner}'s {name}-{version}-{release} tagged "
+                "into {tag} by {user}"
+            )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.untag' in msg['topic']:
             tmpl = self._(
-                "{owner}'s {name}-{version}-{release} untagged from {tag}"
+                "{owner}'s {name}-{version}-{release} untagged "
+                "from {tag} by {user}"
             )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.repo.init' in msg['topic']:
