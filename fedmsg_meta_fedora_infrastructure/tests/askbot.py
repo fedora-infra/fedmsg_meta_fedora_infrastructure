@@ -393,7 +393,7 @@ class TestAskbotAnswerDeleted(Base):
     }
 
 
-class TestAskbotAnswerDeleted(Base):
+class TestAskbotQuestionDeleted(Base):
     expected_title = "askbot.post.delete (unsigned)"
     expected_subti = "ralph deleted the question 'test 3 is a charm'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -402,7 +402,7 @@ class TestAskbotAnswerDeleted(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/threads/7',
+        'askbot/threads/10',
     ])
     expected_link = "https://ask.fedoraproject.org/question/" + \
         "10/?answer=10#post-id-10"
