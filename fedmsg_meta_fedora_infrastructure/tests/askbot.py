@@ -50,14 +50,14 @@ class TestAskbotRetag(Base):
                     "town",
                     "ohok",
                     "asldkjfalskdjfalskj",
-                    "alskdjf"
+                    "asldkjf"
                 ],
                 "pk": 2,
                 "title": "some title"
             },
             "tags": [
                 "asldkjfalskdjfalskj",
-                "alskdjf",
+                "asldkjf",
                 "asldkjfalskdjf"
             ]
         },
@@ -402,7 +402,8 @@ class TestAskbotAnswerDeleted(Base):
     expected_objects = set([
         'askbot/threads/7',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/10/"
+    expected_link = "https://ask.fedoraproject.org/question/" + \
+        "10/?answer=10#post-id-10"
     msg = {
         "i": 1,
         "msg": {
