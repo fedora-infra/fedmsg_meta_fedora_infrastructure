@@ -89,7 +89,7 @@ class TestAskbotNewQuestion(Base):
                     "lolol"
                 ],
                 "pk": 3,
-                "title": "I have a new quesetion"
+                "title": "I have a new question"
             },
             "topmost_post_id": 3,
             "created": True,
@@ -118,7 +118,8 @@ class TestAskbotNewQuestion(Base):
 
 class TestAskbotNewAnswer(Base):
     expected_title = "askbot.post.edit (unsigned)"
-    expected_subti = "ralph answered the question 'watwatwatwata'"
+    expected_subti = "ralph suggested an answer " + \
+        "to the question 'watwatwatwata'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
@@ -305,7 +306,8 @@ class TestAskbotUpdatedQuestion(Base):
 
 class TestAskbotUpdatedQuestion(Base):
     expected_title = "askbot.post.edit (unsigned)"
-    expected_subti = "ralph updated the answer 'alskdjflaksjdf lakjsf a'"
+    expected_subti = "ralph updated an answer " + \
+        "to the question 'I have a new question'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
@@ -325,7 +327,7 @@ class TestAskbotUpdatedQuestion(Base):
                     "lolol"
                 ],
                 "pk": 3,
-                "title": "I have a new quesetion"
+                "title": "I have a new question"
             },
             "topmost_post_id": 3,
             "created": False,

@@ -33,7 +33,23 @@ class AskbotProcessor(BaseProcessor):
     #    "images/icons/package_128x128.png"
 
     def subtitle(self, msg, **config):
-        raise NotImplementedError
+        if 'askbot.post.edit' in msg['topic']:
+            user = msg['msg']['agent']
+            title = msg['msg']['thread']['title']
+            if msg['msg']['created']:
+                if msg['msg']['post']['post_type'] == 'question':
+                    tmpl = self._("{user} asked the question '{title}'")
+                else:
+                    tmpl = self._("{user} suggested an answer to the question '{title}'")
+            else:
+                if msg['msg']['post']['post_type'] == 'question':
+                    tmpl = self._("{user} updated the question '{title}'")
+                else:
+                    tmpl = self._("{user} updated an answer to the question '{title}'")
+
+            return tmpl.format(user=user, title=title)
+        else:
+            raise NotImplementedError
 
     def secondary_icon(self, msg, **config):
         user = None
