@@ -168,7 +168,7 @@ class TestAskbotNewAnswer(Base):
 
 class TestAskbotFlagOffensiveAdd(Base):
     expected_title = "askbot.post.flag_offensive.add (unsigned)"
-    expected_subti = "ralph flagged an answer as offensive!"
+    expected_subti = "ralph flagged a question as offensive!"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
@@ -193,7 +193,7 @@ class TestAskbotFlagOffensiveAdd(Base):
                 "comment_count": 0,
                 "vote_down_count": 0,
                 "pk": 3,
-                "post_type": "answer"
+                "post_type": "question"
             },
             "agent": "ralph",
             "topmost_post_id": 2,

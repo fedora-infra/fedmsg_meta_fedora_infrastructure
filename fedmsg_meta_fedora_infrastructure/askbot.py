@@ -33,20 +33,46 @@ class AskbotProcessor(BaseProcessor):
     #    "images/icons/package_128x128.png"
 
     def subtitle(self, msg, **config):
+        user = msg['msg']['agent']
         if 'askbot.post.edit' in msg['topic']:
-            user = msg['msg']['agent']
             title = msg['msg']['thread']['title']
             if msg['msg']['created']:
                 if msg['msg']['post']['post_type'] == 'question':
                     tmpl = self._("{user} asked the question '{title}'")
                 else:
-                    tmpl = self._("{user} suggested an answer to the question '{title}'")
+                    tmpl = self._(
+                        "{user} suggested an answer to the question '{title}'")
             else:
                 if msg['msg']['post']['post_type'] == 'question':
                     tmpl = self._("{user} updated the question '{title}'")
                 else:
-                    tmpl = self._("{user} updated an answer to the question '{title}'")
+                    tmpl = self._(
+                        "{user} updated an answer to the question '{title}'")
 
+            return tmpl.format(user=user, title=title)
+        elif 'askbot.tag.update' in msg['topic']:
+            title = msg['msg']['thread']['title']
+            tmpl = self._("{user} altered tags on askbot question '{title}'")
+            return tmpl.format(user=user, title=title)
+        elif 'askbot.post.flag_offensive.add' in msg['topic']:
+            title = msg['msg']['thread']['title']
+            if msg['msg']['instance']['post_type'] == 'question':
+                tmpl = self._("{user} flagged a question as offensive!")
+            else:
+                tmpl = self._("{user} flagged an answer as offensive!")
+            return tmpl.format(user=user)
+        elif 'askbot.post.flag_offensive.delete' in msg['topic']:
+            if msg['msg']['instance']['post_type'] == 'question':
+                tmpl = self._("{user} unflagged a question as offensive...")
+            else:
+                tmpl = self._("{user} unflagged an answer as offensive...")
+            return tmpl.format(user=user)
+        elif 'askbot.post.delete' in msg['topic']:
+            title = msg['msg']['thread']['title']
+            if msg['msg']['instance']['post_type'] == 'question':
+                tmpl = self._("{user} deleted the question '{title}'")
+            else:
+                tmpl = self._("{user} deleted an answer on '{title}'")
             return tmpl.format(user=user, title=title)
         else:
             raise NotImplementedError
