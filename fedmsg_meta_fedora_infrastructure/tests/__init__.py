@@ -26,6 +26,7 @@ from fedmsg.tests.test_meta import Base
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
 from fedmsg_meta_fedora_infrastructure.tests.planet import *
 from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
+from fedmsg_meta_fedora_infrastructure.tests.askbot import *
 
 
 class TestFASUserCreateOldStyle(Base):
