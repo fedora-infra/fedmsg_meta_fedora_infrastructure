@@ -34,6 +34,7 @@ class AskbotProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         user = msg['msg']['agent']
+        title = ""
         if 'askbot.post.edit' in msg['topic']:
             title = msg['msg']['thread']['title']
             if msg['msg']['created']:
@@ -48,34 +49,30 @@ class AskbotProcessor(BaseProcessor):
                 else:
                     tmpl = self._(
                         "{user} updated an answer to the question '{title}'")
-
-            return tmpl.format(user=user, title=title)
         elif 'askbot.tag.update' in msg['topic']:
             title = msg['msg']['thread']['title']
             tmpl = self._("{user} altered tags on askbot question '{title}'")
-            return tmpl.format(user=user, title=title)
         elif 'askbot.post.flag_offensive.add' in msg['topic']:
             title = msg['msg']['thread']['title']
             if msg['msg']['instance']['post_type'] == 'question':
                 tmpl = self._("{user} flagged a question as offensive!")
             else:
                 tmpl = self._("{user} flagged an answer as offensive!")
-            return tmpl.format(user=user)
         elif 'askbot.post.flag_offensive.delete' in msg['topic']:
             if msg['msg']['instance']['post_type'] == 'question':
                 tmpl = self._("{user} unflagged a question as offensive...")
             else:
                 tmpl = self._("{user} unflagged an answer as offensive...")
-            return tmpl.format(user=user)
         elif 'askbot.post.delete' in msg['topic']:
             title = msg['msg']['thread']['title']
             if msg['msg']['instance']['post_type'] == 'question':
                 tmpl = self._("{user} deleted the question '{title}'")
             else:
                 tmpl = self._("{user} deleted an answer on '{title}'")
-            return tmpl.format(user=user, title=title)
         else:
             raise NotImplementedError
+
+        return tmpl.format(user=user, title=title)
 
     def secondary_icon(self, msg, **config):
         user = None
@@ -125,17 +122,16 @@ class AskbotProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         tmpl = "https://ask.fedoraproject.org/question/{pk}/"
+        pk = msg['msg']['topmost_post_id']
+        post = ""
+
         if 'post' in msg['msg']:
+            post=msg['msg']['post']['pk']
             tmpl += "?answer={post}#post-id-{post}"
-            return tmpl.format(
-                pk=msg['msg']['topmost_post_id'],
-                post=msg['msg']['post']['pk']
-            )
         elif 'instance' in msg['msg']:
+            post=msg['msg']['instance']['pk']
             tmpl += "?answer={post}#post-id-{post}"
-            return tmpl.format(
-                pk=msg['msg']['topmost_post_id'],
-                post=msg['msg']['instance']['pk']
-            )
         else:
-            return tmpl.format(pk=msg['msg']['topmost_post_id'])
+            pass
+
+        return tmpl.format(pk=pk, post=post)
