@@ -118,7 +118,8 @@ class AskbotProcessor(BaseProcessor):
                 objs.add('askbot/tags/{tag}'.format(tag=tag))
 
         if 'thread' in msg['msg']:
-            objs.add('askbot/threads/{pk}'.format(pk=msg['msg']['thread']['pk']))
+            objs.add('askbot/threads/{pk}'.format(
+                pk=msg['msg']['thread']['pk']))
 
         return objs
 
