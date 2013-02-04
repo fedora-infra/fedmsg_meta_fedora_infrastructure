@@ -361,7 +361,7 @@ class TestAskbotAnswerDeleted(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/threads/3',
+        'askbot/threads/7',
     ])
     expected_link = "https://ask.fedoraproject.org/question/" + \
         "10/?answer=12#post-id-12"
@@ -402,7 +402,7 @@ class TestAskbotQuestionDeleted(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/threads/10',
+        'askbot/threads/7',
     ])
     expected_link = "https://ask.fedoraproject.org/question/" + \
         "10/?answer=10#post-id-10"
