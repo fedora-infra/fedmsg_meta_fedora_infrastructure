@@ -23,8 +23,8 @@ from fedmsg.meta.base import BaseProcessor
 class ComposeProcessor(BaseProcessor):
     __name__ = "compose"
     __description__ = "Fedora Release Engineering"
-    __link__ = "http://git.fedorahosted.org/cgit/releng"
-    __docs__ = "http://fedoraproject.org/wiki/ReleaseEngineering"
+    __link__ = "https://git.fedorahosted.org/cgit/releng"
+    __docs__ = "https://fedoraproject.org/wiki/ReleaseEngineering"
     __obj__ = "Composes"
 
     def subtitle(self, msg, **config):
@@ -58,7 +58,7 @@ class ComposeProcessor(BaseProcessor):
         return tmpl.format(branch=branch)
 
     def link(self, msg, **config):
-        base = "http://alt.fedoraproject.org/pub/fedora/linux/development"
+        base = "https://alt.fedoraproject.org/pub/fedora/linux/development"
         if 'rawhide' in msg['topic']:
             return base + "/rawhide"
         else:
