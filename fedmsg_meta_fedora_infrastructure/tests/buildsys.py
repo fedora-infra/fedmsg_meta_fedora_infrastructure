@@ -36,7 +36,7 @@ class TestKojiBuildTag(Base):
         'koji/builds/stage/4.1.1/3.fc18',
         'koji/tags/f18-updates-testing-pending',
     ])
-    expected_link = "https://koji.fedoraproject.org/koji/" + \
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=216"
     msg = {
         "username": "apache",
@@ -67,7 +67,7 @@ class TestKojiBuildUnTag(Base):
         'koji/builds/globus-gram-job-manager-sge/1.5/2.fc16',
         'koji/tags/f16-updates-pending',
     ])
-    expected_link = "https://koji.fedoraproject.org/koji/" + \
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=216"
     msg = {
         "username": "apache",
@@ -96,7 +96,7 @@ class TestKojiBuildStateChangeStart(Base):
     expected_objects = set([
         'koji/builds/eclipse-ptp/6.0.3/1.fc19'
     ])
-    expected_link = "https://koji.fedoraproject.org/koji/" + \
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
         "buildinfo?buildID=12345"
     msg = {
         "username": "apache",
@@ -126,7 +126,7 @@ class TestKojiBuildStateChangeFail(Base):
     expected_objects = set([
         'koji/builds/eclipse-ptp/6.0.3/1.fc19',
     ])
-    expected_link = "https://koji.fedoraproject.org/koji/" + \
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
         "buildinfo?buildID=12345"
     msg = {
         "username": "apache",
@@ -156,7 +156,7 @@ class TestKojiRepoInit(Base):
     expected_objects = set([
         'koji/repos/f19-build',
     ])
-    expected_link = "https://koji.fedoraproject.org/koji/" + \
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=12345"
     msg = {
         "username": "apache",
@@ -181,7 +181,7 @@ class TestKojiRepoDone(Base):
     expected_objects = set([
         'koji/repos/f19-build',
     ])
-    expected_link = "https://koji.fedoraproject.org/koji/" + \
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=12345"
     msg = {
         "username": "apache",
