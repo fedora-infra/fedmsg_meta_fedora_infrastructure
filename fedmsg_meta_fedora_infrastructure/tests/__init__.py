@@ -243,7 +243,7 @@ class TestComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
     expected_subti = "branched compose completed"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -323,7 +323,7 @@ class TestComposeBranchedRsyncComplete(Base):
     expected_subti = \
         "finished rsync of branched compose for public consumption"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -336,7 +336,7 @@ class TestComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete (unsigned)"
     expected_subti = "rawhide compose completed"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide'])
     msg = {
         "i": 1,
@@ -393,7 +393,7 @@ class TestComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete (unsigned)"
     expected_subti = "finished rsync of rawhide compose for public consumption"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide'])
     msg = {
         "i": 1,
