@@ -26,6 +26,7 @@ from fedmsg.tests.test_meta import Base
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
 from fedmsg_meta_fedora_infrastructure.tests.planet import *
 from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
+from fedmsg_meta_fedora_infrastructure.tests.askbot import *
 
 
 class TestFASUserCreateOldStyle(Base):
@@ -242,7 +243,7 @@ class TestComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
     expected_subti = "branched compose completed"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -322,7 +323,7 @@ class TestComposeBranchedRsyncComplete(Base):
     expected_subti = \
         "finished rsync of branched compose for public consumption"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -335,7 +336,7 @@ class TestComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete (unsigned)"
     expected_subti = "rawhide compose completed"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide'])
     msg = {
         "i": 1,
@@ -392,7 +393,7 @@ class TestComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete (unsigned)"
     expected_subti = "finished rsync of rawhide compose for public consumption"
     expected_link = \
-        "http://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide'])
     msg = {
         "i": 1,
@@ -489,7 +490,7 @@ class TestBodhiUpdateComplete(Base):
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     expected_title = "bodhi.update.request.testing (unsigned)"
-    expected_subti = "hadess submitted " + \
+    expected_subti = "lmacken submitted " + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18" + \
         " to testing"
     expected_link = "https://admin.fedoraproject.org/updates/" + \
@@ -509,6 +510,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     msg = {
         "topic": "org.fedoraproject.prod.bodhi.update.request.testing",
         "msg": {
+            'agent': 'lmacken',
             "update": {
                 "status": "pending",
                 "critpath": False,
@@ -679,6 +681,7 @@ class TestBodhiRequestUnpush(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.unpush",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -703,6 +706,7 @@ class TestBodhiRequestObsolete(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.obsolete",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -727,6 +731,7 @@ class TestBodhiRequestStable(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.stable",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -751,6 +756,7 @@ class TestBodhiRequestRevoke(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.revoke",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',
@@ -775,6 +781,7 @@ class TestBodhiRequestTesting(Base):
     msg = {
         'topic': "org.fedoraproject.dev.bodhi.update.request.testing",
         'msg': {
+            'agent': 'lmacken',
             'update': {
                 'title': 'foo',
                 'submitter': 'lmacken',

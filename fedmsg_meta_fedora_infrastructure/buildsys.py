@@ -21,9 +21,9 @@ from fedmsg.meta.base import BaseProcessor
 
 
 class KojiProcessor(BaseProcessor):
-    __name__ = "koji"
+    __name__ = "buildsys"
     __description__ = "the Fedora build system"
-    __link__ = "https://koji.fedoraproject.org/koji"
+    __link__ = "http://koji.fedoraproject.org/koji"
     __docs__ = "https://fedoraproject.org/wiki/Using_the_Koji_build_system"
     __obj__ = "Koji Builds"
     __icon__ = "http://fedoraproject.org/w/uploads/2/20/" + \
@@ -34,11 +34,15 @@ class KojiProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            tmpl = self._("{owner}'s {name}-{version}-{release} tagged {tag}")
+            tmpl = self._(
+                "{owner}'s {name}-{version}-{release} tagged "
+                "into {tag} by {user}"
+            )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.untag' in msg['topic']:
             tmpl = self._(
-                "{owner}'s {name}-{version}-{release} untagged from {tag}"
+                "{owner}'s {name}-{version}-{release} untagged "
+                "from {tag} by {user}"
             )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.repo.init' in msg['topic']:
@@ -100,19 +104,19 @@ class KojiProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
-            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.untag' in msg['topic']:
-            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.repo.init' in msg['topic']:
-            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.repo.done' in msg['topic']:
-            return "https://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.build.state.change' in msg['topic']:
-            return "https://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
+            return "http://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
                 % (msg['msg']['build_id'])
         else:
             raise NotImplementedError()

@@ -139,8 +139,10 @@ class SCMProcessor(BaseProcessor):
     def usernames(self, msg, **config):
         if 'agent' in msg['msg']:
             return set([msg['msg']['agent']])
-        else:
+        elif 'username' in msg['msg']['commit']:
             return set([msg['msg']['commit']['username']])
+        else:
+            return set()
 
     def packages(self, msg, **config):
         if 'git.receive' in msg['topic']:
