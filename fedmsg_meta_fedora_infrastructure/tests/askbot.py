@@ -79,8 +79,7 @@ class TestAskbotNewQuestion(Base):
         'askbot/tags/lolol',
         'askbot/threads/3',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/" + \
-        "3/?answer=4#post-id-4"
+    expected_link = "https://ask.fedoraproject.org/question/3/"
     msg = {
         "i": 2,
         "msg": {
@@ -129,8 +128,7 @@ class TestAskbotNewAnswer(Base):
         'askbot/tags/cool',
         'askbot/threads/1',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/" + \
-        "1/?answer=5#post-id-5"
+    expected_link = "https://ask.fedoraproject.org/question/1/"
     msg = {
         "i": 1,
         "msg": {
@@ -179,8 +177,7 @@ class TestAskbotFlagOffensiveAdd(Base):
         'askbot/tags/ohok',
         'askbot/threads/2',
     ])
-    expected_link = "https://ask.fedoraproject.org/" + \
-        "question/2/?answer=3#post-id-3"
+    expected_link = "https://ask.fedoraproject.org/question/2/"
     msg = {
         "i": 1,
         "msg": {
@@ -225,8 +222,7 @@ class TestAskbotFlagOffensiveRemove(Base):
         'askbot/tags/ohok',
         'askbot/threads/2',
     ])
-    expected_link = "https://ask.fedoraproject.org/" + \
-        "question/2/?answer=3#post-id-3"
+    expected_link = "https://ask.fedoraproject.org/question/2/"
     msg = {
         "i": 1,
         "msg": {
@@ -317,8 +313,7 @@ class TestAskbotUpdatedQuestion(Base):
         'askbot/tags/lolol',
         'askbot/threads/3',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/" + \
-        "3/?answer=6#post-id-6"
+    expected_link = "https://ask.fedoraproject.org/question/3/"
     msg = {
         "i": 1,
         "msg": {
@@ -363,8 +358,7 @@ class TestAskbotAnswerDeleted(Base):
     expected_objects = set([
         'askbot/threads/7',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/" + \
-        "10/?answer=12#post-id-12"
+    expected_link = "https://ask.fedoraproject.org/question/10/"
     msg = {
         "i": 1,
         "msg": {
@@ -404,8 +398,7 @@ class TestAskbotQuestionDeleted(Base):
     expected_objects = set([
         'askbot/threads/7',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/" + \
-        "10/?answer=10#post-id-10"
+    expected_link = "https://ask.fedoraproject.org/question/10/"
     msg = {
         "i": 1,
         "msg": {
