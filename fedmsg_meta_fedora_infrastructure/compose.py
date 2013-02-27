@@ -53,7 +53,7 @@ class ComposeProcessor(BaseProcessor):
         elif msg['topic'].endswith('.complete'):
             tmpl = self._("{branch} compose completed")
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
         return tmpl.format(branch=branch)
 
