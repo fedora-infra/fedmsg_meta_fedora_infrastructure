@@ -61,7 +61,7 @@ class TaggerProcessor(BaseProcessor):
             tmpl = self._("{user}'s rank changed to {rank}")
             return tmpl.format(user=user, rank=rank)
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
     def icon(self, msg, **config):
         return gravatar_url(msg['msg']['vote']['user']['username'])

@@ -64,7 +64,7 @@ class KojiProcessor(BaseProcessor):
             tmpl = templates[msg['msg']['new']]
             return tmpl.format(**msg['msg'])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def usernames(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -86,7 +86,7 @@ class KojiProcessor(BaseProcessor):
                 msg['msg']['owner'],
             ])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def packages(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -100,7 +100,7 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def link(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -119,7 +119,7 @@ class KojiProcessor(BaseProcessor):
             return "http://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
                 % (msg['msg']['build_id'])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def objects(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -166,4 +166,4 @@ class KojiProcessor(BaseProcessor):
                 msg['msg']['tag'],
             ])])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)

@@ -70,7 +70,7 @@ class AskbotProcessor(BaseProcessor):
             else:
                 tmpl = self._("{user} deleted an answer on '{title}'")
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
         return tmpl.format(user=user, title=title)
 

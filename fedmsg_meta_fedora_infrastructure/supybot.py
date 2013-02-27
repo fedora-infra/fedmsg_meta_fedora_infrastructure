@@ -42,7 +42,7 @@ class SupybotProcessor(BaseProcessor):
             else:
                 tmpl = self._('{user} ended a meeting in {channel}')
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
         user = msg['msg']['owner']
         name = msg['msg']['meeting_topic']

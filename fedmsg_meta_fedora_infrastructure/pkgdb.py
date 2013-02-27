@@ -122,7 +122,7 @@ class PkgdbProcessor(BaseProcessor):
                 package=package,
                 branches=branches)
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
     def secondary_icon(self, msg, **config):
         user = None
