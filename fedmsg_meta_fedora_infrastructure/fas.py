@@ -103,7 +103,7 @@ class FASProcessor(BaseProcessor):
             )
             return tmpl.format(agent=agent, group=group, user=user)
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
     def secondary_icon(self, msg, **config):
         # Every fas fedmsg message has an "agent" field.. "whodunnit"
