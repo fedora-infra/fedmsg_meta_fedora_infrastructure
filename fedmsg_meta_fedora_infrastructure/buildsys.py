@@ -51,6 +51,9 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.repo.done' in msg['topic']:
             tmpl = self._('Repo done:  {tag}')
             return tmpl.format(**msg['msg'])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            tmpl = self._("Package list change for {package}:  '{tag}'")
+            return tmpl.format(**msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [
                 self._(
@@ -81,6 +84,8 @@ class KojiProcessor(BaseProcessor):
             return set()
         elif 'buildsys.repo.done' in msg['topic']:
             return set()
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return set()
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([
                 msg['msg']['owner'],
@@ -97,6 +102,8 @@ class KojiProcessor(BaseProcessor):
             return set([])
         elif 'buildsys.repo.done' in msg['topic']:
             return set([])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return set([msg['msg']['package']])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
         else:
@@ -163,6 +170,11 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
                 'koji', 'repos',
+                msg['msg']['tag'],
+            ])])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return set(['/'.join([
+                'koji', 'tags',
                 msg['msg']['tag'],
             ])])
         else:
