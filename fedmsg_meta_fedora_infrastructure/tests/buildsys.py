@@ -195,5 +195,27 @@ class TestKojiRepoDone(Base):
         }
     }
 
+
+class TestKojiPackageListChange(Base):
+    expected_title = "buildsys.package.list.change (unsigned)"
+    expected_subti = "Package list change for almanah:  'f17'"
+    expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
+        "Artwork_DesignService_koji-icon-48.png"
+    expected_packages = set(["almanah"])
+    expected_usernames = set([])
+    expected_objects = set([
+        'koji/tags/f17',
+    ])
+    msg = {
+        "topic": "org.fedoraproject.prod.buildsys.package.list.change",
+        "msg": {
+            "tag": "f17",
+            "package": "almanah"
+        },
+        "i": 2,
+        "timestamp": 1361903735.0
+    }
+
+
 if __name__ == '__main__':
     unittest.main()
