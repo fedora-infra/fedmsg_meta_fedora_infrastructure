@@ -132,49 +132,49 @@ class KojiProcessor(BaseProcessor):
         if 'buildsys.tag' in msg['topic']:
             return set([
                 '/'.join([
-                    'koji', 'builds',
+                    'builds',
                     msg['msg']['name'],
                     msg['msg']['version'],
                     msg['msg']['release'],
                 ]),
                 '/'.join([
-                    'koji', 'tags',
+                    'tags',
                     msg['msg']['tag'],
                 ]),
             ])
         elif 'buildsys.untag' in msg['topic']:
             return set([
                 '/'.join([
-                    'koji', 'builds',
+                    'builds',
                     msg['msg']['name'],
                     msg['msg']['version'],
                     msg['msg']['release'],
                 ]),
                 '/'.join([
-                    'koji', 'tags',
+                    'tags',
                     msg['msg']['tag'],
                 ]),
             ])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set(['/'.join([
-                'koji', 'builds',
+                'builds',
                 msg['msg']['name'],
                 msg['msg']['version'],
                 msg['msg']['release'],
             ])])
         elif 'buildsys.repo.init' in msg['topic']:
             return set(['/'.join([
-                'koji', 'repos',
+                'repos',
                 msg['msg']['tag'],
             ])])
         elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
-                'koji', 'repos',
+                'repos',
                 msg['msg']['tag'],
             ])])
         elif 'buildsys.package.list.change' in msg['topic']:
             return set(['/'.join([
-                'koji', 'tags',
+                'tags',
                 msg['msg']['tag'],
             ])])
         else:
