@@ -107,15 +107,15 @@ class AskbotProcessor(BaseProcessor):
             for tag in msg['msg']['tags']:
                 if not tag:
                     continue
-                objs.add('askbot/tags/{tag}'.format(tag=tag))
+                objs.add('tags/{tag}'.format(tag=tag))
         elif 'thread' in msg['msg']:
             for tag in msg['msg']['thread']['tagnames']:
                 if not tag:
                     continue
-                objs.add('askbot/tags/{tag}'.format(tag=tag))
+                objs.add('tags/{tag}'.format(tag=tag))
 
         if 'thread' in msg['msg']:
-            objs.add('askbot/threads/{pk}'.format(
+            objs.add('threads/{pk}'.format(
                 pk=msg['msg']['thread']['pk']))
 
         return objs
