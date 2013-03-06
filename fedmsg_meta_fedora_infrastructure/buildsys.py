@@ -125,6 +125,8 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.build.state.change' in msg['topic']:
             return "http://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
                 % (msg['msg']['build_id'])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return None
         else:
             raise NotImplementedError("%r" % msg)
 
