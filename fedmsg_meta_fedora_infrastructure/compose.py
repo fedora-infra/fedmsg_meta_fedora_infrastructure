@@ -29,43 +29,54 @@ class ComposeProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         branch = msg['msg']['branch']
+        arch = msg['msg'].get('arch', '')
+        arch = arch and ' (%s)' % arch
+
 
         if msg['topic'].endswith('.rsync.start'):
             tmpl = self._(
-                "started rsyncing {branch} compose for public consumption")
+                "started rsyncing {branch} compose{arch} for public consumption")
         elif msg['topic'].endswith('.rsync.complete'):
             tmpl = self._(
-                "finished rsync of {branch} compose for public consumption")
+                "finished rsync of {branch} compose{arch} for public consumption")
         elif msg['topic'].endswith('.mash.start'):
             tmpl = self._(
-                "{branch} compose started mashing")
+                "{branch} compose{arch} started mashing")
         elif msg['topic'].endswith('.mash.complete'):
             tmpl = self._(
-                "{branch} compose finished mashing")
+                "{branch} compose{arch} finished mashing")
         elif msg['topic'].endswith('.pungify.start'):
             tmpl = self._(
-                "started building boot.iso for {branch}")
+                "started building boot.iso for {branch}{arch}")
         elif msg['topic'].endswith('.pungify.complete'):
             tmpl = self._(
-                "finished building boot.iso for {branch}")
+                "finished building boot.iso for {branch}{arch}")
         elif msg['topic'].endswith('.start'):
-            tmpl = self._("{branch} compose started")
+            tmpl = self._("{branch} compose{arch} started")
         elif msg['topic'].endswith('.complete'):
-            tmpl = self._("{branch} compose completed")
+            tmpl = self._("{branch} compose{arch} completed")
         else:
             raise NotImplementedError("%r" % msg)
 
-        return tmpl.format(branch=branch)
+        return tmpl.format(branch=branch, arch=arch)
 
     def link(self, msg, **config):
-        base = "https://alt.fedoraproject.org/pub/fedora/linux/development"
+        arch = msg['msg'].get('arch', '')
+        if arch:
+            base = "https://secondary.fedoraproject.org/pub/" + \
+                "fedora-secondary/development"
+        else:
+            base = "https://alt.fedoraproject.org/pub/" + \
+                "fedora/linux/development"
+
+        # For backwards compatibility (with old messages in datanommer)
         if 'rawhide' in msg['topic']:
             return base + "/rawhide"
-        else:
-            # For branched.  I'd rather not hardcode the branch name (f18)
-            # here -- if we can help it -- so that we don't have to update this
-            # code every time we do a new mass branch.
-            return base
+
+        return base + "/" + msg['msg'].get('branch', '')
 
     def objects(self, msg, **config):
-        return set([msg['topic'].split('.')[4]])
+        branch = msg['topic'].split('.')[4]
+        arch = msg['msg'].get('arch', '')
+        arch = arch or 'primary'
+        return set(["%s/%s" % (branch, arch)])
