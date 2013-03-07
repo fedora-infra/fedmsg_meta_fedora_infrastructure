@@ -26,107 +26,107 @@ from fedmsg.tests.test_meta import Base
 
 class TestLegacyComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
-    expected_subti = "F18 compose completed"
+    expected_subti = "f18 compose completed"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development"
-    expected_objects = set(['branched'])
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
 
 class TestLegacyComposeBranchedStart(Base):
     expected_title = "compose.branched.start (unsigned)"
-    expected_subti = "F18 compose started"
-    expected_objects = set(['branched'])
+    expected_subti = "f18 compose started"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
 
 class TestLegacyComposeBranchedMashStart(Base):
     expected_title = "compose.branched.mash.start (unsigned)"
-    expected_subti = "F18 compose started mashing"
-    expected_objects = set(['branched'])
+    expected_subti = "f18 compose started mashing"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.mash.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
 
 class TestLegacyComposeBranchedMashComplete(Base):
     expected_title = "compose.branched.mash.complete (unsigned)"
-    expected_subti = "F18 compose finished mashing"
-    expected_objects = set(['branched'])
+    expected_subti = "f18 compose finished mashing"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.mash.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
 
 class TestLegacyComposeBranchedPungifyStart(Base):
     expected_title = "compose.branched.pungify.start (unsigned)"
-    expected_subti = "started building boot.iso for F18"
-    expected_objects = set(['branched'])
+    expected_subti = "started building boot.iso for f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
 
 class TestLegacyComposeBranchedPungifyComplete(Base):
     expected_title = "compose.branched.pungify.complete (unsigned)"
-    expected_subti = "finished building boot.iso for F18"
-    expected_objects = set(['branched'])
+    expected_subti = "finished building boot.iso for f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
 
 class TestLegacyComposeBranchedRsyncStart(Base):
     expected_title = "compose.branched.rsync.start (unsigned)"
-    expected_subti = "started rsyncing F18 compose for public consumption"
-    expected_objects = set(['branched'])
+    expected_subti = "started rsyncing f18 compose for public consumption"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.rsync.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
@@ -134,17 +134,17 @@ class TestLegacyComposeBranchedRsyncStart(Base):
 class TestLegacyComposeBranchedRsyncComplete(Base):
     expected_title = "compose.branched.rsync.complete (unsigned)"
     expected_subti = \
-        "finished rsync of F18 compose for public consumption"
+        "finished rsync of f18 compose for public consumption"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development"
-    expected_objects = set(['branched'])
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.rsync.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
         },
     }
 
@@ -154,7 +154,7 @@ class TestLegacyComposeRawhideComplete(Base):
     expected_subti = "rawhide compose completed"
     expected_link = \
         "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -169,7 +169,7 @@ class TestLegacyComposeRawhideComplete(Base):
 class TestLegacyComposeRawhideStart(Base):
     expected_title = "compose.rawhide.start (unsigned)"
     expected_subti = "rawhide compose started"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -184,7 +184,7 @@ class TestLegacyComposeRawhideStart(Base):
 class TestLegacyComposeRawhideMashStart(Base):
     expected_title = "compose.rawhide.mash.start (unsigned)"
     expected_subti = "rawhide compose started mashing"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -199,7 +199,7 @@ class TestLegacyComposeRawhideMashStart(Base):
 class TestLegacyComposeRawhideMashComplete(Base):
     expected_title = "compose.rawhide.mash.complete (unsigned)"
     expected_subti = "rawhide compose finished mashing"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -214,7 +214,7 @@ class TestLegacyComposeRawhideMashComplete(Base):
 class TestLegacyComposeRawhideRsyncStart(Base):
     expected_title = "compose.rawhide.rsync.start (unsigned)"
     expected_subti = "started rsyncing rawhide compose for public consumption"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -231,7 +231,7 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
     expected_subti = "finished rsync of rawhide compose for public consumption"
     expected_link = \
         "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -245,17 +245,17 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
 
 class TestComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
-    expected_subti = "F18 compose completed"
+    expected_subti = "f18 compose completed"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development"
-    expected_objects = set(['branched'])
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -263,15 +263,15 @@ class TestComposeBranchedComplete(Base):
 
 class TestComposeBranchedStart(Base):
     expected_title = "compose.branched.start (unsigned)"
-    expected_subti = "F18 compose started"
-    expected_objects = set(['branched'])
+    expected_subti = "f18 compose started"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -279,15 +279,15 @@ class TestComposeBranchedStart(Base):
 
 class TestComposeBranchedMashStart(Base):
     expected_title = "compose.branched.mash.start (unsigned)"
-    expected_subti = "F18 compose started mashing"
-    expected_objects = set(['branched'])
+    expected_subti = "f18 compose started mashing"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.mash.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -295,15 +295,15 @@ class TestComposeBranchedMashStart(Base):
 
 class TestComposeBranchedMashComplete(Base):
     expected_title = "compose.branched.mash.complete (unsigned)"
-    expected_subti = "F18 compose finished mashing"
-    expected_objects = set(['branched'])
+    expected_subti = "f18 compose finished mashing"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.mash.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -311,15 +311,15 @@ class TestComposeBranchedMashComplete(Base):
 
 class TestComposeBranchedPungifyStart(Base):
     expected_title = "compose.branched.pungify.start (unsigned)"
-    expected_subti = "started building boot.iso for F18"
-    expected_objects = set(['branched'])
+    expected_subti = "started building boot.iso for f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -327,15 +327,15 @@ class TestComposeBranchedPungifyStart(Base):
 
 class TestComposeBranchedPungifyComplete(Base):
     expected_title = "compose.branched.pungify.complete (unsigned)"
-    expected_subti = "finished building boot.iso for F18"
-    expected_objects = set(['branched'])
+    expected_subti = "finished building boot.iso for f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -343,15 +343,15 @@ class TestComposeBranchedPungifyComplete(Base):
 
 class TestComposeBranchedRsyncStart(Base):
     expected_title = "compose.branched.rsync.start (unsigned)"
-    expected_subti = "started rsyncing F18 compose for public consumption"
-    expected_objects = set(['branched'])
+    expected_subti = "started rsyncing f18 compose for public consumption"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.rsync.start",
         "msg": {
             "log": "start",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -360,17 +360,17 @@ class TestComposeBranchedRsyncStart(Base):
 class TestComposeBranchedRsyncComplete(Base):
     expected_title = "compose.branched.rsync.complete (unsigned)"
     expected_subti = \
-        "finished rsync of F18 compose for public consumption"
+        "finished rsync of f18 compose for public consumption"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development"
-    expected_objects = set(['branched'])
+        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+    expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.rsync.complete",
         "msg": {
             "log": "done",
-            "branch": "F18",
+            "branch": "f18",
             "arch": "",
         },
     }
@@ -381,7 +381,7 @@ class TestComposeRawhideComplete(Base):
     expected_subti = "rawhide compose completed"
     expected_link = \
         "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -397,7 +397,7 @@ class TestComposeRawhideComplete(Base):
 class TestComposeRawhideStart(Base):
     expected_title = "compose.rawhide.start (unsigned)"
     expected_subti = "rawhide compose started"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -413,7 +413,7 @@ class TestComposeRawhideStart(Base):
 class TestComposeRawhideMashStart(Base):
     expected_title = "compose.rawhide.mash.start (unsigned)"
     expected_subti = "rawhide compose started mashing"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -429,7 +429,7 @@ class TestComposeRawhideMashStart(Base):
 class TestComposeRawhideMashComplete(Base):
     expected_title = "compose.rawhide.mash.complete (unsigned)"
     expected_subti = "rawhide compose finished mashing"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -445,7 +445,7 @@ class TestComposeRawhideMashComplete(Base):
 class TestComposeRawhideRsyncStart(Base):
     expected_title = "compose.rawhide.rsync.start (unsigned)"
     expected_subti = "started rsyncing rawhide compose for public consumption"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -463,7 +463,7 @@ class TestComposeRawhideRsyncComplete(Base):
     expected_subti = "finished rsync of rawhide compose for public consumption"
     expected_link = \
         "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
-    expected_objects = set(['rawhide'])
+    expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
