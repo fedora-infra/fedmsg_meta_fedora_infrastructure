@@ -28,7 +28,7 @@ class ComposeProcessor(BaseProcessor):
     __obj__ = "Composes"
 
     def subtitle(self, msg, **config):
-        branch = msg['topic'].split('.')[4]
+        branch = msg['msg']['branch']
 
         if msg['topic'].endswith('.rsync.start'):
             tmpl = self._(

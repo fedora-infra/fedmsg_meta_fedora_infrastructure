@@ -26,7 +26,7 @@ from fedmsg.tests.test_meta import Base
 
 class TestComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
-    expected_subti = "branched compose completed"
+    expected_subti = "F18 compose completed"
     expected_link = \
         "https://alt.fedoraproject.org/pub/fedora/linux/development"
     expected_objects = set(['branched'])
@@ -43,7 +43,7 @@ class TestComposeBranchedComplete(Base):
 
 class TestComposeBranchedStart(Base):
     expected_title = "compose.branched.start (unsigned)"
-    expected_subti = "branched compose started"
+    expected_subti = "F18 compose started"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -58,7 +58,7 @@ class TestComposeBranchedStart(Base):
 
 class TestComposeBranchedMashStart(Base):
     expected_title = "compose.branched.mash.start (unsigned)"
-    expected_subti = "branched compose started mashing"
+    expected_subti = "F18 compose started mashing"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -73,7 +73,7 @@ class TestComposeBranchedMashStart(Base):
 
 class TestComposeBranchedMashComplete(Base):
     expected_title = "compose.branched.mash.complete (unsigned)"
-    expected_subti = "branched compose finished mashing"
+    expected_subti = "F18 compose finished mashing"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -88,7 +88,7 @@ class TestComposeBranchedMashComplete(Base):
 
 class TestComposeBranchedPungifyStart(Base):
     expected_title = "compose.branched.pungify.start (unsigned)"
-    expected_subti = "started building boot.iso for branched"
+    expected_subti = "started building boot.iso for F18"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -103,7 +103,7 @@ class TestComposeBranchedPungifyStart(Base):
 
 class TestComposeBranchedPungifyComplete(Base):
     expected_title = "compose.branched.pungify.complete (unsigned)"
-    expected_subti = "finished building boot.iso for branched"
+    expected_subti = "finished building boot.iso for F18"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -118,7 +118,7 @@ class TestComposeBranchedPungifyComplete(Base):
 
 class TestComposeBranchedRsyncStart(Base):
     expected_title = "compose.branched.rsync.start (unsigned)"
-    expected_subti = "started rsyncing branched compose for public consumption"
+    expected_subti = "started rsyncing F18 compose for public consumption"
     expected_objects = set(['branched'])
     msg = {
         "i": 1,
@@ -134,7 +134,7 @@ class TestComposeBranchedRsyncStart(Base):
 class TestComposeBranchedRsyncComplete(Base):
     expected_title = "compose.branched.rsync.complete (unsigned)"
     expected_subti = \
-        "finished rsync of branched compose for public consumption"
+        "finished rsync of F18 compose for public consumption"
     expected_link = \
         "https://alt.fedoraproject.org/pub/fedora/linux/development"
     expected_objects = set(['branched'])
