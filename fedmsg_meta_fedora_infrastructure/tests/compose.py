@@ -34,6 +34,10 @@ class TestComposeBranchedComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.complete",
+        "msg": {
+            "log": "done",
+            "branch": "F18",
+        },
     }
 
 
@@ -45,6 +49,10 @@ class TestComposeBranchedStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.start",
+        "msg": {
+            "log": "start",
+            "branch": "F18",
+        },
     }
 
 
@@ -56,6 +64,10 @@ class TestComposeBranchedMashStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.mash.start",
+        "msg": {
+            "log": "start",
+            "branch": "F18",
+        },
     }
 
 
@@ -67,6 +79,10 @@ class TestComposeBranchedMashComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.mash.complete",
+        "msg": {
+            "log": "done",
+            "branch": "F18",
+        },
     }
 
 
@@ -78,6 +94,10 @@ class TestComposeBranchedPungifyStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.start",
+        "msg": {
+            "log": "start",
+            "branch": "F18",
+        },
     }
 
 
@@ -89,6 +109,10 @@ class TestComposeBranchedPungifyComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.complete",
+        "msg": {
+            "log": "done",
+            "branch": "F18",
+        },
     }
 
 
@@ -100,6 +124,10 @@ class TestComposeBranchedRsyncStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.rsync.start",
+        "msg": {
+            "log": "start",
+            "branch": "F18",
+        },
     }
 
 
@@ -114,6 +142,10 @@ class TestComposeBranchedRsyncComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.rsync.complete",
+        "msg": {
+            "log": "done",
+            "branch": "F18",
+        },
     }
 
 
@@ -127,6 +159,10 @@ class TestComposeRawhideComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.complete",
+        "msg": {
+            "log": "done",
+            "branch": "rawhide",
+        },
     }
 
 
@@ -138,6 +174,10 @@ class TestComposeRawhideStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.start",
+        "msg": {
+            "log": "start",
+            "branch": "rawhide",
+        },
     }
 
 
@@ -149,6 +189,10 @@ class TestComposeRawhideMashStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.mash.start",
+        "msg": {
+            "log": "start",
+            "branch": "rawhide",
+        },
     }
 
 
@@ -160,6 +204,10 @@ class TestComposeRawhideMashComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.mash.complete",
+        "msg": {
+            "log": "done",
+            "branch": "rawhide",
+        },
     }
 
 
@@ -171,6 +219,10 @@ class TestComposeRawhideRsyncStart(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.rsync.start",
+        "msg": {
+            "log": "start",
+            "branch": "rawhide",
+        },
     }
 
 
@@ -184,4 +236,8 @@ class TestComposeRawhideRsyncComplete(Base):
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.rsync.complete",
+        "msg": {
+            "log": "done",
+            "branch": "rawhide",
+        },
     }
