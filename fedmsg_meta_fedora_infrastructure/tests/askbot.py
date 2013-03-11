@@ -33,10 +33,10 @@ class TestAskbotRetag(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/tags/asldkjfalskdjfalskj',
-        'askbot/tags/asldkjf',
-        'askbot/tags/asldkjfalskdjf',
-        'askbot/threads/2',
+        'tags/asldkjfalskdjfalskj',
+        'tags/asldkjf',
+        'tags/asldkjfalskdjf',
+        'threads/2',
     ])
     expected_link = "https://ask.fedoraproject.org/question/2/"
     msg = {
@@ -76,8 +76,8 @@ class TestAskbotNewQuestion(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/tags/lolol',
-        'askbot/threads/3',
+        'tags/lolol',
+        'threads/3',
     ])
     expected_link = "https://ask.fedoraproject.org/question/3/"
     msg = {
@@ -125,8 +125,8 @@ class TestAskbotNewAnswer(Base):
     expected_packages = set()
     expected_usernames = set(['ralph', 'lmacken'])
     expected_objects = set([
-        'askbot/tags/cool',
-        'askbot/threads/1',
+        'tags/cool',
+        'threads/1',
     ])
     expected_link = "https://ask.fedoraproject.org/question/1/"
     msg = {
@@ -173,9 +173,9 @@ class TestAskbotFlagOffensiveAdd(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/tags/town',
-        'askbot/tags/ohok',
-        'askbot/threads/2',
+        'tags/town',
+        'tags/ohok',
+        'threads/2',
     ])
     expected_link = "https://ask.fedoraproject.org/question/2/"
     msg = {
@@ -218,9 +218,9 @@ class TestAskbotFlagOffensiveRemove(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/tags/town',
-        'askbot/tags/ohok',
-        'askbot/threads/2',
+        'tags/town',
+        'tags/ohok',
+        'threads/2',
     ])
     expected_link = "https://ask.fedoraproject.org/question/2/"
     msg = {
@@ -263,8 +263,8 @@ class TestAskbotUpdatedQuestion(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/tags/town',
-        'askbot/threads/3',
+        'tags/town',
+        'threads/3',
     ])
     expected_link = "https://ask.fedoraproject.org/question/" + \
         "2/?answer=2#post-id-2"
@@ -310,8 +310,8 @@ class TestAskbotUpdatedQuestion(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/tags/lolol',
-        'askbot/threads/3',
+        'tags/lolol',
+        'threads/3',
     ])
     expected_link = "https://ask.fedoraproject.org/question/3/"
     msg = {
@@ -356,7 +356,7 @@ class TestAskbotAnswerDeleted(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/threads/7',
+        'threads/7',
     ])
     expected_link = "https://ask.fedoraproject.org/question/10/"
     msg = {
@@ -396,7 +396,7 @@ class TestAskbotQuestionDeleted(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'askbot/threads/7',
+        'threads/7',
     ])
     expected_link = "https://ask.fedoraproject.org/question/10/"
     msg = {
