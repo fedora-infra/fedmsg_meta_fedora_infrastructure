@@ -51,6 +51,9 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.repo.done' in msg['topic']:
             tmpl = self._('Repo done:  {tag}')
             return tmpl.format(**msg['msg'])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            tmpl = self._("Package list change for {package}:  '{tag}'")
+            return tmpl.format(**msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [
                 self._(
@@ -64,7 +67,7 @@ class KojiProcessor(BaseProcessor):
             tmpl = templates[msg['msg']['new']]
             return tmpl.format(**msg['msg'])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def usernames(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -81,12 +84,14 @@ class KojiProcessor(BaseProcessor):
             return set()
         elif 'buildsys.repo.done' in msg['topic']:
             return set()
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return set()
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([
                 msg['msg']['owner'],
             ])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def packages(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -97,10 +102,12 @@ class KojiProcessor(BaseProcessor):
             return set([])
         elif 'buildsys.repo.done' in msg['topic']:
             return set([])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return set([msg['msg']['package']])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def link(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -118,52 +125,59 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.build.state.change' in msg['topic']:
             return "http://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
                 % (msg['msg']['build_id'])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return None
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)
 
     def objects(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
             return set([
                 '/'.join([
-                    'koji', 'builds',
+                    'builds',
                     msg['msg']['name'],
                     msg['msg']['version'],
                     msg['msg']['release'],
                 ]),
                 '/'.join([
-                    'koji', 'tags',
+                    'tags',
                     msg['msg']['tag'],
                 ]),
             ])
         elif 'buildsys.untag' in msg['topic']:
             return set([
                 '/'.join([
-                    'koji', 'builds',
+                    'builds',
                     msg['msg']['name'],
                     msg['msg']['version'],
                     msg['msg']['release'],
                 ]),
                 '/'.join([
-                    'koji', 'tags',
+                    'tags',
                     msg['msg']['tag'],
                 ]),
             ])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set(['/'.join([
-                'koji', 'builds',
+                'builds',
                 msg['msg']['name'],
                 msg['msg']['version'],
                 msg['msg']['release'],
             ])])
         elif 'buildsys.repo.init' in msg['topic']:
             return set(['/'.join([
-                'koji', 'repos',
+                'repos',
                 msg['msg']['tag'],
             ])])
         elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
-                'koji', 'repos',
+                'repos',
+                msg['msg']['tag'],
+            ])])
+        elif 'buildsys.package.list.change' in msg['topic']:
+            return set(['/'.join([
+                'tags',
                 msg['msg']['tag'],
             ])])
         else:
-            raise NotImplementedError()
+            raise NotImplementedError("%r" % msg)

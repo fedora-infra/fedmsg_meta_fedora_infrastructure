@@ -23,6 +23,7 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from fedmsg_meta_fedora_infrastructure.tests.compose import *
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
 from fedmsg_meta_fedora_infrastructure.tests.planet import *
 from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
@@ -236,169 +237,6 @@ class TestFASGroupApply(Base):
             u'user': {u'username': u'ralph'},
             u'agent': {u'username': u'ralph'},
         }
-    }
-
-
-class TestComposeBranchedComplete(Base):
-    expected_title = "compose.branched.complete (unsigned)"
-    expected_subti = "branched compose completed"
-    expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.complete",
-    }
-
-
-class TestComposeBranchedStart(Base):
-    expected_title = "compose.branched.start (unsigned)"
-    expected_subti = "branched compose started"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.start",
-    }
-
-
-class TestComposeBranchedMashStart(Base):
-    expected_title = "compose.branched.mash.start (unsigned)"
-    expected_subti = "branched compose started mashing"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.mash.start",
-    }
-
-
-class TestComposeBranchedMashComplete(Base):
-    expected_title = "compose.branched.mash.complete (unsigned)"
-    expected_subti = "branched compose finished mashing"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.mash.complete",
-    }
-
-
-class TestComposeBranchedPungifyStart(Base):
-    expected_title = "compose.branched.pungify.start (unsigned)"
-    expected_subti = "started building boot.iso for branched"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.pungify.start",
-    }
-
-
-class TestComposeBranchedPungifyComplete(Base):
-    expected_title = "compose.branched.pungify.complete (unsigned)"
-    expected_subti = "finished building boot.iso for branched"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.pungify.complete",
-    }
-
-
-class TestComposeBranchedRsyncStart(Base):
-    expected_title = "compose.branched.rsync.start (unsigned)"
-    expected_subti = "started rsyncing branched compose for public consumption"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.rsync.start",
-    }
-
-
-class TestComposeBranchedRsyncComplete(Base):
-    expected_title = "compose.branched.rsync.complete (unsigned)"
-    expected_subti = \
-        "finished rsync of branched compose for public consumption"
-    expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development"
-    expected_objects = set(['branched'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.branched.rsync.complete",
-    }
-
-
-class TestComposeRawhideComplete(Base):
-    expected_title = "compose.rawhide.complete (unsigned)"
-    expected_subti = "rawhide compose completed"
-    expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
-    expected_objects = set(['rawhide'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.rawhide.complete",
-    }
-
-
-class TestComposeRawhideStart(Base):
-    expected_title = "compose.rawhide.start (unsigned)"
-    expected_subti = "rawhide compose started"
-    expected_objects = set(['rawhide'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.rawhide.start",
-    }
-
-
-class TestComposeRawhideMashStart(Base):
-    expected_title = "compose.rawhide.mash.start (unsigned)"
-    expected_subti = "rawhide compose started mashing"
-    expected_objects = set(['rawhide'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.rawhide.mash.start",
-    }
-
-
-class TestComposeRawhideMashComplete(Base):
-    expected_title = "compose.rawhide.mash.complete (unsigned)"
-    expected_subti = "rawhide compose finished mashing"
-    expected_objects = set(['rawhide'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.rawhide.mash.complete",
-    }
-
-
-class TestComposeRawhideRsyncStart(Base):
-    expected_title = "compose.rawhide.rsync.start (unsigned)"
-    expected_subti = "started rsyncing rawhide compose for public consumption"
-    expected_objects = set(['rawhide'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.rawhide.rsync.start",
-    }
-
-
-class TestComposeRawhideRsyncComplete(Base):
-    expected_title = "compose.rawhide.rsync.complete (unsigned)"
-    expected_subti = "finished rsync of rawhide compose for public consumption"
-    expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
-    expected_objects = set(['rawhide'])
-    msg = {
-        "i": 1,
-        "timestamp": 1344447839.891876,
-        "topic": "org.fedoraproject.prod.compose.rawhide.rsync.complete",
     }
 
 
@@ -983,6 +821,69 @@ class TestSupybotEndMeetingNoTitle(Base):
             "channel": "#channel"
         },
         "topic": "org.fedoraproject.dev.meetbot.meeting.complete",
+        "timestamp": 1345572862.556145
+    }
+
+
+class TestSupybotChangeTopic(Base):
+    expected_title = "meetbot.meeting.topic.update (unsigned)"
+    expected_subti = 'threebean changed the topic of "title" to "Food" in #channel'
+    expected_link = 'http://logs.com/awesome.html'
+    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_objects = set([
+        'attendees/fedmsg-test-bot',
+        'attendees/threebean',
+        'channels/#channel',
+        'titles/title',
+        'topics/Food',
+    ])
+
+    msg = {
+        "i": 16,
+        "msg": {
+            "meeting_topic": "title",
+            "attendees": {
+                "fedmsg-test-bot": 2,
+                "threebean": 2
+            },
+            "chairs": {},
+            "url": "http://logs.com/awesome",
+            "owner": "threebean",
+            "channel": "#channel",
+            "topic": "Food",
+        },
+        "topic": "org.fedoraproject.dev.meetbot.meeting.topic.update",
+        "timestamp": 1345572862.556145
+    }
+
+
+class TestSupybotChangeTopicNoTitle(Base):
+    expected_title = "meetbot.meeting.topic.update (unsigned)"
+    expected_subti = 'threebean changed the topic to "Food" in #channel'
+    expected_link = 'http://logs.com/awesome.html'
+    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_objects = set([
+        'attendees/fedmsg-test-bot',
+        'attendees/threebean',
+        'channels/#channel',
+        'topics/Food'
+    ])
+
+    msg = {
+        "i": 16,
+        "msg": {
+            "meeting_topic": None,
+            "attendees": {
+                "fedmsg-test-bot": 2,
+                "threebean": 2
+            },
+            "chairs": {},
+            "url": "http://logs.com/awesome",
+            "owner": "threebean",
+            "channel": "#channel",
+            "topic": "Food",
+        },
+        "topic": "org.fedoraproject.dev.meetbot.meeting.topic.update",
         "timestamp": 1345572862.556145
     }
 

@@ -70,7 +70,7 @@ class AskbotProcessor(BaseProcessor):
             else:
                 tmpl = self._("{user} deleted an answer on '{title}'")
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
         return tmpl.format(user=user, title=title)
 
@@ -107,15 +107,15 @@ class AskbotProcessor(BaseProcessor):
             for tag in msg['msg']['tags']:
                 if not tag:
                     continue
-                objs.add('askbot/tags/{tag}'.format(tag=tag))
+                objs.add('tags/{tag}'.format(tag=tag))
         elif 'thread' in msg['msg']:
             for tag in msg['msg']['thread']['tagnames']:
                 if not tag:
                     continue
-                objs.add('askbot/tags/{tag}'.format(tag=tag))
+                objs.add('tags/{tag}'.format(tag=tag))
 
         if 'thread' in msg['msg']:
-            objs.add('askbot/threads/{pk}'.format(
+            objs.add('threads/{pk}'.format(
                 pk=msg['msg']['thread']['pk']))
 
         return objs
@@ -127,10 +127,10 @@ class AskbotProcessor(BaseProcessor):
 
         if 'post' in msg['msg']:
             post=msg['msg']['post']['pk']
-            tmpl += "?answer={post}#post-id-{post}"
+            #tmpl += "?answer={post}#post-id-{post}"
         elif 'instance' in msg['msg']:
             post=msg['msg']['instance']['pk']
-            tmpl += "?answer={post}#post-id-{post}"
+            #tmpl += "?answer={post}#post-id-{post}"
         else:
             pass
 

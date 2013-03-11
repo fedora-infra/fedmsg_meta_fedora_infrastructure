@@ -33,8 +33,8 @@ class TestKojiBuildTag(Base):
     expected_packages = set(['stage'])
     expected_usernames = set(['ralph', 'bodhi'])
     expected_objects = set([
-        'koji/builds/stage/4.1.1/3.fc18',
-        'koji/tags/f18-updates-testing-pending',
+        'builds/stage/4.1.1/3.fc18',
+        'tags/f18-updates-testing-pending',
     ])
     expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=216"
@@ -64,8 +64,8 @@ class TestKojiBuildUnTag(Base):
     expected_packages = set(['globus-gram-job-manager-sge'])
     expected_usernames = set(['ralph', 'bodhi'])
     expected_objects = set([
-        'koji/builds/globus-gram-job-manager-sge/1.5/2.fc16',
-        'koji/tags/f16-updates-pending',
+        'builds/globus-gram-job-manager-sge/1.5/2.fc16',
+        'tags/f16-updates-pending',
     ])
     expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=216"
@@ -94,7 +94,7 @@ class TestKojiBuildStateChangeStart(Base):
     expected_usernames = set(['ralph'])
     expected_packages = set(['eclipse-ptp'])
     expected_objects = set([
-        'koji/builds/eclipse-ptp/6.0.3/1.fc19'
+        'builds/eclipse-ptp/6.0.3/1.fc19'
     ])
     expected_link = "http://koji.fedoraproject.org/koji/" + \
         "buildinfo?buildID=12345"
@@ -124,7 +124,7 @@ class TestKojiBuildStateChangeFail(Base):
     expected_packages = set(['eclipse-ptp'])
     expected_usernames = set(['rmattes'])
     expected_objects = set([
-        'koji/builds/eclipse-ptp/6.0.3/1.fc19',
+        'builds/eclipse-ptp/6.0.3/1.fc19',
     ])
     expected_link = "http://koji.fedoraproject.org/koji/" + \
         "buildinfo?buildID=12345"
@@ -154,7 +154,7 @@ class TestKojiRepoInit(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        'koji/repos/f19-build',
+        'repos/f19-build',
     ])
     expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=12345"
@@ -179,7 +179,7 @@ class TestKojiRepoDone(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        'koji/repos/f19-build',
+        'repos/f19-build',
     ])
     expected_link = "http://koji.fedoraproject.org/koji/" + \
         "taginfo?tagID=12345"
@@ -194,6 +194,28 @@ class TestKojiRepoDone(Base):
             "repo_id": 23456,
         }
     }
+
+
+class TestKojiPackageListChange(Base):
+    expected_title = "buildsys.package.list.change (unsigned)"
+    expected_subti = "Package list change for almanah:  'f17'"
+    expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
+        "Artwork_DesignService_koji-icon-48.png"
+    expected_packages = set(["almanah"])
+    expected_usernames = set([])
+    expected_objects = set([
+        'tags/f17',
+    ])
+    msg = {
+        "topic": "org.fedoraproject.prod.buildsys.package.list.change",
+        "msg": {
+            "tag": "f17",
+            "package": "almanah"
+        },
+        "i": 2,
+        "timestamp": 1361903735.0
+    }
+
 
 if __name__ == '__main__':
     unittest.main()

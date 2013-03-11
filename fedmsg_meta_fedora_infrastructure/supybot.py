@@ -41,14 +41,22 @@ class SupybotProcessor(BaseProcessor):
                 tmpl = self._('{user} ended meeting "{name}" in {channel}')
             else:
                 tmpl = self._('{user} ended a meeting in {channel}')
+        elif 'meetbot.meeting.topic.update' in msg['topic']:
+            if msg['msg']['meeting_topic']:
+                tmpl = self._('{user} changed the topic of '
+                              '"{name}" to "{topic}" in {channel}')
+            else:
+                tmpl = self._('{user} changed the topic '
+                              'to "{topic}" in {channel}')
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
         user = msg['msg']['owner']
         name = msg['msg']['meeting_topic']
         channel = msg['msg']['channel']
+        topic = msg['msg'].get('topic', 'no topic')
 
-        return tmpl.format(user=user, name=name, channel=channel)
+        return tmpl.format(user=user, name=name, channel=channel, topic=topic)
 
     def usernames(self, msg, **config):
         return set(msg['msg']['attendees'].keys())
@@ -63,5 +71,8 @@ class SupybotProcessor(BaseProcessor):
 
         if msg['msg']['meeting_topic']:
             objs.add('titles/' + msg['msg']['meeting_topic'])
+
+        if msg['msg'].get('topic', None):
+            objs.add('topics/' + msg['msg']['topic'])
 
         return objs

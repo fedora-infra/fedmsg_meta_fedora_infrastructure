@@ -108,7 +108,7 @@ class BodhiProcessor(BaseProcessor):
             return self._("{submitter} expired a buildroot override " +
                           "for {build}").format(**msg['msg']['override'])
         else:
-            raise NotImplementedError
+            raise NotImplementedError("%r" % msg)
 
     def link(self, msg, **config):
         tmpl = "https://admin.fedoraproject.org/updates/{title}"
