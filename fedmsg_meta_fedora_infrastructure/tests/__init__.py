@@ -825,6 +825,69 @@ class TestSupybotEndMeetingNoTitle(Base):
     }
 
 
+class TestSupybotChangeTopic(Base):
+    expected_title = "meetbot.meeting.topic.update (unsigned)"
+    expected_subti = 'threebean changed the topic of "title" to "Food" in #channel'
+    expected_link = 'http://logs.com/awesome.html'
+    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_objects = set([
+        'attendees/fedmsg-test-bot',
+        'attendees/threebean',
+        'channels/#channel',
+        'titles/title',
+        'topics/Food',
+    ])
+
+    msg = {
+        "i": 16,
+        "msg": {
+            "meeting_topic": "title",
+            "attendees": {
+                "fedmsg-test-bot": 2,
+                "threebean": 2
+            },
+            "chairs": {},
+            "url": "http://logs.com/awesome",
+            "owner": "threebean",
+            "channel": "#channel",
+            "topic": "Food",
+        },
+        "topic": "org.fedoraproject.dev.meetbot.meeting.topic.update",
+        "timestamp": 1345572862.556145
+    }
+
+
+class TestSupybotChangeTopicNoTitle(Base):
+    expected_title = "meetbot.meeting.topic.update (unsigned)"
+    expected_subti = 'threebean changed the topic to "Food" in #channel'
+    expected_link = 'http://logs.com/awesome.html'
+    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_objects = set([
+        'attendees/fedmsg-test-bot',
+        'attendees/threebean',
+        'channels/#channel',
+        'topics/Food'
+    ])
+
+    msg = {
+        "i": 16,
+        "msg": {
+            "meeting_topic": None,
+            "attendees": {
+                "fedmsg-test-bot": 2,
+                "threebean": 2
+            },
+            "chairs": {},
+            "url": "http://logs.com/awesome",
+            "owner": "threebean",
+            "channel": "#channel",
+            "topic": "Food",
+        },
+        "topic": "org.fedoraproject.dev.meetbot.meeting.topic.update",
+        "timestamp": 1345572862.556145
+    }
+
+
 class TestTaggerVoteAnonymous(Base):
     expected_title = "fedoratagger.tag.update (unsigned)"
     expected_subti = 'anonymous upvoted "unittest" on perl-Test-Fatal'
