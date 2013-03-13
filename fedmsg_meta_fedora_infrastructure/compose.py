@@ -35,10 +35,10 @@ class ComposeProcessor(BaseProcessor):
 
         if msg['topic'].endswith('.rsync.start'):
             tmpl = self._(
-                "started rsyncing {branch} compose{arch} for public consumption")
+                "started rsyncing {branch} compose{arch}")
         elif msg['topic'].endswith('.rsync.complete'):
             tmpl = self._(
-                "finished rsync of {branch} compose{arch} for public consumption")
+                "finished rsync of {branch} compose{arch}")
         elif msg['topic'].endswith('.mash.start'):
             tmpl = self._(
                 "{branch} compose{arch} started mashing")
