@@ -1463,6 +1463,10 @@ class TestPkgdb2BrCreate(Base):
 
 
 class TestLookaside(Base):
+    """ Messages like this one are published when **new sources** are
+    uploaded to the "lookaside cache".
+    """
+
     expected_title = "git.lookaside.new (unsigned)"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
@@ -1487,6 +1491,8 @@ class TestLookaside(Base):
 
 
 class TestLookasideLegacy(Base):
+    """ Support oldschool lookaside messages.  :( """
+
     expected_title = "git.lookaside.texlive.new (unsigned)"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
@@ -1511,6 +1517,8 @@ class TestLookasideLegacy(Base):
 
 
 class TestSCMSuperLegacy(Base):
+    """ Support super-duper oldschool lookaside messages.  :(:( """
+
     expected_title = "git.receive.valgrind.master (unsigned)"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
@@ -1560,6 +1568,8 @@ class TestSCMSuperLegacy(Base):
 
 
 class TestSCMLegacy(Base):
+    """ Support oldschool "fedpkg push" messages.  :( """
+
     expected_title = "git.receive.valgrind.master (unsigned)"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
@@ -1610,6 +1620,9 @@ class TestSCMLegacy(Base):
 
 
 class TestSCM(Base):
+    """ Messages like this one are published when somebody runs "fedpkg push"
+    on a package.  Sometimes, the git message may be multiple lines long like:
+    """
     expected_title = "git.receive (unsigned)"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
@@ -1660,6 +1673,9 @@ class TestSCM(Base):
 
 
 class TestSCMSingleLine(Base):
+    """ Messages like this one are published when somebody runs "fedpkg push"
+    on a package.  The whole git message is included for each commit.
+    """
     expected_title = "git.receive (unsigned)"
     expected_subti = 'spot pushed to ember (master).  ' + \
         '"another missing patch? ridiculous."'
