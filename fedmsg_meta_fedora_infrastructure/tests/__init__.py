@@ -1033,6 +1033,13 @@ class TestSupybotChangeTopicNoTitle(Base):
 
 
 class TestTaggerVoteAnonymous(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    publishes messages like this one when a user votes on a tag.
+    Users may upvote or downvote a tag and they may do so either
+    anonymously or authenticated.  Here's an example of a
+    anonymous upvote:
+    """
+
     expected_title = "fedoratagger.tag.update (unsigned)"
     expected_subti = 'anonymous upvoted "unittest" on perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
@@ -1096,6 +1103,9 @@ class TestTaggerVoteAnonymous(Base):
 
 
 class TestTaggerCreate(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    publishes messages like this one when a user **creates** a new tag.
+    """
     expected_title = "fedoratagger.tag.create (unsigned)"
     expected_subti = 'ralph added tag "unittest" to perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
