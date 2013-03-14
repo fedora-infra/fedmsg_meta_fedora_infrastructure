@@ -25,6 +25,13 @@ from fedmsg.tests.test_meta import Base
 
 
 class TestAskbotRetag(Base):
+    """ Messages get emitted on this topic when a question on `Ask Fedora
+    <https://ask.fedoraproject.org/questions>`_ changes tags.
+    It includes information about what tags the package now has, what question
+    the tags are for, and who did the changing.  It unfortunately doesn't have
+    any information about which tags were changed.
+    """
+
     expected_title = "askbot.tag.update (unsigned)"
     expected_subti = "ralph altered tags on askbot question 'some title'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -68,6 +75,11 @@ class TestAskbotRetag(Base):
 
 
 class TestAskbotNewQuestion(Base):
+    """ Messages get emitted on this topic anytime an `Ask Fedora
+    <https://ask.fedoraproject.org/questions/>`_ question is updated.
+    The snippet we have below is an example of a user posting a brand **new
+    question** to `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
+    """
     expected_title = "askbot.post.edit (unsigned)"
     expected_subti = "ralph asked the question 'I have a new question'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -116,6 +128,11 @@ class TestAskbotNewQuestion(Base):
 
 
 class TestAskbotNewAnswer(Base):
+    """ Messages get emitted on this topic anytime a question is updated.
+    An 'update' includes a new question, a new answer, and a modification
+    to either.  *This* example is one of a **new answer** being posted to
+    an `Ask Fedora <https://ask.fedoraproject.org/questions/>`_ question.
+    """
     expected_title = "askbot.post.edit (unsigned)"
     expected_subti = "ralph suggested an answer " + \
         "to the question 'watwatwatwata'"
@@ -165,6 +182,10 @@ class TestAskbotNewAnswer(Base):
 
 
 class TestAskbotFlagOffensiveAdd(Base):
+    """ Sent when a user flags an `Ask Fedora
+    <https://ask.fedoraproject.org/questions>`_ question or answer
+    as "offensive".
+    """
     expected_title = "askbot.post.flag_offensive.add (unsigned)"
     expected_subti = "ralph flagged a question as offensive!"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -210,6 +231,10 @@ class TestAskbotFlagOffensiveAdd(Base):
 
 
 class TestAskbotFlagOffensiveRemove(Base):
+    """ Sent when a user *un*flags an `Ask Fedora
+    <https://ask.fedoraproject.org/questions>`_ question or answer
+    as "offensive".
+    """
     expected_title = "askbot.post.flag_offensive.delete (unsigned)"
     expected_subti = "ralph unflagged an answer as offensive..."
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -255,6 +280,11 @@ class TestAskbotFlagOffensiveRemove(Base):
 
 
 class TestAskbotUpdatedQuestion(Base):
+    """ Messages get emitted on this topic anytime a question is updated.
+    An 'update' includes a new question, a new answer, and a modification
+    to either.  *This* example is one of a **question being modified** on
+    `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
+    """
     expected_title = "askbot.post.edit (unsigned)"
     expected_subti = "ralph updated the question 'alskdjflaksjdf lakjsf a'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -300,7 +330,12 @@ class TestAskbotUpdatedQuestion(Base):
     }
 
 
-class TestAskbotUpdatedQuestion(Base):
+class TestAskbotUpdatedAnswer(Base):
+    """ Messages get emitted on this topic anytime a question is updated.
+    An 'update' includes a new question, a new answer, and a modification
+    to either.  *This* example is one of a **answer being modified** on
+    `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
+    """
     expected_title = "askbot.post.edit (unsigned)"
     expected_subti = "ralph updated an answer " + \
         "to the question 'I have a new question'"
@@ -348,6 +383,11 @@ class TestAskbotUpdatedQuestion(Base):
 
 
 class TestAskbotAnswerDeleted(Base):
+    """ Messages with the ``askbot.post.delete`` topic get sent when either
+    a question or an answer are deleted from `Ask Fedora
+    <https://ask.fedoraproject.org/questions>`_.  The example here is one
+    of an **answer** being deleted.
+    """
     expected_title = "askbot.post.delete (unsigned)"
     expected_subti = "ralph deleted an answer on 'test 3 is a charm'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -388,6 +428,11 @@ class TestAskbotAnswerDeleted(Base):
 
 
 class TestAskbotQuestionDeleted(Base):
+    """ Messages with the ``askbot.post.delete`` topic get sent when either
+    a question or an answer are deleted from `Ask Fedora
+    <https://ask.fedoraproject.org/questions>`_.  The example here is one
+    of an **question** being deleted.
+    """
     expected_title = "askbot.post.delete (unsigned)"
     expected_subti = "ralph deleted the question 'test 3 is a charm'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
