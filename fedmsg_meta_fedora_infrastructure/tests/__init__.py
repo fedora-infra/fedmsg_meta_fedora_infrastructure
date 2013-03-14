@@ -31,6 +31,11 @@ from fedmsg_meta_fedora_infrastructure.tests.askbot import *
 
 
 class TestFASUserCreateLegacy(Base):
+    """ Support old fas messages (the new ones look different).
+
+    :mod:`fedmsg.meta` needs to be able to handle these since they are stored
+    *forever* in datanommer.
+    """
     expected_title = "fas.user.create (unsigned)"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -56,6 +61,9 @@ class TestFASUserCreateLegacy(Base):
 
 
 class TestFASUserCreate(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a new user account is created.
+    """
     expected_title = "fas.user.create (unsigned)"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -77,6 +85,11 @@ class TestFASUserCreate(Base):
 
 
 class TestFASEditProfile(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user's account is modified.
+    Information about which account, what fields changed, and who did the
+    changing are included in the message body.  For example:
+    """
     expected_title = "fas.user.update (unsigned)"
     expected_subti = "ralph edited the following fields of ralph's " + \
         "FAS profile:  comments"
@@ -98,6 +111,11 @@ class TestFASEditProfile(Base):
 
 
 class TestFASEditGroupLegacy(Base):
+    """ Support old fas messages (the new ones look different).
+
+    :mod:`fedmsg.meta` needs to be able to handle these since they are stored
+    *forever* in datanommer.
+    """
     expected_title = "fas.group.update (unsigned)"
     expected_subti = "ralph edited the following fields of the " + \
         "ambassadors FAS group:  display_name"
@@ -119,6 +137,10 @@ class TestFASEditGroupLegacy(Base):
 
 
 class TestFASEditGroup(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a group's properties are
+    modified.  For example:
+    """
     expected_title = "fas.group.update (unsigned)"
     expected_subti = "ralph edited the following fields of the " + \
         "ambassadors FAS group:  display_name"
@@ -140,6 +162,9 @@ class TestFASEditGroup(Base):
 
 
 class TestFASGroupCreate(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a new group is created.
+    """
     expected_title = "fas.group.create (unsigned)"
     expected_subti = "ralph created new FAS group ambassadors"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -159,6 +184,10 @@ class TestFASGroupCreate(Base):
 
 
 class TestFASRoleUpdate(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user's role in a particular
+    group changes.
+    """
     expected_title = "fas.role.update (unsigned)"
     expected_subti = "toshio changed ralph's role in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -179,6 +208,10 @@ class TestFASRoleUpdate(Base):
 
 
 class TestFASGroupRemove(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user is **removed** from a
+    particular group.
+    """
     expected_title = "fas.group.member.remove (unsigned)"
     expected_subti = "toshio removed ralph from the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -199,6 +232,10 @@ class TestFASGroupRemove(Base):
 
 
 class TestFASGroupSponsor(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user's request to join a
+    restricted group is **sponsored** by an authorized user.
+    """
     expected_title = "fas.group.member.sponsor (unsigned)"
     expected_subti = "toshio sponsored ralph's membership " + \
         "in the ambassadors group"
@@ -220,6 +257,10 @@ class TestFASGroupSponsor(Base):
 
 
 class TestFASGroupApply(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user **requests to join** a
+    particular group.
+    """
     expected_title = "fas.group.member.apply (unsigned)"
     expected_subti = "ralph applied for ralph's membership " + \
         "in the ambassadors group"
