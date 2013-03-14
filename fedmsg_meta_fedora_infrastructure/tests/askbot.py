@@ -296,10 +296,9 @@ class TestAskbotUpdatedQuestion(Base):
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'tags/town',
-        'threads/3',
+        'threads/2',
     ])
-    expected_link = "https://ask.fedoraproject.org/question/" + \
-        "2/?answer=2#post-id-2"
+    expected_link = "https://ask.fedoraproject.org/question/2/"
     msg = {
         "i": 2,
         "msg": {
