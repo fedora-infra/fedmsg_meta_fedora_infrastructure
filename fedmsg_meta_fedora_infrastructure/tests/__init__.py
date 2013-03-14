@@ -1168,6 +1168,9 @@ class TestTaggerCreate(Base):
 
 
 class TestMediaWikiEdit(Base):
+    """ Fedora's `Wiki <https://fedoraproject.org/wiki>`_ has a fedmsg hook
+    that publishes messages like this one when a user edits a page.
+    """
     expected_title = "wiki.article.edit (unsigned)"
     expected_subti = 'Ralph made a wiki edit to "Messaging SIG".'
     expected_link = "http://this-is-a-link.org"
@@ -1195,6 +1198,9 @@ class TestMediaWikiEdit(Base):
 
 
 class TestMediaWikiUpload(Base):
+    """ Fedora's `Wiki <https://fedoraproject.org/wiki>`_ hook also publishes
+    messages when a user upload some media (like a video or a picture).
+    """
     expected_title = "wiki.upload.complete (unsigned)"
     expected_subti = 'Ralph uploaded File:Cat.jpg to the wiki: ' + \
         '"This is a beautiful cat..."'
