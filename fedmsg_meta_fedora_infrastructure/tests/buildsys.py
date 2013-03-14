@@ -25,6 +25,8 @@ from fedmsg.tests.test_meta import Base
 
 
 class TestKojiBuildTag(Base):
+    """ Koji emits these messages when a build has a certain tag added to it.
+    """
     expected_title = "buildsys.tag (unsigned)"
     expected_subti = "ralph's stage-4.1.1-3.fc18 tagged into " + \
         "f18-updates-testing-pending by bodhi"
@@ -56,6 +58,7 @@ class TestKojiBuildTag(Base):
 
 
 class TestKojiBuildUnTag(Base):
+    """ Koji emits these messages anytime a tag is removed from a build. """
     expected_title = "buildsys.untag (unsigned)"
     expected_subti = "ralph's globus-gram-job-manager-sge-1.5-2.fc16 " + \
         "untagged from f16-updates-pending by bodhi"
@@ -87,6 +90,19 @@ class TestKojiBuildUnTag(Base):
 
 
 class TestKojiBuildStateChangeStart(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be pretty cryptic (they are just integers and are the
+    enums used by koji internally):
+
+    - 0 - Started
+    - 1 - Completed
+    - 2 - Deleted
+    - 3 - Failed
+    - 4 - Cancelled
+
+    The example here is one of a new build **starting**.
+    """
     expected_title = "buildsys.build.state.change (unsigned)"
     expected_subti = "ralph's eclipse-ptp-6.0.3-1.fc19 started building"
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
@@ -117,6 +133,19 @@ class TestKojiBuildStateChangeStart(Base):
 
 
 class TestKojiBuildStateChangeFail(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be pretty cryptic (they are just integers and are the
+    enums used by koji internally):
+
+    - 0 - Started
+    - 1 - Completed
+    - 2 - Deleted
+    - 3 - Failed
+    - 4 - Cancelled
+
+    The example here is one of a build **failing**.
+    """
     expected_title = "buildsys.build.state.change (unsigned)"
     expected_subti = "rmattes's eclipse-ptp-6.0.3-1.fc19 failed to build"
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
@@ -147,6 +176,7 @@ class TestKojiBuildStateChangeFail(Base):
 
 
 class TestKojiRepoInit(Base):
+    """ Koji emits these messages when a repository begins initializing. """
     expected_title = "buildsys.repo.init (unsigned)"
     expected_subti = 'Repo initialized:  f19-build'
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
@@ -172,6 +202,7 @@ class TestKojiRepoInit(Base):
 
 
 class TestKojiRepoDone(Base):
+    """ Koji emits these messages when repo initialization finishes. """
     expected_title = "buildsys.repo.done (unsigned)"
     expected_subti = 'Repo done:  f19-build'
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
@@ -197,6 +228,7 @@ class TestKojiRepoDone(Base):
 
 
 class TestKojiPackageListChange(Base):
+    """ Koji emits these messages a package listing changes. """
     expected_title = "buildsys.package.list.change (unsigned)"
     expected_subti = "Package list change for almanah:  'f17'"
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
