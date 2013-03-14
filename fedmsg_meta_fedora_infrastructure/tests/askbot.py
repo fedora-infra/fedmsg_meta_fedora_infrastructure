@@ -28,8 +28,10 @@ class TestAskbotRetag(Base):
     """ Messages get emitted on this topic when a question on `Ask Fedora
     <https://ask.fedoraproject.org/questions>`_ changes tags.
     It includes information about what tags the package now has, what question
-    the tags are for, and who did the changing.  It unfortunately doesn't have
-    any information about which tags were changed.
+    the tags are for, and who did the changing.  The ``msg['msg']['tags']``
+    field describes which tags changed while the
+    ``msg['msg']['thread']['tagnames']`` field describes all tags on the
+    thread in question.
     """
 
     expected_title = "askbot.tag.update (unsigned)"
