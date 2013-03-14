@@ -825,6 +825,12 @@ class TestBodhiOverrideUntagged(Base):
 
 
 class TestSupybotStartMeetingNoName(Base):
+    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    messages too!  Messages on this topic get published (somewhat obviously)
+    when a new IRC meeting is started.  The user starting the meeting may
+    specify a meeting title, but doesn't have to.  Here's an example
+    message with no meeting title specified:
+    """
     expected_title = "meetbot.meeting.start (unsigned)"
     expected_subti = 'threebean started a meeting in #channel'
     expected_usernames = set(['threebean', 'fedmsg-test-bot'])
@@ -853,6 +859,12 @@ class TestSupybotStartMeetingNoName(Base):
 
 
 class TestSupybotStartMeeting(Base):
+    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    messages too!  Messages on this topic get published (somewhat obviously)
+    when a new IRC meeting is started.  The user starting the meeting may
+    specify a meeting title, but doesn't have to.  Here's an example
+    message with a specified meeting title:
+    """
     expected_title = "meetbot.meeting.start (unsigned)"
     expected_subti = 'threebean started meeting "title" in #channel'
     expected_usernames = set(['threebean', 'fedmsg-test-bot'])
@@ -882,6 +894,11 @@ class TestSupybotStartMeeting(Base):
 
 
 class TestSupybotEndMeeting(Base):
+    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    messages too!  Messages on this topic get published when an IRC meeting
+    ends.  Meetings may or may not have a title (which can be tricky).
+    Here's an example message where the title is specified:
+    """
     expected_title = "meetbot.meeting.complete (unsigned)"
     expected_subti = 'threebean ended meeting "title" in #channel'
     expected_link = 'http://logs.com/awesome.html'
@@ -912,6 +929,11 @@ class TestSupybotEndMeeting(Base):
 
 
 class TestSupybotEndMeetingNoTitle(Base):
+    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    messages too!  Messages on this topic get published when an IRC meeting
+    ends.  Meetings may or may not have a title (which can be tricky).
+    Here's an example message where the title is **not** specified:
+    """
     expected_title = "meetbot.meeting.complete (unsigned)"
     expected_subti = 'threebean ended a meeting in #channel'
     expected_link = 'http://logs.com/awesome.html'
@@ -941,6 +963,9 @@ class TestSupybotEndMeetingNoTitle(Base):
 
 
 class TestSupybotChangeTopic(Base):
+    """ As IRC meetings chug along, the chairperson may change the meeting;
+    zodbot publishes message for that!  An example **with** a title specified:
+    """
     expected_title = "meetbot.meeting.topic.update (unsigned)"
     expected_subti = 'threebean changed the topic of "title" to "Food" in #channel'
     expected_link = 'http://logs.com/awesome.html'
@@ -973,6 +998,10 @@ class TestSupybotChangeTopic(Base):
 
 
 class TestSupybotChangeTopicNoTitle(Base):
+    """ As IRC meetings chug along, the chairperson may change the meeting;
+    zodbot publishes message for that!  An example **without** a title
+    specified:
+    """
     expected_title = "meetbot.meeting.topic.update (unsigned)"
     expected_subti = 'threebean changed the topic to "Food" in #channel'
     expected_link = 'http://logs.com/awesome.html'
