@@ -1257,6 +1257,11 @@ class TestMediaWikiUpload(Base):
 
 
 class TestPkgdb2BrMassStart(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Messages on this topic are
+    emitted from that script when it is instructed to carry out a "mass
+    branch" of all packages.
+    """
     expected_title = "git.mass_branch.start (unsigned)"
     expected_subti = "dgilmore started a mass branch"
     expected_usernames = set(['dgilmore'])
@@ -1272,6 +1277,10 @@ class TestPkgdb2BrMassStart(Base):
 
 
 class TestPkgdb2BrMassComplete(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Messages on this topic are
+    emitted from that script when it **finishes** a "mass branch".
+    """
     expected_title = "git.mass_branch.complete (unsigned)"
     expected_subti = "mass branch started by dgilmore completed"
     expected_usernames = set(['dgilmore'])
@@ -1287,6 +1296,14 @@ class TestPkgdb2BrMassComplete(Base):
 
 
 class TestPkgdb2BrRunStart(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Typically, when an `SCM Admin
+    Request <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_ is
+    approved, the scm admin will add the new package or branch to the package
+    database.  *After that*, the scm admin will run ``pkgdb2branch`` to create
+    the branch in git on the file system.  Messages of **this** topic are
+    published when that process **begins**.
+    """
     expected_title = "git.pkgdb2branch.start (unsigned)"
     expected_subti = "limburgher started a run of pkgdb2branch"
     expected_usernames = set(['limburgher'])
@@ -1302,6 +1319,14 @@ class TestPkgdb2BrRunStart(Base):
 
 
 class TestPkgdb2BrRunComplete(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Typically, when an `SCM Admin
+    Request <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_ is
+    approved, the scm admin will add the new package or branch to the package
+    database.  *After that*, the scm admin will run ``pkgdb2branch`` to create
+    the branch in git on the file system.  Messages of **this** topic are
+    published when that process **completes**.
+    """
     expected_title = "git.pkgdb2branch.complete (unsigned)"
     expected_subti = "run of pkgdb2branch started by limburgher completed"
     expected_usernames = set(['limburgher'])
@@ -1321,6 +1346,17 @@ class TestPkgdb2BrRunComplete(Base):
 
 
 class TestPkgdb2BrRunCompleteWithError(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Typically, when an `SCM Admin
+    Request <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_ is
+    approved, the scm admin will add the new package or branch to the package
+    database.  *After that*, the scm admin will run ``pkgdb2branch`` to create
+    the branch in git on the file system.  Messages of **this** topic are
+    published when that process **completes**.
+
+    *Sometimes* that process can produce errors.  Here's an example of a
+    message from a failed ``pkgdb2branch`` run.
+    """
     expected_title = "git.pkgdb2branch.complete (unsigned)"
     expected_subti = "run of pkgdb2branch started by limburgher completed" + \
         " with 1 error"
@@ -1341,6 +1377,17 @@ class TestPkgdb2BrRunCompleteWithError(Base):
 
 
 class TestPkgdb2BrRunCompleteWithErrors(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Typically, when an `SCM Admin
+    Request <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_ is
+    approved, the scm admin will add the new package or branch to the package
+    database.  *After that*, the scm admin will run ``pkgdb2branch`` to create
+    the branch in git on the file system.  Messages of **this** topic are
+    published when that process **completes**.
+
+    *Sometimes* that process can produce errors.  Here's an example of a
+    message from a failed ``pkgdb2branch`` run (on multiple packages)
+    """
     expected_title = "git.pkgdb2branch.complete (unsigned)"
     expected_subti = "run of pkgdb2branch started by limburgher completed" + \
         " with 2 errors"
@@ -1361,6 +1408,11 @@ class TestPkgdb2BrRunCompleteWithErrors(Base):
 
 
 class TestPkgdb2BrCreateLegacy(Base):
+    """ Support old school pkgdb2branch messages.  This don't get published
+    anymore, but :mod:`fedmsg.meta` needs to support them since they are
+    stored *forever* in datanommer.
+    """
+
     expected_title = "git.branch.valgrind.master (unsigned)"
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
@@ -1381,6 +1433,14 @@ class TestPkgdb2BrCreateLegacy(Base):
 
 
 class TestPkgdb2BrCreate(Base):
+    """ There is a script called ``pkgdb2branch`` that gets run by an SCM
+    admin as part of the new package process.  Typically, when an `SCM Admin
+    Request <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_ is
+    approved, the scm admin will add the new package or branch to the package
+    database.  *After that*, the scm admin will run ``pkgdb2branch`` to create
+    the branch in git on the file system.  Messages of **this** topic are
+    published `for each new branch` that that process **creates**.
+    """
     expected_title = "git.branch (unsigned)"
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
