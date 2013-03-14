@@ -282,6 +282,11 @@ class TestFASGroupApply(Base):
 
 
 class TestBodhiUpdateComplete(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever an update
+    **completes it's push to the testing repository**.  Here's a
+    straightforward example:
+    """
     expected_title = "bodhi.update.complete.testing (unsigned)"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
         "completed push to testing"
@@ -368,6 +373,12 @@ class TestBodhiUpdateComplete(Base):
 
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever an update
+    **completes it's push to the testing repository**.  Some updates may
+    contain *multiple packages*, which can be a little tricky if you're not
+    ready for it.  Here's an example of that:
+    """
     expected_title = "bodhi.update.request.testing (unsigned)"
     expected_subti = "lmacken submitted " + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18" + \
@@ -480,6 +491,13 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
 
 
 class TestBodhiMashTaskMashing(Base):
+    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever it starts mashing
+    a particular repository.
+
+    Note that, these messages are broken (serverside) due to `this
+    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    """
     expected_title = "bodhi.mashtask.mashing (unsigned)"
     expected_subti = "bodhi masher is mashing test_repo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -496,6 +514,12 @@ class TestBodhiMashTaskMashing(Base):
 
 
 class TestBodhiMashTaskStart(Base):
+    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever it **begins** its work.
+
+    Note that, these messages are broken (serverside) due to `this
+    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    """
     expected_title = "bodhi.mashtask.start (unsigned)"
     expected_subti = "bodhi masher started its mashtask"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -508,6 +532,12 @@ class TestBodhiMashTaskStart(Base):
 
 
 class TestBodhiMashTaskComplete(Base):
+    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever it **finishes** its work.
+
+    Note that, these messages are broken (serverside) due to `this
+    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    """
     expected_title = "bodhi.mashtask.complete (unsigned)"
     expected_subti = "bodhi masher failed to complete its mashtask!"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -519,7 +549,13 @@ class TestBodhiMashTaskComplete(Base):
     }
 
 
-class TestBodhiMashTaskSyncWait(Base):
+class TestBodhiMashTaskSyncWaitStart(Base):
+    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic when it begins **waiting to sync**.
+
+    Note that, these messages are broken (serverside) due to `this
+    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    """
     expected_title = "bodhi.mashtask.sync.wait (unsigned)"
     expected_subti = "bodhi masher is waiting on mirror repos to sync"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -531,7 +567,13 @@ class TestBodhiMashTaskSyncWait(Base):
     }
 
 
-class TestBodhiMashTaskSyncWait(Base):
+class TestBodhiMashTaskSyncWaitDone(Base):
+    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic when it finishes syncing.
+
+    Note that, these messages are broken (serverside) due to `this
+    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    """
     expected_title = "bodhi.mashtask.sync.done (unsigned)"
     expected_subti = "bodhi masher finished waiting on mirror repos to sync"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -545,6 +587,10 @@ class TestBodhiMashTaskSyncWait(Base):
 
 
 class TestBodhiRequestUnpush(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a *user* requests that an update
+    be **unpushed**.
+    """
     expected_title = "bodhi.update.request.unpush (unsigned)"
     expected_subti = "lmacken unpushed foo"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
@@ -570,6 +616,10 @@ class TestBodhiRequestUnpush(Base):
 
 
 class TestBodhiRequestObsolete(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a *user* requests that an update
+    be **obsoleted**.
+    """
     expected_title = "bodhi.update.request.obsolete (unsigned)"
     expected_subti = "lmacken obsoleted foo"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
@@ -595,6 +645,10 @@ class TestBodhiRequestObsolete(Base):
 
 
 class TestBodhiRequestStable(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a *user* requests that an update
+    be marked as **stable**.
+    """
     expected_title = "bodhi.update.request.stable (unsigned)"
     expected_subti = "lmacken submitted foo to stable"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
@@ -620,6 +674,10 @@ class TestBodhiRequestStable(Base):
 
 
 class TestBodhiRequestRevoke(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a *user* revokes a prior
+    request on an update.
+    """
     expected_title = "bodhi.update.request.revoke (unsigned)"
     expected_subti = "lmacken revoked foo"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
@@ -645,6 +703,10 @@ class TestBodhiRequestRevoke(Base):
 
 
 class TestBodhiRequestTesting(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a *user* requests that an
+    update be pushed to the testing repository.
+    """
     expected_title = "bodhi.update.request.testing (unsigned)"
     expected_subti = "lmacken submitted foo to testing"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
@@ -670,6 +732,10 @@ class TestBodhiRequestTesting(Base):
 
 
 class TestBodhiComment(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a user **comments** on a bodhi
+    update.
+    """
     expected_title = "bodhi.update.comment (unsigned)"
     expected_subti = "ralph commented on bodhi update fedmsg-1.0-1 (karma: -1)"
     expected_link = "https://admin.fedoraproject.org/updates/fedmsg-1.0-1"
@@ -701,6 +767,10 @@ class TestBodhiComment(Base):
 
 
 class TestBodhiOverrideTagged(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a user **requests a buildroot
+    override** for an update.
+    """
     expected_title = "bodhi.buildroot_override.tag (unsigned)"
     expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -726,6 +796,10 @@ class TestBodhiOverrideTagged(Base):
 
 
 class TestBodhiOverrideUntagged(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a user explicitly removes a
+    previously requested buildroot override.
+    """
     expected_title = "bodhi.buildroot_override.untag (unsigned)"
     expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
