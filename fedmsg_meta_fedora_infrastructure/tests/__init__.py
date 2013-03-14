@@ -30,7 +30,7 @@ from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
 from fedmsg_meta_fedora_infrastructure.tests.askbot import *
 
 
-class TestFASUserCreateOldStyle(Base):
+class TestFASUserCreateLegacy(Base):
     expected_title = "fas.user.create (unsigned)"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -97,7 +97,7 @@ class TestFASEditProfile(Base):
     }
 
 
-class TestFASEditGroupOldStyle(Base):
+class TestFASEditGroupLegacy(Base):
     expected_title = "fas.group.update (unsigned)"
     expected_subti = "ralph edited the following fields of the " + \
         "ambassadors FAS group:  display_name"
