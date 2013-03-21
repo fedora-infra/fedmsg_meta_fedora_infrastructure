@@ -25,6 +25,10 @@ from fedmsg.tests.test_meta import Base
 
 
 class TestPlanetNewPost(Base):
+    """ The `Fedora Planet <https://planet.fedoraproject.org/>`_ publishes
+    messages of this topic whenever a new blog post is found.  Cool!
+    """
+
     expected_title = "planet.post.new (unsigned)"
     expected_subti = 'ralph posted "Test Post 6"'
     expected_link = "http://threebean.org/blog/test-post-6"
