@@ -60,7 +60,7 @@ if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.1.1',
+    version='0.1.2',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
