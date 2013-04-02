@@ -132,6 +132,44 @@ class TestKojiBuildStateChangeStart(Base):
     }
 
 
+class TestKojiBuildStateChangeStartNoOwner(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be tricky, but are described in other examples.
+
+    *This* example message shows one where for some reason or another, koji
+    was unable to publish the name of the owner of a build.  The 'owner' field
+    is set to None.
+    """
+    expected_title = "buildsys.build.state.change (unsigned)"
+    expected_subti = "None's eclipse-ptp-6.0.3-1.fc19 started building"
+    expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
+        "Artwork_DesignService_koji-icon-48.png"
+    expected_usernames = set([None])
+    expected_packages = set(['eclipse-ptp'])
+    expected_objects = set([
+        'builds/eclipse-ptp/6.0.3/1.fc19'
+    ])
+    expected_link = "http://koji.fedoraproject.org/koji/" + \
+        "buildinfo?buildID=12345"
+    msg = {
+        "username": "apache",
+        "i": 1,
+        "timestamp": 1359604772.1788671,
+        "topic": "org.fedoraproject.prod.buildsys.build.state.change",
+        "msg": {
+            "old": 3,
+            "name": "eclipse-ptp",
+            "attribute": "state",
+            "version": "6.0.3",
+            "release": "1.fc19",
+            "new": 0,
+            "owner": None,
+            "build_id": 12345,
+        }
+    }
+
+
 class TestKojiBuildStateChangeFail(Base):
     """ Koji emits messages on this topic anytime the state of a build changes.
 
