@@ -65,6 +65,11 @@ class KojiProcessor(BaseProcessor):
                 self._("{owner}'s {name}-{version}-{release} was cancelled"),
             ]
             tmpl = templates[msg['msg']['new']]
+
+            # If there was no owner of the build, chop off the prefix.
+            if not msg['msg']['owner']:
+                tmpl = tmpl[len("{owner}'s "):]
+
             return tmpl.format(**msg['msg'])
         else:
             raise NotImplementedError("%r" % msg)
@@ -87,9 +92,13 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.package.list.change' in msg['topic']:
             return set()
         elif 'buildsys.build.state.change' in msg['topic']:
-            return set([
-                msg['msg']['owner'],
-            ])
+            if msg['msg']['owner']:
+                return set([
+                    msg['msg']['owner'],
+                ])
+
+            # Sometimes there is no owner
+            return set()
         else:
             raise NotImplementedError("%r" % msg)
 

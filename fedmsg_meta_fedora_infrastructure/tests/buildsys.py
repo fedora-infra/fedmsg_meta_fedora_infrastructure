@@ -142,10 +142,10 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     is set to None.
     """
     expected_title = "buildsys.build.state.change (unsigned)"
-    expected_subti = "None's eclipse-ptp-6.0.3-1.fc19 started building"
+    expected_subti = "eclipse-ptp-6.0.3-1.fc19 started building"
     expected_icon = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
-    expected_usernames = set([None])
+    expected_usernames = set([])
     expected_packages = set(['eclipse-ptp'])
     expected_objects = set([
         'builds/eclipse-ptp/6.0.3/1.fc19'
