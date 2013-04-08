@@ -33,7 +33,7 @@ class TestLegacyComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
     expected_subti = "f18 compose completed"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/f18"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -176,7 +176,7 @@ class TestLegacyComposeBranchedRsyncComplete(Base):
     expected_subti = \
         "finished rsync of f18 compose"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/f18"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -198,7 +198,7 @@ class TestLegacyComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete (unsigned)"
     expected_subti = "rawhide compose completed"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -300,7 +300,7 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete (unsigned)"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -325,7 +325,7 @@ class TestComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
     expected_subti = "f18 compose completed"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/f18"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -496,7 +496,7 @@ class TestComposeBranchedRsyncComplete(Base):
     expected_subti = \
         "finished rsync of f18 compose"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/f18"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/f18"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -521,7 +521,7 @@ class TestComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete (unsigned)"
     expected_subti = "rawhide compose completed"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -638,7 +638,7 @@ class TestComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete (unsigned)"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
-        "https://alt.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -664,7 +664,7 @@ class TestSecondaryArchComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete (unsigned)"
     expected_subti = "f18 compose (arm) completed"
     expected_link = \
-        "https://secondary.fedoraproject.org/pub/fedora-secondary/" + \
+        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/f18"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -836,7 +836,7 @@ class TestSecondaryArchComposeBranchedRsyncComplete(Base):
     expected_subti = \
         "finished rsync of f18 compose (arm)"
     expected_link = \
-        "https://secondary.fedoraproject.org/pub/fedora-secondary/" + \
+        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/f18"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -862,7 +862,7 @@ class TestSecondaryArchComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete (unsigned)"
     expected_subti = "rawhide compose (arm) completed"
     expected_link = \
-        "https://secondary.fedoraproject.org/pub/fedora-secondary/" + \
+        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/rawhide"
     expected_objects = set(['rawhide/arm'])
     msg = {
@@ -981,7 +981,7 @@ class TestSecondaryArchComposeRawhideRsyncComplete(Base):
     expected_subti = \
         "finished rsync of rawhide compose (arm)"
     expected_link = \
-        "https://secondary.fedoraproject.org/pub/fedora-secondary/" + \
+        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/rawhide"
     expected_objects = set(['rawhide/arm'])
     msg = {
