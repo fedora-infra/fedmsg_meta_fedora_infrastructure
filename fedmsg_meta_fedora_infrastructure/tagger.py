@@ -30,9 +30,14 @@ class TaggerProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         vote = msg.get('msg', {}).get('vote', {})
-        pack = vote.get('tag', {}).get('package', {})
+        pack = vote.get('tag', {}).get('package', None)
+
+        # Backwards compat with old tagger messages
+        if hasattr(pack, 'keys'):
+            pack = pack.keys()[0]
+
         if pack:
-            return "https://apps.fedoraproject.org/tagger/" + pack.keys()[0]
+            return "https://apps.fedoraproject.org/tagger/" + pack
         else:
             return ""
 
@@ -40,7 +45,11 @@ class TaggerProcessor(BaseProcessor):
         if 'fedoratagger.tag.update' in msg['topic']:
             user = msg['msg']['vote']['user']['username']
             tag = msg['msg']['vote']['tag']['tag']
-            package = msg['msg']['vote']['tag']['package'].keys()[0]
+            package = msg['msg']['vote']['tag']['package']
+
+            # Backwards compat with old tagger messages
+            if hasattr(package, 'keys'):
+                package = package.keys()[0]
 
             if msg['msg']['vote']['like']:
                 verb = "up"
@@ -52,7 +61,12 @@ class TaggerProcessor(BaseProcessor):
         elif 'fedoratagger.tag.create' in msg['topic']:
             user = msg['msg']['vote']['user']['username']
             tag = msg['msg']['vote']['tag']['tag']
-            package = msg['msg']['vote']['tag']['package'].keys()[0]
+            package = msg['msg']['vote']['tag']['package']
+
+            # Backwards compat with old tagger messages
+            if hasattr(package, 'keys'):
+                package = package.keys()[0]
+
             tmpl = self._('{user} added tag "{tag}" to {package}')
             return tmpl.format(user=user, tag=tag, package=package)
         elif 'fedoratagger.user.rank.update' in msg['topic']:
@@ -80,9 +94,13 @@ class TaggerProcessor(BaseProcessor):
 
     def packages(self, msg, **config):
         if 'fedoratagger.tag.' in msg['topic']:
-            return set([
-                msg['msg']['vote']['tag']['package'].keys()[0]
-            ])
+            package = msg['msg']['vote']['tag']['package']
+
+            # Backwards compat with old tagger messages
+            if hasattr(package, 'keys'):
+                package = package.keys()[0]
+
+            return set([package])
 
         return set()
 
