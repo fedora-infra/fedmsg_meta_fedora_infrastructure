@@ -28,10 +28,106 @@ class TestTaggerVoteAnonymous(Base):
     """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
     publishes messages like this one when a user votes on a tag.
     Users may upvote or downvote a tag and they may do so either
-    anonymously or authenticated.  Here's an example of a
-    anonymous upvote:
+    anonymously or authenticated.  Here's an example of an
+    authenticated downvote:
     """
 
+    expected_title = "fedoratagger.tag.update (unsigned)"
+    expected_subti = 'ralph downvoted "stupid" on mattd'
+    expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['mattd'])
+    expected_objects = set(['packages/mattd', 'labels/stupid'])
+    msg = {
+        "i": 3,
+        "msg": {
+            "vote": {
+                "tag": {
+                    "votes": 1,
+                    "like": 0,
+                    "package": "mattd",
+                    "tag": "stupid",
+                    "dislike": 1,
+                    "total": -1
+                },
+                "like": False,
+                "user": {
+                    "username": "ralph",
+                    "votes": 4,
+                    "rank": -1
+                }
+            },
+            "tag": {
+                "votes": 1,
+                "like": 0,
+                "package": "mattd",
+                "tag": "stupid",
+                "dislike": 1,
+                "total": -1
+            },
+            "user": {
+                "username": "ralph",
+                "votes": 4,
+                "rank": -1
+            }
+        },
+        "topic": "org.fedoraproject.dev.fedoratagger.tag.update",
+        "username": "threebean",
+        "timestamp": 1365444503.627384
+    }
+
+
+class TestTaggerCreate(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    publishes messages like this one when a user **creates** a new tag.
+    """
+    expected_title = "fedoratagger.tag.create (unsigned)"
+    expected_subti = 'ralph added tag "awesome" to mattd'
+    expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['mattd'])
+    expected_objects = set(['packages/mattd', 'labels/awesome'])
+    msg = {
+        "i": 2,
+        "msg": {
+            "vote": {
+                "tag": {
+                    "votes": 1,
+                    "like": 1,
+                    "package": "mattd",
+                    "tag": "awesome",
+                    "dislike": 0,
+                    "total": 1
+                },
+                "like": True,
+                "user": {
+                    "username": "ralph",
+                    "votes": 4,
+                    "rank": -1
+                }
+            },
+            "tag": {
+                "votes": 1,
+                "like": 1,
+                "package": "mattd",
+                "tag": "awesome",
+                "dislike": 0,
+                "total": 1
+            },
+            "user": {
+                "username": "ralph",
+                "votes": 4,
+                "rank": -1
+            }
+        },
+        "topic": "org.fedoraproject.dev.fedoratagger.tag.create",
+        "username": "threebean",
+        "timestamp": 1365444411.924043
+    }
+
+
+class TestTaggerVoteAnonymousLegacy(Base):
+    """ Support old legacy tagger messages. """
     expected_title = "fedoratagger.tag.update (unsigned)"
     expected_subti = 'anonymous upvoted "unittest" on perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
@@ -94,10 +190,8 @@ class TestTaggerVoteAnonymous(Base):
     }
 
 
-class TestTaggerCreate(Base):
-    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
-    publishes messages like this one when a user **creates** a new tag.
-    """
+class TestTaggerCreateLegacy(Base):
+    """ Support old TG2 version of tagger messages. """
     expected_title = "fedoratagger.tag.create (unsigned)"
     expected_subti = 'ralph added tag "unittest" to perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
