@@ -36,6 +36,10 @@ class TaggerProcessor(BaseProcessor):
         if hasattr(pack, 'keys'):
             pack = pack.keys()[0]
 
+        if not pack and 'rating' in msg['msg']:
+            pack = msg['msg']['rating']['package']['name']
+
+
         if pack:
             return "https://apps.fedoraproject.org/tagger/" + pack
         else:
@@ -58,6 +62,16 @@ class TaggerProcessor(BaseProcessor):
 
             tmpl = self._('{user} {verb}voted "{tag}" on {package}')
             return tmpl.format(user=user, tag=tag, verb=verb, package=package)
+        elif 'fedoratagger.rating.update' in msg['topic']:
+            user = msg['msg']['rating']['user']
+            if user.get('anonymous', False):
+                user = self._('An anonymous user')
+            else:
+                user = user['username']
+            package = msg['msg']['rating']['package']['name']
+            rating = msg['msg']['rating']['rating']
+            tmpl = self._('{user} gave {package} a rating of {rating}')
+            return tmpl.format(user=user, package=package, rating=rating)
         elif 'fedoratagger.tag.create' in msg['topic']:
             user = msg['msg']['vote']['user']['username']
             tag = msg['msg']['vote']['tag']['tag']
@@ -86,6 +100,8 @@ class TaggerProcessor(BaseProcessor):
             user = msg['msg']['vote']['user']['username']
         elif 'fedoratagger.user.rank.update' in msg['topic']:
             user = msg['msg']['user']['username']
+        elif 'fedoratagger.rating.update' in msg['topic']:
+            user = msg['msg']['rating']['user']['username']
 
         if user is 'anonymous':
             return set()
@@ -100,6 +116,9 @@ class TaggerProcessor(BaseProcessor):
             if hasattr(package, 'keys'):
                 package = package.keys()[0]
 
+            return set([package])
+        elif 'fedoratagger.rating.update' in msg['topic']:
+            package = msg['msg']['rating']['package']['name']
             return set([package])
 
         return set()
