@@ -54,7 +54,7 @@ class TestTaggerVoteAnonymous(Base):
                 "user": {
                     "username": "ralph",
                     "votes": 4,
-                    "rank": -1
+                    "rank": -1,
                     "anonymous": False
                 }
             },
@@ -69,7 +69,7 @@ class TestTaggerVoteAnonymous(Base):
             "user": {
                 "username": "ralph",
                 "votes": 4,
-                "rank": -1
+                "rank": -1,
                 "anonymous": False
             }
         },
@@ -100,7 +100,7 @@ class TestTaggerRatingUpdateAnonymous(Base):
                 "user": {
                     "username": "anonymous",
                     "votes": 0,
-                    "anonymous": true,
+                    "anonymous": True,
                     "rank": -1
                 },
                 "package": {
@@ -154,7 +154,7 @@ class TestTaggerCreate(Base):
                 "user": {
                     "username": "ralph",
                     "votes": 4,
-                    "rank": -1
+                    "rank": -1,
                     "anonymous": False,
                 }
             },
@@ -169,7 +169,7 @@ class TestTaggerCreate(Base):
             "user": {
                 "username": "ralph",
                 "votes": 4,
-                "rank": -1
+                "rank": -1,
                 "anonymous": False,
             }
         },
