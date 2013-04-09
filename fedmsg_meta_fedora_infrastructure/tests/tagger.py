@@ -55,6 +55,7 @@ class TestTaggerVoteAnonymous(Base):
                     "username": "ralph",
                     "votes": 4,
                     "rank": -1
+                    "anonymous": False
                 }
             },
             "tag": {
@@ -69,6 +70,7 @@ class TestTaggerVoteAnonymous(Base):
                 "username": "ralph",
                 "votes": 4,
                 "rank": -1
+                "anonymous": False
             }
         },
         "topic": "org.fedoraproject.dev.fedoratagger.tag.update",
@@ -104,6 +106,7 @@ class TestTaggerCreate(Base):
                     "username": "ralph",
                     "votes": 4,
                     "rank": -1
+                    "anonymous": False,
                 }
             },
             "tag": {
@@ -118,6 +121,7 @@ class TestTaggerCreate(Base):
                 "username": "ralph",
                 "votes": 4,
                 "rank": -1
+                "anonymous": False,
             }
         },
         "topic": "org.fedoraproject.dev.fedoratagger.tag.create",
