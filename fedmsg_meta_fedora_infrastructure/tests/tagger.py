@@ -79,6 +79,55 @@ class TestTaggerVoteAnonymous(Base):
     }
 
 
+class TestTaggerRatingUpdateAnonymous(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    doesn't just do tagging of packages, in new versions it also
+    allows users to rate packages.  It publishes messages like this
+    one when an anonymous user updates their rating of a package.
+    """
+    expected_title = "fedoratagger.rating.update (unsigned)"
+    expected_subti = 'An anonymous user gave nethack a rating of 15'
+    expected_link = 'https://apps.fedoraproject.org/tagger/nethack'
+    expected_usernames = set([])
+    expected_packages = set(['nethack'])
+    expected_objects = set(['packages/nethack'])
+
+    msg = {
+        "i": 1,
+        "msg": {
+            "rating": {
+                "rating": 15,
+                "user": {
+                    "username": "anonymous",
+                    "votes": 0,
+                    "anonymous": true,
+                    "rank": -1
+                },
+                "package": {
+                    "rating": 15.0,
+                    "tags": [
+                        {
+                            "votes": 1,
+                            "like": 1,
+                            "package": "nethack",
+                            "tag": "awesome",
+                            "dislike": 0,
+                            "total": 1
+                        }
+                    ],
+                    "name": "nethack",
+                    "icon": "https://apps.fedoraproject.org/packages/images/"
+                    "icons/package_128x128.png",
+                    "summary": ""
+                }
+            }
+        },
+        "topic": "org.fedoraproject.dev.fedoratagger.rating.update",
+        "username": "threebean",
+        "timestamp": 1365514895.61764
+    }
+
+
 class TestTaggerCreate(Base):
     """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
     publishes messages like this one when a user **creates** a new tag.
