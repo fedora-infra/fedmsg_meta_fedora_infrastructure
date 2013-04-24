@@ -158,8 +158,8 @@ class SCMProcessor(BaseProcessor):
             except KeyError:
                 return set(['.'.join(msg['topic'].split('.')[5:-1])])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
-            return set(msg['msg']['unbranchedPackages'] +
-                       msg['msg']['branchedPackages'])
+            return set(msg['msg'].get('unbranchedPackages', []) +
+                       msg['msg'].get('branchedPackages', []))
         elif '.git.lookaside' in msg['topic']:
             return set([msg['msg']['name']])
 
@@ -183,9 +183,7 @@ class SCMProcessor(BaseProcessor):
             return set([repo + '/__git__'])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
             return set([
-                p + '/__git__' for p in
-                msg['msg']['unbranchedPackages'] +
-                msg['msg']['branchedPackages']
+                p + '/__git__' for p in self.packages(msg, **config)
             ])
         elif '.git.lookaside' in msg['topic']:
             return set([msg['msg']['name'] + '/' + msg['msg']['filename']])

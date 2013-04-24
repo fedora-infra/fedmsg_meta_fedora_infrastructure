@@ -825,7 +825,7 @@ class TestBodhiOverrideUntagged(Base):
 
 
 class TestSupybotStartMeetingNoName(Base):
-    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    """ Trusty old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
     messages too!  Messages on this topic get published (somewhat obviously)
     when a new IRC meeting is started.  The user starting the meeting may
     specify a meeting title, but doesn't have to.  Here's an example
@@ -859,7 +859,7 @@ class TestSupybotStartMeetingNoName(Base):
 
 
 class TestSupybotStartMeeting(Base):
-    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    """ Trusty old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
     messages too!  Messages on this topic get published (somewhat obviously)
     when a new IRC meeting is started.  The user starting the meeting may
     specify a meeting title, but doesn't have to.  Here's an example
@@ -894,7 +894,7 @@ class TestSupybotStartMeeting(Base):
 
 
 class TestSupybotEndMeeting(Base):
-    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    """ Trusty old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
     messages too!  Messages on this topic get published when an IRC meeting
     ends.  Meetings may or may not have a title (which can be tricky).
     Here's an example message where the title is specified:
@@ -929,7 +929,7 @@ class TestSupybotEndMeeting(Base):
 
 
 class TestSupybotEndMeetingNoTitle(Base):
-    """ Trust old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
+    """ Trusty old `zodbot <https://meetbot.fedoraproject.org/>`_ publishes
     messages too!  Messages on this topic get published when an IRC meeting
     ends.  Meetings may or may not have a title (which can be tricky).
     Here's an example message where the title is **not** specified:
