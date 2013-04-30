@@ -12,7 +12,7 @@ class BaseProcessor(fedmsg.meta.base.BaseProcessor):
 
     def avatars(self, msg, **config):
         usernames = self.usernames(msg, **config)
-        kwargs = dict(service='libravatar', lookup_email=False)
+        kwargs = dict(lookup_email=False)
         lookup = lambda x: self.FAS.avatar_url(x, **kwargs)
         urls = map(lookup, usernames)
         return dict(zip(usernames, urls))
