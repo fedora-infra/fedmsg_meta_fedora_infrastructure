@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #           Luke Macken <lmacken@redhat.com>
 
-from fedmsg.meta.base import BaseProcessor
+from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
 def _u2p(update):
