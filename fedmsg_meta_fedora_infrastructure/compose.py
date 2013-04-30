@@ -63,10 +63,10 @@ class ComposeProcessor(BaseProcessor):
     def link(self, msg, **config):
         arch = msg['msg'].get('arch', '')
         if arch:
-            base = "https://secondary.fedoraproject.org/pub/" + \
+            base = "https://dl.fedoraproject.org/pub/" + \
                 "fedora-secondary/development"
         else:
-            base = "https://alt.fedoraproject.org/pub/" + \
+            base = "https://dl.fedoraproject.org/pub/" + \
                 "fedora/linux/development"
 
         # For backwards compatibility (with old messages in datanommer)
