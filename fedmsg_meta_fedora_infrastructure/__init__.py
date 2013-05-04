@@ -1,3 +1,5 @@
+#-*- coding: utf-8 -*-
+
 import fedora.client
 import fedmsg.meta.base
 
