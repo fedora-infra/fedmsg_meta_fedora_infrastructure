@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-from fedmsg.meta.base import BaseProcessor
+from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
 class SupybotProcessor(BaseProcessor):
