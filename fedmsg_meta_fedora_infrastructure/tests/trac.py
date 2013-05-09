@@ -455,7 +455,7 @@ class TestTracWikiVersionDelete(Base):
     <http://fedorahosted.org>`_ trac instance.
     """
 
-    expected_title = "trac.wiki.page.delete (unsigned)"
+    expected_title = "trac.wiki.page.version.delete (unsigned)"
     expected_subti = "ralph deleted a version of the 'WikiStart' " + \
         "wiki page on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
