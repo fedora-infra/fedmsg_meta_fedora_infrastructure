@@ -47,6 +47,7 @@ class TestTracTicketCreate(Base):
         "timestamp": 1368043636.2942779,
         "topic": "org.fedoraproject.prod.trac.ticket.new",
         "msg": {
+            "agent": "ralph",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",
@@ -57,6 +58,7 @@ class TestTracTicketCreate(Base):
                 "project_icon": "common/trac.ico"
             },
             "ticket": {
+                "id": 249,
                 "status": "new",
                 "changetime": 1368043635.0,
                 "description": "just testing fedmsg.",
@@ -100,6 +102,7 @@ class TestTracTicketChange(Base):
         "timestamp": 1368040146.688652,
         "topic": "org.fedoraproject.prod.trac.ticket.update",
         "msg": {
+            "agent": "ralph",
             "comment": "Testing.",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
@@ -111,6 +114,7 @@ class TestTracTicketChange(Base):
                 "project_icon": "common/trac.ico"
             },
             "ticket": {
+                "id": 249,
                 "status": "new",
                 "changetime": 1368040146.0,
                 "description": "I installed the fedmsg plugin.",
@@ -157,6 +161,7 @@ class TestTracTicketChangeReopen(Base):
         "timestamp": 1368040591.046669,
         "topic": "org.fedoraproject.prod.trac.ticket.update",
         "msg": {
+            "agent": "ralph",
             "comment": "",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
@@ -168,6 +173,7 @@ class TestTracTicketChangeReopen(Base):
                 "project_icon": "common/trac.ico"
             },
             "ticket": {
+                "id": 249,
                 "status": "reopened",
                 "changetime": 1368040591.0,
                 "description": "I installed the fedmsg plugin.",
@@ -218,6 +224,7 @@ class TestTracTicketChangeClosed(Base):
         "timestamp": 1368040802.7476659,
         "topic": "org.fedoraproject.prod.trac.ticket.update",
         "msg": {
+            "agent": "ralph",
             "comment": "",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
@@ -229,6 +236,7 @@ class TestTracTicketChangeClosed(Base):
                 "project_icon": "common/trac.ico"
             },
             "ticket": {
+                "id": 249,
                 "status": "closed",
                 "changetime": 1368040802.0,
                 "description": "I installed the fedmsg plugin.",
@@ -279,6 +287,7 @@ class TestTracTicketDelete(Base):
         "timestamp": 1368042385.176218,
         "topic": "org.fedoraproject.prod.trac.ticket.delete",
         "msg": {
+            "agent": "ralph",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",
@@ -289,6 +298,7 @@ class TestTracTicketDelete(Base):
                 "project_icon": "common/trac.ico"
             },
             "ticket": {
+                "id": 249,
                 "status": "closed",
                 "changetime": 1368042301.0,
                 "description": "I installed the fedmsg plugin.",
@@ -334,6 +344,7 @@ class TestTracWikiCreate(Base):
         "timestamp": 1368042663.078511,
         "topic": "org.fedoraproject.prod.trac.wiki.page.new",
         "msg": {
+            "agent": "ralph",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",
@@ -380,6 +391,7 @@ class TestTracWikiEdit(Base):
         "timestamp": 1368038919.389492,
         "topic": "org.fedoraproject.prod.trac.wiki.page.update",
         "msg": {
+            "agent": "ralph",
             "comment": "",
             "author": "ralph",
             "instance": {
@@ -428,6 +440,7 @@ class TestTracWikiDelete(Base):
         "timestamp": 1368043573.12363,
         "topic": "org.fedoraproject.prod.trac.wiki.page.delete",
         "msg": {
+            "agent": "ralph",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",
@@ -475,6 +488,7 @@ class TestTracWikiVersionDelete(Base):
         "timestamp": 1368043436.1444981,
         "topic": "org.fedoraproject.prod.trac.wiki.page.version.delete",
         "msg": {
+            "agent": "ralph",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",
@@ -491,7 +505,7 @@ class TestTracWikiVersionDelete(Base):
                 "text": " .. wiki page text goes here. ..",
                 "version": 47,
                 "time": 1368038919.0
-            }
+            },
         }
     }
 
@@ -521,6 +535,7 @@ class TestTracWikiRename(Base):
         "timestamp": 1368043322.1105361,
         "topic": "org.fedoraproject.prod.trac.wiki.page.rename",
         "msg": {
+            "agent": "ralph",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",
