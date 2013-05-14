@@ -29,6 +29,7 @@ from fedmsg_meta_fedora_infrastructure.tests.planet import *
 from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
 from fedmsg_meta_fedora_infrastructure.tests.askbot import *
 from fedmsg_meta_fedora_infrastructure.tests.tagger import *
+from fedmsg_meta_fedora_infrastructure.tests.trac import *
 
 
 class TestFASUserCreateLegacy(Base):
