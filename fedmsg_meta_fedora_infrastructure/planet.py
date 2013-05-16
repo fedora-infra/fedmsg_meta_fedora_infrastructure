@@ -21,7 +21,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
 class PlanetProcessor(BaseProcessor):
-    __name__ = "fedoraplanet"
+    __name__ = "planet"
     __description__ = "the Fedora blog aggregator"
     __link__ = "http://planet.fedoraproject.org/"
     __docs__ = "https://fedoraproject.org/wiki/Planet"
