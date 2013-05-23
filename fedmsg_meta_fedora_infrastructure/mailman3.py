@@ -59,7 +59,7 @@ class MailmanProcessor(BaseProcessor):
 
             return tmpl.format(lst=lst, user=user, subject=subject)
         else:
-            raise watwat
+            raise NotImplementedError
 
     def secondary_icon(self, msg, **config):
         full_from = msg['msg']['msg']['from']

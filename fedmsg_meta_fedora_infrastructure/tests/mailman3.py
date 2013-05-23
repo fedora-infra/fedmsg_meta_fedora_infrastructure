@@ -33,7 +33,9 @@ class TestMailman3NewReply(Base):
     expected_title = "mailman.receive (unsigned)"
     expected_subti = "On the devel list, nicolas.mailhot replied to " + \
         "'[Devel] Re:Software Management call for RFEs'"
-    expected_link = "https://lists.fedoraproject.org/hyperkitty/list/devel@mm3test.fedoraproject.org/message/S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/"
+    expected_link = "https://lists.fedoraproject.org/hyperkitty/list/" + \
+        "devel@mm3test.fedoraproject.org/message/" + \
+        "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "8b887fce5c60f931e8edf8e8e4907494?s=64&" + \
         "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2F" + \
@@ -64,14 +66,21 @@ class TestMailman3NewReply(Base):
                 "delivered-to": "devel@lists.fedoraproject.org",
                 "from": "\"Nicolas Mailhot\" <nicolas.mailhot@laposte.net>",
                 "x-mailman-rule-hits": "nonmember-moderation",
-                "to": "\"Development discussions related to Fedora\" <devel@lists.fedoraproject.org>",
+                "to": "\"Development discussions related to Fedora\" "
+                "<devel@lists.fedoraproject.org>",
                 "cc": None,
                 "in-reply-to": "<519DFB93.1060502@laiskiainen.org>",
                 "x-message-id-hash": "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ",
-                "x-mailman-rule-misses": "approved; emergency; loop; member-moderation; administrivia; implicit-dest; max-recipients; max-size; news-moderation; no-subject; suspicious-header",
-                "references": "<5de4f14ae46cce6de03cf68ca06526a9.squirrel@arekh.dyndns.org>\n\t<519DFB93.1060502@laiskiainen.org>",
-                "archived-at": "/list/devel@mm3test.fedoraproject.org/message/S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/",
-                "message-id": "<d4f0cefb4a7b845451ecab2c4026fe4d.squirrel@arekh.dyndns.org>",
+                "x-mailman-rule-misses": "approved; emergency; loop; "
+                "member-moderation; administrivia; implicit-dest; "
+                "max-recipients; max-size; news-moderation; no-subject; "
+                "suspicious-header",
+                "references": "<5de4f14ae46cce6de03cf68ca06526a9.squirrel@"
+                "arekh.dyndns.org>\n\t<519DFB93.1060502@laiskiainen.org>",
+                "archived-at": "/list/devel@mm3test.fedoraproject.org/message/"
+                "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/",
+                "message-id": "<d4f0cefb4a7b845451ecab2c4026fe4d.squirrel@"
+                "arekh.dyndns.org>",
                 "subject": "[Devel] Re:Software Management call for RFEs"
             }
         },
