@@ -11,29 +11,43 @@ def gravatar_url(username, size=64, default=None):
         return system.gravatar_url(
             username, size, default, lookup_email=False)
     except Exception:
-        return _gravatar_url(username, size, default)
+        email = username + "@fedoraproject.org"
+        return gravatar_url_from_email(email, size, default)
 
 
-def _gravatar_url(username, size=64, default=None):
+def gravatar_url_from_email(email, size=64, default=None):
     """
     Our own implementation since fas doesn't support this nicely yet.
     """
 
     if size not in _valid_gravatar_sizes:
-        raise ValueError(b_('Size %(size)i disallowed.  Must be in'
-            ' %(valid_sizes)r') % { 'size': size,
-                'valid_sizes': _valid_gravatar_sizes})
+        raise ValueError(b_(
+            'Size %(size)i disallowed.  Must be in %(valid_sizes)r') % {
+                'size': size, 'valid_sizes': _valid_gravatar_sizes})
 
     if not default:
         default = "http://fedoraproject.org/static/images/" + \
-                "fedora_infinity_%ix%i.png" % (size, size)
+                  "fedora_infinity_%ix%i.png" % (size, size)
 
-    query_string = urllib.urlencode({
-        's': size,
-        'd': default,
-    })
+    return _kernel(email, size, default, service='gravatar')
 
-    email = "%s@fedoraproject.org" % username
-    hash = md5(email).hexdigest()
 
-    return "http://www.gravatar.com/avatar/%s?%s" % (hash, query_string)
+def _kernel(email, size, default, service='gravatar'):
+    """ Copy-and-paste of some code from python-fedora. """
+
+    if service == 'libravatar':
+        import libravatar
+        return libravatar.libravatar_url(
+            email=email,
+            size=size,
+            default=default,
+        )
+    else:
+        query_string = urllib.urlencode({
+            's': size,
+            'd': default,
+        })
+
+        hash = md5(email).hexdigest()
+
+        return "http://www.gravatar.com/avatar/%s?%s" % (hash, query_string)
