@@ -93,6 +93,7 @@ setup(
             "buildsys="
             "fedmsg_meta_fedora_infrastructure.buildsys:KojiProcessor",
             "trac=fedmsg_meta_fedora_infrastructure.trac:TracProcessor",
+            "mailman=fedmsg_meta_fedora_infrastructure.mailman3:MailmanProcessor",
         ]
     }
 )
