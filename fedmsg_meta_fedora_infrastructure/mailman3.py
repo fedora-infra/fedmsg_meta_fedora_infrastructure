@@ -51,7 +51,7 @@ class MailmanProcessor(BaseProcessor):
             if not user:
                 user = "someone"
 
-            if msg['msg']['msg']['in-reply-to']:
+            if msg['msg']['msg']['references']:
                 tmpl = self._(
                     "On the {lst} list, {user} replied to '{subject}'")
             else:
