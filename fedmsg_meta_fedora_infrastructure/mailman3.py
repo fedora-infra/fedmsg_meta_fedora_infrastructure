@@ -79,7 +79,14 @@ class MailmanProcessor(BaseProcessor):
             return set()
 
     def objects(self, msg, **config):
-        references = msg['msg']['msg']['references'].split()
+        references = msg['msg']['msg']['references']
+        references = references and references.split() or []
         references = [r[1:-1] for r in references]
         message_id = msg['msg']['msg']['message-id'][1:-1]
-        return set(['/'.join(['/'.join(references), message_id, 'message'])])
+
+        if references:
+            tokens = ['/'.join(references), message_id, 'message']
+        else:
+            tokens = [message_id, 'message']
+
+        return set(['/'.join(tokens)])
