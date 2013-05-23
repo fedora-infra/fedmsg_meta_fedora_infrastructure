@@ -28,6 +28,7 @@ class TestMailman3NewReply(Base):
     """ `Discussion lists for the Fedora Project
     <https://lists.fedoraproject.org>`_ run on mailman3.  When a new
     message is published on a list, fedmsg will pop out one of these messages.
+    The following is an example of a reply to a thread.
     """
 
     expected_title = "mailman.receive (unsigned)"
@@ -87,4 +88,69 @@ class TestMailman3NewReply(Base):
         "topic": "org.fedoraproject.dev.mailman.receive",
         "username": "mailman",
         "timestamp": 1369322289.6794021
+    }
+
+
+class TestMailman3NewMail(Base):
+    """ `Discussion lists for the Fedora Project
+    <https://lists.fedoraproject.org>`_ run on mailman3.  When a new
+    message is published on a list, fedmsg will pop out one of these messages.
+    The following is an example of a new thread being started.
+    """
+
+    expected_title = "mailman.receive (unsigned)"
+    expected_subti = "jreznik wrote '[Devel] Fedora 19 Beta status is " + \
+        "Go, release on May 28, 2013' to the devel list"
+    expected_link = "https://lists.fedoraproject.org/hyperkitty/list/" + \
+        "devel@mm3test.fedoraproject.org/message/" + \
+        "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4/"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "35012533ff5290bd2231c7133bd07896?s=64&" + \
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2F" + \
+        "fedora_infinity_64x64.png"
+
+    expected_packages = set([])
+    expected_usernames = set([
+        # This works for now (kind of).
+        # In the future we want to look their real username up in FAS,
+        # but that requires credentials and we can't guarantee those
+        # everywhere.
+        'jreznik',
+    ])
+    expected_objects = set([
+        "306436886.6773069.1369333725371.JavaMail.root@redhat.com/message",
+    ])
+    msg = {
+        "i": 1,
+        "msg": {
+            "mlist": {
+                "list_name": "devel"
+            },
+            "msg": {
+                "delivered-to": "devel@lists.fedoraproject.org",
+                "from": "Jaroslav Reznik <jreznik@redhat.com>",
+                "x-mailman-rule-hits": "nonmember-moderation",
+                "to": "devel-announce@lists.fedoraproject.org,\n\t"
+                "test-announce@lists.fedoraproject.org,\n\t"
+                "Fedora Logistics List <logistics@lists.fedoraproject.org>",
+                "cc": None,
+                "in-reply-to": "<464172768.6769524.1369333196048.JavaMail."
+                "root@redhat.com>",
+                "x-message-id-hash": "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4",
+                "x-mailman-rule-misses": "approved; emergency; loop; "
+                "member-moderation; administrivia; implicit-dest; "
+                "max-recipients; max-size; news-moderation; no-subject; "
+                "suspicious-header",
+                "references": None,
+                "archived-at": "/list/devel@mm3test.fedoraproject.org/"
+                "message/HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4/",
+                "message-id": "<306436886.6773069.1369333725371.JavaMail."
+                "root@redhat.com>",
+                "subject": "[Devel] Fedora 19 Beta status is Go, release on "
+                "May 28, 2013"
+            }
+        },
+        "topic": "org.fedoraproject.dev.mailman.receive",
+        "username": "mailman",
+        "timestamp": 1369334087.9298041
     }
