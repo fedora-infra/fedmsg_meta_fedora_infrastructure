@@ -30,6 +30,7 @@ from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
 from fedmsg_meta_fedora_infrastructure.tests.askbot import *
 from fedmsg_meta_fedora_infrastructure.tests.tagger import *
 from fedmsg_meta_fedora_infrastructure.tests.trac import *
+from fedmsg_meta_fedora_infrastructure.tests.mailman3 import *
 
 
 class TestFASUserCreateLegacy(Base):
