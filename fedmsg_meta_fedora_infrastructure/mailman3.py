@@ -81,7 +81,14 @@ class MailmanProcessor(BaseProcessor):
             return set()
 
     def objects(self, msg, **config):
+
+        # Build a repr of all the messages in this thread
         references = msg['msg']['msg']['references']
+
+        # Fall back to this header if there's nothing in the first.
+        if not references:
+            references = msg['msg']['msg']['in-reply-to']
+
         references = references and references.split() or []
         references = [r[1:-1] for r in references]
         message_id = msg['msg']['msg']['message-id'][1:-1]
