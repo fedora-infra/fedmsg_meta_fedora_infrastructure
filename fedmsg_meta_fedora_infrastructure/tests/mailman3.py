@@ -134,8 +134,7 @@ class TestMailman3NewMail(Base):
                 "test-announce@lists.fedoraproject.org,\n\t"
                 "Fedora Logistics List <logistics@lists.fedoraproject.org>",
                 "cc": None,
-                "in-reply-to": "<464172768.6769524.1369333196048.JavaMail."
-                "root@redhat.com>",
+                "in-reply-to": None,
                 "x-message-id-hash": "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4",
                 "x-mailman-rule-misses": "approved; emergency; loop; "
                 "member-moderation; administrivia; implicit-dest; "
