@@ -21,6 +21,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url_from_email
 
 import email.utils
+import warnings
 
 
 def _full_email_to_email(full_from):
@@ -59,7 +60,7 @@ class MailmanProcessor(BaseProcessor):
 
             return tmpl.format(lst=lst, user=user, subject=subject)
         else:
-            raise NotImplementedError
+            warnings.warn("mailman3 message *must* have 'receive' in topic")
 
     def secondary_icon(self, msg, **config):
         full_from = msg['msg']['msg']['from']
