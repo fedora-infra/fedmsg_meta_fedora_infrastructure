@@ -81,11 +81,12 @@ class TracProcessor(BaseProcessor):
                     "{user} updated a ticket "
                     "on the {project} trac instance")
                 status = msg['msg']['ticket']['status']
-                if status == 'reopened':
+                old_values = msg['msg']['old_values']
+                if status == 'reopened' and 'status' in old_values:
                     tmpl = self._(
                         "{user} reopened a ticket "
                         "on the {project} trac instance")
-                elif status == 'closed':
+                elif status == 'closed' and 'status' in old_values:
                     resolution = msg['msg']['ticket']['resolution']
                     tmpl = self._(
                         "{user} closed a ticket "
