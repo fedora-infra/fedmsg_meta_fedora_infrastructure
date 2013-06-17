@@ -32,24 +32,49 @@ class TestNewBadge(Base):
 
     expected_title = "fedbadges.badge.award (unsigned)"
     expected_subti = 'ralph has been awarded the ' + \
-        '"Something on your Mind?" badge'
-    expected_link = "https://apps.fedoraproject.org/badges/users/ralph"
+        '"Something on your mind" badge'
+    expected_link = "https://badges.fedoraproject.org/users/1"
     expected_secondary_icon = "http://example.com/image.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['something-on-your-mind'])
-
     msg = {
-        "i": 1,
-        "msg": {
-            "username": "ralph",
-            "badge_id": "something-on-your-mind",
-            "badge_name": "Something on your Mind?",
-            "badge_image": "http://example.com/image.png",
+        u'i': 1,
+        u'msg': {
+            u'badge': {
+                u'description': u'You have commented on 2 or more bodhi '
+                'updates.',
+                u'creator': u'ralph',
+                u'discussion': u'http://github.com/fedora-infra/badges/'
+                'pull/SOME_NUMBER',
+                u'issuer_id': u'fedora-project',
+                u'trigger': {
+                    u'topic': u'org.fedoraproject.stg.bodhi.update.comment'
+                },
+                u'image_url': u'http://example.com/image.png',
+                u'criteria': {
+                    u'datanommer': {
+                        u'filter': {
+                            u'topics': [
+                                u'{topic}'
+                            ]
+                        },
+                        u'operation': u'count',
+                        u'condition': {
+                            u'greater than or equal to': 2
+                        }
+                    }
+                },
+                u'name': u'Something on your mind'
+            },
+            u'user': {
+                u'badges_user_id': 1,
+                u'username': u'ralph',
+            }
         },
-        "topic": "org.fedoraproject.stg.fedbadges.badge.award",
-        "username": "fedmsg",
-        "timestamp": 1371185561.01757
+        u'topic': u'org.fedoraproject.stg.fedbadges.badge.award',
+        u'username': u'fedmsg',
+        u'timestamp': 1371498303.125771,
     }
 
 
