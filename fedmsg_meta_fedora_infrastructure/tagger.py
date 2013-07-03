@@ -92,7 +92,11 @@ class TaggerProcessor(BaseProcessor):
             raise NotImplementedError("%r" % msg)
 
     def icon(self, msg, **config):
-        return gravatar_url(msg['msg']['vote']['user']['username'])
+        usernames = self.usernames(msg, **config)
+        if usernames:
+            return gravatar_url(list(usernames)[0])
+        else:
+            return self.__icon__
 
     def usernames(self, msg, **config):
         user = 'anonymous'
