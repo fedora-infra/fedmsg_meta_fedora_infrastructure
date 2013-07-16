@@ -1041,7 +1041,7 @@ class TestMediaWikiEdit(Base):
     that publishes messages like this one when a user edits a page.
     """
     expected_title = "wiki.article.edit (unsigned)"
-    expected_subti = 'Ralph made a wiki edit to "Messaging SIG".'
+    expected_subti = 'Ralph made a wiki edit to "Messaging SIG"'
     expected_link = "http://this-is-a-link.org"
     expected_icon = "https://fedoraproject.org/w/skins/common/" + \
         "images/mediawiki.png"
