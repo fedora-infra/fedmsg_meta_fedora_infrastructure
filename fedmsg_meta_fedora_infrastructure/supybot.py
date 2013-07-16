@@ -18,7 +18,11 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
+from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas
 
+blacklisted_persons = [
+    'zodbot',
+]
 
 class SupybotProcessor(BaseProcessor):
     __name__ = "meetbot"
@@ -36,11 +40,13 @@ class SupybotProcessor(BaseProcessor):
                 tmpl = self._('{user} started meeting "{name}" in {channel}')
             else:
                 tmpl = self._('{user} started a meeting in {channel}')
+
         elif 'meetbot.meeting.complete' in msg['topic']:
             if msg['msg']['meeting_topic']:
                 tmpl = self._('{user} ended meeting "{name}" in {channel}')
             else:
                 tmpl = self._('{user} ended a meeting in {channel}')
+
         elif 'meetbot.meeting.topic.update' in msg['topic']:
             if msg['msg']['meeting_topic']:
                 tmpl = self._('{user} changed the topic of '
@@ -51,7 +57,7 @@ class SupybotProcessor(BaseProcessor):
         else:
             raise NotImplementedError("%r" % msg)
 
-        user = msg['msg']['owner']
+        user = nick2fas(msg['msg']['owner'], **config)
         name = msg['msg']['meeting_topic']
         channel = msg['msg']['channel']
         topic = msg['msg'].get('topic', 'no topic')
@@ -59,12 +65,17 @@ class SupybotProcessor(BaseProcessor):
         return tmpl.format(user=user, name=name, channel=channel, topic=topic)
 
     def usernames(self, msg, **config):
-        return set(msg['msg']['attendees'].keys())
+        return set([
+            nick2fas(nick, **config)
+            for nick in msg['msg']['attendees'].keys()
+            if nick not in blacklisted_persons
+        ])
 
     def objects(self, msg, **config):
         objs = set([
-            'attendees/' + person
+            'attendees/' + nick2fas(person, **config)
             for person in msg['msg']['attendees']
+            if person not in blacklisted_persons
         ] + [
             'channels/' + msg['msg']['channel']
         ])

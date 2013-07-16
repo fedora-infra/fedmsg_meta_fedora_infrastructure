@@ -1,7 +1,13 @@
 import urllib
+import socket
 from hashlib import md5
 
 _valid_gravatar_sizes = (32, 64, 140)
+
+_fas_cache = {}
+
+import logging
+log = logging.getLogger("moksha.hub")
 
 
 def gravatar_url(username, size=64, default=None):
@@ -51,3 +57,51 @@ def _kernel(email, size, default, service='gravatar'):
         hash = md5(email).hexdigest()
 
         return "http://www.gravatar.com/avatar/%s?%s" % (hash, query_string)
+
+
+def make_fas_cache(**config):
+    global _fas_cache
+    if _fas_cache:
+        return _fas_cache
+
+    log.info("No previous fas cache found.  Looking to rebuild.")
+
+    try:
+        import fedora.client.fas2
+    except ImportError:
+        log.info("No python-fedora installed.  Not caching fas.")
+        return {}
+
+    if not 'fas_credentials' in config:
+        log.info("No fas_credentials found.  Not caching fas.")
+        return {}
+
+    creds = config['fas_credentials']
+
+    fasclient = fedora.client.fas2.AccountSystem(
+        username=creds['username'],
+        password=creds['password'],
+    )
+
+    timeout = socket.getdefaulttimeout()
+    socket.setdefaulttimeout(None)
+    log.info("Downloading FAS cache")
+    request = fasclient.send_request('/user/list',
+                                     req_params={'search': '*'},
+                                     auth=True)
+    users = request['people'] + request['unapproved_people']
+    del request
+    socket.setdefaulttimeout(timeout)
+
+    log.info("Caching necessary user data")
+    for user in users:
+        nick = user['ircnick']
+        if nick:
+            _fas_cache[nick] = user['username']
+
+    return _fas_cache
+
+
+def nick2fas(nickname, **config):
+    fas_cache = make_fas_cache(**config)
+    return fas_cache.get(nickname, nickname)

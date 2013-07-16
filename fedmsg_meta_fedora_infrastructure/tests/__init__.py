@@ -836,11 +836,10 @@ class TestSupybotStartMeetingNoName(Base):
     message with no meeting title specified:
     """
     expected_title = "meetbot.meeting.start (unsigned)"
-    expected_subti = 'threebean started a meeting in #channel'
-    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_subti = 'ralph started a meeting in #channel'
+    expected_usernames = set(['ralph'])
     expected_objects = set([
-        'attendees/fedmsg-test-bot',
-        'attendees/threebean',
+        'attendees/ralph',
         'channels/#channel',
     ])
 
@@ -849,7 +848,7 @@ class TestSupybotStartMeetingNoName(Base):
         "msg": {
             "meeting_topic": None,
             "attendees": {
-                "fedmsg-test-bot": 2,
+                "zodbot": 2,
                 "threebean": 2
             },
             "chairs": {},
@@ -870,11 +869,10 @@ class TestSupybotStartMeeting(Base):
     message with a specified meeting title:
     """
     expected_title = "meetbot.meeting.start (unsigned)"
-    expected_subti = 'threebean started meeting "title" in #channel'
-    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_subti = 'ralph started meeting "title" in #channel'
+    expected_usernames = set(['ralph'])
     expected_objects = set([
-        'attendees/fedmsg-test-bot',
-        'attendees/threebean',
+        'attendees/ralph',
         'channels/#channel',
         'titles/title',
     ])
@@ -884,7 +882,7 @@ class TestSupybotStartMeeting(Base):
         "msg": {
             "meeting_topic": "title",
             "attendees": {
-                "fedmsg-test-bot": 2,
+                "zodbot": 2,
                 "threebean": 2
             },
             "chairs": {},
@@ -904,12 +902,11 @@ class TestSupybotEndMeeting(Base):
     Here's an example message where the title is specified:
     """
     expected_title = "meetbot.meeting.complete (unsigned)"
-    expected_subti = 'threebean ended meeting "title" in #channel'
+    expected_subti = 'ralph ended meeting "title" in #channel'
     expected_link = 'http://logs.com/awesome.html'
-    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_usernames = set(['ralph'])
     expected_objects = set([
-        'attendees/fedmsg-test-bot',
-        'attendees/threebean',
+        'attendees/ralph',
         'channels/#channel',
         'titles/title',
     ])
@@ -919,7 +916,7 @@ class TestSupybotEndMeeting(Base):
         "msg": {
             "meeting_topic": "title",
             "attendees": {
-                "fedmsg-test-bot": 2,
+                "zodbot": 2,
                 "threebean": 2
             },
             "chairs": {},
@@ -939,12 +936,11 @@ class TestSupybotEndMeetingNoTitle(Base):
     Here's an example message where the title is **not** specified:
     """
     expected_title = "meetbot.meeting.complete (unsigned)"
-    expected_subti = 'threebean ended a meeting in #channel'
+    expected_subti = 'ralph ended a meeting in #channel'
     expected_link = 'http://logs.com/awesome.html'
-    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_usernames = set(['ralph'])
     expected_objects = set([
-        'attendees/fedmsg-test-bot',
-        'attendees/threebean',
+        'attendees/ralph',
         'channels/#channel',
     ])
 
@@ -953,7 +949,7 @@ class TestSupybotEndMeetingNoTitle(Base):
         "msg": {
             "meeting_topic": None,
             "attendees": {
-                "fedmsg-test-bot": 2,
+                "zodbot": 2,
                 "threebean": 2
             },
             "chairs": {},
@@ -971,12 +967,11 @@ class TestSupybotChangeTopic(Base):
     zodbot publishes message for that!  An example **with** a title specified:
     """
     expected_title = "meetbot.meeting.topic.update (unsigned)"
-    expected_subti = 'threebean changed the topic of "title" to "Food" in #channel'
+    expected_subti = 'ralph changed the topic of "title" to "Food" in #channel'
     expected_link = 'http://logs.com/awesome.html'
-    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_usernames = set(['ralph'])
     expected_objects = set([
-        'attendees/fedmsg-test-bot',
-        'attendees/threebean',
+        'attendees/ralph',
         'channels/#channel',
         'titles/title',
         'topics/Food',
@@ -987,7 +982,7 @@ class TestSupybotChangeTopic(Base):
         "msg": {
             "meeting_topic": "title",
             "attendees": {
-                "fedmsg-test-bot": 2,
+                "zodbot": 2,
                 "threebean": 2
             },
             "chairs": {},
@@ -1007,12 +1002,11 @@ class TestSupybotChangeTopicNoTitle(Base):
     specified:
     """
     expected_title = "meetbot.meeting.topic.update (unsigned)"
-    expected_subti = 'threebean changed the topic to "Food" in #channel'
+    expected_subti = 'ralph changed the topic to "Food" in #channel'
     expected_link = 'http://logs.com/awesome.html'
-    expected_usernames = set(['threebean', 'fedmsg-test-bot'])
+    expected_usernames = set(['ralph'])
     expected_objects = set([
-        'attendees/fedmsg-test-bot',
-        'attendees/threebean',
+        'attendees/ralph',
         'channels/#channel',
         'topics/Food'
     ])
@@ -1022,7 +1016,7 @@ class TestSupybotChangeTopicNoTitle(Base):
         "msg": {
             "meeting_topic": None,
             "attendees": {
-                "fedmsg-test-bot": 2,
+                "zodbot": 2,
                 "threebean": 2
             },
             "chairs": {},
