@@ -20,7 +20,7 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas
 
-blacklisted_persons = [
+blacklisted_people = [
     'zodbot',
 ]
 
@@ -68,14 +68,14 @@ class SupybotProcessor(BaseProcessor):
         return set([
             nick2fas(nick, **config)
             for nick in msg['msg']['attendees']
-            if nick not in blacklisted_persons
+            if nick not in blacklisted_people
         ])
 
     def objects(self, msg, **config):
         objs = set([
             'attendees/' + nick2fas(person, **config)
             for person in msg['msg']['attendees']
-            if person not in blacklisted_persons
+            if person not in blacklisted_people
         ] + [
             'channels/' + msg['msg']['channel']
         ])
