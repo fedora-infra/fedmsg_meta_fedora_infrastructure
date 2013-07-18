@@ -64,16 +64,16 @@ def make_fas_cache(**config):
     if _fas_cache:
         return _fas_cache
 
-    log.info("No previous fas cache found.  Looking to rebuild.")
+    log.warn("No previous fas cache found.  Looking to rebuild.")
 
     try:
         import fedora.client.fas2
     except ImportError:
-        log.info("No python-fedora installed.  Not caching fas.")
+        log.warn("No python-fedora installed.  Not caching fas.")
         return {}
 
     if not 'fas_credentials' in config:
-        log.info("No fas_credentials found.  Not caching fas.")
+        log.warn("No fas_credentials found.  Not caching fas.")
         return {}
 
     creds = config['fas_credentials']
@@ -90,7 +90,6 @@ def make_fas_cache(**config):
                                      req_params={'search': '*'},
                                      auth=True)
     users = request['people'] + request['unapproved_people']
-    del request
     socket.setdefaulttimeout(timeout)
 
     log.info("Caching necessary user data")

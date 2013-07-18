@@ -67,7 +67,7 @@ class SupybotProcessor(BaseProcessor):
     def usernames(self, msg, **config):
         return set([
             nick2fas(nick, **config)
-            for nick in msg['msg']['attendees'].keys()
+            for nick in msg['msg']['attendees']
             if nick not in blacklisted_persons
         ])
 
