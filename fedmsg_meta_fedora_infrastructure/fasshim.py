@@ -84,13 +84,15 @@ def make_fas_cache(**config):
     )
 
     timeout = socket.getdefaulttimeout()
-    socket.setdefaulttimeout(None)
-    log.info("Downloading FAS cache")
-    request = fasclient.send_request('/user/list',
-                                     req_params={'search': '*'},
-                                     auth=True)
-    users = request['people'] + request['unapproved_people']
-    socket.setdefaulttimeout(timeout)
+    socket.setdefaulttimeout(600)
+    try:
+        log.info("Downloading FAS cache")
+        request = fasclient.send_request('/user/list',
+                                        req_params={'search': '*'},
+                                        auth=True)
+        users = request['people'] + request['unapproved_people']
+    finally:
+        socket.setdefaulttimeout(timeout)
 
     log.info("Caching necessary user data")
     for user in users:
