@@ -88,17 +88,20 @@ def make_fas_cache(**config):
     try:
         log.info("Downloading FAS cache")
         request = fasclient.send_request('/user/list',
-                                        req_params={'search': '*'},
-                                        auth=True)
-        users = request['people'] + request['unapproved_people']
+                                         req_params={'search': '*'},
+                                         auth=True)
     finally:
         socket.setdefaulttimeout(timeout)
 
     log.info("Caching necessary user data")
-    for user in users:
+    for user in request['people']:
         nick = user['ircnick']
         if nick:
             _fas_cache[nick] = user['username']
+
+    del request
+    del fasclient
+    del fedora.client.fas2
 
     return _fas_cache
 
