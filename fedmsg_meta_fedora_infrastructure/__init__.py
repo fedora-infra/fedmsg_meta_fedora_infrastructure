@@ -10,7 +10,7 @@ class BaseProcessor(fedmsg.meta.base.BaseProcessor):
     def emails(self, msg, **config):
         usernames = self.usernames(msg, **config)
         emails = [name + "@fedoraproject.org" for name in usernames]
-        return dict(zip(usernames, emails))
+        return dict(zip(emails, usernames))
 
     def avatars(self, msg, **config):
         usernames = self.usernames(msg, **config)
