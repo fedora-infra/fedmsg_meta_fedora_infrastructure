@@ -33,7 +33,7 @@ class TestNewBadge(Base):
     expected_title = "fedbadges.badge.award (unsigned)"
     expected_subti = 'ralph has been awarded the ' + \
         '"Something on your mind" badge'
-    expected_link = "https://badges.fedoraproject.org/user/ralph"
+    expected_link = "https://apps.fedoraproject.org/badges/user/ralph"
     expected_secondary_icon = "http://example.com/image.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
