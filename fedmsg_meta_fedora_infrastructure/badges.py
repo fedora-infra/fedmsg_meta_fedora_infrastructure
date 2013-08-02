@@ -29,7 +29,7 @@ class BadgesProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         username = msg['msg']['user']['username']
-        return "https://apps.fedoraproject.org/badges/user/%s" % username
+        return "https://badges.fedoraproject.org/user/%s" % username
 
     def subtitle(self, msg, **config):
         user = msg['msg']['user']['username']
