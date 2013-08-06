@@ -27,10 +27,10 @@ fs_prefix = "/srv/web/infra/ansible/"
 def relative_playbook(playbook):
     # All playbooks *should* begin with the fs_prefix.
     # This shouldn't raise an exception.. but just in case.
-    try:
+    if playbook.startswith(fs_prefix):
         return playbook[len(fs_prefix):]
-    except IndexError:
-        return playbook
+    else:
+        return None
 
 
 class AnsibleProcessor(BaseProcessor):
@@ -44,6 +44,9 @@ class AnsibleProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         user = msg['msg']['userid']
         playbook = relative_playbook(msg['msg']['playbook'])
+        if not playbook:
+            playbook = playbook.split('/')[0]
+
         if 'ansible.playbook.start' in msg['topic']:
             tmpl = self._("{user} started an ansible run of {playbook}")
             return tmpl.format(user=user, playbook=playbook)
@@ -59,13 +62,19 @@ class AnsibleProcessor(BaseProcessor):
     def link(self, msg, **config):
         base = "http://infrastructure.fedoraproject.org/cgit/ansible.git/tree/"
         playbook = relative_playbook(msg['msg']['playbook'])
-        return base + playbook
+        if not playbook:
+            return None
+        else:
+            return base + playbook
 
     def usernames(self, msg, **config):
         return set([msg['msg']['userid']])
 
     def objects(self, msg, **config):
         playbook = relative_playbook(msg['msg']['playbook'])
+        if not playbook:
+            playbook = playbook.split('/')[0]
+
         if 'results' in msg['msg']:
             return set([playbook] + [
                 "inventory/" + host for host in msg['msg']['results'].keys()
