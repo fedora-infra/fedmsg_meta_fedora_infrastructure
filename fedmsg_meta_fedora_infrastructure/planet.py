@@ -27,9 +27,6 @@ class PlanetProcessor(BaseProcessor):
     __docs__ = "https://fedoraproject.org/wiki/Planet"
     __obj__ = "Blog Posts"
 
-    def handle_msg(self, msg, **config):
-        return 'planet.post.new' in msg['topic']
-
     def link(self, msg, **config):
         return msg['msg']['post']['link']
 
