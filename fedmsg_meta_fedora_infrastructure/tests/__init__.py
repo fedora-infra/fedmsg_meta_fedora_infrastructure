@@ -58,7 +58,7 @@ class TestFASUserCreateLegacy(Base):
     :mod:`fedmsg.meta` needs to be able to handle these since they are stored
     *forever* in datanommer.
     """
-    expected_title = "fas.user.create (unsigned)"
+    expected_title = "fas.user.create"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
@@ -86,7 +86,7 @@ class TestFASUserCreate(Base):
     """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
     publishes messages on this topic whenever a new user account is created.
     """
-    expected_title = "fas.user.create (unsigned)"
+    expected_title = "fas.user.create"
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
@@ -112,7 +112,7 @@ class TestFASEditProfile(Base):
     Information about which account, what fields changed, and who did the
     changing are included in the message body.  For example:
     """
-    expected_title = "fas.user.update (unsigned)"
+    expected_title = "fas.user.update"
     expected_subti = "ralph edited the following fields of ralph's " + \
         "FAS profile:  comments"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -138,7 +138,7 @@ class TestFASEditGroupLegacy(Base):
     :mod:`fedmsg.meta` needs to be able to handle these since they are stored
     *forever* in datanommer.
     """
-    expected_title = "fas.group.update (unsigned)"
+    expected_title = "fas.group.update"
     expected_subti = "ralph edited the following fields of the " + \
         "ambassadors FAS group:  display_name"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -163,7 +163,7 @@ class TestFASEditGroup(Base):
     publishes messages on this topic whenever a group's properties are
     modified.  For example:
     """
-    expected_title = "fas.group.update (unsigned)"
+    expected_title = "fas.group.update"
     expected_subti = "ralph edited the following fields of the " + \
         "ambassadors FAS group:  display_name"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -187,7 +187,7 @@ class TestFASGroupCreate(Base):
     """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
     publishes messages on this topic whenever a new group is created.
     """
-    expected_title = "fas.group.create (unsigned)"
+    expected_title = "fas.group.create"
     expected_subti = "ralph created new FAS group ambassadors"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
@@ -210,7 +210,7 @@ class TestFASRoleUpdate(Base):
     publishes messages on this topic whenever a user's role in a particular
     group changes.
     """
-    expected_title = "fas.role.update (unsigned)"
+    expected_title = "fas.role.update"
     expected_subti = "toshio changed ralph's role in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
@@ -234,7 +234,7 @@ class TestFASGroupRemove(Base):
     publishes messages on this topic whenever a user is **removed** from a
     particular group.
     """
-    expected_title = "fas.group.member.remove (unsigned)"
+    expected_title = "fas.group.member.remove"
     expected_subti = "toshio removed ralph from the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
@@ -258,7 +258,7 @@ class TestFASGroupSponsor(Base):
     publishes messages on this topic whenever a user's request to join a
     restricted group is **sponsored** by an authorized user.
     """
-    expected_title = "fas.group.member.sponsor (unsigned)"
+    expected_title = "fas.group.member.sponsor"
     expected_subti = "toshio sponsored ralph's membership " + \
         "in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -283,7 +283,7 @@ class TestFASGroupApply(Base):
     publishes messages on this topic whenever a user **requests to join** a
     particular group.
     """
-    expected_title = "fas.group.member.apply (unsigned)"
+    expected_title = "fas.group.member.apply"
     expected_subti = "ralph applied for ralph's membership " + \
         "in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
@@ -309,7 +309,7 @@ class TestBodhiUpdateComplete(Base):
     **completes it's push to the testing repository**.  Here's a
     straightforward example:
     """
-    expected_title = "bodhi.update.complete.testing (unsigned)"
+    expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
         "completed push to testing"
     expected_link = "https://admin.fedoraproject.org/updates/" + \
@@ -401,7 +401,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     contain *multiple packages*, which can be a little tricky if you're not
     ready for it.  Here's an example of that:
     """
-    expected_title = "bodhi.update.request.testing (unsigned)"
+    expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted " + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18" + \
         " to testing"
@@ -520,7 +520,7 @@ class TestBodhiMashTaskMashing(Base):
     Note that, these messages are broken (serverside) due to `this
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
-    expected_title = "bodhi.mashtask.mashing (unsigned)"
+    expected_title = "bodhi.mashtask.mashing"
     expected_subti = "bodhi masher is mashing test_repo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -542,7 +542,7 @@ class TestBodhiMashTaskStart(Base):
     Note that, these messages are broken (serverside) due to `this
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
-    expected_title = "bodhi.mashtask.start (unsigned)"
+    expected_title = "bodhi.mashtask.start"
     expected_subti = "bodhi masher started its mashtask"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -560,7 +560,7 @@ class TestBodhiMashTaskComplete(Base):
     Note that, these messages are broken (serverside) due to `this
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
-    expected_title = "bodhi.mashtask.complete (unsigned)"
+    expected_title = "bodhi.mashtask.complete"
     expected_subti = "bodhi masher failed to complete its mashtask!"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -578,7 +578,7 @@ class TestBodhiMashTaskSyncWaitStart(Base):
     Note that, these messages are broken (serverside) due to `this
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
-    expected_title = "bodhi.mashtask.sync.wait (unsigned)"
+    expected_title = "bodhi.mashtask.sync.wait"
     expected_subti = "bodhi masher is waiting on mirror repos to sync"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -596,7 +596,7 @@ class TestBodhiMashTaskSyncWaitDone(Base):
     Note that, these messages are broken (serverside) due to `this
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
-    expected_title = "bodhi.mashtask.sync.done (unsigned)"
+    expected_title = "bodhi.mashtask.sync.done"
     expected_subti = "bodhi masher finished waiting on mirror repos to sync"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -613,7 +613,7 @@ class TestBodhiRequestUnpush(Base):
     publishes messages on this topic whenever a *user* requests that an update
     be **unpushed**.
     """
-    expected_title = "bodhi.update.request.unpush (unsigned)"
+    expected_title = "bodhi.update.request.unpush"
     expected_subti = "lmacken unpushed foo"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -642,7 +642,7 @@ class TestBodhiRequestObsolete(Base):
     publishes messages on this topic whenever a *user* requests that an update
     be **obsoleted**.
     """
-    expected_title = "bodhi.update.request.obsolete (unsigned)"
+    expected_title = "bodhi.update.request.obsolete"
     expected_subti = "lmacken obsoleted foo"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -671,7 +671,7 @@ class TestBodhiRequestStable(Base):
     publishes messages on this topic whenever a *user* requests that an update
     be marked as **stable**.
     """
-    expected_title = "bodhi.update.request.stable (unsigned)"
+    expected_title = "bodhi.update.request.stable"
     expected_subti = "lmacken submitted foo to stable"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -700,7 +700,7 @@ class TestBodhiRequestRevoke(Base):
     publishes messages on this topic whenever a *user* revokes a prior
     request on an update.
     """
-    expected_title = "bodhi.update.request.revoke (unsigned)"
+    expected_title = "bodhi.update.request.revoke"
     expected_subti = "lmacken revoked foo"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -729,7 +729,7 @@ class TestBodhiRequestTesting(Base):
     publishes messages on this topic whenever a *user* requests that an
     update be pushed to the testing repository.
     """
-    expected_title = "bodhi.update.request.testing (unsigned)"
+    expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted foo to testing"
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -758,7 +758,7 @@ class TestBodhiComment(Base):
     publishes messages on this topic whenever a user **comments** on a bodhi
     update.
     """
-    expected_title = "bodhi.update.comment (unsigned)"
+    expected_title = "bodhi.update.comment"
     expected_subti = "ralph commented on bodhi update fedmsg-1.0-1 (karma: -1)"
     expected_link = "https://admin.fedoraproject.org/updates/fedmsg-1.0-1"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
@@ -793,7 +793,7 @@ class TestBodhiOverrideTagged(Base):
     publishes messages on this topic whenever a user **requests a buildroot
     override** for an update.
     """
-    expected_title = "bodhi.buildroot_override.tag (unsigned)"
+    expected_title = "bodhi.buildroot_override.tag"
     expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -822,7 +822,7 @@ class TestBodhiOverrideUntagged(Base):
     publishes messages on this topic whenever a user explicitly removes a
     previously requested buildroot override.
     """
-    expected_title = "bodhi.buildroot_override.untag (unsigned)"
+    expected_title = "bodhi.buildroot_override.untag"
     expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
@@ -853,7 +853,7 @@ class TestSupybotStartMeetingNoName(Base):
     specify a meeting title, but doesn't have to.  Here's an example
     message with no meeting title specified:
     """
-    expected_title = "meetbot.meeting.start (unsigned)"
+    expected_title = "meetbot.meeting.start"
     expected_subti = 'ralph started a meeting in #channel'
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -886,7 +886,7 @@ class TestSupybotStartMeeting(Base):
     specify a meeting title, but doesn't have to.  Here's an example
     message with a specified meeting title:
     """
-    expected_title = "meetbot.meeting.start (unsigned)"
+    expected_title = "meetbot.meeting.start"
     expected_subti = 'ralph started meeting "title" in #channel'
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -919,7 +919,7 @@ class TestSupybotEndMeeting(Base):
     ends.  Meetings may or may not have a title (which can be tricky).
     Here's an example message where the title is specified:
     """
-    expected_title = "meetbot.meeting.complete (unsigned)"
+    expected_title = "meetbot.meeting.complete"
     expected_subti = 'ralph ended meeting "title" in #channel'
     expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
@@ -953,7 +953,7 @@ class TestSupybotEndMeetingNoTitle(Base):
     ends.  Meetings may or may not have a title (which can be tricky).
     Here's an example message where the title is **not** specified:
     """
-    expected_title = "meetbot.meeting.complete (unsigned)"
+    expected_title = "meetbot.meeting.complete"
     expected_subti = 'ralph ended a meeting in #channel'
     expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
@@ -984,7 +984,7 @@ class TestSupybotChangeTopic(Base):
     """ As IRC meetings chug along, the chairperson may change the meeting;
     zodbot publishes message for that!  An example **with** a title specified:
     """
-    expected_title = "meetbot.meeting.topic.update (unsigned)"
+    expected_title = "meetbot.meeting.topic.update"
     expected_subti = 'ralph changed the topic of "title" to "Food" in #channel'
     expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
@@ -1019,7 +1019,7 @@ class TestSupybotChangeTopicNoTitle(Base):
     zodbot publishes message for that!  An example **without** a title
     specified:
     """
-    expected_title = "meetbot.meeting.topic.update (unsigned)"
+    expected_title = "meetbot.meeting.topic.update"
     expected_subti = 'ralph changed the topic to "Food" in #channel'
     expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
@@ -1052,7 +1052,7 @@ class TestMediaWikiEdit(Base):
     """ Fedora's `Wiki <https://fedoraproject.org/wiki>`_ has a fedmsg hook
     that publishes messages like this one when a user edits a page.
     """
-    expected_title = "wiki.article.edit (unsigned)"
+    expected_title = "wiki.article.edit"
     expected_subti = 'Ralph made a wiki edit to "Messaging SIG"'
     expected_link = "http://this-is-a-link.org"
     expected_icon = "https://fedoraproject.org/w/skins/common/" + \
@@ -1082,7 +1082,7 @@ class TestMediaWikiUpload(Base):
     """ Fedora's `Wiki <https://fedoraproject.org/wiki>`_ hook also publishes
     messages when a user upload some media (like a video or a picture).
     """
-    expected_title = "wiki.upload.complete (unsigned)"
+    expected_title = "wiki.upload.complete"
     expected_subti = 'Ralph uploaded File:Cat.jpg to the wiki: ' + \
         '"This is a beautiful cat..."'
     expected_icon = "https://fedoraproject.org/w/skins/common/" + \
@@ -1143,7 +1143,7 @@ class TestPkgdb2BrMassStart(Base):
     emitted from that script when it is instructed to carry out a "mass
     branch" of all packages.
     """
-    expected_title = "git.mass_branch.start (unsigned)"
+    expected_title = "git.mass_branch.start"
     expected_subti = "dgilmore started a mass branch"
     expected_usernames = set(['dgilmore'])
 
@@ -1162,7 +1162,7 @@ class TestPkgdb2BrMassComplete(Base):
     admin as part of the new package process.  Messages on this topic are
     emitted from that script when it **finishes** a "mass branch".
     """
-    expected_title = "git.mass_branch.complete (unsigned)"
+    expected_title = "git.mass_branch.complete"
     expected_subti = "mass branch started by dgilmore completed"
     expected_usernames = set(['dgilmore'])
 
@@ -1185,7 +1185,7 @@ class TestPkgdb2BrRunStart(Base):
     the branch in git on the file system.  Messages of **this** topic are
     published when that process **begins**.
     """
-    expected_title = "git.pkgdb2branch.start (unsigned)"
+    expected_title = "git.pkgdb2branch.start"
     expected_subti = "limburgher started a run of pkgdb2branch"
     expected_usernames = set(['limburgher'])
 
@@ -1208,7 +1208,7 @@ class TestPkgdb2BrRunComplete(Base):
     the branch in git on the file system.  Messages of **this** topic are
     published when that process **completes**.
     """
-    expected_title = "git.pkgdb2branch.complete (unsigned)"
+    expected_title = "git.pkgdb2branch.complete"
     expected_subti = "run of pkgdb2branch started by limburgher completed"
     expected_usernames = set(['limburgher'])
     expected_packages = set(['nethack'])
@@ -1238,7 +1238,7 @@ class TestPkgdb2BrRunCompleteWithError(Base):
     *Sometimes* that process can produce errors.  Here's an example of a
     message from a failed ``pkgdb2branch`` run.
     """
-    expected_title = "git.pkgdb2branch.complete (unsigned)"
+    expected_title = "git.pkgdb2branch.complete"
     expected_subti = "run of pkgdb2branch started by limburgher completed" + \
         " with 1 error"
     expected_usernames = set(['limburgher'])
@@ -1269,7 +1269,7 @@ class TestPkgdb2BrRunCompleteWithErrors(Base):
     *Sometimes* that process can produce errors.  Here's an example of a
     message from a failed ``pkgdb2branch`` run (on multiple packages)
     """
-    expected_title = "git.pkgdb2branch.complete (unsigned)"
+    expected_title = "git.pkgdb2branch.complete"
     expected_subti = "run of pkgdb2branch started by limburgher completed" + \
         " with 2 errors"
     expected_usernames = set(['limburgher'])
@@ -1294,7 +1294,7 @@ class TestPkgdb2BrCreateLegacy(Base):
     stored *forever* in datanommer.
     """
 
-    expected_title = "git.branch.valgrind.master (unsigned)"
+    expected_title = "git.branch.valgrind.master"
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
     expected_link = \
@@ -1322,7 +1322,7 @@ class TestPkgdb2BrCreate(Base):
     the branch in git on the file system.  Messages of **this** topic are
     published `for each new branch` that that process **creates**.
     """
-    expected_title = "git.branch (unsigned)"
+    expected_title = "git.branch"
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
     expected_link = \
@@ -1348,7 +1348,7 @@ class TestLookaside(Base):
     uploaded to the "lookaside cache".
     """
 
-    expected_title = "git.lookaside.new (unsigned)"
+    expected_title = "git.lookaside.new"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
@@ -1374,7 +1374,7 @@ class TestLookaside(Base):
 class TestLookasideLegacy(Base):
     """ Support oldschool lookaside messages.  :( """
 
-    expected_title = "git.lookaside.texlive.new (unsigned)"
+    expected_title = "git.lookaside.texlive.new"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
@@ -1400,7 +1400,7 @@ class TestLookasideLegacy(Base):
 class TestSCMSuperLegacy(Base):
     """ Support super-duper oldschool lookaside messages.  :(:( """
 
-    expected_title = "git.receive.valgrind.master (unsigned)"
+    expected_title = "git.receive.valgrind.master"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
@@ -1451,7 +1451,7 @@ class TestSCMSuperLegacy(Base):
 class TestSCMLegacy(Base):
     """ Support oldschool "fedpkg push" messages.  :( """
 
-    expected_title = "git.receive.valgrind.master (unsigned)"
+    expected_title = "git.receive.valgrind.master"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
@@ -1504,7 +1504,7 @@ class TestSCM(Base):
     """ Messages like this one are published when somebody runs "fedpkg push"
     on a package.  Sometimes, the git message may be multiple lines long like:
     """
-    expected_title = "git.receive (unsigned)"
+    expected_title = "git.receive"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
@@ -1557,7 +1557,7 @@ class TestSCMSingleLine(Base):
     """ Messages like this one are published when somebody runs "fedpkg push"
     on a package.  The whole git message is included for each commit.
     """
-    expected_title = "git.receive (unsigned)"
+    expected_title = "git.receive"
     expected_subti = 'spot pushed to ember (master).  ' + \
         '"another missing patch? ridiculous."'
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \

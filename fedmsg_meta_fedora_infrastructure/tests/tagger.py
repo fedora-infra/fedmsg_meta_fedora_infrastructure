@@ -32,7 +32,7 @@ class TestTaggerVoteAnonymous(Base):
     authenticated downvote:
     """
 
-    expected_title = "fedoratagger.tag.update (unsigned)"
+    expected_title = "fedoratagger.tag.update"
     expected_subti = 'ralph downvoted "stupid" on mattd'
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
     expected_usernames = set(['ralph'])
@@ -85,7 +85,7 @@ class TestTaggerRatingUpdateAnonymous(Base):
     allows users to rate packages.  It publishes messages like this
     one when an anonymous user updates their rating of a package.
     """
-    expected_title = "fedoratagger.rating.update (unsigned)"
+    expected_title = "fedoratagger.rating.update"
     expected_subti = 'An anonymous user gave nethack a rating of 15'
     expected_link = 'https://apps.fedoraproject.org/tagger/nethack'
     expected_usernames = set([])
@@ -132,7 +132,7 @@ class TestTaggerCreate(Base):
     """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
     publishes messages like this one when a user **creates** a new tag.
     """
-    expected_title = "fedoratagger.tag.create (unsigned)"
+    expected_title = "fedoratagger.tag.create"
     expected_subti = 'ralph added tag "awesome" to mattd'
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
     expected_usernames = set(['ralph'])
@@ -181,7 +181,7 @@ class TestTaggerCreate(Base):
 
 class TestTaggerVoteAnonymousLegacy(Base):
     """ Support old legacy tagger messages. """
-    expected_title = "fedoratagger.tag.update (unsigned)"
+    expected_title = "fedoratagger.tag.update"
     expected_subti = 'anonymous upvoted "unittest" on perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
     expected_usernames = set([])
@@ -245,7 +245,7 @@ class TestTaggerVoteAnonymousLegacy(Base):
 
 class TestTaggerCreateLegacy(Base):
     """ Support old TG2 version of tagger messages. """
-    expected_title = "fedoratagger.tag.create (unsigned)"
+    expected_title = "fedoratagger.tag.create"
     expected_subti = 'ralph added tag "unittest" to perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
     expected_usernames = set(['ralph'])
