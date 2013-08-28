@@ -29,24 +29,42 @@ class BadgesProcessor(BaseProcessor):
     __docs__ = "https://fedoraproject.org/wiki/Open_Badges"
     __obj__ = "New Badges"
 
+    def _get_user(self, msg):
+        if 'badge.award' in msg['topic']:
+            return msg['msg']['user']['username']
+        else:
+            return msg['msg']['person']['nickname']
+
     def link(self, msg, **config):
-        username = msg['msg']['user']['username']
+        username = self._get_user(msg)
         return "https://badges.fedoraproject.org/user/%s" % username
 
     def subtitle(self, msg, **config):
-        user = msg['msg']['user']['username']
-        name = msg['msg']['badge']['name']
-        tmpl = self._('{user} has been awarded the "{name}" badge')
-        return tmpl.format(user=user, name=name)
+        user = self._get_user(msg)
+        if 'badge.award' in msg['topic']:
+            name = msg['msg']['badge']['name']
+            tmpl = self._('{user} has been awarded the "{name}" badge')
+            return tmpl.format(user=user, name=name)
+        else:
+            rank = msg['msg']['person']['rank']
+            tmpl = self._('{user} moved to position {rank} '
+                          'on the badges leaderboard')
+            return tmpl.format(user=user, rank=rank)
 
     def icon(self, msg, **config):
-        return msg['msg']['badge']['image_url']
+        if 'badge.award' in msg['topic']:
+            return msg['msg']['badge']['image_url']
+        else:
+            return super(BadgesProcessor, self).icon(msg, **config)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['user']['username'])
+        return gravatar_url(self._get_user(msg))
 
     def usernames(self, msg, **config):
-        return set([msg['msg']['user']['username']])
+        return set([self._get_user(msg)])
 
     def objects(self, msg, **config):
-        return set([msg['msg']['badge']['name'].lower().replace(' ', '-')])
+        if 'badge.award' in msg['topic']:
+            return set([msg['msg']['badge']['name'].lower().replace(' ', '-')])
+        else:
+            return set([])
