@@ -616,5 +616,64 @@ class TestTracChangesetCreate(Base):
     }
 
 
+class TestTracDocsChangesetCreate(Base):
+    """ Messages are published on this topic when a users pushes commits
+    to a `fedorahosted <http://fedorahosted.org>`_ git repository.
+
+    The message format is very similar to the ``git.receive`` message type
+    for Fedora packages.
+    """
+
+    expected_title = "trac.git.receive (unsigned)"
+    expected_subti = "ralph pushed some commits to the " + \
+        "'docs/about-fedora' fedorahosted git repository"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'docs/about-fedora/git/README.rst',
+    ])
+    expected_link = "https://git.fedorahosted.org/cgit/docs/" + \
+        "about-fedora.git/commit/?id=24bcd20d08a68320f82951ce20959bc6a1a6e79c"
+
+    msg = {
+        "username": "ralph",
+        "i": 1,
+        "timestamp": 1368046115.802794,
+        "topic": "org.fedoraproject.prod.trac.git.receive",
+        "msg": {
+            "commit": {
+                "username": "ralph",
+                "stats": {
+                    "files": {
+                        "README.rst": {
+                            "deletions": 0,
+                            "lines": 1,
+                            "insertions": 1
+                        }
+                    },
+                    "total": {
+                        "deletions": 0,
+                        "files": 1,
+                        "insertions": 1,
+                        "lines": 1
+                    }
+                },
+                "name": "Ralph Bean",
+                "rev": "24bcd20d08a68320f82951ce20959bc6a1a6e79c",
+                "agent": "ralph",
+                "summary": "Another commit to test fedorahosted fedmsg.",
+                "repo": "about-fedora",
+                "path": "/srv/git/docs/about-fedora.git",
+                "branch": "dev",
+                "message": "Another commit to test fedorahosted fedmsg.\n",
+                "email": "rbean@redhat.com"
+            }
+        }
+    }
+
+
 if __name__ == '__main__':
     unittest.main()
