@@ -22,13 +22,15 @@ from fasshim import gravatar_url
 
 
 def repo_name(msg):
-    if 'path' in msg['msg']['commit']:
+    """ Compat util to get the repo name from a message. """
+    try:
         # git messages look like this now
         path = msg['msg']['commit']['path']
         project = path.split('.git')[0][9:]
-    else:
+    except KeyError:
         # they used to look like this, though
         project = msg['msg']['commit']['repo']
+
     return project
 
 
