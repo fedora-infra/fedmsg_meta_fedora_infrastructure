@@ -61,7 +61,8 @@ class TestAnsiblePlaybookStart(Base):
 class TestAnsiblePlaybookComplete(Base):
     """ These messages are published when an admin finishes an ansible
     playbook run.  We use that system to manage the servers that
-    run fedoraproject.org.
+    run fedoraproject.org.  Here's an example with a playbook that has been
+    checked into our SCM repo.
     """
     expected_title = "ansible.playbook.complete"
     expected_subti = "ralph's playbooks/groups/badges-backend.yml playbook" +\
@@ -105,6 +106,56 @@ class TestAnsiblePlaybookComplete(Base):
             }
         }
     }
+
+
+class TestAnsiblePlaybookCompleteNotCheckIn(Base):
+    """ These messages are published when an admin finishes an ansible
+    playbook run.  We use that system to manage the servers that
+    run fedoraproject.org.  Here's an example with a playbook that is not
+    actually checked into our SCM repo.
+    """
+
+    expected_title = "ansible.playbook.complete (unsigned)"
+    expected_subti = "ralph's badges-backend.yml playbook run completed"
+    expected_link = None
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'uncontrolled-playbooks/badges-backend.yml',
+        'inventory/badges-backend01.phx2.fedoraproject.org',
+        'inventory/badges-backend01.stg.phx2.fedoraproject.org',
+    ])
+    msg = {
+        "username": "root",
+        "i": 2,
+        "timestamp": 1375753955.771203,
+        "topic": "org.fedoraproject.prod.ansible.playbook.complete",
+        "msg": {
+            "userid": "ralph",
+            "playbook": "/home/fedora/ralph/ansible/playbooks/groups/"
+            "badges-backend.yml",
+            "results": {
+                "badges-backend01.phx2.fedoraproject.org": {
+                    "failures": 0,
+                    "skipped": 9,
+                    "ok": 56,
+                    "changed": 1,
+                    "unreachable": 0
+                },
+                "badges-backend01.stg.phx2.fedoraproject.org": {
+                    "failures": 0,
+                    "skipped": 9,
+                    "ok": 56,
+                    "changed": 1,
+                    "unreachable": 0
+                }
+            }
+        }
+    }
+
 
 if __name__ == '__main__':
     unittest.main()

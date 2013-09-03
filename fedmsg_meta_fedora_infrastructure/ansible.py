@@ -25,12 +25,16 @@ fs_prefix = "/srv/web/infra/ansible/"
 
 
 def relative_playbook(playbook):
-    # All playbooks *should* begin with the fs_prefix.
-    # This shouldn't raise an exception.. but just in case.
-    try:
-        return playbook[len(fs_prefix):]
-    except IndexError:
-        return playbook
+    """ Returns a tuple (controlled, playbook).
+
+    - controlled is a boolean indicating whether or not we think that the
+      playbook being run was checked in to our ansible git repo.
+    - playbook is the relative file path of the playbook.
+    """
+    if playbook.startswith(fs_prefix):
+        return True, playbook[len(fs_prefix):]
+    else:
+        return False, playbook.split('/')[-1]
 
 
 class AnsibleProcessor(BaseProcessor):
@@ -43,7 +47,8 @@ class AnsibleProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         user = msg['msg']['userid']
-        playbook = relative_playbook(msg['msg']['playbook'])
+        controlled, playbook = relative_playbook(msg['msg']['playbook'])
+
         if 'ansible.playbook.start' in msg['topic']:
             tmpl = self._("{user} started an ansible run of {playbook}")
             return tmpl.format(user=user, playbook=playbook)
@@ -58,14 +63,21 @@ class AnsibleProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         base = "http://infrastructure.fedoraproject.org/cgit/ansible.git/tree/"
-        playbook = relative_playbook(msg['msg']['playbook'])
-        return base + playbook
+        controlled, playbook = relative_playbook(msg['msg']['playbook'])
+        if not controlled:
+            return None
+        else:
+            return base + playbook
 
     def usernames(self, msg, **config):
         return set([msg['msg']['userid']])
 
     def objects(self, msg, **config):
-        playbook = relative_playbook(msg['msg']['playbook'])
+        controlled, playbook = relative_playbook(msg['msg']['playbook'])
+
+        if not controlled:
+            playbook = "uncontrolled-playbooks/" + playbook
+
         if 'results' in msg['msg']:
             return set([playbook] + [
                 "inventory/" + host for host in msg['msg']['results'].keys()
