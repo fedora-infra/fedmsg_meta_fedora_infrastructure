@@ -86,7 +86,7 @@ class TestRankAdvance(Base):
     <https://badges.fedoraproject.org>`_ system increases, this message gets
     published.
     """
-    expected_title = "fedbadges.person.rank.advance (unsigned)"
+    expected_title = "fedbadges.person.rank.advance"
     expected_subti = "ralph moved to position 1500 on the badges leaderboard"
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
