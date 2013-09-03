@@ -30,7 +30,7 @@ class TestNewBadge(Base):
     Contributors by the fedbadges backend.
     """
 
-    expected_title = "fedbadges.badge.award (unsigned)"
+    expected_title = "fedbadges.badge.award"
     expected_subti = 'ralph has been awarded the ' + \
         '"Something on your mind" badge'
     expected_link = "https://badges.fedoraproject.org/user/ralph"

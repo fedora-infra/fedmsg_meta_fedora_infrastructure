@@ -30,7 +30,7 @@ class TestLegacyComposeBranchedComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.complete (unsigned)"
+    expected_title = "compose.branched.complete"
     expected_subti = "f18 compose completed"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/f18"
@@ -52,7 +52,7 @@ class TestLegacyComposeBranchedStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.start (unsigned)"
+    expected_title = "compose.branched.start"
     expected_subti = "f18 compose started"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -72,7 +72,7 @@ class TestLegacyComposeBranchedMashStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.mash.start (unsigned)"
+    expected_title = "compose.branched.mash.start"
     expected_subti = "f18 compose started mashing"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -92,7 +92,7 @@ class TestLegacyComposeBranchedMashComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.mash.complete (unsigned)"
+    expected_title = "compose.branched.mash.complete"
     expected_subti = "f18 compose finished mashing"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -112,7 +112,7 @@ class TestLegacyComposeBranchedPungifyStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.pungify.start (unsigned)"
+    expected_title = "compose.branched.pungify.start"
     expected_subti = "started building boot.iso for f18"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -132,7 +132,7 @@ class TestLegacyComposeBranchedPungifyComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.pungify.complete (unsigned)"
+    expected_title = "compose.branched.pungify.complete"
     expected_subti = "finished building boot.iso for f18"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -152,7 +152,7 @@ class TestLegacyComposeBranchedRsyncStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.rsync.start (unsigned)"
+    expected_title = "compose.branched.rsync.start"
     expected_subti = "started rsyncing f18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -172,7 +172,7 @@ class TestLegacyComposeBranchedRsyncComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.branched.rsync.complete (unsigned)"
+    expected_title = "compose.branched.rsync.complete"
     expected_subti = \
         "finished rsync of f18 compose"
     expected_link = \
@@ -195,7 +195,7 @@ class TestLegacyComposeRawhideComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.rawhide.complete (unsigned)"
+    expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose completed"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -217,7 +217,7 @@ class TestLegacyComposeRawhideStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.rawhide.start (unsigned)"
+    expected_title = "compose.rawhide.start"
     expected_subti = "rawhide compose started"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -237,7 +237,7 @@ class TestLegacyComposeRawhideMashStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.rawhide.mash.start (unsigned)"
+    expected_title = "compose.rawhide.mash.start"
     expected_subti = "rawhide compose started mashing"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -257,7 +257,7 @@ class TestLegacyComposeRawhideMashComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.rawhide.mash.complete (unsigned)"
+    expected_title = "compose.rawhide.mash.complete"
     expected_subti = "rawhide compose finished mashing"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -277,7 +277,7 @@ class TestLegacyComposeRawhideRsyncStart(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.rawhide.rsync.start (unsigned)"
+    expected_title = "compose.rawhide.rsync.start"
     expected_subti = "started rsyncing rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -297,7 +297,7 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
     :mod:`fedmsg.meta` needs to be able to handle them because they are
     stored, forever, in datanommer.
     """
-    expected_title = "compose.rawhide.rsync.complete (unsigned)"
+    expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -322,7 +322,7 @@ class TestComposeBranchedComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.complete (unsigned)"
+    expected_title = "compose.branched.complete"
     expected_subti = "f18 compose completed"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/f18"
@@ -348,7 +348,7 @@ class TestComposeBranchedStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.start (unsigned)"
+    expected_title = "compose.branched.start"
     expected_subti = "f18 compose started"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -372,7 +372,7 @@ class TestComposeBranchedMashStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.mash.start (unsigned)"
+    expected_title = "compose.branched.mash.start"
     expected_subti = "f18 compose started mashing"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -396,7 +396,7 @@ class TestComposeBranchedMashComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.mash.complete (unsigned)"
+    expected_title = "compose.branched.mash.complete"
     expected_subti = "f18 compose finished mashing"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -420,7 +420,7 @@ class TestComposeBranchedPungifyStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.pungify.start (unsigned)"
+    expected_title = "compose.branched.pungify.start"
     expected_subti = "started building boot.iso for f18"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -444,7 +444,7 @@ class TestComposeBranchedPungifyComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.pungify.complete (unsigned)"
+    expected_title = "compose.branched.pungify.complete"
     expected_subti = "finished building boot.iso for f18"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -468,7 +468,7 @@ class TestComposeBranchedRsyncStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.rsync.start (unsigned)"
+    expected_title = "compose.branched.rsync.start"
     expected_subti = "started rsyncing f18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -492,7 +492,7 @@ class TestComposeBranchedRsyncComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.branched.rsync.complete (unsigned)"
+    expected_title = "compose.branched.rsync.complete"
     expected_subti = \
         "finished rsync of f18 compose"
     expected_link = \
@@ -518,7 +518,7 @@ class TestComposeRawhideComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.rawhide.complete (unsigned)"
+    expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose completed"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -543,7 +543,7 @@ class TestComposeRawhideStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.rawhide.start (unsigned)"
+    expected_title = "compose.rawhide.start"
     expected_subti = "rawhide compose started"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -566,7 +566,7 @@ class TestComposeRawhideMashStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.rawhide.mash.start (unsigned)"
+    expected_title = "compose.rawhide.mash.start"
     expected_subti = "rawhide compose started mashing"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -589,7 +589,7 @@ class TestComposeRawhideMashComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.rawhide.mash.complete (unsigned)"
+    expected_title = "compose.rawhide.mash.complete"
     expected_subti = "rawhide compose finished mashing"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -612,7 +612,7 @@ class TestComposeRawhideRsyncStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.rawhide.rsync.start (unsigned)"
+    expected_title = "compose.rawhide.rsync.start"
     expected_subti = "started rsyncing rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
@@ -635,7 +635,7 @@ class TestComposeRawhideRsyncComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary).
     """
-    expected_title = "compose.rawhide.rsync.complete (unsigned)"
+    expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -661,7 +661,7 @@ class TestSecondaryArchComposeBranchedComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.complete (unsigned)"
+    expected_title = "compose.branched.complete"
     expected_subti = "f18 compose (arm) completed"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
@@ -688,7 +688,7 @@ class TestSecondaryArchComposeBranchedStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.start (unsigned)"
+    expected_title = "compose.branched.start"
     expected_subti = "f18 compose (arm) started"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -712,7 +712,7 @@ class TestSecondaryArchComposeBranchedMashStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.mash.start (unsigned)"
+    expected_title = "compose.branched.mash.start"
     expected_subti = "f18 compose (arm) started mashing"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -736,7 +736,7 @@ class TestSecondaryArchComposeBranchedMashComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.mash.complete (unsigned)"
+    expected_title = "compose.branched.mash.complete"
     expected_subti = "f18 compose (arm) finished mashing"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -760,7 +760,7 @@ class TestSecondaryArchComposeBranchedPungifyStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.pungify.start (unsigned)"
+    expected_title = "compose.branched.pungify.start"
     expected_subti = "started building boot.iso for f18 (arm)"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -784,7 +784,7 @@ class TestSecondaryArchComposeBranchedPungifyComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.pungify.complete (unsigned)"
+    expected_title = "compose.branched.pungify.complete"
     expected_subti = "finished building boot.iso for f18 (arm)"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -808,7 +808,7 @@ class TestSecondaryArchComposeBranchedRsyncStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.rsync.start (unsigned)"
+    expected_title = "compose.branched.rsync.start"
     expected_subti = "started rsyncing f18 compose (arm)"
     expected_objects = set(['branched/arm'])
     msg = {
@@ -832,7 +832,7 @@ class TestSecondaryArchComposeBranchedRsyncComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.branched.rsync.complete (unsigned)"
+    expected_title = "compose.branched.rsync.complete"
     expected_subti = \
         "finished rsync of f18 compose (arm)"
     expected_link = \
@@ -859,7 +859,7 @@ class TestSecondaryArchComposeRawhideComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.rawhide.complete (unsigned)"
+    expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose (arm) completed"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
@@ -885,7 +885,7 @@ class TestSecondaryArchComposeRawhideStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.rawhide.start (unsigned)"
+    expected_title = "compose.rawhide.start"
     expected_subti = "rawhide compose (arm) started"
     expected_objects = set(['rawhide/arm'])
     msg = {
@@ -908,7 +908,7 @@ class TestSecondaryArchComposeRawhideMashStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.rawhide.mash.start (unsigned)"
+    expected_title = "compose.rawhide.mash.start"
     expected_subti = "rawhide compose (arm) started mashing"
     expected_objects = set(['rawhide/arm'])
     msg = {
@@ -931,7 +931,7 @@ class TestSecondaryArchComposeRawhideMashComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.rawhide.mash.complete (unsigned)"
+    expected_title = "compose.rawhide.mash.complete"
     expected_subti = "rawhide compose (arm) finished mashing"
     expected_objects = set(['rawhide/arm'])
     msg = {
@@ -954,7 +954,7 @@ class TestSecondaryArchComposeRawhideRsyncStart(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.rawhide.rsync.start (unsigned)"
+    expected_title = "compose.rawhide.rsync.start"
     expected_subti = "started rsyncing rawhide compose (arm)"
     expected_objects = set(['rawhide/arm'])
     msg = {
@@ -977,7 +977,7 @@ class TestSecondaryArchComposeRawhideRsyncComplete(Base):
     for both primary and secondary architectures.  The example here is of a
     **secondary** arch message.
     """
-    expected_title = "compose.rawhide.rsync.complete (unsigned)"
+    expected_title = "compose.rawhide.rsync.complete"
     expected_subti = \
         "finished rsync of rawhide compose (arm)"
     expected_link = \
