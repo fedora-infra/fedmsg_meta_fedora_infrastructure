@@ -29,7 +29,7 @@ class TestTracTicketCreate(Base):
     on a `fedorahosted <http://fedorahosted.org/>`_ trac instance.
     """
 
-    expected_title = "trac.ticket.new (unsigned)"
+    expected_title = "trac.ticket.new"
     expected_subti = "ralph opened a new ticket on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -84,7 +84,7 @@ class TestTracTicketChange(Base):
     on a `fedorahosted <http://fedorahosted.org>`_ trac instance.
     """
 
-    expected_title = "trac.ticket.update (unsigned)"
+    expected_title = "trac.ticket.update"
     expected_subti = "ralph updated a ticket on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -143,7 +143,7 @@ class TestTracTicketChangeReopen(Base):
     the ticket was originally closed and then was re-opened.
     """
 
-    expected_title = "trac.ticket.update (unsigned)"
+    expected_title = "trac.ticket.update"
     expected_subti = "ralph reopened a ticket on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -205,7 +205,7 @@ class TestTracTicketChangeClosed(Base):
     In this one, the user has *closed* a ticket.
     """
 
-    expected_title = "trac.ticket.update (unsigned)"
+    expected_title = "trac.ticket.update"
     expected_subti = "ralph closed a ticket on the moksha trac " + \
         "instance as 'wontfix'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -268,7 +268,7 @@ class TestTracTicketDelete(Base):
     crazy.  If you do, a message looking something like this will be published.
     """
 
-    expected_title = "trac.ticket.delete (unsigned)"
+    expected_title = "trac.ticket.delete"
     expected_subti = "ralph straight-up deleted a ticket on the moksha " +\
         "trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -325,7 +325,7 @@ class TestTracWikiCreate(Base):
     page on a `fedorahosted <http://fedorahosted.org>`_ trac instance.
     """
 
-    expected_title = "trac.wiki.page.new (unsigned)"
+    expected_title = "trac.wiki.page.new"
     expected_subti = "ralph created a new 'watwat' wiki page on the " + \
         "moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -371,7 +371,7 @@ class TestTracWikiEdit(Base):
     on a `fedorahosted <http://fedorahosted.org>`_ trac instance.
     """
 
-    expected_title = "trac.wiki.page.update (unsigned)"
+    expected_title = "trac.wiki.page.update"
     expected_subti = "ralph updated the 'WikiStart' wiki page on the " + \
         "moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -421,7 +421,7 @@ class TestTracWikiDelete(Base):
     """ These messages are fired off whenever a user *deletes* a wiki article
     on a `fedorahosted <http://fedorahosted.org>`_ trac instance.
     """
-    expected_title = "trac.wiki.page.delete (unsigned)"
+    expected_title = "trac.wiki.page.delete"
     expected_subti = "ralph straight-up deleted the 'watwat' wiki page " + \
         "on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -468,7 +468,7 @@ class TestTracWikiVersionDelete(Base):
     <http://fedorahosted.org>`_ trac instance.
     """
 
-    expected_title = "trac.wiki.page.version.delete (unsigned)"
+    expected_title = "trac.wiki.page.version.delete"
     expected_subti = "ralph deleted a version of the 'WikiStart' " + \
         "wiki page on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -515,7 +515,7 @@ class TestTracWikiRename(Base):
     page on a `fedorahosted <http://fedorahosted.org>_` trac instance.
     """
 
-    expected_title = "trac.wiki.page.rename (unsigned)"
+    expected_title = "trac.wiki.page.rename"
     expected_subti = "ralph renamed the wiki page 'watwat' to 'watwat2' " + \
         "on the moksha trac instance"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -566,7 +566,7 @@ class TestTracChangesetCreate(Base):
     for Fedora packages.
     """
 
-    expected_title = "trac.git.receive (unsigned)"
+    expected_title = "trac.git.receive"
     expected_subti = "ralph pushed some commits to the 'moksha' " + \
         "fedorahosted git repository"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -608,6 +608,65 @@ class TestTracChangesetCreate(Base):
                 "agent": "ralph",
                 "summary": "Another commit to test fedorahosted fedmsg.",
                 "repo": "moksha",
+                "branch": "dev",
+                "message": "Another commit to test fedorahosted fedmsg.\n",
+                "email": "rbean@redhat.com"
+            }
+        }
+    }
+
+
+class TestTracDocsChangesetCreate(Base):
+    """ Messages are published on this topic when a users pushes commits
+    to a `fedorahosted <http://fedorahosted.org>`_ git repository.
+
+    The message format is very similar to the ``git.receive`` message type
+    for Fedora packages.
+    """
+
+    expected_title = "trac.git.receive"
+    expected_subti = "ralph pushed some commits to the " + \
+        "'docs/about-fedora' fedorahosted git repository"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'docs/about-fedora/git/README.rst',
+    ])
+    expected_link = "https://git.fedorahosted.org/cgit/docs/" + \
+        "about-fedora.git/commit/?id=24bcd20d08a68320f82951ce20959bc6a1a6e79c"
+
+    msg = {
+        "username": "ralph",
+        "i": 1,
+        "timestamp": 1368046115.802794,
+        "topic": "org.fedoraproject.prod.trac.git.receive",
+        "msg": {
+            "commit": {
+                "username": "ralph",
+                "stats": {
+                    "files": {
+                        "README.rst": {
+                            "deletions": 0,
+                            "lines": 1,
+                            "insertions": 1
+                        }
+                    },
+                    "total": {
+                        "deletions": 0,
+                        "files": 1,
+                        "insertions": 1,
+                        "lines": 1
+                    }
+                },
+                "name": "Ralph Bean",
+                "rev": "24bcd20d08a68320f82951ce20959bc6a1a6e79c",
+                "agent": "ralph",
+                "summary": "Another commit to test fedorahosted fedmsg.",
+                "repo": "about-fedora",
+                "path": "/srv/git/docs/about-fedora.git",
                 "branch": "dev",
                 "message": "Another commit to test fedorahosted fedmsg.\n",
                 "email": "rbean@redhat.com"

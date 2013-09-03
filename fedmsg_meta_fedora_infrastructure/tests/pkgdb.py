@@ -34,7 +34,7 @@ class TestPkgdbACLUpdate(Base):
     approved by the package owner.
     """
 
-    expected_title = "pkgdb.acl.update (unsigned)"
+    expected_title = "pkgdb.acl.update"
     expected_subti = "ralph changed ralph's 'watchbugzilla' permission on " + \
         "python-sh (EL-6) to 'Awaiting Review'"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/python-sh"
@@ -88,7 +88,7 @@ class TestPkgdbPackageNew(Base):
     result of a `SCM Admin Request
     <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_.
     """
-    expected_title = "pkgdb.package.new (unsigned)"
+    expected_title = "pkgdb.package.new"
     expected_subti = "ralph added a new package 'php-zmq' (devel)"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
@@ -136,7 +136,7 @@ class TestPkgdbOwnerUpdate(Base):
     also published when a package is orphaned; the 'owner' field will have
     the string 'orphan' as its value.)
     """
-    expected_title = "pkgdb.owner.update (unsigned)"
+    expected_title = "pkgdb.owner.update"
     expected_subti = "ralph changed owner of php-zmq (EL-6) to 'orphan'"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
@@ -186,7 +186,7 @@ class TestPkgdbACLRequestToggle(Base):
     requires commit and so will "unrequest" that ACL.  A message on this
     topic will be published on both events.
     """
-    expected_title = "pkgdb.acl.request.toggle (unsigned)"
+    expected_title = "pkgdb.acl.request.toggle"
     expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
@@ -235,7 +235,7 @@ class TestPkgdbPackageUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes this message when metadata for a package is updated.
     """
-    expected_title = "pkgdb.package.update (unsigned)"
+    expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to php-zmq"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
@@ -265,7 +265,7 @@ class TestPkgdbBranchClone(Base):
     publishes messages on this topic when a new branch is cloned for a
     package.
     """
-    expected_title = "pkgdb.branch.clone (unsigned)"
+    expected_title = "pkgdb.branch.clone"
     expected_subti = "ralph branched php-zmq f18 from devel"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
@@ -297,7 +297,7 @@ class TestPkgdbCritpathUpdate(Base):
     package changes (when it is either added, or removed from the critical
     path).  For example:
     """
-    expected_title = "pkgdb.critpath.update (unsigned)"
+    expected_title = "pkgdb.critpath.update"
     expected_subti = "ralph altered the critpath status for some packages"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
         "package_128x128.png"
@@ -325,7 +325,7 @@ class TestPkgdbPackageRetire(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages on this topic when a package is retired.  For example:
     """
-    expected_title = "pkgdb.package.retire (unsigned)"
+    expected_title = "pkgdb.package.retire"
     expected_subti = "ralph retired php-zmq (EL-6)!"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
@@ -372,7 +372,7 @@ class TestPkgdbUserRemove(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     when a user is removed from a package ACL.
     """
-    expected_title = "pkgdb.acl.user.remove (unsigned)"
+    expected_title = "pkgdb.acl.user.remove"
     expected_subti = "ralph removed ralph from php-zmq (EL-6, F18)"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
     expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
