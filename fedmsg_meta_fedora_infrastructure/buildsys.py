@@ -29,9 +29,6 @@ class KojiProcessor(BaseProcessor):
     __icon__ = "http://fedoraproject.org/w/uploads/2/20/" + \
         "Artwork_DesignService_koji-icon-48.png"
 
-    def handle_msg(self, msg, **config):
-        return '.buildsys.' in msg['topic']
-
     def subtitle(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
             tmpl = self._(

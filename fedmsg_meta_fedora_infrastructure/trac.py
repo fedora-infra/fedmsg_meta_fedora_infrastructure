@@ -21,6 +21,19 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
 
+def repo_name(msg):
+    """ Compat util to get the repo name from a message. """
+    try:
+        # git messages look like this now
+        path = msg['msg']['commit']['path']
+        project = path.split('.git')[0][9:]
+    except KeyError:
+        # they used to look like this, though
+        project = msg['msg']['commit']['repo']
+
+    return project
+
+
 class TracProcessor(BaseProcessor):
     __name__ = "Trac"
     __description__ = "events from select Fedora Hosted projects"
@@ -101,7 +114,8 @@ class TracProcessor(BaseProcessor):
             )
         elif 'git.receive' in msg['topic']:
             user = msg['msg']['commit']['username']
-            project = msg['msg']['commit']['repo']
+            project = repo_name(msg)
+
             tmpl = self._(
                 "{user} pushed some commits to the '{project}' "
                 "fedorahosted git repository")
@@ -191,7 +205,7 @@ class TracProcessor(BaseProcessor):
             return set(['/'.join([project, 'ticket', str(id)])])
         elif '.git.receive' in msg['topic']:
             files = msg['msg']['commit']['stats']['files'].keys()
-            project = msg['msg']['commit']['repo']
+            project = repo_name(msg)
             return set([
                 project + '/git/' + filename
                 for filename in files
@@ -218,7 +232,7 @@ class TracProcessor(BaseProcessor):
             url = '/'.join([base_url, 'ticket', str(id)])
             return url
         elif '.git.receive' in msg['topic']:
-            name = msg['msg']['commit']['repo']
+            name = repo_name(msg)
             rev = msg['msg']['commit']['rev']
             tmpl = "https://git.fedorahosted.org/cgit/" + \
                 "{name}.git/commit/?id={rev}"

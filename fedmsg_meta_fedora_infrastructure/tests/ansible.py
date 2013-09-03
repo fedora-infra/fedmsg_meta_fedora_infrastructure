@@ -30,7 +30,7 @@ class TestAnsiblePlaybookStart(Base):
     run fedoraproject.org.
     """
 
-    expected_title = "ansible.playbook.start (unsigned)"
+    expected_title = "ansible.playbook.start"
     expected_subti = 'ralph started an ansible run of ' +\
         'playbooks/groups/badges-backend.yml'
     expected_link = "http://infrastructure.fedoraproject.org/cgit/" +\
@@ -64,8 +64,7 @@ class TestAnsiblePlaybookComplete(Base):
     run fedoraproject.org.  Here's an example with a playbook that has been
     checked into our SCM repo.
     """
-
-    expected_title = "ansible.playbook.complete (unsigned)"
+    expected_title = "ansible.playbook.complete"
     expected_subti = "ralph's playbooks/groups/badges-backend.yml playbook" +\
         " run completed"
     expected_link = "http://infrastructure.fedoraproject.org/cgit/" +\
