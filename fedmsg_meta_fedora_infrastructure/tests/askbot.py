@@ -34,7 +34,7 @@ class TestAskbotRetag(Base):
     thread in question.
     """
 
-    expected_title = "askbot.tag.update (unsigned)"
+    expected_title = "askbot.tag.update"
     expected_subti = "ralph altered tags on askbot question 'some title'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -82,7 +82,7 @@ class TestAskbotNewQuestion(Base):
     The snippet we have below is an example of a user posting a brand **new
     question** to `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
     """
-    expected_title = "askbot.post.edit (unsigned)"
+    expected_title = "askbot.post.edit"
     expected_subti = "ralph asked the question 'I have a new question'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -135,7 +135,7 @@ class TestAskbotNewAnswer(Base):
     to either.  *This* example is one of a **new answer** being posted to
     an `Ask Fedora <https://ask.fedoraproject.org/questions/>`_ question.
     """
-    expected_title = "askbot.post.edit (unsigned)"
+    expected_title = "askbot.post.edit"
     expected_subti = "ralph suggested an answer " + \
         "to the question 'watwatwatwata'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -188,7 +188,7 @@ class TestAskbotFlagOffensiveAdd(Base):
     <https://ask.fedoraproject.org/questions>`_ question or answer
     as "offensive".
     """
-    expected_title = "askbot.post.flag_offensive.add (unsigned)"
+    expected_title = "askbot.post.flag_offensive.add"
     expected_subti = "ralph flagged a question as offensive!"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -237,7 +237,7 @@ class TestAskbotFlagOffensiveRemove(Base):
     <https://ask.fedoraproject.org/questions>`_ question or answer
     as "offensive".
     """
-    expected_title = "askbot.post.flag_offensive.delete (unsigned)"
+    expected_title = "askbot.post.flag_offensive.delete"
     expected_subti = "ralph unflagged an answer as offensive..."
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -287,7 +287,7 @@ class TestAskbotUpdatedQuestion(Base):
     to either.  *This* example is one of a **question being modified** on
     `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
     """
-    expected_title = "askbot.post.edit (unsigned)"
+    expected_title = "askbot.post.edit"
     expected_subti = "ralph updated the question 'alskdjflaksjdf lakjsf a'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -341,7 +341,7 @@ class TestAskbotUpdatedAnswer(Base):
     to either.  *This* example is one of a **answer being modified** on
     `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
     """
-    expected_title = "askbot.post.edit (unsigned)"
+    expected_title = "askbot.post.edit"
     expected_subti = "ralph updated an answer " + \
         "to the question 'I have a new question'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -393,7 +393,7 @@ class TestAskbotAnswerDeleted(Base):
     <https://ask.fedoraproject.org/questions>`_.  The example here is one
     of an **answer** being deleted.
     """
-    expected_title = "askbot.post.delete (unsigned)"
+    expected_title = "askbot.post.delete"
     expected_subti = "ralph deleted an answer on 'test 3 is a charm'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
@@ -438,7 +438,7 @@ class TestAskbotQuestionDeleted(Base):
     <https://ask.fedoraproject.org/questions>`_.  The example here is one
     of an **question** being deleted.
     """
-    expected_title = "askbot.post.delete (unsigned)"
+    expected_title = "askbot.post.delete"
     expected_subti = "ralph deleted the question 'test 3 is a charm'"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \

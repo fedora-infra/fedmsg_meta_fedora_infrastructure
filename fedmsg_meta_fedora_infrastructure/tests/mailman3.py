@@ -31,7 +31,7 @@ class TestMailman3NewReply(Base):
     The following is an example of a reply to a thread.
     """
 
-    expected_title = "mailman.receive (unsigned)"
+    expected_title = "mailman.receive"
     expected_subti = "On the devel list, nicolas.mailhot replied to " + \
         "'[Devel] Re:Software Management call for RFEs'"
     expected_link = "https://lists.fedoraproject.org/hyperkitty/list/" + \
@@ -98,7 +98,7 @@ class TestMailman3NewMail(Base):
     The following is an example of a new thread being started.
     """
 
-    expected_title = "mailman.receive (unsigned)"
+    expected_title = "mailman.receive"
     expected_subti = "jreznik wrote '[Devel] Fedora 19 Beta status is " + \
         "Go, release on May 28, 2013' to the devel list"
     expected_link = "https://lists.fedoraproject.org/hyperkitty/list/" + \
