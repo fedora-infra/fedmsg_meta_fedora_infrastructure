@@ -624,7 +624,7 @@ class TestTracDocsChangesetCreate(Base):
     for Fedora packages.
     """
 
-    expected_title = "trac.git.receive (unsigned)"
+    expected_title = "trac.git.receive"
     expected_subti = "ralph pushed some commits to the " + \
         "'docs/about-fedora' fedorahosted git repository"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
