@@ -49,7 +49,11 @@ class SCMProcessor(BaseProcessor):
                 repo = msg['msg']['commit']['repo']
             except KeyError:
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
-            user = msg['msg']['commit']['username']
+
+            try:
+                user = msg['msg']['commit']['username']
+            except KeyError:
+                user = msg['msg']['commit']['email']
 
             summ = msg['msg']['commit']['summary']
             whole = msg['msg']['commit']['message']
