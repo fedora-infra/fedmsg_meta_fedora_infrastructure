@@ -81,5 +81,38 @@ class TestNewBadge(Base):
     }
 
 
+class TestRankAdvance(Base):
+    """ When a user's rank on the leaderboard of the `Fedora Badges
+    <https://badges.fedoraproject.org>`_ system increases, this message gets
+    published.
+    """
+    expected_title = "fedbadges.person.rank.advance"
+    expected_subti = "ralph moved to position 1500 on the badges leaderboard"
+    expected_link = "https://badges.fedoraproject.org/user/ralph"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([])
+    msg = {
+        "username": "fedmsg",
+        "i": 4,
+        "timestamp": 1377701575.214381,
+        "topic": "org.fedoraproject.prod.fedbadges.person.rank.advance",
+        "msg": {
+            "old_rank": None,
+            "person": {
+                "website": None,
+                "bio": None,
+                "rank": 1500,
+                "email": "ralph@fedoraproject.org",
+                "nickname": "ralph",
+                "id": 1600
+            }
+        }
+    }
+
+
 if __name__ == '__main__':
     unittest.main()
