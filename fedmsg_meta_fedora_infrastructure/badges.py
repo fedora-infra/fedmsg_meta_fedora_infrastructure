@@ -30,7 +30,8 @@ class BadgesProcessor(BaseProcessor):
     __obj__ = "New Badges"
 
     def _get_user(self, msg):
-        if 'badge.award' in msg['topic']:
+        # Handle the difference between badge.award and person.rank.advance.
+        if 'user' in msg['msg']:
             return msg['msg']['user']['username']
         else:
             return msg['msg']['person']['nickname']
