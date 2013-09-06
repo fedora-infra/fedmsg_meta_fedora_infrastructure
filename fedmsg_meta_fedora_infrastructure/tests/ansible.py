@@ -115,7 +115,7 @@ class TestAnsiblePlaybookCompleteNotCheckIn(Base):
     actually checked into our SCM repo.
     """
 
-    expected_title = "ansible.playbook.complete (unsigned)"
+    expected_title = "ansible.playbook.complete"
     expected_subti = "ralph's badges-backend.yml playbook run completed"
     expected_link = None
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
