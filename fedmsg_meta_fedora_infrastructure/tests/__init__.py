@@ -34,6 +34,7 @@ from fedmsg_meta_fedora_infrastructure.tests.mailman3 import *
 from fedmsg_meta_fedora_infrastructure.tests.badges import *
 from fedmsg_meta_fedora_infrastructure.tests.ansible import *
 from fedmsg_meta_fedora_infrastructure.tests.scm import *
+from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
 
 import fedmsg_meta_fedora_infrastructure.fasshim
 

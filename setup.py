@@ -96,6 +96,7 @@ setup(
             "mailman=fedmsg_meta_fedora_infrastructure.mailman3:MailmanProcessor",
             "badges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
             "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
+            "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:DatanommerProcessor",
         ]
     }
 )
