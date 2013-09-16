@@ -987,7 +987,6 @@ class TestSupybotChangeTopic(Base):
     """
     expected_title = "meetbot.meeting.topic.update"
     expected_subti = 'ralph changed the topic of "title" to "Food" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1022,7 +1021,6 @@ class TestSupybotChangeTopicNoTitle(Base):
     """
     expected_title = "meetbot.meeting.topic.update"
     expected_subti = 'ralph changed the topic to "Food" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
