@@ -55,7 +55,7 @@ class TestPkgdbACLUpdate(Base):
             "status": "Awaiting Review",
             "username": "ralph",
             "package_listing": {
-                "owner": "grover",
+                "point_of_contact": "grover",
                 "package": {
                     "upstreamurl": None,
                     "name": "python-sh",
@@ -106,7 +106,7 @@ class TestPkgdbPackageNew(Base):
         "topic": "org.fedoraproject.stg.pkgdb.package.new",
         "msg": {
             "package_listing": {
-                "owner": "lmacken",
+                "point_of_contact": "lmacken",
                 "package": {
                     "upstreamurl": None,
                     "name": "php-zmq",
@@ -154,7 +154,7 @@ class TestPkgdbOwnerUpdate(Base):
         "topic": "org.fedoraproject.stg.pkgdb.owner.update",
         "msg": {
             "package_listing": {
-                "owner": "orphan",
+                "point_of_contact": "orphan",
                 "package": {
                     "upstreamurl": None,
                     "name": "php-zmq",
@@ -178,13 +178,9 @@ class TestPkgdbOwnerUpdate(Base):
     }
 
 
-class TestPkgdbACLRequestToggle(Base):
-    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes this message when an ACL request is toggled on a package.  For
-    example, a user may request "commit" access to a package.  Or, after
-    requesting such access, the same user may decide that she no longer
-    requires commit and so will "unrequest" that ACL.  A message on this
-    topic will be published on both events.
+class TestLegacyPkgdbACLRequestToggle(Base):
+    """ The old Fedora Package DB1 published this message when an ACL request
+    was toggled on a package.
     """
     expected_title = "pkgdb.acl.request.toggle"
     expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"

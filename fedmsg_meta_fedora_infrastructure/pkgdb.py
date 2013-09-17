@@ -97,7 +97,13 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.owner.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} changed owner of {package} ({branch}) to '{owner}'")
-            owner = msg['msg']['package_listing']['owner']
+
+            # Owners got renamed to points of contact in packagedb2
+            try:
+                owner = msg['msg']['package_listing']['point_of_contact']
+            except KeyError:
+                owner = msg['msg']['package_listing']['owner']
+
             package = msg['msg']['package_listing']['package']['name']
             agent = msg['msg']['agent']
             branch = msg['msg']['package_listing']['collection']['branchname']
@@ -147,6 +153,11 @@ class PkgdbProcessor(BaseProcessor):
 
         try:
             users.add(msg['msg']['agent'])
+        except KeyError:
+            pass
+
+        try:
+            users.add(msg['msg']['package_listing']['point_of_contact'])
         except KeyError:
             pass
 
