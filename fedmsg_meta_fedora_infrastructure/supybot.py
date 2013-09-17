@@ -32,7 +32,10 @@ class SupybotProcessor(BaseProcessor):
     __obj__ = "IRC Meetings"
 
     def link(self, msg, **config):
-        return msg['msg']['url'] + ".html"
+        if 'meetbot.meeting.complete' in msg['topic']:
+            return msg['msg']['url'] + ".html"
+        else:
+            return None
 
     def subtitle(self, msg, **config):
         if 'meetbot.meeting.start' in msg['topic']:
