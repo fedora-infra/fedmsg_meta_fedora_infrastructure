@@ -588,5 +588,43 @@ class TestPkgdbCollectionNew(Base):
     }
 
 
+class TestPkgdbCollectionUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin creates a new collection.
+    """
+    expected_title = "pkgdb.collection.update"
+    expected_subti = "ralph updated the following fields of the Fedora 18 " + \
+        "collection: name, version"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 27,
+        u'timestamp': 1379607692.198447,
+        u'msg_id': u'2013-478a321f-ddfc-4d4c-adeb-c777619da15a',
+        u'topic': u'org.fedoraproject.dev.pkgdb.collection.update',
+        u'msg': {
+            u'fields': [
+                u'name',
+                u'version',
+            ],
+            u'collection': {
+                u'pendingurltemplate': u'http://.....',
+                u'publishurltemplate': u'http://.....',
+                u'branchname': u'f18_b',
+                u'name': u'Fedora',
+                u'version': u'18'
+            },
+            u'agent': u'ralph',
+        }
+    }
+
+
 if __name__ == '__main__':
     unittest.main()

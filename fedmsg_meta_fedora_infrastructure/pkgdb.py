@@ -160,6 +160,20 @@ class PkgdbProcessor(BaseProcessor):
             name = msg['msg']['collection']['name']
             version = msg['msg']['collection']['version']
             return tmpl.format(agent=agent, name=name, version=version)
+        elif 'pkgdb.collection.update' in msg['topic']:
+            tmpl = self._(
+                u"{agent} updated the following fields of the "
+                "{name} {version} collection: {fields}")
+            agent = msg['msg']['agent']
+            name = msg['msg']['collection']['name']
+            version = msg['msg']['collection']['version']
+            fields = ", ".join(msg['msg']['fields'])
+            return tmpl.format(
+                agent=agent,
+                name=name,
+                version=version,
+                fields=fields,
+            )
         else:
             raise NotImplementedError("%r" % msg)
 
