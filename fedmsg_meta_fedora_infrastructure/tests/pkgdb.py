@@ -473,5 +473,87 @@ class TestPkgdbUserRemove(Base):
     }
 
 
+class TestPkgdbBranchStart(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when branching starts.
+    """
+    expected_title = "pkgdb.branch.start"
+    expected_subti = "ralph started a branch of F-19 from devel"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 1,
+        u'timestamp': 1379606342.105066,
+        u'msg_id': u'2013-0eaf6d98-6259-4e1c-a113-e2c9284a6082',
+        u'topic':
+        u'org.fedoraproject.dev.pkgdb.branch.start',
+        u'msg': {
+            u'collection_from': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'devel',
+                u'name': u'Fedora',
+                u'version': u'devel'
+            },
+            u'collection_to': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19'
+            },
+            u'agent': u'ralph',
+        },
+    }
+
+
+class TestPkgdbBranchComplete(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when branching completes.
+    """
+    expected_title = "pkgdb.branch.complete"
+    expected_subti = "ralph's branch of F-19 from devel completed"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 1,
+        u'timestamp': 1379606342.105066,
+        u'msg_id': u'2013-0eaf6d98-6259-4e1c-a113-e2c9284a6082',
+        u'topic':
+        u'org.fedoraproject.dev.pkgdb.branch.complete',
+        u'msg': {
+            u'collection_from': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'devel',
+                u'name': u'Fedora',
+                u'version': u'devel'
+            },
+            u'collection_to': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19'
+            },
+            u'agent': u'ralph',
+        },
+    }
+
+
 if __name__ == '__main__':
     unittest.main()

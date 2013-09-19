@@ -131,6 +131,28 @@ class PkgdbProcessor(BaseProcessor):
                 user=user,
                 package=package,
                 branches=branches)
+        elif 'pkgdb.branch.start' in msg['topic']:
+            tmpl = self._(
+                u"{agent} started a branch of {tobranch} from {frombranch}")
+            agent = msg['msg']['agent']
+            frombranch = msg['msg']['collection_from']['branchname']
+            tobranch = msg['msg']['collection_to']['branchname']
+            return tmpl.format(
+                agent=agent,
+                frombranch=frombranch,
+                tobranch=tobranch,
+            )
+        elif 'pkgdb.branch.complete' in msg['topic']:
+            tmpl = self._(
+                u"{agent}'s branch of {tobranch} from {frombranch} completed")
+            agent = msg['msg']['agent']
+            frombranch = msg['msg']['collection_from']['branchname']
+            tobranch = msg['msg']['collection_to']['branchname']
+            return tmpl.format(
+                agent=agent,
+                frombranch=frombranch,
+                tobranch=tobranch,
+            )
         else:
             raise NotImplementedError("%r" % msg)
 
