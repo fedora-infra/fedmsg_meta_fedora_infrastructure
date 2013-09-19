@@ -153,6 +153,13 @@ class PkgdbProcessor(BaseProcessor):
                 frombranch=frombranch,
                 tobranch=tobranch,
             )
+        elif 'pkgdb.collection.new' in msg['topic']:
+            tmpl = self._(
+                u"{agent} created a new collection for {name} {version}")
+            agent = msg['msg']['agent']
+            name = msg['msg']['collection']['name']
+            version = msg['msg']['collection']['version']
+            return tmpl.format(agent=agent, name=name, version=version)
         else:
             raise NotImplementedError("%r" % msg)
 

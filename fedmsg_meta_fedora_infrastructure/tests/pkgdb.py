@@ -555,5 +555,38 @@ class TestPkgdbBranchComplete(Base):
     }
 
 
+class TestPkgdbCollectionNew(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin creates a new collection.
+    """
+    expected_title = "pkgdb.collection.new"
+    expected_subti = "ralph created a new collection for Fedora 19"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 3,
+        u'timestamp': 1379607327.474346,
+        u'msg_id': u'2013-68fd388e-60ca-4cf6-888d-b51161798496',
+        u'topic': u'org.fedoraproject.dev.pkgdb.collection.new',
+        u'msg': {
+            u'collection': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19',
+            },
+            u'agent': u'ralph',
+        }
+    }
+
+
 if __name__ == '__main__':
     unittest.main()
