@@ -26,12 +26,7 @@ from fedmsg.tests.test_meta import Base
 
 class TestPkgdbACLUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes these messages when an ACL changes on a package.  This event is
-    similar to, but different from the "request toggle" event.  For instance,
-    a user may request "commit" access to a certain package (which will emit
-    an event of topic ``pkgdb.acl.request.toggle``), but this
-    ``pkgdb.acl.update`` message won't be published until that request is
-    approved by the package owner.
+    publishes these messages when an ACL changes on a package.
     """
 
     expected_title = "pkgdb.acl.update"
@@ -227,10 +222,8 @@ class TestLegacyPkgdbACLRequestToggle(Base):
     }
 
 
-class TestPkgdbPackageUpdate(Base):
-    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes this message when metadata for a package is updated.
-    """
+class TestLegacyPkgdbPackageUpdate(Base):
+    """ Test old school messages. """
     expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to php-zmq"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
@@ -242,7 +235,6 @@ class TestPkgdbPackageUpdate(Base):
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/update'])
-
     msg = {
         "username": "apache",
         "i": 2,
@@ -253,6 +245,54 @@ class TestPkgdbPackageUpdate(Base):
             "package": "php-zmq",
             "agent": "ralph",
         },
+    }
+
+
+class TestPkgdbPackageUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes this message when metadata for a package is updated.
+    """
+    expected_title = "pkgdb.package.update"
+    expected_subti = "ralph made some updates to guake"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/guake"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['guake'])
+    expected_usernames = set(['ralph', 'pingou'])
+    expected_objects = set(['guake/update'])
+    msg = {
+        "username": "apache",
+        "i": 144,
+        "timestamp": 1379605523.496933,
+        "msg_id": "2013-c131fb95-0a2e-4426-95c3-09766e017d29",
+        "topic": "org.fedoraproject.dev.pkgdb.package.update",
+        "msg": {
+            "status": "Approved",
+            "package_listing": {
+                "package": {
+                    "status": "Approved",
+                    "upstream_url": "http://guake.org",
+                    "name": "guake",
+                    "creation_date": 1379619917.0,
+                    "summary": "Top down terminal for GNOME",
+                    "review_url": "https://bugzilla.redhat.com/450189"
+                },
+                "collection": {
+                    "pendingurltemplate": None,
+                    "publishurltemplate": None,
+                    "branchname": "F-18",
+                    "name": "Fedora",
+                    "version": "18"
+                },
+                "point_of_contact": "pingou"
+            },
+            "prev_status": "Retired",
+            "agent": "ralph",
+            "package_name": "guake"
+        }
     }
 
 

@@ -57,7 +57,11 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.package.update' in msg['topic']:
             tmpl = self._(u"{agent} made some updates to {package}")
             agent = msg['msg']['agent']
-            package = msg['msg']['package']
+            try:
+                package = msg['msg']['package_listing']['package']['name']
+            except KeyError:
+                package = msg['msg']['package']
+
             return tmpl.format(agent=agent, package=package)
         elif 'pkgdb.critpath.update' in msg['topic']:
             tmpl = self._(
@@ -214,7 +218,11 @@ class PkgdbProcessor(BaseProcessor):
                 branch=_msg['package_listing']['collection']['branchname'],
             ))
         elif 'pkgdb.package.update' in msg['topic']:
-            objs.add('{package}/update'.format(package=_msg['package']))
+            try:
+                package = _msg['package_listing']['package']['name']
+            except KeyError:
+                package = _msg['package']
+            objs.add('{package}/update'.format(package=package))
         elif 'pkgdb.branch.clone' in msg['topic']:
             objs.add('{package}/branch'.format(package=_msg['package']))
 
@@ -267,6 +275,10 @@ class PkgdbProcessor(BaseProcessor):
             'pkgdb.package.update',
             'pkgdb.branch.clone',
         ])):
-            return tmpl.format(package=msg['msg']['package'])
+            try:
+                package = msg['msg']['package_listing']['package']['name']
+            except KeyError:
+                package = msg['msg']['package']
+            return tmpl.format(package=package)
 
         return ""
