@@ -144,7 +144,7 @@ class TestMeetingCreate(Base):
     expected_title = "fedocal.meeting.new"
     expected_subti = 'ralph created a "wat" meeting in ' + \
         'the "awesome" calendar'
-    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
     expected_icon = "https://apps.fedoraproject.org/calendar/" + \
         "static/calendar.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -172,6 +172,7 @@ class TestMeetingCreate(Base):
             "meeting": {
                 "meeting_time_start": "12:00:00",
                 "meeting_name": "wat",
+                "meeting_id": 42,
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
@@ -193,7 +194,7 @@ class TestMeetingUpdate(Base):
     expected_title = "fedocal.meeting.update"
     expected_subti = 'ralph updated the "wat" meeting from ' + \
         'the "awesome" calendar'
-    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
     expected_icon = "https://apps.fedoraproject.org/calendar/" + \
         "static/calendar.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -221,6 +222,7 @@ class TestMeetingUpdate(Base):
             "meeting": {
                 "meeting_time_start": "12:00:00",
                 "meeting_name": "wat",
+                "meeting_id": 42,
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
@@ -242,7 +244,7 @@ class TestMeetingDelete(Base):
     expected_title = "fedocal.meeting.delete"
     expected_subti = 'ralph deleted the "wat" meeting from ' + \
         'the "awesome" calendar'
-    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
     expected_icon = "https://apps.fedoraproject.org/calendar/" + \
         "static/calendar.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
@@ -270,6 +272,7 @@ class TestMeetingDelete(Base):
             "meeting": {
                 "meeting_time_start": "12:00:00",
                 "meeting_name": "wat",
+                "meeting_id": 42,
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
@@ -295,7 +298,7 @@ class TestMeetingReminder(Base):
     expected_title = "fedocal.meeting.reminder"
     expected_subti = 'Friendly reminder!  The "wat" meeting from the ' + \
         '"awesome" calendar starts in 59 minutes'
-    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
     expected_icon = "https://apps.fedoraproject.org/calendar/" + \
         "static/calendar.png"
     expected_packages = set([])
@@ -320,6 +323,7 @@ class TestMeetingReminder(Base):
             "meeting": {
                 "meeting_time_start": now.time().strftime("%H:%M:%S"),
                 "meeting_name": "wat",
+                "meeting_id": 42,
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",

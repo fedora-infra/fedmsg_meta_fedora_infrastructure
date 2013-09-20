@@ -130,7 +130,11 @@ class FedocalProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         base = "https://apps.fedoraproject.org/calendar/"
-        return base + msg['msg']['calendar']['calendar_name'] + "/"
+        try:
+            meeting_id = msg['msg']['meeting']['meeting_id']
+            return base + "meeting/%i/" % meeting_id
+        except KeyError:
+            return base + msg['msg']['calendar']['calendar_name'] + "/"
 
     def usernames(self, msg, **config):
         try:
