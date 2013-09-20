@@ -97,6 +97,7 @@ setup(
             "badges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
             "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
             "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:DatanommerProcessor",
+            "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         ]
     }
 )
