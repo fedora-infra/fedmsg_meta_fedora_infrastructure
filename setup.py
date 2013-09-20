@@ -44,6 +44,7 @@ except Exception:
 install_requires = [
     'fedmsg',
     'python-fedora',
+    'python-dateutil',
 ]
 tests_require = [
     'nose',

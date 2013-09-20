@@ -20,6 +20,7 @@
 """ Tests for fedocal/calendar messages """
 
 import unittest
+import datetime
 
 from fedmsg.tests.test_meta import Base
 
@@ -282,6 +283,9 @@ class TestMeetingDelete(Base):
     }
 
 
+now = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+
+
 class TestMeetingReminder(Base):
     """ These messages are published by a cronjob when time gets close to
     certain meetings scheduled in the `fedocal
@@ -290,7 +294,7 @@ class TestMeetingReminder(Base):
 
     expected_title = "fedocal.meeting.reminder"
     expected_subti = 'Friendly reminder!  The "wat" meeting from the ' + \
-        '"awesome" calendar is approaching'
+        '"awesome" calendar starts in 59 minutes'
     expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
     expected_icon = "https://apps.fedoraproject.org/calendar/" + \
         "static/calendar.png"
@@ -314,13 +318,13 @@ class TestMeetingReminder(Base):
                 "calendar_contact": "ralph@fedoraproject.org"
             },
             "meeting": {
-                "meeting_time_start": "12:00:00",
+                "meeting_time_start": now.time().strftime("%H:%M:%S"),
                 "meeting_name": "wat",
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
                 "meeting_manager": "ralph,",
-                "meeting_date": "2013-09-20",
+                "meeting_date": now.date().isoformat(),
                 "meeting_information": "awesome",
                 "meeting_region": None
             },

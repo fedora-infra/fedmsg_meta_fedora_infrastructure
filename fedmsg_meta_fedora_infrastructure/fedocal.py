@@ -17,6 +17,10 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
+
+import datetime
+import dateutil.relativedelta
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 from fasshim import gravatar_url
@@ -41,6 +45,38 @@ def _get_common_attrs(msg):
     return user, calendar, meeting
 
 
+def _casual_timedelta_string(meeting):
+    """ Return a casual timedelta string.
+
+    If a meeting starts in 2 hours, 15 minutes, and 32 seconds from now, then
+    return just "in 2 hours".
+
+    If a meeting starts in 7 minutes and 40 seconds from now, return just "in 7
+    minutes".
+
+    If a meeting starts 56 seconds from now, just return "right now".
+
+    """
+
+    now = datetime.datetime.utcnow()
+    mdate = meeting['meeting_date']
+    mtime = meeting['meeting_time_start']
+    dt_string = "%s %s" % (mdate, mtime)
+    meeting_dt = datetime.datetime.strptime(dt_string, "%Y-%m-%d %H:%M:%S")
+    relative_td = dateutil.relativedelta.relativedelta(meeting_dt, now)
+
+    denominations = ['years', 'months', 'days', 'hours', 'minutes']
+    for denomination in denominations:
+        value = getattr(relative_td, denomination)
+        if value:
+            # If the value is only one, then strip off the plural suffix.
+            if value == 1:
+                denomination = denomination[:-1]
+            return "in %i %s" % (value, denomination)
+
+    return "right now"
+
+
 class FedocalProcessor(BaseProcessor):
     __name__ = "fedocal"
     __description__ = "The Fedora Calendaring System"
@@ -51,10 +87,12 @@ class FedocalProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         user, calendar, meeting = _get_common_attrs(msg)
+        timestring = None
         if 'fedocal.meeting.reminder' in msg['topic']:
+            timestring = _casual_timedelta_string(msg['msg']['meeting'])
             tmpl = self._(
                 'Friendly reminder!  The "{meeting}" meeting from '
-                'the "{calendar}" calendar is approaching')
+                'the "{calendar}" calendar starts {timestring}')
         elif 'fedocal.meeting.update' in msg['topic']:
             tmpl = self._(
                 '{user} updated the "{meeting}" meeting from '
@@ -76,7 +114,12 @@ class FedocalProcessor(BaseProcessor):
         else:
             tmpl = ""
 
-        return tmpl.format(user=user, calendar=calendar, meeting=meeting)
+        return tmpl.format(
+            user=user,
+            calendar=calendar,
+            meeting=meeting,
+            timestring=timestring,
+        )
 
     def secondary_icon(self, msg, **config):
         try:
