@@ -34,6 +34,8 @@ from fedmsg_meta_fedora_infrastructure.tests.mailman3 import *
 from fedmsg_meta_fedora_infrastructure.tests.badges import *
 from fedmsg_meta_fedora_infrastructure.tests.ansible import *
 from fedmsg_meta_fedora_infrastructure.tests.scm import *
+from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
+from fedmsg_meta_fedora_infrastructure.tests.nuancier import *
 
 import fedmsg_meta_fedora_infrastructure.fasshim
 
@@ -987,7 +989,6 @@ class TestSupybotChangeTopic(Base):
     """
     expected_title = "meetbot.meeting.topic.update"
     expected_subti = 'ralph changed the topic of "title" to "Food" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1022,7 +1023,6 @@ class TestSupybotChangeTopicNoTitle(Base):
     """
     expected_title = "meetbot.meeting.topic.update"
     expected_subti = 'ralph changed the topic to "Food" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
