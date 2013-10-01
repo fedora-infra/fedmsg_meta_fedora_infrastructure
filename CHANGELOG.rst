@@ -1,6 +1,21 @@
 Changelog
 =========
 
+0.2.3
+-----
+
+- Add message handlers for fedocal. `61310888c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/61310888cfb1d827dfb87cf6ebf7016fd49bdc10>`_
+- Update owner to point-of-contact for pkgdb2. `314985840 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3149858404cb5324e040acbb6fab1ff47661e340>`_
+- Handle new package.update message format. `87c0689fb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/87c0689fb3c589c3c777eae55351abcb7c17f07e>`_
+- Handle new branch start and complete messages. `503fb1550 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/503fb1550e23c6b847976b29bc0ce86e4e70a193>`_
+- Handle messages for new pkgdb collections. `c0ad7c834 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c0ad7c834f7e9c701ecca727307047ad77b560ad>`_
+- Handle messages for updated pkgdb collections. `500937f9d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/500937f9d45f4747b2c29c825bac22f54f5eb800>`_
+- Support relative delta stuff for fedocal reminders. `7229b93d0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7229b93d0698a8becf5736240c9cd97d586c025c>`_
+- Link directly to fedocal meetings. `87fd59bdc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/87fd59bdcb1e0db3cde7396c7475deedffb77f3f>`_
+- Merge branch 'feature/fedocal' into develop `add3992cf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/add3992cf3b3cea646b15eda2d75f465da4fd30f>`_
+- Keep formatting consistent. `4f90fd269 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f90fd2698d26954b3cb0ebf351787999e0b4861>`_
+- Merge pull request #38 from fedora-infra/feature/packagedb2 `cc9d468f3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cc9d468f39c43ef89f6c4d89cb6830099379ce07>`_
+
 0.2.2
 -----
 
