@@ -57,7 +57,11 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.package.update' in msg['topic']:
             tmpl = self._(u"{agent} made some updates to {package}")
             agent = msg['msg']['agent']
-            package = msg['msg']['package']
+            try:
+                package = msg['msg']['package_listing']['package']['name']
+            except KeyError:
+                package = msg['msg']['package']
+
             return tmpl.format(agent=agent, package=package)
         elif 'pkgdb.critpath.update' in msg['topic']:
             tmpl = self._(
@@ -97,7 +101,13 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.owner.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} changed owner of {package} ({branch}) to '{owner}'")
-            owner = msg['msg']['package_listing']['owner']
+
+            # Owners got renamed to points of contact in packagedb2
+            try:
+                owner = msg['msg']['package_listing']['point_of_contact']
+            except KeyError:
+                owner = msg['msg']['package_listing']['owner']
+
             package = msg['msg']['package_listing']['package']['name']
             agent = msg['msg']['agent']
             branch = msg['msg']['package_listing']['collection']['branchname']
@@ -121,6 +131,53 @@ class PkgdbProcessor(BaseProcessor):
                 user=user,
                 package=package,
                 branches=branches)
+        elif 'pkgdb.branch.start' in msg['topic']:
+            tmpl = self._(
+                u"{agent} started a branch of {tobranch} from {frombranch}")
+            agent = msg['msg']['agent']
+            frombranch = msg['msg']['collection_from']['branchname']
+            tobranch = msg['msg']['collection_to']['branchname']
+            return tmpl.format(
+                agent=agent,
+                frombranch=frombranch,
+                tobranch=tobranch,
+            )
+        elif 'pkgdb.branch.complete' in msg['topic']:
+            tmpl = self._(
+                u"{agent}'s branch of {tobranch} from {frombranch} completed")
+            agent = msg['msg']['agent']
+            frombranch = msg['msg']['collection_from']['branchname']
+            tobranch = msg['msg']['collection_to']['branchname']
+            return tmpl.format(
+                agent=agent,
+                frombranch=frombranch,
+                tobranch=tobranch,
+            )
+        elif 'pkgdb.collection.new' in msg['topic']:
+            tmpl = self._(
+                u"{agent} created a new collection for {name} {version}")
+            agent = msg['msg']['agent']
+            name = msg['msg']['collection']['name']
+            version = msg['msg']['collection']['version']
+            return tmpl.format(
+                agent=agent,
+                name=name,
+                version=version,
+            )
+        elif 'pkgdb.collection.update' in msg['topic']:
+            tmpl = self._(
+                u"{agent} updated the following fields of the "
+                "{name} {version} collection: {fields}")
+            agent = msg['msg']['agent']
+            name = msg['msg']['collection']['name']
+            version = msg['msg']['collection']['version']
+            fields = ", ".join(msg['msg']['fields'])
+            return tmpl.format(
+                agent=agent,
+                name=name,
+                version=version,
+                fields=fields,
+            )
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -147,6 +204,11 @@ class PkgdbProcessor(BaseProcessor):
 
         try:
             users.add(msg['msg']['agent'])
+        except KeyError:
+            pass
+
+        try:
+            users.add(msg['msg']['package_listing']['point_of_contact'])
         except KeyError:
             pass
 
@@ -203,7 +265,11 @@ class PkgdbProcessor(BaseProcessor):
                 branch=_msg['package_listing']['collection']['branchname'],
             ))
         elif 'pkgdb.package.update' in msg['topic']:
-            objs.add('{package}/update'.format(package=_msg['package']))
+            try:
+                package = _msg['package_listing']['package']['name']
+            except KeyError:
+                package = _msg['package']
+            objs.add('{package}/update'.format(package=package))
         elif 'pkgdb.branch.clone' in msg['topic']:
             objs.add('{package}/branch'.format(package=_msg['package']))
 
@@ -256,6 +322,10 @@ class PkgdbProcessor(BaseProcessor):
             'pkgdb.package.update',
             'pkgdb.branch.clone',
         ])):
-            return tmpl.format(package=msg['msg']['package'])
+            try:
+                package = msg['msg']['package_listing']['package']['name']
+            except KeyError:
+                package = msg['msg']['package']
+            return tmpl.format(package=package)
 
         return ""
