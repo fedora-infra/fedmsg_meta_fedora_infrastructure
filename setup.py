@@ -44,6 +44,7 @@ except Exception:
 install_requires = [
     'fedmsg',
     'python-fedora',
+    'python-dateutil',
 ]
 tests_require = [
     'nose',
@@ -98,6 +99,7 @@ setup(
             "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
             "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:DatanommerProcessor",
             "nuancier=fedmsg_meta_fedora_infrastructure.nuancier:NuancierProcessor",
+            "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         ]
     }
 )
