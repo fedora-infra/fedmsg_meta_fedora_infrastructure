@@ -44,6 +44,7 @@ except Exception:
 install_requires = [
     'fedmsg',
     'python-fedora',
+    'python-dateutil',
 ]
 tests_require = [
     'nose',
@@ -61,7 +62,7 @@ if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.2',
+    version='0.2.3',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
@@ -98,6 +99,7 @@ setup(
             "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
             "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:DatanommerProcessor",
             "nuancier=fedmsg_meta_fedora_infrastructure.nuancier:NuancierProcessor",
+            "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         ]
     }
 )

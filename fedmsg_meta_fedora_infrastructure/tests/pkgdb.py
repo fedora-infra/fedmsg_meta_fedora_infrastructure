@@ -26,12 +26,7 @@ from fedmsg.tests.test_meta import Base
 
 class TestPkgdbACLUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes these messages when an ACL changes on a package.  This event is
-    similar to, but different from the "request toggle" event.  For instance,
-    a user may request "commit" access to a certain package (which will emit
-    an event of topic ``pkgdb.acl.request.toggle``), but this
-    ``pkgdb.acl.update`` message won't be published until that request is
-    approved by the package owner.
+    publishes these messages when an ACL changes on a package.
     """
 
     expected_title = "pkgdb.acl.update"
@@ -55,7 +50,7 @@ class TestPkgdbACLUpdate(Base):
             "status": "Awaiting Review",
             "username": "ralph",
             "package_listing": {
-                "owner": "grover",
+                "point_of_contact": "grover",
                 "package": {
                     "upstreamurl": None,
                     "name": "python-sh",
@@ -106,7 +101,7 @@ class TestPkgdbPackageNew(Base):
         "topic": "org.fedoraproject.stg.pkgdb.package.new",
         "msg": {
             "package_listing": {
-                "owner": "lmacken",
+                "point_of_contact": "lmacken",
                 "package": {
                     "upstreamurl": None,
                     "name": "php-zmq",
@@ -154,7 +149,7 @@ class TestPkgdbOwnerUpdate(Base):
         "topic": "org.fedoraproject.stg.pkgdb.owner.update",
         "msg": {
             "package_listing": {
-                "owner": "orphan",
+                "point_of_contact": "orphan",
                 "package": {
                     "upstreamurl": None,
                     "name": "php-zmq",
@@ -178,13 +173,9 @@ class TestPkgdbOwnerUpdate(Base):
     }
 
 
-class TestPkgdbACLRequestToggle(Base):
-    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes this message when an ACL request is toggled on a package.  For
-    example, a user may request "commit" access to a package.  Or, after
-    requesting such access, the same user may decide that she no longer
-    requires commit and so will "unrequest" that ACL.  A message on this
-    topic will be published on both events.
+class TestLegacyPkgdbACLRequestToggle(Base):
+    """ The old Fedora Package DB1 published this message when an ACL request
+    was toggled on a package.
     """
     expected_title = "pkgdb.acl.request.toggle"
     expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"
@@ -231,10 +222,8 @@ class TestPkgdbACLRequestToggle(Base):
     }
 
 
-class TestPkgdbPackageUpdate(Base):
-    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes this message when metadata for a package is updated.
-    """
+class TestLegacyPkgdbPackageUpdate(Base):
+    """ Test old school messages. """
     expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to php-zmq"
     expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
@@ -246,7 +235,6 @@ class TestPkgdbPackageUpdate(Base):
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/update'])
-
     msg = {
         "username": "apache",
         "i": 2,
@@ -257,6 +245,54 @@ class TestPkgdbPackageUpdate(Base):
             "package": "php-zmq",
             "agent": "ralph",
         },
+    }
+
+
+class TestPkgdbPackageUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes this message when metadata for a package is updated.
+    """
+    expected_title = "pkgdb.package.update"
+    expected_subti = "ralph made some updates to guake"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/guake"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set(['guake'])
+    expected_usernames = set(['ralph', 'pingou'])
+    expected_objects = set(['guake/update'])
+    msg = {
+        "username": "apache",
+        "i": 144,
+        "timestamp": 1379605523.496933,
+        "msg_id": "2013-c131fb95-0a2e-4426-95c3-09766e017d29",
+        "topic": "org.fedoraproject.dev.pkgdb.package.update",
+        "msg": {
+            "status": "Approved",
+            "package_listing": {
+                "package": {
+                    "status": "Approved",
+                    "upstream_url": "http://guake.org",
+                    "name": "guake",
+                    "creation_date": 1379619917.0,
+                    "summary": "Top down terminal for GNOME",
+                    "review_url": "https://bugzilla.redhat.com/450189"
+                },
+                "collection": {
+                    "pendingurltemplate": None,
+                    "publishurltemplate": None,
+                    "branchname": "F-18",
+                    "name": "Fedora",
+                    "version": "18"
+                },
+                "point_of_contact": "pingou"
+            },
+            "prev_status": "Retired",
+            "agent": "ralph",
+            "package_name": "guake"
+        }
     }
 
 
@@ -433,6 +469,159 @@ class TestPkgdbUserRemove(Base):
             ],
             "username": "ralph",
             "agent": "ralph",
+        }
+    }
+
+
+class TestPkgdbBranchStart(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when branching starts.
+    """
+    expected_title = "pkgdb.branch.start"
+    expected_subti = "ralph started a branch of F-19 from devel"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 1,
+        u'timestamp': 1379606342.105066,
+        u'msg_id': u'2013-0eaf6d98-6259-4e1c-a113-e2c9284a6082',
+        u'topic':
+        u'org.fedoraproject.dev.pkgdb.branch.start',
+        u'msg': {
+            u'collection_from': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'devel',
+                u'name': u'Fedora',
+                u'version': u'devel'
+            },
+            u'collection_to': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19'
+            },
+            u'agent': u'ralph',
+        },
+    }
+
+
+class TestPkgdbBranchComplete(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when branching completes.
+    """
+    expected_title = "pkgdb.branch.complete"
+    expected_subti = "ralph's branch of F-19 from devel completed"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 1,
+        u'timestamp': 1379606342.105066,
+        u'msg_id': u'2013-0eaf6d98-6259-4e1c-a113-e2c9284a6082',
+        u'topic':
+        u'org.fedoraproject.dev.pkgdb.branch.complete',
+        u'msg': {
+            u'collection_from': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'devel',
+                u'name': u'Fedora',
+                u'version': u'devel'
+            },
+            u'collection_to': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19'
+            },
+            u'agent': u'ralph',
+        },
+    }
+
+
+class TestPkgdbCollectionNew(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin creates a new collection.
+    """
+    expected_title = "pkgdb.collection.new"
+    expected_subti = "ralph created a new collection for Fedora 19"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 3,
+        u'timestamp': 1379607327.474346,
+        u'msg_id': u'2013-68fd388e-60ca-4cf6-888d-b51161798496',
+        u'topic': u'org.fedoraproject.dev.pkgdb.collection.new',
+        u'msg': {
+            u'collection': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19',
+            },
+            u'agent': u'ralph',
+        }
+    }
+
+
+class TestPkgdbCollectionUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin creates a new collection.
+    """
+    expected_title = "pkgdb.collection.update"
+    expected_subti = "ralph updated the following fields of the Fedora 18 " + \
+        "collection: name, version"
+    expected_icon = "https://apps.fedoraproject.org/packages/images/icons/" + \
+        "package_128x128.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 27,
+        u'timestamp': 1379607692.198447,
+        u'msg_id': u'2013-478a321f-ddfc-4d4c-adeb-c777619da15a',
+        u'topic': u'org.fedoraproject.dev.pkgdb.collection.update',
+        u'msg': {
+            u'fields': [
+                u'name',
+                u'version',
+            ],
+            u'collection': {
+                u'pendingurltemplate': u'http://.....',
+                u'publishurltemplate': u'http://.....',
+                u'branchname': u'f18_b',
+                u'name': u'Fedora',
+                u'version': u'18'
+            },
+            u'agent': u'ralph',
         }
     }
 
