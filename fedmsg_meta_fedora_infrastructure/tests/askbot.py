@@ -295,9 +295,9 @@ class TestAskbotUpdatedQuestion(Base):
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_emails = {'ralph@fedoraproject.org': 'ralph'}
-    expected_avatars = dict(ralph="http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    #expected_avatars = dict(ralph="http://www.gravatar.com/avatar/" + \
+    #    "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    #    "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_objects = set([
         'tags/town',
         'threads/2',
