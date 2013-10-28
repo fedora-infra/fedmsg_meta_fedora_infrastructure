@@ -120,7 +120,8 @@ class TestFirstLogin(Base):
     publish a message like this one.
     """
     expected_title = "fedbadges.person.login.first"
-    expected_subti = "ralph logged in to badges.fedoraproject.org"
+    expected_subti = "ralph logged in to badges.fedoraproject.org " + \
+        "for the first time"
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \

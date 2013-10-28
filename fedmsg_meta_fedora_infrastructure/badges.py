@@ -52,7 +52,8 @@ class BadgesProcessor(BaseProcessor):
                           'on the badges leaderboard')
             return tmpl.format(user=user, rank=rank)
         elif 'person.login.first' in msg['topic']:
-            tmpl = self._('{user} logged in to badges.fedoraproject.org')
+            tmpl = self._('{user} logged in to badges.fedoraproject.org '
+                          'for the first time')
             return tmpl.format(user=user)
         else:
             pass
