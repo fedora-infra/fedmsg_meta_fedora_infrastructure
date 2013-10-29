@@ -73,6 +73,11 @@ class TestGitReceiveOldModified(Base):
         "topic": "org.fedoraproject.prod.git.receive"
     }
 
+# Do a little trick to assign __doc__ to doc for the make-topics-doc.py
+# script in fedmsg/extras.
+for k, v in locals().items():
+    if 'Test' in k and issubclass(v, Base):
+        v.doc = v.__doc__
 
 if __name__ == '__main__':
     unittest.main()
