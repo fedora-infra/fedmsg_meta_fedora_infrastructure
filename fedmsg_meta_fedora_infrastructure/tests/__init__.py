@@ -438,17 +438,17 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
                 "control-center-3.6.1-1.fc18",
                 "nagged": None,
                 "comments": [
-                {
-                    "group": None,
-                    "author": "bodhi",
-                    "text": "This update has been submitted for "
-                    "testing by hadess. ",
-                    "karma": 0,
-                    "anonymous": False,
-                    "timestamp": 1349718539.0,
-                    "update_title": "gnome-settings-daemon-3.6.1-1.fc18," +
-                    "control-center-3.6.1-1.fc18"
-                }
+                    {
+                        "group": None,
+                        "author": "bodhi",
+                        "text": "This update has been submitted for "
+                        "testing by hadess. ",
+                        "karma": 0,
+                        "anonymous": False,
+                        "timestamp": 1349718539.0,
+                        "update_title": "gnome-settings-daemon-3.6.1-1.fc18," +
+                        "control-center-3.6.1-1.fc18"
+                    }
                 ],
                 "updateid": None,
                 "type": "bugfix",
@@ -464,43 +464,43 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
                 },
                 "approved": None,
                 "builds": [
-                {
-                    "nvr": "gnome-settings-daemon-3.6.1-1.fc18",
-                    "package": {
-                        "suggest_reboot": False,
-                        "committers": [
-                            "hadess",
-                            "ofourdan",
-                            "mkasik",
-                            "cosimoc"
-                        ],
-                        "name": "gnome-settings-daemon"
+                    {
+                        "nvr": "gnome-settings-daemon-3.6.1-1.fc18",
+                        "package": {
+                            "suggest_reboot": False,
+                            "committers": [
+                                "hadess",
+                                "ofourdan",
+                                "mkasik",
+                                "cosimoc"
+                            ],
+                            "name": "gnome-settings-daemon"
+                        }
+                    }, {
+                        "nvr": "control-center-3.6.1-1.fc18",
+                        "package": {
+                            "suggest_reboot": False,
+                            "committers": [
+                                "ctrl-center-team",
+                                "ofourdan",
+                                "ssp",
+                                "ajax",
+                                "alexl",
+                                "jrb",
+                                "mbarnes",
+                                "caolanm",
+                                "davidz",
+                                "mclasen",
+                                "rhughes",
+                                "hadess",
+                                "johnp",
+                                "caillon",
+                                "whot",
+                                "rstrode"
+                            ],
+                            "name": "control-center"
+                        }
                     }
-                }, {
-                    "nvr": "control-center-3.6.1-1.fc18",
-                    "package": {
-                        "suggest_reboot": False,
-                        "committers": [
-                            "ctrl-center-team",
-                            "ofourdan",
-                            "ssp",
-                            "ajax",
-                            "alexl",
-                            "jrb",
-                            "mbarnes",
-                            "caolanm",
-                            "davidz",
-                            "mclasen",
-                            "rhughes",
-                            "hadess",
-                            "johnp",
-                            "caillon",
-                            "whot",
-                            "rstrode"
-                        ],
-                        "name": "control-center"
-                    }
-                }
                 ],
                 "date_modified": None,
                 "notes": "This update fixes numerous bugs in the new Input " +
