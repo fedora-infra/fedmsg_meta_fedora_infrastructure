@@ -100,8 +100,8 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.mashtask.sync.wait' in msg['topic']:
             return self._("bodhi masher is waiting on mirror repos to sync")
         elif 'bodhi.mashtask.sync.done' in msg['topic']:
-            return self._("bodhi masher finished waiting on mirror repos \
-to sync")
+            return self._("bodhi masher finished waiting on mirror repos "
+                          "to sync")
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             return self._("{submitter} submitted a buildroot override " +
                           "for {build}").format(**msg['msg']['override'])
