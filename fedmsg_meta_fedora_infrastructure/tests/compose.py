@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestLegacyComposeBranchedComplete(Base):
     """ This tests "old school" compose messages.
@@ -995,8 +997,4 @@ class TestSecondaryArchComposeRawhideRsyncComplete(Base):
         },
     }
 
-# Do a little trick to assign __doc__ to doc for the make-topics-doc.py
-# script in fedmsg/extras.
-for k, v in locals().items():
-    if 'Test' in k and issubclass(v, Base):
-        v.doc = v.__doc__
+add_doc(locals())

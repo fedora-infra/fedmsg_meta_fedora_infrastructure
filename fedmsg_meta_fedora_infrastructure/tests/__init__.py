@@ -38,6 +38,8 @@ from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
 from fedmsg_meta_fedora_infrastructure.tests.nuancier import *
 from fedmsg_meta_fedora_infrastructure.tests.fedocal import *
 
+from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
+
 import fedmsg_meta_fedora_infrastructure.fasshim
 
 
@@ -1606,11 +1608,8 @@ class TestSCMSingleLine(Base):
         }
     }
 
-# Do a little trick to assign __doc__ to doc for the make-topics-doc.py
-# script in fedmsg/extras.
-for k, v in locals().items():
-    if 'Test' in k and issubclass(v, Base):
-        v.doc = v.__doc__
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

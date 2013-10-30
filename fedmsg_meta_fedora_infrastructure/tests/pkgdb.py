@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestPkgdbACLUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
@@ -625,11 +627,8 @@ class TestPkgdbCollectionUpdate(Base):
         }
     }
 
-# Do a little trick to assign __doc__ to doc for the make-topics-doc.py
-# script in fedmsg/extras.
-for k, v in locals().items():
-    if 'Test' in k and issubclass(v, Base):
-        v.doc = v.__doc__
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()
