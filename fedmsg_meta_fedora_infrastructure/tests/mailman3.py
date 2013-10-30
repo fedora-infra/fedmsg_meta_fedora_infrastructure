@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestMailman3NewReply(Base):
     """ `Discussion lists for the Fedora Project
@@ -153,3 +155,6 @@ class TestMailman3NewMail(Base):
         "username": "mailman",
         "timestamp": 1369334087.9298041
     }
+
+
+add_doc(locals())

@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestAskbotRetag(Base):
     """ Messages get emitted on this topic when a question on `Ask Fedora
@@ -476,6 +478,8 @@ class TestAskbotQuestionDeleted(Base):
         "timestamp": 1359949397.539748
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

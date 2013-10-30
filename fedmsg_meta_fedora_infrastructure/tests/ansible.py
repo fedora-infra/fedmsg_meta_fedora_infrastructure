@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestAnsiblePlaybookStart(Base):
     """ These messages are published when an admin begins an ansible
@@ -155,6 +157,9 @@ class TestAnsiblePlaybookCompleteNotCheckIn(Base):
             }
         }
     }
+
+
+add_doc(locals())
 
 
 if __name__ == '__main__':

@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestKojiBuildTag(Base):
     """ Koji emits these messages when a build has a certain tag added to it.
@@ -286,6 +288,8 @@ class TestKojiPackageListChange(Base):
         "timestamp": 1361903735.0
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

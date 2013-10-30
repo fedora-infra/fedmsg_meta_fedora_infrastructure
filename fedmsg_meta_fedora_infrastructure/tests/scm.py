@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestGitReceiveOldModified(Base):
     """ Sample message from the first generation of git-category messages that
@@ -73,6 +75,8 @@ class TestGitReceiveOldModified(Base):
         "topic": "org.fedoraproject.prod.git.receive"
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

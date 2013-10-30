@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestNewBadge(Base):
     """ These messages are published when `Open Badges
@@ -144,6 +146,8 @@ class TestFirstLogin(Base):
         "topic": "org.fedoraproject.prod.fedbadges.person.login.first"
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

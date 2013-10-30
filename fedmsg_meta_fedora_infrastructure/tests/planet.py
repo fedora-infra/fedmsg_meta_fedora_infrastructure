@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestPlanetNewPost(Base):
     """ The `Fedora Planet <https://planet.fedoraproject.org/>`_ publishes
@@ -97,6 +99,8 @@ class TestPlanetNewPost(Base):
         }
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestLegacyComposeBranchedComplete(Base):
     """ This tests "old school" compose messages.
@@ -994,3 +996,5 @@ class TestSecondaryArchComposeRawhideRsyncComplete(Base):
             "arch": "arm",
         },
     }
+
+add_doc(locals())

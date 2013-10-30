@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestDatanommerWat(Base):
     """ Generally speaking, the `datanommer
@@ -62,6 +64,8 @@ class TestDatanommerWat(Base):
         }
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

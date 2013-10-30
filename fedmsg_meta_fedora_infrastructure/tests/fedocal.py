@@ -24,6 +24,8 @@ import datetime
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestCalendarCreate(Base):
     """ These messages are published when someone creates a whole calendar from
@@ -335,6 +337,8 @@ class TestMeetingReminder(Base):
         }
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

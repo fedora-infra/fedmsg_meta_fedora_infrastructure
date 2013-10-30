@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestTaggerVoteAnonymous(Base):
     """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
@@ -304,3 +306,6 @@ class TestTaggerCreateLegacy(Base):
             }
         }
     }
+
+
+add_doc(locals())
