@@ -39,7 +39,6 @@ class TaggerProcessor(BaseProcessor):
         if not pack and 'rating' in msg['msg']:
             pack = msg['msg']['rating']['package']['name']
 
-
         if pack:
             return "https://apps.fedoraproject.org/tagger/" + pack
         else:

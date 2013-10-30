@@ -42,7 +42,6 @@ except Exception:
 
 
 install_requires = [
-    'kitchen',
     'fedmsg',
     'python-fedora',
     'python-dateutil',
