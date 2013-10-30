@@ -50,7 +50,7 @@ tests_require = [
     'nose',
 ]
 
-if sys.version_info <= (2, 6):
+if sys.version_info < (2, 7):
     install_requires.extend([
         'argparse',
         'ordereddict',
