@@ -77,10 +77,10 @@ entry_points = {
         "mailman=fedmsg_meta_fedora_infrastructure.mailman3:MailmanProcessor",
         "badges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
         "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
-        "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:\
-DatanommerProcessor",
-        "nuancier=fedmsg_meta_fedora_infrastructure.nuancier:\
-NuancierProcessor",
+        "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:"
+        "DatanommerProcessor",
+        "nuancier=fedmsg_meta_fedora_infrastructure.nuancier:"
+        "NuancierProcessor",
         "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
     ]
 }
