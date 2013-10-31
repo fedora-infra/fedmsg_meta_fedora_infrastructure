@@ -32,7 +32,6 @@ class ComposeProcessor(BaseProcessor):
         arch = msg['msg'].get('arch', '')
         arch = arch and ' (%s)' % arch
 
-
         if msg['topic'].endswith('.rsync.start'):
             tmpl = self._(
                 "started rsyncing {branch} compose{arch}")

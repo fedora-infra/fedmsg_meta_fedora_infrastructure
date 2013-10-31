@@ -21,6 +21,7 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
+
 def _u2p(update):
     """ Take an update, and return the package name """
     # TODO -- make this unnecessary by having bodhi emit the
@@ -79,10 +80,10 @@ class BodhiProcessor(BaseProcessor):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
                 tmpl = self._("{author} {status} {title}").format(
-                        author=author, status=status, title=title)
+                    author=author, status=status, title=title)
             else:
                 tmpl = self._("{author} submitted {title} to {status}").format(
-                        author=author, status=status, title=title)
+                    author=author, status=status, title=title)
             return tmpl
         elif 'bodhi.mashtask.mashing' in msg['topic']:
             repo = msg['msg']['repo']
@@ -99,7 +100,7 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.mashtask.sync.wait' in msg['topic']:
             return self._("bodhi masher is waiting on mirror repos to sync")
         elif 'bodhi.mashtask.sync.done' in msg['topic']:
-            return self._("bodhi masher finished waiting on mirror repos " + \
+            return self._("bodhi masher finished waiting on mirror repos "
                           "to sync")
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             return self._("{submitter} submitted a buildroot override " +
@@ -130,7 +131,6 @@ class BodhiProcessor(BaseProcessor):
             return set(_u2p(msg['msg']['override']['build']))
 
         return set()
-
 
     def usernames(self, msg, **config):
         users = []

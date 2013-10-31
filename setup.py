@@ -50,7 +50,7 @@ tests_require = [
     'nose',
 ]
 
-if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
+if sys.version_info < (2, 7):
     install_requires.extend([
         'argparse',
         'ordereddict',
@@ -59,6 +59,31 @@ if sys.version_info[0] == 2 and sys.version_info[1] <= 6:
         'unittest2',
     ])
 
+entry_points = {
+    'fedmsg.meta': [
+        "askbot=fedmsg_meta_fedora_infrastructure.askbot:AskbotProcessor",
+        "bodhi=fedmsg_meta_fedora_infrastructure.bodhi:BodhiProcessor",
+        "scm=fedmsg_meta_fedora_infrastructure.scm:SCMProcessor",
+        "tagger=fedmsg_meta_fedora_infrastructure.tagger:TaggerProcessor",
+        "planet=fedmsg_meta_fedora_infrastructure.planet:PlanetProcessor",
+        "bot=fedmsg_meta_fedora_infrastructure.supybot:SupybotProcessor",
+        "wiki=fedmsg_meta_fedora_infrastructure.mediawiki:WikiProcessor",
+        "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
+        "comp=fedmsg_meta_fedora_infrastructure.compose:ComposeProcessor",
+        "pkgdb=fedmsg_meta_fedora_infrastructure.pkgdb:PkgdbProcessor",
+        "buildsys="
+        "fedmsg_meta_fedora_infrastructure.buildsys:KojiProcessor",
+        "trac=fedmsg_meta_fedora_infrastructure.trac:TracProcessor",
+        "mailman=fedmsg_meta_fedora_infrastructure.mailman3:MailmanProcessor",
+        "badges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
+        "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
+        "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:"
+        "DatanommerProcessor",
+        "nuancier=fedmsg_meta_fedora_infrastructure.nuancier:"
+        "NuancierProcessor",
+        "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
+    ]
+}
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
@@ -79,27 +104,5 @@ setup(
     ],
     include_package_data=True,
     zip_safe=False,
-    entry_points={
-        'fedmsg.meta': [
-            "askbot=fedmsg_meta_fedora_infrastructure.askbot:AskbotProcessor",
-            "bodhi=fedmsg_meta_fedora_infrastructure.bodhi:BodhiProcessor",
-            "scm=fedmsg_meta_fedora_infrastructure.scm:SCMProcessor",
-            "tagger=fedmsg_meta_fedora_infrastructure.tagger:TaggerProcessor",
-            "planet=fedmsg_meta_fedora_infrastructure.planet:PlanetProcessor",
-            "bot=fedmsg_meta_fedora_infrastructure.supybot:SupybotProcessor",
-            "wiki=fedmsg_meta_fedora_infrastructure.mediawiki:WikiProcessor",
-            "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
-            "comp=fedmsg_meta_fedora_infrastructure.compose:ComposeProcessor",
-            "pkgdb=fedmsg_meta_fedora_infrastructure.pkgdb:PkgdbProcessor",
-            "buildsys="
-            "fedmsg_meta_fedora_infrastructure.buildsys:KojiProcessor",
-            "trac=fedmsg_meta_fedora_infrastructure.trac:TracProcessor",
-            "mailman=fedmsg_meta_fedora_infrastructure.mailman3:MailmanProcessor",
-            "badges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
-            "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
-            "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:DatanommerProcessor",
-            "nuancier=fedmsg_meta_fedora_infrastructure.nuancier:NuancierProcessor",
-            "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
-        ]
-    }
+    entry_points=entry_points
 )
