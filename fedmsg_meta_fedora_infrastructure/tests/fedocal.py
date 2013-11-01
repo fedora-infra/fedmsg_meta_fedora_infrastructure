@@ -35,11 +35,11 @@ class TestCalendarCreate(Base):
     expected_title = "fedocal.calendar.new"
     expected_subti = 'ralph created a whole new "awesome" calendar'
     expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/new'])
@@ -72,11 +72,11 @@ class TestCalendarDelete(Base):
     expected_title = "fedocal.calendar.delete"
     expected_subti = 'ralph deleted the "awesome" calendar'
     expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/delete'])
@@ -109,11 +109,11 @@ class TestCalendarUpdate(Base):
     expected_title = "fedocal.calendar.update"
     expected_subti = 'ralph updated the "awesome" calendar'
     expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/update'])
@@ -144,14 +144,14 @@ class TestMeetingCreate(Base):
     """
 
     expected_title = "fedocal.meeting.new"
-    expected_subti = 'ralph created a "wat" meeting in ' + \
-        'the "awesome" calendar'
+    expected_subti = ('ralph created a "wat" meeting in '
+                      'the "awesome" calendar')
     expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/meetings/wat/new'])
@@ -194,14 +194,14 @@ class TestMeetingUpdate(Base):
     """
 
     expected_title = "fedocal.meeting.update"
-    expected_subti = 'ralph updated the "wat" meeting from ' + \
-        'the "awesome" calendar'
+    expected_subti = ('ralph updated the "wat" meeting from '
+                      'the "awesome" calendar')
     expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/meetings/wat/update'])
@@ -244,14 +244,14 @@ class TestMeetingDelete(Base):
     """
 
     expected_title = "fedocal.meeting.delete"
-    expected_subti = 'ralph deleted the "wat" meeting from ' + \
-        'the "awesome" calendar'
+    expected_subti = ('ralph deleted the "wat" meeting from '
+                      'the "awesome" calendar')
     expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/meetings/wat/delete'])
@@ -298,11 +298,11 @@ class TestMeetingReminder(Base):
     """
 
     expected_title = "fedocal.meeting.reminder"
-    expected_subti = 'Friendly reminder!  The "wat" meeting from the ' + \
-        '"awesome" calendar starts in 59 minutes'
+    expected_subti = ('Friendly reminder!  The "wat" meeting from the '
+                      '"awesome" calendar starts in 59 minutes')
     expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
-    expected_icon = "https://apps.fedoraproject.org/calendar/" + \
-        "static/calendar.png"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['awesome/meetings/wat/reminder'])

@@ -37,8 +37,8 @@ class FASProcessor(BaseProcessor):
     __link__ = "https://admin.fedoraproject.org/accounts"
     __docs__ = "https://fedoraproject.org/wiki/Account_System"
     __obj__ = "Account Changes"
-    __icon__ = "https://admin.fedoraproject.org/accounts/static/" + \
-               "theme/fas/images/account.png"
+    __icon__ = ("https://admin.fedoraproject.org/accounts/static/"
+                "theme/fas/images/account.png")
 
     def subtitle(self, msg, **config):
         if 'fas.user.create' in msg['topic']:

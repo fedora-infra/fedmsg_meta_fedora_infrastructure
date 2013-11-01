@@ -34,15 +34,15 @@ class TestMailman3NewReply(Base):
     """
 
     expected_title = "mailman.receive"
-    expected_subti = "On the devel list, nicolas.mailhot replied to " + \
-        "'[Devel] Re:Software Management call for RFEs'"
-    expected_link = "https://lists.fedoraproject.org/hyperkitty/list/" + \
-        "devel@mm3test.fedoraproject.org/message/" + \
-        "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "8b887fce5c60f931e8edf8e8e4907494?s=64&" + \
-        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2F" + \
-        "fedora_infinity_64x64.png"
+    expected_subti = ("On the devel list, nicolas.mailhot replied to "
+                      "'[Devel] Re:Software Management call for RFEs'")
+    expected_link = ("https://lists.fedoraproject.org/hyperkitty/list/"
+                     "devel@mm3test.fedoraproject.org/message/"
+                     "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "8b887fce5c60f931e8edf8e8e4907494?s=64&"
+                               "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2F"
+                               "fedora_infinity_64x64.png")
 
     expected_packages = set([])
     expected_usernames = set([
@@ -101,15 +101,15 @@ class TestMailman3NewMail(Base):
     """
 
     expected_title = "mailman.receive"
-    expected_subti = "jreznik wrote '[Devel] Fedora 19 Beta status is " + \
-        "Go, release on May 28, 2013' to the devel list"
-    expected_link = "https://lists.fedoraproject.org/hyperkitty/list/" + \
-        "devel@mm3test.fedoraproject.org/message/" + \
-        "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4/"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "35012533ff5290bd2231c7133bd07896?s=64&" + \
-        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2F" + \
-        "fedora_infinity_64x64.png"
+    expected_subti = ("jreznik wrote '[Devel] Fedora 19 Beta status is "
+                      "Go, release on May 28, 2013' to the devel list")
+    expected_link = ("https://lists.fedoraproject.org/hyperkitty/list/"
+                     "devel@mm3test.fedoraproject.org/message/"
+                     "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4/")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "35012533ff5290bd2231c7133bd07896?s=64&"
+                               "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2F"
+                               "fedora_infinity_64x64.png")
 
     expected_packages = set([])
     expected_usernames = set([

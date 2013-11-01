@@ -34,9 +34,9 @@ class TestNuancierElectionOpen(Base):
     expected_title = "nuancier.open.toggle.on"
     expected_subti = 'ralph opened the "awesome" election for voting'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2013/awesome/open/on'])
@@ -66,9 +66,9 @@ class TestNuancierElectionClose(Base):
     expected_title = "nuancier.open.toggle.off"
     expected_subti = 'ralph closed the "awesome" election for voting'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2013/awesome/open/off'])
@@ -98,9 +98,9 @@ class TestNuancierResultsPublish(Base):
     expected_title = "nuancier.publish.toggle.on"
     expected_subti = 'ralph published the results of the "awesome" election'
     expected_link = "https://apps.fedoraproject.org/nuancier/results/1"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2013/awesome/publish/on'])
@@ -130,9 +130,9 @@ class TestNuancierResultsRescind(Base):
     expected_title = "nuancier.publish.toggle.off"
     expected_subti = 'ralph rescinded the results of the "awesome" election'
     expected_link = "https://apps.fedoraproject.org/nuancier/results/1"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2013/awesome/publish/off'])

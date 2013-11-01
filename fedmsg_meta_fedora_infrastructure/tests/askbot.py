@@ -38,9 +38,9 @@ class TestAskbotRetag(Base):
 
     expected_title = "askbot.tag.update"
     expected_subti = "ralph altered tags on askbot question 'some title'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                              "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                              "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -86,9 +86,9 @@ class TestAskbotNewQuestion(Base):
     """
     expected_title = "askbot.post.edit"
     expected_subti = "ralph asked the question 'I have a new question'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -138,11 +138,11 @@ class TestAskbotNewAnswer(Base):
     an `Ask Fedora <https://ask.fedoraproject.org/questions/>`_ question.
     """
     expected_title = "askbot.post.edit"
-    expected_subti = "ralph suggested an answer " + \
-        "to the question 'watwatwatwata'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_subti = ("ralph suggested an answer "
+                      "to the question 'watwatwatwata'")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph', 'lmacken'])
     expected_objects = set([
@@ -192,9 +192,9 @@ class TestAskbotFlagOffensiveAdd(Base):
     """
     expected_title = "askbot.post.flag_offensive.add"
     expected_subti = "ralph flagged a question as offensive!"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -241,9 +241,9 @@ class TestAskbotFlagOffensiveRemove(Base):
     """
     expected_title = "askbot.post.flag_offensive.delete"
     expected_subti = "ralph unflagged an answer as offensive..."
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -291,9 +291,9 @@ class TestAskbotUpdatedQuestion(Base):
     """
     expected_title = "askbot.post.edit"
     expected_subti = "ralph updated the question 'alskdjflaksjdf lakjsf a'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_emails = {'ralph@fedoraproject.org': 'ralph'}
@@ -344,11 +344,11 @@ class TestAskbotUpdatedAnswer(Base):
     `Ask Fedora <https://ask.fedoraproject.org/questions/>`_.
     """
     expected_title = "askbot.post.edit"
-    expected_subti = "ralph updated an answer " + \
-        "to the question 'I have a new question'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_subti = ("ralph updated an answer "
+                      "to the question 'I have a new question'")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -397,9 +397,9 @@ class TestAskbotAnswerDeleted(Base):
     """
     expected_title = "askbot.post.delete"
     expected_subti = "ralph deleted an answer on 'test 3 is a charm'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -442,9 +442,9 @@ class TestAskbotQuestionDeleted(Base):
     """
     expected_title = "askbot.post.delete"
     expected_subti = "ralph deleted the question 'test 3 is a charm'"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
