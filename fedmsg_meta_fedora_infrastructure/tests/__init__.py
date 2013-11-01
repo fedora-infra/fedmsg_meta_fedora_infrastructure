@@ -1410,10 +1410,10 @@ class TestSCMSuperLegacy(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1461,10 +1461,10 @@ class TestSCMLegacy(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1514,10 +1514,10 @@ class TestSCM(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1567,10 +1567,10 @@ class TestSCMSingleLine(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "ember.git/commit/" + \
         "?h=master&id=aa2df80f3d8dd217c7cbfe2d3451190028f3fe14"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "461761d9572bdc1d04925a1125a41797?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['spot'])
     expected_packages = set(['ember'])
     expected_objects = set(['ember/ember-0.6.3-gcc47.patch'])
