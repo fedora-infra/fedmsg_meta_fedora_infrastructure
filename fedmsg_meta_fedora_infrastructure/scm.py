@@ -30,13 +30,13 @@ class SCMProcessor(BaseProcessor):
     __link__ = "http://pkgs.fedoraproject.org/cgit"
     __docs__ = "https://fedoraproject.org/wiki/Using_Fedora_GIT"
     __obj__ = "Package Commits"
-    __icon__ = "http://git-scm.com/images/logo.png"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/git-logo.png"
 
     def secondary_icon(self, msg, **config):
         if '.git.receive' in msg['topic']:
             query_string = urllib.urlencode({
                 's': 64,
-                'd': "http://git-scm.com/images/logo.png",
+                'd': "https://apps.fedoraproject.org/img/icons/git-logo.png",
             })
             email = msg['msg']['commit']['email']
             hash = md5(email).hexdigest()
