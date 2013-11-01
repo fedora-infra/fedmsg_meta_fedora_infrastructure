@@ -37,7 +37,7 @@ class TestGitReceiveOldModified(Base):
     expected_secondary_icon = ("http://www.gravatar.com/avatar/1a0d2acfddb191"
                                "1ecf55da42cfa34710?s=64&d=https%3A%2F%2Fapps."
                                "fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.pn"
-                               "g.com%2Fimages%2Flogo.png")
+                               "g")
     expected_packages = set(['datanommer'])
     expected_usernames = set()
     expected_objects = set(['datanommer/datanommer.spec'])
