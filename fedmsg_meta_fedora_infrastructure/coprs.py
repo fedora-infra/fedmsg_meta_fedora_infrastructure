@@ -32,9 +32,9 @@ class CoprsProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
 
-        user = msg['msg']['user']
-        copr = msg['msg']['copr']
-        chroot = msg['msg'].get('chroot', None)
+        user = msg['msg'].get('user')
+        copr = msg['msg'].get('copr')
+        chroot = msg['msg'].get('chroot')
 
         if 'copr.build.start' in msg['topic']:
             tmpl = self._("{user} started a new build of the {copr} copr")
@@ -42,6 +42,8 @@ class CoprsProcessor(BaseProcessor):
             tmpl = self._("{user}'s {copr} copr finished a build")
         elif 'copr.chroot.start' in msg['topic']:
             tmpl = self._("{user}'s {copr} copr started a new {chroot} chroot")
+        elif 'copr.worker.create' in msg['topic']:
+            tmpl = self._("a new worker was created")
         else:
             raise NotImplementedError()
 
@@ -55,26 +57,32 @@ class CoprsProcessor(BaseProcessor):
         if 'chroot' in msg['topic']:
             tmpl = ("http://copr-be.cloud.fedoraproject.org/"
                     "results/{user}/{copr}/{chroot}/")
-        else:
+        elif 'build' in msg['topic']:
             tmpl = ("http://copr-fe.cloud.fedoraproject.org/"
                     "coprs/{user}/{copr}/")
+        else:
+            return None
 
         return tmpl.format(user=user, copr=copr, chroot=chroot)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['user'])
+        if 'user' in msg['msg']:
+            return gravatar_url(msg['msg']['user'])
 
     def usernames(self, msg, **config):
-        return set([msg['msg']['user']])
+        if 'user' in msg['msg']:
+            return set([msg['msg']['user']])
+        return set()
 
     def objects(self, msg, **config):
-        items = [
-            'coprs',
-            msg['msg']['copr'],
-            '.'.join(msg['topic'].split('.')[-2:]),
-        ]
+        items = ['coprs']
+
+        if 'copr' in msg['msg']:
+            items.append(msg['msg']['copr'])
+
+        items.append('.'.join(msg['topic'].split('.')[-2:]))
 
         if 'chroot' in msg['topic']:
-            items = items + [msg['msg']['chroot']]
+            items.append(msg['msg']['chroot'])
 
         return set(['/'.join(items)])

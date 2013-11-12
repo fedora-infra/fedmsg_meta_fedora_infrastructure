@@ -138,6 +138,30 @@ class TestCoprsChrootStart(Base):
     }
 
 
+class TestCoprsWorkerCreate(Base):
+    """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
+    when a new worker is spun up.
+    """
+    expected_title = "copr.worker.create"
+    expected_subti = "a new worker was created"
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'coprs/worker.create',
+    ])
+    msg = {
+        u'username': u'copr',
+        u'i': 1,
+        u'timestamp': 1383956077.2320001,
+        u'msg_id': u'2013-675e7b1e-9b7f-4d11-be2f-2b3845817d60',
+        u'topic': u'org.fedoraproject.prod.copr.worker.create',
+        u'msg': {
+            u'what': u'creating worker: 172.16.3.3',
+            u'ip': u'172.16.3.3',
+        },
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
