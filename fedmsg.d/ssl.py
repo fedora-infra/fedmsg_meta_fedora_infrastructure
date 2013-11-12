@@ -50,8 +50,8 @@ config = dict(
         ],
     },
 
-    # Set this to True if you want messages to be dropped that aren't explicitly
-    # whitelisted in the routing_policy.
+    # Set this to True if you want messages to be dropped that aren't
+    # explicitly whitelisted in the routing_policy.
     # When this is False, only messages that have a topic in the routing_policy
     # but whose cert names aren't in the associated list are dropped; messages
     # whose topics do not appear in the routing_policy are not dropped.

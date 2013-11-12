@@ -64,5 +64,3 @@ class WikiProcessor(BaseProcessor):
             return set([msg['msg']['url'][1:]])
 
         return set()
-
-

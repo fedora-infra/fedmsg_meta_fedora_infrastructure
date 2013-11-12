@@ -27,8 +27,8 @@ class PkgdbProcessor(BaseProcessor):
     __link__ = "https://admin.fedoraproject.org/pkgdb"
     __docs__ = "https://fedorahosted.org/packagedb/"
     __obj__ = "Package ACL Updates"
-    __icon__ = "https://apps.fedoraproject.org/packages/" + \
-        "images/icons/package_128x128.png"
+    __icon__ = ("https://apps.fedoraproject.org/packages/"
+               "images/icons/package_128x128.png")
 
     def subtitle(self, msg, **config):
         if 'pkgdb.acl.update' in msg['topic']:

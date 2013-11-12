@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestAnsiblePlaybookStart(Base):
     """ These messages are published when an admin begins an ansible
@@ -31,13 +33,13 @@ class TestAnsiblePlaybookStart(Base):
     """
 
     expected_title = "ansible.playbook.start"
-    expected_subti = 'ralph started an ansible run of ' +\
-        'playbooks/groups/badges-backend.yml'
-    expected_link = "http://infrastructure.fedoraproject.org/cgit/" +\
-        "ansible.git/tree/playbooks/groups/badges-backend.yml"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_subti = ('ralph started an ansible run of '
+                      'playbooks/groups/badges-backend.yml')
+    expected_link = ("http://infrastructure.fedoraproject.org/cgit/"
+                     "ansible.git/tree/playbooks/groups/badges-backend.yml")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['playbooks/groups/badges-backend.yml'])
@@ -65,13 +67,13 @@ class TestAnsiblePlaybookComplete(Base):
     checked into our SCM repo.
     """
     expected_title = "ansible.playbook.complete"
-    expected_subti = "ralph's playbooks/groups/badges-backend.yml playbook" +\
-        " run completed"
-    expected_link = "http://infrastructure.fedoraproject.org/cgit/" +\
-        "ansible.git/tree/playbooks/groups/badges-backend.yml"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_subti = ("ralph's playbooks/groups/badges-backend.yml playbook"
+                      " run completed")
+    expected_link = ("http://infrastructure.fedoraproject.org/cgit/"
+                     "ansible.git/tree/playbooks/groups/badges-backend.yml")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -118,9 +120,9 @@ class TestAnsiblePlaybookCompleteNotCheckIn(Base):
     expected_title = "ansible.playbook.complete"
     expected_subti = "ralph's badges-backend.yml playbook run completed"
     expected_link = None
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -155,6 +157,9 @@ class TestAnsiblePlaybookCompleteNotCheckIn(Base):
             }
         }
     }
+
+
+add_doc(locals())
 
 
 if __name__ == '__main__':

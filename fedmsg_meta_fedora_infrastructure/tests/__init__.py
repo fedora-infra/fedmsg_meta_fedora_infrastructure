@@ -37,6 +37,9 @@ from fedmsg_meta_fedora_infrastructure.tests.scm import *
 from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
 from fedmsg_meta_fedora_infrastructure.tests.nuancier import *
 from fedmsg_meta_fedora_infrastructure.tests.fedocal import *
+from fedmsg_meta_fedora_infrastructure.tests.coprs import *
+
+from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
 
 import fedmsg_meta_fedora_infrastructure.fasshim
 
@@ -436,17 +439,17 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
                 "control-center-3.6.1-1.fc18",
                 "nagged": None,
                 "comments": [
-                {
-                    "group": None,
-                    "author": "bodhi",
-                    "text": "This update has been submitted for "
-                    "testing by hadess. ",
-                    "karma": 0,
-                    "anonymous": False,
-                    "timestamp": 1349718539.0,
-                    "update_title": "gnome-settings-daemon-3.6.1-1.fc18," +
-                    "control-center-3.6.1-1.fc18"
-                }
+                    {
+                        "group": None,
+                        "author": "bodhi",
+                        "text": "This update has been submitted for "
+                        "testing by hadess. ",
+                        "karma": 0,
+                        "anonymous": False,
+                        "timestamp": 1349718539.0,
+                        "update_title": "gnome-settings-daemon-3.6.1-1.fc18," +
+                        "control-center-3.6.1-1.fc18"
+                    }
                 ],
                 "updateid": None,
                 "type": "bugfix",
@@ -462,43 +465,43 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
                 },
                 "approved": None,
                 "builds": [
-                {
-                    "nvr": "gnome-settings-daemon-3.6.1-1.fc18",
-                    "package": {
-                        "suggest_reboot": False,
-                        "committers": [
-                            "hadess",
-                            "ofourdan",
-                            "mkasik",
-                            "cosimoc"
-                        ],
-                        "name": "gnome-settings-daemon"
+                    {
+                        "nvr": "gnome-settings-daemon-3.6.1-1.fc18",
+                        "package": {
+                            "suggest_reboot": False,
+                            "committers": [
+                                "hadess",
+                                "ofourdan",
+                                "mkasik",
+                                "cosimoc"
+                            ],
+                            "name": "gnome-settings-daemon"
+                        }
+                    }, {
+                        "nvr": "control-center-3.6.1-1.fc18",
+                        "package": {
+                            "suggest_reboot": False,
+                            "committers": [
+                                "ctrl-center-team",
+                                "ofourdan",
+                                "ssp",
+                                "ajax",
+                                "alexl",
+                                "jrb",
+                                "mbarnes",
+                                "caolanm",
+                                "davidz",
+                                "mclasen",
+                                "rhughes",
+                                "hadess",
+                                "johnp",
+                                "caillon",
+                                "whot",
+                                "rstrode"
+                            ],
+                            "name": "control-center"
+                        }
                     }
-                }, {
-                    "nvr": "control-center-3.6.1-1.fc18",
-                    "package": {
-                        "suggest_reboot": False,
-                        "committers": [
-                            "ctrl-center-team",
-                            "ofourdan",
-                            "ssp",
-                            "ajax",
-                            "alexl",
-                            "jrb",
-                            "mbarnes",
-                            "caolanm",
-                            "davidz",
-                            "mclasen",
-                            "rhughes",
-                            "hadess",
-                            "johnp",
-                            "caillon",
-                            "whot",
-                            "rstrode"
-                        ],
-                        "name": "control-center"
-                    }
-                }
                 ],
                 "date_modified": None,
                 "notes": "This update fixes numerous bugs in the new Input " +
@@ -1408,10 +1411,10 @@ class TestSCMSuperLegacy(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1459,10 +1462,10 @@ class TestSCMLegacy(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1512,10 +1515,10 @@ class TestSCM(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1565,10 +1568,10 @@ class TestSCMSingleLine(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "ember.git/commit/" + \
         "?h=master&id=aa2df80f3d8dd217c7cbfe2d3451190028f3fe14"
-    expected_icon = "http://git-scm.com/images/logo.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "461761d9572bdc1d04925a1125a41797?s=64&" + \
-        "d=http%3A%2F%2Fgit-scm.com%2Fimages%2Flogo.png"
+        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
     expected_usernames = set(['spot'])
     expected_packages = set(['ember'])
     expected_objects = set(['ember/ember-0.6.3-gcc47.patch'])
@@ -1606,11 +1609,8 @@ class TestSCMSingleLine(Base):
         }
     }
 
-# Do a little trick to assign __doc__ to doc for the make-topics-doc.py
-# script in fedmsg/extras.
-for k, v in locals().items():
-    if 'Test' in k and issubclass(v, Base):
-        v.doc = v.__doc__
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

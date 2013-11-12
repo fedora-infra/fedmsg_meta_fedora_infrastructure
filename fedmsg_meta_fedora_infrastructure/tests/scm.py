@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestGitReceiveOldModified(Base):
     """ Sample message from the first generation of git-category messages that
@@ -33,8 +35,9 @@ class TestGitReceiveOldModified(Base):
     expected_subti = ('rbean@redhat.com pushed to datanommer (master).  "Try '
                       'removing requirement on python-bunch."')
     expected_secondary_icon = ("http://www.gravatar.com/avatar/1a0d2acfddb191"
-                               "1ecf55da42cfa34710?s=64&d=http%3A%2F%2Fgit-scm"
-                               ".com%2Fimages%2Flogo.png")
+                               "1ecf55da42cfa34710?s=64&d=https%3A%2F%2Fapps."
+                               "fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.pn"
+                               "g")
     expected_packages = set(['datanommer'])
     expected_usernames = set()
     expected_objects = set(['datanommer/datanommer.spec'])
@@ -73,6 +76,8 @@ class TestGitReceiveOldModified(Base):
         "topic": "org.fedoraproject.prod.git.receive"
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()

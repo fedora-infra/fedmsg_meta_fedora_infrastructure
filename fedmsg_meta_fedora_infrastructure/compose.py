@@ -28,10 +28,16 @@ class ComposeProcessor(BaseProcessor):
     __obj__ = "Composes"
 
     def subtitle(self, msg, **config):
-        branch = msg['msg']['branch']
+
+        try:
+            branch = msg['msg']['branch']
+        except KeyError:
+            # Some old messages in datanommer don't have that branch field,
+            # so we have to extract it from the topic.
+            branch = msg['topic'].split('.')[-3]
+
         arch = msg['msg'].get('arch', '')
         arch = arch and ' (%s)' % arch
-
 
         if msg['topic'].endswith('.rsync.start'):
             tmpl = self._(

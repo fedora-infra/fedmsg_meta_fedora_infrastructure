@@ -1,6 +1,39 @@
 Changelog
 =========
 
+0.2.4
+-----
+
+- disable avatar test `5845dae6c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5845dae6cf2f666397d0495b914abbd5431fd786>`_
+- Handle the new badges message. `cd8973c74 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cd8973c740bf23c2b09217342387e45a89b9ed40>`_
+- For the very first time. `846f90774 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/846f90774515b5905a053b854ed22da665c2dd54>`_
+- Merge pull request #42 from fedora-infra/feature/badges-login `770bb4b19 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/770bb4b199190464e95a594949b26e39a02dd14a>`_
+- Add the __doc__ trick to the bottom of all the test modules. `5bee972ad <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5bee972ad7703590c66daf0945dfa75e39df2956>`_
+- Fix issue with import (kitchen) and refactoring the code. `7d66afb02 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7d66afb02c4bc0e862d960c5820bca302c228ab2>`_
+- Reorder to install requires `81f470470 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/81f470470cb09c6e441f97bb41111affbc4f4034>`_
+- PEP8, refactoring `839979c56 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/839979c567042376446df4c2a00856124cb6cb80>`_
+- Remove blank spaces in bodhi.py msg `f0fa59956 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f0fa5995660481ccfb1ea0d92f94fafa8be14695>`_
+- Change in setup.py, sys.version_info < (2, 7) `0df4fcd05 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0df4fcd05fd066a10607fab7d9e0b29b0239fef7>`_
+- PEP8 `7e2e3926c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7e2e3926c408dd3da58cb2627bffa3bec7ea6e3a>`_
+- Move that docs trick into a function. `10389be00 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/10389be001dcfd4b4f27175a818a1834186b91ab>`_
+- PEP8/cosmetic while I'm here. `d214ac277 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d214ac277d8b3c4fa5d0c1d2dfc4e77b5e08a92a>`_
+- Add forgotten file. `c10f0cd21 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c10f0cd21d7ed4015ac332c162dffca424cde343>`_
+- Merge pull request #43 from fedora-infra/feature/docs-fix `9ba32c187 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ba32c187e3c75076830d9bab3d69c725d5f921c>`_
+- Update bodhi.py `13e07f110 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/13e07f110ee566fdff4146dbf7c01fde641c1a3d>`_
+- Update setup.py `3b1eb842f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3b1eb842fa0643646a4dcd3915248619c7a6f838>`_
+- Merge pull request #44 from yograterol/develop `d899914c1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d899914c173790766204e0110bc63bef5a56fa71>`_
+- Replace string concatentation with literals `05005c6ad <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/05005c6adbe772ace3f56c652bb5a32f21eeba63>`_
+- Merge pull request #45 from echevemaster/develop `a4fcc2fc8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4fcc2fc8c5a8e7f29dd91344b7a16c51971f254>`_
+- Make Git icons square `9be80070f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9be80070f5a4c392d1f4410065268f17d1a02f35>`_
+- Fix tests for git logo change `459e51399 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/459e5139969875e1c08728d90501bb2c989ec100>`_
+- whoops `5d60aa18a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5d60aa18afac298152c6659882a17befd35fe10d>`_
+- Merge pull request #46 from fedora-infra/feature/square-git-logo `b909ef640 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b909ef64086916d7adc126c5df42087c982fe22a>`_
+- Handle old compose branches. `a783a995d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a783a995d17a348d1b0b177b300f9c47332392a4>`_
+- Copr processor with accompanying tests. `57639b9ad <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/57639b9ad114c185a3665fc82dd7d77d747fd746>`_
+- Merge pull request #47 from fedora-infra/feature/old-compose-branches `1f85a8b95 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1f85a8b95e7efb33b521d70dad01ea40d3d4775f>`_
+- Support copr.worker.create messages. `9f8fbccf9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9f8fbccf9c68a720b19cc11850b7c147f33dad12>`_
+- Merge pull request #48 from fedora-infra/feature/coprs `fa5c09ec2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fa5c09ec229e2bd33839ea8cd43ecbd710d7e845>`_
+
 0.2.3
 -----
 

@@ -26,8 +26,8 @@ class KojiProcessor(BaseProcessor):
     __link__ = "http://koji.fedoraproject.org/koji"
     __docs__ = "https://fedoraproject.org/wiki/Using_the_Koji_build_system"
     __obj__ = "Koji Builds"
-    __icon__ = "http://fedoraproject.org/w/uploads/2/20/" + \
-        "Artwork_DesignService_koji-icon-48.png"
+    __icon__ = ("http://fedoraproject.org/w/uploads/2/20/"
+                "Artwork_DesignService_koji-icon-48.png")
 
     def subtitle(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:

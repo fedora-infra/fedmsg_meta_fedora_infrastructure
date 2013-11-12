@@ -24,6 +24,7 @@ blacklisted_people = [
     'zodbot',
 ]
 
+
 class SupybotProcessor(BaseProcessor):
     __name__ = "meetbot"
     __description__ = "the Fedora IRC bot"

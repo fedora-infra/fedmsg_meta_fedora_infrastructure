@@ -126,10 +126,10 @@ class AskbotProcessor(BaseProcessor):
         post = ""
 
         if 'post' in msg['msg']:
-            post=msg['msg']['post']['pk']
+            post = msg['msg']['post']['pk']
             #tmpl += "?answer={post}#post-id-{post}"
         elif 'instance' in msg['msg']:
-            post=msg['msg']['instance']['pk']
+            post = msg['msg']['instance']['pk']
             #tmpl += "?answer={post}#post-id-{post}"
         else:
             pass

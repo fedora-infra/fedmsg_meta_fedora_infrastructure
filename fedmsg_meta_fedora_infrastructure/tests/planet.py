@@ -23,6 +23,8 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
+from common import add_doc
+
 
 class TestPlanetNewPost(Base):
     """ The `Fedora Planet <https://planet.fedoraproject.org/>`_ publishes
@@ -32,8 +34,8 @@ class TestPlanetNewPost(Base):
     expected_title = "planet.post.new"
     expected_subti = 'ralph posted "Test Post 6"'
     expected_link = "http://threebean.org/blog/test-post-6"
-    expected_secondary_icon = "https://secure.gravatar.com/avatar/" + \
-        "ba940b433c2695635d32d2c4aec00540?s=140"
+    expected_secondary_icon = ("https://secure.gravatar.com/avatar/"
+                               "ba940b433c2695635d32d2c4aec00540?s=140")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['threebean.org/blog/test-post-6'])
@@ -97,6 +99,8 @@ class TestPlanetNewPost(Base):
         }
     }
 
+
+add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()
