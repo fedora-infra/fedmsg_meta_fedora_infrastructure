@@ -39,6 +39,7 @@ class SupybotProcessor(BaseProcessor):
             return None
 
     def subtitle(self, msg, **config):
+        user = None
         if 'meetbot.meeting.start' in msg['topic']:
             if msg['msg']['meeting_topic']:
                 tmpl = self._('{user} started meeting "{name}" in {channel}')
@@ -46,12 +47,18 @@ class SupybotProcessor(BaseProcessor):
                 tmpl = self._('{user} started a meeting in {channel}')
 
         elif 'meetbot.meeting.complete' in msg['topic']:
+            for user1 in msg['msg']['attendees']:
+                user = nick2fas(user1, **config)
+
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user} ended meeting "{name}" in {channel}')
+                tmpl = self._('{user} ended the meeting "{name}" in {channel}')
             else:
                 tmpl = self._('{user} ended a meeting in {channel}')
 
         elif 'meetbot.meeting.topic.update' in msg['topic']:
+            for user1 in msg['msg']['attendees']:
+                user = nick2fas(user1, **config)
+
             if msg['msg']['meeting_topic']:
                 tmpl = self._('{user} changed the topic of '
                               '"{name}" to "{topic}" in {channel}')
@@ -61,7 +68,9 @@ class SupybotProcessor(BaseProcessor):
         else:
             raise NotImplementedError("%r" % msg)
 
-        user = nick2fas(msg['msg']['owner'], **config)
+        if user is None:
+            user = nick2fas(msg['msg']['owner'], **config)
+
         name = msg['msg']['meeting_topic']
         channel = msg['msg']['channel']
         topic = msg['msg'].get('topic', 'no topic')
