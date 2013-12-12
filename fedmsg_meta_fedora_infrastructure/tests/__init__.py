@@ -38,6 +38,7 @@ from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
 from fedmsg_meta_fedora_infrastructure.tests.nuancier import *
 from fedmsg_meta_fedora_infrastructure.tests.fedocal import *
 from fedmsg_meta_fedora_infrastructure.tests.coprs import *
+from fedmsg_meta_fedora_infrastructure.tests.cnucnuweb import *
 
 from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
 
