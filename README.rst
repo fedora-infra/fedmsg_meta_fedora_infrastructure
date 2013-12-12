@@ -35,3 +35,17 @@ Build Status
 +----------+-----------+
 | develop  | |develop| |
 +----------+-----------+
+
+Running the Tests
+-----------------
+
+    # Create a virtualenv
+    $ sudo yum install python-virtualenv
+    $ virtualenv my-env
+    $ source my-env/bin/activate
+
+    # Install the dependencies
+    $ python setup.py develop
+
+    # Run the tests
+    $ python setup.py test
