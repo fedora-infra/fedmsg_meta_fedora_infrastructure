@@ -420,6 +420,50 @@ class TestUpdatedMappingProject(Base):
     }
 
 
+class TestNewUpstreamVersion(Base):
+    """ The purpose of cnucnuweb is to monitor upstream projects and to
+    try and detect when they release new tarballs.  *These* messages are the
+    ones that get published when a tarball is found that is newer than the
+    one last seen in the `cnucnuweb
+    <https://github.com/fedora-infra/cnucnuweb>`_ database.
+    """
+    expected_title = "cnucnuweb.project.version.update"
+    expected_subti = 'A new version of "ansi2html" has been detected:  ' + \
+        '"0.1.4" in advance of "0.1.3"'
+    expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
+    expected_icon = "http://todo.com/image.png"
+    #expected_secondary_icon = None
+    expected_packages = set([
+        'python-ansi2html',
+    ])
+    expected_usernames = set([])
+    expected_objects = set([
+        'projects/ansi2html',
+    ])
+    msg = {
+        "username": "apache",
+        "i": 3,
+        "timestamp": 1386824705,
+        "msg_id": "2013-319d6a62-827c-458b-971c-6528f6e71dc3",
+        "topic": "org.fedoraproject.prod.cnucnuweb.project.map.update",
+        "msg": {
+            "project": {
+                "regex": "DEFAULT:ansi2html",
+                "logs": None,
+                "created_on": 1386842519.0,
+                "version": "0.1.4",
+                "version_url": "PYPI-DEFAULT:ansi2html",
+                "updated_on": 1386842519.0,
+                "homepage": "https://github.com/ralphbean/ansi2html",
+                "name": "ansi2html"
+            },
+            "upstream_version": "0.1.4",
+            "old_version": "0.1.3",
+            "strange": False,
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
