@@ -21,7 +21,7 @@
 
 import unittest
 
-from fedmsg.tests.test_meta import Base
+from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from common import add_doc
 
@@ -85,11 +85,11 @@ class TestEditDistro(Base):
             "project": None,
             "message": {
                 "new": "FancyHat",
-                "old": "fedora",
+                "old": "Fedora",
                 "agent": "rbean@redhat.com"
             },
             "distro": {
-                "name": "fedora"
+                "name": "Fedora"
             }
         }
     }
@@ -155,7 +155,7 @@ class TestAddProjectTried(Base):
         "i": 4,
         "timestamp": 1386821688,
         "msg_id": "2013-154429ec-842e-4d7f-acae-8d7434b4cbff",
-        "topic": "org.fedoraproject.prod.cnucnuweb.project.add",
+        "topic": "org.fedoraproject.prod.cnucnuweb.project.add.tried",
         "msg": {
             "project": {
                 "regex": "DEFAULT:ansi2html",
@@ -271,7 +271,7 @@ class TestNewMappingProject(Base):
     <https://github.com/fedora-infra/cnucnuweb>`_ database...)
     """
     expected_title = "cnucnuweb.project.map.new"
-    expected_subti = 'ralph mapped the name of "ansi2html" in fedora to' + \
+    expected_subti = 'ralph mapped the name of "ansi2html" in Fedora to' + \
         ' "python-ansi2html"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "http://todo.com/image.png"
@@ -315,63 +315,13 @@ class TestNewMappingProject(Base):
     }
 
 
-class TestNewMappingProject(Base):
-    """ These messages are published when someone maps an upstream project to a
-    package name in a particular distribution (in the `cnucnuweb
-    <https://github.com/fedora-infra/cnucnuweb>`_ database...)
-    """
-    expected_title = "cnucnuweb.project.map.new"
-    expected_subti = 'ralph mapped the name of "ansi2html" in fedora to' + \
-        ' "python-ansi2html"'
-    expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
-    expected_packages = set(['python-ansi2html'])
-    expected_usernames = set(['ralph'])
-    expected_objects = set([
-        'projects/ansi2html',
-        'mappings/fedora/python-ansi2html',
-        'distros/fedora',
-    ])
-    msg = {
-        "username": "apache",
-        "i": 1,
-        "timestamp": 1386823075,
-        "msg_id": "2013-7e860d4e-d9eb-41c6-b693-f0786b45db19",
-        "topic": "org.fedoraproject.prod.cnucnuweb.project.map.new",
-        "msg": {
-            "project": {
-                "regex": "DEFAULT:ansi2html",
-                "logs": None,
-                "created_on": 1386838297.0,
-                "version": None,
-                "version_url": "PYPI-DEFAULT:ansi2html",
-                "updated_on": 1386838297.0,
-                "homepage": "ansi2html.com",
-                "name": "ansi2html"
-            },
-            "message": {
-                "project": "ansi2html",
-                "new": "python-ansi2html",
-                "agent": "rbean@redhat.com",
-                "distro": "fedora"
-            },
-            "distro": {
-                "name": "fedora",
-            },
-        }
-    }
-
-
 class TestUpdatedMappingProject(Base):
     """ These messages are published when someone updates the mapping between
     an upstream project and a package name in a particular distribution (in the
     `cnucnuweb <https://github.com/fedora-infra/cnucnuweb>`_ database...)
     """
     expected_title = "cnucnuweb.project.map.update"
-    expected_subti = 'ralph updated the name of "ansi2html" in "fedora" ' + \
+    expected_subti = 'ralph updated the name of "ansi2html" in "Fedora" ' + \
         'from "python-ansi2html" to "python3-ansi2html"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "http://todo.com/image.png"
@@ -385,9 +335,9 @@ class TestUpdatedMappingProject(Base):
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'projects/ansi2html',
-        'mappings/fedora/python-ansi2html',
-        'mappings/fedora/python3-ansi2html',
-        'distros/fedora',
+        'mappings/Fedora/python-ansi2html',
+        'mappings/Fedora/python3-ansi2html',
+        'distros/Fedora',
     ])
     msg = {
         "username": "apache",
@@ -445,7 +395,7 @@ class TestNewUpstreamVersion(Base):
         "i": 3,
         "timestamp": 1386824705,
         "msg_id": "2013-319d6a62-827c-458b-971c-6528f6e71dc3",
-        "topic": "org.fedoraproject.prod.cnucnuweb.project.map.update",
+        "topic": "org.fedoraproject.prod.cnucnuweb.project.version.update",
         "msg": {
             "project": {
                 "regex": "DEFAULT:ansi2html",

@@ -99,6 +99,11 @@ def make_fas_cache(**config):
         if nick:
             _fas_cache[nick] = user['username']
 
+        email = user['email']
+        if email:
+            _fas_cache[email] = user['username']
+
+
     del request
     del fasclient
     del fedora.client.fas2
@@ -109,3 +114,8 @@ def make_fas_cache(**config):
 def nick2fas(nickname, **config):
     fas_cache = make_fas_cache(**config)
     return fas_cache.get(nickname, nickname)
+
+
+def email2fas(email, **config):
+    fas_cache = make_fas_cache(**config)
+    return fas_cache.get(email, email)

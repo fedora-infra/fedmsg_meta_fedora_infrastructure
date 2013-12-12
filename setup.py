@@ -83,6 +83,7 @@ entry_points = {
         "NuancierProcessor",
         "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         "coprs=fedmsg_meta_fedora_infrastructure.coprs:CoprsProcessor",
+        "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:CnuCnuWebProcessor",
     ]
 }
 
