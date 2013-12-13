@@ -200,7 +200,7 @@ class TestLegacyComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose completed"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -302,7 +302,7 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -522,9 +522,9 @@ class TestComposeRawhideComplete(Base):
     """
     expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose completed"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
+    expected_link = \
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -640,7 +640,7 @@ class TestComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,

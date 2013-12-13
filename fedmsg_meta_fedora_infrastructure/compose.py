@@ -19,6 +19,8 @@
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
+from datetime import datetime
+
 
 class ComposeProcessor(BaseProcessor):
     __name__ = "compose"
@@ -72,12 +74,13 @@ class ComposeProcessor(BaseProcessor):
             base = "https://dl.fedoraproject.org/pub/" + \
                 "fedora-secondary/development"
         else:
-            base = "https://dl.fedoraproject.org/pub/" + \
-                "fedora/linux/development"
-
-        # For backwards compatibility (with old messages in datanommer)
-        if 'rawhide' in msg['topic']:
-            return base + "/rawhide"
+            # For backwards compatibility (with old messages in datanommer)
+            if 'rawhide' in msg['topic']:
+                return "http://kojipkgs.fedoraproject.org/mash/rawhide-" + \
+                    datetime.fromtimestamp(msg['timestamp']).strftime('%Y%m%d')
+            else:
+                base = "https://dl.fedoraproject.org/pub/" + \
+                    "fedora/linux/development"
 
         return base + "/" + msg['msg'].get('branch', '')
 
