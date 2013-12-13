@@ -403,10 +403,10 @@ class TestBodhiUpdateComplete(Base):
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
-    publishes messages on this topic whenever an update
-    **completes it's push to the testing repository**.  Some updates may
-    contain *multiple packages*, which can be a little tricky if you're not
-    ready for it.  Here's an example of that:
+    publishes messages on this topic whenever a *user* requests that an update
+    be pushed to the testing repository. Some updates may contain *multiple
+    packages*, which can be a little tricky if you're not ready for it.  Here's
+    an example of that:
     """
     expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted " + \
