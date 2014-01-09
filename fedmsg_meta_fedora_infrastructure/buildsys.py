@@ -68,6 +68,23 @@ class KojiProcessor(BaseProcessor):
                 tmpl = tmpl[len("{owner}'s "):]
 
             return tmpl.format(**msg['msg'])
+        elif 'buildsys.task.state.change' in msg['topic']:
+            templates = {
+                'OPEN': self._(
+                    "{owner}'s scratch build of {srpm} started"),
+                'FAILED': self._(
+                    "{owner}'s scratch build of {srpm} failed"),
+                'CLOSED': self._(
+                    "{owner}'s scratch build of {srpm} completed"),
+            }
+            default = self._("{owner}'s scratch build of {srpm} changed")
+            tmpl = templates.get(msg['msg']['new'], default)
+
+            # If there was no owner of the build, chop off the prefix.
+            if not msg['msg']['owner']:
+                tmpl = tmpl[len("{owner}'s "):]
+
+            return tmpl.format(**msg['msg'])
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -96,6 +113,14 @@ class KojiProcessor(BaseProcessor):
 
             # Sometimes there is no owner
             return set()
+        elif 'buildsys.task.state.change' in msg['topic']:
+            if msg['msg']['owner']:
+                return set([
+                    msg['msg']['owner'],
+                ])
+
+            # Sometimes there is no owner
+            return set()
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -112,6 +137,10 @@ class KojiProcessor(BaseProcessor):
             return set([msg['msg']['package']])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
+        elif 'buildsys.task.state.change' in msg['topic']:
+            # We can't *really* associate scratch builds with a package,
+            # honestly.
+            return set([])
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -131,6 +160,9 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.build.state.change' in msg['topic']:
             return "http://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
                 % (msg['msg']['build_id'])
+        elif 'buildsys.task.state.change' in msg['topic']:
+            return "http://koji.fedoraproject.org/koji/taskinfo?taskID=%i" \
+                % (msg['msg']['id'])
         elif 'buildsys.package.list.change' in msg['topic']:
             return None
         else:
@@ -169,6 +201,11 @@ class KojiProcessor(BaseProcessor):
                 msg['msg']['name'],
                 msg['msg']['version'],
                 msg['msg']['release'],
+            ])])
+        elif 'buildsys.task.state.change' in msg['topic']:
+            return set(['/'.join([
+                'scratch_builds',
+                msg['msg']['srpm'],
             ])])
         elif 'buildsys.repo.init' in msg['topic']:
             return set(['/'.join([
