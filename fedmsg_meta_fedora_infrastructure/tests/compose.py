@@ -200,7 +200,7 @@ class TestLegacyComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose completed"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -302,7 +302,7 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -337,6 +337,25 @@ class TestComposeBranchedComplete(Base):
             "log": "done",
             "branch": "f18",
             "arch": "",
+        },
+    }
+
+
+class TestComposeEPELBetaComplete(Base):
+    """ The `release engineering
+    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    produce these messages when they have **finished composing** the EPEL beta.
+    """
+    expected_title = "compose.epelbeta.complete"
+    expected_subti = "epelbeta compose completed"
+    expected_link = "https://dl.fedoraproject.org/pub/epel/beta/7/"
+    expected_objects = set(['epelbeta/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.epelbeta.complete",
+        "msg": {
+            "log": "done",
         },
     }
 
@@ -522,9 +541,9 @@ class TestComposeRawhideComplete(Base):
     """
     expected_title = "compose.rawhide.complete"
     expected_subti = "rawhide compose completed"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
+    expected_link = \
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -640,7 +659,7 @@ class TestComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "finished rsync of rawhide compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+        "http://kojipkgs.fedoraproject.org/mash/rawhide-20120808"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,

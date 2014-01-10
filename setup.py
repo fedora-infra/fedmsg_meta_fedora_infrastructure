@@ -83,12 +83,13 @@ entry_points = {
         "NuancierProcessor",
         "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         "coprs=fedmsg_meta_fedora_infrastructure.coprs:CoprsProcessor",
+        "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:CnuCnuWebProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.4',
+    version='0.2.5',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

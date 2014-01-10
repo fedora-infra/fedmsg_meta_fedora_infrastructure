@@ -21,7 +21,7 @@
 
 import unittest
 
-from fedmsg.tests.test_meta import Base as _Base
+from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from fedmsg_meta_fedora_infrastructure.tests.compose import *
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
@@ -38,25 +38,9 @@ from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
 from fedmsg_meta_fedora_infrastructure.tests.nuancier import *
 from fedmsg_meta_fedora_infrastructure.tests.fedocal import *
 from fedmsg_meta_fedora_infrastructure.tests.coprs import *
+from fedmsg_meta_fedora_infrastructure.tests.cnucnuweb import *
 
 from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
-
-import fedmsg_meta_fedora_infrastructure.fasshim
-
-
-class Base(_Base):
-    def setUp(self):
-        # We don't want to actually query FAS during our test runs,
-        # so mock out _fas_cache to contain a dummy cache.
-        fedmsg_meta_fedora_infrastructure.fasshim._fas_cache = {
-            'threebean': 'ralph',
-        }
-        super(Base, self).setUp()
-
-    def tearDown(self):
-        # At the end of each test, set things back to the way they were.
-        fedmsg_meta_fedora_infrastructure.fasshim._fas_cache = {}
-        super(Base, self).tearDown()
 
 
 class TestFASUserCreateLegacy(Base):
@@ -403,10 +387,10 @@ class TestBodhiUpdateComplete(Base):
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
-    publishes messages on this topic whenever an update
-    **completes it's push to the testing repository**.  Some updates may
-    contain *multiple packages*, which can be a little tricky if you're not
-    ready for it.  Here's an example of that:
+    publishes messages on this topic whenever a *user* requests that an update
+    be pushed to the testing repository. Some updates may contain *multiple
+    packages*, which can be a little tricky if you're not ready for it.  Here's
+    an example of that:
     """
     expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted " + \

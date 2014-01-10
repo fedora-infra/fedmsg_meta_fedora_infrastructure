@@ -1,6 +1,22 @@
 Changelog
 =========
 
+0.2.5
+-----
+
+- Fixed docstring for the bodhi multi-build update test `3db4e27c0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3db4e27c0dfd757ee2fbae4f5022f3b312574ae1>`_
+- Tests for cnucnuweb messages. `8130a748c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8130a748c7be938304386934fa5965f7f285fa25>`_
+- Test for new version messages. `c23c9d280 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c23c9d2801b5f2eeb871da20041b84647d96bd1a>`_
+- Add instructions to the README. `4d1c8efeb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d1c8efeb41c172701d2a883b672da5c90ede980>`_
+- cnucnu processor written to the tests. `3ef6caebf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3ef6caebfe6a9f5e5e20d1b6ee01dbff690a653a>`_
+- Merge branch 'develop' of github.com:fedora-infra/fedmsg_meta_fedora_infrastructure into develop `8a013f5ca <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8a013f5caae4f4ae781afe98fd60d87ca735f928>`_
+- RFE: https://github.com/fedora-infra/fedmsg/issues/118 `f437dc51d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f437dc51dc79dfbb6c94fba1b1b45807e25a638c>`_
+- Merge pull request #50 from fedora-infra/feature/cnucnuweb `5dc92b4ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5dc92b4eaf9dd72f2ab19f09ee8bea01b3a7ef3f>`_
+- Handle scratch builds. `1626fda81 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1626fda81eb536684594f18514702ecdf68a2f2b>`_
+- Support for epelbeta compose messages.  Fixes #52. `af8511171 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/af8511171a0315c6ddfce3734ab4c073f0935c60>`_
+- Merge pull request #51 from fedora-infra/feature/scratch-builds `32154f6cb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/32154f6cbb3e1dbff57c814f1a57365f80293a38>`_
+- Merge pull request #53 from fedora-infra/feature/epelbeta `03ba3c8cd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/03ba3c8cdf7cdecabc7b9e80010c40acfb7f5428>`_
+
 0.2.4
 -----
 

@@ -17,13 +17,91 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for pkgdb messages """
+""" Tests for koji messages """
 
 import unittest
 
 from fedmsg.tests.test_meta import Base
 
 from common import add_doc
+
+
+class TestKojiTaskStateChangeStart(Base):
+    """ Koji emits messages on this topic anytime the state of a **scratch**
+    build changes.
+
+    For reasons internal to koji itself, the state codes for **scratch** builds
+    are not as cryptic as the ones for regular builds.
+
+    Here's an example message of a new **scratch build starting**.
+    """
+    expected_title = "buildsys.task.state.change"
+    expected_subti = "ralph's scratch build of " + \
+        "python-websocket-client-0.12.0-1.fc20.src.rpm started"
+    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_usernames = set(['ralph'])
+    expected_packages = set([])
+    expected_objects = set([
+        'scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
+    ])
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "taskinfo?taskID=6380373")
+    msg = {
+        u'username': u'root',
+        u'i': 1,
+        u'timestamp': 1389298195,
+        u'msg_id': u'2014-10b5b1b6-42c7-4d64-aeae-5029b9515d47',
+        u'topic': u'org.fedoraproject.prod.buildsys.task.state.change',
+        u'msg': {
+            u'old': u'FREE',
+            u'attribute': u'state',
+            u'method': u'build',
+            u'owner': u'ralph',
+            u'new': u'OPEN',
+            u'srpm': 'python-websocket-client-0.12.0-1.fc20.src.rpm',
+            u'id': 6380373,
+        }
+    }
+
+
+class TestKojiTaskStateChangeFail(Base):
+    """ Koji emits messages on this topic anytime the state of a **scratch**
+    build changes.
+
+    For reasons internal to koji itself, the state codes for **scratch** builds
+    are not as cryptic as the ones for regular builds.
+
+    Here's an example message of a **scratch build failing**.
+    """
+    expected_title = "buildsys.task.state.change"
+    expected_subti = "ralph's scratch build of " + \
+        "python-websocket-client-0.12.0-1.fc20.src.rpm failed"
+    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_usernames = set(['ralph'])
+    expected_packages = set([])
+    expected_objects = set([
+        'scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
+    ])
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "taskinfo?taskID=6380373")
+    msg = {
+        "username": "root",
+        "i": 1,
+        "timestamp": 1389298512,
+        "msg_id": "2014-991dbbad-b5f5-4f62-b889-d3b637d0cb49",
+        "topic": "org.fedoraproject.prod.buildsys.task.state.change",
+        "msg": {
+            "old": "OPEN",
+            "attribute": "state",
+            "method": "build",
+            "owner": "ralph",
+            "srpm": "python-websocket-client-0.12.0-1.fc20.src.rpm",
+            "new": "FAILED",
+            "id": 6380373,
+        }
+    }
 
 
 class TestKojiBuildTag(Base):
