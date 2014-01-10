@@ -37,6 +37,8 @@ class ComposeProcessor(BaseProcessor):
             # Some old messages in datanommer don't have that branch field,
             # so we have to extract it from the topic.
             branch = msg['topic'].split('.')[-3]
+            if branch == 'compose':
+                branch = msg['topic'].split('.')[-2]
 
         arch = msg['msg'].get('arch', '')
         arch = arch and ' (%s)' % arch
@@ -78,6 +80,8 @@ class ComposeProcessor(BaseProcessor):
             if 'rawhide' in msg['topic']:
                 return "http://kojipkgs.fedoraproject.org/mash/rawhide-" + \
                     datetime.fromtimestamp(msg['timestamp']).strftime('%Y%m%d')
+            elif 'epelbeta' in msg['topic']:
+                base = "https://dl.fedoraproject.org/pub/epel/beta/7"
             else:
                 base = "https://dl.fedoraproject.org/pub/" + \
                     "fedora/linux/development"

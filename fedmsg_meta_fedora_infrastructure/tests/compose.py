@@ -341,6 +341,25 @@ class TestComposeBranchedComplete(Base):
     }
 
 
+class TestComposeEPELBetaComplete(Base):
+    """ The `release engineering
+    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    produce these messages when they have **finished composing** the EPEL beta.
+    """
+    expected_title = "compose.epelbeta.complete"
+    expected_subti = "epelbeta compose completed"
+    expected_link = "https://dl.fedoraproject.org/pub/epel/beta/7/"
+    expected_objects = set(['epelbeta/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.epelbeta.complete",
+        "msg": {
+            "log": "done",
+        },
+    }
+
+
 class TestComposeBranchedStart(Base):
     """ The `release engineering
     <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
