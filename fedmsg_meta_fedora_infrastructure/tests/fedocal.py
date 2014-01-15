@@ -27,6 +27,44 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
+class TestCalendarClear(Base):
+    """ These messages are published when someone clears a calendar of all
+    its meeting in `fedocal <https://apps.fedoraproject.org/calendar>`_.
+    """
+
+    expected_title = "fedocal.calendar.clear"
+    expected_subti = 'ralph cleared the "awesome" calendar of all its ' \
+        'meetings'
+    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['awesome/clear'])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1379638157.759283,
+        "msg_id": "2013-96f9ca0e-c7c6-43f0-9de7-7a268c7f1cef",
+        "topic": "org.fedoraproject.dev.fedocal.calendar.clear",
+        "msg": {
+            "calendar": {
+                "calendar_manager_group": "sysadmin-main",
+                "calendar_name": "awesome",
+                "calendar_regional_meetings": False,
+                "calendar_multiple_meetings": False,
+                "calendar_description": "cool deal",
+                "calendar_admin_group": "sysadmin-badges",
+                "calendar_contact": "ralph@fedoraproject.org"
+            },
+            "agent": "ralph"
+        }
+    }
+
+
 class TestCalendarCreate(Base):
     """ These messages are published when someone creates a whole calendar from
     `fedocal <https://apps.fedoraproject.org/calendar>`_.
@@ -137,6 +175,43 @@ class TestCalendarUpdate(Base):
         }
     }
 
+
+class TestCalendarUpload(Base):
+    """ These messages are published when someone uploads an iCalendar file
+    into a calendar of `fedocal <https://apps.fedoraproject.org/calendar>`_.
+    """
+
+    expected_title = "fedocal.calendar.upload"
+    expected_subti = 'ralph uploaded an iCalendar file into the calendar ' \
+        '"awesome"'
+    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['awesome/upload'])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1379638157.759283,
+        "msg_id": "2013-96f9ca0e-c7c6-43f0-9de7-7a268c7f1cef",
+        "topic": "org.fedoraproject.dev.fedocal.calendar.upload",
+        "msg": {
+            "calendar": {
+                "calendar_manager_group": "sysadmin-main",
+                "calendar_name": "awesome",
+                "calendar_regional_meetings": False,
+                "calendar_multiple_meetings": False,
+                "calendar_description": "cool deal",
+                "calendar_admin_group": "sysadmin-badges",
+                "calendar_contact": "ralph@fedoraproject.org"
+            },
+            "agent": "ralph"
+        }
+    }
 
 class TestMeetingCreate(Base):
     """ These messages are published when someone creates a meeting from
