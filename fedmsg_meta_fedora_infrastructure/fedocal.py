@@ -111,6 +111,13 @@ class FedocalProcessor(BaseProcessor):
             tmpl = self._('{user} updated the "{calendar}" calendar')
         elif 'fedocal.calendar.delete' in msg['topic']:
             tmpl = self._('{user} deleted the "{calendar}" calendar')
+        elif 'fedocal.calendar.clear' in msg['topic']:
+            tmpl = self._(
+                '{user} cleared the "{calendar}" calendar of all its meetings')
+        elif 'fedocal.calendar.upload' in msg['topic']:
+            tmpl = self._(
+                '{user} uploaded an iCalendar file into the calendar '
+                '"{calendar}"')
         else:
             tmpl = ""
 
