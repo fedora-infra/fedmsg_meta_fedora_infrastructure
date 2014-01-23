@@ -76,6 +76,8 @@ class KojiProcessor(BaseProcessor):
                     "{owner}'s scratch build of {srpm} failed"),
                 'CLOSED': self._(
                     "{owner}'s scratch build of {srpm} completed"),
+                'CANCELED': self._(
+                    "{owner}'s scratch build of {srpm} was cancelled"),
             }
             default = self._("{owner}'s scratch build of {srpm} changed")
             tmpl = templates.get(msg['msg']['new'], default)
