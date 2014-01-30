@@ -91,7 +91,11 @@ class TaggerProcessor(BaseProcessor):
             tmpl = self._("{user}'s rank changed to {rank}")
             return tmpl.format(user=user, rank=rank)
         elif 'fedoratagger.usage.toggle' in msg['topic']:
-            user = msg['msg']['user']['username']
+            user = msg['msg']['user']
+            if user.get('anonymous', False):
+                user = self._('An anonymous user')
+            else:
+                user = user['username']
             package = msg['msg']['package']['name']
             if msg['msg']['usage']:
                 tmpl = self._(
