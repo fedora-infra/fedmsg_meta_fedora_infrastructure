@@ -308,4 +308,85 @@ class TestTaggerCreateLegacy(Base):
     }
 
 
+class TestTaggerToggleUsageOn(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    publishes messages like this one when a user **toggles** their usage status
+    for a package.
+
+    Here is an example of ralph declaring that he uses *passwd*.
+    """
+    expected_title = "fedoratagger.usage.toggle"
+    expected_subti = 'ralph declared that they use passwd'
+    expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['passwd'])
+    expected_objects = set(['packages/passwd'])
+    msg = {
+        "username": "apache",
+        "i": 1,
+        "timestamp": 1391107443,
+        "msg_id": "2014-8b4ffffc-4854-4da5-92b1-d266b4e7f52f",
+        "topic": "org.fedoraproject.prod.fedoratagger.usage.toggle",
+        "msg": {
+            "usage": True,
+            "user": {
+                "username": "ralph",
+                "votes": 859,
+                "score": 949,
+                "anonymous": False,
+                "rank": 6
+            },
+            "package": {
+                "rating": -1.0,
+                "name": "passwd",
+                "tags": [],
+                "summary": "An utility for setting or changing passwords",
+                "usage": 1,
+                "icon": "https://apps.fedoraproject.org/packages/images/"
+                "icons/package_128x128.png"
+            }
+        }
+    }
+
+
+class TestTaggerToggleUsageOff(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    publishes messages like this one when a user **toggles** their usage status
+    for a package.
+
+    Here is an example of ralph declaring that he *no longer* uses *passwd*.
+    """
+    expected_title = "fedoratagger.usage.toggle"
+    expected_subti = 'ralph declared that they no longer use passwd'
+    expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['passwd'])
+    expected_objects = set(['packages/passwd'])
+    msg = {
+        "username": "apache",
+        "i": 1,
+        "timestamp": 1391107443,
+        "msg_id": "2014-8b4ffffc-4854-4da5-92b1-d266b4e7f52f",
+        "topic": "org.fedoraproject.prod.fedoratagger.usage.toggle",
+        "msg": {
+            "usage": False,
+            "user": {
+                "username": "ralph",
+                "votes": 859,
+                "score": 949,
+                "anonymous": False,
+                "rank": 6
+            },
+            "package": {
+                "rating": -1.0,
+                "name": "passwd",
+                "tags": [],
+                "summary": "An utility for setting or changing passwords",
+                "usage": 0,
+                "icon": "https://apps.fedoraproject.org/packages/images/"
+                "icons/package_128x128.png"
+            }
+        }
+    }
+
 add_doc(locals())
