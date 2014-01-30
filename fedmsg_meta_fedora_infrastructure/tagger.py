@@ -39,6 +39,9 @@ class TaggerProcessor(BaseProcessor):
         if not pack and 'rating' in msg['msg']:
             pack = msg['msg']['rating']['package']['name']
 
+        if 'package' in msg['msg']:
+            pack = msg['msg']['package']['name']
+
         if pack:
             return "https://apps.fedoraproject.org/tagger/" + pack
         else:
@@ -87,6 +90,20 @@ class TaggerProcessor(BaseProcessor):
             rank = msg['msg']['user']['rank']
             tmpl = self._("{user}'s rank changed to {rank}")
             return tmpl.format(user=user, rank=rank)
+        elif 'fedoratagger.usage.toggle' in msg['topic']:
+            user = msg['msg']['user']
+            if user.get('anonymous', False):
+                user = self._('An anonymous user')
+            else:
+                user = user['username']
+            package = msg['msg']['package']['name']
+            if msg['msg']['usage']:
+                tmpl = self._(
+                    "{user} declared that they use {package}")
+            else:
+                tmpl = self._(
+                    "{user} declared that they no longer use {package}")
+            return tmpl.format(user=user, package=package)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -105,6 +122,8 @@ class TaggerProcessor(BaseProcessor):
             user = msg['msg']['user']['username']
         elif 'fedoratagger.rating.update' in msg['topic']:
             user = msg['msg']['rating']['user']['username']
+        elif 'fedoratagger.usage.toggle' in msg['topic']:
+            user = msg['msg']['user']['username']
 
         if user is 'anonymous':
             return set()
@@ -122,6 +141,9 @@ class TaggerProcessor(BaseProcessor):
             return set([package])
         elif 'fedoratagger.rating.update' in msg['topic']:
             package = msg['msg']['rating']['package']['name']
+            return set([package])
+        elif 'fedoratagger.usage.toggle' in msg['topic']:
+            package = msg['msg']['package']['name']
             return set([package])
 
         return set()
