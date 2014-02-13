@@ -30,46 +30,46 @@ class KojiProcessor(BaseProcessor):
                 "Artwork_DesignService_koji-icon-48.png")
 
     def subtitle(self, msg, **config):
-        instance = msg['msg'].get('instance', 'primary')
-        if instance == 'primary':
-            msg['msg']['instance'] = ''
+        inst = msg['msg'].get('instance', 'primary')
+        if inst == 'primary':
+            inst = ''
         else:
-            msg['msg']['instance'] = ' (%s)' % instance
+            inst = ' (%s)' % inst
 
         if 'buildsys.tag' in msg['topic']:
             tmpl = self._(
                 "{owner}'s {name}-{version}-{release} tagged "
-                "into {tag} by {user}{instance}"
+                "into {tag} by {user}{inst}"
             )
-            return tmpl.format(**msg['msg'])
+            return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.untag' in msg['topic']:
             tmpl = self._(
                 "{owner}'s {name}-{version}-{release} untagged "
-                "from {tag} by {user}{instance}"
+                "from {tag} by {user}{inst}"
             )
-            return tmpl.format(**msg['msg'])
+            return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.repo.init' in msg['topic']:
-            tmpl = self._('Repo initialized:  {tag}{instance}')
-            return tmpl.format(**msg['msg'])
+            tmpl = self._('Repo initialized:  {tag}{inst}')
+            return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.repo.done' in msg['topic']:
-            tmpl = self._('Repo done:  {tag}{instance}')
-            return tmpl.format(**msg['msg'])
+            tmpl = self._('Repo done:  {tag}{inst}')
+            return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.package.list.change' in msg['topic']:
             tmpl = self._(
-                "Package list change for {package}:  '{tag}'{instance}")
-            return tmpl.format(**msg['msg'])
+                "Package list change for {package}:  '{tag}'{inst}")
+            return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [
                 self._("{owner}'s {name}-{version}-{release} "
-                       "started building{instance}"),
+                       "started building{inst}"),
                 self._("{owner}'s {name}-{version}-{release} "
-                       "completed{instance}"),
+                       "completed{inst}"),
                 self._("{owner}'s {name}-{version}-{release} "
-                       "was deleted{instance}"),
+                       "was deleted{inst}"),
                 self._("{owner}'s {name}-{version}-{release} "
-                       "failed to build{instance}"),
+                       "failed to build{inst}"),
                 self._("{owner}'s {name}-{version}-{release} "
-                       "was cancelled{instance}"),
+                       "was cancelled{inst}"),
             ]
             tmpl = templates[msg['msg']['new']]
 
@@ -77,28 +77,28 @@ class KojiProcessor(BaseProcessor):
             if not msg['msg']['owner']:
                 tmpl = tmpl[len("{owner}'s "):]
 
-            return tmpl.format(**msg['msg'])
+            return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.task.state.change' in msg['topic']:
             templates = {
                 'OPEN': self._(
-                    "{owner}'s scratch build of {srpm} started{instance}"),
+                    "{owner}'s scratch build of {srpm} started{inst}"),
                 'FAILED': self._(
-                    "{owner}'s scratch build of {srpm} failed{instance}"),
+                    "{owner}'s scratch build of {srpm} failed{inst}"),
                 'CLOSED': self._(
-                    "{owner}'s scratch build of {srpm} completed{instance}"),
+                    "{owner}'s scratch build of {srpm} completed{inst}"),
                 'CANCELED': self._(
                     "{owner}'s scratch build of {srpm} "
-                    "was cancelled{instance}"),
+                    "was cancelled{inst}"),
             }
             default = self._(
-                "{owner}'s scratch build of {srpm} changed{instance}")
+                "{owner}'s scratch build of {srpm} changed{inst}")
             tmpl = templates.get(msg['msg']['new'], default)
 
             # If there was no owner of the build, chop off the prefix.
             if not msg['msg']['owner']:
                 tmpl = tmpl[len("{owner}'s "):]
 
-            return tmpl.format(**msg['msg'])
+            return tmpl.format(inst=inst, **msg['msg'])
         else:
             raise NotImplementedError("%r" % msg)
 
