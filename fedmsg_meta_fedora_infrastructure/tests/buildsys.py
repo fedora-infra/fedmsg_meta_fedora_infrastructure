@@ -43,7 +43,7 @@ class TestKojiTaskStateChangeStart(Base):
     expected_usernames = set(['ralph'])
     expected_packages = set([])
     expected_objects = set([
-        'scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
+        'primary/scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "taskinfo?taskID=6380373")
@@ -82,7 +82,7 @@ class TestKojiTaskStateChangeFail(Base):
     expected_usernames = set(['ralph'])
     expected_packages = set([])
     expected_objects = set([
-        'scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
+        'primary/scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "taskinfo?taskID=6380373")
@@ -115,8 +115,8 @@ class TestKojiBuildTag(Base):
     expected_packages = set(['stage'])
     expected_usernames = set(['ralph', 'bodhi'])
     expected_objects = set([
-        'builds/stage/4.1.1/3.fc18',
-        'tags/f18-updates-testing-pending',
+        'primary/builds/stage/4.1.1/3.fc18',
+        'primary/tags/f18-updates-testing-pending',
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "taginfo?tagID=216")
@@ -147,8 +147,8 @@ class TestKojiBuildUnTag(Base):
     expected_packages = set(['globus-gram-job-manager-sge'])
     expected_usernames = set(['ralph', 'bodhi'])
     expected_objects = set([
-        'builds/globus-gram-job-manager-sge/1.5/2.fc16',
-        'tags/f16-updates-pending',
+        'primary/builds/globus-gram-job-manager-sge/1.5/2.fc16',
+        'primary/tags/f16-updates-pending',
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "taginfo?tagID=216")
@@ -190,7 +190,7 @@ class TestKojiBuildStateChangeStart(Base):
     expected_usernames = set(['ralph'])
     expected_packages = set(['eclipse-ptp'])
     expected_objects = set([
-        'builds/eclipse-ptp/6.0.3/1.fc19'
+        'primary/builds/eclipse-ptp/6.0.3/1.fc19'
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "buildinfo?buildID=12345")
@@ -208,6 +208,7 @@ class TestKojiBuildStateChangeStart(Base):
             "new": 0,
             "owner": "ralph",
             "build_id": 12345,
+            "instance": "primary",
         }
     }
 
@@ -228,7 +229,7 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     expected_usernames = set([])
     expected_packages = set(['eclipse-ptp'])
     expected_objects = set([
-        'builds/eclipse-ptp/6.0.3/1.fc19'
+        'primary/builds/eclipse-ptp/6.0.3/1.fc19'
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "buildinfo?buildID=12345")
@@ -246,6 +247,7 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
             "new": 0,
             "owner": None,
             "build_id": 12345,
+            "instance": "primary",
         }
     }
 
@@ -262,18 +264,19 @@ class TestKojiBuildStateChangeFail(Base):
     - 3 - Failed
     - 4 - Cancelled
 
-    The example here is one of a build **failing**.
+    The example here is one of a build **failing** on one of the **secondary
+    arch** koji instances.
     """
     expected_title = "buildsys.build.state.change"
-    expected_subti = "rmattes's eclipse-ptp-6.0.3-1.fc19 failed to build"
+    expected_subti = "rmattes's eclipse-ptp-6.0.3-1.fc19 failed to build (ppc)"
     expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_packages = set(['eclipse-ptp'])
     expected_usernames = set(['rmattes'])
     expected_objects = set([
-        'builds/eclipse-ptp/6.0.3/1.fc19',
+        'ppc/builds/eclipse-ptp/6.0.3/1.fc19',
     ])
-    expected_link = ("http://koji.fedoraproject.org/koji/"
+    expected_link = ("http://ppc.koji.fedoraproject.org/koji/"
                      "buildinfo?buildID=12345")
     msg = {
         "username": "apache",
@@ -289,6 +292,7 @@ class TestKojiBuildStateChangeFail(Base):
             "new": 3,
             "owner": "rmattes",
             "build_id": 12345,
+            "instance": "ppc",
         }
     }
 
@@ -302,7 +306,7 @@ class TestKojiRepoInit(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        'repos/f19-build',
+        'primary/repos/f19-build',
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "taginfo?tagID=12345")
@@ -328,7 +332,7 @@ class TestKojiRepoDone(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        'repos/f19-build',
+        'primary/repos/f19-build',
     ])
     expected_link = ("http://koji.fedoraproject.org/koji/"
                      "taginfo?tagID=12345")
@@ -354,7 +358,7 @@ class TestKojiPackageListChange(Base):
     expected_packages = set(["almanah"])
     expected_usernames = set([])
     expected_objects = set([
-        'tags/f17',
+        'primary/tags/f17',
     ])
     msg = {
         "topic": "org.fedoraproject.prod.buildsys.package.list.change",
