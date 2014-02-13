@@ -1,6 +1,23 @@
 Changelog
 =========
 
+0.2.6
+-----
+
+- Add meta information and tests for the new messages added to fedocal `4f8a864dc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f8a864dca3294aace306a4a95be6852bd7e0dd4>`_
+- Update the pseudo messages to reflect changes to fedocal `544931a19 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/544931a19d3d943f92e93be173973ba86695fc6a>`_
+- Merge pull request #55 from fedora-infra/fedocal `1479eb33b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1479eb33b19d5ed968d38286b27626651f31cb74>`_
+- Use a new location for rawhide compose links.  Fixes #56. `4ca0a55a3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4ca0a55a39e12d340cd0d662fa8169310f9e28f0>`_
+- Merge pull request #57 from fedora-infra/feature/new-compose-links `87bee86ec <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/87bee86ecd8615f1104938675ed20e20a7cee6f8>`_
+- Handle cancelled scratch builds. `6fce5f96a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6fce5f96aedd2c05edfd0793646c9a8df433c711>`_
+- Merge pull request #58 from fedora-infra/feature/cancelled-scratch-build `2f88e4026 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2f88e40262b9812d370e8c2c13d1975e309a2e76>`_
+- Add tests and processor stuff for new tagger usage messages. `c0c979b76 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c0c979b763b60476508ca9e7c6cae622ed6b04a3>`_
+- Handle anonymous users here. `7c0386c87 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7c0386c8794ef50091e847f1181ec32a83b2e1ef>`_
+- Merge pull request #59 from fedora-infra/feature/tagger-usage-toggle `e05fed039 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e05fed039eb2e9d358da0389ee5eefa4ecafc72b>`_
+- Adjust entry point name to match the topic modname. `981cacde2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/981cacde25a2a4cdcd5d9fa57e2c63ca737b3ac1>`_
+- Distinguish between the primary koji instance and the secondary ones. `733ba3f90 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/733ba3f90b9d942a9ff8d73ec655bb2f72b2b538>`_
+- Merge pull request #60 from fedora-infra/feature/secondary-kojis `4bf8d14e9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4bf8d14e912c6b564e6518bb8b22cefe21d77dcb>`_
+
 0.2.5
 -----
 
