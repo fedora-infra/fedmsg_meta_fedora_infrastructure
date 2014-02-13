@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.2.7
+-----
+
+- Avoid modifying the original message in that last feature. `de02d9e1d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de02d9e1dabf5c9818b6b3505e5396f1363aaad8>`_
+
 0.2.6
 -----
 
