@@ -30,36 +30,46 @@ class KojiProcessor(BaseProcessor):
                 "Artwork_DesignService_koji-icon-48.png")
 
     def subtitle(self, msg, **config):
+        instance = msg['msg'].get('instance', 'primary')
+        if instance == 'primary':
+            msg['msg']['instance'] = ''
+        else:
+            msg['msg']['instance'] = ' (%s)' % instance
+
         if 'buildsys.tag' in msg['topic']:
             tmpl = self._(
                 "{owner}'s {name}-{version}-{release} tagged "
-                "into {tag} by {user}"
+                "into {tag} by {user}{instance}"
             )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.untag' in msg['topic']:
             tmpl = self._(
                 "{owner}'s {name}-{version}-{release} untagged "
-                "from {tag} by {user}"
+                "from {tag} by {user}{instance}"
             )
             return tmpl.format(**msg['msg'])
         elif 'buildsys.repo.init' in msg['topic']:
-            tmpl = self._('Repo initialized:  {tag}')
+            tmpl = self._('Repo initialized:  {tag}{instance}')
             return tmpl.format(**msg['msg'])
         elif 'buildsys.repo.done' in msg['topic']:
-            tmpl = self._('Repo done:  {tag}')
+            tmpl = self._('Repo done:  {tag}{instance}')
             return tmpl.format(**msg['msg'])
         elif 'buildsys.package.list.change' in msg['topic']:
-            tmpl = self._("Package list change for {package}:  '{tag}'")
+            tmpl = self._(
+                "Package list change for {package}:  '{tag}'{instance}")
             return tmpl.format(**msg['msg'])
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [
-                self._(
-                    "{owner}'s {name}-{version}-{release} started building"
-                ),
-                self._("{owner}'s {name}-{version}-{release} completed"),
-                self._("{owner}'s {name}-{version}-{release} was deleted"),
-                self._("{owner}'s {name}-{version}-{release} failed to build"),
-                self._("{owner}'s {name}-{version}-{release} was cancelled"),
+                self._("{owner}'s {name}-{version}-{release} "
+                       "started building{instance}"),
+                self._("{owner}'s {name}-{version}-{release} "
+                       "completed{instance}"),
+                self._("{owner}'s {name}-{version}-{release} "
+                       "was deleted{instance}"),
+                self._("{owner}'s {name}-{version}-{release} "
+                       "failed to build{instance}"),
+                self._("{owner}'s {name}-{version}-{release} "
+                       "was cancelled{instance}"),
             ]
             tmpl = templates[msg['msg']['new']]
 
@@ -71,15 +81,17 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.task.state.change' in msg['topic']:
             templates = {
                 'OPEN': self._(
-                    "{owner}'s scratch build of {srpm} started"),
+                    "{owner}'s scratch build of {srpm} started{instance}"),
                 'FAILED': self._(
-                    "{owner}'s scratch build of {srpm} failed"),
+                    "{owner}'s scratch build of {srpm} failed{instance}"),
                 'CLOSED': self._(
-                    "{owner}'s scratch build of {srpm} completed"),
+                    "{owner}'s scratch build of {srpm} completed{instance}"),
                 'CANCELED': self._(
-                    "{owner}'s scratch build of {srpm} was cancelled"),
+                    "{owner}'s scratch build of {srpm} "
+                    "was cancelled{instance}"),
             }
-            default = self._("{owner}'s scratch build of {srpm} changed")
+            default = self._(
+                "{owner}'s scratch build of {srpm} changed{instance}")
             tmpl = templates.get(msg['msg']['new'], default)
 
             # If there was no owner of the build, chop off the prefix.
@@ -147,23 +159,36 @@ class KojiProcessor(BaseProcessor):
             raise NotImplementedError("%r" % msg)
 
     def link(self, msg, **config):
+
+        instance = msg['msg'].get('instance', 'primary')
+        if instance == 'primary':
+            base = "http://koji.fedoraproject.org/koji"
+        elif instance == 'ppc':
+            base = "http://ppc.koji.fedoraproject.org/koji"
+        elif instance == 's390':
+            base = "http://s390.koji.fedoraproject.org/koji"
+        elif instance == 'arm':
+            base = "http://arm.koji.fedoraproject.org/koji"
+        else:
+            raise NotImplementedError("Unhandled instance")
+
         if 'buildsys.tag' in msg['topic']:
-            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.untag' in msg['topic']:
-            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.repo.init' in msg['topic']:
-            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.repo.done' in msg['topic']:
-            return "http://koji.fedoraproject.org/koji/taginfo?tagID=%i" % (
+            return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.build.state.change' in msg['topic']:
-            return "http://koji.fedoraproject.org/koji/buildinfo?buildID=%i" \
+            return base + "/buildinfo?buildID=%i" \
                 % (msg['msg']['build_id'])
         elif 'buildsys.task.state.change' in msg['topic']:
-            return "http://koji.fedoraproject.org/koji/taskinfo?taskID=%i" \
+            return base + "/taskinfo?taskID=%i" \
                 % (msg['msg']['id'])
         elif 'buildsys.package.list.change' in msg['topic']:
             return None
@@ -171,15 +196,19 @@ class KojiProcessor(BaseProcessor):
             raise NotImplementedError("%r" % msg)
 
     def objects(self, msg, **config):
+        instance = msg['msg'].get('instance', 'primary')
+
         if 'buildsys.tag' in msg['topic']:
             return set([
                 '/'.join([
+                    instance,
                     'builds',
                     msg['msg']['name'],
                     msg['msg']['version'],
                     msg['msg']['release'],
                 ]),
                 '/'.join([
+                    instance,
                     'tags',
                     msg['msg']['tag'],
                 ]),
@@ -187,18 +216,21 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.untag' in msg['topic']:
             return set([
                 '/'.join([
+                    instance,
                     'builds',
                     msg['msg']['name'],
                     msg['msg']['version'],
                     msg['msg']['release'],
                 ]),
                 '/'.join([
+                    instance,
                     'tags',
                     msg['msg']['tag'],
                 ]),
             ])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set(['/'.join([
+                instance,
                 'builds',
                 msg['msg']['name'],
                 msg['msg']['version'],
@@ -206,21 +238,25 @@ class KojiProcessor(BaseProcessor):
             ])])
         elif 'buildsys.task.state.change' in msg['topic']:
             return set(['/'.join([
+                instance,
                 'scratch_builds',
                 msg['msg']['srpm'],
             ])])
         elif 'buildsys.repo.init' in msg['topic']:
             return set(['/'.join([
+                instance,
                 'repos',
                 msg['msg']['tag'],
             ])])
         elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
+                instance,
                 'repos',
                 msg['msg']['tag'],
             ])])
         elif 'buildsys.package.list.change' in msg['topic']:
             return set(['/'.join([
+                instance,
                 'tags',
                 msg['msg']['tag'],
             ])])
