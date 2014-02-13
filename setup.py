@@ -75,7 +75,7 @@ entry_points = {
         "fedmsg_meta_fedora_infrastructure.buildsys:KojiProcessor",
         "trac=fedmsg_meta_fedora_infrastructure.trac:TracProcessor",
         "mailman=fedmsg_meta_fedora_infrastructure.mailman3:MailmanProcessor",
-        "badges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
+        "fedbadges=fedmsg_meta_fedora_infrastructure.badges:BadgesProcessor",
         "ansible=fedmsg_meta_fedora_infrastructure.ansible:AnsibleProcessor",
         "datanommer=fedmsg_meta_fedora_infrastructure.datanommer:"
         "DatanommerProcessor",
@@ -89,7 +89,7 @@ entry_points = {
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.5',
+    version='0.2.6',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

@@ -27,6 +27,43 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
+class TestCalendarClear(Base):
+    """ These messages are published when someone clears a calendar of all
+    its meeting in `fedocal <https://apps.fedoraproject.org/calendar>`_.
+    """
+
+    expected_title = "fedocal.calendar.clear"
+    expected_subti = 'ralph cleared the "awesome" calendar of all its ' \
+        'meetings'
+    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['awesome/clear'])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1379638157.759283,
+        "msg_id": "2013-96f9ca0e-c7c6-43f0-9de7-7a268c7f1cef",
+        "topic": "org.fedoraproject.dev.fedocal.calendar.clear",
+        "msg": {
+            "calendar": {
+                "calendar_editor_group": "sysadmin-main",
+                "calendar_name": "awesome",
+                "calendar_description": "cool deal",
+                "calendar_admin_group": "sysadmin-badges",
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
+            },
+            "agent": "ralph"
+        }
+    }
+
+
 class TestCalendarCreate(Base):
     """ These messages are published when someone creates a whole calendar from
     `fedocal <https://apps.fedoraproject.org/calendar>`_.
@@ -51,13 +88,12 @@ class TestCalendarCreate(Base):
         "topic": "org.fedoraproject.dev.fedocal.calendar.new",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "agent": "ralph"
         }
@@ -88,13 +124,12 @@ class TestCalendarDelete(Base):
         "topic": "org.fedoraproject.dev.fedocal.calendar.delete",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "agent": "ralph"
         }
@@ -125,18 +160,53 @@ class TestCalendarUpdate(Base):
         "topic": "org.fedoraproject.dev.fedocal.calendar.update",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "agent": "ralph"
         }
     }
 
+
+class TestCalendarUpload(Base):
+    """ These messages are published when someone uploads an iCalendar file
+    into a calendar of `fedocal <https://apps.fedoraproject.org/calendar>`_.
+    """
+
+    expected_title = "fedocal.calendar.upload"
+    expected_subti = 'ralph uploaded an iCalendar file into the calendar ' \
+        '"awesome"'
+    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
+    expected_icon = ("https://apps.fedoraproject.org/calendar/"
+                     "static/calendar.png")
+    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
+                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['awesome/upload'])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1379638157.759283,
+        "msg_id": "2013-96f9ca0e-c7c6-43f0-9de7-7a268c7f1cef",
+        "topic": "org.fedoraproject.dev.fedocal.calendar.upload",
+        "msg": {
+            "calendar": {
+                "calendar_editor_group": "sysadmin-main",
+                "calendar_name": "awesome",
+                "calendar_description": "cool deal",
+                "calendar_admin_group": "sysadmin-badges",
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
+            },
+            "agent": "ralph"
+        }
+    }
 
 class TestMeetingCreate(Base):
     """ These messages are published when someone creates a meeting from
@@ -163,13 +233,12 @@ class TestMeetingCreate(Base):
         "topic": "org.fedoraproject.dev.fedocal.meeting.new",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "meeting": {
                 "meeting_time_start": "12:00:00",
@@ -178,6 +247,7 @@ class TestMeetingCreate(Base):
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
+                "meeting_timezone": "UTC",
                 "meeting_manager": "ralph,",
                 "meeting_date": "2013-09-20",
                 "meeting_information": "awesome",
@@ -213,13 +283,12 @@ class TestMeetingUpdate(Base):
         "topic": "org.fedoraproject.dev.fedocal.meeting.update",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "meeting": {
                 "meeting_time_start": "12:00:00",
@@ -228,6 +297,7 @@ class TestMeetingUpdate(Base):
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
+                "meeting_timezone": "UTC",
                 "meeting_manager": "ralph,",
                 "meeting_date": "2013-09-20",
                 "meeting_information": "awesome",
@@ -263,13 +333,12 @@ class TestMeetingDelete(Base):
         "topic": "org.fedoraproject.dev.fedocal.meeting.delete",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "meeting": {
                 "meeting_time_start": "12:00:00",
@@ -278,6 +347,7 @@ class TestMeetingDelete(Base):
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
+                "meeting_timezone": "UTC",
                 "meeting_manager": "ralph,",
                 "meeting_date": "2013-09-20",
                 "meeting_information": "awesome",
@@ -314,13 +384,12 @@ class TestMeetingReminder(Base):
         "topic": "org.fedoraproject.dev.fedocal.meeting.reminder",
         "msg": {
             "calendar": {
-                "calendar_manager_group": "sysadmin-main",
+                "calendar_editor_group": "sysadmin-main",
                 "calendar_name": "awesome",
-                "calendar_regional_meetings": False,
-                "calendar_multiple_meetings": False,
                 "calendar_description": "cool deal",
                 "calendar_admin_group": "sysadmin-badges",
-                "calendar_contact": "ralph@fedoraproject.org"
+                "calendar_contact": "ralph@fedoraproject.org",
+                "calendar_status": "Enabled"
             },
             "meeting": {
                 "meeting_time_start": now.time().strftime("%H:%M:%S"),
@@ -329,6 +398,7 @@ class TestMeetingReminder(Base):
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",
+                "meeting_timezone": "UTC",
                 "meeting_manager": "ralph,",
                 "meeting_date": now.date().isoformat(),
                 "meeting_information": "awesome",

@@ -76,11 +76,7 @@ class ComposeProcessor(BaseProcessor):
             base = "https://dl.fedoraproject.org/pub/" + \
                 "fedora-secondary/development"
         else:
-            # For backwards compatibility (with old messages in datanommer)
-            if 'rawhide' in msg['topic']:
-                return "http://kojipkgs.fedoraproject.org/mash/rawhide-" + \
-                    datetime.fromtimestamp(msg['timestamp']).strftime('%Y%m%d')
-            elif 'epelbeta' in msg['topic']:
+            if 'epelbeta' in msg['topic']:
                 base = "https://dl.fedoraproject.org/pub/epel/beta/7"
             else:
                 base = "https://dl.fedoraproject.org/pub/" + \
