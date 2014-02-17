@@ -67,6 +67,7 @@ def make_fas_cache(**config):
     log.warn("No previous fas cache found.  Looking to rebuild.")
 
     try:
+        import fedora.client
         import fedora.client.fas2
     except ImportError:
         log.warn("No python-fedora installed.  Not caching fas.")
@@ -90,6 +91,9 @@ def make_fas_cache(**config):
         request = fasclient.send_request('/user/list',
                                          req_params={'search': '*'},
                                          auth=True)
+    except fedora.client.ServerError as e:
+        log.error("Failed to download fas cache %r" % e)
+        return {}
     finally:
         socket.setdefaulttimeout(timeout)
 
@@ -102,7 +106,6 @@ def make_fas_cache(**config):
         email = user['email']
         if email:
             _fas_cache[email] = user['username']
-
 
     del request
     del fasclient
