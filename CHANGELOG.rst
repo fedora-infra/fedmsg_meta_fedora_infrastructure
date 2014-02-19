@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.2.8
+-----
+
+- Recover from failing to cache fas. `403838dd2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/403838dd239d3aee659ae5c12459889b22f97975>`_
+- Add summershum processor and tests. `ad2cb5ba3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad2cb5ba3caddbcec93cc6dc3b469c10917ab030>`_
+- Merge pull request #62 from fedora-infra/feature/summershum `8ff4d7f1a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ff4d7f1a5e2223ca78d77d91264f870cb550f21>`_
+- Merge pull request #61 from fedora-infra/feature/careful-with-the-fascache `0f7c1944c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f7c1944cbb1af65391ef425cd8c0e9e783246d2>`_
+
 0.2.7
 -----
 
