@@ -79,7 +79,6 @@ class NuancierProcessor(BaseProcessor):
         users = [msg['msg']['agent']]
 
         if 'candidate' in msg['msg']:
-            users.append(msg['msg']['candidate']['author'])
             users.append(msg['msg']['candidate']['submitter'])
 
         return set(users)
