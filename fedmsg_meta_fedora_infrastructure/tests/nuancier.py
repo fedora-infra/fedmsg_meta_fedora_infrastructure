@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for badges messages """
+""" Tests for nuancier messages """
 
 import unittest
 

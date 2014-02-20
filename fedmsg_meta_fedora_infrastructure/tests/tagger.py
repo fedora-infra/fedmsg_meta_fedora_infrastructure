@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for fedmsg.meta """
+""" Tests for tagger messages """
 
 import unittest
 

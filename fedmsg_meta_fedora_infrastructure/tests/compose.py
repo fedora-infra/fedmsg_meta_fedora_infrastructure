@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for fedmsg.meta """
+""" Tests for compose messages """
 
 import unittest
 

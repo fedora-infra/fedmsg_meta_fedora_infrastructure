@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for pkgdb messages """
+""" Tests for planet messages """
 
 import unittest
 
