@@ -59,3 +59,13 @@ class SummerShumProcessor(BaseProcessor):
             original['filename'],
             original['md5sum'],
         ])])
+
+    def link(self, msg, **config):
+        o = msg['msg']['original']
+        prefix = "http://pkgs.fedoraproject.org/lookaside/pkgs"
+        name = o['name']
+        md5sum = o['md5sum']
+        filename = o['filename']
+        tmpl = "{prefix}/{name}/{filename}/{md5sum}/{filename}"
+        return tmpl.format(prefix=prefix, name=name,
+                           md5sum=md5sum, filename=filename)

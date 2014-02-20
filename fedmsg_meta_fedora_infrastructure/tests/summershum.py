@@ -42,6 +42,10 @@ class TestSummershumComplete(Base):
         "http://www.gravatar.com/avatar/"
         "72175d155a8b28b6a57d2340b9f58592?s=64&d=http%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
+        'gnome-online-accounts/gnome-online-accounts-3.11.90.tar.xz/' + \
+        '7d32a7ed3653fe4c3de1fd3e9d1e1367/' + \
+        'gnome-online-accounts-3.11.90.tar.xz'
     expected_packages = set(['gnome-online-accounts'])
     expected_usernames = set(['rhughes'])
     expected_objects = set([
@@ -84,6 +88,10 @@ class TestSummershumStart(Base):
         "http://www.gravatar.com/avatar/"
         "fd81d216a30015c59bf44d5c3b8be1cc?s=64&d=http%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
+        'glibc/glibc-2.19-58-ga4fb786.tar.gz/' + \
+        '5f636f8001d1397fa6e233a1009df6c1/' + \
+        'glibc-2.19-58-ga4fb786.tar.gz'
     expected_packages = set(['glibc'])
     expected_usernames = set(['siddhesh'])
     expected_objects = set([
@@ -125,6 +133,10 @@ class TestSummershumFail(Base):
         "http://www.gravatar.com/avatar/"
         "fd81d216a30015c59bf44d5c3b8be1cc?s=64&d=http%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
+        'glibc/glibc-2.19-58-ga4fb786.tar.gz/' + \
+        '5f636f8001d1397fa6e233a1009df6c1/' + \
+        'glibc-2.19-58-ga4fb786.tar.gz'
     expected_packages = set(['glibc'])
     expected_usernames = set(['siddhesh'])
     expected_objects = set([
