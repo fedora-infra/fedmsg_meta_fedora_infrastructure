@@ -1,6 +1,23 @@
 Changelog
 =========
 
+0.2.9
+-----
+
+- Update to handle new nuancier messages. `285be6abd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/285be6abd790ff6588e1cdab536024fbfb3c8999>`_
+- Turns out that this field might not necessarily be a FAS username... `45e8f8ea0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/45e8f8ea00bd69521936756dda091e7685e23757>`_
+- Merge pull request #63 from fedora-infra/feature/nuancier-heavy `4229bb504 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4229bb5047016b55d322ca949c5e5dac702f4c12>`_
+- Legacy support - old bodhi messages don't have this field. `d5d3ed74f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d5d3ed74f34acc85183f9cb8ca1441e568c76e1e>`_
+- Merge pull request #64 from fedora-infra/feature/bodhi-legacy `71b0d2a19 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/71b0d2a198df07d1de81fd4291ad7735ad154ca9>`_
+- Add links for summershum messages. `4e6b83b14 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4e6b83b14393afb70432d1fab7c76d2179a15c67>`_
+- Merge pull request #65 from fedora-infra/feature/links-for-summershum `e370d3fa0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e370d3fa0c4ad7670bfcf8d5f4295097f16d8dab>`_
+- Add support for upcoming jenkins messages `7f474516f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7f474516f0c9330e6625587dae22d7c893ad5745>`_
+- Fix tests. Thanks @ralphbean! `0e824e73c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0e824e73cdd9ed314ccbd7761f9cfd7d0863ad69>`_
+- correct copyright year `b21b42b00 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b21b42b00446d5acb71b19d7ebc209392e498c53>`_
+- Legacy support - old bodhi messages don't have this field. `8b9fce49a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8b9fce49a691b43d689b3d27bb87eb3bde8cb888>`_
+- Add links for summershum messages. `e47ed6f3b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e47ed6f3ba2b9164d776baed254741acc0cf327e>`_
+- Merge branch 'develop' of github.com:fedora-infra/fedmsg_meta_fedora_infrastructure into develop `f04722910 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f047229101575d77c60e7ff59362c8820f128eb9>`_
+
 0.2.8
 -----
 
