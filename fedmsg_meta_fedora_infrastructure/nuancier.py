@@ -30,44 +30,66 @@ class NuancierProcessor(BaseProcessor):
     __obj__ = "Wallpaper Elections"
 
     def link(self, msg, **config):
+
+        if 'original_url' in msg['msg'].get('candidate', {}):
+            return msg['msg']['candidate']['original_url']
+
         kind = msg['topic'].split('.')[4]
         item = msg['msg']['election']['id']
-        lookup = {
-            'publish': 'results',
-            'open': 'election',
-        }
-        kind = lookup[kind]
         return "https://apps.fedoraproject.org/nuancier/%s/%s" % (kind, item)
 
     def subtitle(self, msg, **config):
-        agent = msg['msg']['agent']
-        name = msg['msg']['election']['name']
-        if 'publish.toggle.on' in msg['topic']:
+        kwargs = dict(
+            agent=msg['msg']['agent'],
+            name=msg['msg']['election']['name'],
+        )
+        if 'election.update' in msg['topic']:
             tmpl = self._(
-                '{agent} published the results of the "{name}" election')
-        elif 'publish.toggle.off' in msg['topic']:
+                '{agent} changed the following details '
+                'on the "{name}" election: {details}')
+            kwargs['details'] = ', '.join(msg['msg']['updated'])
+        elif 'election.new' in msg['topic']:
             tmpl = self._(
-                '{agent} rescinded the results of the "{name}" election')
-        elif 'open.toggle.on' in msg['topic']:
+                '{agent} created a new election "{name}"')
+        elif 'candidate.new' in msg['topic']:
             tmpl = self._(
-                '{agent} opened the "{name}" election for voting')
-        elif 'open.toggle.off' in msg['topic']:
+                '{agent} uploaded a new candidate for the '
+                '"{name}" wallpaper election')
+        elif 'candidate.denied' in msg['topic']:
             tmpl = self._(
-                '{agent} closed the "{name}" election for voting')
+                '{agent} denied {author}\'s "{candidate}" submission to the '
+                '"{name}" wallpaper election')
+            kwargs['author'] = msg['msg']['candidate']['submitter']
+            kwargs['candidate'] = msg['msg']['candidate']['name']
+        elif 'candidate.approved' in msg['topic']:
+            tmpl = self._(
+                '{agent} approved {author}\'s "{candidate}" submission to the '
+                '"{name}" wallpaper election')
+            kwargs['author'] = msg['msg']['candidate']['submitter']
+            kwargs['candidate'] = msg['msg']['candidate']['name']
         else:
             tmpl = ''
 
-        return tmpl.format(agent=agent, name=name)
+        return tmpl.format(**kwargs)
 
     def secondary_icon(self, msg, **config):
         return gravatar_url(msg['msg']['agent'])
 
     def usernames(self, msg, **config):
-        return set([msg['msg']['agent']])
+        users = [msg['msg']['agent']]
+
+        if 'candidate' in msg['msg']:
+            users.append(msg['msg']['candidate']['submitter'])
+
+        return set(users)
 
     def objects(self, msg, **config):
-        kind = msg['topic'].split('.')[4]
+        kind = msg['topic'].split('.')[-2]
         action = msg['topic'].split('.')[-1]
         year = msg['msg']['election']['year']
         name = msg['msg']['election']['name']
-        return set(['/'.join(map(str, [year, name, kind, action]))])
+        candidate = msg['msg'].get('candidate', {}).get('name')
+        tokens = [year, name, kind, action]
+        if candidate:
+            tokens.insert(2, candidate)
+        return set(['/'.join(map(str, tokens))])

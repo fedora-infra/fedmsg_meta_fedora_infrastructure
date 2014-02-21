@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for badges messages """
+""" Tests for nuancier messages """
 
 import unittest
 
@@ -26,130 +26,213 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
-class TestNuancierElectionOpen(Base):
-    """ These messages are published when a new election is opened for voting
-    on "Nuancier", the wallpaper voting app.
+class TestNuancierElectionUpdated(Base):
+    """ These messages are published when **an admin updates the details** of
+    an existing election on the "Nuancier" wallpaper voting app.
     """
 
-    expected_title = "nuancier.open.toggle.on"
-    expected_subti = 'ralph opened the "awesome" election for voting'
+    expected_title = "nuancier.election.update"
+    expected_subti = 'ralph changed the following details on the ' + \
+        '"Fedora 21" election: election year, election name'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
-    expected_objects = set(['2013/awesome/open/on'])
-    msg = {
-        "username": "threebean",
-        "i": 1,
-        "timestamp": 1380303298.212,
-        "msg_id": "2013-86c25e1b-1ea7-4202-8bf0-7d6c76131e37",
-        "topic": "org.fedoraproject.dev.nuancier.open.toggle.on",
-        "msg": {
-            "state": True,
-            "election": {
-                "id": 1,
-                "name": "awesome",
-                "year": 2013,
-            },
-            "agent": "ralph"
-        }
-    }
-
-
-class TestNuancierElectionClose(Base):
-    """ These messages are published when an election is closed for voting on
-    "Nuancier", the wallpaper voting app.
-    """
-
-    expected_title = "nuancier.open.toggle.off"
-    expected_subti = 'ralph closed the "awesome" election for voting'
-    expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
-    expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['2013/awesome/open/off'])
-    msg = {
-        "username": "threebean",
-        "i": 4,
-        "timestamp": 1380303306.041,
-        "msg_id": "2013-3c985048-b82f-4836-b581-363bc9466e6e",
-        "topic": "org.fedoraproject.dev.nuancier.open.toggle.off",
-        "msg": {
-            "state": False,
-            "election": {
-                "id": 1,
-                "name": "awesome",
-                "year": 2013
-            },
-            "agent": "ralph"
-        }
-    }
-
-
-class TestNuancierResultsPublish(Base):
-    """ These messages are published when the results of an election have been
-    published on "Nuancier", the wallpaper voting app.
-    """
-
-    expected_title = "nuancier.publish.toggle.on"
-    expected_subti = 'ralph published the results of the "awesome" election'
-    expected_link = "https://apps.fedoraproject.org/nuancier/results/1"
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
-    expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['2013/awesome/publish/on'])
+    expected_objects = set(['2014/Fedora 21/election/update'])
     msg = {
         "username": "threebean",
         "i": 2,
-        "timestamp": 1380303299.5,
-        "msg_id": "2013-eb5b7306-2dfb-4040-a26e-6aa12b1fd3a2",
-        "topic": "org.fedoraproject.dev.nuancier.publish.toggle.on",
+        "timestamp": 1392907947,
+        "msg_id": "2014-a97d68bd-bc9e-49e0-b028-f10297f36767",
+        "topic": "org.fedoraproject.dev.nuancier.election.update",
         "msg": {
-            "state": True,
+            "updated": [
+                "election year",
+                "election name"
+            ],
             "election": {
-                "id": 1,
-                "name": "awesome",
-                "year": 2013
+                "name": "Fedora 21",
+                "submission_date_start": 1392958800.0,
+                "date_end": 1393045200.0,
+                "date_start": 1392958800.0,
+                "year": "2014",
+                "id": 1
             },
             "agent": "ralph"
         }
     }
 
 
-class TestNuancierResultsRescind(Base):
-    """ These messages are published when the results of an election have been
-    rescinded on "Nuancier", the wallpaper voting app.
+class TestNuancierElectionCreate(Base):
+    """ These messages are published when **an admin creates** a new election
+    on the "Nuancier" wallpaper voting app.
     """
 
-    expected_title = "nuancier.publish.toggle.off"
-    expected_subti = 'ralph rescinded the results of the "awesome" election'
-    expected_link = "https://apps.fedoraproject.org/nuancier/results/1"
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_title = "nuancier.election.new"
+    expected_subti = 'ralph created a new election "Fedora 22"'
+    expected_link = "https://apps.fedoraproject.org/nuancier/election/4"
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
-    expected_objects = set(['2013/awesome/publish/off'])
+    expected_objects = set(['2015/Fedora 22/election/new'])
     msg = {
         "username": "threebean",
-        "i": 3,
-        "timestamp": 1380303304.667,
-        "msg_id": "2013-9929bc11-d161-45d8-b9fe-45cef5d6acfe",
-        "topic": "org.fedoraproject.dev.nuancier.publish.toggle.off",
+        "i": 1,
+        "timestamp": 1392908460,
+        "msg_id": "2014-88577310-f466-4c88-8deb-dc98c8abc09e",
+        "topic": "org.fedoraproject.dev.nuancier.election.new",
         "msg": {
-            "state": False,
             "election": {
-                "id": 1,
-                "name": "awesome",
-                "year": 2013
+                "name": "Fedora 22",
+                "submission_date_start": 1392786000.0,
+                "date_end": 1393045200.0,
+                "date_start": 1392786000.0,
+                "year": "2015",
+                "id": 4
             },
             "agent": "ralph"
+        }
+    }
+
+
+class TestNuancierCandidateNew(Base):
+    """ These messages are published when **a contributor submits a new
+    candidate** for an existing election on the "Nuancier" wallpaper voting
+    app.
+    """
+
+    expected_title = "nuancier.candidate.new"
+    expected_subti = 'ralph uploaded a new candidate for the ' + \
+        '"Fedora 22" wallpaper election'
+    expected_link = "http://www.cyclelicio.us/wp-content/" + \
+        "uploads/2013/07/skvidal.jpg"
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['2015/Fedora 22/Handsome/candidate/new'])
+    msg = {
+        "username": "threebean",
+        "i": 2,
+        "timestamp": 1392908853,
+        "msg_id": "2014-0838ce6a-9f99-41d9-84a4-e076665d3b2b",
+        "topic": "org.fedoraproject.dev.nuancier.candidate.new",
+        "msg": {
+            "agent": "ralph",
+            "candidate": {
+                "submitter": "ralph",
+                "author": "ralph",
+                "name": "Handsome",
+                "license": "CC-BY-SA",
+                "original_url": "http://www.cyclelicio.us/wp-content/"
+                "uploads/2013/07/skvidal.jpg"
+            },
+            "election": {
+                "name": "Fedora 22",
+                "submission_date_start": 1392786000.0,
+                "date_end": 1393045200.0,
+                "date_start": 1392958800.0,
+                "year": 2015,
+                "id": 4
+            }
+        }
+    }
+
+
+class TestNuancierCandidateApprove(Base):
+    """ These messages are published when **an admin approves** a candidate
+    submission to the "Nuancier" wallpaper voting app.
+    """
+
+    expected_title = "nuancier.candidate.approved"
+    expected_subti = 'gnokii approved ralph\'s "Handsome" submission ' + \
+        'to the "Fedora 22" wallpaper election'
+    expected_link = "http://www.cyclelicio.us/wp-content/" + \
+        "uploads/2013/07/skvidal.jpg"
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "a8515b5e9791457df6d40f38de8b7476?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph', 'gnokii'])
+    expected_objects = set(['2015/Fedora 22/Handsome/candidate/approved'])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1392916813,
+        "msg_id": "2014-32dce0de-5d80-4f9e-a445-d63b6f9e320f",
+        "topic": "org.fedoraproject.dev.nuancier.candidate.approved",
+        "msg": {
+            "agent": "gnokii",
+            "candidate": {
+                "submitter": "ralph",
+                "author": "ralph",
+                "name": "Handsome",
+                "license": "CC-BY-SA",
+                "original_url": "http://www.cyclelicio.us/wp-content/"
+                "uploads/2013/07/skvidal.jpg"
+            },
+            "election": {
+                "name": "Fedora 22",
+                "submission_date_start": 1392786000.0,
+                "date_end": 1393045200.0,
+                "date_start": 1392958800.0,
+                "year": 2015,
+                "id": 4
+            }
+        }
+    }
+
+
+class TestNuancierCandidateDeny(Base):
+    """ These messages are published when **an admin denies** a candidate
+    submission to the "Nuancier" wallpaper voting app.
+    """
+
+    expected_title = "nuancier.candidate.denied"
+    expected_subti = 'gnokii denied ralph\'s "Handsome" submission ' + \
+        'to the "Fedora 22" wallpaper election'
+    expected_link = "http://www.cyclelicio.us/wp-content/" + \
+        "uploads/2013/07/skvidal.jpg"
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "a8515b5e9791457df6d40f38de8b7476?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_packages = set([])
+    expected_usernames = set(['ralph', 'gnokii'])
+    expected_objects = set(['2015/Fedora 22/Handsome/candidate/denied'])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1392916813,
+        "msg_id": "2014-32dce0de-5d80-4f9e-a445-d63b6f9e320f",
+        "topic": "org.fedoraproject.dev.nuancier.candidate.denied",
+        "msg": {
+            "agent": "gnokii",
+            "candidate": {
+                "submitter": "ralph",
+                "author": "ralph",
+                "name": "Handsome",
+                "license": "CC-BY-SA",
+                "original_url": "http://www.cyclelicio.us/wp-content/"
+                "uploads/2013/07/skvidal.jpg"
+            },
+            "election": {
+                "name": "Fedora 22",
+                "submission_date_start": 1392786000.0,
+                "date_end": 1393045200.0,
+                "date_start": 1392958800.0,
+                "year": 2015,
+                "id": 4
+            }
         }
     }
 

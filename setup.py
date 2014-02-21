@@ -85,12 +85,13 @@ entry_points = {
         "coprs=fedmsg_meta_fedora_infrastructure.coprs:CoprsProcessor",
         "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:CnuCnuWebProcessor",
         "summershum=fedmsg_meta_fedora_infrastructure.summershum:SummerShumProcessor",
+        "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.8',
+    version='0.2.9',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
