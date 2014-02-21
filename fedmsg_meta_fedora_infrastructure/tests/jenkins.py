@@ -21,7 +21,7 @@
 
 import unittest
 
-from fedmsg.tests.test_meta import Base
+from fedmsg_meta_fedora_infrastructure.tests import Base
 
 from common import add_doc
 
