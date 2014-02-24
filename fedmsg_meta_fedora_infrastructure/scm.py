@@ -42,6 +42,10 @@ class SCMProcessor(BaseProcessor):
             hash = md5(email).hexdigest()
             tmpl = "http://www.gravatar.com/avatar/%s?%s"
             return tmpl % (hash, query_string)
+        elif '.git.lookaside' in msg['topic']:
+            username = msg['msg']['agent']
+            return gravatar_url(username)
+
 
     def subtitle(self, msg, **config):
         if '.git.receive' in msg['topic']:
