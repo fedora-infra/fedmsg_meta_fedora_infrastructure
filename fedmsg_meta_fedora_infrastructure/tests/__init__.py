@@ -1410,7 +1410,8 @@ class TestSCMSuperLegacy(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1461,7 +1462,8 @@ class TestSCMLegacy(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1514,7 +1516,8 @@ class TestSCM(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1567,7 +1570,8 @@ class TestSCMSingleLine(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "461761d9572bdc1d04925a1125a41797?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['spot'])
     expected_packages = set(['ember'])
     expected_objects = set(['ember/ember-0.6.3-gcc47.patch'])
