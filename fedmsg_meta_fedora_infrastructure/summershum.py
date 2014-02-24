@@ -32,11 +32,14 @@ class SummerShumProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         if msg['topic'].endswith('fail'):
-            tmpl = self._('yikes!  summershum failed to process {filename}')
+            tmpl = self._('yikes!  summershum failed to process {filename} '
+                          'for {name}')
         elif msg['topic'].endswith('complete'):
-            tmpl = self._('summershum ingested {filename}')
+            tmpl = self._('summershum ingested {filename} '
+                          'for {name}')
         elif msg['topic'].endswith('start'):
-            tmpl = self._('summershum started working on {filename}')
+            tmpl = self._('summershum started working on {filename} '
+                          'for {name}')
         else:
             tmpl = self._('(unhandled)')
 

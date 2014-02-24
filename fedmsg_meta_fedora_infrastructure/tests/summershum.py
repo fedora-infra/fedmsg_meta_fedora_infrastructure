@@ -37,7 +37,9 @@ class TestSummershumComplete(Base):
     """
 
     expected_title = "summershum.ingest.complete"
-    expected_subti = "summershum ingested gnome-online-accounts-3.11.90.tar.xz"
+    expected_subti = "summershum ingested " + \
+            "gnome-online-accounts-3.11.90.tar.xz" + \
+            " for gnome-online-accounts"
     expected_secondary_icon = (
         "http://www.gravatar.com/avatar/"
         "72175d155a8b28b6a57d2340b9f58592?s=64&d=http%3A%2F%2F"
@@ -83,7 +85,7 @@ class TestSummershumStart(Base):
 
     expected_title = "summershum.ingest.start"
     expected_subti = "summershum started working on " + \
-        "glibc-2.19-58-ga4fb786.tar.gz"
+        "glibc-2.19-58-ga4fb786.tar.gz for glibc"
     expected_secondary_icon = (
         "http://www.gravatar.com/avatar/"
         "fd81d216a30015c59bf44d5c3b8be1cc?s=64&d=http%3A%2F%2F"
@@ -128,7 +130,7 @@ class TestSummershumFail(Base):
 
     expected_title = "summershum.ingest.fail"
     expected_subti = "yikes!  summershum failed to process " + \
-        "glibc-2.19-58-ga4fb786.tar.gz"
+        "glibc-2.19-58-ga4fb786.tar.gz for glibc"
     expected_secondary_icon = (
         "http://www.gravatar.com/avatar/"
         "fd81d216a30015c59bf44d5c3b8be1cc?s=64&d=http%3A%2F%2F"
