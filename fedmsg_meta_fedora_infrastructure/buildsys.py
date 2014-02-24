@@ -19,6 +19,8 @@
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
+from fasshim import gravatar_url
+
 
 class KojiProcessor(BaseProcessor):
     __name__ = "buildsys"
@@ -101,6 +103,14 @@ class KojiProcessor(BaseProcessor):
             return tmpl.format(inst=inst, **msg['msg'])
         else:
             raise NotImplementedError("%r" % msg)
+
+    def secondary_icon(self, msg, **config):
+        owner = msg['msg'].get('owner')
+
+        if owner:
+            return gravatar_url(owner)
+
+        return self.__icon__
 
     def usernames(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
