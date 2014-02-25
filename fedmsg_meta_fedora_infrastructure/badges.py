@@ -26,6 +26,7 @@ class BadgesProcessor(BaseProcessor):
     __name__ = "fedbadges"
     __description__ = "the Fedora Open Badges System"
     __link__ = "https://badges.fedoraproject.org/"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/badges.png"
     __docs__ = "https://fedoraproject.org/wiki/Open_Badges"
     __obj__ = "New Badges"
 
