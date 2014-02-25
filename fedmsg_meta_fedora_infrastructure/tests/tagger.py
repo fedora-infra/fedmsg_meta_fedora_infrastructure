@@ -26,7 +26,7 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
-class TestTaggerVoteAnonymous(Base):
+class TestTaggerVoteAuthenticated(Base):
     """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
     publishes messages like this one when a user votes on a tag.
     Users may upvote or downvote a tag and they may do so either
@@ -37,6 +37,11 @@ class TestTaggerVoteAnonymous(Base):
     expected_title = "fedoratagger.tag.update"
     expected_subti = 'ralph downvoted "stupid" on mattd'
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
+    expected_secondary_icon = (
+        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['mattd'])
     expected_objects = set(['packages/mattd', 'labels/stupid'])
@@ -90,6 +95,7 @@ class TestTaggerRatingUpdateAnonymous(Base):
     expected_title = "fedoratagger.rating.update"
     expected_subti = 'An anonymous user gave nethack a rating of 15'
     expected_link = 'https://apps.fedoraproject.org/tagger/nethack'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_usernames = set([])
     expected_packages = set(['nethack'])
     expected_objects = set(['packages/nethack'])
@@ -137,6 +143,11 @@ class TestTaggerCreate(Base):
     expected_title = "fedoratagger.tag.create"
     expected_subti = 'ralph added tag "awesome" to mattd'
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
+    expected_secondary_icon = (
+        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['mattd'])
     expected_objects = set(['packages/mattd', 'labels/awesome'])
@@ -186,6 +197,7 @@ class TestTaggerVoteAnonymousLegacy(Base):
     expected_title = "fedoratagger.tag.update"
     expected_subti = 'anonymous upvoted "unittest" on perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_usernames = set([])
     expected_packages = set(['perl-Test-Fatal'])
     expected_objects = set(['packages/perl-Test-Fatal', 'labels/unittest'])
@@ -250,6 +262,11 @@ class TestTaggerCreateLegacy(Base):
     expected_title = "fedoratagger.tag.create"
     expected_subti = 'ralph added tag "unittest" to perl-Test-Fatal'
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
+    expected_secondary_icon = (
+        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['perl-Test-Fatal'])
     expected_objects = set(['packages/perl-Test-Fatal', 'labels/unittest'])
@@ -318,6 +335,11 @@ class TestTaggerToggleUsageOn(Base):
     expected_title = "fedoratagger.usage.toggle"
     expected_subti = 'ralph declared that they use passwd'
     expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
+    expected_secondary_icon = (
+        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['passwd'])
     expected_objects = set(['packages/passwd'])
@@ -359,6 +381,11 @@ class TestTaggerToggleUsageOff(Base):
     expected_title = "fedoratagger.usage.toggle"
     expected_subti = 'ralph declared that they no longer use passwd'
     expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
+    expected_secondary_icon = (
+        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['passwd'])
     expected_objects = set(['packages/passwd'])

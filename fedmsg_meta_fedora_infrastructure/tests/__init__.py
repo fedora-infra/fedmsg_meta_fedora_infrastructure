@@ -1341,6 +1341,11 @@ class TestLookaside(Base):
 
     expected_title = "git.lookaside.new"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "5b938b3dcb12f46b98a1269cab255cbe?s=64&" + \
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
@@ -1367,6 +1372,11 @@ class TestLookasideLegacy(Base):
 
     expected_title = "git.lookaside.texlive.new"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "5b938b3dcb12f46b98a1269cab255cbe?s=64&" + \
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
@@ -1389,7 +1399,7 @@ class TestLookasideLegacy(Base):
 
 
 class TestSCMSuperLegacy(Base):
-    """ Support super-duper oldschool lookaside messages.  :(:( """
+    """ Support super-duper oldschool git messages.  :(:( """
 
     expected_title = "git.receive.valgrind.master"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
@@ -1400,7 +1410,8 @@ class TestSCMSuperLegacy(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1451,7 +1462,8 @@ class TestSCMLegacy(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1504,7 +1516,8 @@ class TestSCM(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1557,7 +1570,8 @@ class TestSCMSingleLine(Base):
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
         "461761d9572bdc1d04925a1125a41797?s=64&" + \
-        "d=https%3A%2F%2Fapps.fedoraproject.org%2Fimg%2Ficons%2Fgit-logo.png"
+        "d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
+        "images%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['spot'])
     expected_packages = set(['ember'])
     expected_objects = set(['ember/ember-0.6.3-gcc47.patch'])

@@ -34,6 +34,7 @@ class TestPlanetNewPost(Base):
     expected_title = "planet.post.new"
     expected_subti = 'ralph posted "Test Post 6"'
     expected_link = "http://threebean.org/blog/test-post-6"
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/planet_logo.png'
     expected_secondary_icon = ("https://secure.gravatar.com/avatar/"
                                "ba940b433c2695635d32d2c4aec00540?s=140")
     expected_packages = set([])
