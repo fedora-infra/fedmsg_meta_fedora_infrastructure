@@ -25,6 +25,7 @@ class PlanetProcessor(BaseProcessor):
     __description__ = "the Fedora blog aggregator"
     __link__ = "http://planet.fedoraproject.org/"
     __docs__ = "https://fedoraproject.org/wiki/Planet"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/planet_logo.png"
     __obj__ = "Blog Posts"
 
     def link(self, msg, **config):

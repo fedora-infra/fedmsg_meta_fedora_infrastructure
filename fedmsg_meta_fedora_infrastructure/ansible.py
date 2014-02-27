@@ -41,6 +41,7 @@ class AnsibleProcessor(BaseProcessor):
     __name__ = "ansible"
     __description__ = "Fedora Infrastructure Ansible Runs"
     __link__ = "http://infrastructure.fedoraproject.org/cgit/ansible.git"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/ansible.png"
     __docs__ = \
         "https://fedoraproject.org/wiki/Infrastructure_ansible_migration"
     __obj__ = "Ansible Runs"

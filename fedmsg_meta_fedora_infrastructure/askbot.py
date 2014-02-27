@@ -26,6 +26,7 @@ class AskbotProcessor(BaseProcessor):
     __description__ = "the Fedora 'Ask' Forum"
     __link__ = "https://ask.fedoraproject.org"
     __docs__ = "https://askbot.com"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/ask_fedora.png"
     __obj__ = "Ask Fedora Qs & As"
 
     # No icon that I can find..

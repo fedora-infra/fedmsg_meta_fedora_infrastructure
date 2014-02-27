@@ -26,6 +26,7 @@ class TaggerProcessor(BaseProcessor):
     __description__ = "the Fedora package labeller/tagger"
     __link__ = "https://apps.fedoraproject.org/tagger"
     __docs__ = "https://github.com/ralphbean/fedora-tagger"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/tagger.png"
     __obj__ = "Package Tag Votes"
 
     def link(self, msg, **config):
@@ -107,7 +108,7 @@ class TaggerProcessor(BaseProcessor):
         else:
             raise NotImplementedError("%r" % msg)
 
-    def icon(self, msg, **config):
+    def secondary_icon(self, msg, **config):
         usernames = self.usernames(msg, **config)
         if usernames:
             return gravatar_url(list(usernames)[0])
