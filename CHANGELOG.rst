@@ -1,6 +1,22 @@
 Changelog
 =========
 
+0.2.10
+------
+
+- Koji messages should really have a secondary icon. `920935ecb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/920935ecb4878aca2f6e5328362e19fd1ebf70a3>`_
+- Planet gets an icon too. `7048681ad <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7048681ad561eb349f8d5c620dfd5474d8ac90cd>`_
+- Sort out the tagger icons. `a85d5dd6b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a85d5dd6b3e15c6ceb6e0e1c2e18accb24eae38a>`_
+- Give askbot an icon, courtsey of @ryanlerch. `111ccfd30 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/111ccfd3056ec0f1d68c81a47c5be3d6209d8d76>`_
+- Secondary icons for lookaside messages. `5070bc97e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5070bc97efca3f06ebb57cab35fdb115c5c0d0fc>`_
+- Make the git fallback icon more consistent with the other categories. `59b07fe99 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/59b07fe9991ef4dd9055be443708f5743f25bd34>`_
+- Include the package name in summershum message subtitles. `54ca99f52 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/54ca99f520a180d737b629b1c939aecb7123360b>`_
+- Merge pull request #67 from fedora-infra/feature/icons `55bf4269a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/55bf4269ac045ddea995646420644542aad4eeed>`_
+- Merge pull request #68 from fedora-infra/feature/summershum-pkg `5bb493442 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5bb493442979079e84cd31281e09840f9021becc>`_
+- Ansible needs an icon, right? `8ad630df2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ad630df2e34230fd6fc487870c132006d3a0dd7>`_
+- And this one badge message could use an icon too. `11248bad1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/11248bad10d2218483b4c5972c0b7e222cfc474f>`_
+- Merge pull request #69 from fedora-infra/feature/more-icons `b8f592e59 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b8f592e598c4a1741d11bf78d96b00ff304088e0>`_
+
 0.2.9
 -----
 
