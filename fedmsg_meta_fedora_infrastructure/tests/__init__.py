@@ -21,8 +21,6 @@
 
 import unittest
 
-from fedmsg_meta_fedora_infrastructure.tests.base import Base
-
 from fedmsg_meta_fedora_infrastructure.tests.compose import *
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
 from fedmsg_meta_fedora_infrastructure.tests.planet import *
@@ -41,6 +39,9 @@ from fedmsg_meta_fedora_infrastructure.tests.coprs import *
 from fedmsg_meta_fedora_infrastructure.tests.cnucnuweb import *
 from fedmsg_meta_fedora_infrastructure.tests.summershum import *
 from fedmsg_meta_fedora_infrastructure.tests.jenkins import *
+from fedmsg_meta_fedora_infrastructure.tests.github import *
+
+from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
 

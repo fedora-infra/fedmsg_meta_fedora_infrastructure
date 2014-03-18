@@ -86,6 +86,7 @@ entry_points = {
         "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:CnuCnuWebProcessor",
         "summershum=fedmsg_meta_fedora_infrastructure.summershum:SummerShumProcessor",
         "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
+        "github=fedmsg_meta_fedora_infrastructure.github:GithubProcessor",
     ]
 }
 
