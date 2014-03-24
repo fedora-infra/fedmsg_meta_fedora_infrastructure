@@ -73,7 +73,7 @@ class BodhiProcessor(BaseProcessor):
             msg = msg['msg']
             tmpl = self._(
                 'New {product} {release} {repo} content synced out '
-                '({bytes} new bytes, {deleted} files deleted)')
+                '({bytes} changed with {deleted} files deleted)')
             return tmpl.format(product=product, **msg)
         elif 'bodhi.update.comment' in msg['topic']:
             author = msg['msg']['comment']['author']

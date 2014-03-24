@@ -34,7 +34,7 @@ class TestFTPSyncFedora(Base):
     """
     expected_title = "bodhi.updates.fedora.sync"
     expected_subti = "New Fedora 20 updates content synced out " + \
-        "(28493 new bytes, 0 files deleted)"
+        "(2.8M changed with 0 files deleted)"
     expected_link = \
         "https://download.fedoraproject.org/pub/fedora/linux/updates/20/"
     expected_objects = set(['fedora/updates/20'])
@@ -44,7 +44,7 @@ class TestFTPSyncFedora(Base):
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.bodhi.updates.fedora.sync",
         "msg": {
-            "bytes": "28493",
+            "bytes": "2.8M",
             "deleted": "0",
             "repo": "updates",
             "release": "20",
@@ -60,7 +60,7 @@ class TestFTPSyncEPELTesting(Base):
     """
     expected_title = "bodhi.updates.epel.sync"
     expected_subti = "New EPEL 6 epel-testing content synced out " + \
-        "(28493 new bytes, 0 files deleted)"
+        "(28493k changed with 0 files deleted)"
     expected_link = \
         "https://download.fedoraproject.org/pub/epel/testing/6/"
     expected_objects = set(['epel/epel-testing/6'])
@@ -70,7 +70,7 @@ class TestFTPSyncEPELTesting(Base):
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.bodhi.updates.epel.sync",
         "msg": {
-            "bytes": "28493",
+            "bytes": "28493k",
             "deleted": "0",
             "repo": "epel-testing",
             "release": "6",
