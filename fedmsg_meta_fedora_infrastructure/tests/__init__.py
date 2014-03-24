@@ -40,6 +40,7 @@ from fedmsg_meta_fedora_infrastructure.tests.cnucnuweb import *
 from fedmsg_meta_fedora_infrastructure.tests.summershum import *
 from fedmsg_meta_fedora_infrastructure.tests.jenkins import *
 from fedmsg_meta_fedora_infrastructure.tests.github import *
+from fedmsg_meta_fedora_infrastructure.tests.ftpsync import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
