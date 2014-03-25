@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -41,6 +41,7 @@ from fedmsg_meta_fedora_infrastructure.tests.summershum import *
 from fedmsg_meta_fedora_infrastructure.tests.jenkins import *
 from fedmsg_meta_fedora_infrastructure.tests.github import *
 from fedmsg_meta_fedora_infrastructure.tests.ftpsync import *
+from fedmsg_meta_fedora_infrastructure.tests.bz import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
