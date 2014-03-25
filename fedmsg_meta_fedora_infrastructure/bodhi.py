@@ -29,6 +29,22 @@ def _u2p(update):
     return [build.rsplit('-', 2)[0] for build in update.split(',')]
 
 
+def get_sync_product(msg):
+    # Extract the product name from a ftpsync message.
+    product = msg['topic'].split('.')[-2]
+    if product == 'fedora':
+        product = 'Fedora'
+    elif product == 'epel':
+        product = 'EPEL'
+    else:
+        pass
+    return product
+
+
+def is_ftp_sync(msg):
+    return 'bodhi.updates.' in msg['topic'] and msg['topic'].endswith('.sync')
+
+
 class BodhiProcessor(BaseProcessor):
     __name__ = "Bodhi"
     __description__ = "the Fedora update system"
@@ -52,7 +68,14 @@ class BodhiProcessor(BaseProcessor):
         return gravatar
 
     def subtitle(self, msg, **config):
-        if 'bodhi.update.comment' in msg['topic']:
+        if is_ftp_sync(msg):
+            product = get_sync_product(msg)
+            msg = msg['msg']
+            tmpl = self._(
+                'New {product} {release} {repo} content synced out '
+                '({bytes} changed with {deleted} files deleted)')
+            return tmpl.format(product=product, **msg)
+        elif 'bodhi.update.comment' in msg['topic']:
             author = msg['msg']['comment']['author']
             karma = msg['msg']['comment']['karma']
             title = msg['msg']['comment']['update_title']
@@ -119,6 +142,19 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(title=msg['msg']['update']['title'])
         elif 'bodhi.update.request' in msg['topic']:
             return tmpl.format(title=msg['msg']['update']['title'])
+        elif is_ftp_sync(msg):
+            link = "https://download.fedoraproject.org/pub/"
+            product = get_sync_product(msg).lower()
+            link += product + "/"
+
+            if product == 'fedora':
+                link += "linux/updates/"
+
+            if msg['msg']['repo'].endswith('testing'):
+                link += "testing/"
+
+            link += msg['msg']['release'] + "/"
+            return link
 
     def packages(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
@@ -149,7 +185,11 @@ class BodhiProcessor(BaseProcessor):
         return set(users)
 
     def objects(self, msg, **config):
-        if 'bodhi.mashtask.mashing' in msg['topic']:
+        if is_ftp_sync(msg):
+            product = get_sync_product(msg).lower()
+            msg = msg['msg']
+            return set(['/'.join([product, msg['repo'], msg['release']])])
+        elif 'bodhi.mashtask.mashing' in msg['topic']:
             return set(['repos/' + msg['msg']['repo']])
         elif 'bodhi.update.comment' in msg['topic']:
             return set([

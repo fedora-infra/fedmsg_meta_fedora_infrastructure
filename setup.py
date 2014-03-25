@@ -86,12 +86,13 @@ entry_points = {
         "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:CnuCnuWebProcessor",
         "summershum=fedmsg_meta_fedora_infrastructure.summershum:SummerShumProcessor",
         "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
+        "github=fedmsg_meta_fedora_infrastructure.github:GithubProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.10',
+    version='0.2.11',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
