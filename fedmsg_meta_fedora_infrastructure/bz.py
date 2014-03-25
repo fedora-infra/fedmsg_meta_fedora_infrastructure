@@ -62,7 +62,9 @@ class BugzillaProcessor(BaseProcessor):
         return user, is_fas
 
     def _get_user(self, msg, **config):
-        email = msg['msg']['event']['who']
+        email = msg['msg']['event'].get('who')
+        if not email:
+            email = msg['msg']['bug'].get('creator')
 
         user, is_fas = self._email_to_fas(email, **config)
         return user, is_fas
@@ -72,20 +74,20 @@ class BugzillaProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         user, is_fas = self._get_user(msg, **config)
+        idx = msg['msg'].get('bug', {}).get('id')
+        title = msg['msg'].get('bug', {}).get('summary')
+
+        if len(title) > MAX_LEN:
+            title = title[:MAX_LEN] + "..."
 
         if 'bug.update' in msg['topic']:
-            idx = msg['msg']['bug']['id']
-
-            title = msg['msg']['bug']['summary']
-            if len(title) > MAX_LEN:
-                title = title[:MAX_LEN] + "..."
-
             fields = [d['field_name'] for d in msg['msg']['event']['changes']]
             fields = comma_join(fields)
-
             tmpl = self._("{user} updated {fields} on RHBZ#{idx} '{title}'")
-
             return tmpl.format(user=user, fields=fields, idx=idx, title=title)
+        elif 'bug.new' in msg['topic']:
+            tmpl = self._("{user} filed a new bug RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, idx=idx, title=title)
 
     def secondary_icon(self, msg, **config):
         user, is_fas = self._get_user(msg, **config)
@@ -98,16 +100,22 @@ class BugzillaProcessor(BaseProcessor):
         users = set()
         msg = msg['msg']
         bug = msg['bug']
-        users.add(msg['event']['who'])
-        users.add(bug['creator'])
-        users.add(bug['assigned_to'])
+
+        users.add(msg['event'].get('who'))
+        users.add(bug.get('creator'))
+        users.add(bug.get('assigned_to'))
 
         for email in bug['cc']:
             users.add(email)
 
+        # Strip anything that made it in erroneously
         for user in list(users):
+            if not user:
+                users.remove(user)
+                continue
             if user.endswith('lists.fedoraproject.org'):
                 users.remove(user)
+                continue
 
         return users
 

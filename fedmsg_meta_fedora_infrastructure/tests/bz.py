@@ -189,6 +189,126 @@ class TestBugzillaUpdate(Base):
     }
 
 
+class TestBugzillaNew(Base):
+    """ Even `Red Hat's Bugzilla instance <https://bugzilla.redhat.com>`_ is
+    hooked into fedmsg.
+
+    Messages of *this* type are published whenever someone **files a new bug**
+    on the *Fedora* or *Fedora EPEL* products.
+
+    Note that the ``event`` field is left empty (``{}``) for new bug events.
+    """
+
+    expected_title = "bugzilla.bug.new"
+    expected_subti = "puiterwijk filed a new bug " + \
+        "RHBZ#968947 'Review Request: gallery3-openid - OpenID...'"
+    expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=968947"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2972a442e97fa492c87f49a3e5fdb5ac?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+
+    expected_packages = set([])
+    expected_usernames = set(['puiterwijk'])
+    expected_objects = set([
+        'Fedora/Package Review/968947',
+    ])
+
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1395760459,
+        "msg_id": "2014-0bc98222-a864-4aea-bc6b-e3b090d2cc3d",
+        "topic": "org.fedoraproject.dev.bugzilla.bug.new",
+        "msg": {
+            "bug": {
+                "attachments": [],
+                "classification": "Fedora",
+                "creator": "puiterwijk@gmail.com",
+                "cc": [
+                    "package-review@lists.fedoraproject.org",
+                    "puiterwijk@gmail.com",
+                ],
+                "depends_on": [],
+                "weburl": "https://bugzilla.redhat.com/show_bug.cgi?id=968947",
+                "creation_time": 1369924680.0,
+                "actual_time": 0.0,
+                "docs_contact": "",
+                "is_open": True,
+                "keywords": [],
+                "target_release": [
+                    "---"
+                ],
+                "external_bugs": [],
+                "id": 968947,
+                "description": "\nSpec URL: http://puiterwijk.fedorapeople..",
+                "severity": "unspecified",
+                "is_confirmed": True,
+                "is_creator_accessible": True,
+                "comments": [
+                    {
+                        "count": 0,
+                        "author": "puiterwijk@gmail.com",
+                        "text": "\nSpec URL: http://puiterwijk.fedorapeople..",
+                        "creator": "puiterwijk@gmail.com",
+                        "creation_time": 1369924708.0,
+                        "bug_id": 968947,
+                        "creator_id": 330125,
+                        "time": 1369924708.0,
+                        "id": 5962818,
+                        "is_private": False
+                    },
+                ],
+                "priority": "unspecified",
+                "platform": "Unspecified",
+                "version": "rawhide",
+                "fixed_in": "",
+                "status": "ASSIGNED",
+                "product": "Fedora",
+                "blocks": [],
+                "qa_contact": "extras-qa@fedoraproject.org",
+                "see_also": [],
+                "component": "Package Review",
+                "remaining_time": 0.0,
+                "groups": [],
+                "estimated_time": 0.0,
+                "target_milestone": "---",
+                "is_cc_accessible": True,
+                "versions": [
+                    "rawhide"
+                ],
+                "url": "",
+                "whiteboard": "",
+                "summary": "Review Request: gallery3-openid - OpenID "
+                "authentication for Gallery3",
+                "alias": [],
+                "op_sys": "Unspecified",
+                "flags": [
+                    {
+                        "requestee": "puiterwijk@gmail.com",
+                        "status": "?",
+                        "name": "needinfo",
+                        "modification_date": 1392337756.0,
+                        "type_id": 16,
+                        "is_active": 1,
+                        "creation_date": 1392337756.0,
+                        "id": 1703755,
+                        "setter": "rbean@redhat.com"
+                    }
+                ],
+                "components": [
+                    "Package Review"
+                ],
+                "assigned_to": "",
+                "resolution": "",
+                "last_change_time": 1392337756.0
+            },
+            "event": {},
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
