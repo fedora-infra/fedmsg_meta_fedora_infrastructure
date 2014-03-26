@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
-""" Tests for github2fedmsg messages """
+""" Tests for bugzilla2fedmsg messages """
 
 import unittest
 import datetime
