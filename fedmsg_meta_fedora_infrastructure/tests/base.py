@@ -10,6 +10,7 @@ class Base(_Base):
         fedmsg_meta_fedora_infrastructure.fasshim._fas_cache = {
             'threebean': 'ralph',
             'rbean@redhat.com': 'ralph',
+            'puiterwijk@gmail.com': 'puiterwijk',
         }
         super(Base, self).setUp()
 
