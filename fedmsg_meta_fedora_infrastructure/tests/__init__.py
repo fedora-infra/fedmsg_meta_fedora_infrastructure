@@ -917,7 +917,7 @@ class TestSupybotEndMeeting(Base):
     """
     expected_title = "meetbot.meeting.complete"
     expected_subti = 'ralph ended meeting "title" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
+    expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -951,7 +951,7 @@ class TestSupybotEndMeetingNoTitle(Base):
     """
     expected_title = "meetbot.meeting.complete"
     expected_subti = 'ralph ended a meeting in #channel'
-    expected_link = 'http://logs.com/awesome.html'
+    expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
