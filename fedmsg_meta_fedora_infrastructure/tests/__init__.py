@@ -917,7 +917,7 @@ class TestSupybotEndMeeting(Base):
     """
     expected_title = "meetbot.meeting.complete"
     expected_subti = 'ralph ended meeting "title" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
+    expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -951,7 +951,7 @@ class TestSupybotEndMeetingNoTitle(Base):
     """
     expected_title = "meetbot.meeting.complete"
     expected_subti = 'ralph ended a meeting in #channel'
-    expected_link = 'http://logs.com/awesome.html'
+    expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1048,7 +1048,7 @@ class TestMediaWikiEdit(Base):
     """
     expected_title = "wiki.article.edit"
     expected_subti = 'Ralph made a wiki edit to "Messaging SIG"'
-    expected_link = "http://this-is-a-link.org"
+    expected_link = "https://this-is-a-link.org"
     expected_icon = "https://fedoraproject.org/w/skins/common/" + \
         "images/mediawiki.png"
     expected_usernames = set(['ralph'])

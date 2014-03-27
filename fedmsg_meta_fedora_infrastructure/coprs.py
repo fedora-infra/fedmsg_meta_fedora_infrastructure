@@ -55,7 +55,7 @@ class CoprsProcessor(BaseProcessor):
         chroot = msg['msg'].get('chroot', None)
 
         if 'chroot' in msg['topic']:
-            tmpl = ("http://copr-be.cloud.fedoraproject.org/"
+            tmpl = ("https://copr-be.cloud.fedoraproject.org/"
                     "results/{user}/{copr}/{chroot}/")
         elif 'build' in msg['topic']:
             tmpl = ("http://copr-fe.cloud.fedoraproject.org/"

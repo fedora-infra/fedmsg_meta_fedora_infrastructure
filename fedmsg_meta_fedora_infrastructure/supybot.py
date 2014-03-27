@@ -34,7 +34,7 @@ class SupybotProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         if 'meetbot.meeting.complete' in msg['topic']:
-            return msg['msg']['url'] + ".html"
+            return msg['msg']['url'].replace('http://', 'https://') + ".html"
         else:
             return None
 

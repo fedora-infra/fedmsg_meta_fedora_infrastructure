@@ -116,7 +116,7 @@ class TestCoprsChrootStart(Base):
         'coprs/mutt-kz/chroot.start/fedora-20-x86_64',
     ])
     expected_link = (
-        "http://copr-be.cloud.fedoraproject.org/results/"
+        "https://copr-be.cloud.fedoraproject.org/results/"
         "fatka/mutt-kz/fedora-20-x86_64/")
     msg = {
         u'username': u'copr',
