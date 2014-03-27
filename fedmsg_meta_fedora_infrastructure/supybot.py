@@ -47,9 +47,10 @@ class SupybotProcessor(BaseProcessor):
 
         elif 'meetbot.meeting.complete' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user} ended meeting "{name}" in {channel}')
+                tmpl = self._('{user}\'s meeting titled "{name}" '
+                              'ended in {channel}')
             else:
-                tmpl = self._('{user} ended a meeting in {channel}')
+                tmpl = self._('{user}\'s meeting ended in {channel}')
 
         elif 'meetbot.meeting.topic.update' in msg['topic']:
             if msg['msg']['meeting_topic']:
