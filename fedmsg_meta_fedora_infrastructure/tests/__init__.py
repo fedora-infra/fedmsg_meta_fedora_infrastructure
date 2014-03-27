@@ -916,7 +916,7 @@ class TestSupybotEndMeeting(Base):
     Here's an example message where the title is specified:
     """
     expected_title = "meetbot.meeting.complete"
-    expected_subti = 'ralph ended meeting "title" in #channel'
+    expected_subti = 'ralph\'s meeting titled "title" ended in #channel'
     expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -950,7 +950,7 @@ class TestSupybotEndMeetingNoTitle(Base):
     Here's an example message where the title is **not** specified:
     """
     expected_title = "meetbot.meeting.complete"
-    expected_subti = 'ralph ended a meeting in #channel'
+    expected_subti = 'ralph\'s meeting ended in #channel'
     expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
