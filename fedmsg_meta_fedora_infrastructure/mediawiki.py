@@ -47,7 +47,7 @@ class WikiProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         if 'wiki.article.edit' in msg['topic']:
-            return msg['msg']['url']
+            return msg['msg']['url'].replace('http://', 'https://')
 
     def secondary_icon(self, msg, **config):
         user = msg['msg'].get('user', msg['msg'].get('user_text', ''))

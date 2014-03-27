@@ -1048,7 +1048,7 @@ class TestMediaWikiEdit(Base):
     """
     expected_title = "wiki.article.edit"
     expected_subti = 'Ralph made a wiki edit to "Messaging SIG"'
-    expected_link = "http://this-is-a-link.org"
+    expected_link = "https://this-is-a-link.org"
     expected_icon = "https://fedoraproject.org/w/skins/common/" + \
         "images/mediawiki.png"
     expected_usernames = set(['ralph'])
