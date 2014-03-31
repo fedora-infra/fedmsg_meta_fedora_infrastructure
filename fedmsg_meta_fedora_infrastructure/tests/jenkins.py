@@ -46,7 +46,6 @@ class TestJenkinsBuildStart(Base):
         u'topic': u'org.fedoraproject.prod.jenkins.build.start',
         u'msg': {
             u'project': 'fedora-mobile',
-            u'slave': u'Fedora18',
             u'build': 174,
         },
     }
@@ -73,7 +72,6 @@ class TestJenkinsBuildPassed(Base):
         u'msg': {
             u'project': 'fedora-mobile',
             u'took': u'1 min 28 sec',
-            u'slave': u'Fedora18',
             u'build': 174,
         },
     }
@@ -100,7 +98,6 @@ class TestJenkinsBuildFailed(Base):
         u'msg': {
             u'project': 'fedora-mobile',
             u'took': u'9.4 sec',
-            u'slave': u'Fedora18',
             u'build': 165,
         },
     }
