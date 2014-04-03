@@ -416,4 +416,40 @@ class TestTaggerToggleUsageOff(Base):
         }
     }
 
+
+class TestTaggerRankUpdate(Base):
+    """ `Fedora Tagger <https://apps.fedoraproject.org/tagger>`_
+    publishes messages like this one when a user's rank on the Fedora Tagger
+    leaderboard changes.
+    """
+
+    expected_title = "fedoratagger.user.rank.update"
+    expected_subti = "immanetize's rank changed to 59"
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
+    expected_secondary_icon = (
+        'http://www.gravatar.com/avatar/db397b708688db9b708f54f3909ec0da'
+        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        '%2Ffedora_infinity_64x64.png')
+    expected_usernames = set(['immanetize'])
+    expected_packages = set()
+    expected_objects = set()
+    msg = {
+        "msg": {
+            "user": {
+                "anonymous": False,
+                "votes": 176,
+                "rank": 59,
+                "username": "immanetize",
+                "score": 275
+            }
+        },
+        "source_name": "datanommer",
+        "timestamp": 1396074860.0,
+        "topic": "org.fedoraproject.prod.fedoratagger.user.rank.update",
+        "source_version": "0.6.1",
+        "i": 1,
+        "msg_id": "2014-3893d29a-e9a1-43e0-90f0-333feebb766c"
+    }
+
+
 add_doc(locals())
