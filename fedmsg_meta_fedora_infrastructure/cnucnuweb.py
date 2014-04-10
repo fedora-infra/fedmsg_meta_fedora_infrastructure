@@ -50,7 +50,6 @@ class CnuCnuWebProcessor(BaseProcessor):
         else:
             return email2fas(email, **config)
 
-
     def link(self, msg, **config):
         if msg['msg']['project']:
             proj = msg['msg']['project']['name']
