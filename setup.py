@@ -88,6 +88,7 @@ entry_points = {
         "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
         "github=fedmsg_meta_fedora_infrastructure.github:GithubProcessor",
         "bugzilla=fedmsg_meta_fedora_infrastructure.bz:BugzillaProcessor",
+        "elections=fedmsg_meta_fedora_infrastructure.bz:ElectionsProcessor",
     ]
 }
 
