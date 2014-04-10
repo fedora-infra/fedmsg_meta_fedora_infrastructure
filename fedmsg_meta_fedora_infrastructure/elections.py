@@ -31,7 +31,7 @@ class ElectionsProcessor(BaseProcessor):
     def link(self, msg, **config):
 
         name = msg['msg']['election']['alias']
-        return "https://apps.fedoraproject.org/voting/about/%s" % (name)
+        return "https://apps.fedoraproject.org/voting/about/%s/" % (name)
 
     def subtitle(self, msg, **config):
         kwargs = dict(
@@ -67,8 +67,9 @@ class ElectionsProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         return gravatar_url(msg['msg']['agent'])
 
-    def usernames(self, msg, **config):\
+    def usernames(self, msg, **config):
         users = [msg['msg']['agent']]
+
         if 'election' in msg['msg'] and 'fas_user' in msg['msg']['election']:
             users.append(msg['msg']['election']['fas_user'])
 
