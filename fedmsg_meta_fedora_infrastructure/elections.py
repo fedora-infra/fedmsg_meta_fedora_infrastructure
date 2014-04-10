@@ -68,12 +68,10 @@ class ElectionsProcessor(BaseProcessor):
         return gravatar_url(msg['msg']['agent'])
 
     def usernames(self, msg, **config):
-        users = [msg['msg']['agent']]
-
-        if 'election' in msg['msg'] and 'fas_user' in msg['msg']['election']:
-            users.append(msg['msg']['election']['fas_user'])
-
-        return set(users)
+        try:
+            return set([msg['msg']['agent']])
+        except KeyError:
+            return set()
 
     def objects(self, msg, **config):
         kind = msg['topic'].split('.')[-2]
