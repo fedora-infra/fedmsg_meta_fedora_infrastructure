@@ -49,12 +49,12 @@ class ElectionsProcessor(BaseProcessor):
                 '{agent} added candidate "{cand_name}" to '
                 'election "{name}"')
             kwargs['cand_name'] = ', '.join(msg['msg']['candidate']['name'])
-        elif 'election.edit' in msg['topic']:
+        elif 'candidate.edit' in msg['topic']:
             tmpl = self._(
                 '{agent} edited candidate "{cand_name}" of '
                 'election "{name}"')
             kwargs['cand_name'] = ', '.join(msg['msg']['candidate']['name'])
-        elif 'election.delete' in msg['topic']:
+        elif 'candidate.delete' in msg['topic']:
             tmpl = self._(
                 '{agent} deleted candidate "{cand_name}" of '
                 'election "{name}"')
