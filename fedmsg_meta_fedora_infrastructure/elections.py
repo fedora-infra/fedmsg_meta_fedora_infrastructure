@@ -36,20 +36,26 @@ class ElectionsProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         kwargs = dict(
             name=msg['msg']['election']['alias'],
+            agent=msg['msg']['agent'],
         )
         if 'election.new' in msg['topic']:
             tmpl = self._(
-                'Election "{name}" was created')
+                '{agent} created election "{name}"')
+        elif 'election.edit' in msg['topic']:
+            tmpl = self._(
+                '{agent} edited election "{name}"')
         else:
             tmpl = ''
 
         return tmpl.format(**kwargs)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['election']['fas_user'])
+        return gravatar_url(msg['msg']['agent'])
 
-    def usernames(self, msg, **config):
-        users = [msg['msg']['election']['fas_user']]
+    def usernames(self, msg, **config):\
+        users = [msg['msg']['agent']]
+        if 'election' in msg['msg'] and 'fas_user' in msg['msg']['election']:
+            users.append(msg['msg']['election']['fas_user'])
 
         return set(users)
 
