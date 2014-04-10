@@ -22,7 +22,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
 class ElectionsProcessor(BaseProcessor):
-    __name__ = "elections"
+    __name__ = "fedora_elections"
     __description__ = "the fedora voting system"
     __link__ = "https://apps.fedoraproject.org/voting/"
     __docs__ = "https://github.com/fedora-infra/elections"
