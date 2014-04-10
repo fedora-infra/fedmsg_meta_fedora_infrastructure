@@ -44,6 +44,21 @@ class ElectionsProcessor(BaseProcessor):
         elif 'election.edit' in msg['topic']:
             tmpl = self._(
                 '{agent} edited election "{name}"')
+        elif 'candidate.new' in msg['topic']:
+            tmpl = self._(
+                '{agent} added candidate "{cand_name}" to '
+                'election "{name}"')
+            kwargs['cand_name'] = ', '.join(msg['msg']['candidate']['name'])
+        elif 'election.edit' in msg['topic']:
+            tmpl = self._(
+                '{agent} edited candidate "{cand_name}" of '
+                'election "{name}"')
+            kwargs['cand_name'] = ', '.join(msg['msg']['candidate']['name'])
+        elif 'election.delete' in msg['topic']:
+            tmpl = self._(
+                '{agent} deleted candidate "{cand_name}" of '
+                'election "{name}"')
+            kwargs['cand_name'] = ', '.join(msg['msg']['candidate']['name'])
         else:
             tmpl = ''
 
