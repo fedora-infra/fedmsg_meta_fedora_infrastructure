@@ -223,12 +223,14 @@ class TestGithubIssue(Base):
                 "body": "Testing stuff.",
                 "number": 3,
                 "title": "Testing",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg/issues/3",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg/issues/3",
                 "created_at": "2014-03-17T20:48:13Z",
                 "labels": [],
                 "updated_at": "2014-03-18T18:08:32Z",
                 "comments": 4,
-                "html_url": "https://github.com/fedora-infra/github2fedmsg/issues/3",
+                "html_url": "https://github.com/fedora-infra/"
+                "github2fedmsg/issues/3",
                 "assignee": None,
                 "state": "open",
                 "user": {
@@ -272,7 +274,8 @@ class TestGithubIssue(Base):
                 "id": 17830164,
                 "size": 804,
                 "has_downloads": True,
-                "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
                 "watchers_count": 2,
                 "stargazers_count": 2,
                 "homepage": None,
@@ -288,14 +291,14 @@ class TestGithubIssue(Base):
                 "watchers": 2,
                 "name": "github2fedmsg",
                 "language": "Python",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
                 "created_at": "2014-03-17T14:09:56Z",
                 "pushed_at": "2014-03-18T17:45:16Z",
                 "default_branch": "develop",
             }
         }
     }
-
 
 
 class TestGithubIssueComment(Base):
@@ -331,9 +334,11 @@ class TestGithubIssueComment(Base):
         "msg": {
             "comment": {
                 "body": "This issue is super great!",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg/issues/comments/37971221",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg/issues/comments/37971221",
                 "created_at": "2014-03-18T18:36:56Z",
-                "html_url": "https://github.com/fedora-infra/github2fedmsg/issues/3#issuecomment-37971221",
+                "html_url": "https://github.com/fedora-infra/"
+                "github2fedmsg/issues/3#issuecomment-37971221",
                 "updated_at": "2014-03-18T18:36:56Z",
                 "user": {
                     "url": "https://api.github.com/users/ralphbean",
@@ -376,7 +381,8 @@ class TestGithubIssueComment(Base):
                 "stargazers_count": 2,
                 "homepage": None,
                 "fork": False,
-                "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
                 "has_downloads": True,
                 "default_branch": "develop",
                 "html_url": "https://github.com/fedora-infra/github2fedmsg",
@@ -387,7 +393,8 @@ class TestGithubIssueComment(Base):
                 "watchers": 2,
                 "name": "github2fedmsg",
                 "language": "Python",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
                 "created_at": "2014-03-17T14:09:56Z",
                 "pushed_at": "2014-03-18T18:36:30Z",
                 "open_issues": 1
@@ -400,12 +407,14 @@ class TestGithubIssueComment(Base):
                 "body": "Testing stuff.",
                 "number": 3,
                 "title": "Testing",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg/issues/3",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg/issues/3",
                 "created_at": "2014-03-17T20:48:13Z",
                 "labels": [],
                 "updated_at": "2014-03-18T18:36:56Z",
                 "comments": 6,
-                "html_url": "https://github.com/fedora-infra/github2fedmsg/issues/3",
+                "html_url": "https://github.com/fedora-infra/"
+                "github2fedmsg/issues/3",
                 "assignee": None,
                 "state": "open",
                 "user": {
@@ -488,7 +497,8 @@ class TestGithubCreate(Base):
                 "stargazers_count": 2,
                 "homepage": None,
                 "fork": False,
-                "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
                 "has_downloads": True,
                 "default_branch": "develop",
                 "html_url": "https://github.com/fedora-infra/github2fedmsg",
@@ -499,7 +509,8 @@ class TestGithubCreate(Base):
                 "watchers": 2,
                 "name": "github2fedmsg",
                 "language": "Python",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
                 "created_at": "2014-03-17T14:09:56Z",
                 "pushed_at": "2014-03-18T18:51:32Z",
                 "open_issues": 1
@@ -511,7 +522,8 @@ class TestGithubCreate(Base):
             "ref_type": "branch",
             "pusher_type": "user",
             "master_branch": "develop",
-            "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus"
+            "description": "A pubsubhubbub application that rebroadcasts "
+            "github events on the fedmsg bus"
         }
     }
 
@@ -576,7 +588,8 @@ class TestGithubPullRequestClosed(Base):
                 "stargazers_count": 2,
                 "homepage": None,
                 "fork": False,
-                "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
                 "has_downloads": True,
                 "default_branch": "develop",
                 "html_url": "https://github.com/fedora-infra/github2fedmsg",
@@ -587,7 +600,8 @@ class TestGithubPullRequestClosed(Base):
                 "watchers": 2,
                 "name": "github2fedmsg",
                 "language": "Python",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
                 "created_at": "2014-03-17T14:09:56Z",
                 "pushed_at": "2014-03-18T19:07:22Z",
                 "open_issues": 1
@@ -634,10 +648,12 @@ class TestGithubPullRequestClosed(Base):
                         "stargazers_count": 2,
                         "homepage": None,
                         "fork": False,
-                        "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                        "description": "A pubsubhubbub application that "
+                        "rebroadcasts github events on the fedmsg bus",
                         "has_downloads": True,
                         "default_branch": "develop",
-                        "html_url": "https://github.com/fedora-infra/github2fedmsg",
+                        "html_url": "https://github.com/fedora-infra/"
+                        "github2fedmsg",
                         "has_issues": True,
                         "master_branch": "develop",
                         "forks": 0,
@@ -645,7 +661,8 @@ class TestGithubPullRequestClosed(Base):
                         "watchers": 2,
                         "name": "github2fedmsg",
                         "language": "Python",
-                        "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "github2fedmsg",
                         "created_at": "2014-03-17T14:09:56Z",
                         "pushed_at": "2014-03-18T19:07:22Z",
                         "open_issues": 1
@@ -664,7 +681,8 @@ class TestGithubPullRequestClosed(Base):
                     "label": "fedora-infra:feature/no-more-retask"
                 },
                 "commits": 1,
-                "html_url": "https://github.com/fedora-infra/github2fedmsg/pull/6",
+                "html_url": "https://github.com/fedora-infra/"
+                "github2fedmsg/pull/6",
                 "number": 6,
                 "base": {
                     "repo": {
@@ -688,10 +706,12 @@ class TestGithubPullRequestClosed(Base):
                         "stargazers_count": 2,
                         "homepage": None,
                         "fork": False,
-                        "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                        "description": "A pubsubhubbub application that "
+                        "rebroadcasts github events on the fedmsg bus",
                         "has_downloads": True,
                         "default_branch": "develop",
-                        "html_url": "https://github.com/fedora-infra/github2fedmsg",
+                        "html_url": "https://github.com/fedora-infra/"
+                        "github2fedmsg",
                         "has_issues": True,
                         "master_branch": "develop",
                         "forks": 0,
@@ -699,7 +719,8 @@ class TestGithubPullRequestClosed(Base):
                         "watchers": 2,
                         "name": "github2fedmsg",
                         "language": "Python",
-                        "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "github2fedmsg",
                         "created_at": "2014-03-17T14:09:56Z",
                         "pushed_at": "2014-03-18T19:07:22Z",
                         "open_issues": 1
@@ -728,7 +749,8 @@ class TestGithubPullRequestClosed(Base):
                 },
                 "milestone": None,
                 "merged_by": None,
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg/pulls/6",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg/pulls/6",
                 "mergeable_state": "unknown",
                 "created_at": "2014-03-18T19:05:44Z",
                 "review_comments": 0
@@ -788,7 +810,8 @@ class TestGithubFork(Base):
                 "homepage": None,
                 "public": True,
                 "fork": True,
-                "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
                 "has_downloads": True,
                 "default_branch": "develop",
                 "html_url": "https://github.com/kushal124/github2fedmsg",
@@ -826,7 +849,8 @@ class TestGithubFork(Base):
                 "stargazers_count": 2,
                 "homepage": None,
                 "fork": False,
-                "description": "A pubsubhubbub application that rebroadcasts github events on the fedmsg bus",
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
                 "has_downloads": True,
                 "default_branch": "develop",
                 "html_url": "https://github.com/fedora-infra/github2fedmsg",
@@ -837,7 +861,8 @@ class TestGithubFork(Base):
                 "watchers": 2,
                 "name": "github2fedmsg",
                 "language": "Python",
-                "url": "https://api.github.com/repos/fedora-infra/github2fedmsg",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
                 "created_at": "2014-03-17T14:09:56Z",
                 "pushed_at": "2014-03-18T19:17:12Z",
                 "open_issues": 1
