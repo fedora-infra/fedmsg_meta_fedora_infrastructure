@@ -26,7 +26,7 @@ class JenkinsProcessor(BaseProcessor):
     __description__ = "Jenkins CI system"
     __link__ = "http://jenkins.cloud.fedoraproject.org/"
     __docs__ = "https://fedoraproject.org/wiki/Jenkins@infra"
-    __obj__  = "Jenkins build status"
+    __obj__ = "Jenkins build status"
     __icon__ = ("https://wiki.jenkins-ci.org/download/attachments/"
                 "2916393/logo.png?version=1")
 
@@ -46,7 +46,7 @@ class JenkinsProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         build_id = msg['msg'].get('build')
-        project  = msg['msg'].get('project')
+        project = msg['msg'].get('project')
 
         if build_id is not None and project is not None:
             tmpl = ("http://jenkins.cloud.fedoraproject.org/job/{project}/"

@@ -25,6 +25,7 @@ from fedmsg_meta_fedora_infrastructure.tests import Base
 
 from common import add_doc
 
+
 class TestJenkinsBuildStart(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
     messages when a build starts.
@@ -49,6 +50,7 @@ class TestJenkinsBuildStart(Base):
             u'build': 174,
         },
     }
+
 
 class TestJenkinsBuildPassed(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
@@ -75,6 +77,7 @@ class TestJenkinsBuildPassed(Base):
             u'build': 174,
         },
     }
+
 
 class TestJenkinsBuildFailed(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
