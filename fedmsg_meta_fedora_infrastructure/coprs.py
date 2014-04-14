@@ -58,10 +58,10 @@ class CoprsProcessor(BaseProcessor):
             tmpl = ("https://copr-be.cloud.fedoraproject.org/"
                     "results/{user}/{copr}/{chroot}/")
         elif 'build' in msg['topic']:
-            tmpl = ("http://copr-fe.cloud.fedoraproject.org/"
+            tmpl = ("https://copr.fedoraproject.org/"
                     "coprs/{user}/{copr}/")
         else:
-            return None
+            return "https://copr.fedoraproject.org"
 
         return tmpl.format(user=user, copr=copr, chroot=chroot)
 

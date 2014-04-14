@@ -42,7 +42,7 @@ class TestCoprsBuildStart(Base):
         'coprs/mutt-kz/build.start',
     ])
     expected_link = (
-        "http://copr-fe.cloud.fedoraproject.org/coprs/fatka/mutt-kz/")
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/")
     msg = {
         u'username': u'copr',
         u'i': 1,
@@ -78,7 +78,7 @@ class TestCoprsBuildEnd(Base):
         'coprs/mutt-kz/build.end',
     ])
     expected_link = (
-        "http://copr-fe.cloud.fedoraproject.org/coprs/fatka/mutt-kz/")
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/")
     msg = {
         u'username': u'copr',
         u'i': 4,
@@ -144,6 +144,7 @@ class TestCoprsWorkerCreate(Base):
     """
     expected_title = "copr.worker.create"
     expected_subti = "a new worker was created"
+    expected_link = "https://copr.fedoraproject.org"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
