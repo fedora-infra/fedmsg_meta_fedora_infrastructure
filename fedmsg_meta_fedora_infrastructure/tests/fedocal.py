@@ -379,7 +379,7 @@ class TestMeetingReminder(Base):
     expected_title = "fedocal.meeting.reminder"
     expected_subti = ('Friendly reminder!  The "wat" meeting from the '
                       '"awesome" calendar starts in 59 minutes')
-    expected_link = "https://apps.fedoraproject.org/calendar/meeting/42/"
+    expected_link = "https://apps.fedoraproject.org/calendar/awesome/"
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_packages = set([])
@@ -403,7 +403,7 @@ class TestMeetingReminder(Base):
             "meeting": {
                 "meeting_time_start": now.time().strftime("%H:%M:%S"),
                 "meeting_name": "wat",
-                "meeting_id": 42,
+                "meeting_id": None,
                 "meeting_time_stop": "12:00:00",
                 "calendar_name": "awesome",
                 "meeting_date_end": "2013-09-21",

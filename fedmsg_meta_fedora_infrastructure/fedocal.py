@@ -140,7 +140,7 @@ class FedocalProcessor(BaseProcessor):
         try:
             meeting_id = msg['msg']['meeting']['meeting_id']
             return base + "meeting/%i/" % meeting_id
-        except KeyError:
+        except (KeyError, TypeError):
             return base + msg['msg']['calendar']['calendar_name'] + "/"
 
     def usernames(self, msg, **config):
