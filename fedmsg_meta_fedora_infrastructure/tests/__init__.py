@@ -300,11 +300,16 @@ class TestFASGroupApply(Base):
     }
 
 
-class TestBodhiUpdateComplete(Base):
+class LegacyTestBodhiUpdateComplete(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
     publishes messages on this topic whenever an update
     **completes it's push to the testing repository**.  Here's a
     straightforward example:
+
+    .. note:: We *used* to have this message in our system, but it got removed
+       when we found that fedmsg caused the bodhi1 masher to segfault in
+       certain circumstances.  This message, or one like it will likely return
+       with the advent of bodhi2.
     """
     expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
