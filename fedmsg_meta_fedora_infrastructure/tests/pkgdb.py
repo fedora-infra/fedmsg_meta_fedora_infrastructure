@@ -34,7 +34,7 @@ class TestPkgdbACLUpdate(Base):
     expected_title = "pkgdb.acl.update"
     expected_subti = ("ralph changed ralph's 'watchbugzilla' permission on "
                       "python-sh (EL-6) to 'Awaiting Review'")
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/python-sh"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/python-sh"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -88,7 +88,7 @@ class TestPkgdbPackageNew(Base):
     """
     expected_title = "pkgdb.package.new"
     expected_subti = "ralph added a new package 'php-zmq' (devel)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -137,7 +137,7 @@ class TestPkgdbOwnerUpdate(Base):
     """
     expected_title = "pkgdb.owner.update"
     expected_subti = "ralph changed owner of php-zmq (EL-6) to 'orphan'"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -184,7 +184,7 @@ class TestLegacyPkgdbACLRequestToggle(Base):
     """
     expected_title = "pkgdb.acl.request.toggle"
     expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -232,7 +232,7 @@ class TestLegacyPkgdbPackageUpdate(Base):
     """ Test old school messages. """
     expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to php-zmq"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -261,7 +261,7 @@ class TestPkgdbPackageUpdate(Base):
     """
     expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to guake"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/guake"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -311,7 +311,7 @@ class TestPkgdbBranchClone(Base):
     """
     expected_title = "pkgdb.branch.clone"
     expected_subti = "ralph branched php-zmq f18 from devel"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -373,7 +373,7 @@ class TestPkgdbPackageRetire(Base):
     """
     expected_title = "pkgdb.package.retire"
     expected_subti = "ralph retired php-zmq (EL-6)!"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -421,7 +421,7 @@ class TestPkgdbUserRemove(Base):
     """
     expected_title = "pkgdb.acl.user.remove"
     expected_subti = "ralph removed ralph from php-zmq (EL-6, F18)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
