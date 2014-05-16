@@ -50,7 +50,6 @@ class CnuCnuWebProcessor(BaseProcessor):
         else:
             return email2fas(email, **config)
 
-
     def link(self, msg, **config):
         if msg['msg']['project']:
             proj = msg['msg']['project']['name']
@@ -61,7 +60,7 @@ class CnuCnuWebProcessor(BaseProcessor):
         return None
 
     def subtitle(self, msg, **config):
-        user = self._get_user(msg)
+        user = self._get_user(msg, **config)
         if 'project.map.new' in msg['topic']:
             project = msg['msg']['project']['name']
             distro = msg['msg']['distro']['name']
@@ -125,14 +124,14 @@ class CnuCnuWebProcessor(BaseProcessor):
             pass
 
     def secondary_icon(self, msg, **config):
-        username = self._get_user(msg)
+        username = self._get_user(msg, **config)
         if username:
-            return gravatar_url(self._get_user(msg))
+            return gravatar_url(self._get_user(msg, **config))
         else:
             return None
 
     def usernames(self, msg, **config):
-        username = self._get_user(msg)
+        username = self._get_user(msg, **config)
         if username:
             return set([username])
         else:

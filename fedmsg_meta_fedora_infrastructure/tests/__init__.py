@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -41,6 +41,8 @@ from fedmsg_meta_fedora_infrastructure.tests.summershum import *
 from fedmsg_meta_fedora_infrastructure.tests.jenkins import *
 from fedmsg_meta_fedora_infrastructure.tests.github import *
 from fedmsg_meta_fedora_infrastructure.tests.ftpsync import *
+from fedmsg_meta_fedora_infrastructure.tests.bz import *
+from fedmsg_meta_fedora_infrastructure.tests.elections import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
@@ -298,11 +300,16 @@ class TestFASGroupApply(Base):
     }
 
 
-class TestBodhiUpdateComplete(Base):
+class LegacyTestBodhiUpdateComplete(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
     publishes messages on this topic whenever an update
     **completes it's push to the testing repository**.  Here's a
     straightforward example:
+
+    .. note:: We *used* to have this message in our system, but it got removed
+       when we found that fedmsg caused the bodhi1 masher to segfault in
+       certain circumstances.  This message, or one like it will likely return
+       with the advent of bodhi2.
     """
     expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
@@ -850,6 +857,10 @@ class TestSupybotStartMeetingNoName(Base):
     """
     expected_title = "meetbot.meeting.start"
     expected_subti = 'ralph started a meeting in #channel'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/meetbot.png'
+    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -915,8 +926,8 @@ class TestSupybotEndMeeting(Base):
     Here's an example message where the title is specified:
     """
     expected_title = "meetbot.meeting.complete"
-    expected_subti = 'ralph ended meeting "title" in #channel'
-    expected_link = 'http://logs.com/awesome.html'
+    expected_subti = 'ralph\'s meeting titled "title" ended in #channel'
+    expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -949,8 +960,8 @@ class TestSupybotEndMeetingNoTitle(Base):
     Here's an example message where the title is **not** specified:
     """
     expected_title = "meetbot.meeting.complete"
-    expected_subti = 'ralph ended a meeting in #channel'
-    expected_link = 'http://logs.com/awesome.html'
+    expected_subti = 'ralph\'s meeting ended in #channel'
+    expected_link = 'https://logs.com/awesome.html'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -980,7 +991,8 @@ class TestSupybotChangeTopic(Base):
     zodbot publishes message for that!  An example **with** a title specified:
     """
     expected_title = "meetbot.meeting.topic.update"
-    expected_subti = 'ralph changed the topic of "title" to "Food" in #channel'
+    expected_subti = 'The topic of ralph\'s "title" meeting changed ' +\
+        'to "Food" in #channel'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1014,7 +1026,8 @@ class TestSupybotChangeTopicNoTitle(Base):
     specified:
     """
     expected_title = "meetbot.meeting.topic.update"
-    expected_subti = 'ralph changed the topic to "Food" in #channel'
+    expected_subti = 'The topic of ralph\'s meeting changed ' +\
+        'to "Food" in #channel'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1047,7 +1060,7 @@ class TestMediaWikiEdit(Base):
     """
     expected_title = "wiki.article.edit"
     expected_subti = 'Ralph made a wiki edit to "Messaging SIG"'
-    expected_link = "http://this-is-a-link.org"
+    expected_link = "https://this-is-a-link.org"
     expected_icon = "https://fedoraproject.org/w/skins/common/" + \
         "images/mediawiki.png"
     expected_usernames = set(['ralph'])

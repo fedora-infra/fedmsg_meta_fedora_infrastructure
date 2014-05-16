@@ -32,6 +32,7 @@ class TestCoprsBuildStart(Base):
     """
     expected_title = "copr.build.start"
     expected_subti = ("fatka started a new build of the mutt-kz copr")
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/copr.png'
     expected_secondary_icon = (
         'http://www.gravatar.com/avatar/5f0736d6f93d195ac1a4a3c9a90a379d?'
         's=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2Ffedora'
@@ -42,7 +43,7 @@ class TestCoprsBuildStart(Base):
         'coprs/mutt-kz/build.start',
     ])
     expected_link = (
-        "http://copr-fe.cloud.fedoraproject.org/coprs/fatka/mutt-kz/")
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/")
     msg = {
         u'username': u'copr',
         u'i': 1,
@@ -78,7 +79,7 @@ class TestCoprsBuildEnd(Base):
         'coprs/mutt-kz/build.end',
     ])
     expected_link = (
-        "http://copr-fe.cloud.fedoraproject.org/coprs/fatka/mutt-kz/")
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/")
     msg = {
         u'username': u'copr',
         u'i': 4,
@@ -116,7 +117,7 @@ class TestCoprsChrootStart(Base):
         'coprs/mutt-kz/chroot.start/fedora-20-x86_64',
     ])
     expected_link = (
-        "http://copr-be.cloud.fedoraproject.org/results/"
+        "https://copr-be.cloud.fedoraproject.org/results/"
         "fatka/mutt-kz/fedora-20-x86_64/")
     msg = {
         u'username': u'copr',
@@ -144,6 +145,7 @@ class TestCoprsWorkerCreate(Base):
     """
     expected_title = "copr.worker.create"
     expected_subti = "a new worker was created"
+    expected_link = "https://copr.fedoraproject.org"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([

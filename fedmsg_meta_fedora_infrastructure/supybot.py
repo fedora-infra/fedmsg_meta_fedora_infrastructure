@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas
+from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas, gravatar_url
 
 blacklisted_people = [
     'zodbot',
@@ -31,10 +31,11 @@ class SupybotProcessor(BaseProcessor):
     __link__ = "http://meetbot.fedoraproject.org/"
     __docs__ = "http://fedoraproject.org/wiki/Zodbot"
     __obj__ = "IRC Meetings"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/meetbot.png"
 
     def link(self, msg, **config):
         if 'meetbot.meeting.complete' in msg['topic']:
-            return msg['msg']['url'] + ".html"
+            return msg['msg']['url'].replace('http://', 'https://') + ".html"
         else:
             return None
 
@@ -47,17 +48,18 @@ class SupybotProcessor(BaseProcessor):
 
         elif 'meetbot.meeting.complete' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user} ended meeting "{name}" in {channel}')
+                tmpl = self._('{user}\'s meeting titled "{name}" '
+                              'ended in {channel}')
             else:
-                tmpl = self._('{user} ended a meeting in {channel}')
+                tmpl = self._('{user}\'s meeting ended in {channel}')
 
         elif 'meetbot.meeting.topic.update' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user} changed the topic of '
-                              '"{name}" to "{topic}" in {channel}')
+                tmpl = self._('The topic of {user}\'s "{name}" meeting '
+                              'changed to "{topic}" in {channel}')
             else:
-                tmpl = self._('{user} changed the topic '
-                              'to "{topic}" in {channel}')
+                tmpl = self._('The topic of {user}\'s meeting '
+                              'changed to "{topic}" in {channel}')
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -74,6 +76,10 @@ class SupybotProcessor(BaseProcessor):
             for nick in msg['msg']['attendees']
             if nick not in blacklisted_people
         ])
+
+    def secondary_icon(self, msg, **config):
+        user = nick2fas(msg['msg']['owner'], **config)
+        return gravatar_url(user)
 
     def objects(self, msg, **config):
         objs = set([

@@ -25,6 +25,7 @@ from fedmsg_meta_fedora_infrastructure.tests import Base
 
 from common import add_doc
 
+
 class TestJenkinsBuildStart(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
     messages when a build starts.
@@ -46,10 +47,10 @@ class TestJenkinsBuildStart(Base):
         u'topic': u'org.fedoraproject.prod.jenkins.build.start',
         u'msg': {
             u'project': 'fedora-mobile',
-            u'slave': u'Fedora18',
             u'build': 174,
         },
     }
+
 
 class TestJenkinsBuildPassed(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
@@ -73,10 +74,10 @@ class TestJenkinsBuildPassed(Base):
         u'msg': {
             u'project': 'fedora-mobile',
             u'took': u'1 min 28 sec',
-            u'slave': u'Fedora18',
             u'build': 174,
         },
     }
+
 
 class TestJenkinsBuildFailed(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
@@ -100,7 +101,6 @@ class TestJenkinsBuildFailed(Base):
         u'msg': {
             u'project': 'fedora-mobile',
             u'took': u'9.4 sec',
-            u'slave': u'Fedora18',
             u'build': 165,
         },
     }

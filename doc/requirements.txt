@@ -1,0 +1,4 @@
+cloud_sptheme
+pyzmq-static
+nose
+requests

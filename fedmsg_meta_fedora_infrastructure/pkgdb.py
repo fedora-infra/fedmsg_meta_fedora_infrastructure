@@ -28,7 +28,7 @@ class PkgdbProcessor(BaseProcessor):
     __docs__ = "https://fedorahosted.org/packagedb/"
     __obj__ = "Package ACL Updates"
     __icon__ = ("https://apps.fedoraproject.org/packages/"
-               "images/icons/package_128x128.png")
+                "images/icons/package_128x128.png")
 
     def subtitle(self, msg, **config):
         if 'pkgdb.acl.update' in msg['topic']:
@@ -298,7 +298,7 @@ class PkgdbProcessor(BaseProcessor):
         return packages
 
     def link(self, msg, **config):
-        tmpl = "https://admin.fedoraproject.org/pkgdb/acls/name/{package}"
+        tmpl = "https://admin.fedoraproject.org/pkgdb/package/{package}"
 
         if any(map(msg['topic'].__contains__, [
             'pkgdb.acl.update',

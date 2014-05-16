@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -83,16 +83,21 @@ entry_points = {
         "NuancierProcessor",
         "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         "coprs=fedmsg_meta_fedora_infrastructure.coprs:CoprsProcessor",
-        "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:CnuCnuWebProcessor",
-        "summershum=fedmsg_meta_fedora_infrastructure.summershum:SummerShumProcessor",
+        "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:"
+        "CnuCnuWebProcessor",
+        "summershum=fedmsg_meta_fedora_infrastructure.summershum:"
+        "SummerShumProcessor",
         "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
         "github=fedmsg_meta_fedora_infrastructure.github:GithubProcessor",
+        "bugzilla=fedmsg_meta_fedora_infrastructure.bz:BugzillaProcessor",
+        "elections=fedmsg_meta_fedora_infrastructure.elections:"
+        "ElectionsProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.11',
+    version='0.2.12',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

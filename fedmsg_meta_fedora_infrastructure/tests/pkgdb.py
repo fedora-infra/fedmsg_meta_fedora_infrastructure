@@ -34,12 +34,13 @@ class TestPkgdbACLUpdate(Base):
     expected_title = "pkgdb.acl.update"
     expected_subti = ("ralph changed ralph's 'watchbugzilla' permission on "
                       "python-sh (EL-6) to 'Awaiting Review'")
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/python-sh"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/python-sh"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['python-sh'])
     expected_usernames = set(['ralph', 'grover'])
     expected_objects = set(['python-sh/acls/EL-6/watchbugzilla/ralph'])
@@ -87,12 +88,13 @@ class TestPkgdbPackageNew(Base):
     """
     expected_title = "pkgdb.package.new"
     expected_subti = "ralph added a new package 'php-zmq' (devel)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph', 'lmacken'])
     expected_objects = set(['php-zmq/create'])
@@ -135,12 +137,13 @@ class TestPkgdbOwnerUpdate(Base):
     """
     expected_title = "pkgdb.owner.update"
     expected_subti = "ralph changed owner of php-zmq (EL-6) to 'orphan'"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/owner/EL-6'])
@@ -181,12 +184,13 @@ class TestLegacyPkgdbACLRequestToggle(Base):
     """
     expected_title = "pkgdb.acl.request.toggle"
     expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/acls/EL-6/commit/ralph'])
@@ -228,12 +232,13 @@ class TestLegacyPkgdbPackageUpdate(Base):
     """ Test old school messages. """
     expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to php-zmq"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                              "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                              "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/update'])
@@ -256,12 +261,13 @@ class TestPkgdbPackageUpdate(Base):
     """
     expected_title = "pkgdb.package.update"
     expected_subti = "ralph made some updates to guake"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/guake"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['guake'])
     expected_usernames = set(['ralph', 'pingou'])
     expected_objects = set(['guake/update'])
@@ -305,12 +311,13 @@ class TestPkgdbBranchClone(Base):
     """
     expected_title = "pkgdb.branch.clone"
     expected_subti = "ralph branched php-zmq f18 from devel"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/branch'])
@@ -339,9 +346,10 @@ class TestPkgdbCritpathUpdate(Base):
     expected_subti = "ralph altered the critpath status for some packages"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([])
@@ -365,12 +373,13 @@ class TestPkgdbPackageRetire(Base):
     """
     expected_title = "pkgdb.package.retire"
     expected_subti = "ralph retired php-zmq (EL-6)!"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/retire'])
@@ -412,12 +421,13 @@ class TestPkgdbUserRemove(Base):
     """
     expected_title = "pkgdb.acl.user.remove"
     expected_subti = "ralph removed ralph from php-zmq (EL-6, F18)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/acls/name/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/remove/ralph'])
@@ -483,9 +493,10 @@ class TestPkgdbBranchStart(Base):
     expected_subti = "ralph started a branch of F-19 from devel"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()
@@ -524,9 +535,10 @@ class TestPkgdbBranchComplete(Base):
     expected_subti = "ralph's branch of F-19 from devel completed"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()
@@ -565,9 +577,10 @@ class TestPkgdbCollectionNew(Base):
     expected_subti = "ralph created a new collection for Fedora 19"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()
@@ -599,9 +612,10 @@ class TestPkgdbCollectionUpdate(Base):
                       "collection: name, version")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_secondary_icon = ("http://www.gravatar.com/avatar/"
-                               "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-                               "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+    expected_secondary_icon = (
+        "http://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()

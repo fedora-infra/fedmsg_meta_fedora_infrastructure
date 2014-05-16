@@ -27,8 +27,7 @@ class CoprsProcessor(BaseProcessor):
     __link__ = "https://copr-fe.cloud.fedoraproject.org"
     __docs__ = "http://fedorahosted.org/copr"
     __obj__ = "Extra Repository Updates"
-    # No copr icon yet..
-    #__icon__ = ....
+    __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
 
     def subtitle(self, msg, **config):
 
@@ -50,18 +49,18 @@ class CoprsProcessor(BaseProcessor):
         return tmpl.format(user=user, copr=copr, chroot=chroot)
 
     def link(self, msg, **config):
-        user = msg['msg']['user']
-        copr = msg['msg']['copr']
+        user = msg['msg'].get('user')
+        copr = msg['msg'].get('copr')
         chroot = msg['msg'].get('chroot', None)
 
         if 'chroot' in msg['topic']:
-            tmpl = ("http://copr-be.cloud.fedoraproject.org/"
+            tmpl = ("https://copr-be.cloud.fedoraproject.org/"
                     "results/{user}/{copr}/{chroot}/")
         elif 'build' in msg['topic']:
-            tmpl = ("http://copr-fe.cloud.fedoraproject.org/"
+            tmpl = ("https://copr.fedoraproject.org/"
                     "coprs/{user}/{copr}/")
         else:
-            return None
+            return "https://copr.fedoraproject.org"
 
         return tmpl.format(user=user, copr=copr, chroot=chroot)
 
