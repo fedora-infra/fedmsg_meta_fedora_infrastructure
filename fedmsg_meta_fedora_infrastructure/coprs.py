@@ -27,8 +27,7 @@ class CoprsProcessor(BaseProcessor):
     __link__ = "https://copr-fe.cloud.fedoraproject.org"
     __docs__ = "http://fedorahosted.org/copr"
     __obj__ = "Extra Repository Updates"
-    # No copr icon yet..
-    #__icon__ = ....
+    __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
 
     def subtitle(self, msg, **config):
 
