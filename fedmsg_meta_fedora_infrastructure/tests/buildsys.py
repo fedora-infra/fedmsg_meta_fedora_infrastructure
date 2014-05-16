@@ -328,6 +328,7 @@ class TestKojiRepoInit(Base):
     expected_subti = 'Repo initialized:  f19-build'
     expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = expected_icon
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
@@ -354,6 +355,7 @@ class TestKojiRepoDone(Base):
     expected_subti = 'Repo done:  f19-build'
     expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = expected_icon
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
@@ -380,6 +382,7 @@ class TestKojiPackageListChange(Base):
     expected_subti = "Package list change for almanah:  'f17'"
     expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = expected_icon
     expected_packages = set(["almanah"])
     expected_usernames = set([])
     expected_objects = set([
