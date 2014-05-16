@@ -31,7 +31,20 @@ class TestKojiTaskStateChangeStart(Base):
     build changes.
 
     For reasons internal to koji itself, the state codes for **scratch** builds
-    are not as cryptic as the ones for regular builds.
+    are not as cryptic as the ones for regular builds.  It is worth noting that
+    the `task` state codes are different from the `build` state codes.  If you
+    wanted to know the numeric equivalents, you could check with koji itself:
+
+        >>> import koji
+        >>> koji.TASK_STATES
+        {
+            'FREE': 0,
+            'OPEN': 1,
+            'CLOSED': 2,
+            'CANCELED': 3,
+            'ASSIGNED': 4,
+            'FAILED': 5,
+        }
 
     Here's an example message of a new **scratch build starting**.
     """
@@ -74,7 +87,20 @@ class TestKojiTaskStateChangeFail(Base):
     build changes.
 
     For reasons internal to koji itself, the state codes for **scratch** builds
-    are not as cryptic as the ones for regular builds.
+    are not as cryptic as the ones for regular builds.  It is worth noting that
+    the `task` state codes are different from the `build` state codes.  If you
+    wanted to know the numeric equivalents, you could check with koji itself:
+
+        >>> import koji
+        >>> koji.TASK_STATES
+        {
+            'FREE': 0,
+            'OPEN': 1,
+            'CLOSED': 2,
+            'CANCELED': 3,
+            'ASSIGNED': 4,
+            'FAILED': 5,
+        }
 
     Here's an example message of a **scratch build failing**.
     """
@@ -191,11 +217,15 @@ class TestKojiBuildStateChangeStart(Base):
     The state codes can be pretty cryptic (they are just integers and are the
     enums used by koji internally):
 
-    - 0 - Started
-    - 1 - Completed
-    - 2 - Deleted
-    - 3 - Failed
-    - 4 - Cancelled
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
 
     The example here is one of a new build **starting**.
     """
@@ -228,6 +258,7 @@ class TestKojiBuildStateChangeStart(Base):
             "new": 0,
             "owner": "ralph",
             "build_id": 12345,
+            "task_id": 4642,
             "instance": "primary",
         }
     }
@@ -236,7 +267,17 @@ class TestKojiBuildStateChangeStart(Base):
 class TestKojiBuildStateChangeStartNoOwner(Base):
     """ Koji emits messages on this topic anytime the state of a build changes.
 
-    The state codes can be tricky, but are described in other examples.
+    The state codes can be tricky, (they're the ones used internally by koji).
+
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
 
     *This* example message shows one where for some reason or another, koji
     was unable to publish the name of the owner of a build.  The 'owner' field
@@ -268,6 +309,7 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
             "new": 0,
             "owner": None,
             "build_id": 12345,
+            "task_id": 4642,
             "instance": "primary",
         }
     }
@@ -279,11 +321,15 @@ class TestKojiBuildStateChangeFail(Base):
     The state codes can be pretty cryptic (they are just integers and are the
     enums used by koji internally):
 
-    - 0 - Started
-    - 1 - Completed
-    - 2 - Deleted
-    - 3 - Failed
-    - 4 - Cancelled
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
 
     The example here is one of a build **failing** on one of the **secondary
     arch** koji instances.
@@ -317,6 +363,7 @@ class TestKojiBuildStateChangeFail(Base):
             "new": 3,
             "owner": "rmattes",
             "build_id": 12345,
+            "task_id": 4642,
             "instance": "ppc",
         }
     }
