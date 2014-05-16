@@ -55,11 +55,11 @@ class SupybotProcessor(BaseProcessor):
 
         elif 'meetbot.meeting.topic.update' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user} changed the topic of '
-                              '"{name}" to "{topic}" in {channel}')
+                tmpl = self._('The topic of {user}\'s "{name}" meeting '
+                              'changed to "{topic}" in {channel}')
             else:
-                tmpl = self._('{user} changed the topic '
-                              'to "{topic}" in {channel}')
+                tmpl = self._('The topic of {user}\'s meeting '
+                              'changed to "{topic}" in {channel}')
         else:
             raise NotImplementedError("%r" % msg)
 

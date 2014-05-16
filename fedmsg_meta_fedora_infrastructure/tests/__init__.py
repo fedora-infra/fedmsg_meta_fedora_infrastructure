@@ -991,7 +991,8 @@ class TestSupybotChangeTopic(Base):
     zodbot publishes message for that!  An example **with** a title specified:
     """
     expected_title = "meetbot.meeting.topic.update"
-    expected_subti = 'ralph changed the topic of "title" to "Food" in #channel'
+    expected_subti = 'The topic of ralph\'s "title" meeting changed ' +\
+        'to "Food" in #channel'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1025,7 +1026,8 @@ class TestSupybotChangeTopicNoTitle(Base):
     specified:
     """
     expected_title = "meetbot.meeting.topic.update"
-    expected_subti = 'ralph changed the topic to "Food" in #channel'
+    expected_subti = 'The topic of ralph\'s meeting changed ' +\
+        'to "Food" in #channel'
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
