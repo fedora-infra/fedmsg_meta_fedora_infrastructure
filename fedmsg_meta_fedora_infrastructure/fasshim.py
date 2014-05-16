@@ -29,7 +29,7 @@ def gravatar_url_from_email(email, size=64, default=None):
     if size not in _valid_gravatar_sizes:
         raise ValueError(b_(
             'Size %(size)i disallowed.  Must be in %(valid_sizes)r') % {
-            'size': size, 'valid_sizes': _valid_gravatar_sizes})
+                'size': size, 'valid_sizes': _valid_gravatar_sizes})
 
     if not default:
         default = ("http://fedoraproject.org/static/images/"
