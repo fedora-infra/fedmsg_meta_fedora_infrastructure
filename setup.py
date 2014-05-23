@@ -92,6 +92,7 @@ entry_points = {
         "bugzilla=fedmsg_meta_fedora_infrastructure.bz:BugzillaProcessor",
         "elections=fedmsg_meta_fedora_infrastructure.elections:"
         "ElectionsProcessor",
+        "fmn=fedmsg_meta_fedora_infrastructure.fmn:FMNProcessor",
     ]
 }
 
