@@ -55,14 +55,33 @@ class PkgdbProcessor(BaseProcessor):
             return tmpl.format(agent=agent, package=package,
                                branch=branch, master=master)
         elif 'pkgdb.package.update' in msg['topic']:
-            tmpl = self._(u"{agent} made some updates to {package}")
+            tmpl = self._(u"{agent} {verb} {package}{extra}")
+            extra = ""
+
+            # prev_status, status and package_listing only apear in
+            # pkgdb.package.update.status messages, but there are also
+            # pgkdb.package.update messages
+            prev_status = msg['msg'].get('prev_status')
+            status = msg['msg'].get('status')
+            if 'package_listing' in msg['msg']:
+                branchname = msg['msg']['package_listing']['collection'][
+                    'branchname']
+                extra = self._(u" in {branchname}".format(
+                    branchname=branchname))
+            if prev_status == "Retired" and status != "Retired":
+                verb = self._(u"unretired")
+            elif prev_status != "Retired" and status == "Retired":
+                verb = self._(u"retired")
+            else:
+                verb = self._(u"made some updates to")
             agent = msg['msg']['agent']
             try:
                 package = msg['msg']['package_listing']['package']['name']
             except KeyError:
                 package = msg['msg']['package']
 
-            return tmpl.format(agent=agent, package=package)
+            return tmpl.format(agent=agent, package=package, verb=verb,
+                               extra=extra)
         elif 'pkgdb.critpath.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} altered the critpath status for some packages")

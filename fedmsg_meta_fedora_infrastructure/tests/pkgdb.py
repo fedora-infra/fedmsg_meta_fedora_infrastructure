@@ -259,8 +259,8 @@ class TestPkgdbPackageUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes this message when metadata for a package is updated.
     """
-    expected_title = "pkgdb.package.update"
-    expected_subti = "ralph made some updates to guake"
+    expected_title = "pkgdb.package.update.status"
+    expected_subti = "ralph unretired guake in F-18"
     expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
@@ -276,7 +276,7 @@ class TestPkgdbPackageUpdate(Base):
         "i": 144,
         "timestamp": 1379605523.496933,
         "msg_id": "2013-c131fb95-0a2e-4426-95c3-09766e017d29",
-        "topic": "org.fedoraproject.dev.pkgdb.package.update",
+        "topic": "org.fedoraproject.dev.pkgdb.package.update.status",
         "msg": {
             "status": "Approved",
             "package_listing": {
