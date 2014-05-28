@@ -298,7 +298,7 @@ class PkgdbProcessor(BaseProcessor):
         return packages
 
     def link(self, msg, **config):
-        tmpl = "https://admin.fedoraproject.org/pkgdb/package/{package}"
+        tmpl = "https://admin.fedoraproject.org/pkgdb/package/{package}/"
 
         if any(map(msg['topic'].__contains__, [
             'pkgdb.acl.update',
