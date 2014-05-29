@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2.12
+0.2.13
 ------
 
 - Koji messages should really have a secondary icon. `920935ecb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/920935ecb4878aca2f6e5328362e19fd1ebf70a3>`_
@@ -90,6 +90,15 @@ Changelog
 - Merge pull request #86 from fedora-infra/feature/meetbot-icon `672917fe3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/672917fe32cb8ad32de5355bc152fa39c5282dc8>`_
 - Merge pull request #85 from fedora-infra/feature/copr-icon `bba920ec1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bba920ec1ac21e82551186dad1ff9e3a87f9c77e>`_
 - Fix meetbot topic changes. `903861a4e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/903861a4eb9838c35dec31fe1681f09bb8f33aee>`_
+- 0.2.12 `02f169e06 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/02f169e06e923cc74316827ded14b9ea7544a951>`_
+- Processor and tests for FMN messages. `f8aa9b47f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f8aa9b47f9c678599a846d0c2c558f7ba31edcd0>`_
+- Merge pull request #88 from fedora-infra/feature/fmn `9d693257b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9d693257b58d9696ddda3795a1c307a9d88072b5>`_
+- Actually add the code for this. `9bce4b293 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bce4b293e6ec07a7416c63f62f88a3ed3cbb0bd>`_
+- Merge branch 'feature/fmn' into develop `2521946b3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2521946b36cc08ed6d42de3ca79e50d610597d96>`_
+- Pkgdb: Avoid redirects to URL with trailing slash `de99f5914 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de99f59142fca006260ea74b2ee0a8ef2c06b243>`_
+- Merge pull request #92 from tyll/avoid-redirects `4d9387fc8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d9387fc85f1e984769e5b7426bc31f393f31f98>`_
+- Pkgdb: Make package retirement messages explicit `42d30bda3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/42d30bda3ef9464b0a7917f5b19f927cce4a41a3>`_
+- Merge pull request #91 from tyll/develop `80fc3d9ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80fc3d9eaeb067fe3a4f098b65e3225497bcb784>`_
 
 0.2.9
 -----
@@ -313,6 +322,145 @@ Changelog
 - Add tests and processor for the new ftp sync messages. `34bfa48aa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/34bfa48aa5bf931f4b7d51a1bbe38ad69839fa9b>`_
 - Merge pull request #71 from fedora-infra/feature/ftpsync `98e7e293a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/98e7e293a12b155e93ee422ae8e1a524346bf7ce>`_
 - The bytes field is actually 'human readable' `1496bbe72 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1496bbe722cfeb38ec7a26b1b6834da7d9b4d12f>`_
+- 0.2.11 `d5cd3bff5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d5cd3bff51d66c5fddebda4cac0bd79564472b16>`_
+- Need to pass through the config here... `2ff1888a6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2ff1888a60fb9051d6e9a0575193ed4825a2f98b>`_
+- BZ processor and a test. `3e7ce519f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3e7ce519fad93ee5f0ffedadac4881aa6bff62a3>`_
+- Handle messages for "new bugs" `410baa648 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/410baa648361795ded8c915b7b96a68a944b8b76>`_
+- Correct module doc. `e91840446 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e918404463f885f9de89ccfae685419325c290bf>`_
+- Merge pull request #72 from fedora-infra/feature/bugzilla `b7b94bcf2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b7b94bcf2e463413740d2535cc0f3e3fd4e5a577>`_
+- Use https for copr-be. `fb4e6249f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fb4e6249f1cc560d089badff9166fa4b158d0dda>`_
+- https for wiki links, please. `b26b8ca11 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b26b8ca11e3554f33335cccc137ea5a3d4704c2a>`_
+- https for meetbot, please. `f195772d8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f195772d89f333210e36a184c496d5f3ffae37bc>`_
+- Merge pull request #73 from fedora-infra/feature/https `162d231a6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/162d231a6bcc370f0503879a3558c8f92bfdb0ba>`_
+- Clarify user role at endmeeting.  Fixes #29. `e74642892 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e7464289233e0993c1d1366ef14a240ea80ead35>`_
+- Merge pull request #74 from fedora-infra/feature/user-at-endmeeting `a8b5cff01 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a8b5cff014d11de6a22cd49245180630739bddc5>`_
+- Remove "slave" field from jenkins `fbf3fc841 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fbf3fc8417dab72d2981545ffb48495a8cf3be9c>`_
+- Merge pull request #75 from fedora-infra/jenkins-take2 `ac853fcee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ac853fcee2ace23cf08253dd37f9c4fd02016d6a>`_
+- Test tagger rank change messages.  Fixes #14. `e0541cde8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e0541cde81c6e250e7349f31a3414501202f0a88>`_
+- Merge pull request #76 from fedora-infra/feature/test-tagger-rank `413194c36 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/413194c369704c5ca666a821d12cdf4a70a1801c>`_
+- First work on the ElectionsProcessor for fedora-elections `ae75f73e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ae75f73e149b19274fa656790ecef3ad733e6123>`_
+- Update the elections Processor now that the messages contain an agent `3b4990e72 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3b4990e72e465bedb3904b8f7e7022fd02780296>`_
+- Adjust the __link__ now that the elections is on apps `f602cfbcf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f602cfbcf155ba689c279c60c03412dab288fddc>`_
+- Manage messages regarding elections' candidate (new, edit, delete) `dc00a61a8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dc00a61a83f6e2bd045c780ea63ea0f8f4a74640>`_
+- Adjust the setup.py file to include the elections processor `3c6e15edc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3c6e15edc6eb6a9cd03153b8c5913706744223b7>`_
+- Import the ElectionsProcessor from the right file `843f8cfde <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/843f8cfde54c792f783314ab04d9fe4eaba47aaa>`_
+- Fix trailing slash in the link in the elections processor and make it valid python `3c731ac51 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3c731ac514d80d66de5fab67eab90b65b4cbc21b>`_
+- Fix the usernames method `540b48954 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/540b4895441297c52b450fe3b3d2bad8712cc38d>`_
+- pep8 fixes to the fedocal tests `831958858 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/831958858577d313258e333ce709136d397f9dfb>`_
+- Fix the name, messages from the elections are of type fedora_elections `1e6d8c61e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1e6d8c61e2c79dff8fd55310e30491df1a470115>`_
+- Fix the topic for editing or deleting candidates (and not elections) `dd27ca13e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dd27ca13efdb07e7dc902ec238f418cf4499adf1>`_
+- The messages are only broadcasting one candidate at a time, no list `f59ed4b3a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f59ed4b3a943f4f57398c979e6f3b0bd8e84cfcb>`_
+- Add unit-tests for the fedora_elections messages `77ebbff64 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77ebbff649639c3703446494787f5d2b61d8a57a>`_
+- Link the unit-tests for fedora_elections into the main test suite `03887eaa1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/03887eaa143a019500d2ec9f252cfaf090c650c6>`_
+- pep8 fixes on the trac tests `90a3d0933 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/90a3d0933c65015eb09a1714e5c656851eea0055>`_
+- pep8 fixes on the summershum tests `2080bdca7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2080bdca77d44c108e05491a0bc0b3e3c939611f>`_
+- pep8 fixes on the mailman3 tests `0b0f1a69b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b0f1a69bf756b2a801767462af8e838386d93d1>`_
+- pep8 fixes on the pkgdb tests `7e914cc87 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7e914cc87a1d3d71734fdb6303b8bdb6571fb8da>`_
+- pep8 fixes on the jenkins tests `05d3ddb25 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/05d3ddb2569d713532ed6a0adc2850a996d53d64>`_
+- pep8 fixes on the github tests `a4e11b75a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4e11b75a9a32b7abdf3db39070cecd50f3d2459>`_
+- pep8 fixes on the askbot tests `723536331 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7235363314355638a55c5c3e80313da08bc4e939>`_
+- pep8 fixes on the ansible tests `29d4de8e7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/29d4de8e76c5161b37e8bcf2a8f8f19dca22cafc>`_
+- pep8 fixes on the pkgdb meta file `9ddcabbee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ddcabbee4dd2b8af6e4300ad0d4ffed7f384df6>`_
+- pep8 fixes on the jenkins meta file `5da6fcd04 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5da6fcd04c68ad387949f3b7c411f1f38bf00863>`_
+- pep8 fixes on the fasshim meta file `c090e4281 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c090e42812cb82b379c4f4f1b729337163ed5d30>`_
+- pep8 fixes on the cnucnuweb meta file `cbcd846f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cbcd846f9048088ed35966dc475e822117ed056b>`_
+- pep8 fixes on fedmsg.d/base.py `8232320fa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8232320fa1bb1583919823337c8f143866aecfe3>`_
+- pep8 fixes on the setup.py file `363058da5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/363058da5b6db9e0a001a75afa2c7725536889a8>`_
+- Merge pull request #77 from fedora-infra/elections `7dd0715b4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7dd0715b4f1b35363223788689fa6384b982f667>`_
+- Merge pull request #78 from fedora-infra/pep8 `b787911bf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b787911bf1cc638a660558b7d592b116744cfd67>`_
+- Be careful with copr messages here. `5a6fbd0c4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5a6fbd0c406db5f935b19f927933332bf3ccee43>`_
+- Use the new copr frontend url. `7c0830cfc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7c0830cfc9cd235b0e3be872423c30d5da80f235>`_
+- Merge pull request #80 from fedora-infra/feature/take-care-with-copr `cf64f50d1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cf64f50d1c352b25ff0ac81f9f6c11e619abee01>`_
+- Retire this one bodhi masher message. `043dbad9b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/043dbad9b9f63b7f41cb12591490ff52224dfcba>`_
+- Merge pull request #82 from fedora-infra/feature/retire-masher-message `e395dd421 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e395dd42192265c0ccee92d6d188f5218b0ca5e3>`_
+- Give fedmsg.meta its own doc infrastructure. `0b866c2c3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b866c2c364e546cfd26e7fd2ec8460e3da27258>`_
+- Merge pull request #83 from fedora-infra/feature/doc-split `7181bf8d6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7181bf8d6b089033eb6dd5d830cbc860b2117b6f>`_
+- Adjust the URL to point to the right pkgdb2 page `c4249c393 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c4249c3933e22f3f109baa9ed78242f7052cfaf0>`_
+- Adjust the unit-tests to use the correct URL for pkgdb2 `91b941e4f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/91b941e4f89e3b925e3772713d0ba1bfbe08ffc1>`_
+- small pep8 fix to make pep8bot happy `e9f5d285a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e9f5d285a4eb5dfdf75493df65d9587fc4ccb361>`_
+- Merge pull request #84 from fedora-infra/pkgdb2_url `5136e3434 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5136e343476edc3271ca1ab3cd70ec10bf512aa8>`_
+- Copr icon. `a1d296828 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a1d296828022853ee88e6b9a45fc587d858df68c>`_
+- Test that icon, too. `27d0552cd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/27d0552cdeec1162a81690c32dfa2d080a94c1e7>`_
+- Icons for meetbot. `9e733ea93 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9e733ea93d33238a01cd0f469db5ea0dcd23c76f>`_
+- Just to be sure. `e0c087f96 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e0c087f961caefa974ac7cbad679db62fbf9eb29>`_
+- More being sure. `44ab1f881 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44ab1f88149818bea1e75e2a63bdfaeb239b8644>`_
+- Ignore the topics .rst doc.  It is auto generated. `b884d5b6f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b884d5b6fd5caba540f45d8dcbfda7084c656d7c>`_
+- Update koji examples. `dc1611712 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dc1611712652219aa5aa5b5d09ce75c498a004c7>`_
+- Merge pull request #87 from fedora-infra/feature/update-koji-examples `5822fe792 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5822fe792c4bfef104067d9a89f742482083c2d5>`_
+- Merge pull request #86 from fedora-infra/feature/meetbot-icon `672917fe3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/672917fe32cb8ad32de5355bc152fa39c5282dc8>`_
+- Merge pull request #85 from fedora-infra/feature/copr-icon `bba920ec1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bba920ec1ac21e82551186dad1ff9e3a87f9c77e>`_
+- Fix meetbot topic changes. `903861a4e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/903861a4eb9838c35dec31fe1681f09bb8f33aee>`_
+
+0.2.12
+------
+
+- Need to pass through the config here... `2ff1888a6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2ff1888a60fb9051d6e9a0575193ed4825a2f98b>`_
+- BZ processor and a test. `3e7ce519f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3e7ce519fad93ee5f0ffedadac4881aa6bff62a3>`_
+- Handle messages for "new bugs" `410baa648 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/410baa648361795ded8c915b7b96a68a944b8b76>`_
+- Correct module doc. `e91840446 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e918404463f885f9de89ccfae685419325c290bf>`_
+- Merge pull request #72 from fedora-infra/feature/bugzilla `b7b94bcf2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b7b94bcf2e463413740d2535cc0f3e3fd4e5a577>`_
+- Use https for copr-be. `fb4e6249f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fb4e6249f1cc560d089badff9166fa4b158d0dda>`_
+- https for wiki links, please. `b26b8ca11 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b26b8ca11e3554f33335cccc137ea5a3d4704c2a>`_
+- https for meetbot, please. `f195772d8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f195772d89f333210e36a184c496d5f3ffae37bc>`_
+- Merge pull request #73 from fedora-infra/feature/https `162d231a6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/162d231a6bcc370f0503879a3558c8f92bfdb0ba>`_
+- Clarify user role at endmeeting.  Fixes #29. `e74642892 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e7464289233e0993c1d1366ef14a240ea80ead35>`_
+- Merge pull request #74 from fedora-infra/feature/user-at-endmeeting `a8b5cff01 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a8b5cff014d11de6a22cd49245180630739bddc5>`_
+- Remove "slave" field from jenkins `fbf3fc841 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fbf3fc8417dab72d2981545ffb48495a8cf3be9c>`_
+- Merge pull request #75 from fedora-infra/jenkins-take2 `ac853fcee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ac853fcee2ace23cf08253dd37f9c4fd02016d6a>`_
+- Test tagger rank change messages.  Fixes #14. `e0541cde8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e0541cde81c6e250e7349f31a3414501202f0a88>`_
+- Merge pull request #76 from fedora-infra/feature/test-tagger-rank `413194c36 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/413194c369704c5ca666a821d12cdf4a70a1801c>`_
+- First work on the ElectionsProcessor for fedora-elections `ae75f73e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ae75f73e149b19274fa656790ecef3ad733e6123>`_
+- Update the elections Processor now that the messages contain an agent `3b4990e72 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3b4990e72e465bedb3904b8f7e7022fd02780296>`_
+- Adjust the __link__ now that the elections is on apps `f602cfbcf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f602cfbcf155ba689c279c60c03412dab288fddc>`_
+- Manage messages regarding elections' candidate (new, edit, delete) `dc00a61a8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dc00a61a83f6e2bd045c780ea63ea0f8f4a74640>`_
+- Adjust the setup.py file to include the elections processor `3c6e15edc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3c6e15edc6eb6a9cd03153b8c5913706744223b7>`_
+- Import the ElectionsProcessor from the right file `843f8cfde <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/843f8cfde54c792f783314ab04d9fe4eaba47aaa>`_
+- Fix trailing slash in the link in the elections processor and make it valid python `3c731ac51 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3c731ac514d80d66de5fab67eab90b65b4cbc21b>`_
+- Fix the usernames method `540b48954 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/540b4895441297c52b450fe3b3d2bad8712cc38d>`_
+- pep8 fixes to the fedocal tests `831958858 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/831958858577d313258e333ce709136d397f9dfb>`_
+- Fix the name, messages from the elections are of type fedora_elections `1e6d8c61e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1e6d8c61e2c79dff8fd55310e30491df1a470115>`_
+- Fix the topic for editing or deleting candidates (and not elections) `dd27ca13e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dd27ca13efdb07e7dc902ec238f418cf4499adf1>`_
+- The messages are only broadcasting one candidate at a time, no list `f59ed4b3a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f59ed4b3a943f4f57398c979e6f3b0bd8e84cfcb>`_
+- Add unit-tests for the fedora_elections messages `77ebbff64 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77ebbff649639c3703446494787f5d2b61d8a57a>`_
+- Link the unit-tests for fedora_elections into the main test suite `03887eaa1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/03887eaa143a019500d2ec9f252cfaf090c650c6>`_
+- pep8 fixes on the trac tests `90a3d0933 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/90a3d0933c65015eb09a1714e5c656851eea0055>`_
+- pep8 fixes on the summershum tests `2080bdca7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2080bdca77d44c108e05491a0bc0b3e3c939611f>`_
+- pep8 fixes on the mailman3 tests `0b0f1a69b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b0f1a69bf756b2a801767462af8e838386d93d1>`_
+- pep8 fixes on the pkgdb tests `7e914cc87 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7e914cc87a1d3d71734fdb6303b8bdb6571fb8da>`_
+- pep8 fixes on the jenkins tests `05d3ddb25 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/05d3ddb2569d713532ed6a0adc2850a996d53d64>`_
+- pep8 fixes on the github tests `a4e11b75a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4e11b75a9a32b7abdf3db39070cecd50f3d2459>`_
+- pep8 fixes on the askbot tests `723536331 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7235363314355638a55c5c3e80313da08bc4e939>`_
+- pep8 fixes on the ansible tests `29d4de8e7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/29d4de8e76c5161b37e8bcf2a8f8f19dca22cafc>`_
+- pep8 fixes on the pkgdb meta file `9ddcabbee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ddcabbee4dd2b8af6e4300ad0d4ffed7f384df6>`_
+- pep8 fixes on the jenkins meta file `5da6fcd04 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5da6fcd04c68ad387949f3b7c411f1f38bf00863>`_
+- pep8 fixes on the fasshim meta file `c090e4281 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c090e42812cb82b379c4f4f1b729337163ed5d30>`_
+- pep8 fixes on the cnucnuweb meta file `cbcd846f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cbcd846f9048088ed35966dc475e822117ed056b>`_
+- pep8 fixes on fedmsg.d/base.py `8232320fa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8232320fa1bb1583919823337c8f143866aecfe3>`_
+- pep8 fixes on the setup.py file `363058da5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/363058da5b6db9e0a001a75afa2c7725536889a8>`_
+- Merge pull request #77 from fedora-infra/elections `7dd0715b4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7dd0715b4f1b35363223788689fa6384b982f667>`_
+- Merge pull request #78 from fedora-infra/pep8 `b787911bf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b787911bf1cc638a660558b7d592b116744cfd67>`_
+- Be careful with copr messages here. `5a6fbd0c4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5a6fbd0c406db5f935b19f927933332bf3ccee43>`_
+- Use the new copr frontend url. `7c0830cfc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7c0830cfc9cd235b0e3be872423c30d5da80f235>`_
+- Merge pull request #80 from fedora-infra/feature/take-care-with-copr `cf64f50d1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cf64f50d1c352b25ff0ac81f9f6c11e619abee01>`_
+- Retire this one bodhi masher message. `043dbad9b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/043dbad9b9f63b7f41cb12591490ff52224dfcba>`_
+- Merge pull request #82 from fedora-infra/feature/retire-masher-message `e395dd421 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e395dd42192265c0ccee92d6d188f5218b0ca5e3>`_
+- Give fedmsg.meta its own doc infrastructure. `0b866c2c3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b866c2c364e546cfd26e7fd2ec8460e3da27258>`_
+- Merge pull request #83 from fedora-infra/feature/doc-split `7181bf8d6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7181bf8d6b089033eb6dd5d830cbc860b2117b6f>`_
+- Adjust the URL to point to the right pkgdb2 page `c4249c393 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c4249c3933e22f3f109baa9ed78242f7052cfaf0>`_
+- Adjust the unit-tests to use the correct URL for pkgdb2 `91b941e4f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/91b941e4f89e3b925e3772713d0ba1bfbe08ffc1>`_
+- small pep8 fix to make pep8bot happy `e9f5d285a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e9f5d285a4eb5dfdf75493df65d9587fc4ccb361>`_
+- Merge pull request #84 from fedora-infra/pkgdb2_url `5136e3434 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5136e343476edc3271ca1ab3cd70ec10bf512aa8>`_
+- Copr icon. `a1d296828 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a1d296828022853ee88e6b9a45fc587d858df68c>`_
+- Test that icon, too. `27d0552cd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/27d0552cdeec1162a81690c32dfa2d080a94c1e7>`_
+- Icons for meetbot. `9e733ea93 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9e733ea93d33238a01cd0f469db5ea0dcd23c76f>`_
+- Just to be sure. `e0c087f96 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e0c087f961caefa974ac7cbad679db62fbf9eb29>`_
+- More being sure. `44ab1f881 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44ab1f88149818bea1e75e2a63bdfaeb239b8644>`_
+- Ignore the topics .rst doc.  It is auto generated. `b884d5b6f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b884d5b6fd5caba540f45d8dcbfda7084c656d7c>`_
+- Update koji examples. `dc1611712 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dc1611712652219aa5aa5b5d09ce75c498a004c7>`_
+- Merge pull request #87 from fedora-infra/feature/update-koji-examples `5822fe792 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5822fe792c4bfef104067d9a89f742482083c2d5>`_
+- Merge pull request #86 from fedora-infra/feature/meetbot-icon `672917fe3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/672917fe32cb8ad32de5355bc152fa39c5282dc8>`_
+- Merge pull request #85 from fedora-infra/feature/copr-icon `bba920ec1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bba920ec1ac21e82551186dad1ff9e3a87f9c77e>`_
+- Fix meetbot topic changes. `903861a4e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/903861a4eb9838c35dec31fe1681f09bb8f33aee>`_
 
 0.2.11
 ------
