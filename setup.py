@@ -92,12 +92,13 @@ entry_points = {
         "bugzilla=fedmsg_meta_fedora_infrastructure.bz:BugzillaProcessor",
         "elections=fedmsg_meta_fedora_infrastructure.elections:"
         "ElectionsProcessor",
+        "fmn=fedmsg_meta_fedora_infrastructure.fmn:FMNProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.12',
+    version='0.2.13',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
