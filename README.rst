@@ -39,6 +39,8 @@ Build Status
 Running the Tests
 -----------------
 
+::
+
     # Create a virtualenv
     $ sudo yum install python-virtualenv
     $ virtualenv my-env
