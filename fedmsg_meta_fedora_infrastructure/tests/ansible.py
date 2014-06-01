@@ -39,8 +39,8 @@ class TestAnsiblePlaybookStart(Base):
                      "ansible.git/tree/playbooks/groups/badges-backend.yml")
     expected_icon = "https://apps.fedoraproject.org/img/icons/ansible.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -75,8 +75,8 @@ class TestAnsiblePlaybookComplete(Base):
                      "ansible.git/tree/playbooks/groups/badges-backend.yml")
     expected_icon = "https://apps.fedoraproject.org/img/icons/ansible.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -126,8 +126,8 @@ class TestAnsiblePlaybookCompleteNotCheckIn(Base):
     expected_link = None
     expected_icon = "https://apps.fedoraproject.org/img/icons/ansible.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])

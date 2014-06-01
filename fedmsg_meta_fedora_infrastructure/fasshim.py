@@ -32,7 +32,7 @@ def gravatar_url_from_email(email, size=64, default=None):
                 'size': size, 'valid_sizes': _valid_gravatar_sizes})
 
     if not default:
-        default = ("http://fedoraproject.org/static/images/"
+        default = ("https://fedoraproject.org/static/images/"
                    "fedora_infinity_%ix%i.png" % (size, size))
 
     return _kernel(email, size, default, service='gravatar')
@@ -56,7 +56,7 @@ def _kernel(email, size, default, service='gravatar'):
 
         hash = md5(email).hexdigest()
 
-        return "http://www.gravatar.com/avatar/%s?%s" % (hash, query_string)
+        return "https://www.gravatar.com/avatar/%s?%s" % (hash, query_string)
 
 
 def make_fas_cache(**config):

@@ -24,6 +24,7 @@ from fedmsg.tests.test_meta import Base
 
 from common import add_doc
 
+
 class TestFilterUpdateRules(Base):
     """ Messages of this type are published whenever someone **updates
     one of their notification rules** in the `Fedora Notifications
@@ -34,8 +35,8 @@ class TestFilterUpdateRules(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -68,8 +69,8 @@ class TestPreferenceUpdateBatchValues(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -101,8 +102,8 @@ class TestPreferenceUpdateDetails(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -131,8 +132,8 @@ class TestPreferenceUpdateEnabled(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -161,8 +162,8 @@ class TestPreferenceUpdateFilters(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -192,8 +193,8 @@ class TestConfirmationUpdateValue(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -223,8 +224,8 @@ class TestConfirmationUpdateStatus(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])

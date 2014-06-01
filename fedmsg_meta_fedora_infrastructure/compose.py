@@ -23,7 +23,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 class ComposeProcessor(BaseProcessor):
     __name__ = "compose"
     __description__ = "Fedora Release Engineering"
-    __link__ = "http://git.fedorahosted.org/cgit/releng"
+    __link__ = "https://git.fedorahosted.org/cgit/releng"
     __docs__ = "https://fedoraproject.org/wiki/ReleaseEngineering"
     __obj__ = "Composes"
 

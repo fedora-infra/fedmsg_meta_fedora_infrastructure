@@ -40,7 +40,7 @@ class TracProcessor(BaseProcessor):
     __link__ = "https://fedorahosted.org"
     __docs__ = "https://fedorahosted.org/readme"
     __obj__ = "Fedora Hosted Events"
-    __icon__ = "http://www.edgewall.org/gfx/trac_bullet.png"
+    __icon__ = "https://www.edgewall.org/gfx/trac_bullet.png"
 
     def subtitle(self, msg, **config):
         if 'page' in msg['msg']:

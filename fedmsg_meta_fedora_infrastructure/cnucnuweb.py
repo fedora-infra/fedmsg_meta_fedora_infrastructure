@@ -40,7 +40,7 @@ class CnuCnuWebProcessor(BaseProcessor):
     __link__ = "https://apps.fedoraproject.org/cnucnu/"
     __docs__ = "https://fedoraproject.org/wiki/Upstream_Release_Monitoring"
     __obj__ = "Upstream Releases"
-    __icon__ = "http://todo.com/image.png"
+    __icon__ = "https://todo.com/image.png"
 
     def _get_user(self, msg, **config):
         try:

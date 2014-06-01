@@ -49,7 +49,7 @@ class BodhiProcessor(BaseProcessor):
     __name__ = "Bodhi"
     __description__ = "the Fedora update system"
     __link__ = "https://admin.fedoraproject.org/updates"
-    __docs__ = "http://fedoraproject.org/wiki/Bodhi"
+    __docs__ = "https://fedoraproject.org/wiki/Bodhi"
     __obj__ = "Package Updates"
     __icon__ = ("https://admin.fedoraproject.org/updates"
                 "/static/images/bodhi-icon-48.png")

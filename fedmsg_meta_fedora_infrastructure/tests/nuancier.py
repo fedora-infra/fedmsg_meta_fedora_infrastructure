@@ -36,8 +36,8 @@ class TestNuancierElectionUpdated(Base):
         '"Fedora 21" election: election year, election name'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -75,8 +75,8 @@ class TestNuancierElectionCreate(Base):
     expected_subti = 'ralph created a new election "Fedora 22"'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/4"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -113,8 +113,8 @@ class TestNuancierCandidateNew(Base):
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -158,8 +158,8 @@ class TestNuancierCandidateApprove(Base):
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "a8515b5e9791457df6d40f38de8b7476?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "a8515b5e9791457df6d40f38de8b7476?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'gnokii'])
@@ -203,8 +203,8 @@ class TestNuancierCandidateDeny(Base):
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "a8515b5e9791457df6d40f38de8b7476?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "a8515b5e9791457df6d40f38de8b7476?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'gnokii'])

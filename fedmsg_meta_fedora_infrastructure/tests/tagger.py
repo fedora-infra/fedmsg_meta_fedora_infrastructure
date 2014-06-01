@@ -39,8 +39,8 @@ class TestTaggerVoteAuthenticated(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        'https://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
         '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['mattd'])
@@ -145,8 +145,8 @@ class TestTaggerCreate(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        'https://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
         '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['mattd'])
@@ -264,8 +264,8 @@ class TestTaggerCreateLegacy(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        'https://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
         '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['perl-Test-Fatal'])
@@ -337,8 +337,8 @@ class TestTaggerToggleUsageOn(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        'https://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
         '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['passwd'])
@@ -383,8 +383,8 @@ class TestTaggerToggleUsageOff(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        'https://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
+        '?s=64&d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
         '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['ralph'])
     expected_packages = set(['passwd'])
@@ -427,8 +427,8 @@ class TestTaggerRankUpdate(Base):
     expected_subti = "immanetize's rank changed to 59"
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/db397b708688db9b708f54f3909ec0da'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
+        'https://www.gravatar.com/avatar/db397b708688db9b708f54f3909ec0da'
+        '?s=64&d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
         '%2Ffedora_infinity_64x64.png')
     expected_usernames = set(['immanetize'])
     expected_packages = set()

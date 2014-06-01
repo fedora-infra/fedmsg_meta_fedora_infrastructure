@@ -317,7 +317,7 @@ class TestLegacyComposeRawhideRsyncComplete(Base):
 
 class TestComposeBranchedComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished composing**
     whatever the current branched distribution version is.  They are published
@@ -343,7 +343,7 @@ class TestComposeBranchedComplete(Base):
 
 class TestComposeEPELBetaComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have **finished composing** the EPEL beta.
     """
     expected_title = "compose.epelbeta.complete"
@@ -362,7 +362,7 @@ class TestComposeEPELBetaComplete(Base):
 
 class TestComposeBranchedStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **begun composing**
     whatever the current branched distribution version is.  They are published
@@ -386,7 +386,7 @@ class TestComposeBranchedStart(Base):
 
 class TestComposeBranchedMashStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **begun mashing** for
     whatever the current branched distribution version is.  They are published
@@ -410,7 +410,7 @@ class TestComposeBranchedMashStart(Base):
 
 class TestComposeBranchedMashComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished mashing**
     whatever the current branched distribution version is.  They are published
@@ -434,7 +434,7 @@ class TestComposeBranchedMashComplete(Base):
 
 class TestComposeBranchedPungifyStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     started the `pungify <https://fedorahosted.org/pungi/>`_ process for
     whatever the current branched distribution version is.  They are published
@@ -458,7 +458,7 @@ class TestComposeBranchedPungifyStart(Base):
 
 class TestComposeBranchedPungifyComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     completed the `pungify <https://fedorahosted.org/pungi/>`_ process for
     whatever the current branched distribution version is.  They are published
@@ -482,7 +482,7 @@ class TestComposeBranchedPungifyComplete(Base):
 
 class TestComposeBranchedRsyncStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     begun **rsyncing**
     whatever the current branched distribution version is.  They are published
@@ -506,7 +506,7 @@ class TestComposeBranchedRsyncStart(Base):
 
 class TestComposeBranchedRsyncComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     finished **rsyncing**
     whatever the current branched distribution version is.  They are published
@@ -533,7 +533,7 @@ class TestComposeBranchedRsyncComplete(Base):
 
 class TestComposeRawhideComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -558,7 +558,7 @@ class TestComposeRawhideComplete(Base):
 
 class TestComposeRawhideStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -581,7 +581,7 @@ class TestComposeRawhideStart(Base):
 
 class TestComposeRawhideMashStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started mashing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -604,7 +604,7 @@ class TestComposeRawhideMashStart(Base):
 
 class TestComposeRawhideMashComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished mashing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -627,7 +627,7 @@ class TestComposeRawhideMashComplete(Base):
 
 class TestComposeRawhideRsyncStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started rsyncing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -650,7 +650,7 @@ class TestComposeRawhideRsyncStart(Base):
 
 class TestComposeRawhideRsyncComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished rsyncing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -675,7 +675,7 @@ class TestComposeRawhideRsyncComplete(Base):
 
 class TestSecondaryArchComposeBranchedComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished composing**
     whatever the current branched distribution version is.  They are published
@@ -702,7 +702,7 @@ class TestSecondaryArchComposeBranchedComplete(Base):
 
 class TestSecondaryArchComposeBranchedStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started composing**
     whatever the current branched distribution version is.  They are published
@@ -726,7 +726,7 @@ class TestSecondaryArchComposeBranchedStart(Base):
 
 class TestSecondaryArchComposeBranchedMashStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started mashing**
     whatever the current branched distribution version is.  They are published
@@ -750,7 +750,7 @@ class TestSecondaryArchComposeBranchedMashStart(Base):
 
 class TestSecondaryArchComposeBranchedMashComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished mashing**
     whatever the current branched distribution version is.  They are published
@@ -774,7 +774,7 @@ class TestSecondaryArchComposeBranchedMashComplete(Base):
 
 class TestSecondaryArchComposeBranchedPungifyStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     started the `pungify <https://fedorahosted.org/pungi/>`_ process for
     whatever the current branched distribution version is.  They are published
@@ -798,7 +798,7 @@ class TestSecondaryArchComposeBranchedPungifyStart(Base):
 
 class TestSecondaryArchComposeBranchedPungifyComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     completed the `pungify <https://fedorahosted.org/pungi/>`_ process for
     whatever the current branched distribution version is.  They are published
@@ -822,7 +822,7 @@ class TestSecondaryArchComposeBranchedPungifyComplete(Base):
 
 class TestSecondaryArchComposeBranchedRsyncStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started rsyncing**
     whatever the current branched distribution version is.  They are published
@@ -846,7 +846,7 @@ class TestSecondaryArchComposeBranchedRsyncStart(Base):
 
 class TestSecondaryArchComposeBranchedRsyncComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished rsyncing**
     whatever the current branched distribution version is.  They are published
@@ -874,7 +874,7 @@ class TestSecondaryArchComposeBranchedRsyncComplete(Base):
 
 class TestSecondaryArchComposeRawhideComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -900,7 +900,7 @@ class TestSecondaryArchComposeRawhideComplete(Base):
 
 class TestSecondaryArchComposeRawhideStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -923,7 +923,7 @@ class TestSecondaryArchComposeRawhideStart(Base):
 
 class TestSecondaryArchComposeRawhideMashStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started mashing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -946,7 +946,7 @@ class TestSecondaryArchComposeRawhideMashStart(Base):
 
 class TestSecondaryArchComposeRawhideMashComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished mashing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -969,7 +969,7 @@ class TestSecondaryArchComposeRawhideMashComplete(Base):
 
 class TestSecondaryArchComposeRawhideRsyncStart(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **started rsyncing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a
@@ -992,7 +992,7 @@ class TestSecondaryArchComposeRawhideRsyncStart(Base):
 
 class TestSecondaryArchComposeRawhideRsyncComplete(Base):
     """ The `release engineering
-    <http://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     produce these messages when they have
     **finished rsyncing** the rawhide compose.  They are published
     for both primary and secondary architectures.  The example here is of a

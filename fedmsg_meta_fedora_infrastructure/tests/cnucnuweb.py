@@ -34,9 +34,9 @@ class TestNewDistro(Base):
     expected_title = "cnucnuweb.distro.add"
     expected_subti = 'ralph added the distro named "Fedora" to cnucnuweb'
     expected_link = "https://apps.fedoraproject.org/cnucnu/distros"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -68,9 +68,9 @@ class TestEditDistro(Base):
     expected_title = "cnucnuweb.distro.edit"
     expected_subti = 'ralph changed a distro name from "Fedora" to "FancyHat"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/distros"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -102,9 +102,9 @@ class TestAddProject(Base):
     expected_title = "cnucnuweb.project.add"
     expected_subti = 'ralph added the project "ansi2html" to cnucnuweb'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -143,9 +143,9 @@ class TestAddProjectTried(Base):
     expected_title = "cnucnuweb.project.add.tried"
     expected_subti = 'ralph tried to add the project "ansi2html" to cnucnuweb'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -186,9 +186,9 @@ class TestEditProject(Base):
     expected_subti = 'ralph edited the following fields of the "ansi2html"' + \
         ' project: homepage, regex'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -231,9 +231,9 @@ class TestRemoveProject(Base):
     expected_title = "cnucnuweb.project.remove"
     expected_subti = 'ralph deleted the "ansi2html" project'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -274,9 +274,9 @@ class TestNewMappingProject(Base):
     expected_subti = 'ralph mapped the name of "ansi2html" in Fedora to' + \
         ' "python-ansi2html"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set(['python-ansi2html'])
     expected_usernames = set(['ralph'])
@@ -324,9 +324,9 @@ class TestUpdatedMappingProject(Base):
     expected_subti = 'ralph updated the name of "ansi2html" in "Fedora" ' + \
         'from "python-ansi2html" to "python3-ansi2html"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([
         'python-ansi2html',
@@ -381,7 +381,7 @@ class TestNewUpstreamVersion(Base):
     expected_subti = 'A new version of "ansi2html" has been detected:  ' + \
         '"0.1.4" in advance of "0.1.3"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
-    expected_icon = "http://todo.com/image.png"
+    expected_icon = "https://todo.com/image.png"
     #expected_secondary_icon = None
     expected_packages = set([
         'python-ansi2html',
