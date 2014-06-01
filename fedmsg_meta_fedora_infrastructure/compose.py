@@ -19,8 +19,6 @@
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
-from datetime import datetime
-
 
 class ComposeProcessor(BaseProcessor):
     __name__ = "compose"
