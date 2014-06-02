@@ -18,6 +18,8 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #           Luke Macken <lmacken@redhat.com>
 
+import re
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
@@ -181,6 +183,12 @@ class BodhiProcessor(BaseProcessor):
             users.append(msg['msg']['comment']['author'])
         except KeyError:
             pass
+
+        if 'comment' in msg['msg']:
+            text = msg['msg']['comment']['text']
+            mentions = re.findall('@\w+', text)
+            for mention in mentions:
+                users.append(mention[1:])
 
         return set(users)
 
