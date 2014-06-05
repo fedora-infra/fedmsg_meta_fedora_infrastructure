@@ -47,6 +47,16 @@ def is_ftp_sync(msg):
     return 'bodhi.updates.' in msg['topic'] and msg['topic'].endswith('.sync')
 
 
+def author_link(username):
+    return "<a href='https://admin.fedoraproject.org/updates/" + \
+        "user/{user}'>{user}</a>".format(user=username)
+
+
+def update_link(title):
+    return "<a href='https://admin.fedoraproject.org/updates/" + \
+        "{title}'>{title}</a>".format(title=title)
+
+
 class BodhiProcessor(BaseProcessor):
     __name__ = "Bodhi"
     __description__ = "the Fedora update system"
@@ -70,6 +80,8 @@ class BodhiProcessor(BaseProcessor):
         return gravatar
 
     def subtitle(self, msg, **config):
+        markup = config.get('markup', False)
+
         if is_ftp_sync(msg):
             product = get_sync_product(msg)
             msg = msg['msg']
@@ -88,7 +100,15 @@ class BodhiProcessor(BaseProcessor):
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
             )
-            return tmpl.format(author=author, karma=karma, title=title)
+            if not markup:
+                return tmpl.format(author=author, karma=karma, title=title)
+            else:
+                return tmpl.format(
+                    author=author_link(author),
+                    title=update_link(title),
+                    karma=karma,
+                )
+
         elif 'bodhi.update.complete.' in msg['topic']:
             author = msg['msg']['update']['submitter']
             package = msg['msg']['update']['title']
@@ -104,12 +124,18 @@ class BodhiProcessor(BaseProcessor):
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
-                tmpl = self._("{author} {status} {title}").format(
-                    author=author, status=status, title=title)
+                tmpl = self._("{author} {status} {title}")
             else:
-                tmpl = self._("{author} submitted {title} to {status}").format(
-                    author=author, status=status, title=title)
-            return tmpl
+                tmpl = self._("{author} submitted {title} to {status}")
+
+            if not markup:
+                return tmpl.format(author=author, title=title, status=status)
+            else:
+                return tmpl.format(
+                    author=author_link(author),
+                    title=update_link(title),
+                    status=status,
+                )
         elif 'bodhi.mashtask.mashing' in msg['topic']:
             repo = msg['msg']['repo']
             tmpl = self._("bodhi masher is mashing {repo}")
@@ -128,11 +154,25 @@ class BodhiProcessor(BaseProcessor):
             return self._("bodhi masher finished waiting on mirror repos "
                           "to sync")
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
-            return self._("{submitter} submitted a buildroot override " +
-                          "for {build}").format(**msg['msg']['override'])
+            tmpl = self._("{submitter} submitted a buildroot override " +
+                          "for {build}")
+            if markup:
+                return tmpl.format(
+                    submitter=author_link(msg['msg']['override']['submitter']),
+                    build=msg['msg']['override']['build'],
+                )
+            else:
+                return tmpl.format(**msg['msg']['override'])
         elif 'bodhi.buildroot_override.untag' in msg['topic']:
-            return self._("{submitter} expired a buildroot override " +
-                          "for {build}").format(**msg['msg']['override'])
+            tmpl = self._("{submitter} expired a buildroot override " +
+                          "for {build}")
+            if markup:
+                return tmpl.format(
+                    submitter=author_link(msg['msg']['override']['submitter']),
+                    build=msg['msg']['override']['build'],
+                )
+            else:
+                return tmpl.format(**msg['msg']['override'])
         else:
             raise NotImplementedError("%r" % msg)
 
