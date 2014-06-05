@@ -51,11 +51,11 @@ class TestKojiTaskStateChangeStart(Base):
     expected_title = "buildsys.task.state.change"
     expected_subti = "ralph's scratch build of " + \
         "python-websocket-client-0.12.0-1.fc20.src.rpm started"
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_usernames = set(['ralph'])
     expected_packages = set([])
@@ -107,11 +107,11 @@ class TestKojiTaskStateChangeFail(Base):
     expected_title = "buildsys.task.state.change"
     expected_subti = "ralph's scratch build of " + \
         "python-websocket-client-0.12.0-1.fc20.src.rpm failed"
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_usernames = set(['ralph'])
     expected_packages = set([])
@@ -144,11 +144,11 @@ class TestKojiBuildTag(Base):
     expected_title = "buildsys.tag"
     expected_subti = ("ralph's stage-4.1.1-3.fc18 tagged into "
                       "f18-updates-testing-pending by bodhi")
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['stage'])
     expected_usernames = set(['ralph', 'bodhi'])
@@ -180,11 +180,11 @@ class TestKojiBuildUnTag(Base):
     expected_title = "buildsys.untag"
     expected_subti = ("ralph's globus-gram-job-manager-sge-1.5-2.fc16 "
                       "untagged from f16-updates-pending by bodhi")
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['globus-gram-job-manager-sge'])
     expected_usernames = set(['ralph', 'bodhi'])
@@ -231,11 +231,11 @@ class TestKojiBuildStateChangeStart(Base):
     """
     expected_title = "buildsys.build.state.change"
     expected_subti = "ralph's eclipse-ptp-6.0.3-1.fc19 started building"
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_usernames = set(['ralph'])
     expected_packages = set(['eclipse-ptp'])
@@ -285,7 +285,7 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     """
     expected_title = "buildsys.build.state.change"
     expected_subti = "eclipse-ptp-6.0.3-1.fc19 started building"
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = expected_icon
     expected_usernames = set([])
@@ -336,11 +336,11 @@ class TestKojiBuildStateChangeFail(Base):
     """
     expected_title = "buildsys.build.state.change"
     expected_subti = "rmattes's eclipse-ptp-6.0.3-1.fc19 failed to build (ppc)"
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "9daff58407cf59893344b3305c6f838c?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "9daff58407cf59893344b3305c6f838c?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set(['eclipse-ptp'])
     expected_usernames = set(['rmattes'])
@@ -373,7 +373,7 @@ class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """
     expected_title = "buildsys.repo.init"
     expected_subti = 'Repo initialized:  f19-build'
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = expected_icon
     expected_packages = set([])
@@ -400,7 +400,7 @@ class TestKojiRepoDone(Base):
     """ Koji emits these messages when repo initialization finishes. """
     expected_title = "buildsys.repo.done"
     expected_subti = 'Repo done:  f19-build'
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = expected_icon
     expected_packages = set([])
@@ -427,7 +427,7 @@ class TestKojiPackageListChange(Base):
     """ Koji emits these messages a package listing changes. """
     expected_title = "buildsys.package.list.change"
     expected_subti = "Package list change for almanah:  'f17'"
-    expected_icon = ("http://fedoraproject.org/w/uploads/2/20/"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = expected_icon
     expected_packages = set(["almanah"])

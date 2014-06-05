@@ -37,7 +37,7 @@ class MailmanProcessor(BaseProcessor):
     __name__ = "Mailman"
     __description__ = "mailing list messages"
     __link__ = "https://lists.fedoraproject.org"
-    __docs__ = ("http://fedoraproject.org/wiki/"
+    __docs__ = ("https://fedoraproject.org/wiki/"
                 "Communicating_and_getting_help#Mailing_Lists")
     __obj__ = "Mailing List Messages"
     __icon__ = "http://cloud.ohloh.net/attachments/37686/mailman_med.png"

@@ -37,8 +37,8 @@ class TestNewBadge(Base):
         '"Something on your mind" badge'
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "http://example.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -92,8 +92,8 @@ class TestRankAdvance(Base):
     expected_subti = "ralph moved to position 1500 on the badges leaderboard"
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "https://apps.fedoraproject.org/img/icons/badges.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
@@ -131,8 +131,8 @@ class TestFirstLogin(Base):
     #    "badges.fedoraproject.org</a> for the first time")
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "https://apps.fedoraproject.org/img/icons/badges.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
+    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
     expected_packages = set([])
     expected_usernames = set(['ralph'])

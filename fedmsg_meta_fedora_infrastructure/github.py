@@ -26,7 +26,7 @@ class GithubProcessor(BaseProcessor):
     __description__ = "Fedora-related Github Repos"
     __link__ = "https://github.com"
     __icon__ = "https://apps.fedoraproject.org/img/icons/github.png"
-    __docs__ = "http://developer.github.com/webhooks/#events"
+    __docs__ = "https://developer.github.com/webhooks/#events"
     __obj__ = "Github Events"
 
     def _get_user(self, msg):

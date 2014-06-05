@@ -28,8 +28,8 @@ blacklisted_people = [
 class SupybotProcessor(BaseProcessor):
     __name__ = "meetbot"
     __description__ = "the Fedora IRC bot"
-    __link__ = "http://meetbot.fedoraproject.org/"
-    __docs__ = "http://fedoraproject.org/wiki/Zodbot"
+    __link__ = "https://meetbot.fedoraproject.org/"
+    __docs__ = "https://fedoraproject.org/wiki/Zodbot"
     __obj__ = "IRC Meetings"
     __icon__ = "https://apps.fedoraproject.org/img/icons/meetbot.png"
 

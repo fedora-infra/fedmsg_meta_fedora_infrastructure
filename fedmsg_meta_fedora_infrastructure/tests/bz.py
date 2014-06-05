@@ -20,7 +20,6 @@
 """ Tests for bugzilla2fedmsg messages """
 
 import unittest
-import datetime
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
@@ -41,8 +40,8 @@ class TestBugzillaUpdate(Base):
     expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=968947"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'puiterwijk'])
@@ -205,8 +204,8 @@ class TestBugzillaNew(Base):
     expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=968947"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2972a442e97fa492c87f49a3e5fdb5ac?s=64&d=http%3A%2F%2F"
+        "https://www.gravatar.com/avatar/"
+        "2972a442e97fa492c87f49a3e5fdb5ac?s=64&d=https%3A%2F%2F"
         "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
 
     expected_packages = set([])

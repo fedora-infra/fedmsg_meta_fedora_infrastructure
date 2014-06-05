@@ -49,8 +49,8 @@ class TestDatanommerWat(Base):
     expected_title = "datanommer.wat"
     expected_subti = 'datanommer encountered a duplicate uuid'
     expected_link = "https://www.destroyallsoftware.com/talks/wat"
-    expected_icon = "http://i.imgur.com/4g9NZu1.png"
-    expected_secondary_icon = "http://i.imgur.com/58oJkOr.gif"
+    expected_icon = "https://i.imgur.com/4g9NZu1.png"
+    expected_secondary_icon = "https://i.imgur.com/58oJkOr.gif"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['wat'])
