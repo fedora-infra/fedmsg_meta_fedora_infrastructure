@@ -79,7 +79,9 @@ def make_fas_cache(**config):
 
     creds = config['fas_credentials']
 
+    default_url = 'https://admin.fedoraproject.org/accounts/'
     fasclient = fedora.client.fas2.AccountSystem(
+        base_url=creds.get('base_url', default_url),
         username=creds['username'],
         password=creds['password'],
     )
