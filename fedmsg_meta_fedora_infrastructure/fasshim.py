@@ -11,14 +11,8 @@ log = logging.getLogger("moksha.hub")
 
 
 def gravatar_url(username, size=64, default=None):
-    try:
-        import fedora.client
-        system = fedora.client.AccountSystem()
-        return system.gravatar_url(
-            username, size, default, lookup_email=False)
-    except Exception:
-        email = username + "@fedoraproject.org"
-        return gravatar_url_from_email(email, size, default)
+    email = username + "@fedoraproject.org"
+    return gravatar_url_from_email(email, size, default)
 
 
 def gravatar_url_from_email(email, size=64, default=None):
