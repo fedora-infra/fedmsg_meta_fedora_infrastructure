@@ -35,6 +35,7 @@ class TestNuancierElectionUpdated(Base):
     expected_subti = 'ralph changed the following details on the ' + \
         '"Fedora 21" election: election year, election name'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
         "https://www.gravatar.com/avatar/"
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
@@ -74,6 +75,7 @@ class TestNuancierElectionCreate(Base):
     expected_title = "nuancier.election.new"
     expected_subti = 'ralph created a new election "Fedora 22"'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/4"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
         "https://www.gravatar.com/avatar/"
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
@@ -112,6 +114,7 @@ class TestNuancierCandidateNew(Base):
         '"Fedora 22" wallpaper election'
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
         "https://www.gravatar.com/avatar/"
         "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
@@ -157,6 +160,7 @@ class TestNuancierCandidateApprove(Base):
         'to the "Fedora 22" wallpaper election'
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
         "https://www.gravatar.com/avatar/"
         "a8515b5e9791457df6d40f38de8b7476?s=64&d=https%3A%2F%2F"
@@ -202,6 +206,7 @@ class TestNuancierCandidateDeny(Base):
         'to the "Fedora 22" wallpaper election'
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
         "https://www.gravatar.com/avatar/"
         "a8515b5e9791457df6d40f38de8b7476?s=64&d=https%3A%2F%2F"
