@@ -60,9 +60,8 @@ class TestFASUserCreateLegacy(Base):
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['users/ralph'])
     msg = {
@@ -88,9 +87,8 @@ class TestFASUserCreate(Base):
     expected_subti = "New FAS account:  'ralph'  (created by 'ralph')"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['users/ralph'])
     msg = {
@@ -115,9 +113,8 @@ class TestFASEditProfile(Base):
         "FAS profile:  comments"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['users/ralph'])
     msg = {
@@ -141,9 +138,8 @@ class TestFASEditGroupLegacy(Base):
         "ambassadors FAS group:  display_name"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['groups/ambassadors'])
     msg = {
@@ -166,9 +162,8 @@ class TestFASEditGroup(Base):
         "ambassadors FAS group:  display_name"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['groups/ambassadors'])
     msg = {
@@ -189,9 +184,8 @@ class TestFASGroupCreate(Base):
     expected_subti = "ralph created new FAS group ambassadors"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['groups/ambassadors'])
     msg = {
@@ -212,9 +206,8 @@ class TestFASRoleUpdate(Base):
     expected_subti = "toshio changed ralph's role in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "8128b4c81d09ada7f95ac9dbf888fbea?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "085a38b9cf600926924645b292f0b7121a98a5165e559e0ad1882cfe33c6b395?s=64&d=retro"
     expected_usernames = set(['ralph', 'toshio'])
     expected_objects = set(['users/ralph', 'groups/ambassadors'])
     msg = {
@@ -236,9 +229,8 @@ class TestFASGroupRemove(Base):
     expected_subti = "toshio removed ralph from the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "8128b4c81d09ada7f95ac9dbf888fbea?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "085a38b9cf600926924645b292f0b7121a98a5165e559e0ad1882cfe33c6b395?s=64&d=retro"
     expected_usernames = set(['ralph', 'toshio'])
     expected_objects = set(['users/ralph', 'groups/ambassadors'])
     msg = {
@@ -261,9 +253,8 @@ class TestFASGroupSponsor(Base):
         "in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "8128b4c81d09ada7f95ac9dbf888fbea?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "085a38b9cf600926924645b292f0b7121a98a5165e559e0ad1882cfe33c6b395?s=64&d=retro"
     expected_usernames = set(['ralph', 'toshio'])
     expected_objects = set(['users/ralph', 'groups/ambassadors'])
     msg = {
@@ -286,9 +277,8 @@ class TestFASGroupApply(Base):
         "in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set(['users/ralph', 'groups/ambassadors'])
     msg = {
@@ -319,9 +309,9 @@ class LegacyTestBodhiUpdateComplete(Base):
         "fedmsg-0.2.7-2.el6"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_packages = set(['fedmsg'])
     expected_objects = set(['packages/fedmsg'])
@@ -419,9 +409,8 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "9d953fa825bd80dfa6e45660b03adc2d?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "0d574577afa8deac19df2673cdea9aef45549ff8fac798ddaba61541c69e185a?s=64&d=retro"
     expected_usernames = set(['hadess'])
     expected_packages = set(['gnome-settings-daemon', 'control-center'])
     expected_objects = set([
@@ -633,9 +622,8 @@ class TestBodhiRequestUnpush(Base):
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['foo'])
     expected_objects = set(['packages/foo'])
@@ -667,9 +655,8 @@ class TestBodhiRequestObsolete(Base):
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['foo'])
     expected_objects = set(['packages/foo'])
@@ -701,9 +688,8 @@ class TestBodhiRequestStable(Base):
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['foo'])
     expected_objects = set(['packages/foo'])
@@ -735,9 +721,8 @@ class TestBodhiRequestRevoke(Base):
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['foo'])
     expected_objects = set(['packages/foo'])
@@ -769,9 +754,8 @@ class TestBodhiRequestTesting(Base):
     expected_link = "https://admin.fedoraproject.org/updates/foo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['foo'])
     expected_objects = set(['packages/foo'])
@@ -803,9 +787,8 @@ class TestBodhiComment(Base):
     expected_link = "https://admin.fedoraproject.org/updates/fedmsg-1.0-1"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph', 'codeblock'])
     expected_packages = set(['fedmsg'])
     expected_objects = set(['packages/fedmsg'])
@@ -841,9 +824,8 @@ class TestBodhiOverrideTagged(Base):
         "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['fedmsg'])
     expected_objects = set(['packages/fedmsg'])
@@ -873,9 +855,8 @@ class TestBodhiOverrideUntagged(Base):
         "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "0c35a75019e58e54fb58202db20d2c24?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['fedmsg'])
     expected_objects = set(['packages/fedmsg'])
@@ -903,9 +884,8 @@ class TestSupybotStartMeetingNoName(Base):
     expected_title = "meetbot.meeting.start"
     expected_subti = 'ralph started a meeting in #channel'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/meetbot.png'
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph'])
     expected_objects = set([
         'attendees/ralph',
@@ -1402,10 +1382,9 @@ class TestLookaside(Base):
     expected_title = "git.lookaside.new"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "5b938b3dcb12f46b98a1269cab255cbe?s=64&" + \
-        "d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
-        "images%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "e0e8e0c4d995109cdac8ae4eb5766a73cf09c7a8d2d8bac57f761e6223ca094b?s=64&" + \
+        "d=retro"
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
@@ -1433,10 +1412,9 @@ class TestLookasideLegacy(Base):
     expected_title = "git.lookaside.texlive.new"
     expected_subti = 'jnovy uploaded pst-diffraction.doc.tar.xz for texlive'
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "5b938b3dcb12f46b98a1269cab255cbe?s=64&" + \
-        "d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
-        "images%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "e0e8e0c4d995109cdac8ae4eb5766a73cf09c7a8d2d8bac57f761e6223ca094b?s=64&" + \
+        "d=retro"
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
@@ -1468,10 +1446,9 @@ class TestSCMSuperLegacy(Base):
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
-        "images%2Ffedora_infinity_64x64.png"
+        "d=retro"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1520,10 +1497,9 @@ class TestSCMLegacy(Base):
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
-        "images%2Ffedora_infinity_64x64.png"
+        "d=retro"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1574,10 +1550,9 @@ class TestSCM(Base):
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "923419d315c8f23eface39852bf32a5f?s=64&" + \
-        "d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
-        "images%2Ffedora_infinity_64x64.png"
+        "d=retro"
     expected_usernames = set(['mjw'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/valgrind.spec'])
@@ -1628,10 +1603,9 @@ class TestSCMSingleLine(Base):
         "ember.git/commit/" + \
         "?h=master&id=aa2df80f3d8dd217c7cbfe2d3451190028f3fe14"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "461761d9572bdc1d04925a1125a41797?s=64&" + \
-        "d=https%3A%2F%2Ffedoraproject.org%2Fstatic%2F" + \
-        "images%2Ffedora_infinity_64x64.png"
+        "d=retro"
     expected_usernames = set(['spot'])
     expected_packages = set(['ember'])
     expected_objects = set(['ember/ember-0.6.3-gcc47.patch'])

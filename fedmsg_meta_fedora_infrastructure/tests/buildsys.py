@@ -54,9 +54,8 @@ class TestKojiTaskStateChangeStart(Base):
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_usernames = set(['ralph'])
     expected_packages = set([])
     expected_objects = set([
@@ -110,9 +109,8 @@ class TestKojiTaskStateChangeFail(Base):
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_usernames = set(['ralph'])
     expected_packages = set([])
     expected_objects = set([
@@ -147,9 +145,8 @@ class TestKojiBuildTag(Base):
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['stage'])
     expected_usernames = set(['ralph', 'bodhi'])
     expected_objects = set([
@@ -183,9 +180,8 @@ class TestKojiBuildUnTag(Base):
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['globus-gram-job-manager-sge'])
     expected_usernames = set(['ralph', 'bodhi'])
     expected_objects = set([
@@ -234,9 +230,8 @@ class TestKojiBuildStateChangeStart(Base):
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_usernames = set(['ralph'])
     expected_packages = set(['eclipse-ptp'])
     expected_objects = set([
@@ -339,9 +334,8 @@ class TestKojiBuildStateChangeFail(Base):
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "9daff58407cf59893344b3305c6f838c?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "22c039c6c057741e96345ba5e160fe742c70273394bc566828a98e3bb071e838?s=64&d=retro")
     expected_packages = set(['eclipse-ptp'])
     expected_usernames = set(['rmattes'])
     expected_objects = set([

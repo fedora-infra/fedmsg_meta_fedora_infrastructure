@@ -35,9 +35,8 @@ class TestNewDistro(Base):
     expected_subti = 'ralph added the distro named "Fedora" to cnucnuweb'
     expected_link = "https://apps.fedoraproject.org/cnucnu/distros"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['distros/Fedora'])
@@ -69,9 +68,8 @@ class TestEditDistro(Base):
     expected_subti = 'ralph changed a distro name from "Fedora" to "FancyHat"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/distros"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['distros/Fedora', 'distros/FancyHat'])
@@ -103,9 +101,8 @@ class TestAddProject(Base):
     expected_subti = 'ralph added the project "ansi2html" to cnucnuweb'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['projects/ansi2html'])
@@ -144,9 +141,8 @@ class TestAddProjectTried(Base):
     expected_subti = 'ralph tried to add the project "ansi2html" to cnucnuweb'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['projects/ansi2html'])
@@ -187,9 +183,8 @@ class TestEditProject(Base):
         ' project: homepage, regex'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['projects/ansi2html'])
@@ -232,9 +227,8 @@ class TestRemoveProject(Base):
     expected_subti = 'ralph deleted the "ansi2html" project'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['projects/ansi2html'])
@@ -275,9 +269,8 @@ class TestNewMappingProject(Base):
         ' "python-ansi2html"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set(['python-ansi2html'])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -325,9 +318,8 @@ class TestUpdatedMappingProject(Base):
         'from "python-ansi2html" to "python3-ansi2html"'
     expected_link = "https://apps.fedoraproject.org/cnucnu/project/ansi2html/"
     expected_icon = "https://todo.com/image.png"
-    expected_secondary_icon = "https://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([
         'python-ansi2html',
         'python3-ansi2html',

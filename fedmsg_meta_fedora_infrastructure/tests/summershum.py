@@ -41,9 +41,8 @@ class TestSummershumComplete(Base):
         "gnome-online-accounts-3.11.90.tar.xz" + \
         " for gnome-online-accounts"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "72175d155a8b28b6a57d2340b9f58592?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "2a5dd5a2f8e889c4384449a208402945a9cddaf5ce9bba0c57851ca54d46c769?s=64&d=retro")
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'gnome-online-accounts/gnome-online-accounts-3.11.90.tar.xz/' + \
         '7d32a7ed3653fe4c3de1fd3e9d1e1367/' + \
@@ -87,9 +86,8 @@ class TestSummershumStart(Base):
     expected_subti = "summershum started working on " + \
         "glibc-2.19-58-ga4fb786.tar.gz for glibc"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "fd81d216a30015c59bf44d5c3b8be1cc?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "6d069809dd6f854ea67299617954ffe913778b72e08a73ba85ec1c5859a3038f?s=64&d=retro")
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'glibc/glibc-2.19-58-ga4fb786.tar.gz/' + \
         '5f636f8001d1397fa6e233a1009df6c1/' + \
@@ -132,9 +130,8 @@ class TestSummershumFail(Base):
     expected_subti = "yikes!  summershum failed to process " + \
         "glibc-2.19-58-ga4fb786.tar.gz for glibc"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "fd81d216a30015c59bf44d5c3b8be1cc?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "6d069809dd6f854ea67299617954ffe913778b72e08a73ba85ec1c5859a3038f?s=64&d=retro")
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'glibc/glibc-2.19-58-ga4fb786.tar.gz/' + \
         '5f636f8001d1397fa6e233a1009df6c1/' + \

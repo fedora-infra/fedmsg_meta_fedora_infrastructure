@@ -74,9 +74,9 @@ class TestGithubPush(Base):
         "compare/60a6d3eb508c...404a417299f8"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -200,9 +200,9 @@ class TestGithubIssue(Base):
     expected_link = "https://github.com/fedora-infra/github2fedmsg/issues/3"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -317,9 +317,9 @@ class TestGithubIssueComment(Base):
         "issues/3#issuecomment-37971221"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -452,9 +452,9 @@ class TestGithubCreate(Base):
     expected_link = "https://github.com/fedora-infra/github2fedmsg"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -543,9 +543,9 @@ class TestGithubPullRequestClosed(Base):
     expected_link = "https://github.com/fedora-infra/github2fedmsg/pull/6"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -773,9 +773,9 @@ class TestGithubFork(Base):
     expected_link = "https://github.com/kushal124/github2fedmsg"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "afc63e66e6cf1a3b1de1ed0be4ab503f?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "00d52f5621a5f8b703b3054b2fac8b563c5ab3ff87a123ca1ce3f4b5e4a85f81"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
