@@ -37,9 +37,9 @@ class TestNuancierElectionUpdated(Base):
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2014/Fedora 21/election/update'])
@@ -77,9 +77,9 @@ class TestNuancierElectionCreate(Base):
     expected_link = "https://apps.fedoraproject.org/nuancier/election/4"
     expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2015/Fedora 22/election/new'])
@@ -116,9 +116,9 @@ class TestNuancierCandidateNew(Base):
         "uploads/2013/07/skvidal.jpg"
     expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2015/Fedora 22/Handsome/candidate/new'])
@@ -162,9 +162,9 @@ class TestNuancierCandidateApprove(Base):
         "uploads/2013/07/skvidal.jpg"
     expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "a8515b5e9791457df6d40f38de8b7476?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "f0f0eef56d80913ec82275ed76dafe440ef8b4bba0228d97e7fb2ecb275d9591"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'gnokii'])
     expected_objects = set(['2015/Fedora 22/Handsome/candidate/approved'])
@@ -208,9 +208,9 @@ class TestNuancierCandidateDeny(Base):
         "uploads/2013/07/skvidal.jpg"
     expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "a8515b5e9791457df6d40f38de8b7476?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "f0f0eef56d80913ec82275ed76dafe440ef8b4bba0228d97e7fb2ecb275d9591"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'gnokii'])
     expected_objects = set(['2015/Fedora 22/Handsome/candidate/denied'])

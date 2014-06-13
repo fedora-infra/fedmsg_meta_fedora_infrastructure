@@ -40,9 +40,8 @@ class TestBugzillaUpdate(Base):
     expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=968947"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'puiterwijk'])
     expected_objects = set([
@@ -204,10 +203,9 @@ class TestBugzillaNew(Base):
     expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=968947"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2972a442e97fa492c87f49a3e5fdb5ac?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
-
+        "https://seccdn.libravatar.org/avatar/"
+        "983782d075ab4e1fb02a7e7c7ca4d7096f6769bc9fe51b50e80eb012ddebc9ce"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['puiterwijk'])
     expected_objects = set([

@@ -34,9 +34,9 @@ class TestTracTicketCreate(Base):
     expected_title = "trac.ticket.new"
     expected_subti = "ralph opened a new ticket on the moksha trac instance"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph', 'lmacken'])
     expected_objects = set([
@@ -90,9 +90,9 @@ class TestTracTicketChange(Base):
     expected_title = "trac.ticket.update"
     expected_subti = "ralph updated a ticket on the moksha trac instance"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -150,9 +150,9 @@ class TestTracTicketChangeReopen(Base):
     expected_title = "trac.ticket.update"
     expected_subti = "ralph reopened a ticket on the moksha trac instance"
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -214,9 +214,9 @@ class TestTracTicketChangeClosed(Base):
     expected_subti = ("ralph closed a ticket on the moksha trac "
                       "instance as 'wontfix'")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -278,9 +278,9 @@ class TestTracTicketDelete(Base):
     expected_subti = ("ralph straight-up deleted a ticket on the moksha "
                       "trac instance")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -336,9 +336,9 @@ class TestTracWikiCreate(Base):
     expected_subti = ("ralph created a new 'watwat' wiki page on the "
                       "moksha trac instance")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -383,9 +383,9 @@ class TestTracWikiEdit(Base):
     expected_subti = ("ralph updated the 'WikiStart' wiki page on the "
                       "moksha trac instance")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -434,9 +434,9 @@ class TestTracWikiDelete(Base):
     expected_subti = ("ralph straight-up deleted the 'watwat' wiki page "
                       "on the moksha trac instance")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -482,9 +482,9 @@ class TestTracWikiVersionDelete(Base):
     expected_subti = ("ralph deleted a version of the 'WikiStart' "
                       "wiki page on the moksha trac instance")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -530,9 +530,9 @@ class TestTracWikiRename(Base):
     expected_subti = ("ralph renamed the wiki page 'watwat' to 'watwat2' "
                       "on the moksha trac instance")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -582,9 +582,9 @@ class TestTracChangesetCreate(Base):
     expected_subti = ("ralph pushed some commits to the 'moksha' "
                       "fedorahosted git repository")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
@@ -641,9 +641,9 @@ class TestTracDocsChangesetCreate(Base):
     expected_subti = ("ralph pushed some commits to the "
                       "'docs/about-fedora' fedorahosted git repository")
     expected_secondary_icon = (
-        "https://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=https%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set([
