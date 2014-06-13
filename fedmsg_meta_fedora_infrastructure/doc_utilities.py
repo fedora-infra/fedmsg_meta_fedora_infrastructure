@@ -61,9 +61,17 @@ The example message above, when passed to various routines in the
 
   - {icon}
 
+.. image:: {icon}
+   :height: 64px
+   :width: 64px
+
 - :func:`fedmsg.meta.msg2secondary_icon`
 
   - {secondary_icon}
+
+.. image:: {secondary_icon}
+   :height: 64px
+   :width: 64px
 
 - :func:`fedmsg.meta.msg2usernames`
 
