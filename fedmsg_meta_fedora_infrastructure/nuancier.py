@@ -26,6 +26,7 @@ class NuancierProcessor(BaseProcessor):
     __name__ = "nuancier"
     __description__ = "the supplemental wallpaper voting system"
     __link__ = "https://apps.fedoraproject.org/nuancier/"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     __docs__ = "https://github.com/fedora-infra/nuancier-lite"
     __obj__ = "Wallpaper Elections"
 
