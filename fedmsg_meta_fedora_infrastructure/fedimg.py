@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012, 2013 Red Hat, Inc.
+# Copyright (C) 2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -15,10 +15,7 @@
 # License along with fedmsg; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
-# Authors:  Ralph Bean <rbean@redhat.com>
-#           Luke Macken <lmacken@redhat.com>
-#
-# fedimg.py written by David Gay <oddshocks@riseup.net>
+# Author:  David Gay <oddshocks@riseup.net
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
@@ -28,7 +25,7 @@ class FedimgProcessor(BaseProcessor):
     __description__ = "The Fedora cloud image service"
     __link__ = "https://github.com/oddshocks/fedimg"
     #__icon__ = ""  # TODO: Create an icon
-    #__docs__ = "https://fedoraproject.org/wiki/Open_Badges"
+    __docs__ = "https://fedoraproject.org/wiki/Features/FirstClassCloudImages/KojiPlan"
     __obj__ = "New cloud image upload"
 
     def subtitle(self, msg, **config):
