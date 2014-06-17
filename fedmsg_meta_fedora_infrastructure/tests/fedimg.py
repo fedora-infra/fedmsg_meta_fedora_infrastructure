@@ -37,7 +37,7 @@ class TestImageUpload(Base):
     expected_subti = "Image {} started uploading to {}".format(image, dest)
     expected_link = set([])
     expected_icon = set([])
-    expected_secondary_ion = set([])
+    expected_secondary_icon = set([])
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([])
