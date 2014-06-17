@@ -35,9 +35,9 @@ class TestImageUpload(Base):
             "/fedora-cloud-base-rawhide-20140604.x86_64.raw.xz"
     dest = "EC2-eu-west-1"
     expected_subti = "Image {} started uploading to {}".format(image, dest)
-    expected_link = set([])
-    expected_icon = set([])
-    expected_secondary_icon = set([])
+    expected_link = None
+    expected_icon = None
+    expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([])
