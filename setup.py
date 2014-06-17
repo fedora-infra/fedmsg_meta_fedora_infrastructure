@@ -93,6 +93,7 @@ entry_points = {
         "elections=fedmsg_meta_fedora_infrastructure.elections:"
         "ElectionsProcessor",
         "fmn=fedmsg_meta_fedora_infrastructure.fmn:FMNProcessor",
+        "fedimg=fedmsg_meta_fedora_infrastructure.fedimg:FedimgProcessor",
     ]
 }
 
