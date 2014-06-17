@@ -35,18 +35,19 @@ class TestImageUpload(Base):
             "/fedora-cloud-base-rawhide-20140604.x86_64.raw.xz"
     dest = "EC2-eu-west-1"
     expected_subti = "Image {} started uploading to {}".format(image, dest)
-    expected_link = ""
-    expected_icon = "http://example.com/image.png"
-    expected_secondary_ion = None
+    expected_link = set([])
+    expected_icon = set([])
+    expected_secondary_ion = set([])
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([])
     msg = {
         u'i': 1,
         u'msg': {
-            u'image_name': 'https://kojipkgs.fedoraproject.org//work/'
-                           'tasks/5144/6925144/fedora-cloud-base-'
-                           'rawhide-20140604.x86_64.raw.xz',
+            u'image_url': 'https://kojipkgs.fedoraproject.org//work/'
+                          'tasks/5144/6925144/fedora-cloud-base-'
+                          'rawhide-20140604.x86_64.raw.xz',
+            u'image_name': 'fedora-cloud-base-rawhide-20140604.x86_64',
             u'dest': 'EC2-eu-west-1',
             u'status': 'started',
         },
