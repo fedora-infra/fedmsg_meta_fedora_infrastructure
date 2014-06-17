@@ -47,16 +47,3 @@ class FedimgProcessor(BaseProcessor):
             dest = msg['msg']['destination']
             tmpl = self._('Image {image_name} failed to upload to {dest}')
             return tmpl.format(image_name=name, dest=dest)
-        else:
-            pass  # This should never happen.
-
-    """
-    def icon(self, msg, **config):
-        if 'badge.award' in msg['topic']:
-            return msg['msg']['badge']['image_url']
-        else:
-            return super(BadgesProcessor, self).icon(msg, **config)
-
-    def secondary_icon(self, msg, **config):
-        return gravatar_url(self._get_user(msg))
-    """
