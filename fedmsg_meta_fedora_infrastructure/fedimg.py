@@ -15,7 +15,7 @@
 # License along with fedmsg; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
-# Author:  David Gay <oddshocks@riseup.net
+# Authors:  David Gay <oddshocks@riseup.net
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
