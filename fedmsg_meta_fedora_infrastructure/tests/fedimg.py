@@ -48,7 +48,7 @@ class TestImageUpload(Base):
                           'tasks/5144/6925144/fedora-cloud-base-'
                           'rawhide-20140604.x86_64.raw.xz',
             u'image_name': 'fedora-cloud-base-rawhide-20140604.x86_64',
-            u'dest': 'EC2-eu-west-1',
+            u'destination': 'EC2-eu-west-1',
             u'status': 'started',
         },
         u'topic': u'org.fedoraproject.stg.fedimg.image.upload',
