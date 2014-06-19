@@ -80,7 +80,7 @@ class TestGithubPush(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'git/fedora-infra/github2fedmsg/README.rst'
+        'fedora-infra/github2fedmsg/tree/README.rst'
     ])
 
     msg = {
@@ -206,7 +206,7 @@ class TestGithubIssue(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'issue/fedora-infra/github2fedmsg/3',
+        'fedora-infra/github2fedmsg/issues/3',
     ])
     msg = {
         "username": "root",
@@ -323,7 +323,7 @@ class TestGithubIssueComment(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'issue/fedora-infra/github2fedmsg/3',
+        'fedora-infra/github2fedmsg/issues/3',
     ])
     msg = {
         "username": "root",
@@ -458,7 +458,7 @@ class TestGithubCreate(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'create/fedora-infra/github2fedmsg/branch/feature/testing-stuff',
+        'fedora-infra/github2fedmsg/branch/feature/testing-stuff',
     ])
     msg = {
         "username": "root",
@@ -549,7 +549,7 @@ class TestGithubPullRequestClosed(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'pull_request/fedora-infra/github2fedmsg/6',
+        'fedora-infra/github2fedmsg/pull/6',
     ])
     msg = {
         "username": "root",
@@ -779,7 +779,7 @@ class TestGithubFork(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        'forks/fedora-infra/github2fedmsg/kushal124',
+        'fedora-infra/github2fedmsg/forks/kushal124',
     ])
     msg = {
         "username": "root",
@@ -877,6 +877,609 @@ class TestGithubFork(Base):
                 "id": 871398
             }
         }
+    }
+
+
+class TestGithubStatus(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever a **continuous integration
+    service updates the status of a new commit**.
+    """
+
+    expected_title = "github.status"
+    expected_subti = 'PEP8Bot scan pending for fedora-infra/datanommer ' + \
+        'e71e2ba93fa992d9026f89d65f9220d5234bfab1'
+    expected_link = "http://pep8.me/fedora-infra/datanommer/commits" + \
+        "/e71e2ba93fa992d9026f89d65f9220d5234bfab1"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'fedora-infra/datanommer/status/'
+        'e71e2ba93fa992d9026f89d65f9220d5234bfab1',
+    ])
+    msg = {
+        "i": 1,
+        "msg": {
+            "branches": [
+                {
+                    "commit": {
+                        "sha": "e2ebf193a204cedefb48bb8c67a000b44a3b05b9",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "datanommer/commits/"
+                        "e2ebf193a204cedefb48bb8c67a000b44a3b05b9"
+                    },
+                    "name": "feature/fix-category-bug"
+                }
+            ],
+            "commit": {
+                "author": {
+                    "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                    "html_url": "https://github.com/ralphbean",
+                    "id": 331338,
+                    "login": "ralphbean",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/ralphbean"
+                },
+                "commit": {
+                    "author": {
+                        "date": "2014-06-18T22:23:17Z",
+                        "email": "rbean@redhat.com",
+                        "name": "Ralph Bean"
+                    },
+                    "comment_count": 0,
+                    "committer": {
+                        "date": "2014-06-18T22:23:17Z",
+                        "email": "rbean@redhat.com",
+                        "name": "Ralph Bean"
+                    },
+                    "message": "Add failing test.",
+                    "tree": {
+                        "sha": "4087c0707f6e8c084c9dd4d61dd08f88ed948488",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "datanommer/git/trees/"
+                        "4087c0707f6e8c084c9dd4d61dd08f88ed948488"
+                    },
+                    "url": "https://api.github.com/repos/fedora-infra/"
+                    "datanommer/git/commits/"
+                    "e71e2ba93fa992d9026f89d65f9220d5234bfab1"
+                },
+                "committer": {
+                    "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                    "html_url": "https://github.com/ralphbean",
+                    "id": 331338,
+                    "login": "ralphbean",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/ralphbean"
+                },
+                "html_url": "https://github.com/fedora-infra/datanommer/"
+                "commit/e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+                "parents": [
+                    {
+                        "html_url": "https://github.com/fedora-infra/"
+                        "datanommer/commit/"
+                        "03fd8eaedf5cb4ed5bc2ced77805f8c78bc7ccc9",
+                        "sha": "03fd8eaedf5cb4ed5bc2ced77805f8c78bc7ccc9",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "datanommer/commits/"
+                        "03fd8eaedf5cb4ed5bc2ced77805f8c78bc7ccc9"
+                    }
+                ],
+                "sha": "e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+                "url": "https://api.github.com/repos/fedora-infra/datanommer/"
+                "commits/e71e2ba93fa992d9026f89d65f9220d5234bfab1"
+            },
+            "context": "default",
+            "target_url":  "http://pep8.me/fedora-infra/datanommer/commits"
+            "/e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+            "description": "PEP8Bot scan pending",
+            "fas_usernames": {'ralphbean': 'ralph'},
+            "name": "fedora-infra/datanommer",
+            "repository": {
+                "created_at": "2012-07-05T18:07:29Z",
+                "default_branch": "develop",
+                "description": "Put all the messages in the postgres",
+                "fork": False,
+                "forks": 5,
+                "forks_count": 5,
+                "full_name": "fedora-infra/datanommer",
+                "has_downloads": True,
+                "has_issues": True,
+                "has_wiki": False,
+                "homepage": "",
+                "html_url": "https://github.com/fedora-infra/datanommer",
+                "id": 4912314,
+                "language": "Python",
+                "name": "datanommer",
+                "open_issues": 0,
+                "open_issues_count": 0,
+                "owner": {
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "html_url": "https://github.com/fedora-infra",
+                    "id": 3316637,
+                    "login": "fedora-infra",
+                    "site_admin": False,
+                    "type": "Organization",
+                    "url": "https://api.github.com/users/fedora-infra"
+                },
+                "private": False,
+                "pushed_at": "2014-06-18T22:24:15Z",
+                "size": 3304,
+                "stargazers_count": 8,
+                "updated_at": "2014-06-18T22:24:11Z",
+                "url": "https://api.github.com/repos/fedora-infra/datanommer",
+                "watchers": 8,
+                "watchers_count": 8
+            },
+            "sender": {
+                "gravatar_id": "b8083eb4cd5c69b1b1e9305bf2495d76",
+                "html_url": "https://github.com/yograterol",
+                "id": 3322886,
+                "login": "yograterol",
+                "site_admin": False,
+                "type": "User",
+                "url": "https://api.github.com/users/yograterol"
+            },
+            "sha": "e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+            "state": "pending"
+        },
+        "msg_id": "2014-8347add9-960c-4780-814a-c85378cd79bc",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1403130257.0,
+        "topic": "org.fedoraproject.prod.github.status"
+    }
+
+
+class TestGithubDelete(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **deletes a new tag
+    or branch**.
+    """
+
+    expected_title = "github.delete"
+    expected_subti = 'ralph deleted the "feature/testing-stuff" branch ' + \
+        'at fedora-infra/github2fedmsg'
+    expected_link = "https://github.com/fedora-infra/github2fedmsg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'fedora-infra/github2fedmsg/branch/feature/testing-stuff',
+    ])
+    msg = {
+        "username": "root",
+        "i": 1,
+        "timestamp": 1395168693,
+        "msg_id": "2014-eed312f7-7bb2-471c-acb6-afaaf8f097ba",
+        "topic": "org.fedoraproject.dev.github.delete",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/ralphbean",
+                "site_admin": False,
+                "html_url": "https://github.com/ralphbean",
+                "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                "login": "ralphbean",
+                "type": "User",
+                "id": 331338
+            },
+            "repository": {
+                "has_wiki": False,
+                "forks_count": 0,
+                "updated_at": "2014-03-18T18:36:30Z",
+                "private": False,
+                "full_name": "fedora-infra/github2fedmsg",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 17830164,
+                "size": 804,
+                "watchers_count": 2,
+                "stargazers_count": 2,
+                "homepage": None,
+                "fork": False,
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
+                "has_downloads": True,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/github2fedmsg",
+                "has_issues": True,
+                "master_branch": "develop",
+                "forks": 0,
+                "open_issues_count": 1,
+                "watchers": 2,
+                "name": "github2fedmsg",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
+                "created_at": "2014-03-17T14:09:56Z",
+                "pushed_at": "2014-03-18T18:51:32Z",
+                "open_issues": 1
+            },
+            "ref": "feature/testing-stuff",
+            "fas_usernames": {
+                "ralphbean": "ralph"
+            },
+            "ref_type": "branch",
+            "pusher_type": "user",
+            "master_branch": "develop",
+            "description": "A pubsubhubbub application that rebroadcasts "
+            "github events on the fedmsg bus"
+        }
+    }
+
+
+class TestGithubPullRequestComment(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **comments on a pull
+    request**.
+    """
+
+    expected_title = "github.pull_request_review_comment"
+    expected_subti = 'pingou commented on PR #129 on fedora-infra/fedocal'
+    expected_link = "https://github.com/fedora-infra/fedocal/" + \
+        "pull/129#discussion_r13957675"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set([
+        'fedora-infra/fedocal/pull/129',
+    ])
+    msg = {
+        "i": 4,
+        "msg": {
+            "action": "created",
+            "comment": {
+                "body": "I was thinking the ``flask.request.args.get(...",
+                "commit_id": "31b3d03951c9cc40e4c497e09ff9b7c6f708239d",
+                "created_at": "2014-06-19T08:30:17Z",
+                "diff_hunk": "@@ -401,6 +401,19 @@ def calendar_list(...",
+                "html_url": "https://github.com/fedora-infra/"
+                "fedocal/pull/129#discussion_r13957675",
+                "id": 13957675,
+                "original_commit_id": "31b3d03951c9cc40e4c497e09ff9b7c6f"
+                "708239d",
+                "original_position": 16,
+                "path": "fedocal/__init__.py",
+                "position": 16,
+                "updated_at": "2014-06-19T08:30:17Z",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "fedocal/pulls/comments/13957675",
+                "user": {
+                    "gravatar_id": "072b4416fbfad867a44bc7a5be5eddb9",
+                    "html_url": "https://github.com/pypingou",
+                    "id": 1240038,
+                    "login": "pypingou",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/pypingou"
+                }
+            },
+            "fas_usernames": {'pypingou': 'pingou'},
+            "pull_request": {
+                "assignee": None,
+                "base": {
+                    "label": "fedora-infra:master",
+                    "ref": "master",
+                    "repo": {
+                        "created_at": "2013-03-22T19:35:10Z",
+                        "default_branch": "master",
+                        "description": "A web based calendar application "
+                        "for Fedora",
+                        "fork": False,
+                        "forks": 9,
+                        "forks_count": 9,
+                        "full_name": "fedora-infra/fedocal",
+                        "has_downloads": True,
+                        "has_issues": False,
+                        "has_wiki": False,
+                        "homepage": "",
+                        "html_url": "https://github.com/fedora-infra/fedocal",
+                        "id": 8959394,
+                        "language": "Python",
+                        "name": "fedocal",
+                        "open_issues": 1,
+                        "open_issues_count": 1,
+                        "owner": {
+                            "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                            "html_url": "https://github.com/fedora-infra",
+                            "id": 3316637,
+                            "login": "fedora-infra",
+                            "site_admin": False,
+                            "type": "Organization",
+                            "url": "https://api.github.com/users/fedora-infra"
+                        },
+                        "private": False,
+                        "pushed_at": "2014-06-19T08:24:38Z",
+                        "size": 5719,
+                        "stargazers_count": 4,
+                        "updated_at": "2014-06-19T08:24:34Z",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "fedocal",
+                        "watchers": 4,
+                        "watchers_count": 4
+                    },
+                    "sha": "c7bdf86b8bd52c78805ee708ca11e2b81f90b82e",
+                    "user": {
+                        "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                        "html_url": "https://github.com/fedora-infra",
+                        "id": 3316637,
+                        "login": "fedora-infra",
+                        "site_admin": False,
+                        "type": "Organization",
+                        "url": "https://api.github.com/users/fedora-infra"
+                    }
+                },
+                "body": "This implement filtering the meetings in the list "
+                "view server side rather than iterating through all the "
+                "meetings retrieved",
+                "closed_at": None,
+                "created_at": "2014-06-17T10:16:31Z",
+                "head": {
+                    "label": "fedora-infra:filter_db",
+                    "ref": "filter_db",
+                    "repo": {
+                        "created_at": "2013-03-22T19:35:10Z",
+                        "default_branch": "master",
+                        "description": "A web based calendar application for "
+                        "Fedora",
+                        "fork": False,
+                        "forks": 9,
+                        "forks_count": 9,
+                        "full_name": "fedora-infra/fedocal",
+                        "has_downloads": True,
+                        "has_issues": False,
+                        "has_wiki": False,
+                        "homepage": "",
+                        "html_url": "https://github.com/fedora-infra/fedocal",
+                        "id": 8959394,
+                        "language": "Python",
+                        "name": "fedocal",
+                        "open_issues": 1,
+                        "open_issues_count": 1,
+                        "owner": {
+                            "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                            "html_url": "https://github.com/fedora-infra",
+                            "id": 3316637,
+                            "login": "fedora-infra",
+                            "site_admin": False,
+                            "type": "Organization",
+                            "url": "https://api.github.com/users/fedora-infra"
+                        },
+                        "private": False,
+                        "pushed_at": "2014-06-19T08:24:38Z",
+                        "size": 5719,
+                        "stargazers_count": 4,
+                        "updated_at": "2014-06-19T08:24:34Z",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "fedocal",
+                        "watchers": 4,
+                        "watchers_count": 4
+                    },
+                    "sha": "31b3d03951c9cc40e4c497e09ff9b7c6f708239d",
+                    "user": {
+                        "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                        "html_url": "https://github.com/fedora-infra",
+                        "id": 3316637,
+                        "login": "fedora-infra",
+                        "site_admin": False,
+                        "type": "Organization",
+                        "url": "https://api.github.com/users/fedora-infra"
+                    }
+                },
+                "html_url": "https://github.com/fedora-infra/fedocal/pull/129",
+                "id": 17226690,
+                "merge_commit_sha": "88cdeaf8e6986c4469f1619229c2b0580b0018dd",
+                "merged_at": None,
+                "milestone": None,
+                "number": 129,
+                "state": "open",
+                "title": "Filter db",
+                "updated_at": "2014-06-19T08:30:17Z",
+                "url": "https://api.github.com/repos/fedora-infra/fedocal/"
+                "pulls/129",
+                "user": {
+                    "gravatar_id": "072b4416fbfad867a44bc7a5be5eddb9",
+                    "html_url": "https://github.com/pypingou",
+                    "id": 1240038,
+                    "login": "pypingou",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/pypingou"
+                }
+            },
+            "repository": {
+                "created_at": "2013-03-22T19:35:10Z",
+                "default_branch": "master",
+                "description": "A web based calendar application for Fedora",
+                "fork": False,
+                "forks": 9,
+                "forks_count": 9,
+                "full_name": "fedora-infra/fedocal",
+                "has_downloads": True,
+                "has_issues": False,
+                "has_wiki": False,
+                "homepage": "",
+                "html_url": "https://github.com/fedora-infra/fedocal",
+                "id": 8959394,
+                "language": "Python",
+                "name": "fedocal",
+                "open_issues": 1,
+                "open_issues_count": 1,
+                "owner": {
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "html_url": "https://github.com/fedora-infra",
+                    "id": 3316637,
+                    "login": "fedora-infra",
+                    "site_admin": False,
+                    "type": "Organization",
+                    "url": "https://api.github.com/users/fedora-infra"
+                },
+                "private": False,
+                "pushed_at": "2014-06-19T08:24:38Z",
+                "size": 5719,
+                "stargazers_count": 4,
+                "updated_at": "2014-06-19T08:24:34Z",
+                "url": "https://api.github.com/repos/fedora-infra/fedocal",
+                "watchers": 4,
+                "watchers_count": 4
+            },
+            "sender": {
+                "gravatar_id": "072b4416fbfad867a44bc7a5be5eddb9",
+                "html_url": "https://github.com/pypingou",
+                "id": 1240038,
+                "login": "pypingou",
+                "site_admin": False,
+                "type": "User",
+                "url": "https://api.github.com/users/pypingou"
+            }
+        },
+        "msg_id": "2014-cdf3f751-1af5-4773-91e4-6b2f71e0a905",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1403166618.0,
+        "topic": "org.fedoraproject.prod.github.pull_request_review_comment"
+    }
+
+
+class TestGithubCommitComment(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **comments directly
+    on a commit**.
+    """
+
+    expected_title = "github.commit_comment"
+    expected_subti = "ralph commented on a commit on fedora-infra/bodhi"
+    expected_link = "https://github.com/fedora-infra/bodhi/commit/" + \
+        "425c3610e129138a8b918b1eb1a40d291da20dc5" + \
+        "#commitcomment-6733053"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'fedora-infra/bodhi/tree/bodhi/tests/functional/base.py',
+    ])
+
+    msg = {
+        "i": 5,
+        "msg": {
+            "comment": {
+                "body": "Maybe add a ``# comment`` here that 'BUILD_ID' "
+                "is from jenkins and link to http://da.gd/QuQs ?",
+                "commit_id": "425c3610e129138a8b918b1eb1a40d291da20dc5",
+                "created_at": "2014-06-19T15:15:22Z",
+                "html_url": "https://github.com/fedora-infra/bodhi/commit/"
+                "425c3610e129138a8b918b1eb1a40d291da20dc5"
+                "#commitcomment-6733053",
+                "id": 6733053,
+                "line": 46,
+                "path": "bodhi/tests/functional/base.py",
+                "position": 21,
+                "updated_at": "2014-06-19T15:15:22Z",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/"
+                "comments/6733053",
+                "user": {
+                    "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                    "html_url": "https://github.com/ralphbean",
+                    "id": 331338,
+                    "login": "ralphbean",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/ralphbean"
+                }
+            },
+            "fas_usernames": {
+                "ralphbean": "ralph"
+            },
+            "repository": {
+                "created_at": "2009-02-06T19:38:10Z",
+                "default_branch": "pyramid",
+                "description": "Bodhi is a web-system that facilitates the "
+                "process of publishing updates for a Fedora-based software "
+                "distribution.",
+                "fork": False,
+                "forks": 11,
+                "forks_count": 11,
+                "full_name": "fedora-infra/bodhi",
+                "has_downloads": True,
+                "has_issues": True,
+                "has_wiki": True,
+                "homepage": "http://bodhi.fedorahosted.org",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "id": 123299,
+                "language": "Python",
+                "name": "bodhi",
+                "open_issues": 14,
+                "open_issues_count": 14,
+                "owner": {
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "html_url": "https://github.com/fedora-infra",
+                    "id": 3316637,
+                    "login": "fedora-infra",
+                    "site_admin": False,
+                    "type": "Organization",
+                    "url": "https://api.github.com/users/fedora-infra"
+                },
+                "private": False,
+                "pushed_at": "2014-06-19T07:11:03Z",
+                "size": 34892,
+                "stargazers_count": 8,
+                "updated_at": "2014-06-19T07:11:03Z",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "watchers": 8,
+                "watchers_count": 8
+            },
+            "sender": {
+                "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                "html_url": "https://github.com/ralphbean",
+                "id": 331338,
+                "login": "ralphbean",
+                "site_admin": False,
+                "type": "User",
+                "url": "https://api.github.com/users/ralphbean"
+            }
+        },
+        "msg_id": "2014-dacff065-b47b-4d0b-9dc3-86406f6be9fb",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1403190922.0,
+        "topic": "org.fedoraproject.prod.github.commit_comment"
     }
 
 
