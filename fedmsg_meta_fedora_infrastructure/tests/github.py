@@ -880,6 +880,166 @@ class TestGithubFork(Base):
     }
 
 
+class TestGithubStatus(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever a **continuous integration
+    service updates the status of a new commit**.
+    """
+
+    expected_title = "github.status"
+    expected_subti = 'PEP8Bot scan pending for fedora-infra/datanommer ' + \
+        'e71e2ba93fa992d9026f89d65f9220d5234bfab1'
+    expected_link = "http://pep8.me/fedora-infra/datanommer/commits" + \
+        "/e71e2ba93fa992d9026f89d65f9220d5234bfab1"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'status/fedora-infra/datanommer/'
+        'e71e2ba93fa992d9026f89d65f9220d5234bfab1',
+    ])
+    msg = {
+        "i": 1,
+        "msg": {
+            "branches": [
+                {
+                    "commit": {
+                        "sha": "e2ebf193a204cedefb48bb8c67a000b44a3b05b9",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "datanommer/commits/"
+                        "e2ebf193a204cedefb48bb8c67a000b44a3b05b9"
+                    },
+                    "name": "feature/fix-category-bug"
+                }
+            ],
+            "commit": {
+                "author": {
+                    "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                    "html_url": "https://github.com/ralphbean",
+                    "id": 331338,
+                    "login": "ralphbean",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/ralphbean"
+                },
+                "commit": {
+                    "author": {
+                        "date": "2014-06-18T22:23:17Z",
+                        "email": "rbean@redhat.com",
+                        "name": "Ralph Bean"
+                    },
+                    "comment_count": 0,
+                    "committer": {
+                        "date": "2014-06-18T22:23:17Z",
+                        "email": "rbean@redhat.com",
+                        "name": "Ralph Bean"
+                    },
+                    "message": "Add failing test.",
+                    "tree": {
+                        "sha": "4087c0707f6e8c084c9dd4d61dd08f88ed948488",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "datanommer/git/trees/"
+                        "4087c0707f6e8c084c9dd4d61dd08f88ed948488"
+                    },
+                    "url": "https://api.github.com/repos/fedora-infra/"
+                    "datanommer/git/commits/"
+                    "e71e2ba93fa992d9026f89d65f9220d5234bfab1"
+                },
+                "committer": {
+                    "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                    "html_url": "https://github.com/ralphbean",
+                    "id": 331338,
+                    "login": "ralphbean",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/ralphbean"
+                },
+                "html_url": "https://github.com/fedora-infra/datanommer/"
+                "commit/e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+                "parents": [
+                    {
+                        "html_url": "https://github.com/fedora-infra/"
+                        "datanommer/commit/"
+                        "03fd8eaedf5cb4ed5bc2ced77805f8c78bc7ccc9",
+                        "sha": "03fd8eaedf5cb4ed5bc2ced77805f8c78bc7ccc9",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "datanommer/commits/"
+                        "03fd8eaedf5cb4ed5bc2ced77805f8c78bc7ccc9"
+                    }
+                ],
+                "sha": "e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+                "url": "https://api.github.com/repos/fedora-infra/datanommer/"
+                "commits/e71e2ba93fa992d9026f89d65f9220d5234bfab1"
+            },
+            "context": "default",
+            "target_url":  "http://pep8.me/fedora-infra/datanommer/commits"
+            "/e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+            "description": "PEP8Bot scan pending",
+            "fas_usernames": {'ralphbean': 'ralph'},
+            "name": "fedora-infra/datanommer",
+            "repository": {
+                "created_at": "2012-07-05T18:07:29Z",
+                "default_branch": "develop",
+                "description": "Put all the messages in the postgres",
+                "fork": False,
+                "forks": 5,
+                "forks_count": 5,
+                "full_name": "fedora-infra/datanommer",
+                "has_downloads": True,
+                "has_issues": True,
+                "has_wiki": False,
+                "homepage": "",
+                "html_url": "https://github.com/fedora-infra/datanommer",
+                "id": 4912314,
+                "language": "Python",
+                "name": "datanommer",
+                "open_issues": 0,
+                "open_issues_count": 0,
+                "owner": {
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "html_url": "https://github.com/fedora-infra",
+                    "id": 3316637,
+                    "login": "fedora-infra",
+                    "site_admin": False,
+                    "type": "Organization",
+                    "url": "https://api.github.com/users/fedora-infra"
+                },
+                "private": False,
+                "pushed_at": "2014-06-18T22:24:15Z",
+                "size": 3304,
+                "stargazers_count": 8,
+                "updated_at": "2014-06-18T22:24:11Z",
+                "url": "https://api.github.com/repos/fedora-infra/datanommer",
+                "watchers": 8,
+                "watchers_count": 8
+            },
+            "sender": {
+                "gravatar_id": "b8083eb4cd5c69b1b1e9305bf2495d76",
+                "html_url": "https://github.com/yograterol",
+                "id": 3322886,
+                "login": "yograterol",
+                "site_admin": False,
+                "type": "User",
+                "url": "https://api.github.com/users/yograterol"
+            },
+            "sha": "e71e2ba93fa992d9026f89d65f9220d5234bfab1",
+            "state": "pending"
+        },
+        "msg_id": "2014-8347add9-960c-4780-814a-c85378cd79bc",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1403130257.0,
+        "topic": "org.fedoraproject.prod.github.status"
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':

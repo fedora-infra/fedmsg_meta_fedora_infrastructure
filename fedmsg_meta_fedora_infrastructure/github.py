@@ -30,6 +30,10 @@ class GithubProcessor(BaseProcessor):
     __obj__ = "Github Events"
 
     def _get_user(self, msg):
+        if 'commit' in msg['msg']:
+            user = msg['msg']['commit'].get('author', {}).get('login', {})
+            if user:
+                return msg['msg']['fas_usernames'].get(user, user)
         if 'pusher' in msg['msg']:
             pusher = msg['msg']['pusher']['name']
             return msg['msg']['fas_usernames'].get(pusher, pusher)
@@ -53,6 +57,8 @@ class GithubProcessor(BaseProcessor):
             return None
 
     def link(self, msg, **config):
+        if 'target_url' in msg['msg']:
+            return msg['msg']['target_url']
         if 'compare' in msg['msg']:
             return msg['msg']['compare']
         if 'pull_request' in msg['msg']:
@@ -101,6 +107,11 @@ class GithubProcessor(BaseProcessor):
         elif 'github.fork' in msg['topic']:
             tmpl = self._('{user} forked {repo}')
             return tmpl.format(user=user, repo=repo)
+        elif 'github.status' in msg['topic']:
+            description = msg['msg']['description']
+            sha = msg['msg']['sha']
+            tmpl = self._("{description} for {repo} {sha}")
+            return tmpl.format(description=description, repo=repo, sha=sha)
         else:
             pass
 
@@ -121,6 +132,7 @@ class GithubProcessor(BaseProcessor):
             'github.issue': 'issue',
             'github.fork': 'forks',
             'github.create': 'create',
+            'github.status': 'status',
         }
 
         if suffix not in lookup:
@@ -144,5 +156,7 @@ class GithubProcessor(BaseProcessor):
             items = [self._get_user(msg)]
         elif suffix == 'github.create':
             items = ['/'.join([msg['msg']['ref_type'], msg['msg']['ref']])]
+        elif suffix == 'github.status':
+            items = [msg['msg']['commit']['sha']]
 
         return set([base + '/' + item for item in items])
