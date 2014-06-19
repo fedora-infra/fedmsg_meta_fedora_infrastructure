@@ -136,20 +136,22 @@ class GithubProcessor(BaseProcessor):
     def objects(self, msg, **config):
         suffix = '.'.join(msg['topic'].split('.')[3:5])
         lookup = {
-            'github.push': 'git',
-            'github.pull_request': 'pull_request',
-            'github.issue': 'issue',
+            'github.push': 'tree',
+            'github.issue': 'issues',
             'github.fork': 'forks',
-            'github.create': 'create',
-            'github.delete': 'delete',
             'github.status': 'status',
-            'github.pull_request_review_comment': 'issue',
+            'github.pull_request': 'pull',
+            'github.pull_request_review_comment': 'pull',
+            'github.create': None,
+            'github.delete': None,
         }
 
         if suffix not in lookup:
             return set()
 
-        base = lookup[suffix] + '/' + self._get_repo(msg)
+        base = self._get_repo(msg)
+        if lookup[suffix]:
+            base = base + "/" + lookup[suffix]
 
         items = []
         if 'commits' in msg['msg']:

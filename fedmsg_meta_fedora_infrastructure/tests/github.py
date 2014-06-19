@@ -80,7 +80,7 @@ class TestGithubPush(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'git/fedora-infra/github2fedmsg/README.rst'
+        'fedora-infra/github2fedmsg/tree/README.rst'
     ])
 
     msg = {
@@ -206,7 +206,7 @@ class TestGithubIssue(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'issue/fedora-infra/github2fedmsg/3',
+        'fedora-infra/github2fedmsg/issues/3',
     ])
     msg = {
         "username": "root",
@@ -323,7 +323,7 @@ class TestGithubIssueComment(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'issue/fedora-infra/github2fedmsg/3',
+        'fedora-infra/github2fedmsg/issues/3',
     ])
     msg = {
         "username": "root",
@@ -458,7 +458,7 @@ class TestGithubCreate(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'create/fedora-infra/github2fedmsg/branch/feature/testing-stuff',
+        'fedora-infra/github2fedmsg/branch/feature/testing-stuff',
     ])
     msg = {
         "username": "root",
@@ -549,7 +549,7 @@ class TestGithubPullRequestClosed(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'pull_request/fedora-infra/github2fedmsg/6',
+        'fedora-infra/github2fedmsg/pull/6',
     ])
     msg = {
         "username": "root",
@@ -779,7 +779,7 @@ class TestGithubFork(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        'forks/fedora-infra/github2fedmsg/kushal124',
+        'fedora-infra/github2fedmsg/forks/kushal124',
     ])
     msg = {
         "username": "root",
@@ -902,7 +902,7 @@ class TestGithubStatus(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'status/fedora-infra/datanommer/'
+        'fedora-infra/datanommer/status/'
         'e71e2ba93fa992d9026f89d65f9220d5234bfab1',
     ])
     msg = {
@@ -1061,7 +1061,7 @@ class TestGithubDelete(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([
-        'delete/fedora-infra/github2fedmsg/branch/feature/testing-stuff',
+        'fedora-infra/github2fedmsg/branch/feature/testing-stuff',
     ])
     msg = {
         "username": "root",
@@ -1152,7 +1152,7 @@ class TestGithubPullRequestComment(Base):
     expected_packages = set([])
     expected_usernames = set(['pingou'])
     expected_objects = set([
-        'issue/fedora-infra/fedocal/129',
+        'fedora-infra/fedocal/pull/129',
     ])
     msg = {
         "i": 4,
