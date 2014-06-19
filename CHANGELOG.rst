@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2.13
+0.2.14
 ------
 
 - Koji messages should really have a secondary icon. `920935ecb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/920935ecb4878aca2f6e5328362e19fd1ebf70a3>`_
@@ -99,6 +99,48 @@ Changelog
 - Merge pull request #92 from tyll/avoid-redirects `4d9387fc8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d9387fc85f1e984769e5b7426bc31f393f31f98>`_
 - Pkgdb: Make package retirement messages explicit `42d30bda3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/42d30bda3ef9464b0a7917f5b19f927cce4a41a3>`_
 - Merge pull request #91 from tyll/develop `80fc3d9ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80fc3d9eaeb067fe3a4f098b65e3225497bcb784>`_
+- 0.2.13 `4a838f948 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4a838f9480912806872e902f941a6a28d89acab3>`_
+- Fix .rst syntax. `ff4853a39 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ff4853a390171e944655b9d564f9ee4ebe41a763>`_
+- compose: remove unused import `93ff47576 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/93ff47576d37fc49497f7eac43272c2a76d1a503>`_
+- Use https where currently possible `62a9c6cbf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/62a9c6cbf4ab61cf6e489f9c33c798e4721a5e36>`_
+- Allow mentions in bodhi comments.  /cc @codeblock. `ffe34c428 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ffe34c428ba5c6483c0eb76d428c495f0250645d>`_
+- Merge pull request #94 from fedora-infra/feature/mentions `56a3b4270 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/56a3b42705cec5e1c821c93096039c1a99adceb7>`_
+- Initial go at a fedmsg meta config for the new fedimg service. `b47fa4205 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b47fa4205c2d3bc616696cac39a20c2a4dc14624>`_
+- Typofix `f4a928d1e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f4a928d1e6b8ccae65345d964f967860f9ee18a5>`_
+- Add marked up text and tests for bodhi messages. `bc68050a5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bc68050a55584ae13763c9375f2b2ee239cb307c>`_
+- Merge pull request #98 from fedora-infra/feature/marked-up-bodhi `f8b840b96 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f8b840b966d89e709f9ba18731d42ff1917a75fd>`_
+- Merge pull request #93 from tyll/https `7e364d43f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7e364d43f2caeb360dfa2cf65613efe33a597e08>`_
+- Allow the FAS url to be configurable. `dfab75e91 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dfab75e91edc6832e79dfc1f4b8e097f95d66dff>`_
+- Use a nuancier icon. `e309fb85d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e309fb85d03d540d9d9156f4a9dd107db68323ba>`_
+- Cook our own avatar links. `84ba908dd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/84ba908dd4173e35e93b5094abb0160a8f61a5fb>`_
+- Use libravatar. `07a3e0a20 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/07a3e0a20c24c3bb7e12d9fc95864074a53fef0b>`_
+- Update the tests to expect libravatar. `de7a296da <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de7a296da74c612712bb8641c7093584dd08af1d>`_
+- Merge pull request #100 from fedora-infra/feature/nuancier-icon `880a12c82 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/880a12c828dee94c30f103a20beb972690241f04>`_
+- Show icons in docs. `0a02161f4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a02161f4e33e4e7fd1c9d91d5ca1a68eec73528>`_
+- Merge pull request #102 from fedora-infra/feature/show-icons-in-docs `25c003e03 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/25c003e030ffe731c9337bf6cb7b512cb06d05ca>`_
+- Merge pull request #99 from fedora-infra/feature/configurable-fas-url `403b005f0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/403b005f019eadaa41214dd64d2b0e528bc4f9c0>`_
+- Merge pull request #101 from fedora-infra/feature/libravatar `78d057b2e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/78d057b2e949588662cbb864a2396eca59ffaf65>`_
+- Remove some stuff we don't need. `9fb656b2a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9fb656b2af6646355809ef743a06cafb57821fef>`_
+- Make successful status 'completed' instead of 'succeeded' `f75a7711a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f75a7711ac6f60bcefd84ebd5c7e9318e64744b5>`_
+- Tweaks as per @threebean's comments. `40fd23e49 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/40fd23e49903511bf5a3d85209760a84238bee95>`_
+- Author --> Authors to match other files. `e6b19ba0b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e6b19ba0b3f01fe6f2217bd61f75052efd5e46c4>`_
+- Start writing a test for Fedimg fedmsgs. `bb8590a21 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bb8590a21cec481d262f3ffb71a90f4f22440799>`_
+- Looks like this fedimg test passes `5d6e69df5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5d6e69df50b03f0ab959f731b4b55bb9d7826c8a>`_
+- Typofix `d282bff37 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d282bff37a3283e3957da7de4096864880c7700a>`_
+- PEP 8 `675bfcc7f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/675bfcc7fdb7ddb034e709f7944610a32a9317b6>`_
+- These things aren't sets. `f69d1742f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f69d1742fced458564f66343e735b4f6c38a0ded>`_
+- Crucial - declare the FedimgProcessor. `7bd2ce597 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7bd2ce59746ed4b38e2150f8cbd9bd4d0d42c703>`_
+- Run fedimg tests as part of the big suite. `7f3bebc6b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7f3bebc6b41386dc8832eeff5b9a555eab364804>`_
+- Handle github.status messages. `7b3bad3bb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7b3bad3bbfcb86ed9c589ac0e6610585d642cee2>`_
+- Handle github.delete messages. `4222b6491 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4222b649189a20efc3fc7efb6131dc90ff768ad5>`_
+- Handle pull request review comments. `72ada211c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/72ada211c98aa4667be0a226013361822a14f051>`_
+- Reorganize the way msg2objects works for github so that it makes more sense. `b118d4e1b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b118d4e1b8f8f291b283ddefc946785b5ae4bede>`_
+- Fix key name. `b742848e2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b742848e2f44f49eebeca755a4dbe3c2e15c3627>`_
+- py2.6 doesn't support str.format() without indexes `4d112edca <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d112edcacfdf203ff9889f67d02c1b5b090756e>`_
+- This should be the image name, not the URL. `ca6b47006 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ca6b47006b471c952e90a32ced32dc1c5c2dc731>`_
+- Support commit comments. `a91f1a75b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a91f1a75b4648d394268b5ecb42e92d0d9c50b00>`_
+- Merge pull request #103 from fedora-infra/feature/fedimg-meta `90379f404 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/90379f404f95757e8b05f04e1b57ce504cfa42f4>`_
+- Merge pull request #104 from fedora-infra/feature/more-github-stuff `329d97cd8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/329d97cd85a08fe3d4bd917bda2e190efcd1827b>`_
 
 0.2.9
 -----
@@ -390,6 +432,27 @@ Changelog
 - Merge pull request #86 from fedora-infra/feature/meetbot-icon `672917fe3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/672917fe32cb8ad32de5355bc152fa39c5282dc8>`_
 - Merge pull request #85 from fedora-infra/feature/copr-icon `bba920ec1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bba920ec1ac21e82551186dad1ff9e3a87f9c77e>`_
 - Fix meetbot topic changes. `903861a4e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/903861a4eb9838c35dec31fe1681f09bb8f33aee>`_
+- 0.2.12 `02f169e06 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/02f169e06e923cc74316827ded14b9ea7544a951>`_
+- Processor and tests for FMN messages. `f8aa9b47f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f8aa9b47f9c678599a846d0c2c558f7ba31edcd0>`_
+- Merge pull request #88 from fedora-infra/feature/fmn `9d693257b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9d693257b58d9696ddda3795a1c307a9d88072b5>`_
+- Actually add the code for this. `9bce4b293 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bce4b293e6ec07a7416c63f62f88a3ed3cbb0bd>`_
+- Merge branch 'feature/fmn' into develop `2521946b3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2521946b36cc08ed6d42de3ca79e50d610597d96>`_
+- Pkgdb: Avoid redirects to URL with trailing slash `de99f5914 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de99f59142fca006260ea74b2ee0a8ef2c06b243>`_
+- Merge pull request #92 from tyll/avoid-redirects `4d9387fc8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d9387fc85f1e984769e5b7426bc31f393f31f98>`_
+- Pkgdb: Make package retirement messages explicit `42d30bda3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/42d30bda3ef9464b0a7917f5b19f927cce4a41a3>`_
+- Merge pull request #91 from tyll/develop `80fc3d9ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80fc3d9eaeb067fe3a4f098b65e3225497bcb784>`_
+
+0.2.13
+------
+
+- Processor and tests for FMN messages. `f8aa9b47f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f8aa9b47f9c678599a846d0c2c558f7ba31edcd0>`_
+- Merge pull request #88 from fedora-infra/feature/fmn `9d693257b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9d693257b58d9696ddda3795a1c307a9d88072b5>`_
+- Actually add the code for this. `9bce4b293 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bce4b293e6ec07a7416c63f62f88a3ed3cbb0bd>`_
+- Merge branch 'feature/fmn' into develop `2521946b3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2521946b36cc08ed6d42de3ca79e50d610597d96>`_
+- Pkgdb: Avoid redirects to URL with trailing slash `de99f5914 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de99f59142fca006260ea74b2ee0a8ef2c06b243>`_
+- Merge pull request #92 from tyll/avoid-redirects `4d9387fc8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d9387fc85f1e984769e5b7426bc31f393f31f98>`_
+- Pkgdb: Make package retirement messages explicit `42d30bda3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/42d30bda3ef9464b0a7917f5b19f927cce4a41a3>`_
+- Merge pull request #91 from tyll/develop `80fc3d9ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80fc3d9eaeb067fe3a4f098b65e3225497bcb784>`_
 
 0.2.12
 ------
