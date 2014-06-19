@@ -104,6 +104,11 @@ class GithubProcessor(BaseProcessor):
             ref = msg['msg']['ref']
             tmpl = self._('{user} created a new {typ} "{ref}" at {repo}')
             return tmpl.format(user=user, repo=repo, ref=ref, typ=typ)
+        elif 'github.delete' in msg['topic']:
+            typ = msg['msg']['ref_type']
+            ref = msg['msg']['ref']
+            tmpl = self._('{user} deleted the "{ref}" {typ} at {repo}')
+            return tmpl.format(user=user, repo=repo, ref=ref, typ=typ)
         elif 'github.fork' in msg['topic']:
             tmpl = self._('{user} forked {repo}')
             return tmpl.format(user=user, repo=repo)
@@ -132,6 +137,7 @@ class GithubProcessor(BaseProcessor):
             'github.issue': 'issue',
             'github.fork': 'forks',
             'github.create': 'create',
+            'github.delete': 'delete',
             'github.status': 'status',
         }
 
@@ -154,7 +160,7 @@ class GithubProcessor(BaseProcessor):
             items = ['%s' % n]
         elif suffix == 'github.fork':
             items = [self._get_user(msg)]
-        elif suffix == 'github.create':
+        elif suffix == 'github.create' or suffix == 'github.delete':
             items = ['/'.join([msg['msg']['ref_type'], msg['msg']['ref']])]
         elif suffix == 'github.status':
             items = [msg['msg']['commit']['sha']]

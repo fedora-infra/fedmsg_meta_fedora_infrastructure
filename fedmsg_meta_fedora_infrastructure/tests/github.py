@@ -1040,6 +1040,97 @@ class TestGithubStatus(Base):
     }
 
 
+class TestGithubDelete(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **deletes a new tag
+    or branch**.
+    """
+
+    expected_title = "github.delete"
+    expected_subti = 'ralph deleted the "feature/testing-stuff" branch ' + \
+        'at fedora-infra/github2fedmsg'
+    expected_link = "https://github.com/fedora-infra/github2fedmsg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'delete/fedora-infra/github2fedmsg/branch/feature/testing-stuff',
+    ])
+    msg = {
+        "username": "root",
+        "i": 1,
+        "timestamp": 1395168693,
+        "msg_id": "2014-eed312f7-7bb2-471c-acb6-afaaf8f097ba",
+        "topic": "org.fedoraproject.dev.github.delete",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/ralphbean",
+                "site_admin": False,
+                "html_url": "https://github.com/ralphbean",
+                "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                "login": "ralphbean",
+                "type": "User",
+                "id": 331338
+            },
+            "repository": {
+                "has_wiki": False,
+                "forks_count": 0,
+                "updated_at": "2014-03-18T18:36:30Z",
+                "private": False,
+                "full_name": "fedora-infra/github2fedmsg",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 17830164,
+                "size": 804,
+                "watchers_count": 2,
+                "stargazers_count": 2,
+                "homepage": None,
+                "fork": False,
+                "description": "A pubsubhubbub application that rebroadcasts "
+                "github events on the fedmsg bus",
+                "has_downloads": True,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/github2fedmsg",
+                "has_issues": True,
+                "master_branch": "develop",
+                "forks": 0,
+                "open_issues_count": 1,
+                "watchers": 2,
+                "name": "github2fedmsg",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "github2fedmsg",
+                "created_at": "2014-03-17T14:09:56Z",
+                "pushed_at": "2014-03-18T18:51:32Z",
+                "open_issues": 1
+            },
+            "ref": "feature/testing-stuff",
+            "fas_usernames": {
+                "ralphbean": "ralph"
+            },
+            "ref_type": "branch",
+            "pusher_type": "user",
+            "master_branch": "develop",
+            "description": "A pubsubhubbub application that rebroadcasts "
+            "github events on the fedmsg bus"
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
