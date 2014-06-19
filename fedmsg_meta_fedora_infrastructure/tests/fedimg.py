@@ -34,7 +34,7 @@ class TestImageUpload(Base):
     image = "https://kojipkgs.fedoraproject.org//work/tasks/5144/6925144" + \
             "/fedora-cloud-base-rawhide-20140604.x86_64.raw.xz"
     dest = "EC2-eu-west-1"
-    expected_subti = "Image {} started uploading to {}".format(image, dest)
+    expected_subti = "Image {0} started uploading to {1}".format(image, dest)
     expected_link = None
     expected_icon = None
     expected_secondary_icon = None
