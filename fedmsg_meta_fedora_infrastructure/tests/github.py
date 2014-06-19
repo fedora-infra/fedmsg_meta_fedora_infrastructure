@@ -1371,6 +1371,118 @@ class TestGithubPullRequestComment(Base):
     }
 
 
+class TestGithubCommitComment(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **comments directly
+    on a commit**.
+    """
+
+    expected_title = "github.commit_comment"
+    expected_subti = "ralph commented on a commit on fedora-infra/bodhi"
+    expected_link = "https://github.com/fedora-infra/bodhi/commit/" + \
+        "425c3610e129138a8b918b1eb1a40d291da20dc5" + \
+        "#commitcomment-6733053"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'fedora-infra/bodhi/tree/bodhi/tests/functional/base.py',
+    ])
+
+    msg = {
+        "i": 5,
+        "msg": {
+            "comment": {
+                "body": "Maybe add a ``# comment`` here that 'BUILD_ID' "
+                "is from jenkins and link to http://da.gd/QuQs ?",
+                "commit_id": "425c3610e129138a8b918b1eb1a40d291da20dc5",
+                "created_at": "2014-06-19T15:15:22Z",
+                "html_url": "https://github.com/fedora-infra/bodhi/commit/"
+                "425c3610e129138a8b918b1eb1a40d291da20dc5"
+                "#commitcomment-6733053",
+                "id": 6733053,
+                "line": 46,
+                "path": "bodhi/tests/functional/base.py",
+                "position": 21,
+                "updated_at": "2014-06-19T15:15:22Z",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/"
+                "comments/6733053",
+                "user": {
+                    "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                    "html_url": "https://github.com/ralphbean",
+                    "id": 331338,
+                    "login": "ralphbean",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/ralphbean"
+                }
+            },
+            "fas_usernames": {
+                "ralphbean": "ralph"
+            },
+            "repository": {
+                "created_at": "2009-02-06T19:38:10Z",
+                "default_branch": "pyramid",
+                "description": "Bodhi is a web-system that facilitates the "
+                "process of publishing updates for a Fedora-based software "
+                "distribution.",
+                "fork": False,
+                "forks": 11,
+                "forks_count": 11,
+                "full_name": "fedora-infra/bodhi",
+                "has_downloads": True,
+                "has_issues": True,
+                "has_wiki": True,
+                "homepage": "http://bodhi.fedorahosted.org",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "id": 123299,
+                "language": "Python",
+                "name": "bodhi",
+                "open_issues": 14,
+                "open_issues_count": 14,
+                "owner": {
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "html_url": "https://github.com/fedora-infra",
+                    "id": 3316637,
+                    "login": "fedora-infra",
+                    "site_admin": False,
+                    "type": "Organization",
+                    "url": "https://api.github.com/users/fedora-infra"
+                },
+                "private": False,
+                "pushed_at": "2014-06-19T07:11:03Z",
+                "size": 34892,
+                "stargazers_count": 8,
+                "updated_at": "2014-06-19T07:11:03Z",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "watchers": 8,
+                "watchers_count": 8
+            },
+            "sender": {
+                "gravatar_id": "ba940b433c2695635d32d2c4aec00540",
+                "html_url": "https://github.com/ralphbean",
+                "id": 331338,
+                "login": "ralphbean",
+                "site_admin": False,
+                "type": "User",
+                "url": "https://api.github.com/users/ralphbean"
+            }
+        },
+        "msg_id": "2014-dacff065-b47b-4d0b-9dc3-86406f6be9fb",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1403190922.0,
+        "topic": "org.fedoraproject.prod.github.commit_comment"
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':

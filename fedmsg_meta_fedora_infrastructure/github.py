@@ -103,6 +103,9 @@ class GithubProcessor(BaseProcessor):
             n = msg['msg']['pull_request']['number']
             tmpl = self._('{user} commented on PR #{n} on {repo}')
             return tmpl.format(user=user, n=n, repo=repo)
+        elif 'github.commit_comment' in msg['topic']:
+            tmpl = self._('{user} commented on a commit on {repo}')
+            return tmpl.format(user=user, repo=repo)
         elif 'github.create' in msg['topic']:
             typ = msg['msg']['ref_type']
             ref = msg['msg']['ref']
@@ -142,6 +145,7 @@ class GithubProcessor(BaseProcessor):
             'github.status': 'status',
             'github.pull_request': 'pull',
             'github.pull_request_review_comment': 'pull',
+            'github.commit_comment': 'tree',
             'github.create': None,
             'github.delete': None,
         }
@@ -174,5 +178,7 @@ class GithubProcessor(BaseProcessor):
             items = ['/'.join([msg['msg']['ref_type'], msg['msg']['ref']])]
         elif suffix == 'github.status':
             items = [msg['msg']['commit']['sha']]
+        elif suffix == 'github.commit_comment':
+            items = [msg['msg']['comment']['path']]
 
         return set([base + '/' + item for item in items])
