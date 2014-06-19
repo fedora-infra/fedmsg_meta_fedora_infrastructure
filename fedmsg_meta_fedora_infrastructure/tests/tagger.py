@@ -39,9 +39,9 @@ class TestTaggerVoteAuthenticated(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
-        '%2Ffedora_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c'
+        '?s=64&d=retro')
     expected_usernames = set(['ralph'])
     expected_packages = set(['mattd'])
     expected_objects = set(['packages/mattd', 'labels/stupid'])
@@ -145,9 +145,9 @@ class TestTaggerCreate(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/mattd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
-        '%2Ffedora_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c'
+        '?s=64&d=retro')
     expected_usernames = set(['ralph'])
     expected_packages = set(['mattd'])
     expected_objects = set(['packages/mattd', 'labels/awesome'])
@@ -264,9 +264,9 @@ class TestTaggerCreateLegacy(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/perl-Test-Fatal'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
-        '%2Ffedora_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c'
+        '?s=64&d=retro')
     expected_usernames = set(['ralph'])
     expected_packages = set(['perl-Test-Fatal'])
     expected_objects = set(['packages/perl-Test-Fatal', 'labels/unittest'])
@@ -337,9 +337,9 @@ class TestTaggerToggleUsageOn(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
-        '%2Ffedora_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c'
+        '?s=64&d=retro')
     expected_usernames = set(['ralph'])
     expected_packages = set(['passwd'])
     expected_objects = set(['packages/passwd'])
@@ -383,9 +383,9 @@ class TestTaggerToggleUsageOff(Base):
     expected_link = 'https://apps.fedoraproject.org/tagger/passwd'
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/2f933f4364baaabd2d3ab8f0664faef2'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
-        '%2Ffedora_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c'
+        '?s=64&d=retro')
     expected_usernames = set(['ralph'])
     expected_packages = set(['passwd'])
     expected_objects = set(['packages/passwd'])
@@ -427,9 +427,9 @@ class TestTaggerRankUpdate(Base):
     expected_subti = "immanetize's rank changed to 59"
     expected_icon = 'https://apps.fedoraproject.org/img/icons/tagger.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/db397b708688db9b708f54f3909ec0da'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages'
-        '%2Ffedora_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        '75aba49c572a4319af1792ba0dbe2a0d80de4dc1f602c43a360d9b0fc347ae0f'
+        '?s=64&d=retro')
     expected_usernames = set(['immanetize'])
     expected_packages = set()
     expected_objects = set()

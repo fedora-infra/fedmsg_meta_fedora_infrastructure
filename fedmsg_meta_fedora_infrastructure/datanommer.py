@@ -31,10 +31,10 @@ class DatanommerProcessor(BaseProcessor):
         return "datanommer encountered a duplicate uuid"
 
     def icon(self, msg, **config):
-        return "http://i.imgur.com/4g9NZu1.png"
+        return "https://i.imgur.com/4g9NZu1.png"
 
     def secondary_icon(self, msg, **config):
-        return "http://i.imgur.com/58oJkOr.gif"
+        return "https://i.imgur.com/58oJkOr.gif"
 
     def link(self, msg, **config):
         return "https://www.destroyallsoftware.com/talks/wat"

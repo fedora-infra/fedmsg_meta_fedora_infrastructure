@@ -39,9 +39,9 @@ class TestCalendarClear(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/clear'])
@@ -76,9 +76,9 @@ class TestCalendarCreate(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/new'])
@@ -113,9 +113,9 @@ class TestCalendarDelete(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/delete'])
@@ -150,9 +150,9 @@ class TestCalendarUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/update'])
@@ -188,9 +188,9 @@ class TestCalendarUpload(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/upload'])
@@ -226,9 +226,9 @@ class TestMeetingCreate(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/meetings/wat/new'])
@@ -277,9 +277,9 @@ class TestMeetingUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/meetings/wat/update'])
@@ -328,9 +328,9 @@ class TestMeetingDelete(Base):
     expected_icon = ("https://apps.fedoraproject.org/calendar/"
                      "static/calendar.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['awesome/meetings/wat/delete'])

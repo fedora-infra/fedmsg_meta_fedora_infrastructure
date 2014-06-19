@@ -1,8 +1,6 @@
 import urllib
 import socket
-from hashlib import md5
-
-_valid_gravatar_sizes = (32, 64, 140)
+from hashlib import sha256, md5
 
 _fas_cache = {}
 
@@ -10,38 +8,39 @@ import logging
 log = logging.getLogger("moksha.hub")
 
 
-def gravatar_url(username, size=64, default=None):
-    try:
-        import fedora.client
-        system = fedora.client.AccountSystem()
-        return system.gravatar_url(
-            username, size, default, lookup_email=False)
-    except Exception:
-        email = username + "@fedoraproject.org"
-        return gravatar_url_from_email(email, size, default)
+def avatar_url(username, size=64, default='retro'):
+    openid = "http://%s.id.fedoraproject.org/" % username
+    return avatar_url_from_openid(openid, size, default)
 
 
-def gravatar_url_from_email(email, size=64, default=None):
+def avatar_url_from_openid(openid, size=64, default='retro', dns=False):
     """
     Our own implementation since fas doesn't support this nicely yet.
     """
 
-    if size not in _valid_gravatar_sizes:
-        raise ValueError(b_(
-            'Size %(size)i disallowed.  Must be in %(valid_sizes)r') % {
-                'size': size, 'valid_sizes': _valid_gravatar_sizes})
+    if dns:
+        # This makes an extra DNS SRV query, which can slow down our webapps.
+        # It is necessary for libravatar federation, though.
+        import libravatar
+        return libravatar.libravatar_url(
+            openid=openid,
+            size=size,
+            default=default,
+        )
+    else:
+        query = urllib.urlencode({'s': size, 'd': default})
+        hash = sha256(openid).hexdigest()
+        return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
-    if not default:
-        default = ("http://fedoraproject.org/static/images/"
-                   "fedora_infinity_%ix%i.png" % (size, size))
 
-    return _kernel(email, size, default, service='gravatar')
+def avatar_url_from_email(email, size=64, default='retro', dns=False):
+    """
+    Our own implementation since fas doesn't support this nicely yet.
+    """
 
-
-def _kernel(email, size, default, service='gravatar'):
-    """ Copy-and-paste of some code from python-fedora. """
-
-    if service == 'libravatar':
+    if dns:
+        # This makes an extra DNS SRV query, which can slow down our webapps.
+        # It is necessary for libravatar federation, though.
         import libravatar
         return libravatar.libravatar_url(
             email=email,
@@ -49,14 +48,14 @@ def _kernel(email, size, default, service='gravatar'):
             default=default,
         )
     else:
-        query_string = urllib.urlencode({
-            's': size,
-            'd': default,
-        })
-
+        query = urllib.urlencode({'s': size, 'd': default})
         hash = md5(email).hexdigest()
+        return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
-        return "http://www.gravatar.com/avatar/%s?%s" % (hash, query_string)
+
+gravatar_url = avatar_url  # backwards compat
+gravatar_url_from_openid = avatar_url_from_openid
+gravatar_url_from_email = avatar_url_from_email
 
 
 def make_fas_cache(**config):
@@ -79,7 +78,9 @@ def make_fas_cache(**config):
 
     creds = config['fas_credentials']
 
+    default_url = 'https://admin.fedoraproject.org/accounts/'
     fasclient = fedora.client.fas2.AccountSystem(
+        base_url=creds.get('base_url', default_url),
         username=creds['username'],
         password=creds['password'],
     )

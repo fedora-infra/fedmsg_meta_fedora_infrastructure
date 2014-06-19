@@ -18,10 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
-
-from hashlib import md5
-import urllib
+from fasshim import gravatar_url, gravatar_url_from_email
 
 
 class SCMProcessor(BaseProcessor):
@@ -34,15 +31,8 @@ class SCMProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         if '.git.receive' in msg['topic']:
-            query_string = urllib.urlencode({
-                's': 64,
-                'd': 'http://fedoraproject.org/static/images/'
-                'fedora_infinity_64x64.png',
-            })
             email = msg['msg']['commit']['email']
-            hash = md5(email).hexdigest()
-            tmpl = "http://www.gravatar.com/avatar/%s?%s"
-            return tmpl % (hash, query_string)
+            return gravatar_url_from_email(email)
         elif '.git.lookaside' in msg['topic']:
             username = msg['msg']['agent']
             return gravatar_url(username)

@@ -37,9 +37,9 @@ class TestElectionsNew(Base):
     expected_link = "https://apps.fedoraproject.org/voting/about/test/"
     expected_icon = (None)
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "dc74ba1f40c7d8150dc6291c455d34a6?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
     expected_objects = set(['test/test/election/new'])
@@ -75,9 +75,9 @@ class TestElectionsEdit(Base):
     expected_link = "https://apps.fedoraproject.org/voting/about/test/"
     expected_icon = (None)
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "dc74ba1f40c7d8150dc6291c455d34a6?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
     expected_objects = set(['test/test/election/edit'])
@@ -113,9 +113,9 @@ class TestElectionsCandidateNew(Base):
     expected_link = "https://apps.fedoraproject.org/voting/about/test/"
     expected_icon = (None)
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "dc74ba1f40c7d8150dc6291c455d34a6?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
     expected_objects = set(['test/test/candidate/new'])
@@ -155,9 +155,9 @@ class TestElectionsCandidateEdit(Base):
     expected_link = "https://apps.fedoraproject.org/voting/about/test/"
     expected_icon = (None)
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "dc74ba1f40c7d8150dc6291c455d34a6?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
     expected_objects = set(['test/test/candidate/edit'])
@@ -197,9 +197,9 @@ class TestElectionsCandidateDelete(Base):
     expected_link = "https://apps.fedoraproject.org/voting/about/test/"
     expected_icon = (None)
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "dc74ba1f40c7d8150dc6291c455d34a6?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
     expected_objects = set(['test/test/candidate/delete'])

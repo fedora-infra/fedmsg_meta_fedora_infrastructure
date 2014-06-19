@@ -34,9 +34,9 @@ class TestCoprsBuildStart(Base):
     expected_subti = ("fatka started a new build of the mutt-kz copr")
     expected_icon = 'https://apps.fedoraproject.org/img/icons/copr.png'
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/5f0736d6f93d195ac1a4a3c9a90a379d?'
-        's=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2Ffedora'
-        '_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
+        's=64&d=retro')
     expected_packages = set([])
     expected_usernames = set(['fatka'])
     expected_objects = set([
@@ -70,9 +70,9 @@ class TestCoprsBuildEnd(Base):
     expected_title = "copr.build.end"
     expected_subti = ("fatka's mutt-kz copr finished a build")
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/5f0736d6f93d195ac1a4a3c9a90a379d?'
-        's=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2Ffedora'
-        '_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
+        's=64&d=retro')
     expected_packages = set([])
     expected_usernames = set(['fatka'])
     expected_objects = set([
@@ -108,9 +108,9 @@ class TestCoprsChrootStart(Base):
     expected_subti = (
         "fatka's mutt-kz copr started a new fedora-20-x86_64 chroot")
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/5f0736d6f93d195ac1a4a3c9a90a379d?'
-        's=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2Fimages%2Ffedora'
-        '_infinity_64x64.png')
+        'https://seccdn.libravatar.org/avatar/'
+        'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
+        's=64&d=retro')
     expected_packages = set([])
     expected_usernames = set(['fatka'])
     expected_objects = set([

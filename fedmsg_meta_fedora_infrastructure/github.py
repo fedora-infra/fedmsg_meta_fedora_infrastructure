@@ -26,10 +26,14 @@ class GithubProcessor(BaseProcessor):
     __description__ = "Fedora-related Github Repos"
     __link__ = "https://github.com"
     __icon__ = "https://apps.fedoraproject.org/img/icons/github.png"
-    __docs__ = "http://developer.github.com/webhooks/#events"
+    __docs__ = "https://developer.github.com/webhooks/#events"
     __obj__ = "Github Events"
 
     def _get_user(self, msg):
+        if 'commit' in msg['msg']:
+            user = msg['msg']['commit'].get('author', {}).get('login', {})
+            if user:
+                return msg['msg']['fas_usernames'].get(user, user)
         if 'pusher' in msg['msg']:
             pusher = msg['msg']['pusher']['name']
             return msg['msg']['fas_usernames'].get(pusher, pusher)
@@ -53,12 +57,14 @@ class GithubProcessor(BaseProcessor):
             return None
 
     def link(self, msg, **config):
+        if 'target_url' in msg['msg']:
+            return msg['msg']['target_url']
         if 'compare' in msg['msg']:
             return msg['msg']['compare']
-        if 'pull_request' in msg['msg']:
-            return msg['msg']['pull_request']['html_url']
         if 'comment' in msg['msg']:
             return msg['msg']['comment']['html_url']
+        if 'pull_request' in msg['msg']:
+            return msg['msg']['pull_request']['html_url']
         if 'issue' in msg['msg']:
             return msg['msg']['issue']['html_url']
         if 'forkee' in msg['msg']:
@@ -93,14 +99,31 @@ class GithubProcessor(BaseProcessor):
 
             tmpl = self._('{user} {action} issue #{n} on {repo}')
             return tmpl.format(user=user, action=action, n=n, repo=repo)
+        elif 'github.pull_request_review_comment' in msg['topic']:
+            n = msg['msg']['pull_request']['number']
+            tmpl = self._('{user} commented on PR #{n} on {repo}')
+            return tmpl.format(user=user, n=n, repo=repo)
+        elif 'github.commit_comment' in msg['topic']:
+            tmpl = self._('{user} commented on a commit on {repo}')
+            return tmpl.format(user=user, repo=repo)
         elif 'github.create' in msg['topic']:
             typ = msg['msg']['ref_type']
             ref = msg['msg']['ref']
             tmpl = self._('{user} created a new {typ} "{ref}" at {repo}')
             return tmpl.format(user=user, repo=repo, ref=ref, typ=typ)
+        elif 'github.delete' in msg['topic']:
+            typ = msg['msg']['ref_type']
+            ref = msg['msg']['ref']
+            tmpl = self._('{user} deleted the "{ref}" {typ} at {repo}')
+            return tmpl.format(user=user, repo=repo, ref=ref, typ=typ)
         elif 'github.fork' in msg['topic']:
             tmpl = self._('{user} forked {repo}')
             return tmpl.format(user=user, repo=repo)
+        elif 'github.status' in msg['topic']:
+            description = msg['msg']['description']
+            sha = msg['msg']['sha']
+            tmpl = self._("{description} for {repo} {sha}")
+            return tmpl.format(description=description, repo=repo, sha=sha)
         else:
             pass
 
@@ -116,17 +139,23 @@ class GithubProcessor(BaseProcessor):
     def objects(self, msg, **config):
         suffix = '.'.join(msg['topic'].split('.')[3:5])
         lookup = {
-            'github.push': 'git',
-            'github.pull_request': 'pull_request',
-            'github.issue': 'issue',
+            'github.push': 'tree',
+            'github.issue': 'issues',
             'github.fork': 'forks',
-            'github.create': 'create',
+            'github.status': 'status',
+            'github.pull_request': 'pull',
+            'github.pull_request_review_comment': 'pull',
+            'github.commit_comment': 'tree',
+            'github.create': None,
+            'github.delete': None,
         }
 
         if suffix not in lookup:
             return set()
 
-        base = lookup[suffix] + '/' + self._get_repo(msg)
+        base = self._get_repo(msg)
+        if lookup[suffix]:
+            base = base + "/" + lookup[suffix]
 
         items = []
         if 'commits' in msg['msg']:
@@ -140,9 +169,16 @@ class GithubProcessor(BaseProcessor):
             except KeyError:
                 n = msg['msg']['issue']['number']
             items = ['%s' % n]
+        elif suffix == 'github.pull_request_review_comment':
+            n = msg['msg']['pull_request']['number']
+            items = ['%s' % n]
         elif suffix == 'github.fork':
             items = [self._get_user(msg)]
-        elif suffix == 'github.create':
+        elif suffix == 'github.create' or suffix == 'github.delete':
             items = ['/'.join([msg['msg']['ref_type'], msg['msg']['ref']])]
+        elif suffix == 'github.status':
+            items = [msg['msg']['commit']['sha']]
+        elif suffix == 'github.commit_comment':
+            items = [msg['msg']['comment']['path']]
 
         return set([base + '/' + item for item in items])

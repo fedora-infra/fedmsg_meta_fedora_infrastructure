@@ -37,9 +37,8 @@ class TestNewBadge(Base):
         '"Something on your mind" badge'
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "http://example.com/image.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['something-on-your-mind'])
@@ -92,9 +91,8 @@ class TestRankAdvance(Base):
     expected_subti = "ralph moved to position 1500 on the badges leaderboard"
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "https://apps.fedoraproject.org/img/icons/badges.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([])
@@ -125,11 +123,14 @@ class TestFirstLogin(Base):
     expected_title = "fedbadges.person.login.first"
     expected_subti = "ralph logged in to badges.fedoraproject.org " + \
         "for the first time"
+    #expected_markup = (
+    #    "<a href='https://badges.fedoraproject.org/user/ralph'>ralph</a> "
+    #    "logged in to <a href='https://badges.fedoraproject.org'>"
+    #    "badges.fedoraproject.org</a> for the first time")
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "https://apps.fedoraproject.org/img/icons/badges.png"
-    expected_secondary_icon = "http://www.gravatar.com/avatar/" + \
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F" + \
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([])

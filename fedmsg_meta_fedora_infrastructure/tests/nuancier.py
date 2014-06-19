@@ -35,10 +35,11 @@ class TestNuancierElectionUpdated(Base):
     expected_subti = 'ralph changed the following details on the ' + \
         '"Fedora 21" election: election year, election name'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/1"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2014/Fedora 21/election/update'])
@@ -74,10 +75,11 @@ class TestNuancierElectionCreate(Base):
     expected_title = "nuancier.election.new"
     expected_subti = 'ralph created a new election "Fedora 22"'
     expected_link = "https://apps.fedoraproject.org/nuancier/election/4"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2015/Fedora 22/election/new'])
@@ -112,10 +114,11 @@ class TestNuancierCandidateNew(Base):
         '"Fedora 22" wallpaper election'
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['2015/Fedora 22/Handsome/candidate/new'])
@@ -157,10 +160,11 @@ class TestNuancierCandidateApprove(Base):
         'to the "Fedora 22" wallpaper election'
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "a8515b5e9791457df6d40f38de8b7476?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "f0f0eef56d80913ec82275ed76dafe440ef8b4bba0228d97e7fb2ecb275d9591"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'gnokii'])
     expected_objects = set(['2015/Fedora 22/Handsome/candidate/approved'])
@@ -202,10 +206,11 @@ class TestNuancierCandidateDeny(Base):
         'to the "Fedora 22" wallpaper election'
     expected_link = "http://www.cyclelicio.us/wp-content/" + \
         "uploads/2013/07/skvidal.jpg"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/nuancier.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "a8515b5e9791457df6d40f38de8b7476?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "f0f0eef56d80913ec82275ed76dafe440ef8b4bba0228d97e7fb2ecb275d9591"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph', 'gnokii'])
     expected_objects = set(['2015/Fedora 22/Handsome/candidate/denied'])

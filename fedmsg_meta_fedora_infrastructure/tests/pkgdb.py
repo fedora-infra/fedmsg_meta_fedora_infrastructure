@@ -38,9 +38,8 @@ class TestPkgdbACLUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['python-sh'])
     expected_usernames = set(['ralph', 'grover'])
     expected_objects = set(['python-sh/acls/EL-6/watchbugzilla/ralph'])
@@ -92,9 +91,8 @@ class TestPkgdbPackageNew(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph', 'lmacken'])
     expected_objects = set(['php-zmq/create'])
@@ -141,9 +139,8 @@ class TestPkgdbOwnerUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/owner/EL-6'])
@@ -188,9 +185,8 @@ class TestLegacyPkgdbACLRequestToggle(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/acls/EL-6/commit/ralph'])
@@ -236,9 +232,8 @@ class TestLegacyPkgdbPackageUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/update'])
@@ -265,9 +260,8 @@ class TestPkgdbPackageUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['guake'])
     expected_usernames = set(['ralph', 'pingou'])
     expected_objects = set(['guake/update'])
@@ -315,9 +309,8 @@ class TestPkgdbBranchClone(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/branch'])
@@ -347,9 +340,8 @@ class TestPkgdbCritpathUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set([])
@@ -377,9 +369,8 @@ class TestPkgdbPackageRetire(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/retire'])
@@ -425,9 +416,8 @@ class TestPkgdbUserRemove(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
     expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/remove/ralph'])
@@ -494,9 +484,8 @@ class TestPkgdbBranchStart(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()
@@ -536,9 +525,8 @@ class TestPkgdbBranchComplete(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()
@@ -578,9 +566,8 @@ class TestPkgdbCollectionNew(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()
@@ -613,9 +600,8 @@ class TestPkgdbCollectionUpdate(Base):
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set()
     expected_usernames = set(['ralph'])
     expected_objects = set()

@@ -24,6 +24,7 @@ from fedmsg.tests.test_meta import Base
 
 from common import add_doc
 
+
 class TestFilterUpdateRules(Base):
     """ Messages of this type are published whenever someone **updates
     one of their notification rules** in the `Fedora Notifications
@@ -34,9 +35,9 @@ class TestFilterUpdateRules(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/irc/filter/rules'])
@@ -68,9 +69,9 @@ class TestPreferenceUpdateBatchValues(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/email/preference/batch_values'])
@@ -101,9 +102,9 @@ class TestPreferenceUpdateDetails(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/email/preference/details'])
@@ -131,9 +132,9 @@ class TestPreferenceUpdateEnabled(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/android/preference/enabled'])
@@ -161,9 +162,9 @@ class TestPreferenceUpdateFilters(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/irc/preference/filters'])
@@ -192,9 +193,9 @@ class TestConfirmationUpdateValue(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/irc/confirmation/value'])
@@ -223,9 +224,9 @@ class TestConfirmationUpdateStatus(Base):
     expected_link = "https://apps.fedoraproject.org/notifications/"
     expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
     expected_secondary_icon = (
-        "http://www.gravatar.com/avatar/"
-        "2f933f4364baaabd2d3ab8f0664faef2?s=64&d=http%3A%2F%2F"
-        "fedoraproject.org%2Fstatic%2Fimages%2Ffedora_infinity_64x64.png")
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralph/irc/confirmation/status'])

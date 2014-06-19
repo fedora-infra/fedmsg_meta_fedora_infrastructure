@@ -93,18 +93,19 @@ entry_points = {
         "elections=fedmsg_meta_fedora_infrastructure.elections:"
         "ElectionsProcessor",
         "fmn=fedmsg_meta_fedora_infrastructure.fmn:FMNProcessor",
+        "fedimg=fedmsg_meta_fedora_infrastructure.fedimg:FedimgProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.13',
+    version='0.2.14',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
     author='Ralph Bean',
     author_email='rbean@redhat.com',
-    url='http://github.com/ralphbean/fedmsg_meta_fedora_infrastructure/',
+    url='https://github.com/ralphbean/fedmsg_meta_fedora_infrastructure/',
     license='LGPLv2+',
     install_requires=install_requires,
     tests_require=tests_require,

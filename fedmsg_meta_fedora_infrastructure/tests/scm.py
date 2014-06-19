@@ -35,10 +35,9 @@ class TestGitReceiveOldModified(Base):
     expected_subti = ('rbean@redhat.com pushed to datanommer (master).  "Try '
                       'removing requirement on python-bunch."')
     expected_secondary_icon = (
-        'http://www.gravatar.com/avatar/'
+        'https://seccdn.libravatar.org/avatar/'
         '1a0d2acfddb1911ecf55da42cfa34710'
-        '?s=64&d=http%3A%2F%2Ffedoraproject.org%2Fstatic%2F'
-        'images%2Ffedora_infinity_64x64.png')
+        '?s=64&d=retro')
     expected_packages = set(['datanommer'])
     expected_usernames = set()
     expected_objects = set(['datanommer/datanommer.spec'])
