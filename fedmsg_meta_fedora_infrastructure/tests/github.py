@@ -1131,6 +1131,246 @@ class TestGithubDelete(Base):
     }
 
 
+class TestGithubPullRequestComment(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **comments on a pull
+    request**.
+    """
+
+    expected_title = "github.pull_request_review_comment"
+    expected_subti = 'pingou commented on PR #129 on fedora-infra/fedocal'
+    expected_link = "https://github.com/fedora-infra/fedocal/" + \
+        "pull/129#discussion_r13957675"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set([
+        'issue/fedora-infra/fedocal/129',
+    ])
+    msg = {
+        "i": 4,
+        "msg": {
+            "action": "created",
+            "comment": {
+                "body": "I was thinking the ``flask.request.args.get(...",
+                "commit_id": "31b3d03951c9cc40e4c497e09ff9b7c6f708239d",
+                "created_at": "2014-06-19T08:30:17Z",
+                "diff_hunk": "@@ -401,6 +401,19 @@ def calendar_list(...",
+                "html_url": "https://github.com/fedora-infra/"
+                "fedocal/pull/129#discussion_r13957675",
+                "id": 13957675,
+                "original_commit_id": "31b3d03951c9cc40e4c497e09ff9b7c6f"
+                "708239d",
+                "original_position": 16,
+                "path": "fedocal/__init__.py",
+                "position": 16,
+                "updated_at": "2014-06-19T08:30:17Z",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "fedocal/pulls/comments/13957675",
+                "user": {
+                    "gravatar_id": "072b4416fbfad867a44bc7a5be5eddb9",
+                    "html_url": "https://github.com/pypingou",
+                    "id": 1240038,
+                    "login": "pypingou",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/pypingou"
+                }
+            },
+            "fas_usernames": {'pypingou': 'pingou'},
+            "pull_request": {
+                "assignee": None,
+                "base": {
+                    "label": "fedora-infra:master",
+                    "ref": "master",
+                    "repo": {
+                        "created_at": "2013-03-22T19:35:10Z",
+                        "default_branch": "master",
+                        "description": "A web based calendar application "
+                        "for Fedora",
+                        "fork": False,
+                        "forks": 9,
+                        "forks_count": 9,
+                        "full_name": "fedora-infra/fedocal",
+                        "has_downloads": True,
+                        "has_issues": False,
+                        "has_wiki": False,
+                        "homepage": "",
+                        "html_url": "https://github.com/fedora-infra/fedocal",
+                        "id": 8959394,
+                        "language": "Python",
+                        "name": "fedocal",
+                        "open_issues": 1,
+                        "open_issues_count": 1,
+                        "owner": {
+                            "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                            "html_url": "https://github.com/fedora-infra",
+                            "id": 3316637,
+                            "login": "fedora-infra",
+                            "site_admin": False,
+                            "type": "Organization",
+                            "url": "https://api.github.com/users/fedora-infra"
+                        },
+                        "private": False,
+                        "pushed_at": "2014-06-19T08:24:38Z",
+                        "size": 5719,
+                        "stargazers_count": 4,
+                        "updated_at": "2014-06-19T08:24:34Z",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "fedocal",
+                        "watchers": 4,
+                        "watchers_count": 4
+                    },
+                    "sha": "c7bdf86b8bd52c78805ee708ca11e2b81f90b82e",
+                    "user": {
+                        "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                        "html_url": "https://github.com/fedora-infra",
+                        "id": 3316637,
+                        "login": "fedora-infra",
+                        "site_admin": False,
+                        "type": "Organization",
+                        "url": "https://api.github.com/users/fedora-infra"
+                    }
+                },
+                "body": "This implement filtering the meetings in the list "
+                "view server side rather than iterating through all the "
+                "meetings retrieved",
+                "closed_at": None,
+                "created_at": "2014-06-17T10:16:31Z",
+                "head": {
+                    "label": "fedora-infra:filter_db",
+                    "ref": "filter_db",
+                    "repo": {
+                        "created_at": "2013-03-22T19:35:10Z",
+                        "default_branch": "master",
+                        "description": "A web based calendar application for "
+                        "Fedora",
+                        "fork": False,
+                        "forks": 9,
+                        "forks_count": 9,
+                        "full_name": "fedora-infra/fedocal",
+                        "has_downloads": True,
+                        "has_issues": False,
+                        "has_wiki": False,
+                        "homepage": "",
+                        "html_url": "https://github.com/fedora-infra/fedocal",
+                        "id": 8959394,
+                        "language": "Python",
+                        "name": "fedocal",
+                        "open_issues": 1,
+                        "open_issues_count": 1,
+                        "owner": {
+                            "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                            "html_url": "https://github.com/fedora-infra",
+                            "id": 3316637,
+                            "login": "fedora-infra",
+                            "site_admin": False,
+                            "type": "Organization",
+                            "url": "https://api.github.com/users/fedora-infra"
+                        },
+                        "private": False,
+                        "pushed_at": "2014-06-19T08:24:38Z",
+                        "size": 5719,
+                        "stargazers_count": 4,
+                        "updated_at": "2014-06-19T08:24:34Z",
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "fedocal",
+                        "watchers": 4,
+                        "watchers_count": 4
+                    },
+                    "sha": "31b3d03951c9cc40e4c497e09ff9b7c6f708239d",
+                    "user": {
+                        "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                        "html_url": "https://github.com/fedora-infra",
+                        "id": 3316637,
+                        "login": "fedora-infra",
+                        "site_admin": False,
+                        "type": "Organization",
+                        "url": "https://api.github.com/users/fedora-infra"
+                    }
+                },
+                "html_url": "https://github.com/fedora-infra/fedocal/pull/129",
+                "id": 17226690,
+                "merge_commit_sha": "88cdeaf8e6986c4469f1619229c2b0580b0018dd",
+                "merged_at": None,
+                "milestone": None,
+                "number": 129,
+                "state": "open",
+                "title": "Filter db",
+                "updated_at": "2014-06-19T08:30:17Z",
+                "url": "https://api.github.com/repos/fedora-infra/fedocal/"
+                "pulls/129",
+                "user": {
+                    "gravatar_id": "072b4416fbfad867a44bc7a5be5eddb9",
+                    "html_url": "https://github.com/pypingou",
+                    "id": 1240038,
+                    "login": "pypingou",
+                    "site_admin": False,
+                    "type": "User",
+                    "url": "https://api.github.com/users/pypingou"
+                }
+            },
+            "repository": {
+                "created_at": "2013-03-22T19:35:10Z",
+                "default_branch": "master",
+                "description": "A web based calendar application for Fedora",
+                "fork": False,
+                "forks": 9,
+                "forks_count": 9,
+                "full_name": "fedora-infra/fedocal",
+                "has_downloads": True,
+                "has_issues": False,
+                "has_wiki": False,
+                "homepage": "",
+                "html_url": "https://github.com/fedora-infra/fedocal",
+                "id": 8959394,
+                "language": "Python",
+                "name": "fedocal",
+                "open_issues": 1,
+                "open_issues_count": 1,
+                "owner": {
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "html_url": "https://github.com/fedora-infra",
+                    "id": 3316637,
+                    "login": "fedora-infra",
+                    "site_admin": False,
+                    "type": "Organization",
+                    "url": "https://api.github.com/users/fedora-infra"
+                },
+                "private": False,
+                "pushed_at": "2014-06-19T08:24:38Z",
+                "size": 5719,
+                "stargazers_count": 4,
+                "updated_at": "2014-06-19T08:24:34Z",
+                "url": "https://api.github.com/repos/fedora-infra/fedocal",
+                "watchers": 4,
+                "watchers_count": 4
+            },
+            "sender": {
+                "gravatar_id": "072b4416fbfad867a44bc7a5be5eddb9",
+                "html_url": "https://github.com/pypingou",
+                "id": 1240038,
+                "login": "pypingou",
+                "site_admin": False,
+                "type": "User",
+                "url": "https://api.github.com/users/pypingou"
+            }
+        },
+        "msg_id": "2014-cdf3f751-1af5-4773-91e4-6b2f71e0a905",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1403166618.0,
+        "topic": "org.fedoraproject.prod.github.pull_request_review_comment"
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':

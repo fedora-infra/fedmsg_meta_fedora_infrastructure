@@ -61,10 +61,10 @@ class GithubProcessor(BaseProcessor):
             return msg['msg']['target_url']
         if 'compare' in msg['msg']:
             return msg['msg']['compare']
-        if 'pull_request' in msg['msg']:
-            return msg['msg']['pull_request']['html_url']
         if 'comment' in msg['msg']:
             return msg['msg']['comment']['html_url']
+        if 'pull_request' in msg['msg']:
+            return msg['msg']['pull_request']['html_url']
         if 'issue' in msg['msg']:
             return msg['msg']['issue']['html_url']
         if 'forkee' in msg['msg']:
@@ -99,6 +99,10 @@ class GithubProcessor(BaseProcessor):
 
             tmpl = self._('{user} {action} issue #{n} on {repo}')
             return tmpl.format(user=user, action=action, n=n, repo=repo)
+        elif 'github.pull_request_review_comment' in msg['topic']:
+            n = msg['msg']['pull_request']['number']
+            tmpl = self._('{user} commented on PR #{n} on {repo}')
+            return tmpl.format(user=user, n=n, repo=repo)
         elif 'github.create' in msg['topic']:
             typ = msg['msg']['ref_type']
             ref = msg['msg']['ref']
@@ -139,6 +143,7 @@ class GithubProcessor(BaseProcessor):
             'github.create': 'create',
             'github.delete': 'delete',
             'github.status': 'status',
+            'github.pull_request_review_comment': 'issue',
         }
 
         if suffix not in lookup:
@@ -157,6 +162,9 @@ class GithubProcessor(BaseProcessor):
                 n = msg['msg']['number']
             except KeyError:
                 n = msg['msg']['issue']['number']
+            items = ['%s' % n]
+        elif suffix == 'github.pull_request_review_comment':
+            n = msg['msg']['pull_request']['number']
             items = ['%s' % n]
         elif suffix == 'github.fork':
             items = [self._get_user(msg)]
