@@ -121,7 +121,7 @@ class GithubProcessor(BaseProcessor):
             return tmpl.format(user=user, repo=repo)
         elif 'github.status' in msg['topic']:
             description = msg['msg']['description']
-            sha = msg['msg']['sha']
+            sha = msg['msg']['sha'][:8]
             tmpl = self._("{description} for {repo} {sha}")
             return tmpl.format(description=description, repo=repo, sha=sha)
         else:
