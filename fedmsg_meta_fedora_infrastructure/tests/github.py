@@ -891,7 +891,7 @@ class TestGithubStatus(Base):
 
     expected_title = "github.status"
     expected_subti = 'PEP8Bot scan pending for fedora-infra/datanommer ' + \
-        'e71e2ba93fa992d9026f89d65f9220d5234bfab1'
+        'e71e2ba9'
     expected_link = "http://pep8.me/fedora-infra/datanommer/commits" + \
         "/e71e2ba93fa992d9026f89d65f9220d5234bfab1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
