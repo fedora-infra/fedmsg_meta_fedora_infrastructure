@@ -94,6 +94,8 @@ entry_points = {
         "ElectionsProcessor",
         "fmn=fedmsg_meta_fedora_infrastructure.fmn:FMNProcessor",
         "fedimg=fedmsg_meta_fedora_infrastructure.fedimg:FedimgProcessor",
+        "kerneltest=fedmsg_meta_fedora_infrastructure.kerneltest:"
+        "KernelTestProcessor",
     ]
 }
 
