@@ -1300,7 +1300,7 @@ class TestPkgdb2BrRunCompleteWithError(Base):
         "msg": {
             "agent": "limburgher",
             "unbranchedPackages": ['foo'],
-            "branchedPackages": [],
+            "branchedPackages": None,
         },
     }
 
