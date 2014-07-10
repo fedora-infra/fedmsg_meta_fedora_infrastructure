@@ -30,17 +30,17 @@ class GithubProcessor(BaseProcessor):
     __obj__ = "Github Events"
 
     def _get_user(self, msg):
-        if 'commit' in msg['msg']:
+        if msg['msg'].get('commit', None):
             user = msg['msg']['commit'].get('author', {}).get('login', {})
             if user:
                 return msg['msg']['fas_usernames'].get(user, user)
-        if 'pusher' in msg['msg']:
+        if msg['msg'].get('pusher', None):
             pusher = msg['msg']['pusher']['name']
             return msg['msg']['fas_usernames'].get(pusher, pusher)
-        if 'sender' in msg['msg']:
+        if msg['msg'].get('sender', None):
             sender = msg['msg']['sender']['login']
             return msg['msg']['fas_usernames'].get(sender, sender)
-        if 'forkee' in msg['msg']:
+        if msg['msg'].get('forkee', None):
             forkee = msg['msg']['forkee']['owner']['login']
             return msg['msg']['fas_usernames'].get(forkee, forkee)
         return None
@@ -121,7 +121,7 @@ class GithubProcessor(BaseProcessor):
             return tmpl.format(user=user, repo=repo)
         elif 'github.status' in msg['topic']:
             description = msg['msg']['description']
-            sha = msg['msg']['sha']
+            sha = msg['msg']['sha'][:8]
             tmpl = self._("{description} for {repo} {sha}")
             return tmpl.format(description=description, repo=repo, sha=sha)
         else:

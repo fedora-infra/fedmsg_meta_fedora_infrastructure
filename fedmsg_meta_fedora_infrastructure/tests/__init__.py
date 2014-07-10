@@ -45,6 +45,7 @@ from fedmsg_meta_fedora_infrastructure.tests.bz import *
 from fedmsg_meta_fedora_infrastructure.tests.elections import *
 from fedmsg_meta_fedora_infrastructure.tests.fmn import *
 from fedmsg_meta_fedora_infrastructure.tests.fedimg import *
+from fedmsg_meta_fedora_infrastructure.tests.kerneltest import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
@@ -1177,6 +1178,9 @@ class TestPkgdb2BrMassStart(Base):
     """
     expected_title = "git.mass_branch.start"
     expected_subti = "dgilmore started a mass branch"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "168a37a06ac9b4dbcf4f2e0e11de6a1332c7aead2313b04016cea0c5a848263e" + \
+        "?s=64&d=retro"
     expected_usernames = set(['dgilmore'])
 
     msg = {
@@ -1196,6 +1200,9 @@ class TestPkgdb2BrMassComplete(Base):
     """
     expected_title = "git.mass_branch.complete"
     expected_subti = "mass branch started by dgilmore completed"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "168a37a06ac9b4dbcf4f2e0e11de6a1332c7aead2313b04016cea0c5a848263e" + \
+        "?s=64&d=retro"
     expected_usernames = set(['dgilmore'])
 
     msg = {
@@ -1219,6 +1226,9 @@ class TestPkgdb2BrRunStart(Base):
     """
     expected_title = "git.pkgdb2branch.start"
     expected_subti = "limburgher started a run of pkgdb2branch"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
+        "?s=64&d=retro"
     expected_usernames = set(['limburgher'])
 
     msg = {
@@ -1242,6 +1252,9 @@ class TestPkgdb2BrRunComplete(Base):
     """
     expected_title = "git.pkgdb2branch.complete"
     expected_subti = "run of pkgdb2branch started by limburgher completed"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
+        "?s=64&d=retro"
     expected_usernames = set(['limburgher'])
     expected_packages = set(['nethack'])
     expected_objects = set(['nethack/__git__'])
@@ -1273,6 +1286,9 @@ class TestPkgdb2BrRunCompleteWithError(Base):
     expected_title = "git.pkgdb2branch.complete"
     expected_subti = "run of pkgdb2branch started by limburgher completed" + \
         " with 1 error"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
+        "?s=64&d=retro"
     expected_usernames = set(['limburgher'])
     expected_packages = set(['foo'])
     expected_objects = set(['foo/__git__'])
@@ -1284,7 +1300,7 @@ class TestPkgdb2BrRunCompleteWithError(Base):
         "msg": {
             "agent": "limburgher",
             "unbranchedPackages": ['foo'],
-            "branchedPackages": [],
+            "branchedPackages": None,
         },
     }
 
@@ -1304,6 +1320,9 @@ class TestPkgdb2BrRunCompleteWithErrors(Base):
     expected_title = "git.pkgdb2branch.complete"
     expected_subti = "run of pkgdb2branch started by limburgher completed" + \
         " with 2 errors"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
+        "?s=64&d=retro"
     expected_usernames = set(['limburgher'])
     expected_packages = set(['foo', 'bar'])
     expected_objects = set(['foo/__git__', 'bar/__git__'])
@@ -1329,6 +1348,9 @@ class TestPkgdb2BrCreateLegacy(Base):
     expected_title = "git.branch.valgrind.master"
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
+        "?s=64&d=retro"
     expected_link = \
         "http://pkgs.fedoraproject.org/cgit/valgrind.git/log/?h=master"
     expected_usernames = set(['limburgher'])
@@ -1359,6 +1381,9 @@ class TestPkgdb2BrCreate(Base):
         "limburgher created branch 'master' for the 'valgrind' package"
     expected_link = \
         "http://pkgs.fedoraproject.org/cgit/valgrind.git/log/?h=master"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
+        "?s=64&d=retro"
     expected_usernames = set(['limburgher'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/__git__'])

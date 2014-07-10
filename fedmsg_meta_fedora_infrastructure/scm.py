@@ -36,6 +36,9 @@ class SCMProcessor(BaseProcessor):
         elif '.git.lookaside' in msg['topic']:
             username = msg['msg']['agent']
             return gravatar_url(username)
+        elif 'agent' in msg['msg']:
+            username = msg['msg']['agent']
+            return gravatar_url(username)
 
     def subtitle(self, msg, **config):
         if '.git.receive' in msg['topic']:
@@ -156,8 +159,9 @@ class SCMProcessor(BaseProcessor):
             except KeyError:
                 return set(['.'.join(msg['topic'].split('.')[5:-1])])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
-            return set(msg['msg'].get('unbranchedPackages', []) +
-                       msg['msg'].get('branchedPackages', []))
+            unbranched = msg['msg'].get('unbranchedPackages') or []
+            branched = msg['msg'].get('branchedPackages') or []
+            return set(unbranched + branched)
         elif '.git.lookaside' in msg['topic']:
             return set([msg['msg']['name']])
 

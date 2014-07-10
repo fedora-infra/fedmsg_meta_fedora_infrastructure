@@ -68,7 +68,7 @@ class TestCoprsBuildEnd(Base):
     when a build has completed.
     """
     expected_title = "copr.build.end"
-    expected_subti = ("fatka's mutt-kz copr finished a build")
+    expected_subti = ("fatka's mutt-kz copr build finished with 'success'")
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'

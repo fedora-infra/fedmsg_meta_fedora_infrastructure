@@ -94,12 +94,14 @@ entry_points = {
         "ElectionsProcessor",
         "fmn=fedmsg_meta_fedora_infrastructure.fmn:FMNProcessor",
         "fedimg=fedmsg_meta_fedora_infrastructure.fedimg:FedimgProcessor",
+        "kerneltest=fedmsg_meta_fedora_infrastructure.kerneltest:"
+        "KernelTestProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.2.14',
+    version='0.2.15',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
