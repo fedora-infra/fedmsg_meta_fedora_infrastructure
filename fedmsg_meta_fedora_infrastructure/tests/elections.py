@@ -34,7 +34,7 @@ class TestElectionsNew(Base):
 
     expected_title = "fedora_elections.election.new"
     expected_subti = 'pingou created election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test/"
+    expected_link = "https://apps.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -72,7 +72,7 @@ class TestElectionsEdit(Base):
 
     expected_title = "fedora_elections.election.edit"
     expected_subti = 'pingou edited election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test/"
+    expected_link = "https://apps.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -110,7 +110,7 @@ class TestElectionsCandidateNew(Base):
 
     expected_title = "fedora_elections.candidate.new"
     expected_subti = 'pingou added candidate "Toshio" to election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test/"
+    expected_link = "https://apps.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -152,7 +152,7 @@ class TestElectionsCandidateEdit(Base):
 
     expected_title = "fedora_elections.candidate.edit"
     expected_subti = 'pingou edited candidate "Toshio" of election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test/"
+    expected_link = "https://apps.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -194,7 +194,7 @@ class TestElectionsCandidateDelete(Base):
 
     expected_title = "fedora_elections.candidate.delete"
     expected_subti = 'pingou deleted candidate "Toshio" of election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test/"
+    expected_link = "https://apps.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"

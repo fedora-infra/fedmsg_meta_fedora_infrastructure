@@ -31,7 +31,7 @@ class ElectionsProcessor(BaseProcessor):
     def link(self, msg, **config):
 
         name = msg['msg']['election']['alias']
-        return "https://apps.fedoraproject.org/voting/about/%s/" % (name)
+        return "https://apps.fedoraproject.org/voting/about/%s" % (name)
 
     def subtitle(self, msg, **config):
         kwargs = dict(
