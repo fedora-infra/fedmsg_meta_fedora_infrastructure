@@ -159,8 +159,9 @@ class SCMProcessor(BaseProcessor):
             except KeyError:
                 return set(['.'.join(msg['topic'].split('.')[5:-1])])
         elif '.git.pkgdb2branch.complete' in msg['topic']:
-            return set(msg['msg'].get('unbranchedPackages', []) +
-                       msg['msg'].get('branchedPackages', []))
+            unbranched = msg['msg'].get('unbranchedPackages') or []
+            branched = msg['msg'].get('branchedPackages') or []
+            return set(unbranched + branched)
         elif '.git.lookaside' in msg['topic']:
             return set([msg['msg']['name']])
 

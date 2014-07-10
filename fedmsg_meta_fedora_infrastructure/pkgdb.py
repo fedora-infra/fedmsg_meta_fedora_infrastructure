@@ -21,6 +21,14 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
 
+def get_agent(msg):
+    """ Handy hack to handle legacy messages where 'agent' was a list.  """
+    agent = msg['msg']['agent']
+    if isinstance(agent, list):
+        agent = agent[0]
+    return agent
+
+
 class PkgdbProcessor(BaseProcessor):
     __name__ = "Pkgdb"
     __description__ = "the Fedora Package DB"
@@ -40,7 +48,7 @@ class PkgdbProcessor(BaseProcessor):
             status = msg['msg']['status']
             package = msg['msg']['package_listing']['package']['name']
             acl = msg['msg']['acl']
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             branch = msg['msg']['package_listing']['collection']['branchname']
             return tmpl.format(
                 agent=agent, acl=acl,
@@ -48,7 +56,7 @@ class PkgdbProcessor(BaseProcessor):
                 package=package, branch=branch)
         elif 'pkgdb.branch.clone' in msg['topic']:
             tmpl = self._(u"{agent} branched {package} {branch} from {master}")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             package = msg['msg']['package']
             branch = msg['msg']['branch']
             master = msg['msg']['master']
@@ -74,7 +82,7 @@ class PkgdbProcessor(BaseProcessor):
                 verb = self._(u"retired")
             else:
                 verb = self._(u"made some updates to")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             try:
                 package = msg['msg']['package_listing']['package']['name']
             except KeyError:
@@ -85,12 +93,12 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.critpath.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} altered the critpath status for some packages")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             return tmpl.format(agent=agent)
         elif 'pkgdb.package.new' in msg['topic']:
             tmpl = self._(
                 u"{agent} added a new package '{package}' ({branch})")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             package = msg['msg']['package_listing']['package']['name']
             branch = msg['msg']['package_listing']['collection']['branchname']
             return tmpl.format(agent=agent, package=package, branch=branch)
@@ -100,7 +108,7 @@ class PkgdbProcessor(BaseProcessor):
             )
             package = msg['msg']['package_listing']['package']['name']
             acl = msg['msg']['acl']
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             branch = msg['msg']['package_listing']['collection']['branchname']
             action = msg['msg']['acl_action']
             return tmpl.format(
@@ -112,7 +120,7 @@ class PkgdbProcessor(BaseProcessor):
             )
             package = msg['msg']['package_listing']['package']['name']
             action = msg['msg']['retirement']
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             branch = msg['msg']['package_listing']['collection']['branchname']
             return tmpl.format(
                 agent=agent, action=action,
@@ -128,7 +136,7 @@ class PkgdbProcessor(BaseProcessor):
                 owner = msg['msg']['package_listing']['owner']
 
             package = msg['msg']['package_listing']['package']['name']
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             branch = msg['msg']['package_listing']['collection']['branchname']
             return tmpl.format(
                 agent=agent,
@@ -140,7 +148,7 @@ class PkgdbProcessor(BaseProcessor):
                 u"{agent} removed {user} from {package} ({branches})")
             package = msg['msg']['package_listings'][0]['package']['name']
             user = msg['msg']['username']
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             branches = ", ".join([
                 p['collection']['branchname']
                 for p in msg['msg']['package_listings']
@@ -153,7 +161,7 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.branch.start' in msg['topic']:
             tmpl = self._(
                 u"{agent} started a branch of {tobranch} from {frombranch}")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             frombranch = msg['msg']['collection_from']['branchname']
             tobranch = msg['msg']['collection_to']['branchname']
             return tmpl.format(
@@ -164,7 +172,7 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.branch.complete' in msg['topic']:
             tmpl = self._(
                 u"{agent}'s branch of {tobranch} from {frombranch} completed")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             frombranch = msg['msg']['collection_from']['branchname']
             tobranch = msg['msg']['collection_to']['branchname']
             return tmpl.format(
@@ -175,7 +183,7 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.collection.new' in msg['topic']:
             tmpl = self._(
                 u"{agent} created a new collection for {name} {version}")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             name = msg['msg']['collection']['name']
             version = msg['msg']['collection']['version']
             return tmpl.format(
@@ -187,7 +195,7 @@ class PkgdbProcessor(BaseProcessor):
             tmpl = self._(
                 u"{agent} updated the following fields of the "
                 "{name} {version} collection: {fields}")
-            agent = msg['msg']['agent']
+            agent = get_agent(msg)
             name = msg['msg']['collection']['name']
             version = msg['msg']['collection']['version']
             fields = ", ".join(msg['msg']['fields'])
@@ -204,7 +212,7 @@ class PkgdbProcessor(BaseProcessor):
         user = None
 
         try:
-            user = msg['msg']['agent']
+            user = get_agent(msg)
         except KeyError:
             pass
 
@@ -222,7 +230,7 @@ class PkgdbProcessor(BaseProcessor):
         users = set()
 
         try:
-            users.add(msg['msg']['agent'])
+            users.add(get_agent(msg))
         except KeyError:
             pass
 
