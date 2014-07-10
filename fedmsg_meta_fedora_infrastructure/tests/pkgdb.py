@@ -516,6 +516,45 @@ class TestPkgdbBranchStart(Base):
     }
 
 
+class TestLegacyPkgdbBranchStart(Base):
+    """ This just tests a funny case where 'agent' is a list.. """
+    expected_title = "pkgdb.branch.start"
+    expected_subti = "ralph started a branch of F-19 from devel"
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set()
+    msg = {
+        u'username': u'threebean',
+        u'i': 1,
+        u'timestamp': 1379606342.105066,
+        u'msg_id': u'2013-0eaf6d98-6259-4e1c-a113-e2c9284a6082',
+        u'topic':
+        u'org.fedoraproject.dev.pkgdb.branch.start',
+        u'msg': {
+            u'collection_from': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'devel',
+                u'name': u'Fedora',
+                u'version': u'devel'
+            },
+            u'collection_to': {
+                u'pendingurltemplate': None,
+                u'publishurltemplate': None,
+                u'branchname': u'F-19',
+                u'name': u'Fedora',
+                u'version': u'19'
+            },
+            u'agent': [u'ralph'],
+        },
+    }
+
+
 class TestPkgdbBranchComplete(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when branching completes.
