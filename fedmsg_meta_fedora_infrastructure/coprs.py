@@ -35,10 +35,20 @@ class CoprsProcessor(BaseProcessor):
         copr = msg['msg'].get('copr')
         chroot = msg['msg'].get('chroot')
 
+        statuses = {
+            0: 'failed',
+            1: 'success',
+            3: 'running',
+            5: 'skipped',
+        }
+
+        status = statuses.get(msg['msg'].get('status'), 'unknown')
+
         if 'copr.build.start' in msg['topic']:
             tmpl = self._("{user} started a new build of the {copr} copr")
         elif 'copr.build.end' in msg['topic']:
-            tmpl = self._("{user}'s {copr} copr finished a build")
+            tmpl = self._(
+                "{user}'s {copr} copr build finished with '{status}'")
         elif 'copr.chroot.start' in msg['topic']:
             tmpl = self._("{user}'s {copr} copr started a new {chroot} chroot")
         elif 'copr.worker.create' in msg['topic']:
@@ -46,7 +56,7 @@ class CoprsProcessor(BaseProcessor):
         else:
             raise NotImplementedError()
 
-        return tmpl.format(user=user, copr=copr, chroot=chroot)
+        return tmpl.format(user=user, copr=copr, chroot=chroot, status=status)
 
     def link(self, msg, **config):
         user = msg['msg'].get('user')
