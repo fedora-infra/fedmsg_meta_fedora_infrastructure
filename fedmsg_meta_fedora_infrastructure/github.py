@@ -31,7 +31,9 @@ class GithubProcessor(BaseProcessor):
 
     def _get_user(self, msg):
         if msg['msg'].get('commit', None):
-            user = msg['msg']['commit'].get('author', {}).get('login', {})
+            user = msg['msg']['commit'].get('author')
+            if user:
+                user = user.get('login')
             if user:
                 return msg['msg']['fas_usernames'].get(user, user)
         if msg['msg'].get('pusher', None):
