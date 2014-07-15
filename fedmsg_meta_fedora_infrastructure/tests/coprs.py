@@ -68,7 +68,8 @@ class TestCoprsBuildEnd(Base):
     when a build has completed.
     """
     expected_title = "copr.build.end"
-    expected_subti = ("fatka's mutt-kz copr build finished with 'success'")
+    expected_subti = (
+        "fatka's mutt-kz copr build finished fedora-20-x86_64 with 'success'")
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
@@ -88,6 +89,7 @@ class TestCoprsBuildEnd(Base):
         u'topic': u'org.fedoraproject.prod.copr.build.end',
         u'msg': {
             u'status': 1,
+            u'chroot': u'fedora-20-x86_64',
             u'what': u'build end: user:fatka copr:mutt-kz build:100 '
             'ip:172.16.3.3  pid:12010 status:1',
             u'ip': u'172.16.3.3',
