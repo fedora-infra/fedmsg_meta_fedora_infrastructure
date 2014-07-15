@@ -48,7 +48,7 @@ class CoprsProcessor(BaseProcessor):
             tmpl = self._("{user} started a new build of the {copr} copr")
         elif 'copr.build.end' in msg['topic']:
             tmpl = self._(
-                "{user}'s {copr} copr build finished with '{status}'")
+                "{user}'s {copr} copr build finished {chroot} with '{status}'")
         elif 'copr.chroot.start' in msg['topic']:
             tmpl = self._("{user}'s {copr} copr started a new {chroot} chroot")
         elif 'copr.worker.create' in msg['topic']:
