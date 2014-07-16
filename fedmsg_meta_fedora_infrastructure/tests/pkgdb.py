@@ -359,7 +359,7 @@ class TestPkgdbCritpathUpdate(Base):
     }
 
 
-class TestPkgdbPackageRetire(Base):
+class TestLegacyPkgdbPackageRetire(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages on this topic when a package is retired.  For example:
     """
