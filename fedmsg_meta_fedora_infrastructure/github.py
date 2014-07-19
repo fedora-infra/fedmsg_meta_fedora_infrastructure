@@ -129,8 +129,9 @@ class GithubProcessor(BaseProcessor):
             tmpl = self._("{description} for {repo} {sha}")
             return tmpl.format(description=description, repo=repo, sha=sha)
         elif 'github.watch' in msg['topic']:
-            tmpl = self._('{user} started watching {repo}')
-            return tmpl.format(user=user, repo=repo)
+            tmpl = self._('{user} {action} watching {repo}')
+            action = msg['msg']['action']
+            return tmpl.format(user=user, repo=repo, action=action)
         else:
             pass
 
