@@ -1483,6 +1483,88 @@ class TestGithubCommitComment(Base):
     }
 
 
+class TestGithubWatch(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **watches a
+    repository**.
+    """
+
+    expected_title = "github.watch"
+    expected_subti = "alikins started watching fedora-infra/summershum"
+    expected_link = "https://github.com/fedora-infra/summershum/watchers"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "d23ffcf6c375ae6351f54b6d4e381c6910e68d666370e5ff21e4322cd56690bf"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'fedora-infra/summershum/watchers',
+    ])
+    msg = {
+        "source_name": "datanommer",
+        "i": 1,
+        "timestamp": 1403363334.0,
+        "msg_id": "2014-5273bf43-d483-48d4-a8d6-11c988cae0cb",
+        "topic": "org.fedoraproject.prod.github.watch",
+        "source_version": "0.6.4",
+        "msg": {
+            "action": "started",
+            "fas_usernames": {},
+            "repository": {
+                "has_wiki": False,
+                "forks_count": 7,
+                "updated_at": "2014-06-21T15:08:53Z",
+                "private": False,
+                "full_name": "fedora-infra/summershum",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 16620564,
+                "size": 907,
+                "watchers_count": 10,
+                "forks": 7,
+                "homepage": "",
+                "fork": False,
+                "description": "fedmsg consumer that extracts hashes of "
+                "source files",
+                "has_downloads": True,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/summershum",
+                "has_issues": True,
+                "stargazers_count": 10,
+                "open_issues_count": 2,
+                "watchers": 10,
+                "name": "summershum",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/summershum",
+                "created_at": "2014-02-07T16:35:59Z",
+                "pushed_at": "2014-06-13T12:11:18Z",
+                "open_issues": 2
+            },
+            "sender": {
+                "url": "https://api.github.com/users/alikins",
+                "site_admin": False,
+                "html_url": "https://github.com/alikins",
+                "gravatar_id": "81877b32b5fac41db3207c94ecc26173",
+                "login": "alikins",
+                "type": "User",
+                "id": 15162
+            }
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
