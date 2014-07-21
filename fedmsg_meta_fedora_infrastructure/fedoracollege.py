@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,6 +16,8 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 #
+# Authors:  Hammad Haleem <hammadhaleem@gmail.com>
+'''Preprocessor for fedora college'''
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from .fasshim import gravatar_url
@@ -73,4 +75,3 @@ class FedoraCollegeProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         return msg['msg']['link']
-

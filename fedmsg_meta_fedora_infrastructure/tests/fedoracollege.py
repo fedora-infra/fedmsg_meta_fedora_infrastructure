@@ -15,9 +15,11 @@
 # License along with fedmsg; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
-# Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #
-""" Tests for FedoraCollege Message """
+#
+# Authors:  Hammad Haleem <hammadhaleem@gmail.com>
+
+""" Tests for Fedora College Message """
 
 import unittest
 import datetime
@@ -163,4 +165,3 @@ add_doc(locals())
 
 if __name__ == '__main__':
     unittest.main()
-
