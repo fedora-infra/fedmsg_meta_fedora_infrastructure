@@ -250,9 +250,9 @@ class TestLegacyPkgdbPackageUpdate(Base):
     }
 
 
-class TestPkgdbPackageUpdate(Base):
+class TestPkgdbPackageUpdateStatus(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes this message when metadata for a package is updated.
+    publishes this message when the status of a package is updated.
     """
     expected_title = "pkgdb.package.update.status"
     expected_subti = "ralph unretired guake in F-18"
