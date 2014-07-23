@@ -90,6 +90,17 @@ class PkgdbProcessor(BaseProcessor):
 
             return tmpl.format(agent=agent, package=package, verb=verb,
                                extra=extra)
+        elif 'pkgdb.package.update' in msg['topic']:
+            tmpl = self._(u"{agent} updated: {fields} of {package}")
+
+            fields = ', '.join(msg['msg'].get('fields'))
+            agent = get_agent(msg)
+            try:
+                package = msg['msg']['package_listing']['package']['name']
+            except KeyError:
+                package = msg['msg']['package']
+
+            return tmpl.format(agent=agent, package=package, fields=fields)
         elif 'pkgdb.critpath.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} altered the critpath status for some packages")
