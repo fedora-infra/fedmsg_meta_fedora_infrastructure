@@ -62,7 +62,7 @@ class PkgdbProcessor(BaseProcessor):
             master = msg['msg']['master']
             return tmpl.format(agent=agent, package=package,
                                branch=branch, master=master)
-        elif 'pkgdb.package.update' in msg['topic']:
+        elif 'pkgdb.package.update.status' in msg['topic']:
             tmpl = self._(u"{agent} {verb} {package}{extra}")
             extra = ""
 
