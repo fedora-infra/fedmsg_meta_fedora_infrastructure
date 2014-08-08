@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2.15
+0.2.16
 ------
 
 - Koji messages should really have a secondary icon. `920935ecb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/920935ecb4878aca2f6e5328362e19fd1ebf70a3>`_
@@ -156,6 +156,29 @@ Changelog
 - Handle case where this can be None. `6415d246c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6415d246c189635bb93633a30a77ca709420b12b>`_
 - Fix bug in subtitle for pkgdb.branch.start `015d6efd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/015d6efd11ec67a51babaa98875d565e33904d72>`_
 - Merge pull request #114 from fedora-infra/feature/fixups `7abaad2a2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7abaad2a2b371ab9da761524806ca17747074c02>`_
+- 0.2.15 `cac2991d1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cac2991d1acb6c81cb2d2baf237c99b30dc5725e>`_
+- Handle an edge case with github messages. `895dab10a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/895dab10ab8d1881c75cb53d52cab30afb22603e>`_
+- Merge pull request #115 from fedora-infra/feature/github-edge-case `a74c6e9cf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a74c6e9cfca33b2e2b084eb6ecdaa9bff8adcd35>`_
+- Add meta code for fedimg.image.test topic `bb65093d6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bb65093d607cd4be6174412fae0b664cafbf0ac0>`_
+- Merge pull request #116 from fedora-infra/feature/fedimg-test-messages `89cf61d20 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/89cf61d20a71dea0cc53fc69dc5645f9a228fa13>`_
+- Include the chroot in the description of finished builds on copr `3dcb851e9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3dcb851e931a6701da069f43a31509d64097fc9c>`_
+- Adjust the unit-test for copr messages to reflect the addition of the chroot on the finished build message `5ba200ff9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5ba200ff9b6bfb8e03763f7367294f79febbcf91>`_
+- Merge pull request #118 from fedora-infra/endbuild_chroot `f513436a2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f513436a2bee9b2be883ece084c8693182b45907>`_
+- Hide old pkgdb1 retirement messages from the docs. `7d9c23a1b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7d9c23a1ba3066cc0d2aae36e7b172dc8ce68441>`_
+- Merge pull request #119 from fedora-infra/feature/legacy-retirement `fc257d074 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fc257d0743793d04e28392ea17b613b0f0298533>`_
+- Add support for github.watch messages. `74fd4f45b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/74fd4f45bd6ecbb06a6f8510464367c94a4d8649>`_
+- Handle both starts and stops. `9fbfe371f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9fbfe371feab18a85398f535e1956a647a406b98>`_
+- Merge pull request #120 from fedora-infra/feature/github-watch `b65ad6ab2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b65ad6ab275bba61f4177980d531d0c70c69a503>`_
+- Added Class and Test `ccfea0d56 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ccfea0d56453babd29e490bfbdad5936eaf6e2a0>`_
+- added class for fedora college `c140ff8ba <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c140ff8bac230a57d3ac5613dd5d5cef633070b4>`_
+- Minor changes in file description `12329eeda <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/12329eeda662f78eabd2a64fdf6b5bad5c19f038>`_
+- Merge pull request #121 from hammadhaleem/develop `ab6154c59 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ab6154c59eeba5f3d2bff22434b513253a18019b>`_
+- The topic packag.update.status is not package.update `9e852081d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9e852081d27a47f2569d1d0a2faa831c6ed9d13c>`_
+- Handle the pkgdb.package.update messages `24022da8b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/24022da8b5664e5ab0755ebd943674548fc75207>`_
+- Adjust the unit-test name for PackageUpdateStatus `222f977bf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/222f977bf16adeda8de14ce2b330fc2533ca615f>`_
+- Add unit-tests for the package.update topic `a681f1b1f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a681f1b1fea2d5d581b63929c35de63f75b1620f>`_
+- Merge pull request #122 from fedora-infra/fix_pkgdb `698c279f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/698c279f9d9f601540cdd8ea335849d12040fd70>`_
+- Get the tests passing again. `b241d815e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b241d815ed951ad49abca8e4144d683dbad96c40>`_
 
 0.2.9
 -----
@@ -498,6 +521,39 @@ Changelog
 - Support commit comments. `a91f1a75b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a91f1a75b4648d394268b5ecb42e92d0d9c50b00>`_
 - Merge pull request #103 from fedora-infra/feature/fedimg-meta `90379f404 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/90379f404f95757e8b05f04e1b57ce504cfa42f4>`_
 - Merge pull request #104 from fedora-infra/feature/more-github-stuff `329d97cd8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/329d97cd85a08fe3d4bd917bda2e190efcd1827b>`_
+- 0.2.14 `9b4e0e58a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9b4e0e58aede0a0da96c44503d0c4d2318d85eb1>`_
+- Add secondary icons for some cvsadmin and releng stuff. `fc4d4759e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fc4d4759e064e22279f7b8d1ddc66ac832dac8a5>`_
+- Merge pull request #105 from fedora-infra/feature/some-secondary-icons `4ca3d5e97 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4ca3d5e9776accc0c70182b0b55197b8e3e46ba8>`_
+- Sometimes, these can exist, but be None. `fa432bff7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fa432bff7e9b6712d5dbfd1e93af5f9ebaf06959>`_
+- Use short hashes here. `8598913ae <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8598913aec0cfa58563aaa58bbfd5bd00d821cd7>`_
+- Merge pull request #106 from fedora-infra/feature/short-hash `f50709d99 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50709d99a863412386e2bed523c0681b573a2a2>`_
+- Kerneltest message handler and tests. `8d1b08b83 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8d1b08b837778aa162321157ca53a05df12de7c8>`_
+- Merge pull request #108 from fedora-infra/feature/kerneltest `4be76c72d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4be76c72df16430cd6570aa700d7359dc6af7f3b>`_
+- Remove trailing slash that are no longer is use with elections2 `6201fe737 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6201fe7371288c7ecdaf9904d9708cece790d4c9>`_
+- Adjust the unit-tests to remove the trailing slash `7a38c4c62 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7a38c4c62586e93495e4534601070729b5c7736a>`_
+- Merge pull request #113 from fedora-infra/fix_elections `87f91f142 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/87f91f142d7237a482a99c3255c1de49b0e14a96>`_
+- Indicate success of copr builds. `47e4e4e0b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/47e4e4e0b24a74de7b08d9724ac3eca5968924af>`_
+- Handle case where this can be None. `6415d246c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6415d246c189635bb93633a30a77ca709420b12b>`_
+- Fix bug in subtitle for pkgdb.branch.start `015d6efd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/015d6efd11ec67a51babaa98875d565e33904d72>`_
+- Merge pull request #114 from fedora-infra/feature/fixups `7abaad2a2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7abaad2a2b371ab9da761524806ca17747074c02>`_
+
+0.2.15
+------
+
+- Add secondary icons for some cvsadmin and releng stuff. `fc4d4759e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fc4d4759e064e22279f7b8d1ddc66ac832dac8a5>`_
+- Merge pull request #105 from fedora-infra/feature/some-secondary-icons `4ca3d5e97 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4ca3d5e9776accc0c70182b0b55197b8e3e46ba8>`_
+- Sometimes, these can exist, but be None. `fa432bff7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fa432bff7e9b6712d5dbfd1e93af5f9ebaf06959>`_
+- Use short hashes here. `8598913ae <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8598913aec0cfa58563aaa58bbfd5bd00d821cd7>`_
+- Merge pull request #106 from fedora-infra/feature/short-hash `f50709d99 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50709d99a863412386e2bed523c0681b573a2a2>`_
+- Kerneltest message handler and tests. `8d1b08b83 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8d1b08b837778aa162321157ca53a05df12de7c8>`_
+- Merge pull request #108 from fedora-infra/feature/kerneltest `4be76c72d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4be76c72df16430cd6570aa700d7359dc6af7f3b>`_
+- Remove trailing slash that are no longer is use with elections2 `6201fe737 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6201fe7371288c7ecdaf9904d9708cece790d4c9>`_
+- Adjust the unit-tests to remove the trailing slash `7a38c4c62 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7a38c4c62586e93495e4534601070729b5c7736a>`_
+- Merge pull request #113 from fedora-infra/fix_elections `87f91f142 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/87f91f142d7237a482a99c3255c1de49b0e14a96>`_
+- Indicate success of copr builds. `47e4e4e0b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/47e4e4e0b24a74de7b08d9724ac3eca5968924af>`_
+- Handle case where this can be None. `6415d246c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6415d246c189635bb93633a30a77ca709420b12b>`_
+- Fix bug in subtitle for pkgdb.branch.start `015d6efd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/015d6efd11ec67a51babaa98875d565e33904d72>`_
+- Merge pull request #114 from fedora-infra/feature/fixups `7abaad2a2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7abaad2a2b371ab9da761524806ca17747074c02>`_
 
 0.2.14
 ------
