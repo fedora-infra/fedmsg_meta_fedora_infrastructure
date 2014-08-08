@@ -250,9 +250,9 @@ class TestLegacyPkgdbPackageUpdate(Base):
     }
 
 
-class TestPkgdbPackageUpdate(Base):
+class TestPkgdbPackageUpdateStatus(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes this message when metadata for a package is updated.
+    publishes this message when the status of a package is updated.
     """
     expected_title = "pkgdb.package.update.status"
     expected_subti = "ralph unretired guake in F-18"
@@ -294,6 +294,42 @@ class TestPkgdbPackageUpdate(Base):
             "prev_status": "Retired",
             "agent": "ralph",
             "package_name": "guake"
+        }
+    }
+
+class TestPkgdbPackageUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes this message when metadata for a package is updated.
+    """
+    expected_title = "pkgdb.package.update"
+    expected_subti = "pkgdb_updater updated: summary, description of guake"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "1ff483b03adb34142ac55a5efecfa71b0149d57566f86d969905005b0ab98def"
+        "?s=64&d=retro")
+    expected_packages = set(['guake'])
+    expected_usernames = set(['pkgdb_updater'])
+    expected_objects = set(['guake/update'])
+    msg = {
+        "username": "apache",
+        "i": 144,
+        "timestamp": 1379605523.496933,
+        "msg_id": "2013-c131fb95-0a2e-4426-95c3-09766e017d29",
+        "topic": "org.fedoraproject.dev.pkgdb.package.update",
+        "msg": {
+            "package": {
+                    "status": "Approved",
+                    "upstream_url": "http://guake.org",
+                    "name": "guake",
+                    "creation_date": 1379619917.0,
+                    "summary": "Top down terminal for GNOME",
+                    "review_url": "https://bugzilla.redhat.com/450189"
+                },
+            "agent": "pkgdb_updater",
+            "fields": ["summary", "description"],
         }
     }
 
@@ -359,7 +395,7 @@ class TestPkgdbCritpathUpdate(Base):
     }
 
 
-class TestPkgdbPackageRetire(Base):
+class TestLegacyPkgdbPackageRetire(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages on this topic when a package is retired.  For example:
     """

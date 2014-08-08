@@ -31,7 +31,9 @@ class GithubProcessor(BaseProcessor):
 
     def _get_user(self, msg):
         if msg['msg'].get('commit', None):
-            user = msg['msg']['commit'].get('author', {}).get('login', {})
+            user = msg['msg']['commit'].get('author')
+            if user:
+                user = user.get('login')
             if user:
                 return msg['msg']['fas_usernames'].get(user, user)
         if msg['msg'].get('pusher', None):
@@ -57,6 +59,8 @@ class GithubProcessor(BaseProcessor):
             return None
 
     def link(self, msg, **config):
+        if 'github.watch' in msg['topic']:
+            return msg['msg']['repository']['html_url'] + "/watchers"
         if 'target_url' in msg['msg']:
             return msg['msg']['target_url']
         if 'compare' in msg['msg']:
@@ -124,6 +128,10 @@ class GithubProcessor(BaseProcessor):
             sha = msg['msg']['sha'][:8]
             tmpl = self._("{description} for {repo} {sha}")
             return tmpl.format(description=description, repo=repo, sha=sha)
+        elif 'github.watch' in msg['topic']:
+            tmpl = self._('{user} {action} watching {repo}')
+            action = msg['msg']['action']
+            return tmpl.format(user=user, repo=repo, action=action)
         else:
             pass
 
@@ -148,6 +156,7 @@ class GithubProcessor(BaseProcessor):
             'github.commit_comment': 'tree',
             'github.create': None,
             'github.delete': None,
+            'github.watch': None,
         }
 
         if suffix not in lookup:
@@ -180,5 +189,7 @@ class GithubProcessor(BaseProcessor):
             items = [msg['msg']['commit']['sha']]
         elif suffix == 'github.commit_comment':
             items = [msg['msg']['comment']['path']]
+        elif suffix == 'github.watch':
+            items = ['watchers']
 
         return set([base + '/' + item for item in items])
