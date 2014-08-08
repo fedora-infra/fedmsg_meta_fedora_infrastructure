@@ -90,17 +90,25 @@ class PkgdbProcessor(BaseProcessor):
 
             return tmpl.format(agent=agent, package=package, verb=verb,
                                extra=extra)
-        elif 'pkgdb.package.update' in msg['topic']:
-            tmpl = self._(u"{agent} updated: {fields} of {package}")
-
-            fields = ', '.join(msg['msg'].get('fields'))
+        elif msg['topic'].endswith('pkgdb.package.update'):
             agent = get_agent(msg)
+
             try:
                 package = msg['msg']['package_listing']['package']['name']
             except KeyError:
                 package = msg['msg']['package']
+            if isinstance(package, dict):
+                package = package['name']
 
-            return tmpl.format(agent=agent, package=package, fields=fields)
+            if 'fields' in msg['msg']:
+                # New pkgdb2 style
+                tmpl = self._(u"{agent} updated: {fields} of {package}")
+                fields = ', '.join(msg['msg'].get('fields'))
+                return tmpl.format(agent=agent, package=package, fields=fields)
+            else:
+                # old old pkgdb1 style
+                tmpl = self._(u"{agent} made some updates to {package}")
+                return tmpl.format(agent=agent, package=package)
         elif 'pkgdb.critpath.update' in msg['topic']:
             tmpl = self._(
                 u"{agent} altered the critpath status for some packages")
@@ -307,6 +315,8 @@ class PkgdbProcessor(BaseProcessor):
                 package = _msg['package_listing']['package']['name']
             except KeyError:
                 package = _msg['package']
+            if isinstance(package, dict):
+                package = package['name']
             objs.add('{package}/update'.format(package=package))
         elif 'pkgdb.branch.clone' in msg['topic']:
             objs.add('{package}/branch'.format(package=_msg['package']))
@@ -330,6 +340,8 @@ class PkgdbProcessor(BaseProcessor):
         try:
             if isinstance(msg['msg']['package'], basestring):
                 packages.add(msg['msg']['package'])
+            else:
+                packages.add(msg['msg']['package']['name'])
         except KeyError:
             pass
 
@@ -364,6 +376,8 @@ class PkgdbProcessor(BaseProcessor):
                 package = msg['msg']['package_listing']['package']['name']
             except KeyError:
                 package = msg['msg']['package']
+            if isinstance(package, dict):
+                package = package['name']
             return tmpl.format(package=package)
 
         return ""

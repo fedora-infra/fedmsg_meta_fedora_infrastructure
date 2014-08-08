@@ -302,15 +302,16 @@ class TestPkgdbPackageUpdate(Base):
     publishes this message when metadata for a package is updated.
     """
     expected_title = "pkgdb.package.update"
-    expected_subti = "ralph updated: summary, description of guake"
+    expected_subti = "pkgdb_updater updated: summary, description of guake"
     expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
+        "1ff483b03adb34142ac55a5efecfa71b0149d57566f86d969905005b0ab98def"
+        "?s=64&d=retro")
     expected_packages = set(['guake'])
-    expected_usernames = set(['ralph', 'pingou'])
+    expected_usernames = set(['pkgdb_updater'])
     expected_objects = set(['guake/update'])
     msg = {
         "username": "apache",
