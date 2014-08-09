@@ -105,6 +105,84 @@ class TestJenkinsBuildFailed(Base):
         },
     }
 
+class TestJenkinsBuildAborted(Base):
+    """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
+    messages when a build is aborted.
+    """
+    expected_title = "jenkins.build.aborted"
+    expected_subti = ("Jenkins project 'fedora-mobile' build aborted")
+    expected_secondary_icon = ''
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'jenkins/fedora-mobile/build.aborted',
+    ])
+    expected_link = (
+        "http://jenkins.cloud.fedoraproject.org/job/fedora-mobile/165/")
+    msg = {
+        u'i': 1,
+        u'timestamp': 1390982532.0,
+        u'msg_id': u'2014-851eb465-56f2-4f3f-bf8a-2b86c95d1246',
+        u'topic': u'org.fedoraproject.prod.jenkins.build.aborted',
+        u'msg': {
+            u'project': 'fedora-mobile',
+            u'took': u'9.4 sec',
+            u'build': 165,
+        },
+    }
+
+class TestJenkinsBuildNotBuilt(Base):
+    """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
+    messages when a build doesn't actually build (wat?).
+    """
+    expected_title = "jenkins.build.notbuilt"
+    expected_subti = ("Jenkins project 'fedora-mobile' did not build")
+    expected_secondary_icon = ''
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'jenkins/fedora-mobile/build.notbuilt',
+    ])
+    expected_link = (
+        "http://jenkins.cloud.fedoraproject.org/job/fedora-mobile/165/")
+    msg = {
+        u'i': 1,
+        u'timestamp': 1390982532.0,
+        u'msg_id': u'2014-851eb465-56f2-4f3f-bf8a-2b86c95d1246',
+        u'topic': u'org.fedoraproject.prod.jenkins.build.notbuilt',
+        u'msg': {
+            u'project': 'fedora-mobile',
+            u'took': u'9.4 sec',
+            u'build': 165,
+        },
+    }
+
+class TestJenkinsBuildUnstable(Base):
+    """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
+    messages when a build completes with warnings.
+    """
+    expected_title = "jenkins.build.failed"
+    expected_subti = ("Jenkins project 'fedora-mobile' built with warnings")
+    expected_secondary_icon = ''
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'jenkins/fedora-mobile/build.unstable',
+    ])
+    expected_link = (
+        "http://jenkins.cloud.fedoraproject.org/job/fedora-mobile/165/")
+    msg = {
+        u'i': 1,
+        u'timestamp': 1390982532.0,
+        u'msg_id': u'2014-851eb465-56f2-4f3f-bf8a-2b86c95d1246',
+        u'topic': u'org.fedoraproject.prod.jenkins.build.unstable',
+        u'msg': {
+            u'project': 'fedora-mobile',
+            u'took': u'9.4 sec',
+            u'build': 165,
+        },
+    }
+
 
 add_doc(locals())
 
