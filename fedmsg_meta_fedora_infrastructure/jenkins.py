@@ -39,6 +39,12 @@ class JenkinsProcessor(BaseProcessor):
             tmpl = self._("Jenkins project '{project}' built successfully")
         elif 'jenkins.build.start' in msg['topic']:
             tmpl = self._("Jenkins project '{project}' started building")
+        elif 'jenkins.build.aborted' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' aborted")
+        elif 'jenkins.build.notbuilt' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' not built")
+        elif 'jenkins.build.unstable' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' became unstable")
         else:
             raise NotImplementedError()
 
