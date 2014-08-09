@@ -161,7 +161,7 @@ class TestJenkinsBuildUnstable(Base):
     """ `Jenkins <http://jenkins.cloud.fedoraproject.org/>`_ publishes these
     messages when a build completes with warnings.
     """
-    expected_title = "jenkins.build.failed"
+    expected_title = "jenkins.build.unstable"
     expected_subti = ("Jenkins project 'fedora-mobile' built with warnings")
     expected_secondary_icon = ''
     expected_packages = set([])
