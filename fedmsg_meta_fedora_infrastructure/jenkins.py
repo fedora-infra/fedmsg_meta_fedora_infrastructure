@@ -37,6 +37,12 @@ class JenkinsProcessor(BaseProcessor):
             tmpl = self._("Jenkins project '{project}' failed to build")
         elif 'jenkins.build.passed' in msg['topic']:
             tmpl = self._("Jenkins project '{project}' built successfully")
+        elif 'jenkins.build.unstable' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' built with warnings")
+        elif 'jenkins.build.notbuilt' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' did not build")
+        elif 'jenkins.build.aborted' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' build aborted")
         elif 'jenkins.build.start' in msg['topic']:
             tmpl = self._("Jenkins project '{project}' started building")
         else:
