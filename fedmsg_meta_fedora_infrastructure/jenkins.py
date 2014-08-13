@@ -46,7 +46,7 @@ class JenkinsProcessor(BaseProcessor):
         elif 'jenkins.build.start' in msg['topic']:
             tmpl = self._("Jenkins project '{project}' started building")
         else:
-            raise NotImplementedError()
+            raise NotImplementedError(msg['topic'])
 
         return tmpl.format(project=project)
 
