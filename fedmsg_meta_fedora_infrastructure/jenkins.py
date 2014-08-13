@@ -45,8 +45,11 @@ class JenkinsProcessor(BaseProcessor):
             tmpl = self._("Jenkins project '{project}' build aborted")
         elif 'jenkins.build.start' in msg['topic']:
             tmpl = self._("Jenkins project '{project}' started building")
+        elif 'jenkins.build.unknown' in msg['topic']:
+            tmpl = self._("Jenkins project '{project}' "
+                          "entered an unknown state")
         else:
-            raise NotImplementedError()
+            raise NotImplementedError(msg['topic'])
 
         return tmpl.format(project=project)
 
