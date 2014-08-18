@@ -224,6 +224,32 @@ class PkgdbProcessor(BaseProcessor):
                 version=version,
                 fields=fields,
             )
+        elif 'pkgdb.package.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted the '{package}' package from the pkgdb")
+            agent = get_agent(msg)
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, package=package)
+        elif 'pkgdb.package.branch.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted the {branch} branch "
+                "of the '{package}' package")
+            agent = get_agent(msg)
+            package = msg['msg']['package_listing']['package']['name']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            return tmpl.format(agent=agent, branch=branch, package=package)
+        elif 'pkgdb.acl.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted {user}'s {acl} "
+                "rights from {package} ({branch})")
+            _msg = msg['msg']['acl']
+            package = _msg['packagelist']['package']['name']
+            branch = _msg['packagelist']['collection']['branchname']
+            acl = _msg['acl']
+            user = _msg['fas_name']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, user=user, acl=acl,
+                               package=package, branch=branch)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -261,6 +287,11 @@ class PkgdbProcessor(BaseProcessor):
         try:
             users.add(msg['msg']['package_listing']['owner'])
         except KeyError:
+            pass
+
+        try:
+            users.add(msg['msg']['acl']['fas_name'])
+        except (KeyError, TypeError):
             pass
 
         try:
@@ -320,6 +351,21 @@ class PkgdbProcessor(BaseProcessor):
             objs.add('{package}/update'.format(package=package))
         elif 'pkgdb.branch.clone' in msg['topic']:
             objs.add('{package}/branch'.format(package=_msg['package']))
+        elif 'pkgdb.package.delete' in msg['topic']:
+            package = _msg['package']['name']
+            objs.add('{package}/package/delete'.format(package=package))
+        elif 'pkgdb.package.branch.delete' in msg['topic']:
+            package = _msg['package_listing']['package']['name']
+            branch = _msg['package_listing']['collection']['branchname']
+            objs.add('{package}/{branch}/delete'.format(
+                package=package, branch=branch))
+        elif 'pkgdb.acl.delete' in msg['topic']:
+            objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
+                package=_msg['acl']['packagelist']['package']['name'],
+                branch=_msg['acl']['packagelist']['collection']['branchname'],
+                acl=_msg['acl']['acl'],
+                user=_msg['acl']['fas_name'],
+            ))
 
         return objs
 
@@ -343,6 +389,11 @@ class PkgdbProcessor(BaseProcessor):
             else:
                 packages.add(msg['msg']['package']['name'])
         except KeyError:
+            pass
+
+        try:
+            packages.add(msg['msg']['acl']['packagelist']['package']['name'])
+        except (KeyError, TypeError):
             pass
 
         return packages
