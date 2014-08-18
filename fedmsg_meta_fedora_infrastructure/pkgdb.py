@@ -224,6 +224,12 @@ class PkgdbProcessor(BaseProcessor):
                 version=version,
                 fields=fields,
             )
+        elif 'pkgdb.package.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted the '{package}' package from the pkgdb")
+            agent = get_agent(msg)
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, package=package)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -320,6 +326,9 @@ class PkgdbProcessor(BaseProcessor):
             objs.add('{package}/update'.format(package=package))
         elif 'pkgdb.branch.clone' in msg['topic']:
             objs.add('{package}/branch'.format(package=_msg['package']))
+        elif 'pkgdb.package.delete' in msg['topic']:
+            package = _msg['package']['name']
+            objs.add('{package}/package/delete'.format(package=package))
 
         return objs
 

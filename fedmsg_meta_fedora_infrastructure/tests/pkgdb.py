@@ -703,6 +703,386 @@ class TestPkgdbCollectionUpdate(Base):
     }
 
 
+class TestPkgdbDeletePackage(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin **deletes a package** all
+    together.
+    """
+    expected_title = "pkgdb.package.delete"
+    expected_subti = ("ausil deleted the 'pipelight' package from the pkgdb")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "a89b57d99dcf12d40ec2b9fb05910b90293b13b0b87415208bedc897bc18a354"
+        "?s=64&d=retro")
+    expected_packages = set(['pipelight'])
+    expected_usernames = set(['ausil'])
+    expected_objects = set(['pipelight/package/delete'])
+    msg = {
+        "i": 46,
+        "msg_id": "2014-9372bf63-8e32-4257-82ec-38fb5226763a",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1408377920.0,
+        "topic": "org.fedoraproject.prod.pkgdb.package.delete",
+        "msg": {
+            "agent": "ausil",
+            "package": {
+                "acls": [
+                    {
+                        "acls": [
+                            {
+                                "acl": "commit",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "master",
+                            "dist_tag": ".fc22",
+                            "koji_name": "rawhide",
+                            "name": "Fedora",
+                            "status": "Under Development",
+                            "version": "devel"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1404850009.0,
+                            "description": "",
+                            "name": "pipelight",
+                            "review_url": "https://bugzilla.redhat.com/"
+                            "1117403",
+                            "status": "Approved",
+                            "summary": "NPAPI Wrapper Plugin for using "
+                            "Windows plugins in Linux browsers",
+                            "upstream_url": "http://pipelight.net/"
+                        },
+                        "point_of_contact": "besser82",
+                        "status": "Approved",
+                        "status_change": 1404850010.0
+                    },
+                    {
+                        "acls": [
+                            {
+                                "acl": "commit",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "f19",
+                            "dist_tag": ".fc19",
+                            "koji_name": "f19",
+                            "name": "Fedora",
+                            "status": "Active",
+                            "version": "19"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1404850009.0,
+                            "description": "",
+                            "name": "pipelight",
+                            "review_url": "https://bugzilla.redhat.com/"
+                            "1117403",
+                            "status": "Approved",
+                            "summary": "NPAPI Wrapper Plugin for using "
+                            "Windows plugins in Linux browsers",
+                            "upstream_url": "http://pipelight.net/"
+                        },
+                        "point_of_contact": "besser82",
+                        "status": "Approved",
+                        "status_change": 1404850009.0
+                    },
+                    {
+                        "acls": [
+                            {
+                                "acl": "commit",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "f20",
+                            "dist_tag": ".fc20",
+                            "koji_name": "f20",
+                            "name": "Fedora",
+                            "status": "Active",
+                            "version": "20"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1404850009.0,
+                            "description": "",
+                            "name": "pipelight",
+                            "review_url": "https://bugzilla.redhat.com/"
+                            "1117403",
+                            "status": "Approved",
+                            "summary": "NPAPI Wrapper Plugin for using "
+                            "Windows plugins in Linux browsers",
+                            "upstream_url": "http://pipelight.net/"
+                        },
+                        "point_of_contact": "besser82",
+                        "status": "Approved",
+                        "status_change": 1404850010.0
+                    },
+                    {
+                        "acls": [
+                            {
+                                "acl": "commit",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "epel7",
+                            "dist_tag": ".el7",
+                            "koji_name": "epel7",
+                            "name": "Fedora EPEL",
+                            "status": "Under Development",
+                            "version": "7"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1404850009.0,
+                            "description": "",
+                            "name": "pipelight",
+                            "review_url": "https://bugzilla.redhat.com/"
+                            "1117403",
+                            "status": "Approved",
+                            "summary": "NPAPI Wrapper Plugin for using "
+                            "Windows plugins in Linux browsers",
+                            "upstream_url": "http://pipelight.net/"
+                        },
+                        "point_of_contact": "besser82",
+                        "status": "Approved",
+                        "status_change": 1404850009.0
+                    },
+                    {
+                        "acls": [
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "besser82",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "awjb",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "f21",
+                            "dist_tag": ".fc21",
+                            "koji_name": "f21",
+                            "name": "Fedora",
+                            "status": "Under Development",
+                            "version": "21"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1404850009.0,
+                            "description": "",
+                            "name": "pipelight",
+                            "review_url": "https://bugzilla.redhat.com/"
+                            "1117403",
+                            "status": "Approved",
+                            "summary": "NPAPI Wrapper Plugin for using "
+                            "Windows plugins in Linux browsers",
+                            "upstream_url": "http://pipelight.net/"
+                        },
+                        "point_of_contact": "besser82",
+                        "status": "Approved",
+                        "status_change": 1404997736.0
+                    }
+                ],
+                "creation_date": 1404850009.0,
+                "description": "",
+                "name": "pipelight",
+                "review_url": "https://bugzilla.redhat.com/1117403",
+                "status": "Approved",
+                "summary": "NPAPI Wrapper Plugin for using "
+                "Windows plugins in Linux browsers",
+                "upstream_url": "http://pipelight.net/"
+            }
+        },
+    }
+
 add_doc(locals())
 
 if __name__ == '__main__':
