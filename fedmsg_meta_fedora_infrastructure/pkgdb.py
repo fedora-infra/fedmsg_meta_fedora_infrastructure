@@ -114,7 +114,7 @@ class PkgdbProcessor(BaseProcessor):
                 u"{agent} altered the critpath status for some packages")
             agent = get_agent(msg)
             return tmpl.format(agent=agent)
-        elif 'pkgdb.package.new' in msg['topic']:
+        elif msg['topic'].endswith('pkgdb.package.new'):
             tmpl = self._(
                 u"{agent} added a new package '{package}' ({branch})")
             agent = get_agent(msg)
@@ -250,6 +250,36 @@ class PkgdbProcessor(BaseProcessor):
             agent = msg['msg']['agent']
             return tmpl.format(agent=agent, user=user, acl=acl,
                                package=package, branch=branch)
+        elif msg['topic'].endswith('pkgdb.package.branch.request'):
+            tmpl = self._(
+                u"{agent} requested branch {new_branch} from {old_branch} "
+                "on package {package}")
+            _msg = msg['msg']
+            package = _msg['package']['name']
+            new_branch = _msg['collection_to']['branchname']
+            old_branch = _msg['collection_from']['branchname']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, new_branch=new_branch,
+                               old_branch=old_branch, package=package)
+        elif msg['topic'].endswith('pkgdb.package.new.request'):
+            tmpl = self._(
+                u"{agent} requested package {package} on branch {branch}")
+            _msg = msg['msg']
+            package = _msg['info']['pkg_name']
+            branch = _msg['collection']['branchname']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, branch=branch, package=package)
+        elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
+            tmpl = self._(
+                u"{agent} updated action {actionid} from {old_status} "
+                "to {new_status}")
+            _msg = msg['msg']
+            actionid = _msg['action']['id']
+            old_status = _msg['old_status']
+            new_status = _msg['new_status']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, actionid=actionid,
+                               old_status=old_status, new_status=new_status)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -316,7 +346,7 @@ class PkgdbProcessor(BaseProcessor):
                 acl=_msg['acl'],
                 user=_msg['username']
             ))
-        elif 'pkgdb.package.new' in msg['topic']:
+        elif msg['topic'].endswith('pkgdb.package.new'):
             objs.add('{package}/create'.format(
                 package=_msg['package_listing']['package']['name'],
             ))
@@ -366,6 +396,27 @@ class PkgdbProcessor(BaseProcessor):
                 acl=_msg['acl']['acl'],
                 user=_msg['acl']['fas_name'],
             ))
+        elif msg['topic'].endswith('pkgdb.package.branch.request'):
+            objs.add('{package}/branch/request/{branch}/{user}/'.format(
+                package=_msg['package']['name'],
+                branch=_msg['collection_to']['branchname'],
+                user=_msg['agent'],
+            ))
+        elif msg['topic'].endswith('pkgdb.package.new.request'):
+            objs.add('new/package/request/{package}/{branch}/{user}/'.format(
+                package=_msg['info']['pkg_name'],
+                branch=_msg['collection']['branchname'],
+                user=_msg['agent'],
+            ))
+        elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
+            objs.add(
+                'action/{actionid}/status/{package}/{branch}/{user}/'.format(
+                    actionid=_msg['action']['id'],
+                    package=_msg['action']['info']['pkg_name'],
+                    branch=_msg['action']['collection']['branchname'],
+                    user=_msg['agent'],
+                )
+            )
 
         return objs
 
@@ -388,11 +439,16 @@ class PkgdbProcessor(BaseProcessor):
                 packages.add(msg['msg']['package'])
             else:
                 packages.add(msg['msg']['package']['name'])
-        except KeyError:
+        except (KeyError, TypeError):
             pass
 
         try:
             packages.add(msg['msg']['acl']['packagelist']['package']['name'])
+        except (KeyError, TypeError):
+            pass
+
+        try:
+            packages.add(msg['msg']['action']['info']['pkg_name'])
         except (KeyError, TypeError):
             pass
 
@@ -422,6 +478,7 @@ class PkgdbProcessor(BaseProcessor):
         if any(map(msg['topic'].__contains__, [
             'pkgdb.package.update',
             'pkgdb.branch.clone',
+            'package.branch.request',
         ])):
             try:
                 package = msg['msg']['package_listing']['package']['name']

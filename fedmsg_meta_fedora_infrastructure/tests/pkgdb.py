@@ -297,6 +297,7 @@ class TestPkgdbPackageUpdateStatus(Base):
         }
     }
 
+
 class TestPkgdbPackageUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes this message when metadata for a package is updated.
@@ -1179,6 +1180,7 @@ class TestPkgdbDeleteBranch(Base):
         },
     }
 
+
 class TestPkgdbDeleteAcl(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when an admin **deletes a branch** of a
@@ -1235,6 +1237,167 @@ class TestPkgdbDeleteAcl(Base):
                 "status": "Approved"
             },
             "agent": "ausil"
+        },
+    }
+
+
+class TestPkgdbBranchRequest(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an user **requests a new branch** for
+    a particular package.
+    """
+    expected_title = "pkgdb.package.branch.request"
+    expected_subti = ("pingou requested branch epel7 from master on "
+                      "package R-BiocGenerics")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['R-BiocGenerics'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['R-BiocGenerics/branch/request/epel7/pingou/'])
+    msg = {
+        "i": 1,
+        "timestamp": 1408440084,
+        "msg_id": "2014-250329a1-1ccf-4fc4-ad0c-e24365f89c0f",
+        "topic": "org.fedoraproject.dev.pkgdb.package.branch.request",
+        "msg": {
+            "collection_from": {
+                "status": "Under Development",
+                "dist_tag": ".fc22",
+                "koji_name": "rawhide",
+                "name": "Fedora",
+                "version": "devel",
+                "branchname": "master"
+            },
+            "collection_to": {
+              "status": "Under Development",
+                "dist_tag": ".el7",
+                "koji_name": "epel7",
+                "name": "Fedora EPEL",
+                "version": "7",
+                "branchname": "epel7"
+            },
+            "package": {
+                "status": "Approved",
+                "upstream_url": None,
+                "description": None,
+                "summary": "Generic functions for Bioconductor",
+                "acls": [],
+                "creation_date": 1400063778.0,
+                "review_url": None,
+                "name": "R-BiocGenerics"
+            },
+            "agent": "pingou",
+        },
+    }
+
+
+class TestPkgdbPackageRequest(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an user **requests a new package**
+    to be added into Package DB.
+    """
+    expected_title = "pkgdb.package.new.request"
+    expected_subti = ("pingou requested package guake on branch master")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['guake'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['new/package/request/guake/master/pingou/'])
+    msg = {
+        "i": 3,
+        "timestamp": 1408440927,
+        "msg_id": "2014-40c33929-8fa1-4cfb-9559-231af6d809aa",
+        "topic": "org.fedoraproject.dev.pkgdb.package.new.request",
+        "msg": {
+            "info": {
+                "pkg_summary": "A drop-down terminal for GNOME",
+                "pkg_collection": "master",
+                "pkg_review_url": "https://bugzilla.redhat.com/123",
+                "pkg_upstream_url": "http://guake.org",
+                "pkg_poc": "pingou",
+                "pkg_status": "Approved",
+                "pkg_name": "guake",
+                "pkg_description": "",
+                "pkg_critpath": False
+            },
+            "agent": "pingou",
+            "collection": {
+                "status": "Under Development",
+                "dist_tag": ".fc22",
+                "koji_name": "rawhide",
+                "name": "Fedora",
+                "version": "devel",
+                "branchname": "master"
+            },
+            "package": None
+        },
+    }
+
+
+
+class TestPkgdbAdminActionUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin **update the status of an
+    Admin Action**.
+    """
+    expected_title = "pkgdb.admin.action.status.update"
+    expected_subti = ("pingou updated action 18 from Awaiting Review to "
+                "Approved")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['guake'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['action/18/status/guake/master/pingou/'])
+    msg = {
+        "i": 6,
+        "timestamp": 1408441710,
+        "msg_id": "2014-3a9cba3d-a1d0-4187-9fa0-995d54bf826d",
+        "topic": "org.fedoraproject.dev.pkgdb.admin.action.status.update",
+        "msg": {
+            "action": {
+                "info": {
+                    'pkg_summary': u'A drop-down terminal for GNOME',
+                    'pkg_status': u'Approved',
+                    'pkg_collection': u'master',
+                    'pkg_name': u'guake',
+                    'pkg_review_url': u'https://bugzilla.redhat.com/123',
+                    'pkg_description': u'',
+                    'pkg_upstream_url': u'http://guake.org',
+                    'pkg_poc': u'pingou',
+                    'pkg_critpath': False
+                },
+                "status": "Approved",
+                "package": None,
+                "date_updated": 1408441710.0,
+                "collection": {
+                    "status": "Under Development",
+                    "dist_tag": ".fc22",
+                    "koji_name": "rawhide",
+                    "name": "Fedora",
+                    "version": "devel",
+                    "branchname": "master"
+                },
+                "user": "pingou",
+                "action": "request.package",
+                "date_created": 1408433727.0,
+                "from_collection": None,
+                "id": 18
+            },
+            "old_status": "Awaiting Review",
+            "new_status": "Approved",
+            "agent": "pingou"
         },
     }
 
