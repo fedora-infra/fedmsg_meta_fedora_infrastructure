@@ -448,6 +448,11 @@ class PkgdbProcessor(BaseProcessor):
             pass
 
         try:
+            packages.add(msg['msg']['info']['pkg_name'])
+        except (KeyError, TypeError):
+            pass
+
+        try:
             packages.add(msg['msg']['action']['info']['pkg_name'])
         except (KeyError, TypeError):
             pass
