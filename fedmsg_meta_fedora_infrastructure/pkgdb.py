@@ -114,7 +114,7 @@ class PkgdbProcessor(BaseProcessor):
                 u"{agent} altered the critpath status for some packages")
             agent = get_agent(msg)
             return tmpl.format(agent=agent)
-        elif 'pkgdb.package.new' in msg['topic']:
+        elif msg['topic'].endswith('pkgdb.package.new'):
             tmpl = self._(
                 u"{agent} added a new package '{package}' ({branch})")
             agent = get_agent(msg)
@@ -224,6 +224,72 @@ class PkgdbProcessor(BaseProcessor):
                 version=version,
                 fields=fields,
             )
+        elif 'pkgdb.package.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted the '{package}' package from the pkgdb")
+            agent = get_agent(msg)
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, package=package)
+        elif 'pkgdb.package.branch.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted the {branch} branch "
+                "of the '{package}' package")
+            agent = get_agent(msg)
+            package = msg['msg']['package_listing']['package']['name']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            return tmpl.format(agent=agent, branch=branch, package=package)
+        elif 'pkgdb.acl.delete' in msg['topic']:
+            tmpl = self._(
+                u"{agent} deleted {user}'s {acl} "
+                "rights from {package} ({branch})")
+            _msg = msg['msg']['acl']
+            package = _msg['packagelist']['package']['name']
+            branch = _msg['packagelist']['collection']['branchname']
+            acl = _msg['acl']
+            user = _msg['fas_name']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, user=user, acl=acl,
+                               package=package, branch=branch)
+        elif msg['topic'].endswith('pkgdb.package.branch.request'):
+            tmpl = self._(
+                u"{agent} requested branch {new_branch} from {old_branch} "
+                "on package {package}")
+            _msg = msg['msg']
+            package = _msg['package']['name']
+            new_branch = _msg['collection_to']['branchname']
+            old_branch = _msg['collection_from']['branchname']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, new_branch=new_branch,
+                               old_branch=old_branch, package=package)
+        elif msg['topic'].endswith('pkgdb.package.new.request'):
+            tmpl = self._(
+                u"{agent} requested package {package} on branch {branch}")
+            _msg = msg['msg']
+            package = _msg['info']['pkg_name']
+            branch = _msg['collection']['branchname']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, branch=branch, package=package)
+        elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
+            tmpl = self._(
+                u"{agent} updated action {actionid} from {old_status} "
+                "to {new_status}")
+            _msg = msg['msg']
+            actionid = _msg['action']['id']
+            old_status = _msg['old_status']
+            new_status = _msg['new_status']
+            agent = msg['msg']['agent']
+            return tmpl.format(agent=agent, actionid=actionid,
+                               old_status=old_status, new_status=new_status)
+        elif msg['topic'].endswith('pkgdb.package.critpath.update'):
+            tmpl = self._(
+                u"{agent} {action} the critpath flag on the "
+                "{package} package ({branches})")
+            agent = msg['msg']['agent']
+            action = ['unset', 'set'][msg['msg']['critpath']]
+            package = msg['msg']['package']['name']
+            branches = ', '.join(msg['msg']['branches'])
+            return tmpl.format(agent=agent, action=action,
+                               package=package, branches=branches)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -264,6 +330,11 @@ class PkgdbProcessor(BaseProcessor):
             pass
 
         try:
+            users.add(msg['msg']['acl']['fas_name'])
+        except (KeyError, TypeError):
+            pass
+
+        try:
             users.add(msg['msg']['username'])
         except KeyError:
             pass
@@ -285,7 +356,7 @@ class PkgdbProcessor(BaseProcessor):
                 acl=_msg['acl'],
                 user=_msg['username']
             ))
-        elif 'pkgdb.package.new' in msg['topic']:
+        elif msg['topic'].endswith('pkgdb.package.new'):
             objs.add('{package}/create'.format(
                 package=_msg['package_listing']['package']['name'],
             ))
@@ -320,6 +391,44 @@ class PkgdbProcessor(BaseProcessor):
             objs.add('{package}/update'.format(package=package))
         elif 'pkgdb.branch.clone' in msg['topic']:
             objs.add('{package}/branch'.format(package=_msg['package']))
+        elif 'pkgdb.package.delete' in msg['topic']:
+            package = _msg['package']['name']
+            objs.add('{package}/package/delete'.format(package=package))
+        elif 'pkgdb.package.branch.delete' in msg['topic']:
+            package = _msg['package_listing']['package']['name']
+            branch = _msg['package_listing']['collection']['branchname']
+            objs.add('{package}/{branch}/delete'.format(
+                package=package, branch=branch))
+        elif 'pkgdb.acl.delete' in msg['topic']:
+            objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
+                package=_msg['acl']['packagelist']['package']['name'],
+                branch=_msg['acl']['packagelist']['collection']['branchname'],
+                acl=_msg['acl']['acl'],
+                user=_msg['acl']['fas_name'],
+            ))
+        elif msg['topic'].endswith('pkgdb.package.branch.request'):
+            objs.add('{package}/branch/request/{branch}/{user}/'.format(
+                package=_msg['package']['name'],
+                branch=_msg['collection_to']['branchname'],
+                user=_msg['agent'],
+            ))
+        elif msg['topic'].endswith('pkgdb.package.new.request'):
+            objs.add('new/package/request/{package}/{branch}/{user}/'.format(
+                package=_msg['info']['pkg_name'],
+                branch=_msg['collection']['branchname'],
+                user=_msg['agent'],
+            ))
+        elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
+            objs.add(
+                'action/{actionid}/status/{package}/{branch}/{user}/'.format(
+                    actionid=_msg['action']['id'],
+                    package=_msg['action']['info']['pkg_name'],
+                    branch=_msg['action']['collection']['branchname'],
+                    user=_msg['agent'],
+                )
+            )
+        elif msg['topic'].endswith('pkgdb.package.critpath.update'):
+            objs.add(_msg['package']['name'] + "/critpath")
 
         return objs
 
@@ -342,7 +451,22 @@ class PkgdbProcessor(BaseProcessor):
                 packages.add(msg['msg']['package'])
             else:
                 packages.add(msg['msg']['package']['name'])
-        except KeyError:
+        except (KeyError, TypeError):
+            pass
+
+        try:
+            packages.add(msg['msg']['acl']['packagelist']['package']['name'])
+        except (KeyError, TypeError):
+            pass
+
+        try:
+            packages.add(msg['msg']['info']['pkg_name'])
+        except (KeyError, TypeError):
+            pass
+
+        try:
+            packages.add(msg['msg']['action']['info']['pkg_name'])
+        except (KeyError, TypeError):
             pass
 
         return packages
@@ -371,6 +495,7 @@ class PkgdbProcessor(BaseProcessor):
         if any(map(msg['topic'].__contains__, [
             'pkgdb.package.update',
             'pkgdb.branch.clone',
+            'package.branch.request',
         ])):
             try:
                 package = msg['msg']['package_listing']['package']['name']
