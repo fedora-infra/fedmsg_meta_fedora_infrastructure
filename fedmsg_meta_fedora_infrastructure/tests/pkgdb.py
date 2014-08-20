@@ -1402,6 +1402,216 @@ class TestPkgdbAdminActionUpdate(Base):
     }
 
 
+class TestPkgdbCritpathUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when an admin **updates the critpath flag on
+    a package**.
+    """
+    expected_title = "pkgdb.package.critpath.update"
+    expected_subti = ("pingou set the critpath flag on the "
+                      "openbox package (f21)")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['openbox'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['openbox/critpath'])
+    msg = {
+        "msg_id": "2014-dbb1c4d3-2ffa-4212-9daa-1479bf11e8a4",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1408557412.0,
+        "topic": "org.fedoraproject.prod.pkgdb.package.critpath.update",
+        "i": 35,
+        "msg": {
+            "agent": "pingou",
+            "branches": [
+                "f21"
+            ],
+            "critpath": True,
+            "package": {
+                "acls": [
+                    {
+                        "acls": [
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "FC-5",
+                            "dist_tag": ".fc5",
+                            "koji_name": None,
+                            "name": "Fedora",
+                            "status": "EOL",
+                            "version": "5"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1400070978.0,
+                            "name": "openbox",
+                            "review_url": None,
+                            "status": "Approved",
+                            "summary": "A highly configurable and "
+                            "standards-compliant X11 window manager",
+                            "upstream_url": None
+                        },
+                        "point_of_contact": "mlichvar",
+                        "status": "Approved",
+                        "status_change": 1400071632.0
+                    },
+                    {
+                        "acls": [
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "FC-4",
+                            "dist_tag": ".fc4",
+                            "koji_name": None,
+                            "name": "Fedora",
+                            "status": "EOL",
+                            "version": "4"
+                        },
+                        "critpath": False,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1400070978.0,
+                            "name": "openbox",
+                            "review_url": None,
+                            "status": "Approved",
+                            "summary": "A highly configurable and "
+                            "standards-compliant X11 window manager",
+                            "upstream_url": None
+                        },
+                        "point_of_contact": "mlichvar",
+                        "status": "Approved",
+                        "status_change": 1400071632.0
+                    },
+                    {
+                        "acls": [
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "approveacls",
+                                "fas_name": "mlichvar",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "cwickert",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "cwickert",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "commit",
+                                "fas_name": "cwickert",
+                                "status": "Approved"
+                            },
+                            {
+                                "acl": "watchcommits",
+                                "fas_name": "athmane",
+                                "status": "Obsolete"
+                            },
+                            {
+                                "acl": "watchbugzilla",
+                                "fas_name": "athmane",
+                                "status": "Obsolete"
+                            }
+                        ],
+                        "collection": {
+                            "branchname": "f21",
+                            "dist_tag": ".fc21",
+                            "koji_name": "f21",
+                            "name": "Fedora",
+                            "status": "Under Development",
+                            "version": "21"
+                        },
+                        "critpath": True,
+                        "package": {
+                            "acls": [],
+                            "creation_date": 1400070978.0,
+                            "name": "openbox",
+                            "review_url": None,
+                            "status": "Approved",
+                            "summary": "A highly configurable and "
+                            "standards-compliant X11 window manager",
+                            "upstream_url": None
+                        },
+                        "point_of_contact": "mlichvar",
+                        "status": "Approved",
+                        "status_change": 1408557402.0
+                    }
+                ],
+                "creation_date": 1400070978.0,
+                "description": "Openbox is a window manager designed ...",
+                "name": "openbox",
+                "review_url": None,
+                "status": "Approved",
+                "summary": "A highly configurable and "
+                "standards-compliant X11 window manager",
+                "upstream_url": None
+            }
+        },
+    }
+
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
