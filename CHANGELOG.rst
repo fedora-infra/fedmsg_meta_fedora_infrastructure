@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.2.18
+0.2.19
 ------
 
 - Koji messages should really have a secondary icon. `920935ecb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/920935ecb4878aca2f6e5328362e19fd1ebf70a3>`_
@@ -184,6 +184,21 @@ Changelog
 - Merge pull request #124 from fedora-infra/jenkins-try-again `de9a741a4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de9a741a4530870eb9377a8ac9891a69992c90fc>`_
 - 0.2.17 `edd3fe59e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/edd3fe59ec84ab9c38248a71aa86e5ceeca1b247>`_
 - Fix tests. `3643db6e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3643db6e189965561aea38b6ff286e87fcf4faf7>`_
+- 0.2.18 `b46069572 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b46069572f66b9c9ab8d2661b4fa2d38095e07ab>`_
+- Comment out time-sensitive test. `1a8fe7b89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1a8fe7b89f6f4f7193740f6bb146f67fb2835c73>`_
+- Debug missing topic. `b51dcb708 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b51dcb7087484c8f6256c76beb9c80cb861f6a4e>`_
+- Add missing topic. `6a1bd32d2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a1bd32d2a4d8b228de4d1d910820561e2b1ca60>`_
+- Merge pull request #126 from fedora-infra/feature/more-jenkins-fixes `22175af34 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22175af34a7bd05a43356022c86fbb290ee5424a>`_
+- Handle pkgdb.package.delete. `eb73eaf92 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb73eaf92d1b43dc1eef57245310fa98b09cfb2a>`_
+- pkgdb.package.branch.delete and pkgdb.acl.delete `0df5e488d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0df5e488d0624548584c19e7f1d48ab17ae7d125>`_
+- Merge pull request #128 from fedora-infra/feature/those-other-pkgdb-messages `c9ab3f9ed <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9ab3f9ed679144cf75519ced04d469e06d08d66>`_
+- Handle the new pkgdb fedmsg messages `7fa96b37c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7fa96b37c8cc2c02e94a3d003cfa19e8f6f3e550>`_
+- Adjust the unit-tests to test for these new messages `4dbf902f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4dbf902f9977f8be3b94a11a2031c23a44990b93>`_
+- Merge pull request #129 from fedora-infra/new_pkgdb `2b1a61c55 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b1a61c5557f55efea04db46efd68763ba6a39e0>`_
+- There are case where the `action` dict is not there and case where it is `f9b10d582 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f9b10d582224e2ef903ba25f6b5aabb1e649d514>`_
+- Merge pull request #130 from fedora-infra/new_pkgdb `282e8fff2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/282e8fff213a24bf57b18998f45f863994382dd3>`_
+- Handle pkgdb critpath change messages. `5cb94cdb6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5cb94cdb6d80453404004edb28056bbb70093e74>`_
+- Merge pull request #131 from fedora-infra/feature/critpath-messages `e273a0c1d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e273a0c1d3185b017918c74db1dea0ee03c1f590>`_
 
 0.2.9
 -----
@@ -567,6 +582,13 @@ Changelog
 - 0.2.16 `1a8d00b18 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1a8d00b18ce287e6b1a685611df17630fbaa7300>`_
 - add several jenkins statuses `2b7f67a68 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b7f67a689413978a2b431382f9c4b8582850a2c>`_
 - Merge pull request #124 from fedora-infra/jenkins-try-again `de9a741a4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de9a741a4530870eb9377a8ac9891a69992c90fc>`_
+- 0.2.17 `edd3fe59e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/edd3fe59ec84ab9c38248a71aa86e5ceeca1b247>`_
+- Fix tests. `3643db6e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3643db6e189965561aea38b6ff286e87fcf4faf7>`_
+
+0.2.18
+------
+
+- Fix tests. `3643db6e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3643db6e189965561aea38b6ff286e87fcf4faf7>`_
 
 0.2.17
 ------
