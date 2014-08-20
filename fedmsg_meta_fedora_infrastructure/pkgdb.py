@@ -280,6 +280,16 @@ class PkgdbProcessor(BaseProcessor):
             agent = msg['msg']['agent']
             return tmpl.format(agent=agent, actionid=actionid,
                                old_status=old_status, new_status=new_status)
+        elif msg['topic'].endswith('pkgdb.package.critpath.update'):
+            tmpl = self._(
+                u"{agent} {action} the critpath flag on the "
+                "{package} package ({branches})")
+            agent = msg['msg']['agent']
+            action = ['unset', 'set'][msg['msg']['critpath']]
+            package = msg['msg']['package']['name']
+            branches = ', '.join(msg['msg']['branches'])
+            return tmpl.format(agent=agent, action=action,
+                               package=package, branches=branches)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -417,6 +427,8 @@ class PkgdbProcessor(BaseProcessor):
                     user=_msg['agent'],
                 )
             )
+        elif msg['topic'].endswith('pkgdb.package.critpath.update'):
+            objs.add(_msg['package']['name'] + "/critpath")
 
         return objs
 
