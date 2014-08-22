@@ -62,17 +62,18 @@ class CoprsProcessor(BaseProcessor):
         user = msg['msg'].get('user')
         copr = msg['msg'].get('copr')
         chroot = msg['msg'].get('chroot', None)
+        build = msg['msg'].get('build')
 
         if 'chroot' in msg['topic']:
             tmpl = ("https://copr-be.cloud.fedoraproject.org/"
                     "results/{user}/{copr}/{chroot}/")
         elif 'build' in msg['topic']:
             tmpl = ("https://copr.fedoraproject.org/"
-                    "coprs/{user}/{copr}/")
+                    "coprs/{user}/{copr}/build/{build}/")
         else:
             return "https://copr.fedoraproject.org"
 
-        return tmpl.format(user=user, copr=copr, chroot=chroot)
+        return tmpl.format(user=user, copr=copr, chroot=chroot, build=build)
 
     def secondary_icon(self, msg, **config):
         if 'user' in msg['msg']:
