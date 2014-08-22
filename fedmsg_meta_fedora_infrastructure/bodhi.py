@@ -246,22 +246,22 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['comment']['update_title'])
+                self._u2p(msg['msg']['comment']['update_title'])
             ])
         elif 'bodhi.update.complete' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['update']['title'])
+                self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.update.request' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['update']['title'])
+                self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.buildroot_override.' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['override']['build'])
+                self._u2p(msg['msg']['override']['build'])
             ])
 
         return set()
