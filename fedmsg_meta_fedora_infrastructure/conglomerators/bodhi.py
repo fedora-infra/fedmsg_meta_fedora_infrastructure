@@ -31,7 +31,6 @@ class RequestByUserAndPackage(fedmsg.meta.base.BaseConglomerator):
         subtitle = '{agent} submitted {N} {package} updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, package=package, N=N, branches=branches)
-        tmpl['icon'] = self.processor.__icon__
         tmpl['secondary_icon'] = gravatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % package
