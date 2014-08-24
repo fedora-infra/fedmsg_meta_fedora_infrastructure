@@ -2,7 +2,7 @@ import fedmsg.meta.base
 from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
 
 
-class RequestByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
+class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return 'bodhi.update.request.testing' in msg['topic']
 
@@ -36,7 +36,7 @@ class RequestByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
         return tmpl
 
 
-class RequestByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
+class ByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return 'bodhi.update.request.stable' in msg['topic']
 
@@ -70,7 +70,7 @@ class RequestByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
         return tmpl
 
 
-class RequestByPackage(fedmsg.meta.base.BaseConglomerator):
+class ByPackage(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return any([
             'bodhi.update.request.testing' in msg['topic'],
@@ -105,7 +105,7 @@ class RequestByPackage(fedmsg.meta.base.BaseConglomerator):
         return tmpl
 
 
-class RequestByUser(fedmsg.meta.base.BaseConglomerator):
+class ByUser(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return any([
             'bodhi.update.request.testing' in msg['topic'],
