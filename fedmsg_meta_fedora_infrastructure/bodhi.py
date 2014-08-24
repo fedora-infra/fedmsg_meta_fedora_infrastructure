@@ -24,6 +24,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
 import conglomerators.bodhi.requests
+import conglomerators.bodhi.comments
 
 
 def get_sync_product(msg):
@@ -65,6 +66,8 @@ class BodhiProcessor(BaseProcessor):
         conglomerators.bodhi.requests.ByUserAndPackageStable,
         conglomerators.bodhi.requests.ByPackage,
         conglomerators.bodhi.requests.ByUser,
+        conglomerators.bodhi.comments.ByUpdate,
+        conglomerators.bodhi.comments.ByUser,
     ]
 
     def _u2p(self, update):
