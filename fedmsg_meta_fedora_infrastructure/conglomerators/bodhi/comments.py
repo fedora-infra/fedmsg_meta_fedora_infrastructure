@@ -7,7 +7,7 @@ class ByUpdate(fedmsg.meta.base.BaseConglomerator):
         return 'bodhi.update.comment' in msg['topic']
 
     def matches(self, a, b, **config):
-        """ The message must match with all three topic, user, and package """
+        """ The comments must all be on the same bodhi update """
         a, b = a['msg'], b['msg']
         if a['comment']['update_title'] != b['comment']['update_title']:
             return False
@@ -33,7 +33,7 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         return 'bodhi.update.comment' in msg['topic']
 
     def matches(self, a, b, **config):
-        """ The message must match with all three topic, user, and package """
+        """ The comments must all be by the same user """
         if a['msg']['agent'] != b['msg']['agent']:
             return False
         return True

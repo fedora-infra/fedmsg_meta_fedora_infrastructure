@@ -7,7 +7,7 @@ class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
         return 'bodhi.update.request.testing' in msg['topic']
 
     def matches(self, a, b, **config):
-        """ The message must match with all three topic, user, and package """
+        """ The messages must match with both user and package """
         if a['msg']['agent'] != b['msg']['agent']:
             return False
         package_a = self.processor._u2p(a['msg']['update']['title'])[0]
@@ -41,7 +41,7 @@ class ByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
         return 'bodhi.update.request.stable' in msg['topic']
 
     def matches(self, a, b, **config):
-        """ The message must match with all three topic, user, and package """
+        """ The messages must match with both user and package """
         if a['msg']['agent'] != b['msg']['agent']:
             return False
         package_a = self.processor._u2p(a['msg']['update']['title'])[0]
@@ -113,7 +113,7 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         ])
 
     def matches(self, a, b, **config):
-        """ The message must match by package """
+        """ The message must match by username """
         if a['msg']['agent'] != b['msg']['agent']:
             return False
         return True
