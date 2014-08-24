@@ -61,7 +61,8 @@ class BodhiProcessor(BaseProcessor):
     __icon__ = ("https://admin.fedoraproject.org/updates"
                 "/static/images/bodhi-icon-48.png")
     conglomerators = [
-        conglomerators.bodhi.RequestByUserAndPackage,
+        conglomerators.bodhi.RequestByUserAndPackageTesting,
+        conglomerators.bodhi.RequestByUserAndPackageStable,
     ]
 
     def _u2p(self, update):

@@ -153,9 +153,8 @@ class TestBodhiConglomerate(fedmsg.tests.test_meta.ConglomerateBase):
         },
     ]
     expected = [{
-        'subtitle':
-            'pghmcfc submitted 2 perl-Devel-CheckBin updates for F19 and F20',
-
+        'subtitle': 'pghmcfc submitted 2 perl-Devel-CheckBin '
+        'testing updates for F19 and F20',
         'link': 'https://admin.fedoraproject.org/updates/perl-Devel-CheckBin/',
         'icon': 'https://admin.fedoraproject.org/updates/'
         'static/images/bodhi-icon-48.png',
