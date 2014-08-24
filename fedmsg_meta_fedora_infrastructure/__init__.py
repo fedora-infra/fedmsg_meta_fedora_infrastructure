@@ -5,6 +5,7 @@ import fedmsg.meta.base
 
 
 class BaseProcessor(fedmsg.meta.base.BaseProcessor):
+    topic_prefix_re = 'org\\.fedoraproject\\.(dev|stg|prod)'
     FAS = fedora.client.AccountSystem()
 
     def emails(self, msg, **config):
