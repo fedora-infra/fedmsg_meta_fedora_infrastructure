@@ -63,6 +63,8 @@ class BodhiProcessor(BaseProcessor):
     conglomerators = [
         conglomerators.bodhi.RequestByUserAndPackageTesting,
         conglomerators.bodhi.RequestByUserAndPackageStable,
+        conglomerators.bodhi.RequestByPackage,
+        conglomerators.bodhi.RequestByUser,
     ]
 
     def _u2p(self, update):
