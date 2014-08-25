@@ -238,6 +238,14 @@ class PkgdbProcessor(BaseProcessor):
             package = msg['msg']['package_listing']['package']['name']
             branch = msg['msg']['package_listing']['collection']['branchname']
             return tmpl.format(agent=agent, branch=branch, package=package)
+        elif msg['topic'].endswith('pkgdb.package.branch.new'):
+            tmpl = self._(
+                u"{agent} created the branch '{branch}' for the package "
+                "'{package}'")
+            agent = get_agent(msg)
+            package = msg['msg']['package']['name']
+            branch = msg['msg']['package_listing']['collection']['branchname']
+            return tmpl.format(agent=agent, branch=branch, package=package)
         elif 'pkgdb.acl.delete' in msg['topic']:
             tmpl = self._(
                 u"{agent} deleted {user}'s {acl} "
@@ -399,6 +407,11 @@ class PkgdbProcessor(BaseProcessor):
             branch = _msg['package_listing']['collection']['branchname']
             objs.add('{package}/{branch}/delete'.format(
                 package=package, branch=branch))
+        elif 'pkgdb.package.branch.new' in msg['topic']:
+            package = _msg['package']['name']
+            branch = _msg['package_listing']['collection']['branchname']
+            objs.add('{package}/{branch}/new/'.format(
+                package=package, branch=branch))
         elif 'pkgdb.acl.delete' in msg['topic']:
             objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
                 package=_msg['acl']['packagelist']['package']['name'],
@@ -480,6 +493,7 @@ class PkgdbProcessor(BaseProcessor):
             'pkgdb.owner.update',
             'pkgdb.package.retire',
             'pkgdb.package.new',
+            'pkgdb.package.branch.new',
         ])):
             return tmpl.format(
                 package=msg['msg']['package_listing']['package']['name']
