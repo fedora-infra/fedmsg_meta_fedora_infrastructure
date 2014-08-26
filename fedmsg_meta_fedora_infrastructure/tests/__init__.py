@@ -205,7 +205,7 @@ class TestFASRoleUpdate(Base):
     group changes.
     """
     expected_title = "fas.role.update"
-    expected_subti = "toshio changed ralph's role in the ambassadors group"
+    expected_subti = "toshio changed ralph's role in the ambassadors group to sponsor"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -218,6 +218,7 @@ class TestFASRoleUpdate(Base):
             u'group': {u'name': u'ambassadors'},
             u'user': {u'username': u'ralph'},
             u'agent': {u'username': u'toshio'},
+            u'status': {u'name': u'sponsor'},
         }
     }
 

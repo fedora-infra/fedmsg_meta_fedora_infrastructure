@@ -98,10 +98,15 @@ class FASProcessor(BaseProcessor):
             agent = string_or_dict(msg['msg'], 'agent')
             user = string_or_dict(msg['msg'], 'user')
             group = string_or_dict(msg['msg'], 'group')
+            status = string_or_dict(msg['msg'], 'status')
             tmpl = self._(
-                "{agent} changed {user}'s role in the {group} group"
+                "{agent} changed {user}'s role in the {group} group ' + \
+                'to {status}"
             )
-            return tmpl.format(agent=agent, group=group, user=user)
+            return tmpl.format(agent=agent,
+                               group=group,
+                               user=user,
+                               status=status)
         else:
             raise NotImplementedError("%r" % msg)
 
