@@ -23,7 +23,8 @@ import re
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
-import conglomerators.bodhi
+import conglomerators.bodhi.requests
+import conglomerators.bodhi.comments
 
 
 def get_sync_product(msg):
@@ -61,7 +62,12 @@ class BodhiProcessor(BaseProcessor):
     __icon__ = ("https://admin.fedoraproject.org/updates"
                 "/static/images/bodhi-icon-48.png")
     conglomerators = [
-        conglomerators.bodhi.RequestByUserAndPackage,
+        conglomerators.bodhi.requests.ByUserAndPackageTesting,
+        conglomerators.bodhi.requests.ByUserAndPackageStable,
+        conglomerators.bodhi.requests.ByPackage,
+        conglomerators.bodhi.requests.ByUser,
+        conglomerators.bodhi.comments.ByUpdate,
+        conglomerators.bodhi.comments.ByUser,
     ]
 
     def _u2p(self, update):
