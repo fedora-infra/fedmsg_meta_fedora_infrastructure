@@ -223,7 +223,7 @@ class TestFASRoleUpdate(Base):
     }
 
 
-class TestOldFASRoleUpdate(Base):
+class TestLegacyFASRoleUpdate(Base):
     """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
     publishes messages on this topic whenever a user's role in a particular
     group changes.
