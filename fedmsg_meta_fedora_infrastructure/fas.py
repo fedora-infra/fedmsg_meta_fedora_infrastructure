@@ -95,13 +95,21 @@ class FASProcessor(BaseProcessor):
             )
             return tmpl.format(agent=agent, group=group, fields=fields)
         elif 'fas.role.update' in msg['topic']:
-            agent = string_or_dict(msg['msg'], 'agent')
-            user = string_or_dict(msg['msg'], 'user')
-            group = string_or_dict(msg['msg'], 'group')
             tmpl = self._(
                 "{agent} changed {user}'s role in the {group} group"
             )
-            return tmpl.format(agent=agent, group=group, user=user)
+            agent = string_or_dict(msg['msg'], 'agent')
+            user = string_or_dict(msg['msg'], 'user')
+            group = string_or_dict(msg['msg'], 'group')
+            if 'status' in msg['msg']:
+                status = string_or_dict(msg['msg'], 'status')
+                tmpl += self._(' to {status}')
+            else:
+                status = None
+            return tmpl.format(agent=agent,
+                               group=group,
+                               user=user,
+                               status=status)
         else:
             raise NotImplementedError("%r" % msg)
 

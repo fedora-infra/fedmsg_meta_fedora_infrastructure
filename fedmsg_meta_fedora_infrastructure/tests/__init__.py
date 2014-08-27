@@ -205,6 +205,31 @@ class TestFASRoleUpdate(Base):
     group changes.
     """
     expected_title = "fas.role.update"
+    expected_subti = "toshio changed ralph's role in the ambassadors group to sponsor"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "085a38b9cf600926924645b292f0b7121a98a5165e559e0ad1882cfe33c6b395?s=64&d=retro"
+    expected_usernames = set(['ralph', 'toshio'])
+    expected_objects = set(['users/ralph', 'groups/ambassadors'])
+    msg = {
+        u'topic': u'org.fedoraproject.stg.fas.role.update',
+        u'msg': {
+            u'group': {u'name': u'ambassadors'},
+            u'user': {u'username': u'ralph'},
+            u'agent': {u'username': u'toshio'},
+            u'status': {u'name': u'sponsor'},
+        }
+    }
+
+
+class TestLegacyFASRoleUpdate(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user's role in a particular
+    group changes.
+    This is a test whether or not we can still handle messages without status.
+    """
+    expected_title = "fas.role.update"
     expected_subti = "toshio changed ralph's role in the ambassadors group"
     expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
         "/theme/fas/images/account.png"
