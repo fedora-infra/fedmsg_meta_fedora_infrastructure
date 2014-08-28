@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2013 Red Hat, Inc.
+# Copyright (C) 2013-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -59,7 +59,7 @@ class CoprsProcessor(BaseProcessor):
         return tmpl.format(user=user, copr=copr, chroot=chroot, status=status)
 
     def link(self, msg, **config):
-        user = msg['msg'].get('user')
+        user = msg['msg'].get('owner', msg['msg'].get('user'))
         copr = msg['msg'].get('copr')
         chroot = msg['msg'].get('chroot', None)
         build = msg['msg'].get('build')
@@ -80,9 +80,12 @@ class CoprsProcessor(BaseProcessor):
             return gravatar_url(msg['msg']['user'])
 
     def usernames(self, msg, **config):
+        usernames = set()
         if 'user' in msg['msg']:
-            return set([msg['msg']['user']])
-        return set()
+            usernames.add(msg['msg']['user'])
+        if 'owner' in msg['msg']:
+            usernames.add(msg['msg']['owner'])
+        return usernames
 
     def objects(self, msg, **config):
         items = ['coprs']
