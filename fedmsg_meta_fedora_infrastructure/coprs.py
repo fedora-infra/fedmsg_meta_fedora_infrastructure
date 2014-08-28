@@ -80,11 +80,12 @@ class CoprsProcessor(BaseProcessor):
             return gravatar_url(msg['msg']['user'])
 
     def usernames(self, msg, **config):
+        usernames = set()
         if 'user' in msg['msg']:
-            return set([msg['msg']['user']])
+            usernames.add(msg['msg']['user'])
         if 'owner' in msg['msg']:
-            return set([msg['msg']['owner']])
-        return set()
+            usernames.add(msg['msg']['owner'])
+        return usernames
 
     def objects(self, msg, **config):
         items = ['coprs']
