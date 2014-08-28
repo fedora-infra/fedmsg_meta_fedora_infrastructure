@@ -19,11 +19,11 @@
 #
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
 except ImportError:
     from ez_setup import use_setuptools
     use_setuptools()
-    from setuptools import setup
+    from setuptools import setup, find_packages
 
 import sys
 
@@ -101,7 +101,7 @@ entry_points = {
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.3.0',
+    version='0.3.1',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
@@ -112,10 +112,7 @@ setup(
     install_requires=install_requires,
     tests_require=tests_require,
     test_suite='nose.collector',
-    packages=[
-        'fedmsg_meta_fedora_infrastructure',
-        'fedmsg_meta_fedora_infrastructure.tests',
-    ],
+    packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     entry_points=entry_points
