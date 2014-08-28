@@ -1,8 +1,10 @@
+import threading
 import urllib
 import socket
 from hashlib import sha256, md5
 
 _fas_cache = {}
+_fas_cache_lock = threading.Lock()
 
 import logging
 log = logging.getLogger("moksha.hub")
@@ -116,10 +118,12 @@ def make_fas_cache(**config):
 
 
 def nick2fas(nickname, **config):
-    fas_cache = make_fas_cache(**config)
-    return fas_cache.get(nickname, nickname)
+    with _fas_cache_lock:
+        fas_cache = make_fas_cache(**config)
+        return fas_cache.get(nickname, nickname)
 
 
 def email2fas(email, **config):
-    fas_cache = make_fas_cache(**config)
-    return fas_cache.get(email, email)
+    with _fas_cache_lock:
+        fas_cache = make_fas_cache(**config)
+        return fas_cache.get(email, email)

@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -23,12 +23,8 @@ import re
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
-
-def _u2p(update):
-    """ Take an update, and return the package name """
-    # TODO -- make this unnecessary by having bodhi emit the
-    # package name (and not just the update name) to begin with.
-    return [build.rsplit('-', 2)[0] for build in update.split(',')]
+import conglomerators.bodhi.requests
+import conglomerators.bodhi.comments
 
 
 def get_sync_product(msg):
@@ -65,6 +61,20 @@ class BodhiProcessor(BaseProcessor):
     __obj__ = "Package Updates"
     __icon__ = ("https://admin.fedoraproject.org/updates"
                 "/static/images/bodhi-icon-48.png")
+    conglomerators = [
+        conglomerators.bodhi.requests.ByUserAndPackageTesting,
+        conglomerators.bodhi.requests.ByUserAndPackageStable,
+        conglomerators.bodhi.requests.ByPackage,
+        conglomerators.bodhi.requests.ByUser,
+        conglomerators.bodhi.comments.ByUpdate,
+        conglomerators.bodhi.comments.ByUser,
+    ]
+
+    def _u2p(self, update):
+        """ Take an update, and return the package name """
+        # TODO -- make this unnecessary by having bodhi emit the
+        # package name (and not just the update name) to begin with.
+        return [build.rsplit('-', 2)[0] for build in update.split(',')]
 
     def secondary_icon(self, msg, **config):
         username = ''
@@ -200,13 +210,13 @@ class BodhiProcessor(BaseProcessor):
 
     def packages(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
-            return set(_u2p(msg['msg']['comment']['update_title']))
+            return set(self._u2p(msg['msg']['comment']['update_title']))
         elif 'bodhi.update.complete' in msg['topic']:
-            return set(_u2p(msg['msg']['update']['title']))
+            return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.update.request' in msg['topic']:
-            return set(_u2p(msg['msg']['update']['title']))
+            return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            return set(_u2p(msg['msg']['override']['build']))
+            return set(self._u2p(msg['msg']['override']['build']))
 
         return set()
 
@@ -242,22 +252,22 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['comment']['update_title'])
+                self._u2p(msg['msg']['comment']['update_title'])
             ])
         elif 'bodhi.update.complete' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['update']['title'])
+                self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.update.request' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['update']['title'])
+                self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.buildroot_override.' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                _u2p(msg['msg']['override']['build'])
+                self._u2p(msg['msg']['override']['build'])
             ])
 
         return set()

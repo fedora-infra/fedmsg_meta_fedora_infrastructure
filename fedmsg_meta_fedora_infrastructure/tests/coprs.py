@@ -43,7 +43,7 @@ class TestCoprsBuildStart(Base):
         'coprs/mutt-kz/build.start',
     ])
     expected_link = (
-        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/")
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/build/100/")
     msg = {
         u'username': u'copr',
         u'i': 1,
@@ -80,7 +80,7 @@ class TestCoprsBuildEnd(Base):
         'coprs/mutt-kz/build.end',
     ])
     expected_link = (
-        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/")
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/build/100/")
     msg = {
         u'username': u'copr',
         u'i': 4,

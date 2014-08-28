@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.2.19
-------
+0.3.0
+-----
 
 - Koji messages should really have a secondary icon. `920935ecb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/920935ecb4878aca2f6e5328362e19fd1ebf70a3>`_
 - Planet gets an icon too. `7048681ad <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7048681ad561eb349f8d5c620dfd5474d8ac90cd>`_
@@ -199,6 +199,33 @@ Changelog
 - Merge pull request #130 from fedora-infra/new_pkgdb `282e8fff2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/282e8fff213a24bf57b18998f45f863994382dd3>`_
 - Handle pkgdb critpath change messages. `5cb94cdb6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5cb94cdb6d80453404004edb28056bbb70093e74>`_
 - Merge pull request #131 from fedora-infra/feature/critpath-messages `e273a0c1d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e273a0c1d3185b017918c74db1dea0ee03c1f590>`_
+- 0.2.19 `53205342c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/53205342c1de9e9b8e36006dcbe178dc173e2ef6>`_
+- Throw a threading lock around the fas cache. `f920b11f4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f920b11f4a70832888101ad78757bf8e10540935>`_
+- Merge pull request #132 from fedora-infra/feature/lock-around-fas-cache `8578931c4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8578931c449f37326145bd9ced4b045fee768040>`_
+- First bodhi conglomerator. `179b922d5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/179b922d553e6a3494e42a757378962814e063bc>`_
+- Bugfix. `3ff8ebb5a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3ff8ebb5a7bc408eba99abc4e1e839177280cb9e>`_
+- Unnecessary.  self.produce_template(..) actually includes this. `82e84ec37 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/82e84ec37e0ae2f1ba0e43145f7dad5f4ea6ea17>`_
+- Link directly to copr builds. `19229d94a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/19229d94aa04dc0cebbac61585d2fc19920eabfc>`_
+- Merge pull request #134 from fedora-infra/feature/copr-builds `c616a8a9b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c616a8a9b0e5dd4a86c627e858cf20fbb0c32979>`_
+- Merge pull request #133 from fedora-infra/feature/first-bodhi-conglomerator `0409486e8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0409486e80cdffab570d4fec0f769050fc6ba64a>`_
+- Hardcode topic_prefix_re. `dd68205b1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dd68205b15586b0969e0269c7ccafac86adfe380>`_
+- Merge pull request #136 from fedora-infra/feature/topic-prefix-hardcode `6a918f896 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a918f896ec08e4fe373dd2a50a1708c9e724821>`_
+- Split that one into two different ones: for testing and stable. `e903f7af4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e903f7af404245d2180ebc21d0b57ba9a7418ffe>`_
+- Add two new bodhi conglomerators. `8e7ae9ddb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8e7ae9ddbe8515f7952edc5dac57f828a0344675>`_
+- Re-namespace stuff into a submodule.  There's going to be a lot of these... `247bd9a14 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/247bd9a14b868a0289efd174e65eadd6ba5acc02>`_
+- Bodhi conglomerators for comments on updates. `6802ced0f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6802ced0f36677ee41abd8666532b50c37625cf1>`_
+- Update docstrings as per review. `a3be25dbe <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a3be25dbee4b272d5f5e364915e2a00c1697b205>`_
+- Add meta information for the new pkgdb.package.branch.new messages of pkgdb2 `188e77354 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/188e77354274d2c88317794bb415937978e39c36>`_
+- Add unit-tests for the pkgdb.package.branch.new messages `5a292463f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5a292463f020e5b8c6149071278aa8e9de65ee96>`_
+- Show the new status attribute. `b798cf243 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b798cf2435f32c49b80d73f7d30d3e0ecd0483da>`_
+- Handle messages without status gracefully `f57035f5a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f57035f5aa69815cde9c498f3dfcccf7db257eec>`_
+- Merge pull request #137 from fedora-infra/feature/more-bodhi-conglomerators `04afd1391 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/04afd139185c6876a30925f2a81f629b20ac0a89>`_
+- Merge pull request #138 from fedora-infra/new_pkgdb `9c61d3bd6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9c61d3bd675d7b3ef2edf961ac77a7d66f96c633>`_
+- s/Old/Legacy/ `0a421598a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a421598af975a919db297b57bfc90c4f3e0d15d>`_
+- Merge pull request #139 from fedora-infra/feature/new_status_for_fas `fb61fa224 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fb61fa2248fd2d95ab3546b992708ba8914b5577>`_
+- Fix the copr owner/user disagreement. `3b079a3c5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3b079a3c566c9de690c209aa82f29e002ef47da0>`_
+- Fix copr usernames() method. `a7458caf6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a7458caf650a4b7e634efe3080634277634a108b>`_
+- Merge pull request #140 from fedora-infra/feature/copr-owner-fix `6a466ce96 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a466ce96e38919b7f088e377e7a0965b2d5e9b4>`_
 
 0.2.9
 -----
@@ -584,6 +611,39 @@ Changelog
 - Merge pull request #124 from fedora-infra/jenkins-try-again `de9a741a4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de9a741a4530870eb9377a8ac9891a69992c90fc>`_
 - 0.2.17 `edd3fe59e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/edd3fe59ec84ab9c38248a71aa86e5ceeca1b247>`_
 - Fix tests. `3643db6e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3643db6e189965561aea38b6ff286e87fcf4faf7>`_
+- 0.2.18 `b46069572 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b46069572f66b9c9ab8d2661b4fa2d38095e07ab>`_
+- Comment out time-sensitive test. `1a8fe7b89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1a8fe7b89f6f4f7193740f6bb146f67fb2835c73>`_
+- Debug missing topic. `b51dcb708 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b51dcb7087484c8f6256c76beb9c80cb861f6a4e>`_
+- Add missing topic. `6a1bd32d2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a1bd32d2a4d8b228de4d1d910820561e2b1ca60>`_
+- Merge pull request #126 from fedora-infra/feature/more-jenkins-fixes `22175af34 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22175af34a7bd05a43356022c86fbb290ee5424a>`_
+- Handle pkgdb.package.delete. `eb73eaf92 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb73eaf92d1b43dc1eef57245310fa98b09cfb2a>`_
+- pkgdb.package.branch.delete and pkgdb.acl.delete `0df5e488d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0df5e488d0624548584c19e7f1d48ab17ae7d125>`_
+- Merge pull request #128 from fedora-infra/feature/those-other-pkgdb-messages `c9ab3f9ed <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9ab3f9ed679144cf75519ced04d469e06d08d66>`_
+- Handle the new pkgdb fedmsg messages `7fa96b37c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7fa96b37c8cc2c02e94a3d003cfa19e8f6f3e550>`_
+- Adjust the unit-tests to test for these new messages `4dbf902f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4dbf902f9977f8be3b94a11a2031c23a44990b93>`_
+- Merge pull request #129 from fedora-infra/new_pkgdb `2b1a61c55 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b1a61c5557f55efea04db46efd68763ba6a39e0>`_
+- There are case where the `action` dict is not there and case where it is `f9b10d582 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f9b10d582224e2ef903ba25f6b5aabb1e649d514>`_
+- Merge pull request #130 from fedora-infra/new_pkgdb `282e8fff2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/282e8fff213a24bf57b18998f45f863994382dd3>`_
+- Handle pkgdb critpath change messages. `5cb94cdb6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5cb94cdb6d80453404004edb28056bbb70093e74>`_
+- Merge pull request #131 from fedora-infra/feature/critpath-messages `e273a0c1d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e273a0c1d3185b017918c74db1dea0ee03c1f590>`_
+
+0.2.19
+------
+
+- Comment out time-sensitive test. `1a8fe7b89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1a8fe7b89f6f4f7193740f6bb146f67fb2835c73>`_
+- Debug missing topic. `b51dcb708 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b51dcb7087484c8f6256c76beb9c80cb861f6a4e>`_
+- Add missing topic. `6a1bd32d2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a1bd32d2a4d8b228de4d1d910820561e2b1ca60>`_
+- Merge pull request #126 from fedora-infra/feature/more-jenkins-fixes `22175af34 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22175af34a7bd05a43356022c86fbb290ee5424a>`_
+- Handle pkgdb.package.delete. `eb73eaf92 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb73eaf92d1b43dc1eef57245310fa98b09cfb2a>`_
+- pkgdb.package.branch.delete and pkgdb.acl.delete `0df5e488d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0df5e488d0624548584c19e7f1d48ab17ae7d125>`_
+- Merge pull request #128 from fedora-infra/feature/those-other-pkgdb-messages `c9ab3f9ed <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9ab3f9ed679144cf75519ced04d469e06d08d66>`_
+- Handle the new pkgdb fedmsg messages `7fa96b37c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7fa96b37c8cc2c02e94a3d003cfa19e8f6f3e550>`_
+- Adjust the unit-tests to test for these new messages `4dbf902f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4dbf902f9977f8be3b94a11a2031c23a44990b93>`_
+- Merge pull request #129 from fedora-infra/new_pkgdb `2b1a61c55 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b1a61c5557f55efea04db46efd68763ba6a39e0>`_
+- There are case where the `action` dict is not there and case where it is `f9b10d582 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f9b10d582224e2ef903ba25f6b5aabb1e649d514>`_
+- Merge pull request #130 from fedora-infra/new_pkgdb `282e8fff2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/282e8fff213a24bf57b18998f45f863994382dd3>`_
+- Handle pkgdb critpath change messages. `5cb94cdb6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5cb94cdb6d80453404004edb28056bbb70093e74>`_
+- Merge pull request #131 from fedora-infra/feature/critpath-messages `e273a0c1d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e273a0c1d3185b017918c74db1dea0ee03c1f590>`_
 
 0.2.18
 ------
