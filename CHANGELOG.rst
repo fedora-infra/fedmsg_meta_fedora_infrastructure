@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.3.1
+-----
+
+- Catch new subpackages. `19d315a48 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/19d315a48587c1e9798f3271e5b4865cd1b09814>`_
+
 0.3.0
 -----
 
