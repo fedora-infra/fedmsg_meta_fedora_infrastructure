@@ -7,4 +7,5 @@ Information specific to the Fedora Project deployment of `fedmsg
 .. toctree::
    :maxdepth: 0
 
+   start
    topics
