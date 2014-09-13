@@ -47,7 +47,7 @@ class AnsibleProcessor(BaseProcessor):
     __obj__ = "Ansible Runs"
 
     def subtitle(self, msg, **config):
-        user = msg['msg']['userid']
+        user = msg['msg'].get('userid', '(no user specified)')
         controlled, playbook = relative_playbook(msg['msg']['playbook'])
 
         if 'ansible.playbook.start' in msg['topic']:
@@ -59,8 +59,9 @@ class AnsibleProcessor(BaseProcessor):
         return ""
 
     def secondary_icon(self, msg, **config):
-        user = msg['msg']['userid']
-        return gravatar_url(user)
+        user = msg['msg'].get('userid')
+        if user:
+            return gravatar_url(user)
 
     def link(self, msg, **config):
         base = "http://infrastructure.fedoraproject.org/cgit/ansible.git/tree/"
@@ -71,7 +72,10 @@ class AnsibleProcessor(BaseProcessor):
             return base + playbook
 
     def usernames(self, msg, **config):
-        return set([msg['msg']['userid']])
+        user = msg['msg'].get('userid')
+        if user:
+            return set([user])
+        return set()
 
     def objects(self, msg, **config):
         controlled, playbook = relative_playbook(msg['msg']['playbook'])
