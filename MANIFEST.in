@@ -1,3 +1,4 @@
 include LICENSE
 include README.rst
 recursive-include fedmsg.d *.py
+include fedmsg_meta_fedora_infrastructure/tests/example.patch

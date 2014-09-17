@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -20,6 +20,8 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url, gravatar_url_from_email
 
+import requests
+
 
 class SCMProcessor(BaseProcessor):
     __name__ = "git"
@@ -39,6 +41,20 @@ class SCMProcessor(BaseProcessor):
         elif 'agent' in msg['msg']:
             username = msg['msg']['agent']
             return gravatar_url(username)
+
+    def long_form(self, msg, **config):
+        if '.git.receive' in msg['topic']:
+            try:
+                repo = msg['msg']['commit']['repo']
+            except KeyError:
+                repo = '.'.join(msg['topic'].split('.')[5:-1])
+
+            rev = msg['msg']['commit']['rev']
+            url = 'http://pkgs.fedoraproject.org/cgit/' + \
+                '{repo}.git/patch/?id={rev}'
+            response = requests.get(url.format(repo=repo, rev=rev))
+            if response.status_code == 200:
+                return self.subtitle(msg, **config) + '\n\n' + response.text
 
     def subtitle(self, msg, **config):
         if '.git.receive' in msg['topic']:
