@@ -76,13 +76,21 @@ class PkgdbProcessor(BaseProcessor):
                     'branchname']
                 extra = self._(u" in {branchname}".format(
                     branchname=branchname))
-            if prev_status == "Retired" and status != "Retired":
-                verb = self._(u"unretired")
-            elif prev_status != "Retired" and status == "Retired":
-                verb = self._(u"retired")
-            else:
-                verb = self._(u"made some updates to")
+
+            status_map = {
+                "Retired": [self._(u"unretired"), self._(u"retired")],
+                "Orphaned": [self._(u"unorphaned"), self._(u"orphaned")],
+            }
+            verb = self._(u"made some updates to")
+            for key, values in status_map.items():
+                left, right = values
+                if prev_status == key and status != key:
+                    verb = left
+                elif prev_status != key and status == key:
+                    verb = right
+
             agent = get_agent(msg)
+
             try:
                 package = msg['msg']['package_listing']['package']['name']
             except KeyError:
