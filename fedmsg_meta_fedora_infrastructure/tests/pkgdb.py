@@ -335,7 +335,7 @@ class TestPkgdbPackageUpdate(Base):
     }
 
 
-class TestPkgdbBranchClone(Base):
+class LegacyTestPkgdbBranchClone(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages on this topic when a new branch is cloned for a
     package.
@@ -443,7 +443,7 @@ class TestLegacyPkgdbPackageRetire(Base):
     }
 
 
-class TestPkgdbUserRemove(Base):
+class LegacyTestPkgdbUserRemove(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     when a user is removed from a package ACL.
     """
@@ -1241,7 +1241,7 @@ class TestPkgdbDeleteAcl(Base):
     }
 
 
-class TestPkgdbBranchRequest(Base):
+class LegacyTestPkgdbBranchRequest(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when an user **requests a new branch** for
     a particular package.
@@ -1295,7 +1295,7 @@ class TestPkgdbBranchRequest(Base):
     }
 
 
-class TestPkgdbPackageRequest(Base):
+class LegacyTestPkgdbPackageRequest(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when an user **requests a new package**
     to be added into Package DB.
