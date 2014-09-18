@@ -48,7 +48,6 @@ class TracProcessor(BaseProcessor):
             user = msg['msg']['agent']
             name = msg['msg']['page']['name']
             project = msg['msg']['instance']['project_name']
-            print msg['topic']
             if 'page.version.delete' in msg['topic']:
                 tmpl = self._(
                     "{user} deleted a version of the '{name}' wiki "
