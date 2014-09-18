@@ -20,6 +20,61 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
+short_repos = [
+    '389',
+    'aeolus',
+    'bluecurve',
+    'bluecurve-classic-metacity-theme',
+    'bluecurve-gdm-theme',
+    'bluecurve-gnome-theme',
+    'bluecurve-gtk-themes',
+    'bluecurve-icon-theme',
+    'bluecurve-kde-theme',
+    'bluecurve-kdm-theme',
+    'bluecurve-kwin-theme',
+    'bluecurve-metacity-theme',
+    'bluecurve-qt-engine',
+    'bluecurve-xmms-skin',
+    'cobbler',
+    'deltacloud',
+    'docs',
+    'echo-icon-theme',
+    'fedorabubbles-gdm-theme',
+    'fedoradna-gdm-theme',
+    'fedoradna-kdm-theme',
+    'fedoraflyinghigh-gdm-theme',
+    'fedoraflyinghigh-kdm-theme',
+    'fedora-gnome-theme',
+    'fedora-icon-theme',
+    'fedorainfinity-gdm-theme',
+    'fedorainfinity-screensaver-theme',
+    'fedora-screensaver-theme',
+    'freeotp',
+    'grid',
+    'koji',
+    'l10n',
+    'livecd',
+    'mash',
+    'mirrormanager',
+    'mkinitrd',
+    'nodoka',
+    'opyum',
+    'ovirt',
+    'presto',
+    'readahead',
+    'redhat-rpm-config',
+    'releng',
+    'revisor',
+    'rhq',
+    'snake',
+    'thetango',
+    'thincrust',
+    'umltester',
+    'updatinator',
+    'webauthinfra',
+    'wevisor',
+]
+
 
 def repo_name(msg):
     """ Compat util to get the repo name from a message. """
@@ -232,7 +287,8 @@ class TracProcessor(BaseProcessor):
             return url
         elif '.git.receive' in msg['topic']:
             name = repo_name(msg)
+            suffix = '' if name in short_repos else '.git'
             rev = msg['msg']['commit']['rev']
             tmpl = "https://git.fedorahosted.org/cgit/" + \
-                "{name}.git/commit/?id={rev}"
-            return tmpl.format(name=name, rev=rev)
+                "{name}{suffix}/commit/?id={rev}"
+            return tmpl.format(name=name, rev=rev, suffix=suffix)
