@@ -1241,7 +1241,7 @@ class TestPkgdbDeleteAcl(Base):
     }
 
 
-class LegacyTestPkgdbBranchRequest(Base):
+class TestPkgdbBranchRequest(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when an user **requests a new branch** for
     a particular package.
@@ -1295,7 +1295,7 @@ class LegacyTestPkgdbBranchRequest(Base):
     }
 
 
-class LegacyTestPkgdbPackageRequest(Base):
+class TestPkgdbPackageRequest(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when an user **requests a new package**
     to be added into Package DB.
