@@ -1,0 +1,43 @@
+From 66abdea4014eb2f0745fc38f86e20c7d7009237e Mon Sep 17 00:00:00 2001
+From: Ralph Bean <rbean@redhat.com>
+Date: Mon, 8 Oct 2012 13:25:49 -0400
+Subject: Try removing requirement on python-bunch.
+
+
+diff --git a/datanommer.spec b/datanommer.spec
+index c34b795..1db1d0a 100644
+--- a/datanommer.spec
++++ b/datanommer.spec
+@@ -1,6 +1,6 @@
+ Name:             datanommer
+ Version:          0.1.8
+-Release:          1%{?dist}
++Release:          2%{?dist}
+ Summary:          A storage consumer for the Fedora Message Bus (fedmsg)
+ 
+ Group:            Development/Libraries
+@@ -28,11 +28,6 @@ BuildRequires:    python-sqlalchemy >= 0.7
+ Requires:         python-sqlalchemy >= 0.7
+ %endif
+ 
+-# This is required due to a bug in moksha's packaging
+-# That is fixed in moksha-0.8.8-4
+-BuildRequires:    python-bunch
+-Requires:         python-bunch
+-
+ 
+ %description
+ This is datanommer.  It is comprised of only a `fedmsg
+@@ -73,6 +68,9 @@ database.
+ %{_bindir}/datanommer-dump
+ 
+ %changelog
++* Mon Oct 08 2012 Ralph Bean <rbean@redhat.com> - 0.1.8-2
++- Remove requirement on python-bunch.
++
+ * Thu Oct 04 2012 Ralph Bean <rbean@redhat.com> - 0.1.8-1
+ - More flexible database field types.
+ * Fri Sep 28 2012 Ralph Bean <rbean@redhat.com> - 0.1.7-1
+-- 
+cgit v0.10.1
+
