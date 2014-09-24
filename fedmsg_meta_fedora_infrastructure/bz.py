@@ -62,8 +62,13 @@ class BugzillaProcessor(BaseProcessor):
         return user, is_fas
 
     def _get_user(self, msg, **config):
-        email = msg['msg']['event'].get('who')
-        if not email:
+        comment = msg['msg'].get('comment')
+        event = msg['msg'].get('event')
+        if comment:
+            email = comment['author']
+        elif event and event.get('who'):
+            email = event.get('who')
+        else:
             email = msg['msg']['bug'].get('creator')
 
         user, is_fas = self._email_to_fas(email, **config)
@@ -81,10 +86,21 @@ class BugzillaProcessor(BaseProcessor):
             title = title[:MAX_LEN] + "..."
 
         if 'bug.update' in msg['topic']:
-            fields = [d['field_name'] for d in msg['msg']['event']['changes']]
-            fields = comma_join(fields)
-            tmpl = self._("{user} updated {fields} on RHBZ#{idx} '{title}'")
-            return tmpl.format(user=user, fields=fields, idx=idx, title=title)
+            if msg['msg'].get('comment'):
+                tmpl = self._("{user} commented on RHBZ#{idx} '{title}'")
+                return tmpl.format(user=user, idx=idx, title=title)
+            elif msg['msg'].get('event'):
+                fields = [d['field_name'] for d in
+                          msg['msg']['event']['changes']]
+                fields = comma_join(fields)
+                tmpl = self._("{user} updated {fields} "
+                              "on RHBZ#{idx} '{title}'")
+                return tmpl.format(user=user, fields=fields,
+                                   idx=idx, title=title)
+            else:
+                tmpl = self._("{user} updated RHBZ#{idx} '{title}'")
+                return tmpl.format(user=user, idx=idx, title=title)
+
         elif 'bug.new' in msg['topic']:
             tmpl = self._("{user} filed a new bug RHBZ#{idx} '{title}'")
             return tmpl.format(user=user, idx=idx, title=title)
@@ -101,7 +117,16 @@ class BugzillaProcessor(BaseProcessor):
         msg = msg['msg']
         bug = msg['bug']
 
-        users.add(msg['event'].get('who'))
+        if msg.get('comment'):
+            author = msg['comment'].get('author')
+            if author:
+                users.add(author)
+
+        if msg.get('event'):
+            who = msg['event'].get('who')
+            if who:
+                users.add(who)
+
         users.add(bug.get('creator'))
         users.add(bug.get('assigned_to'))
 
