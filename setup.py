@@ -96,6 +96,7 @@ entry_points = {
         "fedimg=fedmsg_meta_fedora_infrastructure.fedimg:FedimgProcessor",
         "kerneltest=fedmsg_meta_fedora_infrastructure.kerneltest:"
         "KernelTestProcessor",
+        "koschei=fedmsg_meta_fedora_infrastructure.koschei:KoscheiProcessor",
     ]
 }
 
