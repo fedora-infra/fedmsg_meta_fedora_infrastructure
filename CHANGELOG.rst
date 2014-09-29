@@ -1,6 +1,29 @@
 Changelog
 =========
 
+0.3.2
+-----
+
+- Add basic documentation on how to get started with fedmsg_meta_fedora_infrastructure `44bcf7c11 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44bcf7c113dc8d188c4b1197bffa8caa6cb66c39>`_
+- Embed the start documentation in the main documentation `2956dff6c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2956dff6c60aa62e3ba39d7dfe8d22b4f8b33fb9>`_
+- Merge pull request #142 from fedora-infra/start_doc `d18f5e8ce <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d18f5e8ceda77732e490cd54a74bf62a8bdcf495>`_
+- Handle ancient ansible messages with no userid. `8305e290b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8305e290bd8d896fbd10fc598e5f46c6d14e289c>`_
+- Merge pull request #144 from fedora-infra/feature/legacy-ansible `c2ae68bb0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c2ae68bb068db5571fdfd15e525232630384d418>`_
+- Handle other kinds of pkgdb status updates. `5b8c5345b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5b8c5345b1b365ded1ac583d768a2f753c7e3454>`_
+- Mark these pkgdb examples as Legacy `dbb15f79e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dbb15f79efc9fcea6468f60c74c1b268c53db355>`_
+- Handle ancient koji messages that do not have tag info. `c71f146fd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c71f146fd13ae77083f4401a77e7f6a1a01e38db>`_
+- Return the full patch for scm long_form. `7f93e7174 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7f93e71743c8f1c07abf993fb8bf7324432e7589>`_
+- Remove errant print statement. `e1aef8055 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e1aef8055fd3b9a92ff0d0908356d0a87eb30853>`_
+- Fix fedorahosted repo links that do not end with '.git' `135eaa4fc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/135eaa4fc4367cd16176a310126fead81268b222>`_
+- Merge pull request #149 from fedora-infra/feature/hosted-git-fixlist `9f518717b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9f518717b432d617044b12cd7d34b6b019bcc853>`_
+- Merge pull request #145 from fedora-infra/feature/more-pkgdb `75338058d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/75338058d8431dce292402bba9dddd1ecdeb4a47>`_
+- Merge pull request #148 from fedora-infra/feature/patch-long-form `50d2e38d5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/50d2e38d54cde33bc32015845aa914ba05676947>`_
+- Merge pull request #147 from fedora-infra/feature/legacy-tagless `4a05f88a9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4a05f88a9295309c1e1ed0336ad576d076f12755>`_
+- Revert these at @pypingou's suggestion. `13661ec89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/13661ec8988d9d82a238883c968897aa02cd93ef>`_
+- Merge pull request #146 from fedora-infra/feature/pkgdb-legacy `d2a61a143 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d2a61a1439d9067d3c61d5315f01aba14e0d20c0>`_
+- Handle enhanced bugzilla messages. `d0896ec55 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d0896ec55c7cb775c924d3c79e943f418f634ea3>`_
+- Merge pull request #151 from fedora-infra/feature/enhanced-bugzilla `30436b137 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/30436b137e47229a5a399db432cdf2d75119ad5d>`_
+
 0.3.1
 -----
 
