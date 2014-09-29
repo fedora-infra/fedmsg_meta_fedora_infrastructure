@@ -52,10 +52,10 @@ class KojiProcessor(BaseProcessor):
             return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.repo.init' in msg['topic']:
             tmpl = self._('Repo initialized:  {tag}{inst}')
-            return tmpl.format(inst=inst, **msg['msg'])
+            return tmpl.format(inst=inst, tag=msg['msg'].get('tag', 'unknown'))
         elif 'buildsys.repo.done' in msg['topic']:
             tmpl = self._('Repo done:  {tag}{inst}')
-            return tmpl.format(inst=inst, **msg['msg'])
+            return tmpl.format(inst=inst, tag=msg['msg'].get('tag', 'unknown'))
         elif 'buildsys.package.list.change' in msg['topic']:
             tmpl = self._(
                 "Package list change for {package}:  '{tag}'{inst}")
@@ -182,16 +182,16 @@ class KojiProcessor(BaseProcessor):
         else:
             raise NotImplementedError("Unhandled instance")
 
-        if 'buildsys.tag' in msg['topic']:
+        if 'buildsys.tag' in msg['topic'] and 'tag_id' in msg['msg']:
             return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
-        elif 'buildsys.untag' in msg['topic']:
+        elif 'buildsys.untag' in msg['topic'] and 'tag_id' in msg['msg']:
             return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
-        elif 'buildsys.repo.init' in msg['topic']:
+        elif 'buildsys.repo.init' in msg['topic'] and 'tag_id' in msg['msg']:
             return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
-        elif 'buildsys.repo.done' in msg['topic']:
+        elif 'buildsys.repo.done' in msg['topic'] and 'tag_id' in msg['msg']:
             return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
         elif 'buildsys.build.state.change' in msg['topic']:
@@ -203,7 +203,7 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.package.list.change' in msg['topic']:
             return None
         else:
-            raise NotImplementedError("%r" % msg)
+            return base
 
     def objects(self, msg, **config):
         instance = msg['msg'].get('instance', 'primary')
@@ -235,7 +235,7 @@ class KojiProcessor(BaseProcessor):
                 '/'.join([
                     instance,
                     'tags',
-                    msg['msg']['tag'],
+                    msg['msg'].get('tag', 'unknown'),
                 ]),
             ])
         elif 'buildsys.build.state.change' in msg['topic']:
@@ -256,19 +256,19 @@ class KojiProcessor(BaseProcessor):
             return set(['/'.join([
                 instance,
                 'repos',
-                msg['msg']['tag'],
+                msg['msg'].get('tag', 'unknown'),
             ])])
         elif 'buildsys.repo.done' in msg['topic']:
             return set(['/'.join([
                 instance,
                 'repos',
-                msg['msg']['tag'],
+                msg['msg'].get('tag', 'unknown'),
             ])])
         elif 'buildsys.package.list.change' in msg['topic']:
             return set(['/'.join([
                 instance,
                 'tags',
-                msg['msg']['tag'],
+                msg['msg'].get('tag', 'unknown'),
             ])])
         else:
             raise NotImplementedError("%r" % msg)

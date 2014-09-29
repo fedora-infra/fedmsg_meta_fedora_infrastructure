@@ -417,6 +417,32 @@ class TestKojiRepoDone(Base):
     }
 
 
+class LegacyTestKojiRepoDone(Base):
+    """ Some old repo messages do not include any information at all.
+    For instance:  2014-31fb32e5-f45b-477e-8458-03a5792dabeb
+    """
+    expected_title = "buildsys.repo.done"
+    expected_subti = 'Repo done:  unknown (arm)'
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'arm/repos/unknown',
+    ])
+    expected_link = "http://arm.koji.fedoraproject.org/koji"
+    msg = {
+        "username": "apache",
+        "i": 2,
+        "timestamp": 1359655886.353586,
+        "topic": "org.fedoraproject.prod.buildsys.repo.done",
+        "msg": {
+            "instance": "arm",
+        }
+    }
+
+
 class TestKojiPackageListChange(Base):
     """ Koji emits these messages a package listing changes. """
     expected_title = "buildsys.package.list.change"

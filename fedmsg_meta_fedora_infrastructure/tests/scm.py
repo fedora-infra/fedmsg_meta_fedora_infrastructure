@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,14 +16,21 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Ian Weller <ianweller@fedoraproject.org>
+#           Ralph Bean <rbean@redhat.com>
 #
 """ Tests for git messages """
 
+import os
 import unittest
 
 from fedmsg.tests.test_meta import Base
 
 from common import add_doc
+
+
+here = os.path.dirname(__file__)
+with open(here + '/example.patch', 'r') as f:
+    full_patch = f.read()
 
 
 class TestGitReceiveOldModified(Base):
@@ -34,6 +41,7 @@ class TestGitReceiveOldModified(Base):
     expected_title = "git.receive"
     expected_subti = ('rbean@redhat.com pushed to datanommer (master).  "Try '
                       'removing requirement on python-bunch."')
+    expected_long_form = expected_subti + "\n\n" + full_patch
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         '1a0d2acfddb1911ecf55da42cfa34710'
