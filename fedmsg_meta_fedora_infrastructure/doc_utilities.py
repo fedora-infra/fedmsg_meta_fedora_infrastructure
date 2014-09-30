@@ -120,11 +120,13 @@ def make_topics_doc(output_dir):
     #folder = os.path.sep + os.path.join(*filename.split('/')[:-1])
     #test_classes = load_classes(folder)
 
+    # Strip out the conglomerator tests which are more complicated.
+    test_classes = [cls for cls in test_classes if hasattr(cls.context, 'msg')]
+
     write(fname, header)
 
     for cls in test_classes:
         if cls.context.msg:
-
             # Adjust {stg,dev} to prod.
             cls.context.msg['topic'] = cls.context.msg['topic']\
                 .replace('.stg.', '.prod.')\
