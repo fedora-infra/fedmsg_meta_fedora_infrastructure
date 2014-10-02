@@ -83,8 +83,8 @@ entry_points = {
         "NuancierProcessor",
         "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         "coprs=fedmsg_meta_fedora_infrastructure.coprs:CoprsProcessor",
-        "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:"
-        "CnuCnuWebProcessor",
+        "anitya=fedmsg_meta_fedora_infrastructure.anitya:"
+        "AnityaProcessor",
         "summershum=fedmsg_meta_fedora_infrastructure.summershum:"
         "SummerShumProcessor",
         "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
