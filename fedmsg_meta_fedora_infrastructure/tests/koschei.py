@@ -31,8 +31,8 @@ class TestKoscheiPackageStateChange(Base):
         dependency changes done in Koji repositories and rebuilds packages whose
         build dependencies change too much.
 
-    This message type is published by Koschei when a package was added and build
-    fine.
+    This message type is published by Koschei when package's build or resolution
+    state changes.
     """
 
     expected_title = "koschei.package.state.change"
