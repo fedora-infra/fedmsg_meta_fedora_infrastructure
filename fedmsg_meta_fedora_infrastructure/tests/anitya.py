@@ -353,10 +353,13 @@ class TestUpdatedMappingProject(Base):
                 "name": "ansi2html"
             },
             "message": {
-                "project": "ansi2html",
-                "new": "python3-ansi2html",
-                "prev": "python-ansi2html",
-                "agent": "rbean@redhat.com",
+                "edited": [
+                    "package_name"
+                ],
+                "agent": "ralph@fedoraproject.org",
+                "project": "guake",
+                "new": "guake2",
+                "prev": "guake",
                 "distro": "Fedora"
             },
             "distro": {
