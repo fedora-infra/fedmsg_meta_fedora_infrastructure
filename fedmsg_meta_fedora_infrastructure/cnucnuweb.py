@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012, 2013 Red Hat, Inc.
+# Copyright (C) 2013, 2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -17,28 +17,18 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #           Luke Macken <lmacken@redhat.com>
+#           Pierre-Yves Chibon <pingou@pingoured.fr>
+#
 
 from fasshim import gravatar_url, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
-def project2fedora_package(project):
-    # TODO -- this function should go out and query cnucnu/api/project/PROJECT
-    # and get back the list of distro mappings for that project.  It should
-    # then return the name of the package in Fedora.
-    # For now, we'll have this dummy code here so the tests pass until we can
-    # actually deploy cnucnu.
-    if project == 'ansi2html':
-        return 'python-ansi2html'
-    else:
-        return project
-
-
-class CnuCnuWebProcessor(BaseProcessor):
-    __name__ = "cnucnuweb"
+class AnityaProcessor(BaseProcessor):
+    __name__ = "anitya"
     __description__ = "Upstream Release Monitoring"
-    __link__ = "https://apps.fedoraproject.org/cnucnu/"
-    __docs__ = "https://fedoraproject.org/wiki/Upstream_Release_Monitoring"
+    __link__ = "http://release-monitoring.org"
+    __docs__ = "http://release-monitoring.org"
     __obj__ = "Upstream Releases"
     __icon__ = "https://todo.com/image.png"
 
@@ -52,10 +42,10 @@ class CnuCnuWebProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         if msg['msg']['project']:
-            proj = msg['msg']['project']['name']
-            return "https://apps.fedoraproject.org/cnucnu/project/%s/" % proj
+            proj = msg['msg']['project']['id']
+            return "http://release-monitoring.org/project/%s/" % proj
         else:
-            return "https://apps.fedoraproject.org/cnucnu/distros"
+            return "http://release-monitoring.org/distros"
 
         return None
 
@@ -84,7 +74,7 @@ class CnuCnuWebProcessor(BaseProcessor):
         elif 'distro.add' in msg['topic']:
             distro = msg['msg']['distro']['name']
             tmpl = self._(
-                '{user} added the distro named "{distro}" to cnucnuweb')
+                '{user} added the distro named "{distro}" to anitya')
             return tmpl.format(user=user, distro=distro)
         elif 'distro.edit' in msg['topic']:
             old = msg['msg']['message']['old']
@@ -95,11 +85,11 @@ class CnuCnuWebProcessor(BaseProcessor):
         elif 'project.add.tried' in msg['topic']:
             project = msg['msg']['project']['name']
             tmpl = self._('{user} tried to add the project '
-                          '"{project}" to cnucnuweb')
+                          '"{project}" to anitya')
             return tmpl.format(user=user, project=project)
         elif 'project.add' in msg['topic']:
             project = msg['msg']['project']['name']
-            tmpl = self._('{user} added the project "{project}" to cnucnuweb')
+            tmpl = self._('{user} added the project "{project}" to anitya')
             return tmpl.format(user=user, project=project)
         elif 'project.edit' in msg['topic']:
             project = msg['msg']['project']['name']
@@ -187,6 +177,10 @@ class CnuCnuWebProcessor(BaseProcessor):
             if msg['msg']['distro']['name'].lower() == 'fedora':
                 return set([msg['msg']['message']['new']])
         elif 'project.version.update' in msg['topic']:
-            return set([project2fedora_package(msg['msg']['project']['name'])])
+            return set([
+                pkg['package_name']
+                for pkg in msg['msg']['packages']
+                if pkg['distro'].lower() == 'fedora'
+            ])
 
         return set([])
