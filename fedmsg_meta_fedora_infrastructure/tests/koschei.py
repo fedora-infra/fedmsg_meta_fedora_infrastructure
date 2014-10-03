@@ -36,7 +36,7 @@ class TestKoscheiPackageStateChange(Base):
     """
 
     expected_title = "koschei.package.state.change"
-    expected_subti = "rnv's builds started to fail"
+    expected_subti = "rnv's builds started to fail in f22 (arm)"
     expected_link = 'http://koschei.cloud.fedoraproject.org/package/rnv'
     expected_packages = set(['rnv'])
 
@@ -50,7 +50,7 @@ class TestKoscheiPackageStateChange(Base):
             "name": "rnv",
             "old": "ok",
             "new": "failing",
-            "koji_instance": "primary",
-            "watched_tag": "f22-build"
+            "koji_instance": "arm",
+            "repo": "f22"
         }
     }

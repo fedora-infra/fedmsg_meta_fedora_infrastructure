@@ -39,7 +39,11 @@ class KoscheiProcessor(BaseProcessor):
                         'ignored': "{name} became retired or ignored",
                         'unresolved': "{name}'s dependencies failed to resolve",
                         }[content['new']]
-            return info.format(name=content['name'])
+            info += ' in {repo}'
+            if content['koji_instance'] != 'primary':
+                info += ' ({koji_instance})'
+            return info.format(name=content['name'], repo=content['repo'],
+                               koji_instance=content['koji_instance'])
         else:
             raise NotImplementedError("%r" % msg)
 
