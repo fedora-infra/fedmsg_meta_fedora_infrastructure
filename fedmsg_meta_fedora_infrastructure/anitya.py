@@ -102,6 +102,13 @@ class AnityaProcessor(BaseProcessor):
             project = msg['msg']['project']['name']
             tmpl = self._('{user} deleted the "{project}" project')
             return tmpl.format(user=user, project=project)
+        elif 'project.map.remove' in msg['topic']:
+            project = msg['msg']['project']['name']
+            distro = msg['msg']['message']['distro']
+            tmpl = self._(
+                '{user} deleted the mapping of "{project}" project '
+                'on "{distro}"')
+            return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
             old = msg['msg']['old_version']
@@ -144,6 +151,8 @@ class AnityaProcessor(BaseProcessor):
                 'projects/%s' % msg['msg']['project']['name'],
             ])
         elif 'project.remove' in msg['topic']:
+            return set(['projects/%s' % msg['msg']['project']['name']])
+        elif 'project.map.remove' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.version.update' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
