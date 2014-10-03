@@ -32,30 +32,33 @@ class TestNewDistro(Base):
     to the database of `anitya <http://release-monitoring.org>`_.
     """
     expected_title = "anitya.distro.add"
-    expected_subti = 'ralph added the distro named "Fedora" to anitya'
+    expected_subti = 'pingou@fedoraproject.org added the distro named' + \
+        ' "CentOS" to anitya'
     expected_link = "http://release-monitoring.org/distros"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
+        "46e1b72426cea6d5f0bf15854046eb002e71b4cad726101a8ff5d6bcfeb135a4" + \
+        "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['distros/Fedora'])
+    expected_usernames = set(['pingou@fedoraproject.org'])
+    expected_objects = set(['distros/CentOS'])
     msg = {
-        u'i': 1,
-        u'msg': {
-            u'distro': {
-                u'name': u'Fedora',
-            },
-            u'message': {
-                u'agent': u'rbean@redhat.com',
-                u'distro': u'Debian',
-            },
-            u'project': None,
-        },
-        "i": 2,
-        "timestamp": 1386821177,
-        "msg_id": "2013-d814724a-8ca3-4e8d-936a-e4195e93336c",
+        "username": "apache",
+        "i": 3,
+        "timestamp": 1412327834,
+        "msg_id": "2014-1f52337a-8dbe-48f1-baad-f2c770c60640",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.distro.add",
+        "msg": {
+            "project": None,
+            "message": {
+                "agent": "pingou@fedoraproject.org",
+                "distro": "CentOS"
+            },
+            "distro": {
+                "name": "CentOS"
+            }
+        }
     }
 
 
@@ -64,29 +67,32 @@ class TestEditDistro(Base):
     edited in the `anitya <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.distro.edit"
-    expected_subti = 'ralph changed a distro name from "Fedora" to "FancyHat"'
+    expected_subti = 'pingou@fedoraproject.org changed a distro name' + \
+        ' from "Debia" to "Debian"'
     expected_link = "http://release-monitoring.org/distros"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
+        "46e1b72426cea6d5f0bf15854046eb002e71b4cad726101a8ff5d6bcfeb135a4" + \
+        "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['distros/Fedora', 'distros/FancyHat'])
+    expected_usernames = set(['pingou@fedoraproject.org'])
+    expected_objects = set(['distros/Debia', 'distros/Debian'])
     msg = {
         "username": "apache",
-        "i": 3,
-        "timestamp": 1386821512,
-        "msg_id": "2013-f18cfb35-894d-41e6-9fda-6f7b99e7e003",
+        "i": 5,
+        "timestamp": 1412328814,
+        "msg_id": "2014-746c39cf-9fb0-4ed1-a817-d57bc901e027",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.distro.edit",
         "msg": {
             "project": None,
             "message": {
-                "new": "FancyHat",
-                "old": "Fedora",
-                "agent": "rbean@redhat.com"
+                "new": "Debian",
+                "old": "Debia",
+                "agent": "pingou@fedoraproject.org"
             },
             "distro": {
-                "name": "Fedora"
+                "name": "Debia"
             }
         }
     }
@@ -97,38 +103,40 @@ class TestAddProject(Base):
     `anitya's <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.add"
-    expected_subti = 'ralph added the project "ansi2html" to anitya'
-    expected_link = "http://release-monitoring.org/project/4/"
+    expected_subti = 'ralph@fedoraproject.org added the project "arrow" ' + \
+        'to anitya'
+    expected_link = "http://release-monitoring.org/project/5314/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
+        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['projects/ansi2html'])
+    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_objects = set(['projects/arrow'])
     msg = {
         "username": "apache",
-        "i": 4,
-        "timestamp": 1386821688,
-        "msg_id": "2013-154429ec-842e-4d7f-acae-8d7434b4cbff",
+        "i": 8,
+        "timestamp": 1412328939,
+        "msg_id": "2014-c95e6b4c-d033-43d9-9eb1-e1f92ac87c75",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.project.add",
         "msg": {
             "project": {
-                "id": 4,
-                "regex": "DEFAULT:ansi2html",
-                "logs": None,
-                "created_on": 1386839688.0,
-                "version": None,
-                "version_url": "PYPI-DEFAULT:ansi2html",
-                "updated_on": 1386839688.0,
-                "packages": [],
-                "homepage": "https://github.com/ralphbean/ansi2html",
-                "name": "ansi2html"
+            "regex": "",
+            "name": "arrow",
+            "created_on": 1412328939.0,
+            "version": None,
+            "version_url": "",
+            "updated_on": 1412328939.0,
+            "homepage": "https://pypi.python.org/pypi/arrow",
+            "id": 5314,
+            "backend": "pypi"
             },
             "message": {
-                "project": "ansi2html",
-                "agent": "rbean@redhat.com"
+                "project": "arrow",
+                "agent": "ralph@fedoraproject.org"
             },
-            "distro": None,
+            "distro": None
         }
     }
 
@@ -179,45 +187,46 @@ class TestEditProject(Base):
     project in `anitya's <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.edit"
-    expected_subti = 'ralph edited the following fields of the "ansi2html"' + \
-        ' project: homepage, regex'
-    expected_link = "http://release-monitoring.org/project/4/"
+    expected_subti = 'ralph@fedoraproject.org edited the following ' + \
+        'fields of the "arrow" project: homepage'
+    expected_link = "http://release-monitoring.org/project/5314/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
+        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['projects/ansi2html'])
+    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_objects = set(['projects/arrow'])
     msg = {
         "username": "apache",
-        "i": 1,
-        "timestamp": 1386822064,
-        "msg_id": "2013-35ba0f89-762e-4ed2-a686-484a6862beb6",
+        "i": 6,
+        "timestamp": 1412329027,
+        "msg_id": "2014-f25b6634-d7b9-4f2d-9f93-23ef73034024",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.project.edit",
         "msg": {
             "project": {
-                "id": 4,
-                "regex": "DEFAULT:ansi2html",
-                "logs": None,
-                "created_on": 1386839688.0,
+                "regex": "",
+                "name": "arrow",
+                "created_on": 1412328939.0,
                 "version": None,
-                "version_url": "PYPI-DEFAULT:ansi2html",
-                "updated_on": 1386840021.0,
-                "packages": [],
-                "homepage": "https://github.com/ralphbean/ansi2html",
-                "name": "ansi2html"
+                "version_url": "",
+                "updated_on": 1412328939.0,
+                "homepage": "http://crsmithdev.com/arrow",
+                "id": 5314,
+                "backend": "pypi"
             },
             "message": {
-                "project": "ansi2html",
+                "project": "arrow",
                 "fields": [
-                    "homepage",
-                    "regex"
+                    "homepage"
                 ],
-                "agent": "rbean@redhat.com"
+                "agent": "ralph@fedoraproject.org"
             },
             "distro": None
         }
     }
+
 
 
 class TestRemoveProject(Base):
@@ -267,46 +276,48 @@ class TestNewMappingProject(Base):
     <http://release-monitoring.org>`_ database...)
     """
     expected_title = "anitya.project.map.new"
-    expected_subti = 'ralph mapped the name of "ansi2html" in Fedora to' + \
-        ' "python-ansi2html"'
-    expected_link = "http://release-monitoring.org/project/4/"
+    expected_subti = 'ralph@fedoraproject.org mapped the name of "arrow"' + \
+        ' in Fedora to "python-arrow"'
+    expected_link = "http://release-monitoring.org/project/5314/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
-    expected_packages = set(['python-ansi2html'])
-    expected_usernames = set(['ralph'])
+        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "?s=64&d=retro"
+    expected_packages = set(['python-arrow'])
+    expected_usernames = set(['ralph@fedoraproject.org'])
     expected_objects = set([
-        'projects/ansi2html',
-        'mappings/Fedora/python-ansi2html',
+        'projects/arrow',
+        'mappings/Fedora/python-arrow',
         'distros/Fedora',
     ])
     msg = {
         "username": "apache",
-        "i": 1,
-        "timestamp": 1386823075,
-        "msg_id": "2013-7e860d4e-d9eb-41c6-b693-f0786b45db19",
+        "i": 7,
+        "timestamp": 1412329216,
+        "msg_id": "2014-9ebf960a-115e-4568-a615-34cc7d8d462e",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.project.map.new",
         "msg": {
             "project": {
-                "id": 4,
-                "regex": "DEFAULT:ansi2html",
-                "logs": None,
-                "created_on": 1386838297.0,
-                "version": None,
-                "version_url": "PYPI-DEFAULT:ansi2html",
-                "updated_on": 1386838297.0,
-                "homepage": "ansi2html.com",
-                "name": "ansi2html"
+            "regex": "",
+            "name": "arrow",
+            "created_on": 1412328939.0,
+            "version": None,
+            "version_url": "",
+            "updated_on": 1412329027.0,
+            "homepage": "http://crsmithdev.com/arrow",
+            "id": 5314,
+            "backend": "pypi"
             },
             "message": {
-                "project": "ansi2html",
-                "new": "python-ansi2html",
-                "agent": "rbean@redhat.com",
+                "project": "arrow",
+                "new": "python-arrow",
+                "agent": "ralph@fedoraproject.org",
                 "distro": "Fedora"
             },
             "distro": {
-                "name": "Fedora",
-            },
+                "name": "Fedora"
+            }
         }
     }
 
@@ -317,40 +328,42 @@ class TestUpdatedMappingProject(Base):
     (in the `anitya <http://release-monitoring.org>`_ database...)
     """
     expected_title = "anitya.project.map.update"
-    expected_subti = 'ralph updated the name of "ansi2html" in "Fedora" ' + \
-        'from "python-ansi2html" to "python3-ansi2html"'
-    expected_link = "http://release-monitoring.org/project/4/"
+    expected_subti = 'ralph@fedoraproject.org updated the name of ' + \
+        '"guake" in "Fedora" from "guake2" to "guake"'
+    expected_link = "http://release-monitoring.org/project/5311/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
+        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "?s=64&d=retro"
     expected_packages = set([
-        'python-ansi2html',
-        'python3-ansi2html',
+        'guake',
+        'guake2',
     ])
-    expected_usernames = set(['ralph'])
+    expected_usernames = set(['ralph@fedoraproject.org'])
     expected_objects = set([
-        'projects/ansi2html',
-        'mappings/Fedora/python-ansi2html',
-        'mappings/Fedora/python3-ansi2html',
+        'projects/guake',
+        'mappings/Fedora/guake2',
+        'mappings/Fedora/guake',
         'distros/Fedora',
     ])
     msg = {
         "username": "apache",
-        "i": 3,
-        "timestamp": 1386824705,
-        "msg_id": "2013-319d6a62-827c-458b-971c-6528f6e71dc3",
+        "i": 8,
+        "timestamp": 1412329667,
+        "msg_id": "2014-5bd228ac-4ba1-452f-b6d2-b4df53c9af14",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.project.map.update",
         "msg": {
             "project": {
-                "id": 4,
-                "regex": "DEFAULT:ansi2html",
-                "logs": None,
-                "created_on": 1386842519.0,
-                "version": None,
-                "version_url": "PYPI-DEFAULT:ansi2html",
-                "updated_on": 1386842519.0,
-                "homepage": "https://github.com/ralphbean/ansi2html",
-                "name": "ansi2html"
+                "regex": "",
+                "name": "guake",
+                "created_on": 1412237149.0,
+                "version": "0.5.0",
+                "version_url": "guake/guake",
+                "updated_on": 1412237231.0,
+                "homepage": "http://guake.org",
+                "id": 5311,
+                "backend": "Github"
             },
             "message": {
                 "edited": [
@@ -358,8 +371,8 @@ class TestUpdatedMappingProject(Base):
                 ],
                 "agent": "ralph@fedoraproject.org",
                 "project": "guake",
-                "new": "guake2",
-                "prev": "guake",
+                "new": "guake",
+                "prev": "guake2",
                 "distro": "Fedora"
             },
             "distro": {
