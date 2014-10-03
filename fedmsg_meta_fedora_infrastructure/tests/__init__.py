@@ -36,7 +36,7 @@ from fedmsg_meta_fedora_infrastructure.tests.datanommer import *
 from fedmsg_meta_fedora_infrastructure.tests.nuancier import *
 from fedmsg_meta_fedora_infrastructure.tests.fedocal import *
 from fedmsg_meta_fedora_infrastructure.tests.coprs import *
-from fedmsg_meta_fedora_infrastructure.tests.cnucnuweb import *
+from fedmsg_meta_fedora_infrastructure.tests.anitya import *
 from fedmsg_meta_fedora_infrastructure.tests.summershum import *
 from fedmsg_meta_fedora_infrastructure.tests.jenkins import *
 from fedmsg_meta_fedora_infrastructure.tests.github import *
@@ -46,6 +46,7 @@ from fedmsg_meta_fedora_infrastructure.tests.elections import *
 from fedmsg_meta_fedora_infrastructure.tests.fmn import *
 from fedmsg_meta_fedora_infrastructure.tests.fedimg import *
 from fedmsg_meta_fedora_infrastructure.tests.kerneltest import *
+from fedmsg_meta_fedora_infrastructure.tests.koschei import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 

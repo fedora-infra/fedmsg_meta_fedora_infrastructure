@@ -1,6 +1,37 @@
 Changelog
 =========
 
+0.3.3
+-----
+
+- Fix doc building. `216283439 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/216283439b2084c472b7474d997fc3d745760892>`_
+- Merge pull request #152 from fedora-infra/feature/doc-fix `3a27bd980 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3a27bd980b0595ca79ca396fd65e0a0c66e3e480>`_
+- Adjust the cnucnuweb processor and rename it to anitya processor `f56f91a31 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f56f91a31d88e70d97dca1262224abdcd57ee97d>`_
+- Rename the cnucnuweb processor to anitya processor `b7b75444a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b7b75444a8abad43f32a2049cc204c83c7fa4345>`_
+- Adjust the cnucnuweb unit-tests for anitya `9a8c23cfb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9a8c23cfb82d186e5d8c4ce512080a5645c7d0df>`_
+- Rename the cnucnuweb unit-tests to anitya `cc2d84ec4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cc2d84ec428aea8b110836c89202c9b85d322494>`_
+- Run the anitya unit-tests `3694ba826 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3694ba8261fcdbdd0316254dd691f1f5f1c79ac7>`_
+- Use the anitya processor instead of the cnucnuweb one `3e4e8fd30 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3e4e8fd303186bfaf787dc8a58f9d1cd5e864443>`_
+- Merge pull request #153 from fedora-infra/anitya `c8cee4658 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c8cee46584fd613b58e5a26860c8a2428794360e>`_
+- Add processor for Koschei messages `5ce91f4ef <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5ce91f4ef9ec4cc5dc095289504c255a4d4b49ef>`_
+- Test for KoscheiProcessor `01c04bd53 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/01c04bd53c9fc2d819662118bcf6fb17ec750fcd>`_
+- Fix out-of-sync docstring `336fd4665 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/336fd46656c8a45b5055a5c641166f8f56de96d9>`_
+- Adjust the anitya.project.map.update to reflect how it looks in reality `e116f64bf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e116f64bfc17a71fbd0f5841d39a9277407f4f8d>`_
+- Adjust the anitya unit-tests so that the example messages fit the reality `036ac065b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/036ac065b8ea608bfacf1ab8d8cdd44a2eac1544>`_
+- Add logic to support removal of project mapping in anitya `bbeabe08f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bbeabe08fbe1fe00e515fab895b96e89807cfaae>`_
+- Add unit-tests for the removal of project mapping in anitya `2457e6f44 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2457e6f44a2cfaba6f5e6c703736762fc542a375>`_
+- Adjust the unit-tests for the anitya.project.remove messages to reflect the reality `0db4a3cc5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0db4a3cc574c7bd6f13a40a0508e0d59b080ac65>`_
+- Remove build_task_id and repo_id fields from the message `3eb169c07 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3eb169c07815f9d1c0cfe4bd88b3e848adbe8736>`_
+- Add subtitle for transition from ignored `61283c5d6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/61283c5d6cde3711327b2bb64c83ee9a299d429b>`_
+- Include repo and koji instance in subtitle `e45546a5e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e45546a5e24da7160c151f5a89075f5088d43e77>`_
+- Merge pull request #155 from msimacek/feature/koschei `129c4bf2b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/129c4bf2b74ccab93dd99dde4a9dd72afec6fc69>`_
+- Set the right topic prefix for anitya. `7cc7f8d07 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7cc7f8d0725f358355cd160d4ce0bceac0840eab>`_
+- Change the example topics. `af991d628 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/af991d628638458be0e32b6bcb83162a917614ae>`_
+- Get fedoraproject emails without having to query fas.  Fix libravatars. `fc39cf40c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fc39cf40ceb9ae850a470ffa07cf6e831abeb01b>`_
+- PEP8. `12ccf915a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/12ccf915a14ffcd59ab4bde2cb54ba45059f6ea4>`_
+- Add a non-fedora user to get avatars and usernames right. `bdead3c90 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bdead3c9091506bfdc771b8d50790c85ad4a329d>`_
+- Merge pull request #154 from fedora-infra/anitya `0e94efcd2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0e94efcd20c408e225c487e1020a987310568bc0>`_
+
 0.3.2
 -----
 

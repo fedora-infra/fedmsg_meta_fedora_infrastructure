@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012, 2013 Red Hat, Inc.
+# Copyright (C) 2013, 2014 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -17,28 +17,20 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #           Luke Macken <lmacken@redhat.com>
+#           Pierre-Yves Chibon <pingou@pingoured.fr>
+#
 
-from fasshim import gravatar_url, email2fas
+from fasshim import gravatar_url, gravatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
-def project2fedora_package(project):
-    # TODO -- this function should go out and query cnucnu/api/project/PROJECT
-    # and get back the list of distro mappings for that project.  It should
-    # then return the name of the package in Fedora.
-    # For now, we'll have this dummy code here so the tests pass until we can
-    # actually deploy cnucnu.
-    if project == 'ansi2html':
-        return 'python-ansi2html'
-    else:
-        return project
+class AnityaProcessor(BaseProcessor):
+    topic_prefix_re = 'org\\.release-monitoring\\.(dev|stg|prod)'
 
-
-class CnuCnuWebProcessor(BaseProcessor):
-    __name__ = "cnucnuweb"
+    __name__ = "anitya"
     __description__ = "Upstream Release Monitoring"
-    __link__ = "https://apps.fedoraproject.org/cnucnu/"
-    __docs__ = "https://fedoraproject.org/wiki/Upstream_Release_Monitoring"
+    __link__ = "http://release-monitoring.org"
+    __docs__ = "http://release-monitoring.org"
     __obj__ = "Upstream Releases"
     __icon__ = "https://todo.com/image.png"
 
@@ -48,14 +40,17 @@ class CnuCnuWebProcessor(BaseProcessor):
         except KeyError:
             return None
         else:
-            return email2fas(email, **config)
+            if email.endswith('@fedoraproject.org'):
+                return email.split('@fedoraproject.org')[0]
+            else:
+                return email2fas(email, **config)
 
     def link(self, msg, **config):
         if msg['msg']['project']:
-            proj = msg['msg']['project']['name']
-            return "https://apps.fedoraproject.org/cnucnu/project/%s/" % proj
+            proj = msg['msg']['project']['id']
+            return "http://release-monitoring.org/project/%s/" % proj
         else:
-            return "https://apps.fedoraproject.org/cnucnu/distros"
+            return "http://release-monitoring.org/distros"
 
         return None
 
@@ -84,7 +79,7 @@ class CnuCnuWebProcessor(BaseProcessor):
         elif 'distro.add' in msg['topic']:
             distro = msg['msg']['distro']['name']
             tmpl = self._(
-                '{user} added the distro named "{distro}" to cnucnuweb')
+                '{user} added the distro named "{distro}" to anitya')
             return tmpl.format(user=user, distro=distro)
         elif 'distro.edit' in msg['topic']:
             old = msg['msg']['message']['old']
@@ -95,11 +90,11 @@ class CnuCnuWebProcessor(BaseProcessor):
         elif 'project.add.tried' in msg['topic']:
             project = msg['msg']['project']['name']
             tmpl = self._('{user} tried to add the project '
-                          '"{project}" to cnucnuweb')
+                          '"{project}" to anitya')
             return tmpl.format(user=user, project=project)
         elif 'project.add' in msg['topic']:
             project = msg['msg']['project']['name']
-            tmpl = self._('{user} added the project "{project}" to cnucnuweb')
+            tmpl = self._('{user} added the project "{project}" to anitya')
             return tmpl.format(user=user, project=project)
         elif 'project.edit' in msg['topic']:
             project = msg['msg']['project']['name']
@@ -112,6 +107,13 @@ class CnuCnuWebProcessor(BaseProcessor):
             project = msg['msg']['project']['name']
             tmpl = self._('{user} deleted the "{project}" project')
             return tmpl.format(user=user, project=project)
+        elif 'project.map.remove' in msg['topic']:
+            project = msg['msg']['project']['name']
+            distro = msg['msg']['message']['distro']
+            tmpl = self._(
+                '{user} deleted the mapping of "{project}" project '
+                'on "{distro}"')
+            return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
             old = msg['msg']['old_version']
@@ -126,13 +128,16 @@ class CnuCnuWebProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         username = self._get_user(msg, **config)
         if username:
-            return gravatar_url(self._get_user(msg, **config))
+            if '@' in username:
+                return gravatar_url_from_email(username)
+            else:
+                return gravatar_url(username)
         else:
             return None
 
     def usernames(self, msg, **config):
         username = self._get_user(msg, **config)
-        if username:
+        if username and '@' not in username:
             return set([username])
         else:
             return set([])
@@ -154,6 +159,8 @@ class CnuCnuWebProcessor(BaseProcessor):
                 'projects/%s' % msg['msg']['project']['name'],
             ])
         elif 'project.remove' in msg['topic']:
+            return set(['projects/%s' % msg['msg']['project']['name']])
+        elif 'project.map.remove' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.version.update' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
@@ -187,6 +194,10 @@ class CnuCnuWebProcessor(BaseProcessor):
             if msg['msg']['distro']['name'].lower() == 'fedora':
                 return set([msg['msg']['message']['new']])
         elif 'project.version.update' in msg['topic']:
-            return set([project2fedora_package(msg['msg']['project']['name'])])
+            return set([
+                pkg['package_name']
+                for pkg in msg['msg']['packages']
+                if pkg['distro'].lower() == 'fedora'
+            ])
 
         return set([])

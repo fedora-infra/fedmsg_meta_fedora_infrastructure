@@ -83,8 +83,8 @@ entry_points = {
         "NuancierProcessor",
         "fedocal=fedmsg_meta_fedora_infrastructure.fedocal:FedocalProcessor",
         "coprs=fedmsg_meta_fedora_infrastructure.coprs:CoprsProcessor",
-        "cnucnuweb=fedmsg_meta_fedora_infrastructure.cnucnuweb:"
-        "CnuCnuWebProcessor",
+        "anitya=fedmsg_meta_fedora_infrastructure.anitya:"
+        "AnityaProcessor",
         "summershum=fedmsg_meta_fedora_infrastructure.summershum:"
         "SummerShumProcessor",
         "jenkins=fedmsg_meta_fedora_infrastructure.jenkins:JenkinsProcessor",
@@ -96,12 +96,13 @@ entry_points = {
         "fedimg=fedmsg_meta_fedora_infrastructure.fedimg:FedimgProcessor",
         "kerneltest=fedmsg_meta_fedora_infrastructure.kerneltest:"
         "KernelTestProcessor",
+        "koschei=fedmsg_meta_fedora_infrastructure.koschei:KoscheiProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.3.2',
+    version='0.3.3',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
