@@ -233,36 +233,37 @@ class TestRemoveProject(Base):
     `anitya's <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.remove"
-    expected_subti = 'ralph deleted the "ansi2html" project'
-    expected_link = "http://release-monitoring.org/project/4/"
+    expected_subti = 'ralph@fedoraproject.org deleted the "guake" project'
+    expected_link = "http://release-monitoring.org/project/5311/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
+        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph'])
-    expected_objects = set(['projects/ansi2html'])
+    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_objects = set(['projects/guake'])
     msg = {
         "username": "apache",
-        "i": 2,
-        "timestamp": 1386822329,
-        "msg_id": "2013-738f0d92-221e-4894-a3bc-5bf865199529",
+        "i": 11,
+        "timestamp": 1412331340,
+        "msg_id": "2014-94864be5-f649-4b3f-8694-32f238ac7174",
+        "crypto": "x509",
         "topic": "org.fedoraproject.prod.anitya.project.remove",
         "msg": {
             "project": {
-                "id": 4,
-                "regex": "DEFAULT:ansi2html",
-                "logs": None,
-                "created_on": 1386839688.0,
-                "version": None,
-                "version_url": "PYPI-DEFAULT:ansi2html",
-                "updated_on": 1386840064.0,
-                "packages": [],
-                "homepage": "https://github.com/ralphbean/ansi2html",
-                "name": "ansi2html"
+                "regex": "",
+                "name": "guake",
+                "created_on": 1412237149.0,
+                "version": "0.5.0",
+                "version_url": "guake/guake",
+                "updated_on": 1412237231.0,
+                "homepage": "http://guake.org",
+                "id": 5311,
+                "backend": "Github"
             },
             "message": {
-                "project": "ansi2html",
-                "agent": "rbean@redhat.com"
+                "project": "guake",
+                "agent": "ralph@fedoraproject.org"
             },
             "distro": None
         }
