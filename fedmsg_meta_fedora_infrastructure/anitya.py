@@ -25,6 +25,8 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
 class AnityaProcessor(BaseProcessor):
+    topic_prefix_re = 'org\\.release-monitoring\\.(dev|stg|prod)'
+
     __name__ = "anitya"
     __description__ = "Upstream Release Monitoring"
     __link__ = "http://release-monitoring.org"
