@@ -48,7 +48,7 @@ class TestNewDistro(Base):
         "timestamp": 1412327834,
         "msg_id": "2014-1f52337a-8dbe-48f1-baad-f2c770c60640",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.distro.add",
+        "topic": "org.release-monitoring.prod.anitya.distro.add",
         "msg": {
             "project": None,
             "message": {
@@ -83,7 +83,7 @@ class TestEditDistro(Base):
         "timestamp": 1412328814,
         "msg_id": "2014-746c39cf-9fb0-4ed1-a817-d57bc901e027",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.distro.edit",
+        "topic": "org.release-monitoring.prod.anitya.distro.edit",
         "msg": {
             "project": None,
             "message": {
@@ -119,7 +119,7 @@ class TestAddProject(Base):
         "timestamp": 1412328939,
         "msg_id": "2014-c95e6b4c-d033-43d9-9eb1-e1f92ac87c75",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.add",
+        "topic": "org.release-monitoring.prod.anitya.project.add",
         "msg": {
             "project": {
             "regex": "",
@@ -159,7 +159,7 @@ class TestAddProjectTried(Base):
         "i": 4,
         "timestamp": 1386821688,
         "msg_id": "2013-154429ec-842e-4d7f-acae-8d7434b4cbff",
-        "topic": "org.fedoraproject.prod.anitya.project.add.tried",
+        "topic": "org.release-monitoring.prod.anitya.project.add.tried",
         "msg": {
             "project": {
                 "id": 4,
@@ -203,7 +203,7 @@ class TestEditProject(Base):
         "timestamp": 1412329027,
         "msg_id": "2014-f25b6634-d7b9-4f2d-9f93-23ef73034024",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.edit",
+        "topic": "org.release-monitoring.prod.anitya.project.edit",
         "msg": {
             "project": {
                 "regex": "",
@@ -248,7 +248,7 @@ class TestRemoveProject(Base):
         "timestamp": 1412331340,
         "msg_id": "2014-94864be5-f649-4b3f-8694-32f238ac7174",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.remove",
+        "topic": "org.release-monitoring.prod.anitya.project.remove",
         "msg": {
             "project": {
                 "regex": "",
@@ -296,7 +296,7 @@ class TestNewMappingProject(Base):
         "timestamp": 1412329216,
         "msg_id": "2014-9ebf960a-115e-4568-a615-34cc7d8d462e",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.map.new",
+        "topic": "org.release-monitoring.prod.anitya.project.map.new",
         "msg": {
             "project": {
             "regex": "",
@@ -352,7 +352,7 @@ class TestUpdatedMappingProject(Base):
         "timestamp": 1412329667,
         "msg_id": "2014-5bd228ac-4ba1-452f-b6d2-b4df53c9af14",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.map.update",
+        "topic": "org.release-monitoring.prod.anitya.project.map.update",
         "msg": {
             "project": {
                 "regex": "",
@@ -407,7 +407,7 @@ class TestNewUpstreamVersion(Base):
         "timestamp": 1412234961,
         "msg_id": "2014-f4dfc3e4-8909-45d7-b929-1862efb373cf",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.version.update",
+        "topic": "org.release-monitoring.prod.anitya.project.version.update",
         "msg": {
             "project": {
                 "id": 5,
@@ -458,7 +458,7 @@ class TestRemoveMappingProject(Base):
         "timestamp": 1412330764,
         "msg_id": "2014-1d43e5ab-e398-4007-8269-26b4f209d55b",
         "crypto": "x509",
-        "topic": "org.fedoraproject.prod.anitya.project.map.remove",
+        "topic": "org.release-monitoring.prod.anitya.project.map.remove",
         "msg": {
             "project": {
                 "regex": "",
