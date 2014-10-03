@@ -20,11 +20,13 @@
 #           Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 
-from fasshim import gravatar_url, email2fas
+from fasshim import gravatar_url, gravatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
 class AnityaProcessor(BaseProcessor):
+    topic_prefix_re = 'org\\.release-monitoring\\.(dev|stg|prod)'
+
     __name__ = "anitya"
     __description__ = "Upstream Release Monitoring"
     __link__ = "http://release-monitoring.org"
@@ -38,7 +40,10 @@ class AnityaProcessor(BaseProcessor):
         except KeyError:
             return None
         else:
-            return email2fas(email, **config)
+            if email.endswith('@fedoraproject.org'):
+                return email.split('@fedoraproject.org')[0]
+            else:
+                return email2fas(email, **config)
 
     def link(self, msg, **config):
         if msg['msg']['project']:
@@ -102,6 +107,13 @@ class AnityaProcessor(BaseProcessor):
             project = msg['msg']['project']['name']
             tmpl = self._('{user} deleted the "{project}" project')
             return tmpl.format(user=user, project=project)
+        elif 'project.map.remove' in msg['topic']:
+            project = msg['msg']['project']['name']
+            distro = msg['msg']['message']['distro']
+            tmpl = self._(
+                '{user} deleted the mapping of "{project}" project '
+                'on "{distro}"')
+            return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
             old = msg['msg']['old_version']
@@ -116,13 +128,16 @@ class AnityaProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         username = self._get_user(msg, **config)
         if username:
-            return gravatar_url(self._get_user(msg, **config))
+            if '@' in username:
+                return gravatar_url_from_email(username)
+            else:
+                return gravatar_url(username)
         else:
             return None
 
     def usernames(self, msg, **config):
         username = self._get_user(msg, **config)
-        if username:
+        if username and '@' not in username:
             return set([username])
         else:
             return set([])
@@ -144,6 +159,8 @@ class AnityaProcessor(BaseProcessor):
                 'projects/%s' % msg['msg']['project']['name'],
             ])
         elif 'project.remove' in msg['topic']:
+            return set(['projects/%s' % msg['msg']['project']['name']])
+        elif 'project.map.remove' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.version.update' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
