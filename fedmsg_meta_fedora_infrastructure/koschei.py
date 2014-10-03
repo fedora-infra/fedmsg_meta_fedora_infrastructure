@@ -31,7 +31,7 @@ class KoscheiProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         if 'koschei.package.state.change' in msg['topic']:
             content = msg['msg']
-            if content['new'] == 'ok' and content['old'] is None:
+            if content['new'] == 'ok' and content['old'] == 'ignored':
                 info = "{name} added to Koschei"
             else:
                 info = {'failing': "{name}'s builds started to fail",
