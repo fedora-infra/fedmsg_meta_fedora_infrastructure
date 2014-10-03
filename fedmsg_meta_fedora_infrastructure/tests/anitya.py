@@ -32,15 +32,15 @@ class TestNewDistro(Base):
     to the database of `anitya <http://release-monitoring.org>`_.
     """
     expected_title = "anitya.distro.add"
-    expected_subti = 'pingou added the distro named' + \
+    expected_subti = 'olasd@debian.org added the distro named' + \
         ' "CentOS" to anitya'
     expected_link = "http://release-monitoring.org/distros"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "e202b61fca3f40ccc4c790d4ecf6ed42" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['pingou'])
+    expected_usernames = set([])
     expected_objects = set(['distros/CentOS'])
     msg = {
         "username": "apache",
@@ -52,7 +52,7 @@ class TestNewDistro(Base):
         "msg": {
             "project": None,
             "message": {
-                "agent": "pingou@fedoraproject.org",
+                "agent": "olasd@debian.org",
                 "distro": "CentOS"
             },
             "distro": {

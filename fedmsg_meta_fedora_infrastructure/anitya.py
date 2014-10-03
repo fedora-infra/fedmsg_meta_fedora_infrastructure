@@ -20,7 +20,7 @@
 #           Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 
-from fasshim import gravatar_url, email2fas
+from fasshim import gravatar_url, gravatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -128,13 +128,16 @@ class AnityaProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         username = self._get_user(msg, **config)
         if username:
-            return gravatar_url(self._get_user(msg, **config))
+            if '@' in username:
+                return gravatar_url_from_email(username)
+            else:
+                return gravatar_url(username)
         else:
             return None
 
     def usernames(self, msg, **config):
         username = self._get_user(msg, **config)
-        if username:
+        if username and '@' not in username:
             return set([username])
         else:
             return set([])
