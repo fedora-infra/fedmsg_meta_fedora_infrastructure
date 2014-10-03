@@ -228,7 +228,6 @@ class TestEditProject(Base):
     }
 
 
-
 class TestRemoveProject(Base):
     """ These messages are published when someone *removes* a project from
     `anitya's <http://release-monitoring.org>`_ database.
@@ -431,6 +430,52 @@ class TestNewUpstreamVersion(Base):
             "versions": [
                 "0.60.6.1"
             ]
+        }
+    }
+
+
+class TestRemoveMappingProject(Base):
+    """ These messages are published when someone *removes* a mapping
+    between an upstream project and a package name in a particular
+    distribution (in the `anitya <http://release-monitoring.org>`_
+    database...)
+    """
+    expected_title = "anitya.project.map.remove"
+    expected_subti = 'pingou@fedoraproject.org deleted the mapping of ' + \
+        '"guake" project on "Fedora"'
+    expected_link = "http://release-monitoring.org/project/5311/"
+    expected_icon = "https://todo.com/image.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "46e1b72426cea6d5f0bf15854046eb002e71b4cad726101a8ff5d6bcfeb135a4" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou@fedoraproject.org'])
+    expected_objects = set(['projects/guake'])
+    msg = {
+        "username": "apache",
+        "i": 10,
+        "timestamp": 1412330764,
+        "msg_id": "2014-1d43e5ab-e398-4007-8269-26b4f209d55b",
+        "crypto": "x509",
+        "topic": "org.fedoraproject.prod.anitya.project.map.remove",
+        "msg": {
+            "project": {
+                "regex": "",
+                "name": "guake",
+                "created_on": 1412237149.0,
+                "version": "0.5.0",
+                "version_url": "guake/guake",
+                "updated_on": 1412237231.0,
+                "homepage": "http://guake.org",
+                "id": 5311,
+                "backend": "Github"
+            },
+            "message": {
+                "project": "guake",
+                "agent": "pingou@fedoraproject.org",
+                "distro": "Fedora"
+            },
+            "distro": None
         }
     }
 
