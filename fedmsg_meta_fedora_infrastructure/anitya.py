@@ -40,7 +40,10 @@ class AnityaProcessor(BaseProcessor):
         except KeyError:
             return None
         else:
-            return email2fas(email, **config)
+            if email.endswith('@fedoraproject.org'):
+                return email.split('@fedoraproject.org')[0]
+            else:
+                return email2fas(email, **config)
 
     def link(self, msg, **config):
         if msg['msg']['project']:

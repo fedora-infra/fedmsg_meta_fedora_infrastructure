@@ -32,15 +32,15 @@ class TestNewDistro(Base):
     to the database of `anitya <http://release-monitoring.org>`_.
     """
     expected_title = "anitya.distro.add"
-    expected_subti = 'pingou@fedoraproject.org added the distro named' + \
+    expected_subti = 'pingou added the distro named' + \
         ' "CentOS" to anitya'
     expected_link = "http://release-monitoring.org/distros"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "46e1b72426cea6d5f0bf15854046eb002e71b4cad726101a8ff5d6bcfeb135a4" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['pingou@fedoraproject.org'])
+    expected_usernames = set(['pingou'])
     expected_objects = set(['distros/CentOS'])
     msg = {
         "username": "apache",
@@ -67,15 +67,15 @@ class TestEditDistro(Base):
     edited in the `anitya <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.distro.edit"
-    expected_subti = 'pingou@fedoraproject.org changed a distro name' + \
+    expected_subti = 'pingou changed a distro name' + \
         ' from "Debia" to "Debian"'
     expected_link = "http://release-monitoring.org/distros"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "46e1b72426cea6d5f0bf15854046eb002e71b4cad726101a8ff5d6bcfeb135a4" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['pingou@fedoraproject.org'])
+    expected_usernames = set(['pingou'])
     expected_objects = set(['distros/Debia', 'distros/Debian'])
     msg = {
         "username": "apache",
@@ -103,15 +103,14 @@ class TestAddProject(Base):
     `anitya's <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.add"
-    expected_subti = 'ralph@fedoraproject.org added the project "arrow" ' + \
-        'to anitya'
+    expected_subti = 'ralph added the project "arrow" to anitya'
     expected_link = "http://release-monitoring.org/project/5314/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_usernames = set(['ralph'])
     expected_objects = set(['projects/arrow'])
     msg = {
         "username": "apache",
@@ -187,15 +186,15 @@ class TestEditProject(Base):
     project in `anitya's <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.edit"
-    expected_subti = 'ralph@fedoraproject.org edited the following ' + \
+    expected_subti = 'ralph edited the following ' + \
         'fields of the "arrow" project: homepage'
     expected_link = "http://release-monitoring.org/project/5314/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_usernames = set(['ralph'])
     expected_objects = set(['projects/arrow'])
     msg = {
         "username": "apache",
@@ -233,14 +232,14 @@ class TestRemoveProject(Base):
     `anitya's <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.remove"
-    expected_subti = 'ralph@fedoraproject.org deleted the "guake" project'
+    expected_subti = 'ralph deleted the "guake" project'
     expected_link = "http://release-monitoring.org/project/5311/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_usernames = set(['ralph'])
     expected_objects = set(['projects/guake'])
     msg = {
         "username": "apache",
@@ -276,15 +275,15 @@ class TestNewMappingProject(Base):
     <http://release-monitoring.org>`_ database...)
     """
     expected_title = "anitya.project.map.new"
-    expected_subti = 'ralph@fedoraproject.org mapped the name of "arrow"' + \
+    expected_subti = 'ralph mapped the name of "arrow"' + \
         ' in Fedora to "python-arrow"'
     expected_link = "http://release-monitoring.org/project/5314/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
     expected_packages = set(['python-arrow'])
-    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_usernames = set(['ralph'])
     expected_objects = set([
         'projects/arrow',
         'mappings/Fedora/python-arrow',
@@ -328,18 +327,18 @@ class TestUpdatedMappingProject(Base):
     (in the `anitya <http://release-monitoring.org>`_ database...)
     """
     expected_title = "anitya.project.map.update"
-    expected_subti = 'ralph@fedoraproject.org updated the name of ' + \
+    expected_subti = 'ralph updated the name of ' + \
         '"guake" in "Fedora" from "guake2" to "guake"'
     expected_link = "http://release-monitoring.org/project/5311/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "aa24537ef9a9f1484ad8bdc317fe03e98d83903f03000d10cfa0376308b33176" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
     expected_packages = set([
         'guake',
         'guake2',
     ])
-    expected_usernames = set(['ralph@fedoraproject.org'])
+    expected_usernames = set(['ralph'])
     expected_objects = set([
         'projects/guake',
         'mappings/Fedora/guake2',
@@ -442,15 +441,15 @@ class TestRemoveMappingProject(Base):
     database...)
     """
     expected_title = "anitya.project.map.remove"
-    expected_subti = 'pingou@fedoraproject.org deleted the mapping of ' + \
+    expected_subti = 'pingou deleted the mapping of ' + \
         '"guake" project on "Fedora"'
     expected_link = "http://release-monitoring.org/project/5311/"
     expected_icon = "https://todo.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "46e1b72426cea6d5f0bf15854046eb002e71b4cad726101a8ff5d6bcfeb135a4" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['pingou@fedoraproject.org'])
+    expected_usernames = set(['pingou'])
     expected_objects = set(['projects/guake'])
     msg = {
         "username": "apache",
