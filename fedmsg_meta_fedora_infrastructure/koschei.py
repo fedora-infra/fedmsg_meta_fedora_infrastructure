@@ -39,10 +39,6 @@ class KoscheiProcessor(BaseProcessor):
                         'ignored': "{name} became retired or ignored",
                         'unresolved': "{name}'s dependencies failed to resolve",
                         }[content['new']]
-            if content['build_task_id'] is not None:
-                info += " after build task {0}".format(content['build_task_id'])
-            elif content['repo_id'] is not None:
-                info += " in repo ID {0}".format(content['repo_id'])
             return info.format(name=content['name'])
         else:
             raise NotImplementedError("%r" % msg)
