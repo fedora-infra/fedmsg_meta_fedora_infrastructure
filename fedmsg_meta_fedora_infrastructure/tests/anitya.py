@@ -390,7 +390,7 @@ class TestNewUpstreamVersion(Base):
     """
     expected_title = "anitya.project.version.update"
     expected_subti = 'A new version of "2ping" has been detected:  ' + \
-        '"" in advance of "2.1.1"'
+        '"2.1.1" in advance of ""'
     expected_link = "http://release-monitoring.org/project/2/"
     expected_icon = "https://todo.com/image.png"
     #expected_secondary_icon = None
