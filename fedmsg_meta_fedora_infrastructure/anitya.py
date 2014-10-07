@@ -116,8 +116,8 @@ class AnityaProcessor(BaseProcessor):
             return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
-            old = msg['msg']['old_version']
-            new = msg['msg']['upstream_version']
+            old = msg['msg']['message']['old_version']
+            new = msg['msg']['message']['upstream_version']
             tmpl = self._(
                 'A new version of "{project}" has been detected:  '
                 '"{new}" in advance of "{old}"')
@@ -196,7 +196,7 @@ class AnityaProcessor(BaseProcessor):
         elif 'project.version.update' in msg['topic']:
             return set([
                 pkg['package_name']
-                for pkg in msg['msg']['packages']
+                for pkg in msg['msg']['message']['packages']
                 if pkg['distro'].lower() == 'fedora'
             ])
 
