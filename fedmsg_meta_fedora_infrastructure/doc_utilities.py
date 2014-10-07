@@ -98,10 +98,8 @@ def write(fname, s=''):
     outfile.write(s + '\n')
 
 
-def load_classes(folder):
-    return list(list(
-        nose.loader.defaultTestLoader().loadTestsFromDir(folder)
-    )[0])
+def load_classes(module):
+    return list(nose.loader.defaultTestLoader().loadTestsFromModule(module))
 
 
 def make_topics_doc(output_dir):
@@ -109,10 +107,8 @@ def make_topics_doc(output_dir):
     fname = output_dir + "/topics.rst"
 
     global outfile
-    import fedmsg_meta_fedora_infrastructure
-    filename = fedmsg_meta_fedora_infrastructure.__file__
-    folder = os.path.sep + os.path.join(*filename.split('/')[:-1])
-    test_classes = load_classes(folder)
+    import fedmsg_meta_fedora_infrastructure.tests as source_module
+    test_classes = load_classes(source_module)
 
     # TODO -- get the logger and announce messages
     #import fedmsg
