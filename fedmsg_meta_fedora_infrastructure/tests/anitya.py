@@ -389,17 +389,17 @@ class TestNewUpstreamVersion(Base):
     one last seen in the `anitya <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.version.update"
-    expected_subti = 'A new version of "aspell" has been detected:  ' + \
-        '"0.60.6.1" in advance of "0.60.6"'
-    expected_link = "http://release-monitoring.org/project/5/"
+    expected_subti = 'A new version of "2ping" has been detected:  ' + \
+        '"2.1.1" in advance of "2.1.1"'
+    expected_link = "http://release-monitoring.org/project/2/"
     expected_icon = "https://todo.com/image.png"
     #expected_secondary_icon = None
     expected_packages = set([
-        'aspell',
+        '2ping',
     ])
-    expected_usernames = set([])
+    expected_usernames = set(['anitya'])
     expected_objects = set([
-        'projects/aspell',
+        'projects/2ping',
     ])
     msg = {
         "username": "fedmsg",
@@ -410,28 +410,43 @@ class TestNewUpstreamVersion(Base):
         "topic": "org.release-monitoring.prod.anitya.project.version.update",
         "msg": {
             "project": {
-                "id": 5,
                 "regex": None,
-                "name": "aspell",
-                "created_on": 1412174948.0,
-                "version": "0.60.6.1",
-                "version_url": None,
-                "updated_on": 1412232860.0,
-                "homepage": "http://www.gnu.org/software/aspell/",
-                "backend": "GNU project"
+                "name": "2ping",
+                "created_on": 1412174944.0,
+                "version": "2.1.1",
+                "version_url": "http://www.finnie.org/software/2ping/",
+                "updated_on": 1412179539.0,
+                "homepage": "http://www.finnie.org/software/2ping/",
+                "id": 2,
+                "backend": "custom"
             },
-            "packages": [
-                {
-                    "package_name": "aspell",
-                    "distro": "Fedora"
-                }
-            ],
-            "old_version": "0.60.6",
-            "upstream_version": "0.60.6.1",
-            "versions": [
-                "0.60.6.1"
-            ]
-        }
+            "message": {
+                "versions": [
+                    "2.1.1"
+                ],
+                "old_version": "2.1.1",
+                "upstream_version": "2.1.1",
+                "project": {
+                    "regex": None,
+                    "name": "2ping",
+                    "created_on": 1412174944.0,
+                    "version": "2.1.1",
+                    "version_url": "http://www.finnie.org/software/2ping/",
+                    "updated_on": 1412179539.0,
+                    "homepage": "http://www.finnie.org/software/2ping/",
+                    "id": 2,
+                    "backend": "custom"
+                },
+                "agent": "anitya",
+                "packages": [
+                    {
+                        "package_name": "2ping",
+                        "distro": "Fedora"
+                    }
+                ]
+            },
+            "distro": None
+          }
     }
 
 
