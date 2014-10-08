@@ -30,9 +30,10 @@ class AnityaProcessor(BaseProcessor):
     __name__ = "anitya"
     __description__ = "Upstream Release Monitoring"
     __link__ = "http://release-monitoring.org"
-    __docs__ = "http://release-monitoring.org"
+    __docs__ = "http://github.com/fedora-infra/anitya"
     __obj__ = "Upstream Releases"
-    __icon__ = "https://todo.com/image.png"
+    __icon__ = ("https://apps.fedoraproject.org/packages/"
+                "images/icons/package_128x128.png")
 
     def _get_user(self, msg, **config):
         try:
@@ -116,11 +117,15 @@ class AnityaProcessor(BaseProcessor):
             return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
-            old = msg['msg']['old_version']
-            new = msg['msg']['upstream_version']
+            old = msg['msg']['message']['old_version']
+            new = msg['msg']['message']['upstream_version']
             tmpl = self._(
                 'A new version of "{project}" has been detected:  '
-                '"{new}" in advance of "{old}"')
+                '"{new}"')
+            if old:
+                tmpl = self._(
+                    'A new version of "{project}" has been detected:  '
+                    '"{new}" in advance of "{old}"')
             return tmpl.format(project=project, new=new, old=old)
         else:
             pass
@@ -196,7 +201,7 @@ class AnityaProcessor(BaseProcessor):
         elif 'project.version.update' in msg['topic']:
             return set([
                 pkg['package_name']
-                for pkg in msg['msg']['packages']
+                for pkg in msg['msg']['message']['packages']
                 if pkg['distro'].lower() == 'fedora'
             ])
 

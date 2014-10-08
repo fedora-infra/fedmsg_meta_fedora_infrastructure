@@ -35,7 +35,8 @@ class TestNewDistro(Base):
     expected_subti = 'olasd@debian.org added the distro named' + \
         ' "CentOS" to anitya'
     expected_link = "http://release-monitoring.org/distros"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "e202b61fca3f40ccc4c790d4ecf6ed42" + \
         "?s=64&d=retro"
@@ -70,7 +71,8 @@ class TestEditDistro(Base):
     expected_subti = 'pingou changed a distro name' + \
         ' from "Debia" to "Debian"'
     expected_link = "http://release-monitoring.org/distros"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
         "?s=64&d=retro"
@@ -105,7 +107,8 @@ class TestAddProject(Base):
     expected_title = "anitya.project.add"
     expected_subti = 'ralph added the project "arrow" to anitya'
     expected_link = "http://release-monitoring.org/project/5314/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -147,7 +150,8 @@ class TestAddProjectTried(Base):
     expected_title = "anitya.project.add.tried"
     expected_subti = 'ralph tried to add the project "ansi2html" to anitya'
     expected_link = "http://release-monitoring.org/project/4/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -190,7 +194,8 @@ class TestEditProject(Base):
     expected_subti = 'ralph edited the following ' + \
         'fields of the "arrow" project: homepage'
     expected_link = "http://release-monitoring.org/project/5314/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -235,7 +240,8 @@ class TestRemoveProject(Base):
     expected_title = "anitya.project.remove"
     expected_subti = 'ralph deleted the "guake" project'
     expected_link = "http://release-monitoring.org/project/5311/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -279,7 +285,8 @@ class TestNewMappingProject(Base):
     expected_subti = 'ralph mapped the name of "arrow"' + \
         ' in Fedora to "python-arrow"'
     expected_link = "http://release-monitoring.org/project/5314/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -331,7 +338,8 @@ class TestUpdatedMappingProject(Base):
     expected_subti = 'ralph updated the name of ' + \
         '"guake" in "Fedora" from "guake2" to "guake"'
     expected_link = "http://release-monitoring.org/project/5311/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -389,17 +397,18 @@ class TestNewUpstreamVersion(Base):
     one last seen in the `anitya <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.version.update"
-    expected_subti = 'A new version of "aspell" has been detected:  ' + \
-        '"0.60.6.1" in advance of "0.60.6"'
-    expected_link = "http://release-monitoring.org/project/5/"
-    expected_icon = "https://todo.com/image.png"
+    expected_subti = 'A new version of "2ping" has been detected:  ' + \
+        '"2.1.1" in advance of "2.1.0"'
+    expected_link = "http://release-monitoring.org/project/2/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     #expected_secondary_icon = None
     expected_packages = set([
-        'aspell',
+        '2ping',
     ])
-    expected_usernames = set([])
+    expected_usernames = set(['anitya'])
     expected_objects = set([
-        'projects/aspell',
+        'projects/2ping',
     ])
     msg = {
         "username": "fedmsg",
@@ -410,28 +419,111 @@ class TestNewUpstreamVersion(Base):
         "topic": "org.release-monitoring.prod.anitya.project.version.update",
         "msg": {
             "project": {
-                "id": 5,
                 "regex": None,
-                "name": "aspell",
-                "created_on": 1412174948.0,
-                "version": "0.60.6.1",
-                "version_url": None,
-                "updated_on": 1412232860.0,
-                "homepage": "http://www.gnu.org/software/aspell/",
-                "backend": "GNU project"
+                "name": "2ping",
+                "created_on": 1412174944.0,
+                "version": "2.1.1",
+                "version_url": "http://www.finnie.org/software/2ping/",
+                "updated_on": 1412179539.0,
+                "homepage": "http://www.finnie.org/software/2ping/",
+                "id": 2,
+                "backend": "custom"
             },
-            "packages": [
-                {
-                    "package_name": "aspell",
-                    "distro": "Fedora"
-                }
-            ],
-            "old_version": "0.60.6",
-            "upstream_version": "0.60.6.1",
-            "versions": [
-                "0.60.6.1"
-            ]
-        }
+            "message": {
+                "versions": [
+                    "2.1.1"
+                ],
+                "old_version": "2.1.0",
+                "upstream_version": "2.1.1",
+                "project": {
+                    "regex": None,
+                    "name": "2ping",
+                    "created_on": 1412174944.0,
+                    "version": "2.1.1",
+                    "version_url": "http://www.finnie.org/software/2ping/",
+                    "updated_on": 1412179539.0,
+                    "homepage": "http://www.finnie.org/software/2ping/",
+                    "id": 2,
+                    "backend": "custom"
+                },
+                "agent": "anitya",
+                "packages": [
+                    {
+                        "package_name": "2ping",
+                        "distro": "Fedora"
+                    }
+                ]
+            },
+            "distro": None
+          }
+    }
+
+
+class TestFirstNewUpstreamVersion(Base):
+    """ The purpose of anitya is to monitor upstream projects and to
+    try and detect when they release new tarballs.  *These* messages are the
+    ones that get published when a tarball is found that is newer than the
+    one last seen in the `anitya <http://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.version.update"
+    expected_subti = 'A new version of "2ping" has been detected:  "2.1.1"'
+    expected_link = "http://release-monitoring.org/project/2/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    #expected_secondary_icon = None
+    expected_packages = set([
+        '2ping',
+    ])
+    expected_usernames = set(['anitya'])
+    expected_objects = set([
+        'projects/2ping',
+    ])
+    msg = {
+        "username": "fedmsg",
+        "i": 1,
+        "timestamp": 1412234961,
+        "msg_id": "2014-f4dfc3e4-8909-45d7-b929-1862efb373cf",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.version.update",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "2ping",
+                "created_on": 1412174944.0,
+                "version": "2.1.1",
+                "version_url": "http://www.finnie.org/software/2ping/",
+                "updated_on": 1412179539.0,
+                "homepage": "http://www.finnie.org/software/2ping/",
+                "id": 2,
+                "backend": "custom"
+            },
+            "message": {
+                "versions": [
+                    "2.1.1"
+                ],
+                "old_version": "",
+                "upstream_version": "2.1.1",
+                "project": {
+                    "regex": None,
+                    "name": "2ping",
+                    "created_on": 1412174944.0,
+                    "version": "2.1.1",
+                    "version_url": "http://www.finnie.org/software/2ping/",
+                    "updated_on": 1412179539.0,
+                    "homepage": "http://www.finnie.org/software/2ping/",
+                    "id": 2,
+                    "backend": "custom"
+                },
+                "agent": "anitya",
+                "packages": [
+                    {
+                        "package_name": "2ping",
+                        "distro": "Fedora"
+                    }
+                ]
+            },
+            "distro": None
+          }
     }
 
 
@@ -445,7 +537,8 @@ class TestRemoveMappingProject(Base):
     expected_subti = 'pingou deleted the mapping of ' + \
         '"guake" project on "Fedora"'
     expected_link = "http://release-monitoring.org/project/5311/"
-    expected_icon = "https://todo.com/image.png"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
         "?s=64&d=retro"

@@ -51,6 +51,7 @@ class TestKoscheiPackageStateChange(Base):
             "old": "ok",
             "new": "failing",
             "koji_instance": "arm",
-            "repo": "f22"
+            "repo": "f22",
+            "groups": ["c", "xml"]
         }
     }
