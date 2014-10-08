@@ -1,6 +1,27 @@
 Changelog
 =========
 
+0.3.4
+-----
+
+- Require a particularly modern fedmsg for building the docs. `4cff9aee1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4cff9aee1b735480b9d8e887bbf4f24bbba9a8ab>`_
+- Fix doc_utilities. `39d76afce <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/39d76afce8fbedde2fa9dc8353160b208d961a9f>`_
+- Merge pull request #157 from fedora-infra/feature/fix-doc-utilities `e44639b5a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e44639b5ab80fa9c89111d6957f4a9028c021bf9>`_
+- Add groups field to koschei.package.state.change `bd803dd63 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bd803dd63a4c4175c5dd8ed25b2ad4bbca311122>`_
+- Merge pull request #158 from msimacek/feature/koschei `77b94ee68 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77b94ee6809464db47523cb7a2912be1569cbbf4>`_
+- Update the unit-tests for anitya's update message `16e9eda19 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/16e9eda1994c7e2a171f8f4d6a089a54b0a9ae3f>`_
+- Fix the anitya processor for the update message `faaee82d6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/faaee82d68f45cce264e7d869985e914601ae2e8>`_
+- Fix the message sent by anitya and adjust the expectations as well `69d060e26 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/69d060e26e5e4c81c9c66473cdc446b16dd28897>`_
+- Fix subtitle for anitya, inverted old and new releases `e8664961c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e8664961c4d1542457b5d9b9236c9753660e4959>`_
+- Add failing test case for #160. `3f92641c0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3f92641c047cbabd150e6c7a79584024b68d73de>`_
+- Fix #160. `1efc6d618 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1efc6d6184808c8fe5bfc5d3920f68d0e2e20d7f>`_
+- Add unit-tests for a message of update having no "old" version being updated `672d66c9b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/672d66c9bdc70bc90f76dc0e97717558453fbefd>`_
+- Adjust the anitya processor for message having no "old" version being updated `3452e6733 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3452e6733dadcadd6fb004b45468b2194253c163>`_
+- Merge pull request #161 from fedora-infra/feature/more-pkgdb-fixes `41b24ef89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/41b24ef899d426bf1779aa2471bc8de276d7bfda>`_
+- Merge pull request #159 from fedora-infra/fix_anitya `2b6bc5fe0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b6bc5fe0222f83ff709cfd29291db5c9a78af33>`_
+- Have anitya re-use pkgdb's icon for now. `e3be0f1d5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e3be0f1d581e13e4b9b8f80148c1ab669671c15b>`_
+- Merge pull request #162 from fedora-infra/feature/anitya-metadata `82d007fb9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/82d007fb964127070a3c972fc8d6d7175a7174c5>`_
+
 0.3.3
 -----
 
