@@ -120,7 +120,11 @@ class AnityaProcessor(BaseProcessor):
             new = msg['msg']['message']['upstream_version']
             tmpl = self._(
                 'A new version of "{project}" has been detected:  '
-                '"{new}" in advance of "{old}"')
+                '"{new}"')
+            if old:
+                tmpl = self._(
+                    'A new version of "{project}" has been detected:  '
+                    '"{new}" in advance of "{old}"')
             return tmpl.format(project=project, new=new, old=old)
         else:
             pass
