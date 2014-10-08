@@ -20,6 +20,11 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
 
+try:
+    from collections import OrderedDict
+except ImportError:
+    from ordereddict import OrderedDict
+
 
 def get_agent(msg):
     """ Handy hack to handle legacy messages where 'agent' was a list.  """
@@ -77,10 +82,10 @@ class PkgdbProcessor(BaseProcessor):
                 extra = self._(u" in {branchname}".format(
                     branchname=branchname))
 
-            status_map = {
-                "Retired": [self._(u"unretired"), self._(u"retired")],
-                "Orphaned": [self._(u"unorphaned"), self._(u"orphaned")],
-            }
+            status_map = OrderedDict([
+                ("Orphaned", [self._(u"unorphaned"), self._(u"orphaned")]),
+                ("Retired", [self._(u"unretired"), self._(u"retired")]),
+            ])
             verb = self._(u"made some updates to")
             for key, values in status_map.items():
                 left, right = values
