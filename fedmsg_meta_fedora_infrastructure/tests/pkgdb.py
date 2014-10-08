@@ -402,7 +402,7 @@ class TestPkgdbPackageUpdateStatus2(Base):
     Here's an example of a package being retired:
     """
     expected_title = "pkgdb.package.update.status"
-    expected_subti = "ralph retired libvmime07 in master"
+    expected_subti = "till retired libvmime07 in master"
     expected_link = "https://admin.fedoraproject.org/pkgdb/package/libvmime07/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
