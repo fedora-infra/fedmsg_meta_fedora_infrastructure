@@ -396,6 +396,85 @@ class TestPkgdbCritpathUpdate(Base):
     }
 
 
+class TestPkgdbPackageUpdateStatus2(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes this message when the status of a package is updated.
+    Here's an example of a package being retired:
+    """
+    expected_title = "pkgdb.package.update.status"
+    expected_subti = "ralph retired libvmime07 in master"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/libvmime07/"
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "272bbf32f26ca494a78673f873bb62e8f3deb9f9b53213ceac3c2a144de4784a"
+        "?s=64&d=retro")
+    expected_packages = set(['libvmime07'])
+    expected_usernames = set(['till'])
+    expected_objects = set(['libvmime07/update'])
+    msg = {
+        "source_name": "datanommer",
+        "i": 7,
+        "timestamp": 1412710605.0,
+        "msg_id": "2014-78aa26ee-d2e5-4446-b4a4-73948704d73e",
+        "topic": "org.fedoraproject.prod.pkgdb.package.update.status",
+        "source_version": "0.6.4",
+        "msg": {
+            "status": "Retired",
+            "package_listing": {
+                "status": "Retired",
+                "point_of_contact": "orphan",
+                "package": {
+                    "status": "Approved",
+                    "upstream_url": "http://www.zarafa.com/wiki/index.php/Libvmime_patches",
+                    "description": "VMime is a powerful C++ class ...",
+                    "creation_date": 1400070978.0,
+                    "acls": [],
+                    "summary": "A powerful C++ class ...",
+                    "review_url": None,
+                    "name": "libvmime07"
+                },
+                "collection": {
+                    "status": "Under Development",
+                    "dist_tag": ".fc22",
+                    "koji_name": "rawhide",
+                    "name": "Fedora",
+                    "version": "devel",
+                    "branchname": "master"
+                },
+                "acls": [
+                    {
+                        "fas_name": "robert",
+                        "status": "Approved",
+                        "acl": "watchcommits"
+                    },
+                    {
+                        "fas_name": "robert",
+                        "status": "Approved",
+                        "acl": "watchbugzilla"
+                    },
+                    {
+                        "fas_name": "robert",
+                        "status": "Obsolete",
+                        "acl": "commit"
+                    },
+                    {
+                        "fas_name": "robert",
+                        "status": "Obsolete",
+                        "acl": "approveacls"
+                    }
+                ],
+                "critpath": False,
+                "status_change": 1412710603.0
+            },
+            "prev_status": "Orphaned",
+            "package_name": "libvmime07",
+            "agent": "till"
+        }
+    }
+
+
 class TestLegacyPkgdbPackageRetire(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages on this topic when a package is retired.  For example:
