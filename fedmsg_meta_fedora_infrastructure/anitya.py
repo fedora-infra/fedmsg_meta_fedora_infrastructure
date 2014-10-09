@@ -39,7 +39,7 @@ class AnityaProcessor(BaseProcessor):
         try:
             email = msg['msg']['message']['agent']
         except KeyError:
-            return msg['username']
+            return msg.get('username', 'anitya')
         else:
             if email.endswith('@fedoraproject.org'):
                 return email.split('@fedoraproject.org')[0]
