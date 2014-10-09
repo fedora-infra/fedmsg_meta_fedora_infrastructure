@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.3.5
+-----
+
+- Handle legacy anitya messages. `d052cb001 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d052cb001dea8a7ec8766221ebcf27420b2de0d8>`_
+- Merge pull request #163 from fedora-infra/feature/anitya-fixes `e117278ed <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e117278ed8c4df2f3382c579cd3c10e216457b6f>`_
+
 0.3.4
 -----
 
