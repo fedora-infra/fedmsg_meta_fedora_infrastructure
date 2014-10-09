@@ -390,6 +390,54 @@ class TestUpdatedMappingProject(Base):
     }
 
 
+class TestFirstNewUpstreamVersionLegacy(Base):
+    expected_title = "anitya.project.version.update"
+    expected_subti = 'A new version of "Accanthis-Std" has been ' + \
+        'detected:  "20101124"'
+    expected_link = "http://release-monitoring.org/project/22/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    #expected_secondary_icon = None
+    expected_packages = set([
+        'adf-accanthis-fonts',
+    ])
+    expected_usernames = set(['anitya'])
+    expected_objects = set([
+        'projects/Accanthis-Std',
+    ])
+    msg = {
+        "username": "anitya",
+        "i": 1,
+        "timestamp": 1412790624,
+        "msg_id": "2014-3120499f-993b-4526-81c7-8abc39207f9e",
+        "topic": "org.release-monitoring.prod.anitya.project.version.update",
+        "msg": {
+            "project": {
+                "regex": "",
+                "name": "Accanthis-Std",
+                "created_on": 1412174945.0,
+                "version": "20101124",
+                "version_url": "http://arkandis.tuxfamily.org/adffonts.html",
+                "updated_on": 1412697102.0,
+                "homepage": "http://arkandis.tuxfamily.org/adffonts.html",
+                "id": 22,
+                "backend": "custom"
+            },
+            "packages": [
+                {
+                    "package_name": "adf-accanthis-fonts",
+                    "distro": "Fedora"
+                }
+            ],
+            "old_version": "",
+            "upstream_version": "20101124",
+            "versions": [
+                "20101124"
+            ]
+        }
+    }
+
+
 class TestNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
     try and detect when they release new tarballs.  *These* messages are the
