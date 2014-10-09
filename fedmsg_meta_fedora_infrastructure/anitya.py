@@ -39,7 +39,7 @@ class AnityaProcessor(BaseProcessor):
         try:
             email = msg['msg']['message']['agent']
         except KeyError:
-            return None
+            return msg['username']
         else:
             if email.endswith('@fedoraproject.org'):
                 return email.split('@fedoraproject.org')[0]
@@ -117,8 +117,12 @@ class AnityaProcessor(BaseProcessor):
             return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
-            old = msg['msg']['message']['old_version']
-            new = msg['msg']['message']['upstream_version']
+            if 'message' in msg['msg']:
+                message = msg['msg']['message']
+            else:
+                message = msg['msg']
+            old = message['old_version']
+            new = message['upstream_version']
             tmpl = self._(
                 'A new version of "{project}" has been detected:  '
                 '"{new}"')
@@ -199,9 +203,13 @@ class AnityaProcessor(BaseProcessor):
             if msg['msg']['distro']['name'].lower() == 'fedora':
                 return set([msg['msg']['message']['new']])
         elif 'project.version.update' in msg['topic']:
+            if 'message' in msg['msg']:
+                packages = msg['msg']['message']['packages']
+            else:
+                packages = msg['msg']['packages']
             return set([
                 pkg['package_name']
-                for pkg in msg['msg']['message']['packages']
+                for pkg in packages
                 if pkg['distro'].lower() == 'fedora'
             ])
 
