@@ -1753,6 +1753,45 @@ class TestPkgdbPackageBranchNew(Base):
     }
 
 
+class TestPkgdbPackageMonitorUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when a **new branch** is created for a
+    package.
+    """
+    expected_title = "pkgdb.package.monitor.update"
+    expected_subti = ("pingou set the monitor flag of guake to False")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['guake'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['guake/monitor/false/'])
+    msg = {
+        "username": "pingou",
+        "i": 3,
+        "timestamp": 1412957736,
+        "msg_id": "2014-905aaa3c-483d-4923-95f7-56a8da38da62",
+        "topic": "org.fedoraproject.dev.pkgdb.package.monitor.update",
+        "msg": {
+            "status": False,
+            "agent": "pingou",
+            "package": {
+                "status": "Approved",
+                "upstream_url": "http://www.guake.org/",
+                "description": "Guake is a drop-down terminal for Gnome Desktop Environment,\nso you just need to press a key to invoke him,\nand press again to hide.",
+                "summary": "Drop-down terminal for GNOME",
+                "acls": [],
+                "creation_date": 1397204290.0,
+                "review_url": None,
+                "name": "guake"
+            }
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
