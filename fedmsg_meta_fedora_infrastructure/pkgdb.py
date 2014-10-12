@@ -311,6 +311,13 @@ class PkgdbProcessor(BaseProcessor):
             branches = ', '.join(msg['msg']['branches'])
             return tmpl.format(agent=agent, action=action,
                                package=package, branches=branches)
+        elif msg['topic'].endswith('pkgdb.package.monitor.update'):
+            tmpl = self._(
+                u"{agent} set the monitor flag of {package} to {status}")
+            agent = msg['msg']['agent']
+            status = msg['msg']['status']
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, status=status, package=package)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -455,6 +462,12 @@ class PkgdbProcessor(BaseProcessor):
             )
         elif msg['topic'].endswith('pkgdb.package.critpath.update'):
             objs.add(_msg['package']['name'] + "/critpath")
+        elif msg['topic'].endswith('pkgdb.package.monitor.update'):
+            objs.add(
+                '{package}/monitor/{status}/'.format(
+                package=_msg['package']['name'],
+                status=str(_msg['status']).lower())
+            )
 
         return objs
 
