@@ -1336,7 +1336,7 @@ class TestPkgdbBranchRequest(Base):
         "?s=64&d=retro")
     expected_packages = set(['R-BiocGenerics'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['R-BiocGenerics/branch/request/epel7/pingou/'])
+    expected_objects = set(['R-BiocGenerics/branch/request/epel7/pingou'])
     msg = {
         "i": 1,
         "timestamp": 1408440084,
@@ -1389,7 +1389,7 @@ class TestPkgdbPackageRequest(Base):
         "?s=64&d=retro")
     expected_packages = set(['guake'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['new/package/request/guake/master/pingou/'])
+    expected_objects = set(['new/package/request/guake/master/pingou'])
     msg = {
         "i": 3,
         "timestamp": 1408440927,
@@ -1437,7 +1437,7 @@ class TestPkgdbAdminActionUpdate(Base):
         "?s=64&d=retro")
     expected_packages = set(['guake'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['action/18/status/guake/master/pingou/'])
+    expected_objects = set(['action/18/status/guake/master/pingou'])
     msg = {
         "i": 6,
         "timestamp": 1408441710,
@@ -1705,7 +1705,7 @@ class TestPkgdbPackageBranchNew(Base):
         "?s=64&d=retro")
     expected_packages = set(['R-BSgenome'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['R-BSgenome/epel7/new/'])
+    expected_objects = set(['R-BSgenome/epel7/new'])
     msg = {
         "i": 1,
         "timestamp": 1408957258,
@@ -1768,7 +1768,7 @@ class TestPkgdbPackageMonitorUpdate(Base):
         "?s=64&d=retro")
     expected_packages = set(['guake'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['guake/monitor/false/'])
+    expected_objects = set(['guake/monitor/false'])
     msg = {
         "username": "pingou",
         "i": 3,
