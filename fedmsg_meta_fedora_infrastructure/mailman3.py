@@ -69,7 +69,12 @@ class MailmanProcessor(BaseProcessor):
         return gravatar_url_from_email(email)
 
     def link(self, msg, **config):
-        base_url = 'https://lists.fedoraproject.org/hyperkitty'
+        base_url = 'https://lists.fedoraproject.org/archives'
+        archived_at = msg['msg']['msg']['archived-at']
+        if archived_at.startswith('http'):
+            return archived_at
+        else:
+            return base_url + archived_at
         return base_url + msg['msg']['msg']['archived-at']
 
     def usernames(self, msg, **config):
