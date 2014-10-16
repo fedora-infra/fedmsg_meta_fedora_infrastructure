@@ -32,11 +32,7 @@ def _full_email_to_email(full_from):
 
 
 def _email_to_username(email):
-    username = email2fas(email, **config)
-    # Just in case we couldn't convert them to a username (they don't exist,
-    # for instance), then we chop up their email to 'look like' a username
-    # anyways.. best effort.
-    return username.split('@')[0]
+    return email2fas(email, **config)
 
 
 class MailmanProcessor(BaseProcessor):
@@ -95,7 +91,7 @@ class MailmanProcessor(BaseProcessor):
     def usernames(self, msg, **config):
         full_from = msg['msg']['msg']['from']
         user = _email_to_username(_full_email_to_email(full_from))
-        if user:
+        if user and '@' not in user:
             return set([user])
         else:
             return set()

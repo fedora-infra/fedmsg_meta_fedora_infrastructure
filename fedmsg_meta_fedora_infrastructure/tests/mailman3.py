@@ -99,8 +99,8 @@ class TestMailman3NewMail(Base):
     """
 
     expected_title = "mailman.receive"
-    expected_subti = ("jreznik wrote '[Devel] Fedora 19 Beta status is "
-                      "Go, release on May 28, 2013' to the devel list")
+    expected_subti = ("jreznik@redhat.com wrote '[Devel] Fedora 19 Beta status"
+                      " is Go, release on May 28, 2013' to the devel list")
     expected_link = ("https://lists.fedoraproject.org/archives/list/"
                      "devel@mm3test.fedoraproject.org/message/"
                      "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4/")
@@ -109,9 +109,7 @@ class TestMailman3NewMail(Base):
         "35012533ff5290bd2231c7133bd07896?s=64&d=retro")
 
     expected_packages = set([])
-    expected_usernames = set([
-        'jreznik',
-    ])
+    expected_usernames = set([])
     expected_objects = set([
         "306436886.6773069.1369333725371.JavaMail.root@redhat.com/message",
     ])
