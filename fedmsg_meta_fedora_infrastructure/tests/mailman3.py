@@ -21,7 +21,7 @@
 
 import unittest
 
-from fedmsg.tests.test_meta import Base
+from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from common import add_doc
 
@@ -34,22 +34,20 @@ class TestMailman3NewReply(Base):
     """
 
     expected_title = "mailman.receive"
-    expected_subti = ("On the devel list, nicolas.mailhot replied to "
+    expected_subti = ("On the devel list, nim replied to "
                       "'[Devel] Re:Software Management call for RFEs'")
-    expected_link = ("https://lists.fedoraproject.org/hyperkitty/list/"
+    expected_link = ("https://lists.fedoraproject.org/archives/list/"
                      "devel@mm3test.fedoraproject.org/message/"
                      "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/")
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "8b887fce5c60f931e8edf8e8e4907494?s=64&d=retro")
+        "e13c266c61de5e79cf37a99b94d4d4462d6857fe8a5dbdde9e041ae01b14a7db"
+        "?s=64&d=retro")
 
     expected_packages = set([])
     expected_usernames = set([
-        # This works for now (kind of).
-        # In the future we want to look their real username up in FAS,
-        # but that requires credentials and we can't guarantee those
-        # everywhere.
-        'nicolas.mailhot',
+        # We convert emails to fas usernames if we can.
+        'nim',
     ])
     expected_objects = set([
         # There is only one item in this set, not four.  It's just long.
@@ -79,7 +77,8 @@ class TestMailman3NewReply(Base):
                 "suspicious-header",
                 "references": "<5de4f14ae46cce6de03cf68ca06526a9.squirrel@"
                 "arekh.dyndns.org>\n\t<519DFB93.1060502@laiskiainen.org>",
-                "archived-at": "/list/devel@mm3test.fedoraproject.org/message/"
+                "archived-at": "https://lists.fedoraproject.org/archives/"
+                "list/devel@mm3test.fedoraproject.org/message/"
                 "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/",
                 "message-id": "<d4f0cefb4a7b845451ecab2c4026fe4d.squirrel@"
                 "arekh.dyndns.org>",
@@ -100,9 +99,9 @@ class TestMailman3NewMail(Base):
     """
 
     expected_title = "mailman.receive"
-    expected_subti = ("jreznik wrote '[Devel] Fedora 19 Beta status is "
-                      "Go, release on May 28, 2013' to the devel list")
-    expected_link = ("https://lists.fedoraproject.org/hyperkitty/list/"
+    expected_subti = ("jreznik@redhat.com wrote '[Devel] Fedora 19 Beta status"
+                      " is Go, release on May 28, 2013' to the devel list")
+    expected_link = ("https://lists.fedoraproject.org/archives/list/"
                      "devel@mm3test.fedoraproject.org/message/"
                      "HDMTECNRNUHZTSDGM2FDK6LGCMAS2PZ4/")
     expected_secondary_icon = (
@@ -110,13 +109,7 @@ class TestMailman3NewMail(Base):
         "35012533ff5290bd2231c7133bd07896?s=64&d=retro")
 
     expected_packages = set([])
-    expected_usernames = set([
-        # This works for now (kind of).
-        # In the future we want to look their real username up in FAS,
-        # but that requires credentials and we can't guarantee those
-        # everywhere.
-        'jreznik',
-    ])
+    expected_usernames = set([])
     expected_objects = set([
         "306436886.6773069.1369333725371.JavaMail.root@redhat.com/message",
     ])

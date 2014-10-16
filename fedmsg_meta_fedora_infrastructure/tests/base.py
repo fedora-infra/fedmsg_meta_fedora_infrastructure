@@ -11,6 +11,7 @@ class Base(_Base):
             'threebean': 'ralph',
             'rbean@redhat.com': 'ralph',
             'puiterwijk@gmail.com': 'puiterwijk',
+            'nicolas.mailhot@laposte.net': 'nim',
         }
         super(Base, self).setUp()
 

@@ -18,10 +18,13 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url_from_email
+from fasshim import avatar_url_from_email, avatar_url_from_openid, email2fas
 
 import email.utils
 import warnings
+
+import fedmsg.config
+config = fedmsg.config.load_config()
 
 
 def _full_email_to_email(full_from):
@@ -29,8 +32,7 @@ def _full_email_to_email(full_from):
 
 
 def _email_to_username(email):
-    # TODO -- use FAS to lookup a user from their email address.
-    return email.split('@')[0]
+    return email2fas(email, **config)
 
 
 class MailmanProcessor(BaseProcessor):
@@ -66,16 +68,30 @@ class MailmanProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         full_from = msg['msg']['msg']['from']
         email = _full_email_to_email(full_from)
-        return gravatar_url_from_email(email)
+
+        # Can we find this person in FAS?
+        username = email2fas(email, **config)
+
+        if '@' in username:
+            # No?  Then use their email for libravatar
+            return avatar_url_from_email(email)
+        else:
+            # Yes?  Then use their openid like everywhere else.
+            return avatar_url_from_openid(username)
 
     def link(self, msg, **config):
-        base_url = 'https://lists.fedoraproject.org/hyperkitty'
+        base_url = 'https://lists.fedoraproject.org/archives'
+        archived_at = msg['msg']['msg']['archived-at']
+        if archived_at.startswith('http'):
+            return archived_at
+        else:
+            return base_url + archived_at
         return base_url + msg['msg']['msg']['archived-at']
 
     def usernames(self, msg, **config):
         full_from = msg['msg']['msg']['from']
         user = _email_to_username(_full_email_to_email(full_from))
-        if user:
+        if user and '@' not in user:
             return set([user])
         else:
             return set()
