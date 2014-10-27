@@ -229,7 +229,7 @@ class TestLegacyFASRoleUpdate(Base):
     }
 
 
-class TestFASGroupRemove(Base):
+class TestLegacy2FASGroupRemove(Base):
     """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
     publishes messages on this topic whenever a user is **removed** from a
     particular group.
@@ -253,7 +253,7 @@ class TestFASGroupRemove(Base):
     }
 
 
-class TestFASGroupSponsor(Base):
+class TestLegacy2FASGroupSponsor(Base):
     """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
     publishes messages on this topic whenever a user's request to join a
     restricted group is **sponsored** by an authorized user.
@@ -278,7 +278,7 @@ class TestFASGroupSponsor(Base):
     }
 
 
-class TestFASGroupApply(Base):
+class TestLegacy2FASGroupApply(Base):
     """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
     publishes messages on this topic whenever a user **requests to join** a
     particular group.
@@ -299,6 +299,79 @@ class TestFASGroupApply(Base):
             u'group': {u'name': u'ambassadors'},
             u'user': {u'username': u'ralph'},
             u'agent': {u'username': u'ralph'},
+        }
+    }
+
+class TestFASGroupRemove(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user is **removed** from a
+    particular group.
+    """
+    expected_title = "fas.group.member.remove"
+    expected_subti = "toshio removed ralph from the ambassadors group"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "085a38b9cf600926924645b292f0b7121a98a5165e559e0ad1882cfe33c6b395" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph', 'toshio'])
+    expected_objects = set(['users/ralph', 'groups/ambassadors'])
+    msg = {
+        u'topic': u'org.fedoraproject.stg.fas.group.member.remove',
+        u'msg': {
+            u'group': u'ambassadors',
+            u'user':  u'ralph',
+            u'agent': u'toshio',
+        }
+    }
+
+
+class TestFASGroupSponsor(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user's request to join a
+    restricted group is **sponsored** by an authorized user.
+    """
+    expected_title = "fas.group.member.sponsor"
+    expected_subti = "toshio sponsored ralph's membership " + \
+        "in the ambassadors group"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "085a38b9cf600926924645b292f0b7121a98a5165e559e0ad1882cfe33c6b395" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph', 'toshio'])
+    expected_objects = set(['users/ralph', 'groups/ambassadors'])
+    msg = {
+        u'topic': u'org.fedoraproject.stg.fas.group.member.sponsor',
+        u'msg': {
+            u'group': u'ambassadors',
+            u'user': u'ralph',
+            u'agent': u'toshio',
+        }
+    }
+
+
+class TestFASGroupApply(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a user **requests to join** a
+    particular group.
+    """
+    expected_title = "fas.group.member.apply"
+    expected_subti = "ralph applied for ralph's membership " + \
+        "in the ambassadors group"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['users/ralph', 'groups/ambassadors'])
+    msg = {
+        u'topic': u'org.fedoraproject.stg.fas.group.member.apply',
+        u'msg': {
+            u'group': u'ambassadors',
+            u'user': u'ralph',
+            u'agent': u'ralph',
         }
     }
 
