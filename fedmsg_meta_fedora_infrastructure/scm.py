@@ -146,12 +146,21 @@ class SCMProcessor(BaseProcessor):
             return tmpl.format(prefix=prefix, repo=repo, branch=branch)
         elif '.git.lookaside' in msg['topic']:
             prefix = "http://pkgs.fedoraproject.org/lookaside/pkgs"
-            name = msg['msg']['name']
-            md5sum = msg['msg']['md5sum']
-            filename = msg['msg']['filename']
-            tmpl = "{prefix}/{name}/{filename}/{md5sum}/{filename}"
-            return tmpl.format(prefix=prefix, name=name,
-                               md5sum=md5sum, filename=filename)
+
+            if 'path' in msg['msg']:
+                path = msg['msg']['path']
+
+            else:
+                # Fallback to the old message format from the dark ages of MD5
+                name = msg['msg']['name']
+                md5sum = msg['msg']['md5sum']
+                filename = msg['msg']['filename']
+                tmpl = "{name}/{filename}/{md5sum}/{filename}"
+
+                path = tmpl.format(name=name, md5sum=md5sum,
+                                   filename=filename)
+
+            return "{prefix}/{path}".format(prefix=prefix, path=path)
 
     def usernames(self, msg, **config):
         if 'agent' in msg['msg']:
