@@ -131,6 +131,12 @@ class AnityaProcessor(BaseProcessor):
                     'A new version of "{project}" has been detected:  '
                     '"{new}" in advance of "{old}"')
             return tmpl.format(project=project, new=new, old=old)
+        elif 'project.version.remove' in msg['topic']:
+            project = msg['msg']['project']['name']
+            version = msg['msg']['message']['version']
+            tmpl = self._(
+                '{user} deleted the version {version} of "{project}"')
+            return tmpl.format(user=user, project=project, version=version)
         else:
             pass
 
@@ -167,6 +173,8 @@ class AnityaProcessor(BaseProcessor):
                 'distros/%s' % distro,
                 'projects/%s' % msg['msg']['project']['name'],
             ])
+        elif 'project.version.remove' in msg['topic']:
+            return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.remove' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.map.remove' in msg['topic']:

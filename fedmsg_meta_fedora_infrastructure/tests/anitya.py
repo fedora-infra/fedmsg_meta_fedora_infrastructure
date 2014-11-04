@@ -622,6 +622,50 @@ class TestRemoveMappingProject(Base):
     }
 
 
+class TestRemoveVersionProject(Base):
+    """ These messages are published when an admin *removes* a version
+    from a particular project (in the `anitya <http://release-monitoring.org>`_
+    database...)
+    """
+    expected_title = "anitya.project.version.remove"
+    expected_subti = 'pingou deleted the version 0.7.1.1 of "3proxy"'
+    expected_link = "http://release-monitoring.org/project/3/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['projects/3proxy'])
+    msg = {
+        "username": "pingou",
+        "i": 1,
+        "timestamp": 1415118527,
+        "msg_id": "2014-7926f638-1d0c-470c-b589-de84f5d34fad",
+        "topic": "org.release-monitoring.prod.anitya.project.version.remove",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "3proxy",
+                "created_on": 1409917223.0,
+                "version": "0.7.1.1",
+                "version_url": "http://www.3proxy.ru/download/",
+                "updated_on": 1412690620.0,
+                "homepage": "http://www.3proxy.ru/download/",
+                "id": 3,
+                "backend": "custom"
+            },
+            "message": {
+                "project": "3proxy",
+                "version": "0.7.1.1",
+                "agent": "pingou@fedoraproject.org"
+            },
+            "distro": None
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
