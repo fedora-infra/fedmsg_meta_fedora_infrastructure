@@ -145,10 +145,12 @@ class TestAddProject(Base):
 
 class TestAddProjectTried(Base):
     """ These messages are published when someone *tries* to add a new project
-    to `anitya's <http://release-monitoring.org>`_ database.
+    to `anitya's <http://release-monitoring.org>`_ database, but that project
+    was already present.
     """
     expected_title = "anitya.project.add.tried"
-    expected_subti = 'ralph tried to add the project "ansi2html" to anitya'
+    expected_subti = 'ralph tried to add the project "ansi2html" to anitya' + \
+        ' (but it already exists there)'
     expected_link = "http://release-monitoring.org/project/4/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
