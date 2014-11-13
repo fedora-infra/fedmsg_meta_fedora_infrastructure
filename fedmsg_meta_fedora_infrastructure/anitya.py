@@ -91,7 +91,8 @@ class AnityaProcessor(BaseProcessor):
         elif 'project.add.tried' in msg['topic']:
             project = msg['msg']['project']['name']
             tmpl = self._('{user} tried to add the project '
-                          '"{project}" to anitya')
+                          '"{project}" to anitya '
+                          '(but it already exists there)')
             return tmpl.format(user=user, project=project)
         elif 'project.add' in msg['topic']:
             project = msg['msg']['project']['name']
