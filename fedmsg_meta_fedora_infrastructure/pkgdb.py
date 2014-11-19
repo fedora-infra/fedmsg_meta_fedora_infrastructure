@@ -44,7 +44,9 @@ class PkgdbProcessor(BaseProcessor):
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
     conglomerators = [
+        conglomerators.pkgdb.acls.ByPackage,
         conglomerators.pkgdb.acls.BySubject,
+        conglomerators.pkgdb.acls.ByAgent,
     ]
 
     def subtitle(self, msg, **config):
