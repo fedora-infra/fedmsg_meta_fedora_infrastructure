@@ -25,6 +25,7 @@ try:
 except ImportError:
     from ordereddict import OrderedDict
 
+import conglomerators.pkgdb.acls
 
 def get_agent(msg):
     """ Handy hack to handle legacy messages where 'agent' was a list.  """
@@ -42,6 +43,11 @@ class PkgdbProcessor(BaseProcessor):
     __obj__ = "Package ACL Updates"
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
+    conglomerators = [
+        conglomerators.pkgdb.acls.BySubject,
+        conglomerators.pkgdb.acls.ByPackage,
+        conglomerators.pkgdb.acls.ByAgent,
+    ]
 
     def subtitle(self, msg, **config):
         if 'pkgdb.acl.update' in msg['topic']:
