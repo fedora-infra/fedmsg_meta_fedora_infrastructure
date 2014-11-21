@@ -43,10 +43,21 @@ class HotnessProcessor(BaseProcessor):
             original = msg['msg']['trigger']['msg']
             srpm = original['srpm']
             bug_id = msg['msg']['bug']['bug_id']
+
+            # The original statuses from koji can be found like this
+            # >>> import koji
+            # >>> koji.TASK_STATES.keys()
+            # ['FAILED', 'FREE', 'ASSIGNED', 'CANCELED', 'CLOSED', 'OPEN']
             status_lookup = {
+                'FAILED': self._('failed'),
+                'FREE': self._('submitted'),
+                'ASSIGNED': self._('assigned'),
+                'CANCELLED': self._('cancelled'),
                 'CLOSED': self._('completed'),
+                'OPEN': self._('started'),
             }
             status = status_lookup.get(original['new'], 'unknown')
+
             tmpl= self._('scratch build of {srpm} for RHBZ#{bug_id} {status}')
             return tmpl.format(srpm=srpm, bug_id=bug_id, status=status)
         elif 'hotness.update.drop' in msg['topic']:
