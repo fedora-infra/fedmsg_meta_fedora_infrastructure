@@ -6,10 +6,16 @@ class AbstractPkgdbACLsConglomerator(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return 'pkgdb.acl.update' in msg['topic']
 
+    def possessive(self, name):
+        """ Given a name, return the possessive form. """
+        return self._("{name}'s").format(name=name)
+
     def merge(self, constituents, **config):
         ms = constituents  # shorthand
         agents = self.list_to_series([m['msg']['agent'] for m in ms])
-        usernames = self.list_to_series([m['msg']['username'] for m in ms])
+        usernames = self.list_to_series([
+            self.possessive(m['msg']['username']) for m in ms
+        ])
         acls = self.list_to_series([m['msg']['acl'] for m in ms])
         packages = self.list_to_series([m['msg']['package_name'] for m in ms])
         statuses = self.list_to_series([m['msg']['status'] for m in ms])
@@ -17,7 +23,7 @@ class AbstractPkgdbACLsConglomerator(fedmsg.meta.base.BaseConglomerator):
             m['msg']['package_listing']['collection']['branchname']
             for m in ms])
 
-        subtitle = '{agents} changed {usernames}\'s {acls} permissions on ' + \
+        subtitle = '{agents} changed {usernames} {acls} permissions on ' + \
             '{packages} ({branches}) to {statuses}.'
 
         tmpl = self.produce_template(constituents, **config)
