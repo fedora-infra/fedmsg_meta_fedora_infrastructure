@@ -156,8 +156,8 @@ class TestBodhiConglomerateCommentSameUser(
         },
     ]
     expected = [{
-        'subtitle': 'hreindl commented on sqlite-3.8.6-2.fc20 '
-        'and file-5.19-4.fc20',
+        'subtitle': 'hreindl commented on file-5.19-4.fc20 '
+        'and sqlite-3.8.6-2.fc20',
         'link': 'https://admin.fedoraproject.org/updates/user/hreindl/',
         'icon': 'https://admin.fedoraproject.org/updates/'
         'static/images/bodhi-icon-48.png',

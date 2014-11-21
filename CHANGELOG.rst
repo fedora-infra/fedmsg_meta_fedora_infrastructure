@@ -1,6 +1,41 @@
 Changelog
 =========
 
+0.3.6
+-----
+
+- Apparently we're not guaranteed to have this value. `3720084c7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3720084c7280772a34dff80cff996bce4e6c49d6>`_
+- Merge pull request #164 from fedora-infra/feature/yet-another-anitya-fix `4d0486963 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4d04869639fea1fe106ddd737a2666c6d388a8e5>`_
+- Add unit-test for pkgdb's message about monitor status change `92e377a87 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/92e377a87ed20ca9d156a0a59555882bc16c433f>`_
+- Adjust the pkgdb processor to handle the change in monitoring status `6d0f58fed <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6d0f58fed357f528daa6a68356d1fe1eb5ade4ce>`_
+- Remove trailing slash on pkgdb objects both in the logic and the tests `13a363f40 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/13a363f40aa5d18ace71cf6f2f1ffe1501186e31>`_
+- Merge pull request #166 from fedora-infra/pkgdb `cc8274752 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cc82747520f05ee08abc8329b3421be5ea4ad1d4>`_
+- Handle mailman links with and without prefixes. `3f5d6b15e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3f5d6b15edbf63f0bdcbcd9d06c761113b839b5f>`_
+- mailman:  convert emails to fas usernames where we can. `ce35a7abb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ce35a7abbf810b1e88bfab0221da81f9ce557410>`_
+- mailman:  No longer chop up emails into usernames. `146235413 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/14623541345dd598785b9271b89b539c6d54d0ab>`_
+- Merge pull request #167 from fedora-infra/feature/mailman-fixes `2328588fe <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2328588fe93f14c161eda76c360d52bb6e849204>`_
+- Move fas tests out into their own file. `d77079aa5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d77079aa538c0e2da40356fe74ba30e1c3c763c8>`_
+- Add fas tests that actually cover current messages. `85c2d7e4f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/85c2d7e4fa33a0a8fe8a405b1a18879f9d2ce9fa>`_
+- Merge pull request #169 from fedora-infra/feature/fas-fixes `50e9715d0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/50e9715d0188acb933f18de03eb404323383a68d>`_
+- lookaside: Dehardcode some assumptions `9391abfee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9391abfee6bd02fa499c81dd4a14cde8e18915f2>`_
+- Merge pull request #170 from bochecha/feature/lookasidemsgs `526d28373 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/526d2837387265ee82dc430ae2cce233d4dfbdcd>`_
+- Handle anitya's fedmsg message when an admin removes a version of a project `df274699d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/df274699d5ab967e81157b8fb2ce4521be07f496>`_
+- Merge pull request #171 from fedora-infra/drop_version_anitya `130ee11e0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/130ee11e071bcfbfa3ff2f4b97647f8e654c4649>`_
+- Clarify the purpose of the anitya.project.add.tried message. `8e9fef33a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8e9fef33ae422534fe07d921331d29a97835c232>`_
+- Fix test failures for conglomerator ordering. `690d1182b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/690d1182b0a6b8c273b0c06faa4af07dfc8d24ce>`_
+- Merge pull request #173 from fedora-infra/feature/conglom-ordering `66a923908 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/66a923908cd2f26b8bc2e0b72a97d20fa12cdb32>`_
+- Merge pull request #172 from fedora-infra/feature/anitya-try `0385f486f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0385f486fda27f7f8f1073796dc5be090f6cbb5c>`_
+- Remove a bunch of the wiki upload messages. `25f6fa69e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/25f6fa69e40ae5813b7550eef15dc03acb402cf0>`_
+- Merge pull request #174 from fedora-infra/feature/new-wiki-upload `681f485e0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/681f485e04b281e3e607da4a71525bf69069407a>`_
+- A BySubject pkgdb conglomerator. `4921a5dfa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4921a5dfa49112861a70cfc5e585290dcad40aee>`_
+- Reorganize and add two more ACL conglomerators. `af26e8ad8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/af26e8ad80a549be645bb48eeef2af149bcf7174>`_
+- Switch order here. `bcc7f56ba <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bcc7f56ba5378aae63f8b4f3650a07799bcc5046>`_
+- The New Hotness `b50f491d9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b50f491d9bc499ac5110c06a3f6671dd57ff8df8>`_
+- Possessive nouns. `b6b9a9d59 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b6b9a9d596c555db9994371934358dad14dc2400>`_
+- Add forgotten koji task states. `d7eb88edd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d7eb88eddbb12257b34a309937933ea1f3d9279e>`_
+- Merge pull request #176 from fedora-infra/feature/hotness `b05104234 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b051042347fdb61ff59add69fc73cbd462a8239c>`_
+- Merge pull request #177 from fedora-infra/feature/pkgdb-conglom `9a56d0d69 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9a56d0d69ddb5c46cfecf9cf50d922a4fe068c25>`_
+
 0.3.5
 -----
 

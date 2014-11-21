@@ -66,9 +66,17 @@ class SummerShumProcessor(BaseProcessor):
     def link(self, msg, **config):
         o = msg['msg']['original']
         prefix = "http://pkgs.fedoraproject.org/lookaside/pkgs"
-        name = o['name']
-        md5sum = o['md5sum']
-        filename = o['filename']
-        tmpl = "{prefix}/{name}/{filename}/{md5sum}/{filename}"
-        return tmpl.format(prefix=prefix, name=name,
-                           md5sum=md5sum, filename=filename)
+
+        if 'path' in o:
+            path = o['path']
+
+        else:
+            # Fallback to the old message format from the dark ages of MD5
+            name = o['name']
+            md5sum = o['md5sum']
+            filename = o['filename']
+            tmpl = "{name}/{filename}/{md5sum}/{filename}"
+
+            path = tmpl.format(name=name, md5sum=md5sum, filename=filename)
+
+        return "{prefix}/{path}".format(prefix=prefix, path=path)

@@ -1336,7 +1336,7 @@ class TestPkgdbBranchRequest(Base):
         "?s=64&d=retro")
     expected_packages = set(['R-BiocGenerics'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['R-BiocGenerics/branch/request/epel7/pingou/'])
+    expected_objects = set(['R-BiocGenerics/branch/request/epel7/pingou'])
     msg = {
         "i": 1,
         "timestamp": 1408440084,
@@ -1389,7 +1389,7 @@ class TestPkgdbPackageRequest(Base):
         "?s=64&d=retro")
     expected_packages = set(['guake'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['new/package/request/guake/master/pingou/'])
+    expected_objects = set(['new/package/request/guake/master/pingou'])
     msg = {
         "i": 3,
         "timestamp": 1408440927,
@@ -1437,7 +1437,7 @@ class TestPkgdbAdminActionUpdate(Base):
         "?s=64&d=retro")
     expected_packages = set(['guake'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['action/18/status/guake/master/pingou/'])
+    expected_objects = set(['action/18/status/guake/master/pingou'])
     msg = {
         "i": 6,
         "timestamp": 1408441710,
@@ -1705,7 +1705,7 @@ class TestPkgdbPackageBranchNew(Base):
         "?s=64&d=retro")
     expected_packages = set(['R-BSgenome'])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['R-BSgenome/epel7/new/'])
+    expected_objects = set(['R-BSgenome/epel7/new'])
     msg = {
         "i": 1,
         "timestamp": 1408957258,
@@ -1748,6 +1748,45 @@ class TestPkgdbPackageBranchNew(Base):
                 "creation_date": 1400063778.0,
                 "review_url": None,
                 "name": "R-BSgenome"
+            }
+        }
+    }
+
+
+class TestPkgdbPackageMonitorUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when a **new branch** is created for a
+    package.
+    """
+    expected_title = "pkgdb.package.monitor.update"
+    expected_subti = ("pingou set the monitor flag of guake to False")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['guake'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['guake/monitor/false'])
+    msg = {
+        "username": "pingou",
+        "i": 3,
+        "timestamp": 1412957736,
+        "msg_id": "2014-905aaa3c-483d-4923-95f7-56a8da38da62",
+        "topic": "org.fedoraproject.dev.pkgdb.package.monitor.update",
+        "msg": {
+            "status": False,
+            "agent": "pingou",
+            "package": {
+                "status": "Approved",
+                "upstream_url": "http://www.guake.org/",
+                "description": "Guake is a drop-down terminal for Gnome Desktop Environment,\nso you just need to press a key to invoke him,\nand press again to hide.",
+                "summary": "Drop-down terminal for GNOME",
+                "acls": [],
+                "creation_date": 1397204290.0,
+                "review_url": None,
+                "name": "guake"
             }
         }
     }

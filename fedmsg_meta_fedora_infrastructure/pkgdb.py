@@ -25,6 +25,7 @@ try:
 except ImportError:
     from ordereddict import OrderedDict
 
+import conglomerators.pkgdb.acls
 
 def get_agent(msg):
     """ Handy hack to handle legacy messages where 'agent' was a list.  """
@@ -42,6 +43,11 @@ class PkgdbProcessor(BaseProcessor):
     __obj__ = "Package ACL Updates"
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
+    conglomerators = [
+        conglomerators.pkgdb.acls.BySubject,
+        conglomerators.pkgdb.acls.ByPackage,
+        conglomerators.pkgdb.acls.ByAgent,
+    ]
 
     def subtitle(self, msg, **config):
         if 'pkgdb.acl.update' in msg['topic']:
@@ -311,6 +317,13 @@ class PkgdbProcessor(BaseProcessor):
             branches = ', '.join(msg['msg']['branches'])
             return tmpl.format(agent=agent, action=action,
                                package=package, branches=branches)
+        elif msg['topic'].endswith('pkgdb.package.monitor.update'):
+            tmpl = self._(
+                u"{agent} set the monitor flag of {package} to {status}")
+            agent = msg['msg']['agent']
+            status = msg['msg']['status']
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, status=status, package=package)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -423,7 +436,7 @@ class PkgdbProcessor(BaseProcessor):
         elif 'pkgdb.package.branch.new' in msg['topic']:
             package = _msg['package']['name']
             branch = _msg['package_listing']['collection']['branchname']
-            objs.add('{package}/{branch}/new/'.format(
+            objs.add('{package}/{branch}/new'.format(
                 package=package, branch=branch))
         elif 'pkgdb.acl.delete' in msg['topic']:
             objs.add('{package}/acls/{branch}/{acl}/{user}'.format(
@@ -433,20 +446,20 @@ class PkgdbProcessor(BaseProcessor):
                 user=_msg['acl']['fas_name'],
             ))
         elif msg['topic'].endswith('pkgdb.package.branch.request'):
-            objs.add('{package}/branch/request/{branch}/{user}/'.format(
+            objs.add('{package}/branch/request/{branch}/{user}'.format(
                 package=_msg['package']['name'],
                 branch=_msg['collection_to']['branchname'],
                 user=_msg['agent'],
             ))
         elif msg['topic'].endswith('pkgdb.package.new.request'):
-            objs.add('new/package/request/{package}/{branch}/{user}/'.format(
+            objs.add('new/package/request/{package}/{branch}/{user}'.format(
                 package=_msg['info']['pkg_name'],
                 branch=_msg['collection']['branchname'],
                 user=_msg['agent'],
             ))
         elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
             objs.add(
-                'action/{actionid}/status/{package}/{branch}/{user}/'.format(
+                'action/{actionid}/status/{package}/{branch}/{user}'.format(
                     actionid=_msg['action']['id'],
                     package=_msg['action']['info']['pkg_name'],
                     branch=_msg['action']['collection']['branchname'],
@@ -455,6 +468,12 @@ class PkgdbProcessor(BaseProcessor):
             )
         elif msg['topic'].endswith('pkgdb.package.critpath.update'):
             objs.add(_msg['package']['name'] + "/critpath")
+        elif msg['topic'].endswith('pkgdb.package.monitor.update'):
+            objs.add(
+                '{package}/monitor/{status}'.format(
+                package=_msg['package']['name'],
+                status=str(_msg['status']).lower())
+            )
 
         return objs
 
