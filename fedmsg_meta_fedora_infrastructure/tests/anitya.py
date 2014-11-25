@@ -515,7 +515,7 @@ class TestFirstNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
     try and detect when they release new tarballs.
 
-    *This* message is an example of what that gets published when **the first
+    *This* message is an example of what gets published when **the first
     tarball of a project is ever seen** by `anitya
     <http://release-monitoring.org>`_.
     """
