@@ -442,9 +442,11 @@ class TestFirstNewUpstreamVersionLegacy(Base):
 
 class TestNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
-    try and detect when they release new tarballs.  *These* messages are the
-    ones that get published when a tarball is found that is newer than the
-    one last seen in the `anitya <http://release-monitoring.org>`_ database.
+    try and detect when they release new tarballs.
+
+    *These* messages are the ones that get published when a tarball is found
+    that is newer than the one last seen in the `anitya
+    <http://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.version.update"
     expected_subti = 'A new version of "2ping" has been detected:  ' + \
@@ -511,9 +513,11 @@ class TestNewUpstreamVersion(Base):
 
 class TestFirstNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
-    try and detect when they release new tarballs.  *These* messages are the
-    ones that get published when a tarball is found that is newer than the
-    one last seen in the `anitya <http://release-monitoring.org>`_ database.
+    try and detect when they release new tarballs.
+
+    *This* message is an example of what that gets published when **the first
+    tarball of a project is ever seen** by `anitya
+    <http://release-monitoring.org>`_.
     """
     expected_title = "anitya.project.version.update"
     expected_subti = 'A new version of "2ping" has been detected:  "2.1.1"'
