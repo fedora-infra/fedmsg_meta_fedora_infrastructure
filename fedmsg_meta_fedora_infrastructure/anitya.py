@@ -29,8 +29,8 @@ class AnityaProcessor(BaseProcessor):
 
     __name__ = "anitya"
     __description__ = "Upstream Release Monitoring"
-    __link__ = "http://release-monitoring.org"
-    __docs__ = "http://github.com/fedora-infra/anitya"
+    __link__ = "https://release-monitoring.org"
+    __docs__ = "https://github.com/fedora-infra/anitya"
     __obj__ = "Upstream Releases"
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
@@ -49,9 +49,9 @@ class AnityaProcessor(BaseProcessor):
     def link(self, msg, **config):
         if msg['msg']['project']:
             proj = msg['msg']['project']['id']
-            return "http://release-monitoring.org/project/%s/" % proj
+            return "https://release-monitoring.org/project/%s/" % proj
         else:
-            return "http://release-monitoring.org/distros"
+            return "https://release-monitoring.org/distros"
 
         return None
 
