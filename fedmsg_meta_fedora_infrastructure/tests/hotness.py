@@ -43,7 +43,7 @@ class TestHotnessBugFollowup(Base):
     expected_subti = "scratch build of " + \
         "perl-Makefile-DOM-0.007-1.el7.src.rpm " + \
         "for RHBZ#1143475 completed"
-    expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1143475"
+    expected_link = "https://partner-bugzilla.redhat.com/show_bug.cgi?id=1143475"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = expected_icon
@@ -136,7 +136,7 @@ class TestHotnessBugFile(Base):
         "timestamp": 1416513240,
         "msg_id": "2014-c1fc1501-a043-4e5a-9a50-3076bb6d5089",
         "crypto": "x509",
-        "topic": "org.fedoraproject.stg.hotness.update.bug.file",
+        "topic": "org.fedoraproject.prod.hotness.update.bug.file",
         "msg": {
             "trigger": {
                 "username": "ralph",

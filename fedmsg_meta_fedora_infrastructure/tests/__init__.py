@@ -48,6 +48,7 @@ from fedmsg_meta_fedora_infrastructure.tests.fedimg import *
 from fedmsg_meta_fedora_infrastructure.tests.kerneltest import *
 from fedmsg_meta_fedora_infrastructure.tests.koschei import *
 from fedmsg_meta_fedora_infrastructure.tests.fas import *
+from fedmsg_meta_fedora_infrastructure.tests.hotness import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
