@@ -61,14 +61,14 @@ class TestKojiTaskStateChangeStart(Base):
     expected_objects = set([
         'primary/scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
     ])
-    expected_link = ("http://koji.fedoraproject.org/koji/"
+    expected_link = ("http://koji.stg.fedoraproject.org/koji/"
                      "taskinfo?taskID=6380373")
     msg = {
         u'username': u'root',
         u'i': 1,
         u'timestamp': 1389298195,
         u'msg_id': u'2014-10b5b1b6-42c7-4d64-aeae-5029b9515d47',
-        u'topic': u'org.fedoraproject.prod.buildsys.task.state.change',
+        u'topic': u'org.fedoraproject.stg.buildsys.task.state.change',
         u'msg': {
             u'old': u'FREE',
             u'attribute': u'state',
