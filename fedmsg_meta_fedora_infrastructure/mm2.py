@@ -49,6 +49,17 @@ class MirrorManagerProcessor(BaseProcessor):
             tmpl = self._(
                 "mirrormanager's crawler started a crawl of {total} mirrors")
             return tmpl.format(total=total)
+        elif 'mirrormanager.netblocks.get' in topic:
+            type = msg['type']
+
+            if msg['success']:
+                status = self._("successfully updated")
+            else:
+                status = self._("failed to update")
+
+            tmpl = self._(
+                "mirrormanager's backend {status} its {type} netblocks file")
+            return tmpl.format(status=status, type=type)
 
     def secondary_icon(self, msg, **config):
         return self.icon(msg, **config)
@@ -71,6 +82,10 @@ class MirrorManagerProcessor(BaseProcessor):
                     'mirrors/%s' % result['host']['name']
                     for result in msg['msg']['results']
                 ])
+        if 'mirrormanager.netblocks' in msg['topic']:
+            return set([
+                'netblocks/' + msg['msg']['type']
+            ])
 
         return set([])
 
