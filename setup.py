@@ -98,12 +98,13 @@ entry_points = {
         "KernelTestProcessor",
         "koschei=fedmsg_meta_fedora_infrastructure.koschei:KoscheiProcessor",
         "hotness=fedmsg_meta_fedora_infrastructure.hotness:HotnessProcessor",
+        "mm2=fedmsg_meta_fedora_infrastructure.mm2:MirrorManagerProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.3.6',
+    version='0.3.7',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

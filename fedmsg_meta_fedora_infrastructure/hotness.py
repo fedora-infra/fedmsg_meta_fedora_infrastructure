@@ -83,8 +83,10 @@ class HotnessProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         if 'bug' in msg['msg']:
-            base = 'https://bugzilla.redhat.com/show_bug.cgi?id=%i'
-            return base % msg['msg']['bug']['bug_id']
+            base = 'bugzilla.redhat.com/show_bug.cgi?id=%i'
+            if '.stg.' in msg['topic']:
+                base = 'partner-' + base
+            return 'https://' + base % msg['msg']['bug']['bug_id']
         else:
             original = msg['msg']['trigger']['msg']
             base = 'https://release-monitoring.org/project/%i/'

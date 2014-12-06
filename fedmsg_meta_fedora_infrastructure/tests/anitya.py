@@ -29,12 +29,12 @@ from common import add_doc
 
 class TestNewDistro(Base):
     """ These messages are published when a new Linux distribution is added
-    to the database of `anitya <http://release-monitoring.org>`_.
+    to the database of `anitya <https://release-monitoring.org>`_.
     """
     expected_title = "anitya.distro.add"
     expected_subti = 'olasd@debian.org added the distro named' + \
         ' "CentOS" to anitya'
-    expected_link = "http://release-monitoring.org/distros"
+    expected_link = "https://release-monitoring.org/distros"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -65,12 +65,12 @@ class TestNewDistro(Base):
 
 class TestEditDistro(Base):
     """ These messages are published when a Linux distribution's entry is
-    edited in the `anitya <http://release-monitoring.org>`_ database.
+    edited in the `anitya <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.distro.edit"
     expected_subti = 'pingou changed a distro name' + \
         ' from "Debia" to "Debian"'
-    expected_link = "http://release-monitoring.org/distros"
+    expected_link = "https://release-monitoring.org/distros"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -102,11 +102,11 @@ class TestEditDistro(Base):
 
 class TestAddProject(Base):
     """ These messages are published when someone adds a new project to
-    `anitya's <http://release-monitoring.org>`_ database.
+    `anitya's <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.add"
     expected_subti = 'ralph added the project "arrow" to anitya'
-    expected_link = "http://release-monitoring.org/project/5314/"
+    expected_link = "https://release-monitoring.org/project/5314/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -145,13 +145,13 @@ class TestAddProject(Base):
 
 class TestAddProjectTried(Base):
     """ These messages are published when someone *tries* to add a new project
-    to `anitya's <http://release-monitoring.org>`_ database, but that project
+    to `anitya's <https://release-monitoring.org>`_ database, but that project
     was already present.
     """
     expected_title = "anitya.project.add.tried"
     expected_subti = 'ralph tried to add the project "ansi2html" to anitya' + \
         ' (but it already exists there)'
-    expected_link = "http://release-monitoring.org/project/4/"
+    expected_link = "https://release-monitoring.org/project/4/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -190,12 +190,12 @@ class TestAddProjectTried(Base):
 
 class TestEditProject(Base):
     """ These messages are published when someone edits the details of a
-    project in `anitya's <http://release-monitoring.org>`_ database.
+    project in `anitya's <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.edit"
     expected_subti = 'ralph edited the following ' + \
         'fields of the "arrow" project: homepage'
-    expected_link = "http://release-monitoring.org/project/5314/"
+    expected_link = "https://release-monitoring.org/project/5314/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -237,11 +237,11 @@ class TestEditProject(Base):
 
 class TestRemoveProject(Base):
     """ These messages are published when someone *removes* a project from
-    `anitya's <http://release-monitoring.org>`_ database.
+    `anitya's <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.remove"
     expected_subti = 'ralph deleted the "guake" project'
-    expected_link = "http://release-monitoring.org/project/5311/"
+    expected_link = "https://release-monitoring.org/project/5311/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -281,12 +281,12 @@ class TestRemoveProject(Base):
 class TestNewMappingProject(Base):
     """ These messages are published when someone maps an upstream project to a
     package name in a particular distribution (in the `anitya
-    <http://release-monitoring.org>`_ database...)
+    <https://release-monitoring.org>`_ database...)
     """
     expected_title = "anitya.project.map.new"
     expected_subti = 'ralph mapped the name of "arrow"' + \
         ' in Fedora to "python-arrow"'
-    expected_link = "http://release-monitoring.org/project/5314/"
+    expected_link = "https://release-monitoring.org/project/5314/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -334,12 +334,12 @@ class TestNewMappingProject(Base):
 class TestUpdatedMappingProject(Base):
     """ These messages are published when someone updates the mapping between
     an upstream project and a package name in a particular distribution
-    (in the `anitya <http://release-monitoring.org>`_ database...)
+    (in the `anitya <https://release-monitoring.org>`_ database...)
     """
     expected_title = "anitya.project.map.update"
     expected_subti = 'ralph updated the name of ' + \
         '"guake" in "Fedora" from "guake2" to "guake"'
-    expected_link = "http://release-monitoring.org/project/5311/"
+    expected_link = "https://release-monitoring.org/project/5311/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -396,7 +396,7 @@ class TestFirstNewUpstreamVersionLegacy(Base):
     expected_title = "anitya.project.version.update"
     expected_subti = 'A new version of "Accanthis-Std" has been ' + \
         'detected:  "20101124"'
-    expected_link = "http://release-monitoring.org/project/22/"
+    expected_link = "https://release-monitoring.org/project/22/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     #expected_secondary_icon = None
@@ -442,14 +442,16 @@ class TestFirstNewUpstreamVersionLegacy(Base):
 
 class TestNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
-    try and detect when they release new tarballs.  *These* messages are the
-    ones that get published when a tarball is found that is newer than the
-    one last seen in the `anitya <http://release-monitoring.org>`_ database.
+    try and detect when they release new tarballs.
+
+    *These* messages are the ones that get published when a tarball is found
+    that is newer than the one last seen in the `anitya
+    <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.version.update"
     expected_subti = 'A new version of "2ping" has been detected:  ' + \
         '"2.1.1" in advance of "2.1.0"'
-    expected_link = "http://release-monitoring.org/project/2/"
+    expected_link = "https://release-monitoring.org/project/2/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     #expected_secondary_icon = None
@@ -511,13 +513,15 @@ class TestNewUpstreamVersion(Base):
 
 class TestFirstNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
-    try and detect when they release new tarballs.  *These* messages are the
-    ones that get published when a tarball is found that is newer than the
-    one last seen in the `anitya <http://release-monitoring.org>`_ database.
+    try and detect when they release new tarballs.
+
+    *This* message is an example of what gets published when **the first
+    tarball of a project is ever seen** by `anitya
+    <https://release-monitoring.org>`_.
     """
     expected_title = "anitya.project.version.update"
     expected_subti = 'A new version of "2ping" has been detected:  "2.1.1"'
-    expected_link = "http://release-monitoring.org/project/2/"
+    expected_link = "https://release-monitoring.org/project/2/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     #expected_secondary_icon = None
@@ -580,13 +584,13 @@ class TestFirstNewUpstreamVersion(Base):
 class TestRemoveMappingProject(Base):
     """ These messages are published when someone *removes* a mapping
     between an upstream project and a package name in a particular
-    distribution (in the `anitya <http://release-monitoring.org>`_
+    distribution (in the `anitya <https://release-monitoring.org>`_
     database...)
     """
     expected_title = "anitya.project.map.remove"
     expected_subti = 'pingou deleted the mapping of ' + \
         '"guake" project on "Fedora"'
-    expected_link = "http://release-monitoring.org/project/5311/"
+    expected_link = "https://release-monitoring.org/project/5311/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -626,12 +630,12 @@ class TestRemoveMappingProject(Base):
 
 class TestRemoveVersionProject(Base):
     """ These messages are published when an admin *removes* a version
-    from a particular project (in the `anitya <http://release-monitoring.org>`_
+    from a particular project (in the `anitya <https://release-monitoring.org>`_
     database...)
     """
     expected_title = "anitya.project.version.remove"
     expected_subti = 'pingou deleted the version 0.7.1.1 of "3proxy"'
-    expected_link = "http://release-monitoring.org/project/3/"
+    expected_link = "https://release-monitoring.org/project/3/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \

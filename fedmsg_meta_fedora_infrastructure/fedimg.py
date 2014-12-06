@@ -31,33 +31,33 @@ class FedimgProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         if 'image.upload' in msg['topic']:
-            if msg['msg']['status'] is "started":
+            if msg['msg']['status'] == "started":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
                 tmpl = self._('Image {image_name} started uploading to {dest}')
                 return tmpl.format(image_name=name, dest=dest)
-            elif msg['msg']['status'] is "completed":
+            elif msg['msg']['status'] == "completed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
                 tmpl = self._('Image {image_name} finished uploading to to {dest}')
                 return tmpl.format(image_name=name, dest=dest)
-            elif msg['msg']['status'] is "failed":
+            elif msg['msg']['status'] == "failed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
                 tmpl = self._('Image {image_name} failed to upload to {dest}')
                 return tmpl.format(image_name=name, dest=dest)
         if 'image.test' in msg['topic']:
-            if msg['msg']['status'] is "started":
+            if msg['msg']['status'] == "started":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
                 tmpl = self._('Image {image_name} started testing on {dest}')
                 return tmpl.format(image_name=name, dest=dest)
-            elif msg['msg']['status'] is "completed":
+            elif msg['msg']['status'] == "completed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
                 tmpl = self._('Image {image_name} finished testing on {dest}')
                 return tmpl.format(image_name=name, dest=dest)
-            elif msg['msg']['status'] is "failed":
+            elif msg['msg']['status'] == "failed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
                 tmpl = self._('Image {image_name} failed testing on {dest}')

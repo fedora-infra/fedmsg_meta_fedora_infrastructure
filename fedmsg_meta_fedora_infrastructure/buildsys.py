@@ -182,6 +182,10 @@ class KojiProcessor(BaseProcessor):
         else:
             raise NotImplementedError("Unhandled instance")
 
+        # One last little switch-a-roo for stg
+        if '.stg.' in msg['topic']:
+            base = "http://koji.stg.fedoraproject.org/koji"
+
         if 'buildsys.tag' in msg['topic'] and 'tag_id' in msg['msg']:
             return base + "/taginfo?tagID=%i" % (
                 msg['msg']['tag_id'])
