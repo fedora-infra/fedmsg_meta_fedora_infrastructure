@@ -1,6 +1,23 @@
 Changelog
 =========
 
+0.3.7
+-----
+
+- Distinguish between these two anitya examples. `728f1e3b5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/728f1e3b58aad49d66b19728ff4585f65b212f77>`_
+- Typofix. `0d15c4c83 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0d15c4c83f1dab6dd21c6910419d1a10a37d5be7>`_
+- Merge pull request #178 from fedora-infra/feature/anitya-de-duplicate `001d0a503 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/001d0a5038f14f665506e9d6512f8586aea2ca71>`_
+- anitya is behind ssl now. `0b7bfd039 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b7bfd0393a40cbe38f341620b0c420f16045904>`_
+- Whoops!  Include hotness tests in the main battery. `1b38710bf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1b38710bfbc0e959104421be0d1626c355c20a72>`_
+- Point hotness messages at partner-bz if they are from the staging environment. `a6fd536a7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a6fd536a7064a472c2d6a98b3197871354d26e7e>`_
+- Point stg koji messages at the stg koji hub. `8984cbca7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8984cbca7b8287d3eb3db420fe2fc589a94f3c4c>`_
+- Merge pull request #179 from fedora-infra/feature/links `ca4f3f678 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ca4f3f678c5695f7b7efc8631ff35911a1dadadd>`_
+- First pass at mirrormanager message handling. `232b817d0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/232b817d016872996251ea7feb4459110f9ec401>`_
+- netblocks messages. `2308e08f2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2308e08f27a9388fd956bdd1d260f7ee6ff09594>`_
+- Fix string comparison in the fedimg proc. `2988d50cd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2988d50cdef4a2c617f20817911826f2f7863f0e>`_
+- Merge pull request #181 from fedora-infra/feature/fedimg-comparison `d936eb60f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d936eb60f8eb83a9e03ee7bdc7d795fabb74d43a>`_
+- Merge pull request #180 from fedora-infra/feature/mm2 `9bdc8293a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bdc8293adb7928cf91fb80dcecd621c259cc57e>`_
+
 0.3.6
 -----
 
