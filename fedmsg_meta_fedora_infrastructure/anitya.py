@@ -138,6 +138,11 @@ class AnityaProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} deleted the version {version} of "{project}"')
             return tmpl.format(user=user, project=project, version=version)
+        elif 'distro.remove' in msg['topic']:
+            project = msg['msg']['distro']['name']
+            tmpl = self._(
+                '{user} deleted the distro "{project}"')
+            return tmpl.format(user=user, project=project)
         else:
             pass
 
@@ -198,6 +203,9 @@ class AnityaProcessor(BaseProcessor):
                 'distros/%s' % distro_old,
                 'distros/%s' % distro_new,
             ])
+        elif 'distro.remove' in msg['topic']:
+            distro = msg['msg']['distro']['name']
+            return set(['distros/%s' % distro])
 
         return set([])
 
