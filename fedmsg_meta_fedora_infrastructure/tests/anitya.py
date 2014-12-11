@@ -676,7 +676,7 @@ class TestRemoveDistro(Base):
     """ These messages are published when an admin *removes* a distribution
     (in the `anitya <https://release-monitoring.org>`_ database...)
     """
-    expected_title = "anitya.project.distro.remove"
+    expected_title = "anitya.distro.remove"
     expected_subti = 'pingou deleted the distro "Arch"'
     expected_link = "https://release-monitoring.org/distros"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
