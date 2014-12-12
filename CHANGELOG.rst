@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.3.8
+-----
+
+- Add support for the messages sent by anitya when the admins delete a distribution `0f1a7f1d1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f1a7f1d1863939760f81f21d4af5c458d376355>`_
+- Fix up topic in anitya's tests `fd54958e4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fd54958e4484248f8f08f63bec571b6b26305d52>`_
+- One more adjustement in the anitya's tests `4de012eb2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4de012eb25dd574e99671fd8daf80ebf032072b4>`_
+- Fix topic for the anitya tests `f8f4e5295 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f8f4e5295670748e4c14627d9bb5afbb78b681a5>`_
+- Fix anitya's unit-tests `f1e55074c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f1e55074c4f56dfc664da4443b25177accb6d6a1>`_
+- Merge pull request #182 from fedora-infra/delete_distro `34bed947b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/34bed947b591bdb6c646ff9fbd9ae04b9a2d9b97>`_
+
 0.3.7
 -----
 
