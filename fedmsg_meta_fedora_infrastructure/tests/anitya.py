@@ -686,7 +686,7 @@ class TestRemoveDistro(Base):
         "?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['distro/Arch'])
+    expected_objects = set(['distros/Arch'])
     msg = {
         "username": "pierrey",
         "i": 4,
