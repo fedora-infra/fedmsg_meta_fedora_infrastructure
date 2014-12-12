@@ -692,7 +692,7 @@ class TestRemoveDistro(Base):
         "i": 4,
         "timestamp": 1418315977,
         "msg_id": "2014-745132e5-17eb-4785-8663-fa89801a08ee",
-        "topic": "release-monitoring.dev.anitya.distro.remove",
+        "topic": "org.release-monitoring.dev.anitya.distro.remove",
         "msg": {
             "project": None,
             "message": {
