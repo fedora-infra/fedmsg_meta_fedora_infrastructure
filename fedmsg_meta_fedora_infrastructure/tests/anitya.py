@@ -672,6 +672,40 @@ class TestRemoveVersionProject(Base):
     }
 
 
+class TestRemoveDistro(Base):
+    """ These messages are published when an admin *removes* a distribution
+    (in the `anitya <https://release-monitoring.org>`_ database...)
+    """
+    expected_title = "anitya.distro.remove"
+    expected_subti = 'pingou deleted the distro "Arch"'
+    expected_link = "https://release-monitoring.org/distros"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['distros/Arch'])
+    msg = {
+        "username": "pierrey",
+        "i": 4,
+        "timestamp": 1418315977,
+        "msg_id": "2014-745132e5-17eb-4785-8663-fa89801a08ee",
+        "topic": "org.release-monitoring.dev.anitya.distro.remove",
+        "msg": {
+            "project": None,
+            "message": {
+                "agent": "pingou@fedoraproject.org",
+                "distro": "Arch"
+            },
+            "distro": {
+                "name": "Arch"
+            }
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
