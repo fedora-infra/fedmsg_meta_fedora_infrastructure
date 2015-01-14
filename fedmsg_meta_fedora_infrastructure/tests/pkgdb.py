@@ -41,7 +41,7 @@ class TestPkgdbACLUpdate(Base):
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['python-sh'])
-    expected_usernames = set(['ralph', 'grover'])
+    expected_usernames = set(['ralph'])
     expected_objects = set(['python-sh/acls/EL-6/watchbugzilla/ralph'])
     msg = {
         "username": "apache",
@@ -94,7 +94,7 @@ class TestPkgdbPackageNew(Base):
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['php-zmq'])
-    expected_usernames = set(['ralph', 'lmacken'])
+    expected_usernames = set(['ralph'])
     expected_objects = set(['php-zmq/create'])
     msg = {
         "username": "apache",
@@ -263,7 +263,7 @@ class TestPkgdbPackageUpdateStatus(Base):
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
     expected_packages = set(['guake'])
-    expected_usernames = set(['ralph', 'pingou'])
+    expected_usernames = set(['ralph'])
     expected_objects = set(['guake/update'])
     msg = {
         "username": "apache",
@@ -1178,7 +1178,7 @@ class TestPkgdbDeleteBranch(Base):
         "a89b57d99dcf12d40ec2b9fb05910b90293b13b0b87415208bedc897bc18a354"
         "?s=64&d=retro")
     expected_packages = set(['pipelight'])
-    expected_usernames = set(['ausil', 'besser82'])
+    expected_usernames = set(['ausil'])
     expected_objects = set(['pipelight/f21/delete'])
     msg = {
         "i": 45,
