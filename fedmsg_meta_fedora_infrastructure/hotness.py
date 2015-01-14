@@ -40,26 +40,51 @@ class HotnessProcessor(BaseProcessor):
             tmpl= self._('the-new-hotness filed a bug on {packages}')
             return tmpl.format(packages=", ".join(packages))
         elif 'hotness.update.bug.followup' in msg['topic']:
+            # This could be one of two different kinds of followup
             original = msg['msg']['trigger']['msg']
-            srpm = original['srpm']
             bug_id = msg['msg']['bug']['bug_id']
+            if 'srpm' in original:
+                srpm = original['srpm']
 
-            # The original statuses from koji can be found like this
-            # >>> import koji
-            # >>> koji.TASK_STATES.keys()
-            # ['FAILED', 'FREE', 'ASSIGNED', 'CANCELED', 'CLOSED', 'OPEN']
-            status_lookup = {
-                'FAILED': self._('failed'),
-                'FREE': self._('submitted'),
-                'ASSIGNED': self._('assigned'),
-                'CANCELLED': self._('cancelled'),
-                'CLOSED': self._('completed'),
-                'OPEN': self._('started'),
-            }
-            status = status_lookup.get(original['new'], 'unknown')
+                # The original task statuses from koji can be found like this
+                # >>> import koji
+                # >>> koji.TASK_STATES.keys()
+                # ['FAILED', 'FREE', 'ASSIGNED', 'CANCELED', 'CLOSED', 'OPEN']
+                status_lookup = {
+                    'FAILED': self._('failed'),
+                    'FREE': self._('submitted'),
+                    'ASSIGNED': self._('assigned'),
+                    'CANCELLED': self._('cancelled'),
+                    'CLOSED': self._('completed'),
+                    'OPEN': self._('started'),
+                }
+                status = status_lookup.get(original['new'], 'unknown')
 
-            tmpl= self._('scratch build of {srpm} for RHBZ#{bug_id} {status}')
-            return tmpl.format(srpm=srpm, bug_id=bug_id, status=status)
+                tmpl= self._('scratch build of {srpm} '
+                             'for RHBZ#{bug_id} {status}')
+                return tmpl.format(srpm=srpm, bug_id=bug_id, status=status)
+            else:
+                user = original['owner']
+                build = '-'.join([
+                    original[k] for k in ['name', 'version', 'release']])
+
+                # The original build statuses from koji can be found like this
+                # >>> import koji
+                # >>> koji.BUILD_STATES
+                # {'BUILDING': 0, 'DELETED': 2, 'CANCELED': 4,
+                # 'COMPLETE': 1, 'FAILED': 3}
+                status_lookup = [
+                    self._('started'),
+                    self._('completed'),
+                    self._('deleted'),
+                    self._('cancelled'),
+                    self._('failed'),
+                ]
+                status = status_lookup[original['new']]
+                tmpl= self._("{user}'s real build of {build} "
+                             "for RHBZ#{bug_id} {status}")
+                return tmpl.format(user=user, build=build,
+                                   bug_id=bug_id, status=status)
         elif 'hotness.update.drop' in msg['topic']:
             original = msg['msg']['trigger']['msg']
             reason = msg['msg']['reason']
