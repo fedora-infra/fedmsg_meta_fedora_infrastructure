@@ -366,7 +366,7 @@ class LegacyTestPkgdbBranchClone(Base):
     }
 
 
-class TestPkgdbCritpathUpdate(Base):
+class TestLegacyPkgdbCritpathUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages on this topic when the critical path status of a
     package changes (when it is either added, or removed from the critical
