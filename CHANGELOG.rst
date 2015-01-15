@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.3.9
+-----
+
+- Add and test the second kind of hotness followup message. `2dd8a3029 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2dd8a30291c2eda3ab8e6290daae0c5d537a1d34>`_
+- Mark a test as Legacy that should have been marked so a while ago. `4319119b4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4319119b49138590d505a1b32a022083769076af>`_
+- No longer stuff package owners in msg2usernames for pkgdb. `1389de4f2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1389de4f295823cae23d60227e32d1f75b3e58f6>`_
+- Merge pull request #184 from fedora-infra/feature/hotness-followup2 `cac1a95e5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cac1a95e5ef3da2edcb2e1fe3bd6420730dd11f4>`_
+- Merge pull request #185 from fedora-infra/feature/pkgdb-usernames-kludge-removal `53443d205 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/53443d205f064269adae20db6c74b96f97f31b3e>`_
+
 0.3.8
 -----
 

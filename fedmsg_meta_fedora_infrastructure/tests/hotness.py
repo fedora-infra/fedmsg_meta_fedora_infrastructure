@@ -26,7 +26,7 @@ from fedmsg_meta_fedora_infrastructure.tests.base import Base
 from common import add_doc
 
 
-class TestHotnessBugFollowup(Base):
+class TestHotnessBugFollowupScratchBuild(Base):
     """ These messages are published by a backend service called
     `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
     It watches for new upstream release notifications from
@@ -34,9 +34,17 @@ class TestHotnessBugFollowup(Base):
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
     scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
 
-    These kinds of messages get published when, after having filed a bug and
-    kicked off a scratch build, the-new-hotness **notices that one of its
-    scratch builds completes** and follows up on a ticket.
+    These kinds of messages get published in a couple different scenarios:
+
+    - After having filed a bug and kicked off a scratch build, the-new-hotness
+      **notices that one of its scratch builds completes** and follows up on a
+      ticket.
+    - After having filed a bug, the-new-hotness **notices that the package
+      owner has completed a real build of the package** and follows up on a
+      ticket.
+
+    The message here is an example of the **first case** where the daemon
+    notices **one of its own scratch builds**:
     """
 
     expected_title = "hotness.update.bug.followup"
@@ -102,6 +110,64 @@ class TestHotnessBugFollowup(Base):
             },
             "bug": { "bug_id": 1143475 },
         }
+    }
+
+
+class TestHotnessBugFollowupRealBuild(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published in a couple different scenarios:
+
+    - After having filed a bug and kicked off a scratch build, the-new-hotness
+      **notices that one of its scratch builds completes** and follows up on a
+      ticket.
+    - After having filed a bug, the-new-hotness **notices that the package
+      owner has completed a real build of the package** and follows up on a
+      ticket.
+
+    The message here is an example of the **second case**, where the daemon
+    notices a **real build**:
+    """
+
+    expected_title = "hotness.update.bug.followup"
+    expected_subti = "jmlich's real build of " + \
+        "gd-2.1.1-1.fc22 for RHBZ#1144231 completed"
+    expected_link = "https://partner-bugzilla.redhat.com/show_bug.cgi?id=1144231"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['bugs/1144231'])
+    msg = {
+        u'username': u'fedmsg',
+        u'msg_id': u'2015-f6b6e30c-bdf7-4200-8d53-7d9c54ce1749',
+        u'topic': u'org.fedoraproject.stg.hotness.update.bug.followup',
+        u'msg': {
+            u'trigger': {
+                u'username ': u'apache',
+                u'msg_id': u'2015-a4653ee6-2ec7-42af-91a9-57c54ef9448c',
+                u'topic': u'org.fedoraproject.prod.buildsys.build.state.change',
+                u'msg': {
+                    u'build_id': 603868,
+                    u'old': 0,
+                    u'name': u'gd',
+                    u'task_id': 8615864,
+                    u'attribute': u'state',
+                    u'instance': u'primary',
+                    u'version': u'2.1.1',
+                    u'owner': u'jmlich',
+                    u'new': 1,
+                    u'release': u'1.fc22',
+                },
+            },
+            u'bug': {u'bug_id': 1144231},
+        },
     }
 
 
@@ -406,7 +472,7 @@ class TestHotnessDropBugzilla(Base):
                 "timestamp": 1416510031,
                 "msg_id": "2014-86d41c9d-3ea0-4ee3-888b-ccf4e2544189",
                 "crypto": "x509",
-                "topic": "org.fedoraproject.stg.anitya.project.version.update",
+                "topic": "org.release-monitoring.prod.anitya.project.version.update",
                 "msg": {
                     "project": {
                         "regex": None,
