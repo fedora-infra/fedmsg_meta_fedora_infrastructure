@@ -354,16 +354,6 @@ class PkgdbProcessor(BaseProcessor):
             pass
 
         try:
-            users.add(msg['msg']['package_listing']['point_of_contact'])
-        except KeyError:
-            pass
-
-        try:
-            users.add(msg['msg']['package_listing']['owner'])
-        except KeyError:
-            pass
-
-        try:
             users.add(msg['msg']['acl']['fas_name'])
         except (KeyError, TypeError):
             pass
