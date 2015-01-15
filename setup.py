@@ -104,7 +104,7 @@ entry_points = {
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.3.8',
+    version='0.3.9',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
