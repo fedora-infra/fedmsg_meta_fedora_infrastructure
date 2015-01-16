@@ -196,13 +196,17 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(title=msg['msg']['update']['title'])
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
+            repo = msg['msg']['repo']
             product = get_sync_product(msg).lower()
             link += product + "/"
 
             if product == 'fedora':
-                link += "linux/updates/"
+                if repo == 'atomic':
+                    link += "linux/atomic/"
+                else:
+                    link += "linux/updates/"
 
-            if msg['msg']['repo'].endswith('testing'):
+            if repo.endswith('testing'):
                 link += "testing/"
 
             link += msg['msg']['release'] + "/"
