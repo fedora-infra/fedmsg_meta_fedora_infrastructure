@@ -45,7 +45,8 @@ class TestSummershumComplete(Base):
         "fedora-infra/summershum/develop/summershum.png")
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "2a5dd5a2f8e889c4384449a208402945a9cddaf5ce9bba0c57851ca54d46c769?s=64&d=retro")
+        "2a5dd5a2f8e889c4384449a208402945a9cddaf5ce9bba0c57851ca54d46c769"
+        "?s=64&d=retro")
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'gnome-online-accounts/gnome-online-accounts-3.11.90.tar.xz/' + \
         '7d32a7ed3653fe4c3de1fd3e9d1e1367/' + \
@@ -90,7 +91,8 @@ class TestSummershumStart(Base):
         "glibc-2.19-58-ga4fb786.tar.gz for glibc"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "6d069809dd6f854ea67299617954ffe913778b72e08a73ba85ec1c5859a3038f?s=64&d=retro")
+        "6d069809dd6f854ea67299617954ffe913778b72e08a73ba85ec1c5859a3038f"
+        "?s=64&d=retro")
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'glibc/glibc-2.19-58-ga4fb786.tar.gz/' + \
         '5f636f8001d1397fa6e233a1009df6c1/' + \
@@ -134,7 +136,8 @@ class TestSummershumFail(Base):
         "glibc-2.19-58-ga4fb786.tar.gz for glibc"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "6d069809dd6f854ea67299617954ffe913778b72e08a73ba85ec1c5859a3038f?s=64&d=retro")
+        "6d069809dd6f854ea67299617954ffe913778b72e08a73ba85ec1c5859a3038f"
+        "?s=64&d=retro")
     expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
         'glibc/glibc-2.19-58-ga4fb786.tar.gz/' + \
         '5f636f8001d1397fa6e233a1009df6c1/' + \
