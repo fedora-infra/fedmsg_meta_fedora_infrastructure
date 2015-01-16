@@ -40,6 +40,9 @@ class TestSummershumComplete(Base):
     expected_subti = "summershum ingested " + \
         "gnome-online-accounts-3.11.90.tar.xz" + \
         " for gnome-online-accounts"
+    expected_icon = (
+        "https://raw.githubusercontent.com/"
+        "fedora-infra/summershum/develop/summershum.png")
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "2a5dd5a2f8e889c4384449a208402945a9cddaf5ce9bba0c57851ca54d46c769?s=64&d=retro")
