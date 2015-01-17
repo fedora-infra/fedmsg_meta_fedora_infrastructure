@@ -517,6 +517,389 @@ class TestHotnessDropBugzilla(Base):
     }
 
 
+class TestHotnessMapFailAmbiguous(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published when a new package gets added to
+    Fedora and the-new-hotness **tries to add that package to
+    release-monitoring.org**, but fails.
+    """
+
+    expected_title = "hotness.project.map"
+    expected_subti = "hotness tried to map python-django-angular to an " + \
+        "upstream project, but failed due to ambiguity.  3 other projects " + \
+        "share the same homepage"
+    expected_link = "https://bugzilla.redhat.com/1182533"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set(['python-django-angular'])
+    expected_usernames = set([])
+    expected_objects = set(['packages/python-django-angular'])
+    msg = {
+        'msg_id': '2015-30c4b30d-ca69-4c95-bad9-8e4c0b5d8fdb',
+        'timestamp': 1421445401,
+        'topic': u'org.fedoraproject.prod.hotness.project.map',
+        'msg': {
+            'success': False,
+            'total': 3,
+            'trigger': {
+                u'msg_id': u'2015-b5cb92c6-9bdf-4807-ab29-2604ee93b407',
+                u'timestamp': 1421445385,
+                u'topic': u'org.fedoraproject.prod.pkgdb.package.new',
+                u'msg': {
+                    u'agent': u'limb',
+                    u'package_listing': {
+                        u'collection': {
+                            u'branchname': u'master',
+                            u'dist_tag': u'.fc22',
+                            u'koji_name': u'rawhide',
+                            u'name': u'Fedora',
+                            u'status': u'Under Development',
+                            u'version': u'devel'
+                        },
+                        u'critpath': False,
+                        u'package': {
+                            u'acls': [],
+                            u'creation_date': 1421329015.0,
+                            u'description': u'',
+                            u'monitor': False,
+                            u'name': u'python-django-angular',
+                            u'review_url': u'https://bugzilla.redhat.com/'
+                            '1182533',
+                            u'status': u'Approved',
+                            u'summary': u'Classes and utility functions to '
+                            'integrate AngularJS with Django',
+                            u'upstream_url': u'https://github.com/jrief/'
+                            'django-angular',
+                        },
+                        u'point_of_contact': u'mrunge',
+                        u'status': u'Approved',
+                        u'status_change': 1421329016.0,
+                    },
+                    u'package_name': u'python-django-angular',
+                },
+            },
+        },
+    }
+
+
+class TestHotnessMapFailJustOne(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published when a new package gets added to
+    Fedora and the-new-hotness **tries to add that package to
+    release-monitoring.org**, but fails.
+    """
+
+    expected_title = "hotness.project.map"
+    expected_subti = "hotness tried to map python-django-angular to the " + \
+        "pre-existing upstream project django-angular, " + \
+        "but failed for unknown reasons"
+    expected_link = "https://release-monitoring.org/project/5510/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set(['python-django-angular'])
+    expected_usernames = set([])
+    expected_objects = set([
+        'projects/django-angular', 'packages/python-django-angular'])
+    msg = {
+        'msg_id': '2015-30c4b30d-ca69-4c95-bad9-8e4c0b5d8fdb',
+        'timestamp': 1421445401,
+        'topic': u'org.fedoraproject.prod.hotness.project.map',
+        'msg': {
+            'success': False,
+            'project': {
+                "backend": "PyPI",
+                "created_on": 1421442402.0,
+                "homepage": "https://pypi.python.org/pypi/django-angular",
+                "id": 5510,
+                "name": "django-angular",
+                "regex": "",
+                "updated_on": 1421442470.0,
+                "version": "0.7.10",
+                "version_url": "",
+                "versions": [
+                    "0.7.10"
+                ]
+            },
+            'trigger': {
+                u'msg_id': u'2015-b5cb92c6-9bdf-4807-ab29-2604ee93b407',
+                u'timestamp': 1421445385,
+                u'topic': u'org.fedoraproject.prod.pkgdb.package.new',
+                u'msg': {
+                    u'agent': u'limb',
+                    u'package_listing': {
+                        u'collection': {
+                            u'branchname': u'master',
+                            u'dist_tag': u'.fc22',
+                            u'koji_name': u'rawhide',
+                            u'name': u'Fedora',
+                            u'status': u'Under Development',
+                            u'version': u'devel'
+                        },
+                        u'critpath': False,
+                        u'package': {
+                            u'acls': [],
+                            u'creation_date': 1421329015.0,
+                            u'description': u'',
+                            u'monitor': False,
+                            u'name': u'python-django-angular',
+                            u'review_url': u'https://bugzilla.redhat.com/'
+                            '1182533',
+                            u'status': u'Approved',
+                            u'summary': u'Classes and utility functions to '
+                            'integrate AngularJS with Django',
+                            u'upstream_url': u'https://github.com/jrief/'
+                            'django-angular',
+                        },
+                        u'point_of_contact': u'mrunge',
+                        u'status': u'Approved',
+                        u'status_change': 1421329016.0,
+                    },
+                    u'package_name': u'python-django-angular',
+                },
+            },
+        },
+    }
+
+
+class TestHotnessMapSucceedJustOne(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published when a new package gets added to
+    Fedora and the-new-hotness **adds that package to
+    release-monitoring.org**.
+    """
+
+    expected_title = "hotness.project.map"
+    expected_subti = "hotness mapped python-django-angular to the " + \
+        "pre-existing upstream project django-angular"
+    expected_link = "https://release-monitoring.org/project/5510/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set(['python-django-angular'])
+    expected_usernames = set([])
+    expected_objects = set([
+        'projects/django-angular', 'packages/python-django-angular'])
+    msg = {
+        'msg_id': '2015-30c4b30d-ca69-4c95-bad9-8e4c0b5d8fdb',
+        'timestamp': 1421445401,
+        'topic': u'org.fedoraproject.prod.hotness.project.map',
+        'msg': {
+            'success': True,
+            'project': {
+                "backend": "PyPI",
+                "created_on": 1421442402.0,
+                "homepage": "https://pypi.python.org/pypi/django-angular",
+                "id": 5510,
+                "name": "django-angular",
+                "regex": "",
+                "updated_on": 1421442470.0,
+                "version": "0.7.10",
+                "version_url": "",
+                "versions": [
+                    "0.7.10"
+                ]
+            },
+            'trigger': {
+                u'msg_id': u'2015-b5cb92c6-9bdf-4807-ab29-2604ee93b407',
+                u'timestamp': 1421445385,
+                u'topic': u'org.fedoraproject.prod.pkgdb.package.new',
+                u'msg': {
+                    u'agent': u'limb',
+                    u'package_listing': {
+                        u'collection': {
+                            u'branchname': u'master',
+                            u'dist_tag': u'.fc22',
+                            u'koji_name': u'rawhide',
+                            u'name': u'Fedora',
+                            u'status': u'Under Development',
+                            u'version': u'devel'
+                        },
+                        u'critpath': False,
+                        u'package': {
+                            u'acls': [],
+                            u'creation_date': 1421329015.0,
+                            u'description': u'',
+                            u'monitor': False,
+                            u'name': u'python-django-angular',
+                            u'review_url': u'https://bugzilla.redhat.com/'
+                            '1182533',
+                            u'status': u'Approved',
+                            u'summary': u'Classes and utility functions to '
+                            'integrate AngularJS with Django',
+                            u'upstream_url': u'https://github.com/jrief/'
+                            'django-angular',
+                        },
+                        u'point_of_contact': u'mrunge',
+                        u'status': u'Approved',
+                        u'status_change': 1421329016.0,
+                    },
+                    u'package_name': u'python-django-angular',
+                },
+            },
+        },
+    }
+
+
+class TestHotnessMapSucceedBrandNew(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published when a new package gets added to
+    Fedora and the-new-hotness **adds that package to
+    release-monitoring.org**.
+    """
+
+    expected_title = "hotness.project.map"
+    expected_subti = "hotness mapped python-django-angular to a " + \
+        "brand-new upstream project"
+    expected_link = u'https://bugzilla.redhat.com/1182533'
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set(['python-django-angular'])
+    expected_usernames = set([])
+    expected_objects = set(['packages/python-django-angular'])
+    msg = {
+        'msg_id': '2015-30c4b30d-ca69-4c95-bad9-8e4c0b5d8fdb',
+        'timestamp': 1421445401,
+        'topic': u'org.fedoraproject.prod.hotness.project.map',
+        'msg': {
+            'success': True,
+            'trigger': {
+                u'msg_id': u'2015-b5cb92c6-9bdf-4807-ab29-2604ee93b407',
+                u'timestamp': 1421445385,
+                u'topic': u'org.fedoraproject.prod.pkgdb.package.new',
+                u'msg': {
+                    u'agent': u'limb',
+                    u'package_listing': {
+                        u'collection': {
+                            u'branchname': u'master',
+                            u'dist_tag': u'.fc22',
+                            u'koji_name': u'rawhide',
+                            u'name': u'Fedora',
+                            u'status': u'Under Development',
+                            u'version': u'devel'
+                        },
+                        u'critpath': False,
+                        u'package': {
+                            u'acls': [],
+                            u'creation_date': 1421329015.0,
+                            u'description': u'',
+                            u'monitor': False,
+                            u'name': u'python-django-angular',
+                            u'review_url': u'https://bugzilla.redhat.com/'
+                            '1182533',
+                            u'status': u'Approved',
+                            u'summary': u'Classes and utility functions to '
+                            'integrate AngularJS with Django',
+                            u'upstream_url': u'https://github.com/jrief/'
+                            'django-angular',
+                        },
+                        u'point_of_contact': u'mrunge',
+                        u'status': u'Approved',
+                        u'status_change': 1421329016.0,
+                    },
+                    u'package_name': u'python-django-angular',
+                },
+            },
+        },
+    }
+
+
+class TestHotnessMapFailBrandNew(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published when a new package gets added to
+    Fedora and the-new-hotness **tries to add that package to
+    release-monitoring.org** but fails for unknown reasons.
+    """
+
+    expected_title = "hotness.project.map"
+    expected_subti = "hotness tried to map python-django-angular to a " + \
+        "brand-new upstream project, but failed for unknown reasons"
+    expected_link = u'https://bugzilla.redhat.com/1182533'
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set(['python-django-angular'])
+    expected_usernames = set([])
+    expected_objects = set(['packages/python-django-angular'])
+    msg = {
+        'msg_id': '2015-30c4b30d-ca69-4c95-bad9-8e4c0b5d8fdb',
+        'timestamp': 1421445401,
+        'topic': u'org.fedoraproject.prod.hotness.project.map',
+        'msg': {
+            'success': False,
+            'trigger': {
+                u'msg_id': u'2015-b5cb92c6-9bdf-4807-ab29-2604ee93b407',
+                u'timestamp': 1421445385,
+                u'topic': u'org.fedoraproject.prod.pkgdb.package.new',
+                u'msg': {
+                    u'agent': u'limb',
+                    u'package_listing': {
+                        u'collection': {
+                            u'branchname': u'master',
+                            u'dist_tag': u'.fc22',
+                            u'koji_name': u'rawhide',
+                            u'name': u'Fedora',
+                            u'status': u'Under Development',
+                            u'version': u'devel'
+                        },
+                        u'critpath': False,
+                        u'package': {
+                            u'acls': [],
+                            u'creation_date': 1421329015.0,
+                            u'description': u'',
+                            u'monitor': False,
+                            u'name': u'python-django-angular',
+                            u'review_url': u'https://bugzilla.redhat.com/'
+                            '1182533',
+                            u'status': u'Approved',
+                            u'summary': u'Classes and utility functions to '
+                            'integrate AngularJS with Django',
+                            u'upstream_url': u'https://github.com/jrief/'
+                            'django-angular',
+                        },
+                        u'point_of_contact': u'mrunge',
+                        u'status': u'Approved',
+                        u'status_change': 1421329016.0,
+                    },
+                    u'package_name': u'python-django-angular',
+                },
+            },
+        },
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
