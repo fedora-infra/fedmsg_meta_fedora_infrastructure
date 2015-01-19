@@ -27,7 +27,7 @@ class SummerShumProcessor(BaseProcessor):
     __link__ = "https://github.com/fedora-infra/summershum"
     __docs__ = "https://github.com/fedora-infra/summershum"
     __obj__ = "Source File Hashes"
-    __icon__ = "https://raw2.github.com/" + \
+    __icon__ = "https://raw.githubusercontent.com/" + \
         "fedora-infra/summershum/develop/summershum.png"
 
     def subtitle(self, msg, **config):
