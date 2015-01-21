@@ -1479,6 +1479,72 @@ class TestPkgdbAdminActionUpdate(Base):
         },
     }
 
+class TestPkgdbAdminActionUpdate_Denied(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when a request for a new branch/package is
+    **denied/blocked**.
+    """
+    expected_title = "pkgdb.admin.action.status.update"
+    expected_subti = ("pingou updated action 2 from Awaiting Review to "
+                "Denied with message: This package should not be branched for EPEL7")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['R-Biobase'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['action/2/status/R-Biobase/epel7/pingou'])
+    msg = {
+        "i": 1,
+        "timestamp": 1421830060,
+        "msg_id": "2015-1acdeda2-e571-4071-a893-cc2b7ba46b02",
+        "topic": "org.fedoraproject.dev.pkgdb.admin.action.status.update",
+        "msg": {
+          "action": {
+            "info": {},
+            "status": "Denied",
+            "package": {
+              "status": "Approved",
+              "upstream_url": "http://bioconductor.org/packages/release/bioc/html/Biobase.html",
+              "monitor": False,
+              "description": "Base functions for Bioconductor (bioconductor.org). Biobase provides\nfunctions that are needed by many other Bioconductor packages or which\nreplace R functions.",
+              "summary": "Base functions for Bioconductor",
+              "acls": [],
+              "creation_date": 1400063778.0,
+              "review_url": None,
+              "name": "R-Biobase"
+            },
+            "date_updated": 1421830060.0,
+            "collection": {
+              "status": "Under Development",
+              "dist_tag": ".el7",
+              "koji_name": "epel7",
+              "name": "Fedora EPEL",
+              "version": "7",
+              "branchname": "epel7"
+            },
+            "user": "pingou",
+            "action": "request.branch",
+            "date_created": 1421227282.0,
+            "message": "This package should not be branched for EPEL7",
+            "from_collection": {
+              "status": "Under Development",
+              "dist_tag": ".fc22",
+              "koji_name": "rawhide",
+              "name": "Fedora",
+              "version": "devel",
+              "branchname": "master"
+            },
+            "id": 2
+          },
+          "old_status": "Awaiting Review",
+          "new_status": "Denied",
+          "agent": "pingou"
+        }
+      }
+
 
 class TestPkgdbCritpathUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
