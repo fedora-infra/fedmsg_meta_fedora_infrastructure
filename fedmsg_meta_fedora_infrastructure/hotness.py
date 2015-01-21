@@ -105,6 +105,45 @@ class HotnessProcessor(BaseProcessor):
             }
             errmsg = self._('.... I dunno.  Whatever.')
             return prefix.format(thing=thing) + qualifiers.get(reason, errmsg)
+        elif 'hotness.project.map' in msg['topic']:
+            original = msg['msg']['trigger']['msg']
+            package = original['package_listing']['package']['name']
+
+            if 'total' in msg['msg']:
+                return self._(
+                    'hotness tried to map {package} to an upstream project, '
+                    'but failed due to ambiguity.  {total} other projects '
+                    'share the same homepage').format(
+                        package=package,
+                        total=msg['msg']['total']
+                    )
+            elif 'project' in msg['msg']:
+                if msg['msg']['success']:
+                    return self._(
+                        'hotness mapped {package} to the pre-existing '
+                        'upstream project {project}').format(
+                            package=package,
+                            project=msg['msg']['project']['name'],
+                        )
+                else:
+                    return self._(
+                        'hotness tried to map {package} to the pre-existing '
+                        'upstream project {project}, but failed for unknown '
+                        'reasons').format(
+                            package=package,
+                            project=msg['msg']['project']['name'],
+                        )
+            else:
+                if msg['msg']['success']:
+                    return self._(
+                        'hotness mapped {package} to a '
+                        'brand-new upstream project'
+                    ).format(package=package)
+                else:
+                    return self._(
+                        'hotness tried to map {package} to a brand-new '
+                        'upstream project, but failed for unknown reasons'
+                    ).format(package=package)
 
     def link(self, msg, **config):
         if 'bug' in msg['msg']:
@@ -112,10 +151,16 @@ class HotnessProcessor(BaseProcessor):
             if '.stg.' in msg['topic']:
                 base = 'partner-' + base
             return 'https://' + base % msg['msg']['bug']['bug_id']
-        else:
+        elif 'trigger' in msg['msg']:
             original = msg['msg']['trigger']['msg']
-            base = 'https://release-monitoring.org/project/%i/'
-            return base % original['project']['id']
+            if 'project' in original:
+                base = 'https://release-monitoring.org/project/%i/'
+                return base % original['project']['id']
+            elif 'project' in msg['msg']:
+                base = 'https://release-monitoring.org/project/%i/'
+                return base % msg['msg']['project']['id']
+            elif 'package_listing' in original:
+                return original['package_listing']['package']['review_url']
 
     def secondary_icon(self, msg, **config):
         return self.icon(msg, **config)
@@ -135,6 +180,16 @@ class HotnessProcessor(BaseProcessor):
             projects = ['projects/' + original['project']['name']]
             return set(packages + projects + bugs)
 
+        if 'package_listing' in msg['msg']['trigger']['msg']:
+            original = msg['msg']['trigger']['msg']
+            packages = [
+                'packages/' + original['package_listing']['package']['name']
+            ]
+            projects = []
+            if 'project' in msg['msg']:
+                projects += ['projects/' + msg['msg']['project']['name']]
+            return set(packages + projects)
+
         return set(bugs)
 
     def packages(self, msg, **config):
@@ -144,5 +199,9 @@ class HotnessProcessor(BaseProcessor):
                 pkg['package_name'] for pkg in original['message']['packages']
                 if pkg['distro'] == 'Fedora'
             ])
+
+        if 'package_listing' in msg['msg']['trigger']['msg']:
+            original = msg['msg']['trigger']['msg']
+            return set([original['package_listing']['package']['name']])
 
         return set()

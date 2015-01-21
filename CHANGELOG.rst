@@ -1,6 +1,22 @@
 Changelog
 =========
 
+0.3.10
+------
+
+- Handle Fedora Atomic ftpsync links. `882c623bd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/882c623bd98f9572612899c85bcbbabb91e5f879>`_
+- Merge pull request #189 from fedora-infra/feature/atomic-links `5f4357368 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5f4357368d8009ee3c45fb8e3625378fa8ca627b>`_
+- The summershum icon moved. `77f01db46 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77f01db4623d2b894b28cbfc4243eb07cbeadfa9>`_
+- PEP8. `14008cf14 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/14008cf1440133e7999538302e90b8b082d37d94>`_
+- Handle hotness.project.map messages. `916876f53 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/916876f53d5601b2dd202eb31172018b3331bd03>`_
+- Merge pull request #191 from fedora-infra/feature/hotness-mapping `7c767a849 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7c767a849f1763d2a044eb4ed017c383cee45889>`_
+- Merge pull request #190 from fedora-infra/feature/summershum-icon-change `78b6f5e2a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/78b6f5e2ae3757191ef8c51597fb1a95ec154c38>`_
+- Find out the package concerned when processing admin.action.status.updpte `69613068c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/69613068cc12341ff832ee1386c6f4d67d82d361>`_
+- When returning the list of packages, cover the new branch request messages `68b3caf71 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/68b3caf71d410a85a3f25ddbeba94201b1a3dee8>`_
+- Add the explanatory message in the human readable format `536153367 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/536153367bacf54083cb43aed4b1962aa66dc487>`_
+- Add a new test: an update message for a new branch request that is denied `e13a84d5a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e13a84d5a3f90aada480cc730b91fbba48225164>`_
+- Merge pull request #192 from fedora-infra/fix_pkgdb_for_admin_actions `0b4327faf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b4327faf081c862c4ee6418df72224e4f7d3de7>`_
+
 0.3.9
 -----
 

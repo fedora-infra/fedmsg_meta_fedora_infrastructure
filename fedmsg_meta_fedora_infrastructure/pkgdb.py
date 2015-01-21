@@ -304,9 +304,13 @@ class PkgdbProcessor(BaseProcessor):
             actionid = _msg['action']['id']
             old_status = _msg['old_status']
             new_status = _msg['new_status']
+            message = _msg['action'].get('message', None)
+            if message:
+                tmpl += self._(" with message: {message}")
             agent = msg['msg']['agent']
             return tmpl.format(agent=agent, actionid=actionid,
-                               old_status=old_status, new_status=new_status)
+                               old_status=old_status, new_status=new_status,
+                               message=message)
         elif msg['topic'].endswith('pkgdb.package.critpath.update'):
             tmpl = self._(
                 u"{agent} {action} the critpath flag on the "
@@ -448,10 +452,13 @@ class PkgdbProcessor(BaseProcessor):
                 user=_msg['agent'],
             ))
         elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
+            package = _msg['action'].get('info', {}).get('pkg_name', None)
+            if not package:
+                package = _msg['action']['package']['name']
             objs.add(
                 'action/{actionid}/status/{package}/{branch}/{user}'.format(
                     actionid=_msg['action']['id'],
-                    package=_msg['action']['info']['pkg_name'],
+                    package=package,
                     branch=_msg['action']['collection']['branchname'],
                     user=_msg['agent'],
                 )
@@ -501,6 +508,11 @@ class PkgdbProcessor(BaseProcessor):
 
         try:
             packages.add(msg['msg']['action']['info']['pkg_name'])
+        except (KeyError, TypeError):
+            pass
+
+        try:
+            packages.add(msg['msg']['action']['package']['name'])
         except (KeyError, TypeError):
             pass
 
