@@ -304,9 +304,13 @@ class PkgdbProcessor(BaseProcessor):
             actionid = _msg['action']['id']
             old_status = _msg['old_status']
             new_status = _msg['new_status']
+            message = _msg['action'].get('message', None)
+            if message:
+                tmpl += self._(" with message: {message}")
             agent = msg['msg']['agent']
             return tmpl.format(agent=agent, actionid=actionid,
-                               old_status=old_status, new_status=new_status)
+                               old_status=old_status, new_status=new_status,
+                               message=message)
         elif msg['topic'].endswith('pkgdb.package.critpath.update'):
             tmpl = self._(
                 u"{agent} {action} the critpath flag on the "
