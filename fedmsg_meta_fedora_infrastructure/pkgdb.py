@@ -507,6 +507,11 @@ class PkgdbProcessor(BaseProcessor):
         except (KeyError, TypeError):
             pass
 
+        try:
+            packages.add(msg['msg']['action']['package']['name'])
+        except (KeyError, TypeError):
+            pass
+
         return packages
 
     def link(self, msg, **config):
