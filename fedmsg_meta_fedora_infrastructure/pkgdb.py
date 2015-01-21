@@ -448,10 +448,13 @@ class PkgdbProcessor(BaseProcessor):
                 user=_msg['agent'],
             ))
         elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
+            package = _msg['action'].get('info', {}).get('pkg_name', None)
+            if not package:
+                package = _msg['action']['package']['name']
             objs.add(
                 'action/{actionid}/status/{package}/{branch}/{user}'.format(
                     actionid=_msg['action']['id'],
-                    package=_msg['action']['info']['pkg_name'],
+                    package=package,
                     branch=_msg['action']['collection']['branchname'],
                     user=_msg['agent'],
                 )
