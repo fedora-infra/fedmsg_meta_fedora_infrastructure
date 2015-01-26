@@ -522,6 +522,13 @@ class PkgdbProcessor(BaseProcessor):
         tmpl = "https://admin.fedoraproject.org/pkgdb/package/{package}/"
 
         if any(map(msg['topic'].__contains__, [
+            'pkgdb.package.new.request',
+        ])):
+            return tmpl.format(
+                package=msg['msg']['info']['pkg_name']
+            )
+
+        if any(map(msg['topic'].__contains__, [
             'pkgdb.acl.update',
             'pkgdb.acl.request.toggle',
             'pkgdb.owner.update',
