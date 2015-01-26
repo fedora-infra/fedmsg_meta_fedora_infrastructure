@@ -82,6 +82,8 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['comment']['author']
         elif 'bodhi.buildroot_override' in msg['topic']:
             username = msg['msg']['override']['submitter']
+        elif 'bodhi.stack' in msg['topic']:
+            username = msg['msg']['agent']
         else:
             username = msg['msg'].get('update', {}).get('submitter')
         gravatar = ''
@@ -183,17 +185,26 @@ class BodhiProcessor(BaseProcessor):
                 )
             else:
                 return tmpl.format(**msg['msg']['override'])
+        elif 'bodhi.stack.save' in msg['topic']:
+            tmpl = self._("{agent} updated the \"{name}\" stack")
+            agent = msg['msg']['agent']
+            name = msg['msg']['stack']['name']
+            return tmpl.format(agent=agent, name=name)
         else:
             raise NotImplementedError("%r" % msg)
 
     def link(self, msg, **config):
-        tmpl = "https://admin.fedoraproject.org/updates/{title}"
+        prefix = 'https://admin.fedoraproject.org'
+        tmpl = prefix + "/updates/{title}"
         if 'bodhi.update.comment' in msg['topic']:
             return tmpl.format(title=msg['msg']['comment']['update_title'])
         elif 'bodhi.update.complete' in msg['topic']:
             return tmpl.format(title=msg['msg']['update']['title'])
         elif 'bodhi.update.request' in msg['topic']:
             return tmpl.format(title=msg['msg']['update']['title'])
+        elif 'bodhi.stack' in msg['topic']:
+            return prefix + "/updates/stacks/{title}".format(
+                title=msg['msg']['stack']['name'])
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
             repo = msg['msg']['repo']
@@ -221,6 +232,8 @@ class BodhiProcessor(BaseProcessor):
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
             return set(self._u2p(msg['msg']['override']['build']))
+        elif 'bodhi.stack' in msg['topic']:
+            return set([p['name'] for p in msg['msg']['stack']['packages']])
 
         return set()
 
@@ -243,6 +256,9 @@ class BodhiProcessor(BaseProcessor):
             mentions = re.findall('@\w+', text)
             for mention in mentions:
                 users.append(mention[1:])
+
+        if 'agent' in msg['msg']:
+            users.append(msg['msg']['agent'])
 
         return set(users)
 
@@ -273,5 +289,12 @@ class BodhiProcessor(BaseProcessor):
                 'packages/' + p for p in
                 self._u2p(msg['msg']['override']['build'])
             ])
+        elif 'bodhi.stack' in msg['topic']:
+            return set(
+                [
+                    'packages/' + p['name']
+                    for p in msg['msg']['stack']['packages']
+                ] + ['stacks/' + msg['msg']['stack']['name']]
+            )
 
         return set()

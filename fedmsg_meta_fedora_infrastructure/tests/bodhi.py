@@ -146,7 +146,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "0d574577afa8deac19df2673cdea9aef45549ff8fac798ddaba61541c69e185a?s=64&d=retro"
-    expected_usernames = set(['hadess'])
+    expected_usernames = set(['lmacken', 'hadess'])
     expected_packages = set(['gnome-settings-daemon', 'control-center'])
     expected_objects = set([
         'packages/gnome-settings-daemon',
@@ -607,6 +607,66 @@ class TestBodhiOverrideUntagged(Base):
             }
         }
     }
+
+
+class TestBodhiStackSave(Base):
+    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_ introduced the
+    concept of *stacks* of packages that can be grouped for to share
+    requirements.  That system publishes messages like this anytime a user
+    **modifies or creates a new stack**.
+    """
+    expected_title = "bodhi.stack.save"
+    expected_subti = "ralph updated the \"hacking\" stack"
+    expected_link = "https://admin.fedoraproject.org/updates/stacks/hacking"
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['nethack'])
+    expected_objects = set(['packages/nethack', 'stacks/hacking'])
+
+    msg = {
+        "username": "threebean",
+        "i": 2,
+        "timestamp": 1422302779,
+        "msg_id": "2015-21b9ae33-3fdf-42ab-aecb-5717d0d76018",
+        "topic": "org.fedoraproject.dev.bodhi.stack.save",
+        "msg": {
+            "stack": {
+                "requirements": "depcheck upgradepath",
+                "description": "the greatest game you will ever play",
+                "name": "hacking",
+                "groups": [],
+                "packages": [
+                    {
+                        "committers": [],
+                        "requirements": "depcheck upgradepath",
+                        "builds": [],
+                        "stack_id": 9,
+                        "test_cases": [],
+                        "stack": 9,
+                        "name": "nethack"
+                    }
+                ],
+                "users": [
+                    {
+                        "buildroot_overrides": [],
+                        "stacks": [
+                            1,
+                            8,
+                            9
+                        ],
+                        "name": "ralph",
+                        "avatar": None
+                    }
+                ]
+            },
+            "agent": "ralph"
+        }
+    }
+
 
 
 add_doc(locals())
