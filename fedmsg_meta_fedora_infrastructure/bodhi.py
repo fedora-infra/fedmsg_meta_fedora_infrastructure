@@ -190,6 +190,11 @@ class BodhiProcessor(BaseProcessor):
             agent = msg['msg']['agent']
             name = msg['msg']['stack']['name']
             return tmpl.format(agent=agent, name=name)
+        elif 'bodhi.stack.delete' in msg['topic']:
+            tmpl = self._("{agent} deleted the \"{name}\" stack")
+            agent = msg['msg']['agent']
+            name = msg['msg']['stack']['name']
+            return tmpl.format(agent=agent, name=name)
         else:
             raise NotImplementedError("%r" % msg)
 
