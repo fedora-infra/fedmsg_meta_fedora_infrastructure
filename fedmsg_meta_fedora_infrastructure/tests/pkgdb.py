@@ -1383,6 +1383,7 @@ class TestPkgdbPackageRequest(Base):
     expected_subti = ("pingou requested package guake on branch master")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
