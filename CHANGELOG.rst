@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.11
+0.3.12
 ------
 
 - Handle Fedora Atomic ftpsync links. `882c623bd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/882c623bd98f9572612899c85bcbbabb91e5f879>`_
@@ -20,6 +20,9 @@ Changelog
 - Create test to elicit the error from #193. `2fa9cb4e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2fa9cb4e1670475cac0eab0e3fed99511b5bf1e8>`_
 - Fix #193. `65270ecd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/65270ecd1d6a8c4b68778711746561fbf36b0621>`_
 - Merge pull request #194 from fedora-infra/feature/fix-pkgdb-messages `15d0a6c7a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/15d0a6c7ad9bb0efb316898b619b82ed7a721543>`_
+- 0.3.11 `ace76a125 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ace76a125718fe28d0e2e95d39bd768ead5190fc>`_
+- Handle new sigul messages (via koji). `442be7de2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/442be7de22adef9cd8121bab21e4a0d042d2d0c4>`_
+- Merge pull request #196 from fedora-infra/feature/sigul `6b7f2cec2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b7f2cec2b23b84097ed0f31219909c4efcfaf5d>`_
 
 0.3.9
 -----
@@ -273,6 +276,17 @@ Changelog
 - Add the explanatory message in the human readable format `536153367 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/536153367bacf54083cb43aed4b1962aa66dc487>`_
 - Add a new test: an update message for a new branch request that is denied `e13a84d5a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e13a84d5a3f90aada480cc730b91fbba48225164>`_
 - Merge pull request #192 from fedora-infra/fix_pkgdb_for_admin_actions `0b4327faf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b4327faf081c862c4ee6418df72224e4f7d3de7>`_
+- 0.3.10 `036ee5bbb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/036ee5bbb6aafcf2808b563df7fa19878b98d8a6>`_
+- Create test to elicit the error from #193. `2fa9cb4e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2fa9cb4e1670475cac0eab0e3fed99511b5bf1e8>`_
+- Fix #193. `65270ecd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/65270ecd1d6a8c4b68778711746561fbf36b0621>`_
+- Merge pull request #194 from fedora-infra/feature/fix-pkgdb-messages `15d0a6c7a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/15d0a6c7ad9bb0efb316898b619b82ed7a721543>`_
+
+0.3.11
+------
+
+- Create test to elicit the error from #193. `2fa9cb4e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2fa9cb4e1670475cac0eab0e3fed99511b5bf1e8>`_
+- Fix #193. `65270ecd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/65270ecd1d6a8c4b68778711746561fbf36b0621>`_
+- Merge pull request #194 from fedora-infra/feature/fix-pkgdb-messages `15d0a6c7a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/15d0a6c7ad9bb0efb316898b619b82ed7a721543>`_
 
 0.3.10
 ------
