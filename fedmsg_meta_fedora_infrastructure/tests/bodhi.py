@@ -571,6 +571,42 @@ class TestBodhiOverrideTagged(Base):
         "topic": "org.fedoraproject.stg.bodhi.buildroot_override.tag",
         "msg": {
             "override": {
+                "build": {
+                    "nvr": "fedmsg-1.0-1",
+                    "override": 1,
+                },
+                "submitter": {
+                    "name": "lmacken",
+                },
+            }
+        }
+    }
+
+
+class LegacyTestBodhiOverrideTagged(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a user **requests a buildroot
+    override** for an update.
+    """
+    expected_title = "bodhi.buildroot_override.tag"
+    expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
+    expected_markup = (
+        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
+    expected_usernames = set(['lmacken'])
+    expected_packages = set(['fedmsg'])
+    expected_objects = set(['packages/fedmsg'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1344344053.2337201,
+        "topic": "org.fedoraproject.stg.bodhi.buildroot_override.tag",
+        "msg": {
+            "override": {
                 "build": "fedmsg-1.0-1",
                 "submitter": "lmacken",
             }
@@ -579,6 +615,43 @@ class TestBodhiOverrideTagged(Base):
 
 
 class TestBodhiOverrideUntagged(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever a user explicitly removes a
+    previously requested buildroot override.
+    """
+    expected_title = "bodhi.buildroot_override.untag"
+    expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
+    expected_markup = (
+        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
+    expected_usernames = set(['lmacken'])
+    expected_packages = set(['fedmsg'])
+    expected_objects = set(['packages/fedmsg'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1344964395.207541,
+        "topic": "org.fedoraproject.stg.bodhi.buildroot_override.untag",
+        "msg": {
+            "override": {
+                "build": {
+                    "nvr": "fedmsg-1.0-1",
+                    "override": 1,
+                },
+                "submitter": {
+                    "name": "lmacken",
+                },
+            }
+        }
+    }
+
+
+
+class LegacyTestBodhiOverrideUntagged(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
     publishes messages on this topic whenever a user explicitly removes a
     previously requested buildroot override.

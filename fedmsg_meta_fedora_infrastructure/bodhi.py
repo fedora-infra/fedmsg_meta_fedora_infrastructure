@@ -82,6 +82,8 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['comment']['author']
         elif 'bodhi.buildroot_override' in msg['topic']:
             username = msg['msg']['override']['submitter']
+            if isinstance(username, dict):
+                username = username['name']
         elif 'bodhi.stack' in msg['topic']:
             username = msg['msg']['agent']
         elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
@@ -176,23 +178,37 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             tmpl = self._("{submitter} submitted a buildroot override " +
                           "for {build}")
+
+            submitter = msg['msg']['override']['submitter']
+            build = msg['msg']['override']['build']
+
+            if isinstance(submitter, dict):
+                submitter = submitter['name']
+            if isinstance(build, dict):
+                build = build['nvr']
+
             if markup:
-                return tmpl.format(
-                    submitter=author_link(msg['msg']['override']['submitter']),
-                    build=msg['msg']['override']['build'],
-                )
+                return tmpl.format(submitter=author_link(submitter),
+                                   build=build)
             else:
-                return tmpl.format(**msg['msg']['override'])
+                return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.buildroot_override.untag' in msg['topic']:
             tmpl = self._("{submitter} expired a buildroot override " +
                           "for {build}")
+
+            submitter = msg['msg']['override']['submitter']
+            build = msg['msg']['override']['build']
+
+            if isinstance(submitter, dict):
+                submitter = submitter['name']
+            if isinstance(build, dict):
+                build = build['nvr']
+
             if markup:
-                return tmpl.format(
-                    submitter=author_link(msg['msg']['override']['submitter']),
-                    build=msg['msg']['override']['build'],
-                )
+                return tmpl.format(submitter=author_link(submitter),
+                                   build=build)
             else:
-                return tmpl.format(**msg['msg']['override'])
+                return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.stack.save' in msg['topic']:
             tmpl = self._("{agent} updated the \"{name}\" stack")
             agent = msg['msg']['agent']
@@ -248,7 +264,10 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.edit' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            return set(self._u2p(msg['msg']['override']['build']))
+            nvr = msg['msg']['override']['build']
+            if isinstance(nvr, dict):
+                nvr = nvr['nvr']
+            return set(self._u2p(nvr))
         elif 'bodhi.stack' in msg['topic']:
             return set([p['name'] for p in msg['msg']['stack']['packages']])
 
@@ -259,7 +278,10 @@ class BodhiProcessor(BaseProcessor):
 
         for obj in ['update', 'override']:
             try:
-                users.append(msg['msg'][obj]['submitter'])
+                username = msg['msg'][obj]['submitter']
+                if isinstance(username, dict):
+                    username = username['name']
+                users.append(username)
             except KeyError:
                 pass
 
@@ -307,9 +329,12 @@ class BodhiProcessor(BaseProcessor):
                 self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.buildroot_override.' in msg['topic']:
+            nvr = msg['msg']['override']['build']
+            if isinstance(nvr, dict):
+                nvr = nvr['nvr']
             return set([
                 'packages/' + p for p in
-                self._u2p(msg['msg']['override']['build'])
+                self._u2p(nvr)
             ])
         elif 'bodhi.stack' in msg['topic']:
             return set(
