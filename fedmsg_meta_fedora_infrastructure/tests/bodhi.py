@@ -727,6 +727,119 @@ class TestBodhiStackDelete(Base):
     }
 
 
+class TestBodhiUpdateEdit(Base):
+    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_ publishes
+    this kind of message when a package maintainer **edits a pre-existing
+    update**.
+    """
+    expected_title = "bodhi.update.edit"
+    expected_subti = "ralph edited tzdata-2014i-1.fc19"
+    expected_link = "https://admin.fedoraproject.org/updates/" + \
+        "tzdata-2014i-1.fc19"
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['tzdata'])
+    expected_objects = set(['packages/tzdata'])
+    msg = {
+        "username": "apache",
+        "timestamp": 1422414175,
+        "msg_id": "2015-2b398e44-8012-455f-bfeb-195b9dda18f6",
+        "topic": "org.fedoraproject.dev.bodhi.update.edit",
+        "msg": {
+            "update": {
+                "close_bugs": True,
+                "old_updateid": None,
+                "pushed": False,
+                "require_testcases": True,
+                "critpath": False,
+                "cves": [],
+                "stable_karma": 3,
+                "date_pushed": None,
+                "requirements": "rpmlint",
+                "severity": "unspecified",
+                "title": "tzdata-2014i-1.fc19",
+                "suggest": "unspecified",
+                "require_bugs": True,
+                "comments": [
+                    {
+                        "bug_feedback": [],
+                        "user_id": 1681,
+                        "timestamp": "2015-01-28 03:02:44",
+                        "testcase_feedback": [],
+                        "karma_critpath": 0,
+                        "update": 54046,
+                        "update_id": 54046,
+                        "karma": 0,
+                        "anonymous": False,
+                        "text": "ralph edited this update. ",
+                        "id": 484236,
+                        "user": {
+                            "buildroot_overrides": [],
+                            "stacks": [],
+                            "name": "bodhi",
+                            "avatar": None
+                        }
+                    }
+                ],
+                "date_approved": None,
+                "type": "enhancement",
+                "status": "pending",
+                "date_submitted": "2014-10-29 20:02:57",
+                "unstable_karma": -3,
+                "user": {
+                    "buildroot_overrides": [],
+                    "stacks": [
+                        {
+                            "requirements": "depcheck upgradepath",
+                            "description": "This stack is so hack!",
+                            "name": "Hackey",
+                            "groups": [],
+                            "packages": [],
+                            "users": [
+                                1711
+                            ]
+                        },
+                    ],
+                    "name": "ralph",
+                    "avatar": None
+                },
+                "locked": False,
+                "builds": [
+                    {
+                        "override": None,
+                        "nvr": "tzdata-2014i-1.fc19"
+                    }
+                ],
+                "date_modified": "2015-01-28 03:02:55",
+                "notes": "the update notes go here...",
+                "request": "testing",
+                "bugs": [],
+                "alias": None,
+                "karma": 0,
+                "release": {
+                    "dist_tag": "f19",
+                    "name": "F19",
+                    "testing_tag": "f19-updates-testing",
+                    "pending_stable_tag": "f19-updates-pending",
+                    "long_name": "Fedora 19",
+                    "state": "disabled",
+                    "version": None,
+                    "override_tag": "f19-override",
+                    "branch": None,
+                    "id_prefix": "FEDORA",
+                    "pending_testing_tag": "f19-updates-testing-pending",
+                    "stable_tag": "f19-updates",
+                    "candidate_tag": "f19-updates-candidate"
+                }
+            },
+            "agent": "ralph"
+        }
+    }
+
 
 add_doc(locals())
 

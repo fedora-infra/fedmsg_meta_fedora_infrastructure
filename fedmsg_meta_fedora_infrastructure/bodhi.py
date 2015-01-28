@@ -84,8 +84,11 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['override']['submitter']
         elif 'bodhi.stack' in msg['topic']:
             username = msg['msg']['agent']
+        elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
+            username = msg['msg']['update']['submitter']
         else:
-            username = msg['msg'].get('update', {}).get('submitter')
+            username = msg['msg'].get('agent')
+
         gravatar = ''
         if username:
             gravatar = gravatar_url(username)
@@ -129,6 +132,11 @@ class BodhiProcessor(BaseProcessor):
                 "{author}'s {package} bodhi update completed push to {status}"
             )
             return tmpl.format(author=author, package=package, status=status)
+        elif 'bodhi.update.edit' in msg['topic']:
+            author = msg['msg']['agent']
+            update = msg['msg']['update']['title']
+            tmpl = self._("{author} edited {update}")
+            return tmpl.format(author=author, update=update)
         elif 'bodhi.update.request' in msg['topic']:
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
@@ -207,6 +215,8 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(title=msg['msg']['update']['title'])
         elif 'bodhi.update.request' in msg['topic']:
             return tmpl.format(title=msg['msg']['update']['title'])
+        elif 'bodhi.update.edit' in msg['topic']:
+            return tmpl.format(title=msg['msg']['update']['title'])
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/updates/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
@@ -234,6 +244,8 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.complete' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.update.request' in msg['topic']:
+            return set(self._u2p(msg['msg']['update']['title']))
+        elif 'bodhi.update.edit' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
             return set(self._u2p(msg['msg']['override']['build']))
@@ -285,6 +297,11 @@ class BodhiProcessor(BaseProcessor):
                 self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.update.request' in msg['topic']:
+            return set([
+                'packages/' + p for p in
+                self._u2p(msg['msg']['update']['title'])
+            ])
+        elif 'bodhi.update.edit' in msg['topic']:
             return set([
                 'packages/' + p for p in
                 self._u2p(msg['msg']['update']['title'])
