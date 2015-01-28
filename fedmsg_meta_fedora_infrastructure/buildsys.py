@@ -60,6 +60,10 @@ class KojiProcessor(BaseProcessor):
             tmpl = self._(
                 "Package list change for {package}:  '{tag}'{inst}")
             return tmpl.format(inst=inst, **msg['msg'])
+        elif 'buildsys.rpm.sign' in msg['topic']:
+            tmpl = self._('Koji imported a gpg signature for '
+                          '{name}-{version}-{release}.{arch}.rpm')
+            return tmpl.format(**msg['msg']['info'])
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [
                 self._("{owner}'s {name}-{version}-{release} "
@@ -101,8 +105,6 @@ class KojiProcessor(BaseProcessor):
                 tmpl = tmpl[len("{owner}'s "):]
 
             return tmpl.format(inst=inst, **msg['msg'])
-        else:
-            raise NotImplementedError("%r" % msg)
 
     def secondary_icon(self, msg, **config):
         owner = msg['msg'].get('owner')
@@ -129,6 +131,8 @@ class KojiProcessor(BaseProcessor):
             return set()
         elif 'buildsys.package.list.change' in msg['topic']:
             return set()
+        elif 'buildsys.rpm.sign' in msg['topic']:
+            return set()
         elif 'buildsys.build.state.change' in msg['topic']:
             if msg['msg']['owner']:
                 return set([
@@ -145,8 +149,6 @@ class KojiProcessor(BaseProcessor):
 
             # Sometimes there is no owner
             return set()
-        else:
-            raise NotImplementedError("%r" % msg)
 
     def packages(self, msg, **config):
         if 'buildsys.tag' in msg['topic']:
@@ -159,14 +161,16 @@ class KojiProcessor(BaseProcessor):
             return set([])
         elif 'buildsys.package.list.change' in msg['topic']:
             return set([msg['msg']['package']])
+        elif 'buildsys.rpm.sign' in msg['topic']:
+            return set([msg['msg']['info']['name']])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
         elif 'buildsys.task.state.change' in msg['topic']:
             # We can't *really* associate scratch builds with a package,
             # honestly.
             return set([])
-        else:
-            raise NotImplementedError("%r" % msg)
+
+        return set()
 
     def link(self, msg, **config):
 
@@ -206,6 +210,9 @@ class KojiProcessor(BaseProcessor):
                 % (msg['msg']['id'])
         elif 'buildsys.package.list.change' in msg['topic']:
             return None
+        elif 'buildsys.rpm.sign' in msg['topic']:
+            return base + "/buildinfo?buildID=%i" \
+                % (msg['msg']['info']['build_id'])
         else:
             return base
 
@@ -274,5 +281,7 @@ class KojiProcessor(BaseProcessor):
                 'tags',
                 msg['msg'].get('tag', 'unknown'),
             ])])
-        else:
-            raise NotImplementedError("%r" % msg)
+        elif 'buildsys.rpm.sign' in msg['topic']:
+            return set(['signatures/' + msg['msg']['info']['name']])
+
+        return set()

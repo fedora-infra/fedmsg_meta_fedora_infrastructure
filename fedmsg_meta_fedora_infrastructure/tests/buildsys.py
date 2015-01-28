@@ -466,6 +466,60 @@ class TestKojiPackageListChange(Base):
     }
 
 
+class TestKojiRPMSign(Base):
+    """ Koji emits these messages a package is signed with GPG.
+
+    For more information, see the `sigul project
+    <https://fedorahosted.org/sigul/>`_.
+    """
+    expected_title = "buildsys.rpm.sign"
+    expected_subti = "Koji imported a gpg signature for " + \
+        "gstreamer1-plugins-base-devel-1.4.5-1.fc21.i686.rpm"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=607658")
+    expected_secondary_icon = expected_icon
+    expected_packages = set(["gstreamer1-plugins-base-devel"])
+    expected_usernames = set([])
+    expected_objects = set([
+        'signatures/gstreamer1-plugins-base-devel',
+    ])
+
+    msg = {
+        "username": "apache",
+        "i": 15,
+        "timestamp": 1422465977,
+        "msg_id": "2015-271fd050-3198-46f8-b0b1-4bcf6e70bdd0",
+        "crypto": "x509",
+        "topic": "org.fedoraproject.prod.buildsys.rpm.sign",
+        "msg": {
+            "info": {
+                "build_id": 607658,
+                "name": "gstreamer1-plugins-base-devel",
+                "buildroot_id": 2877398,
+                "buildtime": 1422465286,
+                "sighash": "8f84058e6bbcae89701271e8b0c43d1d",
+                "sigkey": "",
+                "id": 5928874,
+                "epoch": None,
+                "version": "1.4.5",
+                "arch": "i686",
+                "release": "1.fc21",
+                "external_repo_id": 0,
+                "payloadhash": "05bc945666248817e0b5346f811bbac0",
+                "external_repo_name": "INTERNAL",
+                "size": 266720
+            },
+            "attribute": "sighash",
+            "old": None,
+            "new": "8f84058e6bbcae89701271e8b0c43d1d",
+            "instance": "primary"
+        }
+    }
+
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
