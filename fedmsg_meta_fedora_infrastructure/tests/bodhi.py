@@ -122,6 +122,42 @@ class LegacyTestBodhiUpdateComplete(Base):
     }
 
 
+class TestBodhiUpdateComplete(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever an update
+    **completes it's push to the testing repository**.  Here's a
+    straightforward example:
+    """
+    expected_title = "bodhi.update.complete.testing"
+    expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
+        "completed push to testing"
+    expected_link = "https://admin.fedoraproject.org/updates/" + \
+        "fedmsg-0.2.7-2.el6"
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['fedmsg'])
+    expected_objects = set(['packages/fedmsg'])
+
+    msg = {
+        "i": 88,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.bodhi.update.complete.testing",
+        "msg": {
+            "update": {
+                "title": "fedmsg-0.2.7-2.el6",
+                "submitter": {
+                    "name": "ralph",
+                },
+                "status": "testing",
+            }
+        }
+    }
+
+
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
     publishes messages on this topic whenever a *user* requests that an update
@@ -255,7 +291,7 @@ class TestBodhiMashTaskMashing(Base):
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
     expected_title = "bodhi.mashtask.mashing"
-    expected_subti = "bodhi masher is mashing test_repo"
+    expected_subti = "bodhi masher started mashing test_repo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = ''
@@ -265,6 +301,8 @@ class TestBodhiMashTaskMashing(Base):
         'topic': "org.fedoraproject.prod.bodhi.mashtask.mashing",
         'msg': {
             'repo': 'test_repo',
+            'updates': [
+            ],
         },
     }
 
@@ -277,7 +315,7 @@ class TestBodhiMashTaskStart(Base):
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
     expected_title = "bodhi.mashtask.start"
-    expected_subti = "bodhi masher started its mashtask"
+    expected_subti = "bodhi masher started a push"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = ''
@@ -295,13 +333,13 @@ class TestBodhiMashTaskComplete(Base):
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
     expected_title = "bodhi.mashtask.complete"
-    expected_subti = "bodhi masher failed to complete its mashtask!"
+    expected_subti = "bodhi masher failed to mash test_repo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = ''
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
-        'msg': {'success': False}
+        'msg': {'success': False, 'repo': 'test_repo'}
     }
 
 
@@ -313,13 +351,14 @@ class TestBodhiMashTaskSyncWaitStart(Base):
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
     expected_title = "bodhi.mashtask.sync.wait"
-    expected_subti = "bodhi masher is waiting on mirror repos to sync"
+    expected_subti = "bodhi masher is waiting for test_repo " + \
+        "to hit the master mirror"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = ''
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
-        'msg': {}
+        'msg': {'repo': 'test_repo'}
     }
 
 
@@ -331,14 +370,15 @@ class TestBodhiMashTaskSyncWaitDone(Base):
     issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
     """
     expected_title = "bodhi.mashtask.sync.done"
-    expected_subti = "bodhi masher finished waiting on mirror repos to sync"
+    expected_subti = "bodhi masher finished waiting for test_repo " + \
+        "to hit the master mirror"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = ''
 
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.done",
-        'msg': {}
+        'msg': {'repo': 'test_repo'}
     }
 
 

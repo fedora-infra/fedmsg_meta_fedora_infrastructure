@@ -82,14 +82,15 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['comment']['author']
         elif 'bodhi.buildroot_override' in msg['topic']:
             username = msg['msg']['override']['submitter']
-            if isinstance(username, dict):
-                username = username['name']
         elif 'bodhi.stack' in msg['topic']:
             username = msg['msg']['agent']
         elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
             username = msg['msg']['update']['submitter']
         else:
             username = msg['msg'].get('agent')
+
+        if isinstance(username, dict):
+            username = username['name']
 
         gravatar = ''
         if username:
@@ -128,6 +129,8 @@ class BodhiProcessor(BaseProcessor):
 
         elif 'bodhi.update.complete.' in msg['topic']:
             author = msg['msg']['update']['submitter']
+            if isinstance(author, dict):
+                author = author['name']
             package = msg['msg']['update']['title']
             status = msg['msg']['update']['status']
             tmpl = self._(
@@ -159,22 +162,26 @@ class BodhiProcessor(BaseProcessor):
                     status=status,
                 )
         elif 'bodhi.mashtask.mashing' in msg['topic']:
-            repo = msg['msg']['repo']
-            tmpl = self._("bodhi masher is mashing {repo}")
+            repo = msg['msg'].get('repo')
+            tmpl = self._("bodhi masher started mashing {repo}")
             return tmpl.format(repo=repo)
         elif 'bodhi.mashtask.start' in msg['topic']:
-            return self._("bodhi masher started its mashtask")
+            return self._("bodhi masher started a push")
         elif 'bodhi.mashtask.complete' in msg['topic']:
             success = msg['msg']['success']
             if success:
-                return self._("bodhi masher successfully completed mashing")
+                tmpl = self._("bodhi masher successfully mashed {repo}")
             else:
-                return self._("bodhi masher failed to complete its mashtask!")
+                tmpl = self._("bodhi masher failed to mash {repo}")
+            return tmpl.format(repo=msg['msg'].get('repo'))
         elif 'bodhi.mashtask.sync.wait' in msg['topic']:
-            return self._("bodhi masher is waiting on mirror repos to sync")
+            return self._("bodhi masher is waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
         elif 'bodhi.mashtask.sync.done' in msg['topic']:
-            return self._("bodhi masher finished waiting on mirror repos "
-                          "to sync")
+            return self._("bodhi masher finished waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             tmpl = self._("{submitter} submitted a buildroot override " +
                           "for {build}")
@@ -307,7 +314,7 @@ class BodhiProcessor(BaseProcessor):
             msg = msg['msg']
             return set(['/'.join([product, msg['repo'], msg['release']])])
         elif 'bodhi.mashtask.mashing' in msg['topic']:
-            return set(['repos/' + msg['msg']['repo']])
+            return set(['repos/' + msg['msg'].get('repo')])
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
                 'packages/' + p for p in
