@@ -122,6 +122,50 @@ class LegacyTestBodhiUpdateComplete(Base):
     }
 
 
+class TestBodhiUpdateEject(Base):
+    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    publishes messages on this topic whenever an update
+    **is ejected from the mash** due to some failure:
+    """
+    expected_title = "bodhi.update.eject"
+    expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
+        "was ejected from the test_repo mash.  Reason: \"some reason\""
+    expected_link = "https://admin.fedoraproject.org/updates/" + \
+        "fedmsg-0.2.7-2.el6"
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_packages = set(['fedmsg'])
+    expected_objects = set(['packages/fedmsg'])
+
+    msg = {
+        "i": 88,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.bodhi.update.eject",
+        "msg": {
+            "update": {
+                "title": "fedmsg-0.2.7-2.el6",
+                "submitter": {
+                    "name": "ralph",
+                },
+                "status": "testing",
+            },
+            "reason": "some reason",
+            "release": {
+                "dist_tag": "el6",
+                "locked": True,
+                "long_name": "Fedora EPEL 6",
+                "name": "EL6",
+            },
+            "request": "testing",
+            "repo": "test_repo",
+        }
+    }
+
+
 class TestBodhiUpdateComplete(Base):
     """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
     publishes messages on this topic whenever an update
