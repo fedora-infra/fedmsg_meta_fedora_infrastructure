@@ -473,8 +473,9 @@ class TestKojiRPMSign(Base):
     <https://fedorahosted.org/sigul/>`_.
     """
     expected_title = "buildsys.rpm.sign"
-    expected_subti = "Koji imported a gpg signature for " + \
-        "gstreamer1-plugins-base-devel-1.4.5-1.fc21.i686.rpm"
+    expected_subti = "Koji build " + \
+        "gstreamer1-plugins-base-devel-1.4.5-1.fc21.i686.rpm signed " + \
+        "with sigkey 'ab845621'"
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_link = ("http://koji.fedoraproject.org/koji/"
@@ -500,7 +501,7 @@ class TestKojiRPMSign(Base):
                 "buildroot_id": 2877398,
                 "buildtime": 1422465286,
                 "sighash": "8f84058e6bbcae89701271e8b0c43d1d",
-                "sigkey": "",
+                "sigkey": "ab845621",
                 "id": 5928874,
                 "epoch": None,
                 "version": "1.4.5",
