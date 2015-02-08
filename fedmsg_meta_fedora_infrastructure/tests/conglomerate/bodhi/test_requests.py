@@ -170,6 +170,8 @@ class TestBodhiConglomerateTestingSamePackageSameUser(
 
         'usernames': set(['pghmcfc']),
         'packages': set(['perl-Devel-CheckBin']),
+        'topics': set(['org.fedoraproject.prod.bodhi.update.request.testing']),
+        'categories': set(['bodhi']),
         'msg_ids': [
             '2014-3db55159-6a93-4659-8eb7-19a24255df9c',
             '2014-8572040e-4456-48cc-b5c2-b457879e82ae',
@@ -345,6 +347,8 @@ class TestBodhiConglomerateTestingSamePackageDifferentUser(
 
         'usernames': set(['pghmcfc', 'ralph']),
         'packages': set(['perl-Devel-CheckBin']),
+        'topics': set(['org.fedoraproject.prod.bodhi.update.request.testing']),
+        'categories': set(['bodhi']),
         'msg_ids': [
             '2014-3db55159-6a93-4659-8eb7-19a24255df9c',
             '2014-8572040e-4456-48cc-b5c2-b457879e82ae',
@@ -521,6 +525,8 @@ class TestBodhiConglomerateTestingSameUserDifferentPackage(
 
         'usernames': set(['pghmcfc']),
         'packages': set(['perl-Devel-CheckBin', 'nethack']),
+        'topics': set(['org.fedoraproject.prod.bodhi.update.request.testing']),
+        'categories': set(['bodhi']),
         'msg_ids': [
             '2014-3db55159-6a93-4659-8eb7-19a24255df9c',
             '2014-8572040e-4456-48cc-b5c2-b457879e82ae',
