@@ -117,6 +117,8 @@ class TestPkgdbConglomerateCommentSubject(
 
         'usernames': set(['mcepl', 'limb']),
         'packages': set(['python-cryptography']),
+        'topics': set(['org.fedoraproject.prod.pkgdb.acl.update']),
+        'categories': set(['pkgdb']),
         'msg_ids': [
             '2014-9e46f5ce-4881-4497-aec4-89cf83332b2d',
             '2014-06ef29dd-adb5-47d8-92aa-f1ead0c4d8f1',
