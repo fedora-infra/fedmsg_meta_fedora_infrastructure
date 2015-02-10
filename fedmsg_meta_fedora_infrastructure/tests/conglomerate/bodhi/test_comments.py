@@ -84,6 +84,8 @@ class TestBodhiConglomerateCommentSameUpdate(
 
         'usernames': set(['volter', 'hreindl']),
         'packages': set(['sqlite']),
+        'topics': set(['org.fedoraproject.prod.bodhi.update.comment']),
+        'categories': set(['bodhi']),
         'msg_ids': [
             '2014-10047900-1379-4ede-ba94-8319823541a8',
             '2014-f0205c2a-205e-4c79-aad3-542429b3fca8',
@@ -172,6 +174,8 @@ class TestBodhiConglomerateCommentSameUser(
 
         'usernames': set(['hreindl']),
         'packages': set(['sqlite', 'file']),
+        'topics': set(['org.fedoraproject.prod.bodhi.update.comment']),
+        'categories': set(['bodhi']),
         'msg_ids': [
             '2014-10047900-1379-4ede-ba94-8319823541a8',
             '2014-c1ccc3bb-e9bc-4424-8b99-6fbfa24a128f',

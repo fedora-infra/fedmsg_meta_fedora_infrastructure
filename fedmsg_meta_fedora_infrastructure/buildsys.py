@@ -61,8 +61,9 @@ class KojiProcessor(BaseProcessor):
                 "Package list change for {package}:  '{tag}'{inst}")
             return tmpl.format(inst=inst, **msg['msg'])
         elif 'buildsys.rpm.sign' in msg['topic']:
-            tmpl = self._('Koji imported a gpg signature for '
-                          '{name}-{version}-{release}.{arch}.rpm')
+            tmpl = self._('Koji build '
+                          '{name}-{version}-{release}.{arch}.rpm '
+                          'signed with sigkey \'{sigkey}\'')
             return tmpl.format(**msg['msg']['info'])
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [

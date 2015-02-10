@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.3.12
-------
+0.4.0
+-----
 
 - Handle Fedora Atomic ftpsync links. `882c623bd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/882c623bd98f9572612899c85bcbbabb91e5f879>`_
 - Merge pull request #189 from fedora-infra/feature/atomic-links `5f4357368 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5f4357368d8009ee3c45fb8e3625378fa8ca627b>`_
@@ -21,8 +21,23 @@ Changelog
 - Fix #193. `65270ecd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/65270ecd1d6a8c4b68778711746561fbf36b0621>`_
 - Merge pull request #194 from fedora-infra/feature/fix-pkgdb-messages `15d0a6c7a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/15d0a6c7ad9bb0efb316898b619b82ed7a721543>`_
 - 0.3.11 `ace76a125 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ace76a125718fe28d0e2e95d39bd768ead5190fc>`_
+- Move bodhi tests to their own module. `6ff109049 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6ff1090492c0923e351bced438f7837fa7b2e616>`_
+- Handle bodhi.stack.save messages. `fba701bba <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fba701bbaf070f96b496ff1898b11b94cb6c4ee4>`_
+- Handle bodhi.stack.delete messages. `529620de6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/529620de620c58678c0b40906c976cc7dcd3e01a>`_
+- Handle bodhi.update.edit messages. `bb945a037 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bb945a037d621fa7685f2ce64ed2b43622229818>`_
 - Handle new sigul messages (via koji). `442be7de2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/442be7de22adef9cd8121bab21e4a0d042d2d0c4>`_
 - Merge pull request #196 from fedora-infra/feature/sigul `6b7f2cec2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b7f2cec2b23b84097ed0f31219909c4efcfaf5d>`_
+- 0.3.12 `2cf84d830 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2cf84d830016ea9f44830468a678ec786809a4a7>`_
+- Handle bodhi1 and bodhi2 buildroot override messages. `1e4e9ded7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1e4e9ded73afed97b4b19756d5b30812fd966aeb>`_
+- Handle mashtask and update.complete.* messages. `d67d0bb9d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d67d0bb9d80e79fc1602988421a13afc6923fafe>`_
+- Handle bodhi.update.eject messages from the mash process. `52cd572a1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/52cd572a104bbaf05de4be4e14b8f858d11faa52>`_
+- Mention the sigkey in the rpm.sign subtitle. `82797fb70 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/82797fb701a80ada5ab902779a05b25e97695fa7>`_
+- Merge pull request #197 from fedora-infra/feature/sigkey `08e02b792 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/08e02b79265767b5055b9b00297794490b82fdd6>`_
+- Merge pull request #195 from fedora-infra/feature/bodhi2 `4780ce209 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4780ce209043ac2d4fa98a47e58711689350fc94>`_
+- Fix tests. `aa2753037 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/aa275303744c3b06029a0008b78290244547959d>`_
+- Merge pull request #198 from fedora-infra/feature/more-grouped-attrs `9804090f2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9804090f24f7187fa1ffe9b1ab867f6b8f92ffbc>`_
+- Demote this error message. `39531fd41 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/39531fd4198cd65053e0fe3208784cec106a1210>`_
+- Merge pull request #199 from fedora-infra/feature/demote-error-message `88353d4cf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/88353d4cfc3527e004bd6957e0f61f95255f92f3>`_
 
 0.3.9
 -----
@@ -280,6 +295,15 @@ Changelog
 - Create test to elicit the error from #193. `2fa9cb4e1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2fa9cb4e1670475cac0eab0e3fed99511b5bf1e8>`_
 - Fix #193. `65270ecd1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/65270ecd1d6a8c4b68778711746561fbf36b0621>`_
 - Merge pull request #194 from fedora-infra/feature/fix-pkgdb-messages `15d0a6c7a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/15d0a6c7ad9bb0efb316898b619b82ed7a721543>`_
+- 0.3.11 `ace76a125 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ace76a125718fe28d0e2e95d39bd768ead5190fc>`_
+- Handle new sigul messages (via koji). `442be7de2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/442be7de22adef9cd8121bab21e4a0d042d2d0c4>`_
+- Merge pull request #196 from fedora-infra/feature/sigul `6b7f2cec2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b7f2cec2b23b84097ed0f31219909c4efcfaf5d>`_
+
+0.3.12
+------
+
+- Handle new sigul messages (via koji). `442be7de2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/442be7de22adef9cd8121bab21e4a0d042d2d0c4>`_
+- Merge pull request #196 from fedora-infra/feature/sigul `6b7f2cec2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b7f2cec2b23b84097ed0f31219909c4efcfaf5d>`_
 
 0.3.11
 ------

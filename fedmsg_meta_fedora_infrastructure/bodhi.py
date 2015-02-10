@@ -82,8 +82,16 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['comment']['author']
         elif 'bodhi.buildroot_override' in msg['topic']:
             username = msg['msg']['override']['submitter']
+        elif 'bodhi.stack' in msg['topic']:
+            username = msg['msg']['agent']
+        elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
+            username = msg['msg']['update']['submitter']
         else:
-            username = msg['msg'].get('update', {}).get('submitter')
+            username = msg['msg'].get('agent')
+
+        if isinstance(username, dict):
+            username = username['name']
+
         gravatar = ''
         if username:
             gravatar = gravatar_url(username)
@@ -121,12 +129,31 @@ class BodhiProcessor(BaseProcessor):
 
         elif 'bodhi.update.complete.' in msg['topic']:
             author = msg['msg']['update']['submitter']
+            if isinstance(author, dict):
+                author = author['name']
             package = msg['msg']['update']['title']
             status = msg['msg']['update']['status']
             tmpl = self._(
                 "{author}'s {package} bodhi update completed push to {status}"
             )
             return tmpl.format(author=author, package=package, status=status)
+        elif 'bodhi.update.eject' in msg['topic']:
+            author = msg['msg']['update']['submitter']
+            if isinstance(author, dict):
+                author = author['name']
+            package = msg['msg']['update']['title']
+            repo = msg['msg']['repo']
+            reason = msg['msg']['reason']
+            tmpl = self._(
+                "{author}'s {package} bodhi update was ejected from "
+                "the {repo} mash.  Reason: \"{reason}\"")
+            return tmpl.format(author=author, package=package,
+                               repo=repo, reason=reason)
+        elif 'bodhi.update.edit' in msg['topic']:
+            author = msg['msg']['agent']
+            update = msg['msg']['update']['title']
+            tmpl = self._("{author} edited {update}")
+            return tmpl.format(author=author, update=update)
         elif 'bodhi.update.request' in msg['topic']:
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
@@ -147,53 +174,89 @@ class BodhiProcessor(BaseProcessor):
                     status=status,
                 )
         elif 'bodhi.mashtask.mashing' in msg['topic']:
-            repo = msg['msg']['repo']
-            tmpl = self._("bodhi masher is mashing {repo}")
+            repo = msg['msg'].get('repo')
+            tmpl = self._("bodhi masher started mashing {repo}")
             return tmpl.format(repo=repo)
         elif 'bodhi.mashtask.start' in msg['topic']:
-            return self._("bodhi masher started its mashtask")
+            return self._("bodhi masher started a push")
         elif 'bodhi.mashtask.complete' in msg['topic']:
             success = msg['msg']['success']
             if success:
-                return self._("bodhi masher successfully completed mashing")
+                tmpl = self._("bodhi masher successfully mashed {repo}")
             else:
-                return self._("bodhi masher failed to complete its mashtask!")
+                tmpl = self._("bodhi masher failed to mash {repo}")
+            return tmpl.format(repo=msg['msg'].get('repo'))
         elif 'bodhi.mashtask.sync.wait' in msg['topic']:
-            return self._("bodhi masher is waiting on mirror repos to sync")
+            return self._("bodhi masher is waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
         elif 'bodhi.mashtask.sync.done' in msg['topic']:
-            return self._("bodhi masher finished waiting on mirror repos "
-                          "to sync")
+            return self._("bodhi masher finished waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             tmpl = self._("{submitter} submitted a buildroot override " +
                           "for {build}")
+
+            submitter = msg['msg']['override']['submitter']
+            build = msg['msg']['override']['build']
+
+            if isinstance(submitter, dict):
+                submitter = submitter['name']
+            if isinstance(build, dict):
+                build = build['nvr']
+
             if markup:
-                return tmpl.format(
-                    submitter=author_link(msg['msg']['override']['submitter']),
-                    build=msg['msg']['override']['build'],
-                )
+                return tmpl.format(submitter=author_link(submitter),
+                                   build=build)
             else:
-                return tmpl.format(**msg['msg']['override'])
+                return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.buildroot_override.untag' in msg['topic']:
             tmpl = self._("{submitter} expired a buildroot override " +
                           "for {build}")
+
+            submitter = msg['msg']['override']['submitter']
+            build = msg['msg']['override']['build']
+
+            if isinstance(submitter, dict):
+                submitter = submitter['name']
+            if isinstance(build, dict):
+                build = build['nvr']
+
             if markup:
-                return tmpl.format(
-                    submitter=author_link(msg['msg']['override']['submitter']),
-                    build=msg['msg']['override']['build'],
-                )
+                return tmpl.format(submitter=author_link(submitter),
+                                   build=build)
             else:
-                return tmpl.format(**msg['msg']['override'])
+                return tmpl.format(submitter=submitter, build=build)
+        elif 'bodhi.stack.save' in msg['topic']:
+            tmpl = self._("{agent} updated the \"{name}\" stack")
+            agent = msg['msg']['agent']
+            name = msg['msg']['stack']['name']
+            return tmpl.format(agent=agent, name=name)
+        elif 'bodhi.stack.delete' in msg['topic']:
+            tmpl = self._("{agent} deleted the \"{name}\" stack")
+            agent = msg['msg']['agent']
+            name = msg['msg']['stack']['name']
+            return tmpl.format(agent=agent, name=name)
         else:
             raise NotImplementedError("%r" % msg)
 
     def link(self, msg, **config):
-        tmpl = "https://admin.fedoraproject.org/updates/{title}"
+        prefix = 'https://admin.fedoraproject.org'
+        tmpl = prefix + "/updates/{title}"
         if 'bodhi.update.comment' in msg['topic']:
             return tmpl.format(title=msg['msg']['comment']['update_title'])
         elif 'bodhi.update.complete' in msg['topic']:
             return tmpl.format(title=msg['msg']['update']['title'])
         elif 'bodhi.update.request' in msg['topic']:
             return tmpl.format(title=msg['msg']['update']['title'])
+        elif 'bodhi.update.edit' in msg['topic']:
+            return tmpl.format(title=msg['msg']['update']['title'])
+        elif 'bodhi.update.eject' in msg['topic']:
+            return tmpl.format(title=msg['msg']['update']['title'])
+        elif 'bodhi.stack' in msg['topic']:
+            return prefix + "/updates/stacks/{title}".format(
+                title=msg['msg']['stack']['name'])
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
             repo = msg['msg']['repo']
@@ -219,8 +282,17 @@ class BodhiProcessor(BaseProcessor):
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.update.request' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
+        elif 'bodhi.update.edit' in msg['topic']:
+            return set(self._u2p(msg['msg']['update']['title']))
+        elif 'bodhi.update.eject' in msg['topic']:
+            return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            return set(self._u2p(msg['msg']['override']['build']))
+            nvr = msg['msg']['override']['build']
+            if isinstance(nvr, dict):
+                nvr = nvr['nvr']
+            return set(self._u2p(nvr))
+        elif 'bodhi.stack' in msg['topic']:
+            return set([p['name'] for p in msg['msg']['stack']['packages']])
 
         return set()
 
@@ -229,7 +301,10 @@ class BodhiProcessor(BaseProcessor):
 
         for obj in ['update', 'override']:
             try:
-                users.append(msg['msg'][obj]['submitter'])
+                username = msg['msg'][obj]['submitter']
+                if isinstance(username, dict):
+                    username = username['name']
+                users.append(username)
             except KeyError:
                 pass
 
@@ -244,6 +319,9 @@ class BodhiProcessor(BaseProcessor):
             for mention in mentions:
                 users.append(mention[1:])
 
+        if 'agent' in msg['msg']:
+            users.append(msg['msg']['agent'])
+
         return set(users)
 
     def objects(self, msg, **config):
@@ -252,7 +330,7 @@ class BodhiProcessor(BaseProcessor):
             msg = msg['msg']
             return set(['/'.join([product, msg['repo'], msg['release']])])
         elif 'bodhi.mashtask.mashing' in msg['topic']:
-            return set(['repos/' + msg['msg']['repo']])
+            return set(['repos/' + msg['msg'].get('repo')])
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
                 'packages/' + p for p in
@@ -268,10 +346,30 @@ class BodhiProcessor(BaseProcessor):
                 'packages/' + p for p in
                 self._u2p(msg['msg']['update']['title'])
             ])
-        elif 'bodhi.buildroot_override.' in msg['topic']:
+        elif 'bodhi.update.edit' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                self._u2p(msg['msg']['override']['build'])
+                self._u2p(msg['msg']['update']['title'])
             ])
+        elif 'bodhi.update.eject' in msg['topic']:
+            return set([
+                'packages/' + p for p in
+                self._u2p(msg['msg']['update']['title'])
+            ])
+        elif 'bodhi.buildroot_override.' in msg['topic']:
+            nvr = msg['msg']['override']['build']
+            if isinstance(nvr, dict):
+                nvr = nvr['nvr']
+            return set([
+                'packages/' + p for p in
+                self._u2p(nvr)
+            ])
+        elif 'bodhi.stack' in msg['topic']:
+            return set(
+                [
+                    'packages/' + p['name']
+                    for p in msg['msg']['stack']['packages']
+                ] + ['stacks/' + msg['msg']['stack']['name']]
+            )
 
         return set()

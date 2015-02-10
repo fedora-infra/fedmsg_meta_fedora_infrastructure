@@ -95,7 +95,7 @@ def make_fas_cache(**config):
                                          req_params={'search': '*'},
                                          auth=True)
     except fedora.client.ServerError as e:
-        log.error("Failed to download fas cache %r" % e)
+        log.warning("Failed to download fas cache %r" % e)
         return {}
     finally:
         socket.setdefaulttimeout(timeout)
