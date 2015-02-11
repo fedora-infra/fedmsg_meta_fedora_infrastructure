@@ -17,6 +17,8 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 
+import requests
+
 from fasshim import gravatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
@@ -75,6 +77,25 @@ class GithubProcessor(BaseProcessor):
             return msg['msg']['forkee']['html_url']
         if 'repository' in msg['msg']:
             return msg['msg']['repository']['html_url']
+
+    def long_form(self, msg, **config):
+        if '.pull_request_review_comment' in msg['topic']:
+            body = msg['msg']['comment']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        if '.issue.comment' in msg['topic']:
+            body = msg['msg']['comment']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        if '.issue.reopened' in msg['topic']:
+            body = msg['msg']['issue']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        if 'commit_comment' in msg['topic']:
+            body = msg['msg']['comment']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        elif 'github.push' in msg['topic']:
+            url = msg['msg']['compare'] + ".patch"
+            response = requests.get(url)
+            if response.status_code == 200:
+                return self.subtitle(msg, **config) + '\n\n' + response.text
 
     def subtitle(self, msg, **config):
         user = self._get_user(msg)

@@ -20,11 +20,42 @@
 """ Tests for github2fedmsg messages """
 
 import unittest
-import datetime
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from common import add_doc
+
+full_patch1 = """From 404a417299f85eadb72457e94c08ac8ba39d53e8 Mon Sep 17 00:00:00 2001
+From: Ralph Bean <rbean@redhat.com>
+Date: Tue, 18 Mar 2014 13:45:12 -0400
+Subject: [PATCH] Updates to the README.
+
+---
+ README.rst | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/README.rst b/README.rst
+index 34f7858..0bd925a 100644
+--- a/README.rst
++++ b/README.rst
+@@ -33,8 +33,8 @@ Using `virtualenvwrapper <pypi.python.org/pypi/virtualenvwrapper>`_::
+   $ python setup.py develop
+ 
+ Go off and `register your development application with github
+-<https://github.com/settings/applications>`_.  Save the oauth tokens and add the
+-secret one to a new file you create called ``secret.ini``.  Use the example
++<https://github.com/settings/applications>`_.  Save the oauth tokens and add
++the secret one to a new file you create called ``secret.ini``.  Use the example
+ ``secret.ini.example`` file.
+ 
+ 
+@@ -46,4 +46,4 @@ Create the database::
+ Now, start the webapp::
+ 
+   $ workon github2fedmsg
+-  $ pserve development.ini
++  $ pserve development.ini --reload
+"""
 
 
 class TestGithubWebhook(Base):
@@ -70,6 +101,7 @@ class TestGithubPush(Base):
 
     expected_title = "github.push"
     expected_subti = 'ralph pushed 1 commit(s) to fedora-infra/github2fedmsg'
+    expected_long_form = expected_subti + "\n\n" + full_patch1
     expected_link = "https://github.com/fedora-infra/github2fedmsg/" + \
         "compare/60a6d3eb508c...404a417299f8"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -197,6 +229,8 @@ class TestGithubIssue(Base):
 
     expected_title = "github.issue.reopened"
     expected_subti = 'ralph reopened issue #3 on fedora-infra/github2fedmsg'
+    expected_long_form = expected_subti + "\n\n" + \
+        "Testing stuff."
     expected_link = "https://github.com/fedora-infra/github2fedmsg/issues/3"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
@@ -313,6 +347,8 @@ class TestGithubIssueComment(Base):
     expected_title = "github.issue.comment"
     expected_subti = 'ralph commented on issue #3 on ' + \
         'fedora-infra/github2fedmsg'
+    expected_long_form = expected_subti + "\n\n" + \
+        "This issue is super great!"
     expected_link = "https://github.com/fedora-infra/github2fedmsg/" + \
         "issues/3#issuecomment-37971221"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -1142,6 +1178,8 @@ class TestGithubPullRequestComment(Base):
 
     expected_title = "github.pull_request_review_comment"
     expected_subti = 'pingou commented on PR #129 on fedora-infra/fedocal'
+    expected_long_form = expected_subti + "\n\n" + \
+        "I was thinking the ``flask.request.args.get(..."
     expected_link = "https://github.com/fedora-infra/fedocal/" + \
         "pull/129#discussion_r13957675"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -1382,6 +1420,9 @@ class TestGithubCommitComment(Base):
 
     expected_title = "github.commit_comment"
     expected_subti = "ralph commented on a commit on fedora-infra/bodhi"
+    expected_long_form = expected_subti + "\n\n" + \
+        "Maybe add a ``# comment`` here that 'BUILD_ID' " + \
+        "is from jenkins and link to http://da.gd/QuQs ?"
     expected_link = "https://github.com/fedora-infra/bodhi/commit/" + \
         "425c3610e129138a8b918b1eb1a40d291da20dc5" + \
         "#commitcomment-6733053"
