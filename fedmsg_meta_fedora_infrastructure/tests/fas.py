@@ -100,8 +100,8 @@ class TestFASEditProfile(Base):
         u'topic': u'org.fedoraproject.stg.fas.user.update',
         u'msg': {
             u'fields': [u'comments'],
-            u'user': {u'username': u'ralph'},
-            u'agent': {u'username': u'ralph'},
+            u'user': u'ralph',
+            u'agent': u'ralph',
         }
     }
 
@@ -196,10 +196,10 @@ class TestFASRoleUpdate(Base):
     msg = {
         u'topic': u'org.fedoraproject.stg.fas.role.update',
         u'msg': {
-            u'group': {u'name': u'ambassadors'},
-            u'user': {u'username': u'ralph'},
-            u'agent': {u'username': u'toshio'},
-            u'status': {u'name': u'sponsor'},
+            u'group': u'ambassadors',
+            u'user': u'ralph',
+            u'agent': u'toshio',
+            u'status': u'sponsor',
         }
     }
 
