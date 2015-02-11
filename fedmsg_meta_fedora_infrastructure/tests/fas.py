@@ -173,6 +173,28 @@ class TestFASGroupCreate(Base):
     msg = {
         u'topic': u'org.fedoraproject.stg.fas.group.create',
         u'msg': {
+            u'group': u'ambassadors',
+            u'agent': u'ralph',
+        }
+    }
+
+
+class TestFASGroupCreateLegacy(Base):
+    """ The `Fedora Account System <https://admin.fedoraproject.org/accounts>`_
+    publishes messages on this topic whenever a new group is created.
+    """
+    expected_title = "fas.group.create"
+    expected_subti = "ralph created new FAS group ambassadors"
+    expected_icon = "https://admin.fedoraproject.org/accounts/static" + \
+        "/theme/fas/images/account.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['groups/ambassadors'])
+    msg = {
+        u'topic': u'org.fedoraproject.stg.fas.group.create',
+        u'msg': {
             u'group': {u'name': u'ambassadors'},
             u'agent': {u'username': u'ralph'},
         }
