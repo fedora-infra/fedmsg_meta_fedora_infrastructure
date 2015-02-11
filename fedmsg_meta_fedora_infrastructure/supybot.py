@@ -17,6 +17,9 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
+
+import requests
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas, gravatar_url
 
@@ -38,6 +41,13 @@ class SupybotProcessor(BaseProcessor):
             return msg['msg']['url'].replace('http://', 'https://') + ".html"
         else:
             return None
+
+    def long_form(self, msg, **config):
+        if '.meeting.complete' in msg['topic']:
+            url = msg['msg']['url'] + '.txt'
+            response = requests.get(url)
+            if response.status_code == 200:
+                return self.subtitle(msg, **config) + '\n\n' + response.text
 
     def subtitle(self, msg, **config):
         if 'meetbot.meeting.start' in msg['topic']:
