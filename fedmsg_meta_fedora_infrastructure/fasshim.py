@@ -118,12 +118,20 @@ def make_fas_cache(**config):
 
 
 def nick2fas(nickname, **config):
+    log.debug("Acquiring _fas_cache_lock for nicknames.")
     with _fas_cache_lock:
+        log.debug("Got _fas_cache_lock for nicknames.")
         fas_cache = make_fas_cache(**config)
-        return fas_cache.get(nickname, nickname)
+        result = fas_cache.get(nickname, nickname)
+    log.debug("Released _fas_cache_lock for nicknames.")
+    return result
 
 
 def email2fas(email, **config):
+    log.debug("Acquiring _fas_cache_lock for emails.")
     with _fas_cache_lock:
+        log.debug("Got _fas_cache_lock for emails.")
         fas_cache = make_fas_cache(**config)
-        return fas_cache.get(email, email)
+        result = fas_cache.get(email, email)
+    log.debug("Released _fas_cache_lock for emails.")
+    return result
