@@ -1606,6 +1606,168 @@ class TestGithubWatch(Base):
     }
 
 
+class TestGithubRelease(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **releases a new
+    tarball**.
+    """
+    expected_title = "github.release"
+    expected_subti = "lmacken cut a release of fedmsg-notify, version 0.5.5"
+    expected_link = "https://github.com/fedora-infra/fedmsg-notify/" + \
+        "releases/tag/0.5.5"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['lmacken'])
+    expected_objects = set(['fedora-infra/fedmsg-notify/releases/0.5.5'])
+    msg = {
+        "source_name": "datanommer",
+        "i": 2,
+        "timestamp": 1418844844.0,
+        "msg_id": "2014-2db6e3e6-4eca-42cf-8057-d2c75946360d",
+        "topic": "org.fedoraproject.prod.github.release",
+        "source_version": "0.6.4",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/lmacken",
+                "site_admin": False,
+                "html_url": "https://github.com/lmacken",
+                "gravatar_id": "",
+                "login": "lmacken",
+                "type": "User",
+                "id": 9980
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2014-12-17T19:31:57Z",
+                "private": False,
+                "full_name": "fedora-infra/fedmsg-notify",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 7964139,
+                "size": 408,
+                "watchers_count": 10,
+                "forks": 5,
+                "homepage": "http://lewk.org/blog/fedmsg-notify",
+                "fork": False,
+                "description": "Fedmsg Desktop Notifications",
+                "has_downloads": True,
+                "forks_count": 5,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/fedmsg-notify",
+                "has_issues": True,
+                "stargazers_count": 10,
+                "open_issues_count": 7,
+                "watchers": 10,
+                "name": "fedmsg-notify",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "fedmsg-notify",
+                "created_at": "2013-02-01T18:54:35Z",
+                "pushed_at": "2014-12-17T19:32:09Z",
+                "open_issues": 7
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "lmacken": "lmacken"
+            },
+            "release": {
+                "body": "* Make the topic grid scrollable (rhbz#1087076)\r\n* "
+                "Fixed the distro-specific imports\r\n* Uses the abrt python "
+                "API",
+                "tag_name": "0.5.5",
+                "assets": [
+                    {
+                        "name": "fedmsg-notify-0.5.5.tar.bz2",
+                        "updated_at": "2014-12-17T19:34:07Z",
+                        "created_at": "2014-12-17T19:34:06Z",
+                        "browser_download_url": "https://github.com/fedora"
+                        "-infra/fedmsg-notify/releases/download/0.5.5/fedmsg"
+                        "-notify-0.5.5.tar.bz2",
+                        "label": None,
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "fedmsg-notify/releases/assets/348355",
+                        "state": "uploaded",
+                        "content_type": "application/x-bzip",
+                        "download_count": 0,
+                        "uploader": {
+                            "following_url": "https://api.github.com/users/"
+                            "lmacken/following{/other_user}",
+                            "gists_url": "https://api.github.com/users/"
+                            "lmacken/gists{/gist_id}",
+                            "organizations_url": "https://api.github.com/"
+                            "users/lmacken/orgs",
+                            "url": "https://api.github.com/users/lmacken",
+                            "events_url": "https://api.github.com/"
+                            "users/lmacken/events{/privacy}",
+                            "html_url": "https://github.com/lmacken",
+                            "subscriptions_url": "https://api.github.com/"
+                            "users/lmacken/subscriptions",
+                            "avatar_url": "https://avatars.githubusercontent."
+                            "com/u/9980?v=3",
+                            "repos_url": "https://api.github.com/"
+                            "users/lmacken/repos",
+                            "received_events_url": "https://api.github.com/"
+                            "users/lmacken/received_events",
+                            "gravatar_id": "",
+                            "starred_url": "https://api.github.com/"
+                            "users/lmacken/starred{/owner}{/repo}",
+                            "site_admin": False,
+                            "login": "lmacken",
+                            "type": "User",
+                            "id": 9980,
+                            "followers_url": "https://api.github.com/"
+                            "users/lmacken/followers"
+                        },
+                        "id": 348355,
+                        "size": 21147
+                    }
+                ],
+                "author": {
+                    "url": "https://api.github.com/users/lmacken",
+                    "site_admin": False,
+                    "html_url": "https://github.com/lmacken",
+                    "gravatar_id": "",
+                    "login": "lmacken",
+                    "type": "User",
+                    "id": 9980
+                },
+                "url": "https://api.github.com/repos/fedora-infra/fedmsg"
+                "-notify/releases/791850",
+                "created_at": "2014-12-17T19:30:32Z",
+                "target_commitish": "develop",
+                "html_url": "https://github.com/fedora-infra/fedmsg"
+                "-notify/releases/tag/0.5.5",
+                "published_at": "2014-12-17T19:34:14Z",
+                "draft": False,
+                "prerelease": False,
+                "id": 791850,
+                "name": "0.5.5 release"
+            },
+            "action": "published",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "id": 3316637
+            }
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
