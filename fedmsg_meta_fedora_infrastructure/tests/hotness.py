@@ -141,8 +141,8 @@ class TestHotnessBugFollowupRealBuild(Base):
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = expected_icon
-    expected_packages = set([])
-    expected_usernames = set([])
+    expected_packages = set(['gd'])
+    expected_usernames = set(['jmlich'])
     expected_objects = set(['bugs/1144231'])
     msg = {
         u'username': u'fedmsg',
