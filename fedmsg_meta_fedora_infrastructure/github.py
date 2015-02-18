@@ -63,6 +63,8 @@ class GithubProcessor(BaseProcessor):
     def link(self, msg, **config):
         if 'github.watch' in msg['topic']:
             return msg['msg']['repository']['html_url'] + "/watchers"
+        if 'github.star' in msg['topic']:
+            return msg['msg']['repository']['html_url'] + "/stargazers"
         if 'release' in msg['msg']:
             return msg['msg']['release']['html_url']
         if 'target_url' in msg['msg']:
@@ -155,6 +157,14 @@ class GithubProcessor(BaseProcessor):
             tmpl = self._('{user} {action} watching {repo}')
             action = msg['msg']['action']
             return tmpl.format(user=user, repo=repo, action=action)
+        elif 'github.star' in msg['topic']:
+            tmpl = self._('{user} {action} {repo}')
+            action = msg['msg']['action']
+            if action == 'started':
+                action = 'starred'
+            else:
+                action = 'unstarred'
+            return tmpl.format(user=user, repo=repo, action=action)
         elif 'github.release' in msg['topic']:
             tmpl = self._('{user} cut a release of {repo}, version {version}')
             version = msg['msg']['release']['tag_name']
@@ -187,6 +197,7 @@ class GithubProcessor(BaseProcessor):
             'github.create': None,
             'github.delete': None,
             'github.watch': None,
+            'github.star': None,
         }
 
         if suffix not in lookup:
@@ -223,5 +234,7 @@ class GithubProcessor(BaseProcessor):
             items = [msg['msg']['release']['tag_name']]
         elif suffix == 'github.watch':
             items = ['watchers']
+        elif suffix == 'github.star':
+            items = ['stargazers']
 
         return set([base + '/' + item for item in items])
