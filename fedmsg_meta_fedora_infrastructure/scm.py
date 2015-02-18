@@ -105,7 +105,7 @@ class SCMProcessor(BaseProcessor):
         elif '.git.pkgdb2branch.start' in msg['topic']:
             tmpl = self._('{agent} started a run of pkgdb2branch')
         elif '.git.pkgdb2branch.complete' in msg['topic']:
-            errors = len(msg['msg']['unbranchedPackages'])
+            errors = len(msg['msg'].get('unbranchedPackages') or [])
             if errors == 0:
                 tmpl = self._(
                     'run of pkgdb2branch started by {agent} completed')

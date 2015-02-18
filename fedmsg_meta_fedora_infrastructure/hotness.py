@@ -192,6 +192,12 @@ class HotnessProcessor(BaseProcessor):
 
         return set(bugs)
 
+    def usernames(self, msg, **config):
+        if 'buildsys.build' in msg['msg']['trigger']['topic']:
+            return set([msg['msg']['trigger']['msg']['owner']])
+
+        return set()
+
     def packages(self, msg, **config):
         if 'anitya' in msg['msg']['trigger']['topic']:
             original = msg['msg']['trigger']['msg']
@@ -203,5 +209,8 @@ class HotnessProcessor(BaseProcessor):
         if 'package_listing' in msg['msg']['trigger']['msg']:
             original = msg['msg']['trigger']['msg']
             return set([original['package_listing']['package']['name']])
+
+        if 'buildsys.build' in msg['msg']['trigger']['topic']:
+            return set([msg['msg']['trigger']['msg']['name']])
 
         return set()

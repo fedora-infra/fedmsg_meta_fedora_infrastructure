@@ -16,6 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
+#           Ralph Bean <rbean@redhat.com>
 
 from fasshim import gravatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
@@ -29,15 +30,25 @@ class ElectionsProcessor(BaseProcessor):
     __obj__ = "Fedora Elections"
 
     def link(self, msg, **config):
-
-        name = msg['msg']['election']['alias']
+        msg = msg['msg']
+        if 'election' in msg:
+            msg = msg['election']
+        name = msg['alias']
         return "https://apps.fedoraproject.org/voting/about/%s" % (name)
 
     def subtitle(self, msg, **config):
-        kwargs = dict(
-            name=msg['msg']['election']['alias'],
-            agent=msg['msg']['agent'],
-        )
+        if 'election' in msg['msg']:
+            name = msg['msg']['election']['alias']  # Old style
+        else:
+            name = msg['msg']['alias']  # New style
+
+        if 'agent' in msg['msg']:
+            agent = msg['msg']['agent']  # Old style
+        else:
+            agent = msg['msg']['fas_user']  # New style
+
+        kwargs = dict(name=name, agent=agent)
+
         if 'election.new' in msg['topic']:
             tmpl = self._(
                 '{agent} created election "{name}"')
@@ -65,18 +76,30 @@ class ElectionsProcessor(BaseProcessor):
         return tmpl.format(**kwargs)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['agent'])
+        if 'agent' in msg['msg']:
+            agent = msg['msg']['agent']  # Old style
+        else:
+            agent = msg['msg']['fas_user']  # New style
+        return gravatar_url(agent)
 
     def usernames(self, msg, **config):
         try:
-            return set([msg['msg']['agent']])
+            if 'agent' in msg['msg']:
+                agent = msg['msg']['agent']  # Old style
+            else:
+                agent = msg['msg']['fas_user']  # New style
+            return set([agent])
         except KeyError:
             return set()
 
     def objects(self, msg, **config):
         kind = msg['topic'].split('.')[-2]
         action = msg['topic'].split('.')[-1]
-        name = msg['msg']['election']['alias']
-        shortdesc = msg['msg']['election']['shortdesc']
-        tokens = [name, shortdesc, kind, action]
+
+        if 'election' in msg['msg']:
+            name = msg['msg']['election']['alias']  # Old style
+        else:
+            name = msg['msg']['alias']  # New style
+
+        tokens = [name, kind, action]
         return set(['/'.join(map(str, tokens))])

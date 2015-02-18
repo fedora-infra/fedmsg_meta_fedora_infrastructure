@@ -16,21 +16,19 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
+#           Ralph Bean <rbean@redhat.com>
 #
 """ Tests for elections/voting messages """
 
 import unittest
-import datetime
 
 from fedmsg.tests.test_meta import Base
 
 from common import add_doc
 
 
-class TestElectionsNew(Base):
-    """ These messages are published when someone creates a new elections
-    in `elections <https://apps.fedoraproject.org/voting/>`_.
-    """
+class TestLegacyElectionsNew(Base):
+    """ Old style... """
 
     expected_title = "fedora_elections.election.new"
     expected_subti = 'pingou created election "test"'
@@ -42,7 +40,7 @@ class TestElectionsNew(Base):
         "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['test/test/election/new'])
+    expected_objects = set(['test/election/new'])
     msg = {
         "username": "pingou",
         "i": 1,
@@ -80,7 +78,7 @@ class TestElectionsEdit(Base):
         "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['test/test/election/edit'])
+    expected_objects = set(['test/election/edit'])
     msg = {
         "username": "pingou",
         "i": 1,
@@ -118,7 +116,7 @@ class TestElectionsCandidateNew(Base):
         "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['test/test/candidate/new'])
+    expected_objects = set(['test/candidate/new'])
     msg = {
         "username": "pingou",
         "i": 1,
@@ -160,7 +158,7 @@ class TestElectionsCandidateEdit(Base):
         "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['test/test/candidate/edit'])
+    expected_objects = set(['test/candidate/edit'])
     msg = {
         "username": "pingou",
         "i": 1,
@@ -202,7 +200,7 @@ class TestElectionsCandidateDelete(Base):
         "?s=64&d=retro")
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['test/test/candidate/delete'])
+    expected_objects = set(['test/candidate/delete'])
     msg = {
         "username": "pingou",
         "i": 1,
@@ -226,6 +224,56 @@ class TestElectionsCandidateDelete(Base):
             },
             "agent": "pingou"
         }
+    }
+
+
+class TestElectionsNew(Base):
+    """ These messages are published when someone creates a new elections
+    in `elections <https://apps.fedoraproject.org/voting/>`_.
+    """
+
+    expected_title = "fedora_elections.election.new"
+    expected_subti = 'jreznik created election "council-nov14"'
+    expected_link = "https://apps.fedoraproject.org/voting/about/council-nov14"
+    expected_icon = (None)
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "6a345b20c10f890075dab7cc5ac70fdc93167bfd40a4f9299bc77f5a0238a5cc"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['jreznik'])
+    expected_objects = set(['council-nov14/election/new'])
+    msg = {
+        "i": 2,
+        "msg": {
+            "admin_groups": [],
+            "alias": "council-nov14",
+            "candidates": [],
+            "candidates_are_fasusers": 1,
+            "description": "The Fedora Council is our top-level community ...",
+            "embargoed": 1,
+            "end_date": 1417046399.0,
+            "fas_user": "jreznik",
+            "id": 65,
+            "legal_voters": [{
+                "election": 65,
+                "election_id": 65,
+                "group_name": "anycla",
+                "id": 67
+            }],
+            "max_votes": None,
+            "seats_elected": 2,
+            "shortdesc": "Council - November 2014",
+            "start_date": 1416268800.0,
+            "url": "http://fedoraproject.org/wiki/Council/Nominations",
+            "votes": [],
+            "voting_type": "range"
+        },
+        "msg_id": "2014-6a4e287c-a65f-488f-8ba7-5b454a50642c",
+        "source_name": "datanommer",
+        "source_version": "0.6.4",
+        "timestamp": 1416208425.0,
+        "topic": "org.fedoraproject.prod.fedora_elections.election.new",
     }
 
 

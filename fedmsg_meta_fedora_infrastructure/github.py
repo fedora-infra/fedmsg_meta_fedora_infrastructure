@@ -17,6 +17,8 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 
+import requests
+
 from fasshim import gravatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
@@ -61,6 +63,10 @@ class GithubProcessor(BaseProcessor):
     def link(self, msg, **config):
         if 'github.watch' in msg['topic']:
             return msg['msg']['repository']['html_url'] + "/watchers"
+        if 'github.star' in msg['topic']:
+            return msg['msg']['repository']['html_url'] + "/stargazers"
+        if 'release' in msg['msg']:
+            return msg['msg']['release']['html_url']
         if 'target_url' in msg['msg']:
             return msg['msg']['target_url']
         if 'compare' in msg['msg']:
@@ -75,6 +81,25 @@ class GithubProcessor(BaseProcessor):
             return msg['msg']['forkee']['html_url']
         if 'repository' in msg['msg']:
             return msg['msg']['repository']['html_url']
+
+    def long_form(self, msg, **config):
+        if '.pull_request_review_comment' in msg['topic']:
+            body = msg['msg']['comment']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        if '.issue.comment' in msg['topic']:
+            body = msg['msg']['comment']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        if '.issue.reopened' in msg['topic']:
+            body = msg['msg']['issue']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        if 'commit_comment' in msg['topic']:
+            body = msg['msg']['comment']['body']
+            return self.subtitle(msg, **config) + '\n\n' + body
+        elif 'github.push' in msg['topic']:
+            url = msg['msg']['compare'] + ".patch"
+            response = requests.get(url)
+            if response.status_code == 200:
+                return self.subtitle(msg, **config) + '\n\n' + response.text
 
     def subtitle(self, msg, **config):
         user = self._get_user(msg)
@@ -132,6 +157,19 @@ class GithubProcessor(BaseProcessor):
             tmpl = self._('{user} {action} watching {repo}')
             action = msg['msg']['action']
             return tmpl.format(user=user, repo=repo, action=action)
+        elif 'github.star' in msg['topic']:
+            tmpl = self._('{user} {action} {repo}')
+            action = msg['msg']['action']
+            if action == 'started':
+                action = 'starred'
+            else:
+                action = 'unstarred'
+            return tmpl.format(user=user, repo=repo, action=action)
+        elif 'github.release' in msg['topic']:
+            tmpl = self._('{user} cut a release of {repo}, version {version}')
+            version = msg['msg']['release']['tag_name']
+            repo = repo.split('/', 1)[1]
+            return tmpl.format(user=user, repo=repo, version=version)
         else:
             pass
 
@@ -142,7 +180,8 @@ class GithubProcessor(BaseProcessor):
         return gravatar_url(self._get_user(msg))
 
     def usernames(self, msg, **config):
-        return set(msg['msg']['fas_usernames'].values())
+        return set([name for name in msg['msg']['fas_usernames'].values()
+                    if not name.startswith('github_org_')])
 
     def objects(self, msg, **config):
         suffix = '.'.join(msg['topic'].split('.')[3:5])
@@ -154,9 +193,11 @@ class GithubProcessor(BaseProcessor):
             'github.pull_request': 'pull',
             'github.pull_request_review_comment': 'pull',
             'github.commit_comment': 'tree',
+            'github.release': 'releases',
             'github.create': None,
             'github.delete': None,
             'github.watch': None,
+            'github.star': None,
         }
 
         if suffix not in lookup:
@@ -189,7 +230,11 @@ class GithubProcessor(BaseProcessor):
             items = [msg['msg']['commit']['sha']]
         elif suffix == 'github.commit_comment':
             items = [msg['msg']['comment']['path']]
+        elif suffix == 'github.release':
+            items = [msg['msg']['release']['tag_name']]
         elif suffix == 'github.watch':
             items = ['watchers']
+        elif suffix == 'github.star':
+            items = ['stargazers']
 
         return set([base + '/' + item for item in items])

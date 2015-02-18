@@ -20,11 +20,42 @@
 """ Tests for github2fedmsg messages """
 
 import unittest
-import datetime
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from common import add_doc
+
+full_patch1 = """From 404a417299f85eadb72457e94c08ac8ba39d53e8 Mon Sep 17 00:00:00 2001
+From: Ralph Bean <rbean@redhat.com>
+Date: Tue, 18 Mar 2014 13:45:12 -0400
+Subject: [PATCH] Updates to the README.
+
+---
+ README.rst | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/README.rst b/README.rst
+index 34f7858..0bd925a 100644
+--- a/README.rst
++++ b/README.rst
+@@ -33,8 +33,8 @@ Using `virtualenvwrapper <pypi.python.org/pypi/virtualenvwrapper>`_::
+   $ python setup.py develop
+ 
+ Go off and `register your development application with github
+-<https://github.com/settings/applications>`_.  Save the oauth tokens and add the
+-secret one to a new file you create called ``secret.ini``.  Use the example
++<https://github.com/settings/applications>`_.  Save the oauth tokens and add
++the secret one to a new file you create called ``secret.ini``.  Use the example
+ ``secret.ini.example`` file.
+ 
+ 
+@@ -46,4 +46,4 @@ Create the database::
+ Now, start the webapp::
+ 
+   $ workon github2fedmsg
+-  $ pserve development.ini
++  $ pserve development.ini --reload
+"""
 
 
 class TestGithubWebhook(Base):
@@ -70,6 +101,7 @@ class TestGithubPush(Base):
 
     expected_title = "github.push"
     expected_subti = 'ralph pushed 1 commit(s) to fedora-infra/github2fedmsg'
+    expected_long_form = expected_subti + "\n\n" + full_patch1
     expected_link = "https://github.com/fedora-infra/github2fedmsg/" + \
         "compare/60a6d3eb508c...404a417299f8"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -197,6 +229,8 @@ class TestGithubIssue(Base):
 
     expected_title = "github.issue.reopened"
     expected_subti = 'ralph reopened issue #3 on fedora-infra/github2fedmsg'
+    expected_long_form = expected_subti + "\n\n" + \
+        "Testing stuff."
     expected_link = "https://github.com/fedora-infra/github2fedmsg/issues/3"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
@@ -313,6 +347,8 @@ class TestGithubIssueComment(Base):
     expected_title = "github.issue.comment"
     expected_subti = 'ralph commented on issue #3 on ' + \
         'fedora-infra/github2fedmsg'
+    expected_long_form = expected_subti + "\n\n" + \
+        "This issue is super great!"
     expected_link = "https://github.com/fedora-infra/github2fedmsg/" + \
         "issues/3#issuecomment-37971221"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -1142,6 +1178,8 @@ class TestGithubPullRequestComment(Base):
 
     expected_title = "github.pull_request_review_comment"
     expected_subti = 'pingou commented on PR #129 on fedora-infra/fedocal'
+    expected_long_form = expected_subti + "\n\n" + \
+        "I was thinking the ``flask.request.args.get(..."
     expected_link = "https://github.com/fedora-infra/fedocal/" + \
         "pull/129#discussion_r13957675"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -1382,6 +1420,9 @@ class TestGithubCommitComment(Base):
 
     expected_title = "github.commit_comment"
     expected_subti = "ralph commented on a commit on fedora-infra/bodhi"
+    expected_long_form = expected_subti + "\n\n" + \
+        "Maybe add a ``# comment`` here that 'BUILD_ID' " + \
+        "is from jenkins and link to http://da.gd/QuQs ?"
     expected_link = "https://github.com/fedora-infra/bodhi/commit/" + \
         "425c3610e129138a8b918b1eb1a40d291da20dc5" + \
         "#commitcomment-6733053"
@@ -1483,14 +1524,8 @@ class TestGithubCommitComment(Base):
     }
 
 
-class TestGithubWatch(Base):
-    """ There exists `a service
-    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
-    repos of fedora contributors with the fedmsg bus.
-
-    Messages of *this* type are published whenever someone **watches a
-    repository**.
-    """
+class TestGithubLegacyWatch(Base):
+    """ Old github.watch messages.  These no longer exist. """
 
     expected_title = "github.watch"
     expected_subti = "alikins started watching fedora-infra/summershum"
@@ -1560,6 +1595,250 @@ class TestGithubWatch(Base):
                 "login": "alikins",
                 "type": "User",
                 "id": 15162
+            }
+        }
+    }
+
+
+class TestGithubStar(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **stars a
+    repository**.
+    """
+
+    expected_title = "github.star"
+    expected_subti = "alikins starred fedora-infra/summershum"
+    expected_link = "https://github.com/fedora-infra/summershum/stargazers"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "d23ffcf6c375ae6351f54b6d4e381c6910e68d666370e5ff21e4322cd56690bf"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([
+        'fedora-infra/summershum/stargazers',
+    ])
+    msg = {
+        "source_name": "datanommer",
+        "i": 1,
+        "timestamp": 1403363334.0,
+        "msg_id": "2014-5273bf43-d483-48d4-a8d6-11c988cae0cb",
+        "topic": "org.fedoraproject.prod.github.star",
+        "source_version": "0.6.4",
+        "msg": {
+            "action": "started",
+            "fas_usernames": {},
+            "repository": {
+                "has_wiki": False,
+                "forks_count": 7,
+                "updated_at": "2014-06-21T15:08:53Z",
+                "private": False,
+                "full_name": "fedora-infra/summershum",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "ebdef1eaaa4b1c1cb01f5570efbb3cc4",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 16620564,
+                "size": 907,
+                "watchers_count": 10,
+                "forks": 7,
+                "homepage": "",
+                "fork": False,
+                "description": "fedmsg consumer that extracts hashes of "
+                "source files",
+                "has_downloads": True,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/summershum",
+                "has_issues": True,
+                "stargazers_count": 10,
+                "open_issues_count": 2,
+                "watchers": 10,
+                "name": "summershum",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/summershum",
+                "created_at": "2014-02-07T16:35:59Z",
+                "pushed_at": "2014-06-13T12:11:18Z",
+                "open_issues": 2
+            },
+            "sender": {
+                "url": "https://api.github.com/users/alikins",
+                "site_admin": False,
+                "html_url": "https://github.com/alikins",
+                "gravatar_id": "81877b32b5fac41db3207c94ecc26173",
+                "login": "alikins",
+                "type": "User",
+                "id": 15162
+            }
+        }
+    }
+
+
+class TestGithubRelease(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **releases a new
+    tarball**.
+    """
+    expected_title = "github.release"
+    expected_subti = "lmacken cut a release of fedmsg-notify, version 0.5.5"
+    expected_link = "https://github.com/fedora-infra/fedmsg-notify/" + \
+        "releases/tag/0.5.5"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['lmacken'])
+    expected_objects = set(['fedora-infra/fedmsg-notify/releases/0.5.5'])
+    msg = {
+        "source_name": "datanommer",
+        "i": 2,
+        "timestamp": 1418844844.0,
+        "msg_id": "2014-2db6e3e6-4eca-42cf-8057-d2c75946360d",
+        "topic": "org.fedoraproject.prod.github.release",
+        "source_version": "0.6.4",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/lmacken",
+                "site_admin": False,
+                "html_url": "https://github.com/lmacken",
+                "gravatar_id": "",
+                "login": "lmacken",
+                "type": "User",
+                "id": 9980
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2014-12-17T19:31:57Z",
+                "private": False,
+                "full_name": "fedora-infra/fedmsg-notify",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 7964139,
+                "size": 408,
+                "watchers_count": 10,
+                "forks": 5,
+                "homepage": "http://lewk.org/blog/fedmsg-notify",
+                "fork": False,
+                "description": "Fedmsg Desktop Notifications",
+                "has_downloads": True,
+                "forks_count": 5,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/fedmsg-notify",
+                "has_issues": True,
+                "stargazers_count": 10,
+                "open_issues_count": 7,
+                "watchers": 10,
+                "name": "fedmsg-notify",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/"
+                "fedmsg-notify",
+                "created_at": "2013-02-01T18:54:35Z",
+                "pushed_at": "2014-12-17T19:32:09Z",
+                "open_issues": 7
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "lmacken": "lmacken"
+            },
+            "release": {
+                "body": "* Make the topic grid scrollable (rhbz#1087076)\r\n* "
+                "Fixed the distro-specific imports\r\n* Uses the abrt python "
+                "API",
+                "tag_name": "0.5.5",
+                "assets": [
+                    {
+                        "name": "fedmsg-notify-0.5.5.tar.bz2",
+                        "updated_at": "2014-12-17T19:34:07Z",
+                        "created_at": "2014-12-17T19:34:06Z",
+                        "browser_download_url": "https://github.com/fedora"
+                        "-infra/fedmsg-notify/releases/download/0.5.5/fedmsg"
+                        "-notify-0.5.5.tar.bz2",
+                        "label": None,
+                        "url": "https://api.github.com/repos/fedora-infra/"
+                        "fedmsg-notify/releases/assets/348355",
+                        "state": "uploaded",
+                        "content_type": "application/x-bzip",
+                        "download_count": 0,
+                        "uploader": {
+                            "following_url": "https://api.github.com/users/"
+                            "lmacken/following{/other_user}",
+                            "gists_url": "https://api.github.com/users/"
+                            "lmacken/gists{/gist_id}",
+                            "organizations_url": "https://api.github.com/"
+                            "users/lmacken/orgs",
+                            "url": "https://api.github.com/users/lmacken",
+                            "events_url": "https://api.github.com/"
+                            "users/lmacken/events{/privacy}",
+                            "html_url": "https://github.com/lmacken",
+                            "subscriptions_url": "https://api.github.com/"
+                            "users/lmacken/subscriptions",
+                            "avatar_url": "https://avatars.githubusercontent."
+                            "com/u/9980?v=3",
+                            "repos_url": "https://api.github.com/"
+                            "users/lmacken/repos",
+                            "received_events_url": "https://api.github.com/"
+                            "users/lmacken/received_events",
+                            "gravatar_id": "",
+                            "starred_url": "https://api.github.com/"
+                            "users/lmacken/starred{/owner}{/repo}",
+                            "site_admin": False,
+                            "login": "lmacken",
+                            "type": "User",
+                            "id": 9980,
+                            "followers_url": "https://api.github.com/"
+                            "users/lmacken/followers"
+                        },
+                        "id": 348355,
+                        "size": 21147
+                    }
+                ],
+                "author": {
+                    "url": "https://api.github.com/users/lmacken",
+                    "site_admin": False,
+                    "html_url": "https://github.com/lmacken",
+                    "gravatar_id": "",
+                    "login": "lmacken",
+                    "type": "User",
+                    "id": 9980
+                },
+                "url": "https://api.github.com/repos/fedora-infra/fedmsg"
+                "-notify/releases/791850",
+                "created_at": "2014-12-17T19:30:32Z",
+                "target_commitish": "develop",
+                "html_url": "https://github.com/fedora-infra/fedmsg"
+                "-notify/releases/tag/0.5.5",
+                "published_at": "2014-12-17T19:34:14Z",
+                "draft": False,
+                "prerelease": False,
+                "id": 791850,
+                "name": "0.5.5 release"
+            },
+            "action": "published",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "id": 3316637
             }
         }
     }
