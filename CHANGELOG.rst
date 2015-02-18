@@ -1,6 +1,30 @@
 Changelog
 =========
 
+0.4.1
+-----
+
+- Handle None at the end of mass branch... ;p `e197b8cfd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e197b8cfd08d83c28c6fd0323d09c3f36058431d>`_
+- Create long-form output for github events. `aace64d95 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/aace64d95af6270e68e561018a3d55c8beba3208>`_
+- Include full irc logs in meetbot long_form repr. `7baa7c9fd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7baa7c9fdcdc3093596496a60d354ef96071ac49>`_
+- Merge pull request #200 from fedora-infra/feature/more-long-form `57c239cb2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/57c239cb28c0be043450f1f3aa858bba001317e2>`_
+- Modernize these fas examples. `9b66461b4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9b66461b49e29d40b58e8047d539456af6828c3d>`_
+- Convert one FAS example into a legacy test. `3610f5373 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3610f5373a7440b523c6ad6fe5d3805c14e2f3ea>`_
+- Merge pull request #201 from fedora-infra/feature/legacy-fas `08b066f71 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/08b066f71cfa84571b0da93ecf5c6a525de0914f>`_
+- Add some debugging around the fas cache lock. `dceb30b96 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dceb30b96b2eb53f24ea69b9591f48b204dc9773>`_
+- Merge pull request #202 from fedora-infra/feature/debugging `adb030de1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/adb030de10d6a1d2ba47317de625c235812b4419>`_
+- Handle "release" messages from github. `b5de46eaa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b5de46eaaac5b193a01fc810d60d074f2c7123db>`_
+- Merge pull request #203 from fedora-infra/feature/github-releases `68b366138 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/68b36613875cde28d44472c34a0de7f714e278cd>`_
+- Pkgdb dropped the from_branch information when requesting a new branch `fd8dba4bb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fd8dba4bb183e88ed80f2b0d0b20306dc47580d1>`_
+- Adjust the unit-tests to reflect the changes on the messages sent by pkgdb `aa5dc85c0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/aa5dc85c08c291fe5f6cd24069aa4ef4a12d5c4c>`_
+- Merge pull request #204 from fedora-infra/pkgdb_drop_from_branch `c272313de <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c272313de337ee7763a2b0986631cbe0466be4ee>`_
+- Fix elections messages. `3fec1f459 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3fec1f459b682ed2b75278c94110b1780ad2d1db>`_
+- Convert github.watch messages to github.star. `fbdf5fe1c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fbdf5fe1c8d47c13064c4ae9b3e036bcc6a9c656>`_
+- Associate usernames and packages with the hotness followup messages. `1e5d95ca7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1e5d95ca76f14763a9d38b11b2785e979d5134c4>`_
+- Merge pull request #206 from fedora-infra/feature/more-github-fixes `3f31862e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3f31862e3ad71584736649aee8a544c7d0d73876>`_
+- Merge pull request #207 from fedora-infra/feature/hotness-users `2dc580447 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2dc5804477f112c6bf623c1980aec058c361e163>`_
+- Merge pull request #205 from fedora-infra/feature/elections-fix `5dad82741 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5dad82741471a050af66b612b5acf8a6ff346624>`_
+
 0.4.0
 -----
 
