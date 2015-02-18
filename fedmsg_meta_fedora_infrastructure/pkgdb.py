@@ -279,15 +279,13 @@ class PkgdbProcessor(BaseProcessor):
                                package=package, branch=branch)
         elif msg['topic'].endswith('pkgdb.package.branch.request'):
             tmpl = self._(
-                u"{agent} requested branch {new_branch} from {old_branch} "
-                "on package {package}")
+                u"{agent} requested branch {new_branch} for package {package}")
             _msg = msg['msg']
             package = _msg['package']['name']
             new_branch = _msg['collection_to']['branchname']
-            old_branch = _msg['collection_from']['branchname']
             agent = msg['msg']['agent']
             return tmpl.format(agent=agent, new_branch=new_branch,
-                               old_branch=old_branch, package=package)
+                               package=package)
         elif msg['topic'].endswith('pkgdb.package.new.request'):
             tmpl = self._(
                 u"{agent} requested package {package} on branch {branch}")

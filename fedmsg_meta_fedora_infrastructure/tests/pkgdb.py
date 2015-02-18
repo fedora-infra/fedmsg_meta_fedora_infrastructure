@@ -1326,8 +1326,7 @@ class TestPkgdbBranchRequest(Base):
     a particular package.
     """
     expected_title = "pkgdb.package.branch.request"
-    expected_subti = ("pingou requested branch epel7 from master on "
-                      "package R-BiocGenerics")
+    expected_subti = ("pingou requested branch epel7 for package R-BiocGenerics")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1343,14 +1342,6 @@ class TestPkgdbBranchRequest(Base):
         "msg_id": "2014-250329a1-1ccf-4fc4-ad0c-e24365f89c0f",
         "topic": "org.fedoraproject.dev.pkgdb.package.branch.request",
         "msg": {
-            "collection_from": {
-                "status": "Under Development",
-                "dist_tag": ".fc22",
-                "koji_name": "rawhide",
-                "name": "Fedora",
-                "version": "devel",
-                "branchname": "master"
-            },
             "collection_to": {
               "status": "Under Development",
                 "dist_tag": ".el7",
@@ -1530,14 +1521,6 @@ class TestPkgdbAdminActionUpdate_Denied(Base):
             "action": "request.branch",
             "date_created": 1421227282.0,
             "message": "This package should not be branched for EPEL7",
-            "from_collection": {
-              "status": "Under Development",
-              "dist_tag": ".fc22",
-              "koji_name": "rawhide",
-              "name": "Fedora",
-              "version": "devel",
-              "branchname": "master"
-            },
             "id": 2
           },
           "old_status": "Awaiting Review",
