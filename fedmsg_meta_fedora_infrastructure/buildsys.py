@@ -21,6 +21,30 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 from fasshim import gravatar_url
 
+import datetime
+from pytz import UTC
+
+try:
+    import koji
+except ImportError:
+    pass
+
+
+_build_template = """Package:    {name}-{version}-{release}
+Status:     {status}
+Built by:   {owner_name}
+ID:         {id}
+Started:    {started}
+Finished:   {finished}
+
+Closed tasks:
+-------------
+"""
+
+_task_header_template = """Task {id} on {build_host}
+Task Type: {method} ({arch})
+"""
+
 
 class KojiProcessor(BaseProcessor):
     __name__ = "buildsys"
@@ -30,6 +54,67 @@ class KojiProcessor(BaseProcessor):
     __obj__ = "Koji Builds"
     __icon__ = ("https://fedoraproject.org/w/uploads/2/20/"
                 "Artwork_DesignService_koji-icon-48.png")
+
+    @classmethod
+    def _fill_task_template(cls, session, taskid):
+        file_base = 'https://kojipkgs.fedoraproject.org/work/'
+
+        info = session.getTaskInfo(taskid)
+        host = session.getHost(info['host_id'])
+        info['build_host'] = host['name']
+
+        retval = _task_header_template.format(**info)
+
+        result = session.getTaskResult(taskid)
+        if result:
+            for kind in ['logs', 'rpms', 'srpms']:
+                if kind in result:
+                    retval += kind + ":\n"
+                    for item in result[kind]:
+                        retval += "  " + file_base + item + "\n"
+
+            for kind in ['srpm']:
+                if kind in result:
+                    retval += kind + ":\n  " + file_base + result[kind] + "\n"
+
+        children = session.getTaskChildren(taskid)
+        for child in sorted(children, key=lambda d: d['completion_ts']):
+            retval += "\n" + cls._fill_task_template(session, child['id'])
+        return retval
+
+    @classmethod
+    def _fill_build_template(cls, session, build):
+        full_build = session.getBuild(build['build_id'])
+        lookup = dict(zip(*zip(*koji.BUILD_STATES.items())[::-1]))
+        full_build['status'] = lookup[full_build['state']].lower()
+
+        fmt = '%a, %d %b %Y %H:%M:%S %Z'
+        dt = datetime.datetime.fromtimestamp(full_build['creation_ts'], UTC)
+        full_build['started'] = dt.strftime(fmt)
+        dt = datetime.datetime.fromtimestamp(full_build['completion_ts'], UTC)
+        full_build['finished'] = dt.strftime(fmt)
+
+        _build_str = _build_template.format(**full_build)
+        _task_str = cls._fill_task_template(session, full_build['task_id'])
+        return _build_str + _task_str
+
+    def long_form(self, msg, **config):
+        instance = msg['msg'].get('instance', 'primary')
+
+        if instance == 'primary':
+            url = "https://koji.fedoraproject.org/kojihub"
+        elif instance == 'ppc':
+            url = "http://ppc.koji.fedoraproject.org/kojihub"
+        elif instance == 's390':
+            url = "http://s390.koji.fedoraproject.org/kojihub"
+        elif instance == 'arm':
+            url = "http://arm.koji.fedoraproject.org/kojihub"
+
+        if 'buildsys.build.state.change' in msg['topic']:
+            session = koji.ClientSession(url)
+            build = msg['msg']
+            long_form = self._fill_build_template(session, build)
+            return self.subtitle(msg, **config) + "\n\n" + long_form
 
     def subtitle(self, msg, **config):
         inst = msg['msg'].get('instance', 'primary')

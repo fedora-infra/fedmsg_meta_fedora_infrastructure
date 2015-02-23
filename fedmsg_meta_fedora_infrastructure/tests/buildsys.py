@@ -26,6 +26,43 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
+_build_long_form = """Package:    ansible-1.8.3-1.el7
+Status:     complete
+Built by:   kevin
+ID:         612324
+Started:    Tue, 17 Feb 2015 23:39:49 UTC
+Finished:   Tue, 17 Feb 2015 23:41:56 UTC
+
+Closed tasks:
+-------------
+Task 8973154 on arm02-builder15.arm.fedoraproject.org
+Task Type: build (noarch)
+
+Task 8973158 on buildhw-11.phx2.fedoraproject.org
+Task Type: buildSRPMFromSCM (noarch)
+logs:
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/root.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/build.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/state.log
+srpm:
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/ansible-1.8.3-1.el7.src.rpm
+
+Task 8973189 on buildhw-04.phx2.fedoraproject.org
+Task Type: buildArch (noarch)
+logs:
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/root.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/build.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/state.log
+rpms:
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/ansible-1.8.3-1.el7.noarch.rpm
+srpms:
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/ansible-1.8.3-1.el7.src.rpm
+
+Task 8973199 on arm02-builder15.arm.fedoraproject.org
+Task Type: tagBuild (noarch)
+"""
+
+
 class TestKojiTaskStateChangeStart(Base):
     """ Koji emits messages on this topic anytime the state of a **scratch**
     build changes.
@@ -333,6 +370,7 @@ class TestKojiBuildStateChangeFail(Base):
     expected_subti = "kevin's ansible-1.8.3-1.el7 completed"
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
+    expected_long_form = expected_subti + "\n\n" + _build_long_form
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "1a7d8c43c8b89789a33a3266b0e20be7759a502ff38b74ff724a4db6aa33ede8"
