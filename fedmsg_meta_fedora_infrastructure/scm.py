@@ -55,6 +55,17 @@ class SCMProcessor(BaseProcessor):
             response = requests.get(url.format(repo=repo, rev=rev))
             if response.status_code == 200:
                 return self.subtitle(msg, **config) + '\n\n' + response.text
+        elif '.git.lookaside' in msg['topic']:
+            name = msg['msg']['name']
+            agent = msg['msg']['agent']
+            filename = msg['msg']['filename']
+            xsum = msg['msg']['md5sum']
+            tmpl = self._(
+                "{agent} uploaded a file to the lookaside cache for {name}\n\n"
+                "{xsum}  {filename}"
+            )
+            return tmpl.format(
+                agent=agent, name=name, xsum=xsum, filename=filename)
 
     def subtitle(self, msg, **config):
         if '.git.receive' in msg['topic']:
