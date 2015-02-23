@@ -19,6 +19,7 @@
 #
 """ Tests for koji messages """
 
+import os
 import unittest
 
 from fedmsg.tests.test_meta import Base
@@ -26,7 +27,7 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
-_build_long_form = """Package:    ansible-1.8.3-1.el7
+_build_long_form_complete = """Package:    ansible-1.8.3-1.el7
 Status:     complete
 Built by:   kevin
 ID:         612324
@@ -347,7 +348,7 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     }
 
 
-class TestKojiBuildStateChangeFail(Base):
+class TestKojiBuildStateChangeComplete(Base):
     """ Koji emits messages on this topic anytime the state of a build changes.
 
     The state codes can be pretty cryptic (they are just integers and are the
@@ -370,7 +371,6 @@ class TestKojiBuildStateChangeFail(Base):
     expected_subti = "kevin's ansible-1.8.3-1.el7 completed"
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
-    expected_long_form = expected_subti + "\n\n" + _build_long_form
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "1a7d8c43c8b89789a33a3266b0e20be7759a502ff38b74ff724a4db6aa33ede8"
@@ -399,6 +399,11 @@ class TestKojiBuildStateChangeFail(Base):
             "release": "1.el7"
         }
     }
+
+if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
+    TestKojiBuildStateChangeComplete.expected_long_form = \
+        TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
+        _build_long_form_complete
 
 class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """
