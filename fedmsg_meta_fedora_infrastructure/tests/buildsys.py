@@ -326,42 +326,41 @@ class TestKojiBuildStateChangeFail(Base):
             'CANCELED': 4,
         }
 
-    The example here is one of a build **failing** on one of the **secondary
-    arch** koji instances.
+    The example here is one of a build **succeeding** on one the **primary**
+    koji instance.
     """
     expected_title = "buildsys.build.state.change"
-    expected_subti = "rmattes's eclipse-ptp-6.0.3-1.fc19 failed to build (ppc)"
+    expected_subti = "kevin's ansible-1.8.3-1.el7 completed"
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "22c039c6c057741e96345ba5e160fe742c70273394bc566828a98e3bb071e838?s=64&d=retro")
-    expected_packages = set(['eclipse-ptp'])
-    expected_usernames = set(['rmattes'])
+        "1a7d8c43c8b89789a33a3266b0e20be7759a502ff38b74ff724a4db6aa33ede8"
+        "?s=64&d=retro")
+    expected_packages = set(['ansible'])
+    expected_usernames = set(['kevin'])
     expected_objects = set([
-        'ppc/builds/eclipse-ptp/6.0.3/1.fc19',
+        'primary/builds/ansible/1.8.3/1.el7',
     ])
-    expected_link = ("http://ppc.koji.fedoraproject.org/koji/"
-                     "buildinfo?buildID=12345")
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=612324")
     msg = {
-        "username": "apache",
-        "i": 1,
-        "timestamp": 1359604772.1788671,
+        "timestamp": 1424216566.0,
+        "msg_id": "2015-6395fb7a-e5a7-4b95-858a-ff7b80410e7f",
         "topic": "org.fedoraproject.prod.buildsys.build.state.change",
         "msg": {
+            "build_id": 612324,
             "old": 0,
-            "name": "eclipse-ptp",
+            "name": "ansible",
+            "task_id": 8973154,
             "attribute": "state",
-            "version": "6.0.3",
-            "release": "1.fc19",
-            "new": 3,
-            "owner": "rmattes",
-            "build_id": 12345,
-            "task_id": 4642,
-            "instance": "ppc",
+            "instance": "primary",
+            "version": "1.8.3",
+            "owner": "kevin",
+            "new": 1,
+            "release": "1.el7"
         }
     }
-
 
 class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """
