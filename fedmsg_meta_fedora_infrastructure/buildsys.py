@@ -98,10 +98,20 @@ class KojiProcessor(BaseProcessor):
         full_build['status'] = lookup[full_build['state']].lower()
 
         fmt = '%a, %d %b %Y %H:%M:%S %Z'
-        dt = datetime.datetime.fromtimestamp(full_build['creation_ts'], UTC)
-        full_build['started'] = dt.strftime(fmt)
-        dt = datetime.datetime.fromtimestamp(full_build['completion_ts'], UTC)
-        full_build['finished'] = dt.strftime(fmt)
+
+        try:
+            dt = datetime.datetime.fromtimestamp(
+                full_build['creation_ts'], UTC).strftime(fmt)
+        except TypeError:
+            dt = ''
+        full_build['started'] = dt
+
+        try:
+            dt = datetime.datetime.fromtimestamp(
+                full_build['completion_ts'], UTC).strftime(fmt)
+        except TypeError:
+            dt = ''
+        full_build['finished'] = dt
 
         try:
             _build_str = _build_template.format(**full_build)

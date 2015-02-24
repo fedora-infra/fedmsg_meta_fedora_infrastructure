@@ -27,21 +27,23 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
-_build_long_form_cancel = """Package:    plasma-systemsettings-5.2.1-1.fc23
-Status:     canceled
-Built by:   dvratil
-ID:         614503
-Started:    Tue, 24 Feb 2015 14:50:21 UTC
-Finished:   Tue, 24 Feb 2015 14:53:47 UTC
-
-Closed tasks:
--------------
-Task 9053697 on arm04-builder11.arm.fedoraproject.org
-Task Type: build (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=9053697
-
-Task 9053697 is canceled
-"""
+## This works... but the state from koji changes all the time so we can't write
+## tests reliably for it without mocking til the cows come home.
+#_build_long_form_cancel = """Package:    plasma-systemsettings-5.2.1-1.fc23
+#Status:     canceled
+#Built by:   dvratil
+#ID:         614503
+#Started:    Tue, 24 Feb 2015 14:50:21 UTC
+#Finished:   Tue, 24 Feb 2015 14:53:47 UTC
+#
+#Closed tasks:
+#-------------
+#Task 9053697 on arm04-builder11.arm.fedoraproject.org
+#Task Type: build (noarch)
+#Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=9053697
+#
+#Task 9053697 is canceled
+#"""
 
 _build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
 Status:     failed
@@ -552,9 +554,9 @@ if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
     TestKojiBuildStateChangeFail.expected_long_form = \
         TestKojiBuildStateChangeFail.expected_subti + "\n\n" + \
         _build_long_form_fail
-    TestKojiBuildStateChangeCancel.expected_long_form = \
-        TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
-        _build_long_form_cancel
+    #TestKojiBuildStateChangeCancel.expected_long_form = \
+    #    TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
+    #    _build_long_form_cancel
 
 
 class TestKojiRepoInit(Base):
