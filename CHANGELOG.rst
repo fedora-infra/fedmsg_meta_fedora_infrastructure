@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.4.3
+-----
+
+- Comment out the buildsys cancel long form test. `f50eda651 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50eda6519a76f8eacf8e681e2b41e831c7ff7b6>`_
+- Be more careful with these timestamps. `64f6116cf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/64f6116cf59a0eda0fab1ff1a709ae8fe804cb7a>`_
+
 0.4.2
 -----
 
