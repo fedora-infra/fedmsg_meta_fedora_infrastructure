@@ -19,6 +19,7 @@
 #
 """ Tests for github2fedmsg messages """
 
+import os
 import unittest
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
@@ -101,7 +102,6 @@ class TestGithubPush(Base):
 
     expected_title = "github.push"
     expected_subti = 'ralph pushed 1 commit(s) to fedora-infra/github2fedmsg'
-    expected_long_form = expected_subti + "\n\n" + full_patch1
     expected_link = "https://github.com/fedora-infra/github2fedmsg/" + \
         "compare/60a6d3eb508c...404a417299f8"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -229,8 +229,6 @@ class TestGithubIssue(Base):
 
     expected_title = "github.issue.reopened"
     expected_subti = 'ralph reopened issue #3 on fedora-infra/github2fedmsg'
-    expected_long_form = expected_subti + "\n\n" + \
-        "Testing stuff."
     expected_link = "https://github.com/fedora-infra/github2fedmsg/issues/3"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
@@ -347,8 +345,6 @@ class TestGithubIssueComment(Base):
     expected_title = "github.issue.comment"
     expected_subti = 'ralph commented on issue #3 on ' + \
         'fedora-infra/github2fedmsg'
-    expected_long_form = expected_subti + "\n\n" + \
-        "This issue is super great!"
     expected_link = "https://github.com/fedora-infra/github2fedmsg/" + \
         "issues/3#issuecomment-37971221"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -1178,8 +1174,6 @@ class TestGithubPullRequestComment(Base):
 
     expected_title = "github.pull_request_review_comment"
     expected_subti = 'pingou commented on PR #129 on fedora-infra/fedocal'
-    expected_long_form = expected_subti + "\n\n" + \
-        "I was thinking the ``flask.request.args.get(..."
     expected_link = "https://github.com/fedora-infra/fedocal/" + \
         "pull/129#discussion_r13957675"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -1420,9 +1414,6 @@ class TestGithubCommitComment(Base):
 
     expected_title = "github.commit_comment"
     expected_subti = "ralph commented on a commit on fedora-infra/bodhi"
-    expected_long_form = expected_subti + "\n\n" + \
-        "Maybe add a ``# comment`` here that 'BUILD_ID' " + \
-        "is from jenkins and link to http://da.gd/QuQs ?"
     expected_link = "https://github.com/fedora-infra/bodhi/commit/" + \
         "425c3610e129138a8b918b1eb1a40d291da20dc5" + \
         "#commitcomment-6733053"
@@ -1842,6 +1833,23 @@ class TestGithubRelease(Base):
             }
         }
     }
+
+
+if not 'FEDMSG_META_NO_NETWORK' in os.environ:
+    TestGithubPush.expected_long_form = \
+        TestGithubPush.expected_subti + "\n\n" + full_patch1
+    TestGithubIssue.expected_long_form = \
+        TestGithubIssue.expected_subti + "\n\n" + "Testing stuff."
+    TestGithubIssueComment.expected_long_form = \
+        TestGithubIssueComment.expected_subti + "\n\n" + \
+        "This issue is super great!"
+    TestGithubPullRequestComment.expected_long_form = \
+        TestGithubPullRequestComment.expected_subti + "\n\n" + \
+        "I was thinking the ``flask.request.args.get(..."
+    TestGithubCommitComment.expected_long_form = \
+        TestGithubCommitComment.expected_subti + "\n\n" + \
+        "Maybe add a ``# comment`` here that 'BUILD_ID' " + \
+        "is from jenkins and link to http://da.gd/QuQs ?"
 
 
 add_doc(locals())
