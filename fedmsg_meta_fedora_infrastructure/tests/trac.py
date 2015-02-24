@@ -25,6 +25,22 @@ from fedmsg.tests.test_meta import Base
 
 from common import add_doc
 
+_long_form_new = """Summary: test fedmsg
+Description: just testing fedmsg.
+"""
+
+_long_form_comment = """Summary: Test ticket for fedmsg plugin
+Comment: Testing.
+"""
+
+_long_form_reopen = """Summary: Test ticket for fedmsg plugin
+Description: I installed the fedmsg plugin.
+"""
+
+_long_form_closed = """Summary: Test ticket for fedmsg plugin
+Comment: Closing.
+"""
+
 
 class TestTracTicketCreate(Base):
     """ Messages are published on this topic when a user opens a new ticket
@@ -33,6 +49,7 @@ class TestTracTicketCreate(Base):
 
     expected_title = "trac.ticket.new"
     expected_subti = "ralph opened a new ticket on the moksha trac instance"
+    expected_long_form = expected_subti + "\n\n" + _long_form_new
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -89,6 +106,7 @@ class TestTracTicketChange(Base):
 
     expected_title = "trac.ticket.update"
     expected_subti = "ralph updated a ticket on the moksha trac instance"
+    expected_long_form = expected_subti + "\n\n" + _long_form_comment
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -149,6 +167,7 @@ class TestTracTicketChangeReopen(Base):
 
     expected_title = "trac.ticket.update"
     expected_subti = "ralph reopened a ticket on the moksha trac instance"
+    expected_long_form = expected_subti + "\n\n" + _long_form_reopen
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -213,6 +232,7 @@ class TestTracTicketChangeClosed(Base):
     expected_title = "trac.ticket.update"
     expected_subti = ("ralph closed a ticket on the moksha trac "
                       "instance as 'wontfix'")
+    expected_long_form = expected_subti + "\n\n" + _long_form_closed
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -231,7 +251,7 @@ class TestTracTicketChangeClosed(Base):
         "topic": "org.fedoraproject.prod.trac.ticket.update",
         "msg": {
             "agent": "ralph",
-            "comment": "",
+            "comment": "Closing.",
             "instance": {
                 "project_url": "http://moksha.fedorahosted.org",
                 "project_name": "moksha",

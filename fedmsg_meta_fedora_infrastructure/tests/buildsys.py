@@ -19,11 +19,86 @@
 #
 """ Tests for koji messages """
 
+import os
 import unittest
 
 from fedmsg.tests.test_meta import Base
 
 from common import add_doc
+
+
+_build_long_form_cancel = """Package:    plasma-systemsettings-5.2.1-1.fc23
+Status:     canceled
+Built by:   dvratil
+ID:         614503
+Started:    Tue, 24 Feb 2015 14:50:21 UTC
+Finished:   Tue, 24 Feb 2015 14:53:47 UTC
+
+Closed tasks:
+-------------
+Task 9053697 on arm04-builder11.arm.fedoraproject.org
+Task Type: build (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=9053697
+
+Task 9053697 is canceled
+"""
+
+_build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
+Status:     failed
+Built by:   sharkcz
+ID:         288888
+Started:    Tue, 24 Feb 2015 14:19:09 UTC
+Finished:   Tue, 24 Feb 2015 14:19:46 UTC
+
+Closed tasks:
+-------------
+Task 1739950 on fedora1.s390.bos.redhat.com
+Task Type: build (noarch)
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739950
+
+could not init mock buildroot, mock exited with status 1; see build.log for more information
+"""
+
+
+_build_long_form_complete = """Package:    ansible-1.8.3-1.el7
+Status:     complete
+Built by:   kevin
+ID:         612324
+Started:    Tue, 17 Feb 2015 23:39:49 UTC
+Finished:   Tue, 17 Feb 2015 23:41:56 UTC
+
+Closed tasks:
+-------------
+Task 8973154 on arm02-builder15.arm.fedoraproject.org
+Task Type: build (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973154
+
+Task 8973158 on buildhw-11.phx2.fedoraproject.org
+Task Type: buildSRPMFromSCM (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973158
+logs:
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/root.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/build.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/state.log
+srpm:
+  https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/ansible-1.8.3-1.el7.src.rpm
+
+Task 8973189 on buildhw-04.phx2.fedoraproject.org
+Task Type: buildArch (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973189
+logs:
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/root.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/build.log
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/state.log
+rpms:
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/ansible-1.8.3-1.el7.noarch.rpm
+srpms:
+  https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/ansible-1.8.3-1.el7.src.rpm
+
+Task 8973199 on arm02-builder15.arm.fedoraproject.org
+Task Type: tagBuild (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973199
+"""
 
 
 class TestKojiTaskStateChangeStart(Base):
@@ -310,6 +385,60 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     }
 
 
+class TestKojiBuildStateChangeCancel(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be pretty cryptic (they are just integers and are the
+    enums used by koji internally):
+
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
+
+    The example here is one of a build **being cancelled** on the **primary**
+    koji instance.
+    """
+    expected_title = "buildsys.build.state.change"
+    expected_subti = "dvratil's plasma-systemsettings-5.2.1-1.fc23 " + \
+        "was cancelled"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "1d952f7f249f4cd4d2929e09ad616ccdd87b4c2f3418a01ea6e6396ac41edd6a"
+        "?s=64&d=retro")
+    expected_packages = set(['plasma-systemsettings'])
+    expected_usernames = set(['dvratil'])
+    expected_objects = set([
+        'primary/builds/plasma-systemsettings/5.2.1/1.fc23',
+    ])
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=614503")
+    msg = {
+        "timestamp": 1424789698.0,
+        "msg_id": "2015-51be4c8e-8ab6-4dcb-ac0d-37b257765c71",
+        "topic": "org.fedoraproject.prod.buildsys.build.state.change",
+        "msg": {
+            "build_id": 614503,
+            "old": 4,
+            "name": "plasma-systemsettings",
+            "task_id": 9053697,
+            "attribute": "state",
+            "instance": "primary",
+            "version": "5.2.1",
+            "owner": "dvratil",
+            "new": 4,
+            "release": "1.fc23"
+        }
+    }
+
+
 class TestKojiBuildStateChangeFail(Base):
     """ Koji emits messages on this topic anytime the state of a build changes.
 
@@ -326,41 +455,106 @@ class TestKojiBuildStateChangeFail(Base):
             'CANCELED': 4,
         }
 
-    The example here is one of a build **failing** on one of the **secondary
-    arch** koji instances.
+    The example here is one of a build **failing** on a **secondary arch** koji
+    instance.
     """
     expected_title = "buildsys.build.state.change"
-    expected_subti = "rmattes's eclipse-ptp-6.0.3-1.fc19 failed to build (ppc)"
+    expected_subti = "sharkcz's 64tass-1.51.727-1.fc22 failed to build (s390)"
     expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
                      "Artwork_DesignService_koji-icon-48.png")
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
-        "22c039c6c057741e96345ba5e160fe742c70273394bc566828a98e3bb071e838?s=64&d=retro")
-    expected_packages = set(['eclipse-ptp'])
-    expected_usernames = set(['rmattes'])
+        "0d6309f7bbfbf2bca3fc0fea5151b48895a2735481e4a38fce599fd5f24c546a"
+        "?s=64&d=retro")
+    expected_packages = set(['64tass'])
+    expected_usernames = set(['sharkcz'])
     expected_objects = set([
-        'ppc/builds/eclipse-ptp/6.0.3/1.fc19',
+        's390/builds/64tass/1.51.727/1.fc22',
     ])
-    expected_link = ("http://ppc.koji.fedoraproject.org/koji/"
-                     "buildinfo?buildID=12345")
+    expected_link = ("http://s390.koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=288888")
     msg = {
-        "username": "apache",
-        "i": 1,
-        "timestamp": 1359604772.1788671,
+        "timestamp": 1424787586.0,
+        "msg_id": "2015-e3483831-5f88-401b-b20d-05537e6a010d",
         "topic": "org.fedoraproject.prod.buildsys.build.state.change",
         "msg": {
+            "build_id": 288888,
             "old": 0,
-            "name": "eclipse-ptp",
+            "name": "64tass",
+            "task_id": 1739950,
             "attribute": "state",
-            "version": "6.0.3",
-            "release": "1.fc19",
+            "instance": "s390",
+            "version": "1.51.727",
+            "owner": "sharkcz",
             "new": 3,
-            "owner": "rmattes",
-            "build_id": 12345,
-            "task_id": 4642,
-            "instance": "ppc",
+            "release": "1.fc22"
         }
     }
+
+
+class TestKojiBuildStateChangeComplete(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be pretty cryptic (they are just integers and are the
+    enums used by koji internally):
+
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
+
+    The example here is one of a build **succeeding** on the **primary**
+    koji instance.
+    """
+    expected_title = "buildsys.build.state.change"
+    expected_subti = "kevin's ansible-1.8.3-1.el7 completed"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "1a7d8c43c8b89789a33a3266b0e20be7759a502ff38b74ff724a4db6aa33ede8"
+        "?s=64&d=retro")
+    expected_packages = set(['ansible'])
+    expected_usernames = set(['kevin'])
+    expected_objects = set([
+        'primary/builds/ansible/1.8.3/1.el7',
+    ])
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=612324")
+    msg = {
+        "timestamp": 1424216566.0,
+        "msg_id": "2015-6395fb7a-e5a7-4b95-858a-ff7b80410e7f",
+        "topic": "org.fedoraproject.prod.buildsys.build.state.change",
+        "msg": {
+            "build_id": 612324,
+            "old": 0,
+            "name": "ansible",
+            "task_id": 8973154,
+            "attribute": "state",
+            "instance": "primary",
+            "version": "1.8.3",
+            "owner": "kevin",
+            "new": 1,
+            "release": "1.el7"
+        }
+    }
+
+
+if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
+    TestKojiBuildStateChangeComplete.expected_long_form = \
+        TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
+        _build_long_form_complete
+    TestKojiBuildStateChangeFail.expected_long_form = \
+        TestKojiBuildStateChangeFail.expected_subti + "\n\n" + \
+        _build_long_form_fail
+    TestKojiBuildStateChangeCancel.expected_long_form = \
+        TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
+        _build_long_form_cancel
 
 
 class TestKojiRepoInit(Base):

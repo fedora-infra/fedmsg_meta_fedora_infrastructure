@@ -97,6 +97,19 @@ class TracProcessor(BaseProcessor):
     __obj__ = "Fedora Hosted Events"
     __icon__ = "https://www.edgewall.org/gfx/trac_bullet.png"
 
+    def long_form(self, msg, **config):
+        if 'ticket' in msg['msg']:
+            comment = msg['msg'].get('comment')
+            description = msg['msg']['ticket'].get('description')
+            summary = msg['msg']['ticket'].get('summary')
+
+            retval = "Summary: " + summary + "\n"
+            if comment:
+                retval += "Comment: " + comment + "\n"
+            elif description:
+                retval += "Description: " + description + "\n"
+            return self.subtitle(msg, **config) + "\n\n" + retval
+
     def subtitle(self, msg, **config):
         if 'page' in msg['msg']:
             old_name = None

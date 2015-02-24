@@ -28,7 +28,7 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
-here = os.path.dirname(__file__)
+here = os.path.dirname(os.path.abspath(__file__))
 with open(here + '/example.patch', 'r') as f:
     full_patch = f.read()
 
@@ -41,7 +41,6 @@ class TestGitReceiveOldModified(Base):
     expected_title = "git.receive"
     expected_subti = ('rbean@redhat.com pushed to datanommer (master).  "Try '
                       'removing requirement on python-bunch."')
-    expected_long_form = expected_subti + "\n\n" + full_patch
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         '1a0d2acfddb1911ecf55da42cfa34710'
@@ -83,6 +82,11 @@ class TestGitReceiveOldModified(Base):
         "timestamp": 1349735155.0,
         "topic": "org.fedoraproject.prod.git.receive"
     }
+
+if not 'FEDMSG_META_NO_NETWORK' in os.environ:
+    TestGitReceiveOldModified.expected_long_form = \
+        TestGitReceiveOldModified.expected_subti + "\n\n" + \
+        full_patch
 
 
 add_doc(locals())

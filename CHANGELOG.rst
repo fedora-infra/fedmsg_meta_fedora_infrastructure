@@ -1,6 +1,26 @@
 Changelog
 =========
 
+0.4.2
+-----
+
+- Add a long_form field for message about uploading files to the lookaside cache `86432850d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/86432850d2a6f631817672a9ac10e7c5526d9eb5>`_
+- Fix getting the current folder so that we can call that file directly `e73fe2b97 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e73fe2b971e543a85b6487b457228f86d10c435d>`_
+- Adjust the example patch for the change in cgit version `05e6f1f46 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/05e6f1f468ed481bbf49e06628fa6b445012a704>`_
+- Add unit-tests for the long_form format of uploading to the lookaside cache `f980ec535 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f980ec535d8e8eb348e296b4d87ec4dae14b193b>`_
+- Merge pull request #209 from fedora-infra/long_form_lookaside `a37198d07 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a37198d07a701cab168238ee0f8e9158f4984e16>`_
+- Update this test to use a real build from somewhere. `0199f78c1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0199f78c1c1c13fa6ea1adea8cf74e0d57e000e2>`_
+- Implement a long-form value for koji builds. `3bc8b1cc4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3bc8b1cc406c03a53e15e68c231c04c78d72e0f1>`_
+- Add a way to disable these ourselves in koji and travis-ci. `aa6808eea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/aa6808eea64e5a80aedcdd81d2691bd7978fcfaf>`_
+- Add long-form values for trac tickets. `e1ec60be1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e1ec60be1f562f9faf31f7224ac5ed369ce88559>`_
+- (anitya) Substitute Fedora package name for project name if available. `c99580a13 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c99580a13a8268853b51f73193effd40ee3de5bd>`_
+- Be on the safe side. `e964f8a9c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e964f8a9cf884486e64786748ea527bdc032ebad>`_
+- Merge pull request #212 from fedora-infra/feature/anitya-sub-in-package-name `97573944f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/97573944f7e9e69fcefdebb243b18b6352ee3b65>`_
+- Merge pull request #211 from fedora-infra/feature/trac-longform `94a38f832 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/94a38f83291f794b6c1fb8e3abd065829b9af6ff>`_
+- Also test longform for failed builds. `67c5fbab0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/67c5fbab0335e822b670e4b379f0a7a020977ed4>`_
+- Also test longform for cancelled builds. `9bab7ad7f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bab7ad7f25863d84d3c2b686e2a7e4f7b706b6f>`_
+- Merge pull request #210 from fedora-infra/feature/koji-longform `c60343c09 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c60343c091d221cfbdef64d3b47e793f53bd2fed>`_
+
 0.4.1
 -----
 
