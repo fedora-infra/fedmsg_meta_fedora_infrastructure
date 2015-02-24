@@ -128,7 +128,7 @@ class AnityaProcessor(BaseProcessor):
             # substitute "our" package name for the project name to make
             # everyone's emails more readable.
             # https://github.com/fedora-infra/the-new-hotness/issues/21
-            for package in message['packages']:
+            for package in message.get('packages', []):
                 if package['distro'] == 'Fedora':
                     project = package['package_name']
 
