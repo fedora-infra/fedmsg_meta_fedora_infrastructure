@@ -27,7 +27,7 @@ from pytz import UTC
 try:
     import koji
 except ImportError:
-    pass
+    koji = None
 
 
 _build_template = """Package:    {name}-{version}-{release}
@@ -37,13 +37,15 @@ ID:         {id}
 Started:    {started}
 Finished:   {finished}
 
-Closed tasks:
--------------
 """
 
 _task_header_template = """Task {id} on {build_host}
 Task Type: {method} ({arch})
+Link: {url}
 """
+
+import logging
+log = logging.getLogger('fedmsg.meta.buildsys')
 
 
 class KojiProcessor(BaseProcessor):
@@ -56,16 +58,23 @@ class KojiProcessor(BaseProcessor):
                 "Artwork_DesignService_koji-icon-48.png")
 
     @classmethod
-    def _fill_task_template(cls, session, taskid):
+    def _fill_task_template(cls, sess, taskid):
         file_base = 'https://kojipkgs.fedoraproject.org/work/'
 
-        info = session.getTaskInfo(taskid)
-        host = session.getHost(info['host_id'])
+        info = sess.getTaskInfo(taskid)
+        host = sess.getHost(info['host_id'])
         info['build_host'] = host['name']
+        weburl = sess.baseurl.rsplit('/', 1)[0] + '/koji/'
+        info['url'] = weburl + 'taskinfo?taskID=%i' % info['id']
 
         retval = _task_header_template.format(**info)
 
-        result = session.getTaskResult(taskid)
+        try:
+            result = sess.getTaskResult(taskid)
+        except Exception as e:
+            log.warning(unicode(e))
+            return retval + "\n" + unicode(e) + "\n"
+
         if result:
             for kind in ['logs', 'rpms', 'srpms']:
                 if kind in result:
@@ -77,14 +86,14 @@ class KojiProcessor(BaseProcessor):
                 if kind in result:
                     retval += kind + ":\n  " + file_base + result[kind] + "\n"
 
-        children = session.getTaskChildren(taskid)
+        children = sess.getTaskChildren(taskid)
         for child in sorted(children, key=lambda d: d['completion_ts']):
-            retval += "\n" + cls._fill_task_template(session, child['id'])
+            retval += "\n" + cls._fill_task_template(sess, child['id'])
         return retval
 
     @classmethod
-    def _fill_build_template(cls, session, build):
-        full_build = session.getBuild(build['build_id'])
+    def _fill_build_template(cls, sess, build):
+        full_build = sess.getBuild(build['build_id'])
         lookup = dict(zip(*zip(*koji.BUILD_STATES.items())[::-1]))
         full_build['status'] = lookup[full_build['state']].lower()
 
@@ -94,8 +103,19 @@ class KojiProcessor(BaseProcessor):
         dt = datetime.datetime.fromtimestamp(full_build['completion_ts'], UTC)
         full_build['finished'] = dt.strftime(fmt)
 
-        _build_str = _build_template.format(**full_build)
-        _task_str = cls._fill_task_template(session, full_build['task_id'])
+        try:
+            _build_str = _build_template.format(**full_build)
+        except Exception as e:
+            log.warning(unicode(e))
+            _build_str = unicode(e) + "\n"
+
+        try:
+            _task_str = "Closed tasks:\n-------------\n"
+            _task_str += cls._fill_task_template(sess, full_build['task_id'])
+        except Exception as e:
+            log.warning(unicode(e))
+            _task_str = unicode(e) + "\n"
+
         return _build_str + _task_str
 
     def long_form(self, msg, **config):
@@ -110,7 +130,7 @@ class KojiProcessor(BaseProcessor):
         elif instance == 'arm':
             url = "http://arm.koji.fedoraproject.org/kojihub"
 
-        if 'buildsys.build.state.change' in msg['topic']:
+        if 'buildsys.build.state.change' in msg['topic'] and koji:
             session = koji.ClientSession(url)
             build = msg['msg']
             long_form = self._fill_build_template(session, build)

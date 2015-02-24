@@ -27,6 +27,23 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
+_build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
+Status:     failed
+Built by:   sharkcz
+ID:         288888
+Started:    Tue, 24 Feb 2015 14:19:09 UTC
+Finished:   Tue, 24 Feb 2015 14:19:46 UTC
+
+Closed tasks:
+-------------
+Task 1739950 on fedora1.s390.bos.redhat.com
+Task Type: build (noarch)
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739950
+
+could not init mock buildroot, mock exited with status 1; see build.log for more information
+"""
+
+
 _build_long_form_complete = """Package:    ansible-1.8.3-1.el7
 Status:     complete
 Built by:   kevin
@@ -38,9 +55,11 @@ Closed tasks:
 -------------
 Task 8973154 on arm02-builder15.arm.fedoraproject.org
 Task Type: build (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973154
 
 Task 8973158 on buildhw-11.phx2.fedoraproject.org
 Task Type: buildSRPMFromSCM (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973158
 logs:
   https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/root.log
   https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/build.log
@@ -50,6 +69,7 @@ srpm:
 
 Task 8973189 on buildhw-04.phx2.fedoraproject.org
 Task Type: buildArch (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973189
 logs:
   https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/root.log
   https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/build.log
@@ -61,6 +81,7 @@ srpms:
 
 Task 8973199 on arm02-builder15.arm.fedoraproject.org
 Task Type: tagBuild (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973199
 """
 
 
@@ -348,6 +369,59 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     }
 
 
+class TestKojiBuildStateChangeFail(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be pretty cryptic (they are just integers and are the
+    enums used by koji internally):
+
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
+
+    The example here is one of a build **failing** on a **secondary arch** koji
+    instance.
+    """
+    expected_title = "buildsys.build.state.change"
+    expected_subti = "sharkcz's 64tass-1.51.727-1.fc22 failed to build (s390)"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "0d6309f7bbfbf2bca3fc0fea5151b48895a2735481e4a38fce599fd5f24c546a"
+        "?s=64&d=retro")
+    expected_packages = set(['64tass'])
+    expected_usernames = set(['sharkcz'])
+    expected_objects = set([
+        's390/builds/64tass/1.51.727/1.fc22',
+    ])
+    expected_link = ("http://s390.koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=288888")
+    msg = {
+        "timestamp": 1424787586.0,
+        "msg_id": "2015-e3483831-5f88-401b-b20d-05537e6a010d",
+        "topic": "org.fedoraproject.prod.buildsys.build.state.change",
+        "msg": {
+            "build_id": 288888,
+            "old": 0,
+            "name": "64tass",
+            "task_id": 1739950,
+            "attribute": "state",
+            "instance": "s390",
+            "version": "1.51.727",
+            "owner": "sharkcz",
+            "new": 3,
+            "release": "1.fc22"
+        }
+    }
+
+
 class TestKojiBuildStateChangeComplete(Base):
     """ Koji emits messages on this topic anytime the state of a build changes.
 
@@ -364,7 +438,7 @@ class TestKojiBuildStateChangeComplete(Base):
             'CANCELED': 4,
         }
 
-    The example here is one of a build **succeeding** on one the **primary**
+    The example here is one of a build **succeeding** on the **primary**
     koji instance.
     """
     expected_title = "buildsys.build.state.change"
@@ -404,6 +478,9 @@ if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
     TestKojiBuildStateChangeComplete.expected_long_form = \
         TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
         _build_long_form_complete
+    TestKojiBuildStateChangeFail.expected_long_form = \
+        TestKojiBuildStateChangeFail.expected_subti + "\n\n" + \
+        _build_long_form_fail
 
 class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """
