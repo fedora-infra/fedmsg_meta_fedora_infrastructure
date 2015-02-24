@@ -118,10 +118,20 @@ class AnityaProcessor(BaseProcessor):
             return tmpl.format(user=user, project=project, distro=distro)
         elif 'project.version.update' in msg['topic']:
             project = msg['msg']['project']['name']
+
             if 'message' in msg['msg']:
                 message = msg['msg']['message']
             else:
                 message = msg['msg']
+
+            # If this project is mapped to a Fedora package, then just
+            # substitute "our" package name for the project name to make
+            # everyone's emails more readable.
+            # https://github.com/fedora-infra/the-new-hotness/issues/21
+            for package in message['packages']:
+                if package['distro'] == 'Fedora':
+                    project = package['package_name']
+
             old = message['old_version']
             new = message['upstream_version']
             tmpl = self._(
