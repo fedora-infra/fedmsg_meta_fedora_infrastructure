@@ -27,6 +27,22 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
+_build_long_form_cancel = """Package:    plasma-systemsettings-5.2.1-1.fc23
+Status:     canceled
+Built by:   dvratil
+ID:         614503
+Started:    Tue, 24 Feb 2015 14:50:21 UTC
+Finished:   Tue, 24 Feb 2015 14:53:47 UTC
+
+Closed tasks:
+-------------
+Task 9053697 on arm04-builder11.arm.fedoraproject.org
+Task Type: build (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=9053697
+
+Task 9053697 is canceled
+"""
+
 _build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
 Status:     failed
 Built by:   sharkcz
@@ -369,6 +385,60 @@ class TestKojiBuildStateChangeStartNoOwner(Base):
     }
 
 
+class TestKojiBuildStateChangeCancel(Base):
+    """ Koji emits messages on this topic anytime the state of a build changes.
+
+    The state codes can be pretty cryptic (they are just integers and are the
+    enums used by koji internally):
+
+        >>> import koji
+        >>> koji.BUILD_STATES
+        {
+            'BUILDING': 0,
+            'COMPLETE': 1,
+            'DELETED': 2,
+            'FAILED': 3,
+            'CANCELED': 4,
+        }
+
+    The example here is one of a build **being cancelled** on the **primary**
+    koji instance.
+    """
+    expected_title = "buildsys.build.state.change"
+    expected_subti = "dvratil's plasma-systemsettings-5.2.1-1.fc23 " + \
+        "was cancelled"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "1d952f7f249f4cd4d2929e09ad616ccdd87b4c2f3418a01ea6e6396ac41edd6a"
+        "?s=64&d=retro")
+    expected_packages = set(['plasma-systemsettings'])
+    expected_usernames = set(['dvratil'])
+    expected_objects = set([
+        'primary/builds/plasma-systemsettings/5.2.1/1.fc23',
+    ])
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "buildinfo?buildID=614503")
+    msg = {
+        "timestamp": 1424789698.0,
+        "msg_id": "2015-51be4c8e-8ab6-4dcb-ac0d-37b257765c71",
+        "topic": "org.fedoraproject.prod.buildsys.build.state.change",
+        "msg": {
+            "build_id": 614503,
+            "old": 4,
+            "name": "plasma-systemsettings",
+            "task_id": 9053697,
+            "attribute": "state",
+            "instance": "primary",
+            "version": "5.2.1",
+            "owner": "dvratil",
+            "new": 4,
+            "release": "1.fc23"
+        }
+    }
+
+
 class TestKojiBuildStateChangeFail(Base):
     """ Koji emits messages on this topic anytime the state of a build changes.
 
@@ -474,6 +544,7 @@ class TestKojiBuildStateChangeComplete(Base):
         }
     }
 
+
 if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
     TestKojiBuildStateChangeComplete.expected_long_form = \
         TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
@@ -481,6 +552,10 @@ if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
     TestKojiBuildStateChangeFail.expected_long_form = \
         TestKojiBuildStateChangeFail.expected_subti + "\n\n" + \
         _build_long_form_fail
+    TestKojiBuildStateChangeCancel.expected_long_form = \
+        TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
+        _build_long_form_cancel
+
 
 class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """
