@@ -394,7 +394,7 @@ class TestUpdatedMappingProject(Base):
 
 class TestFirstNewUpstreamVersionLegacy(Base):
     expected_title = "anitya.project.version.update"
-    expected_subti = 'A new version of "Accanthis-Std" has been ' + \
+    expected_subti = 'A new version of "adf-accanthis-fonts" has been ' + \
         'detected:  "20101124"'
     expected_link = "https://release-monitoring.org/project/22/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
