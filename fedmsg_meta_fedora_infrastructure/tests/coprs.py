@@ -96,6 +96,8 @@ class TestCoprsBuildEnd(Base):
             u'who': u'worker-2',
             u'pid': 12010,
             u'copr': u'mutt-kz',
+            u'version': '1.5.23.1-1.20150203.git.c8504a8a.fc20',
+            u'pkg': 'mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc20',
             u'build': 100,
             u'user': u'fatka',
         },
