@@ -69,7 +69,9 @@ class TestCoprsBuildEnd(Base):
     """
     expected_title = "copr.build.end"
     expected_subti = (
-        "fatka's mutt-kz copr build finished fedora-20-x86_64 with 'success'")
+        "fatka's mutt-kz copr build of "
+        "mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc20 "
+        "for fedora-20-x86_64 finished with 'success'")
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
