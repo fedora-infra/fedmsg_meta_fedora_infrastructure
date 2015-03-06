@@ -69,6 +69,7 @@ class KojiProcessor(BaseProcessor):
 
         retval = _task_header_template.format(**info)
 
+        result = None
         try:
             result = sess.getTaskResult(taskid)
         except Exception as e:
