@@ -38,6 +38,7 @@ ID:       {build}
 
 Logs:
   Build:     http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log
+  Root:      http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log
   Copr:      http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
   Mockchain: http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/mockchain.log
 Results:     http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
