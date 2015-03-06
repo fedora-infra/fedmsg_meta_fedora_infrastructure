@@ -40,6 +40,20 @@ Repodata:    http://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora
 """
 
 
+_long_copr_end_fail = """Package:  glib2-2.42.2-1.01.fc21
+COPR:     brianjmurrell/glib2
+Built by: brianjmurrell
+Status:   failed
+ID:       80794
+
+Logs:
+  Build:     http://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/build-80794.log
+  Mockchain: http://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/mockchain.log
+Results:     http://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/glib2-2.42.2-1.01.fc21/
+Repodata:    http://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/repodata/
+"""
+
+
 class TestCoprsBuildStart(Base):
     """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
     when a new build starts.
@@ -79,7 +93,8 @@ class TestCoprsBuildStart(Base):
 
 class TestCoprsBuildEnd(Base):
     """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
-    when a build has completed.
+    when a build has completed.  This is an example of a build that **completed
+    successfully**.
     """
     expected_title = "copr.build.end"
     expected_subti = (
@@ -118,6 +133,51 @@ class TestCoprsBuildEnd(Base):
             u'build': 100,
             u'user': u'fatka',
         },
+    }
+
+
+class TestCoprsBuildFailure(Base):
+    """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
+    when a build has completed.  This is an example of a build that **failed**.
+    """
+    expected_title = "copr.build.end"
+    expected_subti = (
+        "brianjmurrell's glib2 copr build of "
+        "glib2-2.42.2-1.01.fc21 "
+        "for fedora-21-x86_64 finished with 'failed'")
+    expected_long_form = expected_subti + "\n\n" + _long_copr_end_fail
+    expected_secondary_icon = (
+        'https://seccdn.libravatar.org/avatar/'
+        '7de251444538e68ddf2e83d67749c5f09583ae7b3fd638df3490c7e672c148d8?'
+        's=64&d=retro')
+    expected_packages = set([])
+    expected_usernames = set(['brianjmurrell'])
+    expected_objects = set([
+        'coprs/glib2/build.end',
+    ])
+    expected_link = ("https://copr.fedoraproject.org/coprs/"
+                     "brianjmurrell/glib2/build/80794/")
+
+    msg = {
+        "timestamp": 1425653769.0,
+        "msg_id": "2015-f3152f3c-5075-422e-af94-96c692454c81",
+        "topic": "org.fedoraproject.prod.copr.build.end",
+        "msg": {
+            "status": 0,
+            "what": "build end: user:brianjmurrell copr:glib2 build:80794    "
+            "pkg: glib2-2.42.2-1.01.fc21    version: 2.42.2-1.01.fc21 "
+            "ip:172.16.3.5    pid:9363 status:0",
+            "chroot": "fedora-21-x86_64",
+            "ip": "172.16.3.5",
+            "user": "brianjmurrell",
+            "who": "worker-4",
+            "pid": 9363,
+            "copr": "glib2",
+            "version": "2.42.2-1.01.fc21",
+            "build": 80794,
+            "owner": "brianjmurrell",
+            "pkg": "glib2-2.42.2-1.01.fc21"
+        }
     }
 
 
