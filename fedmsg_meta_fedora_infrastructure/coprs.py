@@ -37,12 +37,12 @@ Status:   {status}
 ID:       {build}
 
 Logs:
-  Build:     http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log
-  Root:      http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log
-  Copr:      http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
-  Mockchain: http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/mockchain.log
-Results:     http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
-Repodata:    http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/repodata/
+  Build:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log
+  Root:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log
+  Copr:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/mockchain.log
+Results:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
+Repodata:    https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/repodata/
 """
 
 
@@ -50,7 +50,7 @@ class CoprsProcessor(BaseProcessor):
     __name__ = "Copr"
     __description__ = "the Cool Other Package Repositories system"
     __link__ = "https://copr-fe.cloud.fedoraproject.org"
-    __docs__ = "http://fedorahosted.org/copr"
+    __docs__ = "https://fedorahosted.org/copr"
     __obj__ = "Extra Repository Updates"
     __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
 
