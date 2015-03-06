@@ -26,6 +26,20 @@ from fedmsg.tests.test_meta import Base
 from common import add_doc
 
 
+_long_copr_end = """Package:  mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21
+COPR:     fatka/mutt-kz
+Built by: fatka
+Status:   success
+ID:       100
+
+Logs:
+  Build:     http://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/build-100.log
+  Mockchain: http://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/mockchain.log
+Results:     http://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21/
+Repodata:    http://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/repodata/
+"""
+
+
 class TestCoprsBuildStart(Base):
     """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
     when a new build starts.
@@ -70,8 +84,9 @@ class TestCoprsBuildEnd(Base):
     expected_title = "copr.build.end"
     expected_subti = (
         "fatka's mutt-kz copr build of "
-        "mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc20 "
+        "mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21 "
         "for fedora-20-x86_64 finished with 'success'")
+    expected_long_form = expected_subti + "\n\n" + _long_copr_end
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
@@ -98,8 +113,8 @@ class TestCoprsBuildEnd(Base):
             u'who': u'worker-2',
             u'pid': 12010,
             u'copr': u'mutt-kz',
-            u'version': '1.5.23.1-1.20150203.git.c8504a8a.fc20',
-            u'pkg': 'mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc20',
+            u'version': '1.5.23.1-1.20150203.git.c8504a8a.fc21',
+            u'pkg': 'mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21',
             u'build': 100,
             u'user': u'fatka',
         },

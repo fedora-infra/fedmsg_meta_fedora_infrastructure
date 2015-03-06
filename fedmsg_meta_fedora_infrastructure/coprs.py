@@ -17,8 +17,31 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 
+import copy
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
+
+_statuses = {
+    0: 'failed',
+    1: 'success',
+    3: 'running',
+    5: 'skipped',
+}
+
+
+_long_template = """Package:  {pkg}
+COPR:     {owner}/{copr}
+Built by: {user}
+Status:   {status}
+ID:       {build}
+
+Logs:
+  Build:     http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
+  Mockchain: http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/mockchain.log
+Results:     http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
+Repodata:    http://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/repodata/
+"""
 
 
 class CoprsProcessor(BaseProcessor):
@@ -29,6 +52,19 @@ class CoprsProcessor(BaseProcessor):
     __obj__ = "Extra Repository Updates"
     __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
 
+    def long_form(self, msg, **config):
+        if 'copr.build.end' in msg['topic']:
+            kwargs = copy.copy(msg['msg'])
+
+            # For backwards compat with ancient messages
+            if 'owner' not in kwargs:
+                kwargs['owner'] = kwargs['user']
+
+            kwargs['status'] = _statuses.get(kwargs.get('status'), 'unknown')
+
+            details = _long_template.format(**kwargs)
+            return self.subtitle(msg, **config) + "\n\n" + details
+
     def subtitle(self, msg, **config):
 
         user = msg['msg'].get('user')
@@ -36,14 +72,7 @@ class CoprsProcessor(BaseProcessor):
         chroot = msg['msg'].get('chroot')
         pkg = msg['msg'].get('pkg')
 
-        statuses = {
-            0: 'failed',
-            1: 'success',
-            3: 'running',
-            5: 'skipped',
-        }
-
-        status = statuses.get(msg['msg'].get('status'), 'unknown')
+        status = _statuses.get(msg['msg'].get('status'), 'unknown')
 
         if 'copr.build.start' in msg['topic']:
             tmpl = self._("{user} started a new build of the {copr} copr")
