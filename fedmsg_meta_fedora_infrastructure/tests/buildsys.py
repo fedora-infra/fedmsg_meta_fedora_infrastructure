@@ -59,6 +59,18 @@ Task Type: build (noarch)
 Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739950
 
 could not init mock buildroot, mock exited with status 1; see build.log for more information
+
+Task 1739951 on fedora3.s390.bos.redhat.com
+Task Type: buildArch (s390)
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739951
+
+could not init mock buildroot, mock exited with status 1; see build.log for more information
+
+Task 1739952 on fedora6.s390.bos.redhat.com
+Task Type: buildArch (s390x)
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739952
+
+could not init mock buildroot, mock exited with status 1; see build.log for more information
 """
 
 
