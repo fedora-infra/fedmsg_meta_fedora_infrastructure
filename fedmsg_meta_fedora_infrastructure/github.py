@@ -176,6 +176,10 @@ class GithubProcessor(BaseProcessor):
         elif 'github.page_build' in msg['topic']:
             tmpl = self._('{user} rebuilt the github.io page for {repo}')
             return tmpl.format(user=user, repo=repo)
+        elif 'github.team_add' in msg['topic']:
+            tmpl = self._("The '{team_name}' team was added to the {repo} repository")
+            teamName = msg['msg']['team']['slug']
+            return tmpl.format(team_name=teamName,repo=repo)
         else:
             pass
 
@@ -204,7 +208,8 @@ class GithubProcessor(BaseProcessor):
             'github.delete': None,
             'github.watch': None,
             'github.star': None,
-            'github.page_build' : 'page_build'
+            'github.page_build': 'page_build',
+            'github.team_add': 'team_add'
         }
 
         if suffix not in lookup:
