@@ -65,6 +65,9 @@ class GithubProcessor(BaseProcessor):
             return msg['msg']['repository']['html_url'] + "/watchers"
         if 'github.star' in msg['topic']:
             return msg['msg']['repository']['html_url'] + "/stargazers"
+        if 'github.page_build' in msg['topic']:
+            temp = msg['msg']['repository']['html_url'].split("/")
+            return 'http://{0}.github.io/{1}/'.format(temp[-2],temp[-1])
         if 'release' in msg['msg']:
             return msg['msg']['release']['html_url']
         if 'target_url' in msg['msg']:
@@ -170,6 +173,9 @@ class GithubProcessor(BaseProcessor):
             version = msg['msg']['release']['tag_name']
             repo = repo.split('/', 1)[1]
             return tmpl.format(user=user, repo=repo, version=version)
+        elif 'github.page_build' in msg['topic']:
+            tmpl = self._('{user} rebuilt the github.io page for {repo}')
+            return tmpl.format(user=user, repo=repo)
         else:
             pass
 
@@ -198,6 +204,7 @@ class GithubProcessor(BaseProcessor):
             'github.delete': None,
             'github.watch': None,
             'github.star': None,
+            'github.page_build' : 'page_build'
         }
 
         if suffix not in lookup:
@@ -236,5 +243,6 @@ class GithubProcessor(BaseProcessor):
             items = ['watchers']
         elif suffix == 'github.star':
             items = ['stargazers']
-
+        if not items:
+            return set([base])
         return set([base + '/' + item for item in items])
