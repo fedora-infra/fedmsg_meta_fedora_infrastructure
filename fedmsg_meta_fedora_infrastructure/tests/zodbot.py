@@ -378,6 +378,40 @@ class TestSupybotChangeTopicNoTitle(Base):
     }
 
 
+class TestSupybotKarma(Base):
+    """ In IRC, users can give each other "karma" by saying ``user++``
+    (and zodbot publishes messages for that too).
+
+    Here's an example of that:
+    """
+    expected_title = 'irc.karma'
+    expected_subti = 'ralph gave lmacken(36) a karma cookie in #fedora-apps'
+    expected_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b" + \
+        "?s=64&d=retro"
+    expected_link = 'https://badges.fedoraproject.org/user/lmacken'
+    expected_usernames = set(['ralph', 'lmacken'])
+    expected_objects = set([
+        'karma/lmacken',
+    ])
+
+    msg = {
+        "i": 16,
+        "msg": {
+            'agent': 'ralph',
+            'recipient': 'lmacken',
+            'total': 36,
+            'vote': 1,
+            'channel': '#fedora-apps',
+        },
+        "topic": "org.fedoraproject.prod.irc.karma",
+        "timestamp": 1345572862.556145
+    }
+
+
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
     TestSupybotEndMeeting.expected_long_form = \
         TestSupybotEndMeeting.expected_subti + "\n\n" + full_irc_logs
