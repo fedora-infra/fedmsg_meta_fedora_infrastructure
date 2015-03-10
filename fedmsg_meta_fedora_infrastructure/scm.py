@@ -33,6 +33,9 @@ class SCMProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         if '.git.receive' in msg['topic']:
+            if 'username' in msg['msg']['commit']:
+                username = msg['msg']['commit']['username']
+                return gravatar_url(username)
             email = msg['msg']['commit']['email']
             return gravatar_url_from_email(email)
         elif '.git.lookaside' in msg['topic']:
