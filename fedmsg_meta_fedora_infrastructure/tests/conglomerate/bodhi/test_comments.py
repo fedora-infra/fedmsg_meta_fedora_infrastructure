@@ -107,6 +107,8 @@ class TestBodhiConglomerateCommentSameUpdate(
 
         'usernames': set(['hreindl']),
         'packages': set(['file']),
+        'topics': set(['org.fedoraproject.prod.bodhi.update.comment']),
+        'categories': set(['bodhi']),
         'msg_ids': ['2014-c1ccc3bb-e9bc-4424-8b99-6fbfa24a128f'],
     } ]
 
