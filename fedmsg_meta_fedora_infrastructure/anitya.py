@@ -132,7 +132,7 @@ class AnityaProcessor(BaseProcessor):
             for package in message.get('packages', []):
                 if package['distro'] == 'Fedora':
                     packages.append(package['package_name'])
-            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(packages,N=len(packages))
+            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(packages)
             old = message['old_version']
             new = message['upstream_version']
             tmpl = self._(
