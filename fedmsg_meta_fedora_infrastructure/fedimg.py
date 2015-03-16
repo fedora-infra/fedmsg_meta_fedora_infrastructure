@@ -28,6 +28,7 @@ class FedimgProcessor(BaseProcessor):
     __docs__ = "https://fedoraproject.org/wiki/Features/" + \
                "FirstClassCloudImages/KojiPlan"
     __obj__ = "New cloud image upload"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/fedimg.png"
 
     def subtitle(self, msg, **config):
         if 'image.upload' in msg['topic']:

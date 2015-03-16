@@ -69,11 +69,12 @@ class KojiProcessor(BaseProcessor):
 
         retval = _task_header_template.format(**info)
 
+        result = None
         try:
             result = sess.getTaskResult(taskid)
         except Exception as e:
             log.warning(unicode(e))
-            return retval + "\n" + unicode(e) + "\n"
+            retval += "\n" + unicode(e) + "\n"
 
         if result:
             for kind in ['logs', 'rpms', 'srpms']:
@@ -89,6 +90,7 @@ class KojiProcessor(BaseProcessor):
         children = sess.getTaskChildren(taskid)
         for child in sorted(children, key=lambda d: d['completion_ts']):
             retval += "\n" + cls._fill_task_template(sess, child['id'])
+
         return retval
 
     @classmethod

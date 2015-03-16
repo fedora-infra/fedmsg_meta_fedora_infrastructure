@@ -17,38 +17,71 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 
+import copy
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fasshim import gravatar_url
+
+_statuses = {
+    0: 'failed',
+    1: 'success',
+    3: 'running',
+    5: 'skipped',
+}
+
+
+_long_template = """Package:  {pkg}
+COPR:     {owner}/{copr}
+Built by: {user}
+Status:   {status}
+ID:       {build}
+
+Logs:
+  Build:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log
+  Root:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log
+  Copr:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/mockchain.log
+Results:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
+Repodata:    https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/repodata/
+"""
 
 
 class CoprsProcessor(BaseProcessor):
     __name__ = "Copr"
     __description__ = "the Cool Other Package Repositories system"
     __link__ = "https://copr-fe.cloud.fedoraproject.org"
-    __docs__ = "http://fedorahosted.org/copr"
+    __docs__ = "https://fedorahosted.org/copr"
     __obj__ = "Extra Repository Updates"
     __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
+
+    def long_form(self, msg, **config):
+        if 'copr.build.end' in msg['topic']:
+            kwargs = copy.copy(msg['msg'])
+
+            # For backwards compat with ancient messages
+            if 'owner' not in kwargs:
+                kwargs['owner'] = kwargs['user']
+
+            kwargs['status'] = _statuses.get(kwargs.get('status'), 'unknown')
+
+            details = _long_template.format(**kwargs)
+            return self.subtitle(msg, **config) + "\n\n" + details
 
     def subtitle(self, msg, **config):
 
         user = msg['msg'].get('user')
         copr = msg['msg'].get('copr')
         chroot = msg['msg'].get('chroot')
+        pkg = msg['msg'].get('pkg')
 
-        statuses = {
-            0: 'failed',
-            1: 'success',
-            3: 'running',
-            5: 'skipped',
-        }
-
-        status = statuses.get(msg['msg'].get('status'), 'unknown')
+        status = _statuses.get(msg['msg'].get('status'), 'unknown')
 
         if 'copr.build.start' in msg['topic']:
             tmpl = self._("{user} started a new build of the {copr} copr")
         elif 'copr.build.end' in msg['topic']:
             tmpl = self._(
-                "{user}'s {copr} copr build finished {chroot} with '{status}'")
+                "{user}'s {copr} copr build of {pkg} for {chroot} "
+                "finished with '{status}'")
         elif 'copr.chroot.start' in msg['topic']:
             tmpl = self._("{user}'s {copr} copr started a new {chroot} chroot")
         elif 'copr.worker.create' in msg['topic']:
@@ -56,7 +89,8 @@ class CoprsProcessor(BaseProcessor):
         else:
             raise NotImplementedError()
 
-        return tmpl.format(user=user, copr=copr, chroot=chroot, status=status)
+        return tmpl.format(user=user, copr=copr, pkg=pkg,
+                           chroot=chroot, status=status)
 
     def link(self, msg, **config):
         user = msg['msg'].get('owner', msg['msg'].get('user'))
