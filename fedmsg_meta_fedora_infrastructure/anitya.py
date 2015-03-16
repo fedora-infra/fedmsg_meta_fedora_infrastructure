@@ -22,7 +22,7 @@
 
 from fasshim import gravatar_url, gravatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-
+import fedmsg.meta.base
 
 class AnityaProcessor(BaseProcessor):
     topic_prefix_re = 'org\\.release-monitoring\\.(dev|stg|prod)'
@@ -124,24 +124,26 @@ class AnityaProcessor(BaseProcessor):
             else:
                 message = msg['msg']
 
-            # If this project is mapped to a Fedora package, then just
-            # substitute "our" package name for the project name to make
+            # If this project is mapped to one or more Fedora package, 
+            # then just add the mapped packages to make
             # everyone's emails more readable.
             # https://github.com/fedora-infra/the-new-hotness/issues/21
+            packages = []
             for package in message.get('packages', []):
                 if package['distro'] == 'Fedora':
-                    project = package['package_name']
-
+                    packages.append(package['package_name'])
+            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(packages,N=len(packages))
             old = message['old_version']
             new = message['upstream_version']
             tmpl = self._(
                 'A new version of "{project}" has been detected:  '
-                '"{new}"')
+                '"{new}", packaged as "{packages}"')
             if old:
                 tmpl = self._(
                     'A new version of "{project}" has been detected:  '
-                    '"{new}" in advance of "{old}"')
-            return tmpl.format(project=project, new=new, old=old)
+                    '"{new}" in advance of "{old}", packaged as "{packages}"')
+
+            return tmpl.format(project=project, new=new, old=old, packages=packages)
         elif 'project.version.remove' in msg['topic']:
             project = msg['msg']['project']['name']
             version = msg['msg']['message']['version']
