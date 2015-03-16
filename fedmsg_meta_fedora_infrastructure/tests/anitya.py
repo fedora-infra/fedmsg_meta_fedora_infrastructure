@@ -394,8 +394,8 @@ class TestUpdatedMappingProject(Base):
 
 class TestFirstNewUpstreamVersionLegacy(Base):
     expected_title = "anitya.project.version.update"
-    expected_subti = 'A new version of "adf-accanthis-fonts" has been ' + \
-        'detected:  "20101124"'
+    expected_subti = ('A new version of "Accanthis-Std" has been detected:  "20101124", '
+        'packaged as "adf-accanthis-fonts"')
     expected_link = "https://release-monitoring.org/project/22/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -449,8 +449,8 @@ class TestNewUpstreamVersion(Base):
     <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.version.update"
-    expected_subti = 'A new version of "2ping" has been detected:  ' + \
-        '"2.1.1" in advance of "2.1.0"'
+    expected_subti = ('A new version of "2ping" has been detected:  "2.1.1" '
+        'in advance of "2.1.0", packaged as "2ping"')
     expected_link = "https://release-monitoring.org/project/2/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -511,6 +511,94 @@ class TestNewUpstreamVersion(Base):
     }
 
 
+class TestNewUpstreamVersionMutiMap(Base):
+    """ The purpose of anitya is to monitor upstream projects and to
+    try and detect when they release new tarballs.
+
+    *These* messages are the ones that get published when a tarball is found
+    that is newer than the one last seen in the `anitya
+    <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.version.update"
+    expected_subti = ('A new version of "SQLAlchemy" has been detected:  '
+        '"1.0.0b1" in advance of "0.9.9", packaged as '
+        '"python-sqlalchemy and python-sqlalchemy0.5"')
+    expected_link = "https://release-monitoring.org/project/4034/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    #expected_secondary_icon = None
+    expected_packages = set(['python-sqlalchemy', 'python-sqlalchemy0.5'])
+    expected_usernames = set(['anitya'])
+    expected_objects = set([
+        'projects/SQLAlchemy',
+    ])
+    msg = {
+      "source_name": "datanommer", 
+      "i": 17, 
+      "timestamp": 1426296431.0, 
+      "msg_id": "2015-b2e3fab5-12a6-47b0-9ffc-c21d5789a2d0", 
+      "topic": "org.release-monitoring.prod.anitya.project.version.update", 
+      "source_version": "0.6.4", 
+      "msg": {
+            "project": {
+            "regex": None, 
+            "name": "SQLAlchemy", 
+            "versions": [
+                "1.0.0b1", 
+                "0.9.9", 
+                "0.9.8", 
+                "0.9.7"
+                ], 
+            "created_on": 1412175085.0, 
+            "version": "1.0.0b1", 
+            "version_url": None, 
+            "updated_on": 1426296430.0, 
+            "homepage": "https://pypi.python.org/pypi/SQLAlchemy", 
+            "id": 4034, 
+            "backend": "pypi"
+            }, 
+            "message": {
+                "versions": [
+                    "1.0.0b1", 
+                    "0.9.9", 
+                    "0.9.8", 
+                    "0.9.7"
+                    ], 
+                "old_version": "0.9.9", 
+                "upstream_version": "1.0.0b1", 
+                "project": {
+                    "regex": None, 
+                    "name": "SQLAlchemy", 
+                    "versions": [
+                    "1.0.0b1", 
+                    "0.9.9", 
+                    "0.9.8", 
+                    "0.9.7"
+                    ], 
+                "created_on": 1412175085.0, 
+                "version": "1.0.0b1", 
+                "version_url": None, 
+                "updated_on": 1426167440.0, 
+                "homepage": "https://pypi.python.org/pypi/SQLAlchemy", 
+                "id": 4034, 
+                "backend": "pypi"
+                 }, 
+                "agent": "anitya", 
+                "packages": [
+                    {
+                        "package_name": "python-sqlalchemy", 
+                        "distro": "Fedora"
+                    }, 
+                    {
+                        "package_name": "python-sqlalchemy0.5", 
+                        "distro": "Fedora"
+                    }
+                ]
+            }, 
+            "distro": None
+        }
+    }
+
 class TestFirstNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
     try and detect when they release new tarballs.
@@ -520,7 +608,8 @@ class TestFirstNewUpstreamVersion(Base):
     <https://release-monitoring.org>`_.
     """
     expected_title = "anitya.project.version.update"
-    expected_subti = 'A new version of "2ping" has been detected:  "2.1.1"'
+    expected_subti = ('A new version of "2ping" has been detected:  "2.1.1", '
+        'packaged as "2ping"')
     expected_link = "https://release-monitoring.org/project/2/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
