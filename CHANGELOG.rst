@@ -1,6 +1,19 @@
 Changelog
 =========
 
+0.4.5
+-----
+
+- Add processor for new karma messages. `c018104f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c018104f9a13cd052b7875c535935ed9ec5e6e4f>`_
+- Adding Anitya tests for new version of packages detected mapped to multiple packages `0f1ae6b0d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f1ae6b0ddd5415a9bac8b8e7d44bfde7b4539f9>`_
+- Removing N from the list of values passed to list_to_series() function `6684e7e60 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6684e7e6021487db3ddf1856f21dcdfa74f159ad>`_
+- Merge pull request #228 from Ghost-script/anitya `775595942 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77559594284e461ad058bbe3d77010aa82045020>`_
+- Merge pull request #222 from fedora-infra/feature/karma `44e5bf4ee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44e5bf4ee80439f553f3fa4bf2b33e439fcb657d>`_
+- Add tests and implementation for new meetbot line items. `6a96132c4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a96132c4358d89947bc050ddfac3c625da293ad>`_
+- Ignore koji longform tests if koji is not installed. `e2b53ef44 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e2b53ef44b7d04d45acfbecdb3098d2360d255b1>`_
+- Merge pull request #229 from fedora-infra/feature/halp-items `02bd9406b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/02bd9406b73b686643b899785182ed6b150b1604>`_
+- Merge pull request #230 from fedora-infra/feature/ignore-koji-longform-if-no-koji `83aad3c45 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/83aad3c45b25c67c7804c81a92874955dcaaa591>`_
+
 0.4.4
 -----
 

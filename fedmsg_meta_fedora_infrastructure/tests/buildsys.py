@@ -559,7 +559,15 @@ class TestKojiBuildStateChangeComplete(Base):
     }
 
 
-if not ('FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
+koji = None
+try:
+    import koji
+except ImportError:
+    pass
+
+if koji and not (
+    'FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
+
     TestKojiBuildStateChangeComplete.expected_long_form = \
         TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
         _build_long_form_complete

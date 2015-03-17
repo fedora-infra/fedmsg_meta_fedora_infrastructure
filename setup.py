@@ -99,12 +99,13 @@ entry_points = {
         "koschei=fedmsg_meta_fedora_infrastructure.koschei:KoscheiProcessor",
         "hotness=fedmsg_meta_fedora_infrastructure.hotness:HotnessProcessor",
         "mm2=fedmsg_meta_fedora_infrastructure.mm2:MirrorManagerProcessor",
+        "irc=fedmsg_meta_fedora_infrastructure.karma:KarmaProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.4.4',
+    version='0.4.5',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
