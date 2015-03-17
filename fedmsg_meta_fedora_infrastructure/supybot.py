@@ -50,35 +50,64 @@ class SupybotProcessor(BaseProcessor):
                 return self.subtitle(msg, **config) + '\n\n' + response.text
 
     def subtitle(self, msg, **config):
+        action = None
+        agent = None
+        line = None
+
         if 'meetbot.meeting.start' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user} started meeting "{name}" in {channel}')
+                tmpl = self._('{owner} started meeting "{name}" in {channel}')
             else:
-                tmpl = self._('{user} started a meeting in {channel}')
+                tmpl = self._('{owner} started a meeting in {channel}')
 
         elif 'meetbot.meeting.complete' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('{user}\'s meeting titled "{name}" '
+                tmpl = self._('{owner}\'s meeting titled "{name}" '
                               'ended in {channel}')
             else:
-                tmpl = self._('{user}\'s meeting ended in {channel}')
+                tmpl = self._('{owner}\'s meeting ended in {channel}')
 
         elif 'meetbot.meeting.topic.update' in msg['topic']:
             if msg['msg']['meeting_topic']:
-                tmpl = self._('The topic of {user}\'s "{name}" meeting '
+                tmpl = self._('The topic of {owner}\'s "{name}" meeting '
                               'changed to "{topic}" in {channel}')
             else:
-                tmpl = self._('The topic of {user}\'s meeting '
+                tmpl = self._('The topic of {owner}\'s meeting '
                               'changed to "{topic}" in {channel}')
+        elif 'meetbot.meeting.item.' in msg['topic']:
+            if msg['msg']['meeting_topic']:
+                tmpl = self._('{agent} {action} in the "{name}" meeting '
+                              'in {channel}: "{line}"')
+            else:
+                tmpl = self._('{agent} {action} in a meeting '
+                              'in {channel}: "{line}"')
+            key = msg['topic'].rsplit('.')[-1]
+            action_lookup = {
+                'agreed': 'noted agreement',
+                'accepted': 'accepted an item',
+                'rejected': 'rejected an item',
+                'action': 'noted an action',
+                'info': 'raised a point of information',
+                'idea': 'proposed an idea',
+                'help': 'called for help',
+                'link': 'linked to more information',
+            }
+            action = action_lookup[key]
+            line = msg['msg']['details']['line']
         else:
             raise NotImplementedError("%r" % msg)
 
-        user = nick2fas(msg['msg']['owner'], **config)
+        if 'details' in msg['msg']:
+            agent = nick2fas(msg['msg']['details']['nick'], **config)
+
+        owner = nick2fas(msg['msg']['owner'], **config)
         name = msg['msg']['meeting_topic']
         channel = msg['msg']['channel']
         topic = msg['msg'].get('topic', 'no topic')
 
-        return tmpl.format(user=user, name=name, channel=channel, topic=topic)
+        return tmpl.format(owner=owner, agent=agent, name=name,
+                           channel=channel, topic=topic,
+                           action=action, line=line)
 
     def usernames(self, msg, **config):
         return set([

@@ -378,6 +378,50 @@ class TestSupybotChangeTopicNoTitle(Base):
     }
 
 
+class TestSupybotMeetingItemHelp(Base):
+    """ As IRC meetings chug along, people can declare items for the record.
+    Here's an example of someone **calling for help** on some item:
+    """
+    expected_title = "meetbot.meeting.item.help"
+    expected_subti = 'ralph called for help in the "fancytown" meeting in ' + \
+        '#fedora-meeting: "The #fedora-apps team needs people to help ' + \
+        'review code http://ambre.pingoured.fr/fedora-infra/"'
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'attendees/ralph',
+        'channels/#fedora-meeting',
+        'titles/fancytown',
+    ])
+
+    msg = {
+        "username": "threebean",
+        "timestamp": 1426553001,
+        "msg_id": "2015-ab5c6d46-4010-4966-9d0e-dd5f7ae819a5",
+        "topic": "org.fedoraproject.prod.meetbot.meeting.item.help",
+        "msg": {
+            "meeting_topic": "fancytown",
+            "attendees": {
+                "threebean": 2,
+                "zodbot": 2
+            },
+            "chairs": {
+                "threebean": True
+            },
+            "topic": "",
+            "url": "threebean/2015/threebean.2015-03-17-00.42",
+            "details": {
+                "linenum": 4,
+                "line": "The #fedora-apps team needs people to help "
+                "review code http://ambre.pingoured.fr/fedora-infra/",
+                "time_": 1426553001.0,
+                "nick": "threebean"
+            },
+            "owner": "threebean",
+            "channel": "#fedora-meeting"
+        }
+    }
+
+
 class TestSupybotKarma(Base):
     """ In IRC, users can give each other "karma" by saying ``user++``
     (and zodbot publishes messages for that too).
