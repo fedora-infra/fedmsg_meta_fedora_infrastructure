@@ -196,6 +196,8 @@ class TestSCM(Base):
     expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
+    expected_long_form = expected_subti + "\n\n" + \
+        "This commit already existed in another branch."
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
     expected_secondary_icon = ("https://seccdn.libravatar.org/avatar/"
         "0f32874b1ae3083205c874c83cd2d21715c89b8645483f353e90ae499c67c944"
@@ -210,6 +212,7 @@ class TestSCM(Base):
         "topic": "org.fedoraproject.prod.git.receive",
         "msg": {
             "commit": {
+                "seen": True,
                 "stats": {
                     "files": {
                         "valgrind.spec": {
