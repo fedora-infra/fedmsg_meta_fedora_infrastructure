@@ -435,7 +435,8 @@ class TestSupybotKarma(Base):
     Here's an example of that:
     """
     expected_title = 'irc.karma'
-    expected_subti = 'ralph gave lmacken(36) a karma cookie in #fedora-apps'
+    expected_subti = 'ralph gave lmacken(36) a karma cookie in ' + \
+        '#fedora-apps.  "thanks for all the fish, lmacken++"'
     expected_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -456,6 +457,7 @@ class TestSupybotKarma(Base):
             'total': 36,
             'vote': 1,
             'channel': '#fedora-apps',
+            'line': 'thanks for all the fish, lmacken++',
         },
         "topic": "org.fedoraproject.prod.irc.karma",
         "timestamp": 1345572862.556145

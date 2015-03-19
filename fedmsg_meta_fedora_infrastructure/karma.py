@@ -36,7 +36,12 @@ class KarmaProcessor(BaseProcessor):
                           'a karma cookie in {channel}')
         else:
             tmpl = self._('{agent} gave {recipient}({total}) '
-                          'negative karma in {channel}!  :(')
+                          'negative karma in {channel}')
+
+        # Backwards compat
+        if 'line' in msg['msg']:
+            tmpl = tmpl + self._('.  "{line}"')
+
         return tmpl.format(**msg['msg'])
 
     def link(self, msg, **config):
