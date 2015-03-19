@@ -386,9 +386,13 @@ class TestSupybotMeetingItemHelp(Base):
     expected_subti = 'ralph called for help in the "fancytown" meeting in ' + \
         '#fedora-meeting: "The #fedora-apps team needs people to help ' + \
         'review code http://ambre.pingoured.fr/fedora-infra/"'
-    expected_usernames = set(['ralph'])
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/' + \
+        '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c' + \
+        '?s=64&d=retro'
+    expected_usernames = set(['ralph', 'lmacken'])
     expected_objects = set([
         'attendees/ralph',
+        'attendees/lmacken',
         'channels/#fedora-meeting',
         'titles/fancytown',
     ])
@@ -401,11 +405,13 @@ class TestSupybotMeetingItemHelp(Base):
         "msg": {
             "meeting_topic": "fancytown",
             "attendees": {
+                "lmacken": 2,
                 "threebean": 2,
                 "zodbot": 2
             },
             "chairs": {
-                "threebean": True
+                "threebean": True,
+                "lmacken": True,
             },
             "topic": "",
             "url": "threebean/2015/threebean.2015-03-17-00.42",
@@ -414,9 +420,9 @@ class TestSupybotMeetingItemHelp(Base):
                 "line": "The #fedora-apps team needs people to help "
                 "review code http://ambre.pingoured.fr/fedora-infra/",
                 "time_": 1426553001.0,
-                "nick": "threebean"
+                "nick": "threebean",
             },
-            "owner": "threebean",
+            "owner": "lmacken",
             "channel": "#fedora-meeting"
         }
     }

@@ -117,7 +117,10 @@ class SupybotProcessor(BaseProcessor):
         ])
 
     def secondary_icon(self, msg, **config):
-        user = nick2fas(msg['msg']['owner'], **config)
+        if 'details' in msg['msg']:
+            user = nick2fas(msg['msg']['details']['nick'], **config)
+        else:
+            user = nick2fas(msg['msg']['owner'], **config)
         return gravatar_url(user)
 
     def objects(self, msg, **config):
