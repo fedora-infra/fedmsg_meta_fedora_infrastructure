@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.4.6
+-----
+
+- (meetbot) use the agent's name where available. `22b9d8280 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22b9d82800db58ba860afad308b7ae780fea96d3>`_
+- Merge pull request #231 from fedora-infra/feature/meetbot-tweaks `ad46e8983 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad46e8983eb5844522b25513bdda9053d317c817>`_
+- Add more info about why karma was given `cdeaf8070 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cdeaf8070bb58809f725ad9bf6d367724339185a>`_
+- Merge pull request #232 from fedora-infra/feature/karma-tweaks `c8ca14c43 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c8ca14c4304c2d3765af3d10c5b9b363579cb6d2>`_
+- Shorten git commit emails if they have already been seen. `452eb15ec <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/452eb15ec42e093cb4ecf9cbe477885d23c6cfb4>`_
+- Merge pull request #233 from fedora-infra/feature/seen-commits `514d67a0d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/514d67a0dc128afa9b8b433476bb3f46ccd557b1>`_
+
 0.4.5
 -----
 
