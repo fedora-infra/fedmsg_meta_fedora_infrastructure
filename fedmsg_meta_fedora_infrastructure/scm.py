@@ -23,6 +23,9 @@ from fasshim import gravatar_url, gravatar_url_from_email
 import requests
 
 
+already_seen_msg = "This commit already existed in another branch."
+
+
 class SCMProcessor(BaseProcessor):
     __name__ = "git"
     __description__ = "the Fedora version control system"
@@ -53,6 +56,11 @@ class SCMProcessor(BaseProcessor):
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
 
             rev = msg['msg']['commit']['rev']
+
+            seen = msg['msg']['commit'].get('seen', False)
+            if seen:
+                return self.subtitle(msg, **config) + '\n\n' + already_seen_msg
+
             url = 'http://pkgs.fedoraproject.org/cgit/' + \
                 '{repo}.git/patch/?id={rev}'
             response = requests.get(url.format(repo=repo, rev=rev))
