@@ -322,6 +322,10 @@ class BodhiProcessor(BaseProcessor):
         if 'agent' in msg['msg']:
             users.append(msg['msg']['agent'])
 
+        # Strip out None values.  In some cases, we're getting None values
+        # here.. I think from the 'agent' field of an anonymous bodhi comment.
+        users = [u for u in users if u is not None]
+
         return set(users)
 
     def objects(self, msg, **config):
