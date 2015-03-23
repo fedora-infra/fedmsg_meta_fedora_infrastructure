@@ -103,7 +103,9 @@ class TracProcessor(BaseProcessor):
             description = msg['msg']['ticket'].get('description')
             summary = msg['msg']['ticket'].get('summary')
 
-            retval = "Summary: " + summary + "\n"
+            retval = ""
+            if summary:
+                retval += "Summary: " + summary + "\n"
             if comment:
                 retval += "Comment: " + comment + "\n"
             elif description:
