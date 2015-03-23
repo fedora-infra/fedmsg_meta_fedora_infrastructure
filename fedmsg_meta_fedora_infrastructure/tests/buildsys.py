@@ -114,6 +114,19 @@ Task Type: tagBuild (noarch)
 Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973199
 """
 
+_scratch_long_form_fail = """Task 6380373 on arm02-builder22.arm.fedoraproject.org
+Task Type: build (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=6380373
+
+error building package (arch noarch), mock exited with status 1; see build.log for more information
+
+Task 6380374 on buildvm-17.phx2.fedoraproject.org
+Task Type: buildArch (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=6380374
+
+error building package (arch noarch), mock exited with status 1; see build.log for more information
+"""
+
 
 class TestKojiTaskStateChangeStart(Base):
     """ Koji emits messages on this topic anytime the state of a **scratch**
@@ -577,7 +590,9 @@ if koji and not (
     #TestKojiBuildStateChangeCancel.expected_long_form = \
     #    TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
     #    _build_long_form_cancel
-
+    TestKojiTaskStateChangeFail.expected_long_form = \
+        TestKojiTaskStateChangeFail.expected_subti + "\n\n" + \
+        _scratch_long_form_fail
 
 class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """
