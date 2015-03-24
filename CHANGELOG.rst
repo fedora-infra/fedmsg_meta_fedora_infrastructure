@@ -1,6 +1,19 @@
 Changelog
 =========
 
+0.4.7
+-----
+
+- Be careful with the trac ticket summary. `6b2373fe7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b2373fe70ed500f557b99e35c50038de2876c66>`_
+- Strip out None values from the bodhi usernames list. `bb52a3440 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bb52a3440c0797bee280c817c85d764552e6c241>`_
+- Merge pull request #235 from fedora-infra/feature/bodhi-anon `c9733443b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9733443bd148a64958e900d93917a0bd28251d9>`_
+- Merge pull request #234 from fedora-infra/feature/fix-trac-summary `74305eafa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/74305eafa82ce48ecc1d3af41f7b0b554fb52c3f>`_
+- (unrelated) these failure tests are unsustainable.  they change underneath all the time... `9ec4ec087 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ec4ec0871b20a090378214ed1209e1fca03664c>`_
+- Add long_form for koji scratch builds. `12044f462 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/12044f462eeb28a5b5c8c1ceaaacdd978e33866c>`_
+- Merge pull request #236 from fedora-infra/feature/longform-for-scratch `b387c333e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b387c333e6077cfb928447886a0d49685fba046e>`_
+- De-duplicate subtitles from long_form representations. `312bb250e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/312bb250e649c45fb6f0be20cbdc4e13cb7d341e>`_
+- Merge pull request #237 from fedora-infra/feature/de-duplicate-subtitle `e7bf1014d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e7bf1014d3d87a5eee038a783126db2cf104f84b>`_
+
 0.4.6
 -----
 

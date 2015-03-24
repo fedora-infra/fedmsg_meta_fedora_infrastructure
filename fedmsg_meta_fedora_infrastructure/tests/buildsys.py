@@ -49,28 +49,28 @@ _build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
 Status:     failed
 Built by:   sharkcz
 ID:         288888
-Started:    Tue, 24 Feb 2015 14:19:09 UTC
-Finished:   Tue, 24 Feb 2015 14:19:46 UTC
+Started:    Sat, 14 Mar 2015 19:09:10 UTC
+Finished:   Sat, 14 Mar 2015 19:11:02 UTC
 
 Closed tasks:
 -------------
-Task 1739950 on fedora1.s390.bos.redhat.com
+Task 1755171 on fedora3.s390.bos.redhat.com
 Task Type: build (noarch)
-Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739950
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755171
 
-could not init mock buildroot, mock exited with status 1; see build.log for more information
+error building package (arch s390), mock exited with status 1; see build.log for more information
 
-Task 1739951 on fedora3.s390.bos.redhat.com
+Task 1755172 on fedora3.s390.bos.redhat.com
 Task Type: buildArch (s390)
-Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739951
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755172
 
-could not init mock buildroot, mock exited with status 1; see build.log for more information
+error building package (arch s390), mock exited with status 1; see build.log for more information
 
-Task 1739952 on fedora6.s390.bos.redhat.com
+Task 1755173 on fedora2.s390.bos.redhat.com
 Task Type: buildArch (s390x)
-Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1739952
+Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755173
 
-could not init mock buildroot, mock exited with status 1; see build.log for more information
+error building package (arch s390x), mock exited with status 1; see build.log for more information
 """
 
 
@@ -112,6 +112,19 @@ srpms:
 Task 8973199 on arm02-builder15.arm.fedoraproject.org
 Task Type: tagBuild (noarch)
 Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973199
+"""
+
+_scratch_long_form_fail = """Task 6380373 on arm02-builder22.arm.fedoraproject.org
+Task Type: build (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=6380373
+
+error building package (arch noarch), mock exited with status 1; see build.log for more information
+
+Task 6380374 on buildvm-17.phx2.fedoraproject.org
+Task Type: buildArch (noarch)
+Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=6380374
+
+error building package (arch noarch), mock exited with status 1; see build.log for more information
 """
 
 
@@ -569,15 +582,13 @@ if koji and not (
     'FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
 
     TestKojiBuildStateChangeComplete.expected_long_form = \
-        TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
         _build_long_form_complete
     TestKojiBuildStateChangeFail.expected_long_form = \
-        TestKojiBuildStateChangeFail.expected_subti + "\n\n" + \
         _build_long_form_fail
     #TestKojiBuildStateChangeCancel.expected_long_form = \
-    #    TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
     #    _build_long_form_cancel
-
+    TestKojiTaskStateChangeFail.expected_long_form = \
+        _scratch_long_form_fail
 
 class TestKojiRepoInit(Base):
     """ Koji emits these messages when a repository begins initializing. """

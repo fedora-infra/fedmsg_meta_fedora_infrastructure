@@ -103,12 +103,14 @@ class TracProcessor(BaseProcessor):
             description = msg['msg']['ticket'].get('description')
             summary = msg['msg']['ticket'].get('summary')
 
-            retval = "Summary: " + summary + "\n"
+            retval = ""
+            if summary:
+                retval += "Summary: " + summary + "\n"
             if comment:
                 retval += "Comment: " + comment + "\n"
             elif description:
                 retval += "Description: " + description + "\n"
-            return self.subtitle(msg, **config) + "\n\n" + retval
+            return retval
 
     def subtitle(self, msg, **config):
         if 'page' in msg['msg']:

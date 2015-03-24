@@ -59,24 +59,18 @@ class SCMProcessor(BaseProcessor):
 
             seen = msg['msg']['commit'].get('seen', False)
             if seen:
-                return self.subtitle(msg, **config) + '\n\n' + already_seen_msg
+                return already_seen_msg
 
             url = 'http://pkgs.fedoraproject.org/cgit/' + \
                 '{repo}.git/patch/?id={rev}'
             response = requests.get(url.format(repo=repo, rev=rev))
             if response.status_code == 200:
-                return self.subtitle(msg, **config) + '\n\n' + response.text
+                return response.text
         elif '.git.lookaside' in msg['topic']:
-            name = msg['msg']['name']
-            agent = msg['msg']['agent']
             filename = msg['msg']['filename']
             xsum = msg['msg']['md5sum']
-            tmpl = self._(
-                "{agent} uploaded a file to the lookaside cache for {name}\n\n"
-                "{xsum}  {filename}"
-            )
-            return tmpl.format(
-                agent=agent, name=name, xsum=xsum, filename=filename)
+            tmpl = self._("{xsum}  {filename}")
+            return tmpl.format(xsum=xsum, filename=filename)
 
     def subtitle(self, msg, **config):
         if '.git.receive' in msg['topic']:

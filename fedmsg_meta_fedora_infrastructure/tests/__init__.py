@@ -366,8 +366,8 @@ class TestLookaside(Base):
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
         'pst-diffraction.doc.tar.xz'
-    expected_long_form = 'jnovy uploaded a file to the lookaside cache ' + \
-    'for texlive\n\ndacad985394b3977f9dcf0c75f51a357  pst-diffraction.doc.tar.xz'
+    expected_long_form = \
+        'dacad985394b3977f9dcf0c75f51a357  pst-diffraction.doc.tar.xz'
     expected_usernames = set(['jnovy'])
     expected_packages = set(['texlive'])
     expected_objects = set(['texlive/pst-diffraction.doc.tar.xz'])
