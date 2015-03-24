@@ -582,16 +582,12 @@ if koji and not (
     'FEDMSG_META_NO_NETWORK' in os.environ or 'TRAVIS_CI' in os.environ):
 
     TestKojiBuildStateChangeComplete.expected_long_form = \
-        TestKojiBuildStateChangeComplete.expected_subti + "\n\n" + \
         _build_long_form_complete
     TestKojiBuildStateChangeFail.expected_long_form = \
-        TestKojiBuildStateChangeFail.expected_subti + "\n\n" + \
         _build_long_form_fail
     #TestKojiBuildStateChangeCancel.expected_long_form = \
-    #    TestKojiBuildStateChangeCancel.expected_subti + "\n\n" + \
     #    _build_long_form_cancel
     TestKojiTaskStateChangeFail.expected_long_form = \
-        TestKojiTaskStateChangeFail.expected_subti + "\n\n" + \
         _scratch_long_form_fail
 
 class TestKojiRepoInit(Base):

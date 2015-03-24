@@ -465,8 +465,7 @@ class TestSupybotKarma(Base):
 
 
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
-    TestSupybotEndMeeting.expected_long_form = \
-        TestSupybotEndMeeting.expected_subti + "\n\n" + full_irc_logs
+    TestSupybotEndMeeting.expected_long_form = full_irc_logs
 
 
 add_doc(locals())

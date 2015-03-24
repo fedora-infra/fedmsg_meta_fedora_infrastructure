@@ -49,7 +49,7 @@ class TestTracTicketCreate(Base):
 
     expected_title = "trac.ticket.new"
     expected_subti = "ralph opened a new ticket on the moksha trac instance"
-    expected_long_form = expected_subti + "\n\n" + _long_form_new
+    expected_long_form = _long_form_new
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -106,7 +106,7 @@ class TestTracTicketChange(Base):
 
     expected_title = "trac.ticket.update"
     expected_subti = "ralph updated a ticket on the moksha trac instance"
-    expected_long_form = expected_subti + "\n\n" + _long_form_comment
+    expected_long_form = _long_form_comment
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -167,7 +167,7 @@ class TestTracTicketChangeReopen(Base):
 
     expected_title = "trac.ticket.update"
     expected_subti = "ralph reopened a ticket on the moksha trac instance"
-    expected_long_form = expected_subti + "\n\n" + _long_form_reopen
+    expected_long_form = _long_form_reopen
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
@@ -232,7 +232,7 @@ class TestTracTicketChangeClosed(Base):
     expected_title = "trac.ticket.update"
     expected_subti = ("ralph closed a ticket on the moksha trac "
                       "instance as 'wontfix'")
-    expected_long_form = expected_subti + "\n\n" + _long_form_closed
+    expected_long_form = _long_form_closed
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"

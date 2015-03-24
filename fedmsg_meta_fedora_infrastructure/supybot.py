@@ -47,7 +47,7 @@ class SupybotProcessor(BaseProcessor):
             url = msg['msg']['url'] + '.txt'
             response = requests.get(url)
             if response.status_code == 200:
-                return self.subtitle(msg, **config) + '\n\n' + response.text
+                return response.text
 
     def subtitle(self, msg, **config):
         action = None

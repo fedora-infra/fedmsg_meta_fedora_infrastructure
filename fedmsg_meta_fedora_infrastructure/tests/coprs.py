@@ -105,7 +105,7 @@ class TestCoprsBuildEnd(Base):
         "fatka's mutt-kz copr build of "
         "mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21 "
         "for fedora-20-x86_64 finished with 'success'")
-    expected_long_form = expected_subti + "\n\n" + _long_copr_end
+    expected_long_form = _long_copr_end
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
@@ -149,7 +149,7 @@ class TestCoprsBuildFailure(Base):
         "brianjmurrell's glib2 copr build of "
         "glib2-2.42.2-1.01.fc21 "
         "for fedora-21-x86_64 finished with 'failed'")
-    expected_long_form = expected_subti + "\n\n" + _long_copr_end_fail
+    expected_long_form = _long_copr_end_fail
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         '7de251444538e68ddf2e83d67749c5f09583ae7b3fd638df3490c7e672c148d8?'
