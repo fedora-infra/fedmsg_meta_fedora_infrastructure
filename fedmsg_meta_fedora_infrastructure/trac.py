@@ -110,7 +110,7 @@ class TracProcessor(BaseProcessor):
                 retval += "Comment: " + comment + "\n"
             elif description:
                 retval += "Description: " + description + "\n"
-            return self.subtitle(msg, **config) + "\n\n" + retval
+            return retval
 
     def subtitle(self, msg, **config):
         if 'page' in msg['msg']:

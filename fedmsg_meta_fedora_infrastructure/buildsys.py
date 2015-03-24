@@ -146,7 +146,7 @@ class KojiProcessor(BaseProcessor):
             session = koji.ClientSession(url)
             build = msg['msg']
             long_form = self._fill_build_template(session, build)
-            return self.subtitle(msg, **config) + "\n\n" + long_form
+            return long_form
         if 'buildsys.task.state.change' in msg['topic'] and koji:
             session = koji.ClientSession(url)
             taskid = msg['msg']['id']
@@ -155,7 +155,7 @@ class KojiProcessor(BaseProcessor):
             except Exception as e:
                 log.warning(unicode(e))
                 long_form = unicode(e)
-            return self.subtitle(msg, **config) + "\n\n" + long_form
+            return long_form
 
     def subtitle(self, msg, **config):
         inst = msg['msg'].get('instance', 'primary')

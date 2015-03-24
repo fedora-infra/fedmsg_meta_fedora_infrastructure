@@ -88,21 +88,21 @@ class GithubProcessor(BaseProcessor):
     def long_form(self, msg, **config):
         if '.pull_request_review_comment' in msg['topic']:
             body = msg['msg']['comment']['body']
-            return self.subtitle(msg, **config) + '\n\n' + body
+            return body
         if '.issue.comment' in msg['topic']:
             body = msg['msg']['comment']['body']
-            return self.subtitle(msg, **config) + '\n\n' + body
+            return body
         if '.issue.reopened' in msg['topic']:
             body = msg['msg']['issue']['body']
-            return self.subtitle(msg, **config) + '\n\n' + body
+            return body
         if 'commit_comment' in msg['topic']:
             body = msg['msg']['comment']['body']
-            return self.subtitle(msg, **config) + '\n\n' + body
+            return body
         elif 'github.push' in msg['topic']:
             url = msg['msg']['compare'] + ".patch"
             response = requests.get(url)
             if response.status_code == 200:
-                return self.subtitle(msg, **config) + '\n\n' + response.text
+                return response.text
 
     def subtitle(self, msg, **config):
         user = self._get_user(msg)

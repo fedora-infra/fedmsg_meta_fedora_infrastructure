@@ -65,7 +65,7 @@ class CoprsProcessor(BaseProcessor):
             kwargs['status'] = _statuses.get(kwargs.get('status'), 'unknown')
 
             details = _long_template.format(**kwargs)
-            return self.subtitle(msg, **config) + "\n\n" + details
+            return details
 
     def subtitle(self, msg, **config):
 

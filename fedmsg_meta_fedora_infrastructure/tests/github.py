@@ -2050,92 +2050,84 @@ class TestGithubMember(Base):
     expected_packages = set([])
     expected_usernames = set(['ralph'])
     expected_objects = set(['ralphbean/lightsaber/member'])
-    msg = {  
+    msg = {
         "source_name": "datanommer",
-        "i": 2, 
-        "timestamp": 1426257201.0, 
-        "msg_id": "2015-b21fdc03-9f22-4d6f-a086-74d4dae25b6c", 
-        "topic": "org.fedoraproject.prod.github.member", 
-        "source_version": "0.6.4", 
+        "i": 2,
+        "timestamp": 1426257201.0,
+        "msg_id": "2015-b21fdc03-9f22-4d6f-a086-74d4dae25b6c",
+        "topic": "org.fedoraproject.prod.github.member",
+        "source_version": "0.6.4",
         "msg": {
-            "action": "added", 
+            "action": "added",
             "member": {
-              "url": "https://api.github.com/users/decause", 
-              "site_admin": False, 
-              "html_url": "https://github.com/decause", 
-              "gravatar_id": "", 
-              "login": "decause", 
-              "type": "User", 
+              "url": "https://api.github.com/users/decause",
+              "site_admin": False,
+              "html_url": "https://github.com/decause",
+              "gravatar_id": "",
+              "login": "decause",
+              "type": "User",
               "id": 427420
-            }, 
+            },
             "fas_usernames": {
               "ralphbean": "ralph"
-            }, 
+            },
             "repository": {
-              "has_wiki": False, 
-              "has_pages": False, 
-              "updated_at": "2015-03-13T13:23:31Z", 
-              "private": False, 
-              "full_name": "ralphbean/lightsaber", 
+              "has_wiki": False,
+              "has_pages": False,
+              "updated_at": "2015-03-13T13:23:31Z",
+              "private": False,
+              "full_name": "ralphbean/lightsaber",
               "owner": {
-                "url": "https://api.github.com/users/ralphbean", 
-                "site_admin": False, 
-                "html_url": "https://github.com/ralphbean", 
-                "gravatar_id": "", 
-                "login": "ralphbean", 
-                "type": "User", 
+                "url": "https://api.github.com/users/ralphbean",
+                "site_admin": False,
+                "html_url": "https://github.com/ralphbean",
+                "gravatar_id": "",
+                "login": "ralphbean",
+                "type": "User",
                 "id": 331338
-              }, 
-              "id": 13132894, 
-              "size": 1397, 
-              "watchers_count": 15, 
-              "forks": 3, 
-              "homepage": "", 
-              "fork": False, 
-              "description": "Everyone has to build their own...", 
-              "has_downloads": True, 
-              "forks_count": 3, 
-              "default_branch": "develop", 
-              "html_url": "https://github.com/ralphbean/lightsaber", 
-              "has_issues": True, 
-              "stargazers_count": 15, 
-              "open_issues_count": 1, 
-              "watchers": 15, 
-              "name": "lightsaber", 
-              "language": "Python", 
-              "url": "https://api.github.com/repos/ralphbean/lightsaber", 
-              "created_at": "2013-09-26T20:00:13Z", 
-              "pushed_at": "2015-03-13T13:23:31Z", 
+              },
+              "id": 13132894,
+              "size": 1397,
+              "watchers_count": 15,
+              "forks": 3,
+              "homepage": "",
+              "fork": False,
+              "description": "Everyone has to build their own...",
+              "has_downloads": True,
+              "forks_count": 3,
+              "default_branch": "develop",
+              "html_url": "https://github.com/ralphbean/lightsaber",
+              "has_issues": True,
+              "stargazers_count": 15,
+              "open_issues_count": 1,
+              "watchers": 15,
+              "name": "lightsaber",
+              "language": "Python",
+              "url": "https://api.github.com/repos/ralphbean/lightsaber",
+              "created_at": "2013-09-26T20:00:13Z",
+              "pushed_at": "2015-03-13T13:23:31Z",
               "open_issues": 1
-            }, 
+            },
             "sender": {
-              "url": "https://api.github.com/users/ralphbean", 
-              "site_admin": False, 
-              "html_url": "https://github.com/ralphbean", 
-              "gravatar_id": "", 
-              "login": "ralphbean", 
-              "type": "User", 
+              "url": "https://api.github.com/users/ralphbean",
+              "site_admin": False,
+              "html_url": "https://github.com/ralphbean",
+              "gravatar_id": "",
+              "login": "ralphbean",
+              "type": "User",
               "id": 331338
             }
         }
     }
 
 
-
-
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
-    TestGithubPush.expected_long_form = \
-        TestGithubPush.expected_subti + "\n\n" + full_patch1
-    TestGithubIssue.expected_long_form = \
-        TestGithubIssue.expected_subti + "\n\n" + "Testing stuff."
-    TestGithubIssueComment.expected_long_form = \
-        TestGithubIssueComment.expected_subti + "\n\n" + \
-        "This issue is super great!"
+    TestGithubPush.expected_long_form = full_patch1
+    TestGithubIssue.expected_long_form = "Testing stuff."
+    TestGithubIssueComment.expected_long_form = "This issue is super great!"
     TestGithubPullRequestComment.expected_long_form = \
-        TestGithubPullRequestComment.expected_subti + "\n\n" + \
         "I was thinking the ``flask.request.args.get(..."
     TestGithubCommitComment.expected_long_form = \
-        TestGithubCommitComment.expected_subti + "\n\n" + \
         "Maybe add a ``# comment`` here that 'BUILD_ID' " + \
         "is from jenkins and link to http://da.gd/QuQs ?"
 
