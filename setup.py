@@ -100,6 +100,7 @@ entry_points = {
         "hotness=fedmsg_meta_fedora_infrastructure.hotness:HotnessProcessor",
         "mm2=fedmsg_meta_fedora_infrastructure.mm2:MirrorManagerProcessor",
         "irc=fedmsg_meta_fedora_infrastructure.karma:KarmaProcessor",
+        "pagure=fedmsg_meta_fedora_infrastructure.pagure:PagureProcessor",
     ]
 }
 
