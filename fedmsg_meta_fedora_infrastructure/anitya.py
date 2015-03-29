@@ -124,7 +124,7 @@ class AnityaProcessor(BaseProcessor):
             else:
                 message = msg['msg']
 
-            # If this project is mapped to one or more Fedora package, 
+            # If this project is mapped to one or more Fedora package,
             # then just add the mapped packages to make
             # everyone's emails more readable.
             # https://github.com/fedora-infra/the-new-hotness/issues/21

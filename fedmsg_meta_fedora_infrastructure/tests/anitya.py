@@ -533,71 +533,72 @@ class TestNewUpstreamVersionMutiMap(Base):
         'projects/SQLAlchemy',
     ])
     msg = {
-      "source_name": "datanommer", 
-      "i": 17, 
-      "timestamp": 1426296431.0, 
-      "msg_id": "2015-b2e3fab5-12a6-47b0-9ffc-c21d5789a2d0", 
-      "topic": "org.release-monitoring.prod.anitya.project.version.update", 
-      "source_version": "0.6.4", 
+      "source_name": "datanommer",
+      "i": 17,
+      "timestamp": 1426296431.0,
+      "msg_id": "2015-b2e3fab5-12a6-47b0-9ffc-c21d5789a2d0",
+      "topic": "org.release-monitoring.prod.anitya.project.version.update",
+      "source_version": "0.6.4",
       "msg": {
             "project": {
-            "regex": None, 
-            "name": "SQLAlchemy", 
+            "regex": None,
+            "name": "SQLAlchemy",
             "versions": [
-                "1.0.0b1", 
-                "0.9.9", 
-                "0.9.8", 
+                "1.0.0b1",
+                "0.9.9",
+                "0.9.8",
                 "0.9.7"
-                ], 
-            "created_on": 1412175085.0, 
-            "version": "1.0.0b1", 
-            "version_url": None, 
-            "updated_on": 1426296430.0, 
-            "homepage": "https://pypi.python.org/pypi/SQLAlchemy", 
-            "id": 4034, 
+                ],
+            "created_on": 1412175085.0,
+            "version": "1.0.0b1",
+            "version_url": None,
+            "updated_on": 1426296430.0,
+            "homepage": "https://pypi.python.org/pypi/SQLAlchemy",
+            "id": 4034,
             "backend": "pypi"
-            }, 
+            },
             "message": {
                 "versions": [
-                    "1.0.0b1", 
-                    "0.9.9", 
-                    "0.9.8", 
+                    "1.0.0b1",
+                    "0.9.9",
+                    "0.9.8",
                     "0.9.7"
-                    ], 
-                "old_version": "0.9.9", 
-                "upstream_version": "1.0.0b1", 
+                    ],
+                "old_version": "0.9.9",
+                "upstream_version": "1.0.0b1",
                 "project": {
-                    "regex": None, 
-                    "name": "SQLAlchemy", 
+                    "regex": None,
+                    "name": "SQLAlchemy",
                     "versions": [
-                    "1.0.0b1", 
-                    "0.9.9", 
-                    "0.9.8", 
+                    "1.0.0b1",
+                    "0.9.9",
+                    "0.9.8",
                     "0.9.7"
-                    ], 
-                "created_on": 1412175085.0, 
-                "version": "1.0.0b1", 
-                "version_url": None, 
-                "updated_on": 1426167440.0, 
-                "homepage": "https://pypi.python.org/pypi/SQLAlchemy", 
-                "id": 4034, 
+                    ],
+                "created_on": 1412175085.0,
+                "version": "1.0.0b1",
+                "version_url": None,
+                "updated_on": 1426167440.0,
+                "homepage": "https://pypi.python.org/pypi/SQLAlchemy",
+                "id": 4034,
                 "backend": "pypi"
-                 }, 
-                "agent": "anitya", 
+                 },
+                "agent": "anitya",
                 "packages": [
                     {
-                        "package_name": "python-sqlalchemy", 
+                        "package_name": "python-sqlalchemy",
                         "distro": "Fedora"
-                    }, 
+                    },
                     {
-                        "package_name": "python-sqlalchemy0.5", 
+                        "package_name": "python-sqlalchemy0.5",
                         "distro": "Fedora"
                     }
                 ]
-            }, 
+            },
             "distro": None
         }
     }
+
 
 class TestFirstNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to
