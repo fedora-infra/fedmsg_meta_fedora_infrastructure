@@ -511,6 +511,77 @@ class TestNewUpstreamVersion(Base):
     }
 
 
+class TestOddNewUpstreamVersion(Base):
+    """ The purpose of anitya is to monitor upstream projects and to
+    try and detect when they release new tarballs.
+
+    *These* messages are the ones that get published when a tarball is found
+    that is newer than the one last seen in the `anitya
+    <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.version.update"
+    expected_subti = ('A new version of "2ping" has been detected:  '
+        '"2.1.0", packaged as "2ping"')
+    expected_link = "https://release-monitoring.org/project/2/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    #expected_secondary_icon = None
+    expected_packages = set([
+        '2ping',
+    ])
+    expected_usernames = set(['anitya'])
+    expected_objects = set([
+        'projects/2ping',
+    ])
+    msg = {
+        "username": "fedmsg",
+        "i": 1,
+        "timestamp": 1412234961,
+        "msg_id": "2014-f4dfc3e4-8909-45d7-b929-1862efb373cf",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.version.update",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "2ping",
+                "created_on": 1412174944.0,
+                "version": "2.1.1",
+                "version_url": "http://www.finnie.org/software/2ping/",
+                "updated_on": 1412179539.0,
+                "homepage": "http://www.finnie.org/software/2ping/",
+                "id": 2,
+                "backend": "custom"
+            },
+            "message": {
+                "versions": [
+                    "2.1.1"
+                ],
+                "old_version": "2.1.1",
+                "upstream_version": "2.1.0",
+                "project": {
+                    "regex": None,
+                    "name": "2ping",
+                    "created_on": 1412174944.0,
+                    "version": "2.1.1",
+                    "version_url": "http://www.finnie.org/software/2ping/",
+                    "updated_on": 1412179539.0,
+                    "homepage": "http://www.finnie.org/software/2ping/",
+                    "id": 2,
+                    "backend": "custom"
+                },
+                "odd_change": True,
+                "agent": "anitya",
+                "packages": [
+                    {
+                        "package_name": "2ping",
+                        "distro": "Fedora"
+                    }
+                ]
+            },
+            "distro": None
+          }
+    }
+
 class TestNewUpstreamVersionMutiMap(Base):
     """ The purpose of anitya is to monitor upstream projects and to
     try and detect when they release new tarballs.
