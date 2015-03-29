@@ -516,7 +516,7 @@ class TestOddNewUpstreamVersion(Base):
     try and detect when they release new tarballs.
 
     *These* messages are the ones that get published when a tarball is found
-    that is newer than the one last seen in the `anitya
+    that is older than the one last seen in the `anitya
     <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.version.update"
