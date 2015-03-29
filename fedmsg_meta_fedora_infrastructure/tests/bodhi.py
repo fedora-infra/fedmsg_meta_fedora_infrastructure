@@ -598,6 +598,8 @@ class TestBodhiComment(Base):
     """
     expected_title = "bodhi.update.comment"
     expected_subti = "ralph commented on bodhi update fedmsg-1.0-1 (karma: -1)"
+    expected_long_form = "Can you believe how much testing we're doing? " + \
+        "/cc @codeblock."
     expected_markup = (
         "<a href='https://admin.fedoraproject.org/updates/user/ralph'>"
         "ralph</a> commented on bodhi update "
