@@ -589,6 +589,68 @@ class TestHotnessMapFailAmbiguous(Base):
     }
 
 
+class TestHotnessMapMonitorToggle(Base):
+    """ These messages are published by a backend service called
+    `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
+    It watches for new upstream release notifications from
+    `release-monitoring.org <https://release-monitoring.org>`_ and in response
+    it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
+    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+
+    These kinds of messages get published when a package has its monitoring
+    flag toggled in pkgdb and the-new-hotness **tries to map that package in
+    release-monitoring.org**, but fails.
+    """
+
+    expected_title = "hotness.project.map"
+    expected_subti = "hotness tried to map perl-Digest-Perl-MD5 to an " + \
+        "upstream project, but failed:  \"Could not determine backend for " + \
+        "http://search.cpan.org/dist/Digest-Perl-MD5/\""
+    expected_link = "http://search.cpan.org/dist/Digest-Perl-MD5/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set(['perl-Digest-Perl-MD5'])
+    expected_usernames = set([])
+    expected_objects = set(['packages/perl-Digest-Perl-MD5'])
+    msg = {
+        "i": 20,
+        "msg": {
+        "reason": "Could not determine backend for "
+        "http://search.cpan.org/dist/Digest-Perl-MD5/",
+        "success": False,
+        "trigger": {
+            "crypto": "x509",
+            "i": 1,
+            "msg": {
+                "agent": "fale",
+                "package": {
+                    "acls": [],
+                    "creation_date": 1400070978.0,
+                    "description": "A pure-perl implementation of Ron "
+                    "Rivest's MD5 Algorithm.",
+                    "monitor": True,
+                    "name": "perl-Digest-Perl-MD5",
+                    "review_url": "https://bugzilla.redhat.com/732484",
+                    "status": "Approved",
+                    "summary": "Perl implementation of Ron "
+                    "Rivest's MD5 Algorithm",
+                    "upstream_url": "http://search.cpan.org/"
+                    "dist/Digest-Perl-MD5/"},
+                    "status": True
+                },
+                "msg_id": "2015-364c5f35-c5c8-4d25-a367-29f34cd5418e",
+                "timestamp": 1427635611,
+                "topic": "org.fedoraproject.prod.pkgdb.package.monitor.update",
+                "username": "apache"
+            }
+        },
+        "msg_id": "2015-122c5e1a-b1f4-4403-8703-7b12f07456c0",
+        "timestamp": 1427635619.0,
+        "topic": "org.fedoraproject.prod.hotness.project.map"
+    }
+
+
 class TestHotnessMapFailJustOne(Base):
     """ These messages are published by a backend service called
     `the-new-hotness <https://github.com/fedora-infra/the-new-hotness>`_.
