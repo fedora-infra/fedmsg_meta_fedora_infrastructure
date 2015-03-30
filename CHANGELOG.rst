@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.4.10
+------
+
+- Be careful with a null host from koji. `8c28d021d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8c28d021dddbe8804584414735036251a15772c6>`_
+- Merge pull request #244 from fedora-infra/feature/careful-with-null-host `09e2a442a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/09e2a442a690935aaf14010d92dbb0e14913c96b>`_
+
 0.4.9
 -----
 
