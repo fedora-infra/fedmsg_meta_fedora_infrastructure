@@ -75,7 +75,7 @@ error building package (arch s390x), mock exited with status 1; see build.log fo
 
 
 _build_long_form_complete = """Package:    ansible-1.8.3-1.el7
-Status:     complete
+Status:     deleted
 Built by:   kevin
 ID:         612324
 Started:    Tue, 17 Feb 2015 23:39:49 UTC

@@ -124,7 +124,7 @@ class AnityaProcessor(BaseProcessor):
             else:
                 message = msg['msg']
 
-            # If this project is mapped to one or more Fedora package, 
+            # If this project is mapped to one or more Fedora package,
             # then just add the mapped packages to make
             # everyone's emails more readable.
             # https://github.com/fedora-infra/the-new-hotness/issues/21
@@ -133,12 +133,13 @@ class AnityaProcessor(BaseProcessor):
                 if package['distro'] == 'Fedora':
                     packages.append(package['package_name'])
             packages = fedmsg.meta.base.BaseConglomerator.list_to_series(packages)
+            odd = message.get('odd_change', False)
             old = message['old_version']
             new = message['upstream_version']
             tmpl = self._(
                 'A new version of "{project}" has been detected:  '
                 '"{new}", packaged as "{packages}"')
-            if old:
+            if old and not odd:
                 tmpl = self._(
                     'A new version of "{project}" has been detected:  '
                     '"{new}" in advance of "{old}", packaged as "{packages}"')

@@ -1,6 +1,24 @@
 Changelog
 =========
 
+0.4.8
+-----
+
+- Add the Pagure processor for pagure's fedmsg messages `f1ce03a90 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f1ce03a9019cce32cf3a42a03f89a8fdb5ba7ca9>`_
+- Add unit-tests for pagure's fedmsg messages `85173cd70 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/85173cd704c795bbdb67f16e2e2d123d10c7bb00>`_
+- Declare the pagure processor in the setup.py script `8d6450c9f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8d6450c9f4b5762e7c0cd644c063ca8c384bfc3f>`_
+- Merge pull request #238 from fedora-infra/pagure `599ac8072 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/599ac8072418912b3fe12bb84bfb7e64032c6249>`_
+- Include the comment text in emails about bodhi comments. `576fe8ce5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/576fe8ce527a317d3f3c4a7baed32355e2afdc05>`_
+- Trim end of line spaces `f55d11e62 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f55d11e626b2a63d3f539f73561366af55d1d675>`_
+- Add support to anitya for odd changes `380d8c454 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/380d8c454dd519b4d569aae5ac90a61e83977502>`_
+- Add unit-tests for odd new upstream version `6e6d6f37a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6e6d6f37a74dc641bd2111018e77f3ff24711e2d>`_
+- Adjust docstring to represent the action `e495b3ac3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e495b3ac3fa4d7390c869e8756fdbf21d1820180>`_
+- Merge pull request #239 from fedora-infra/feature/fix-some-bodhi-things `96f883a24 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/96f883a24b4e53bad1345e415b98e5cdc98bfa05>`_
+- Merge pull request #240 from fedora-infra/fix_docstring `945b74ba7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/945b74ba721b881a91f3bcfc83ddfd441807151f>`_
+- Handle new hotness message type. `1ba0b6909 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1ba0b69090812bd2974a2106b6985ed6c404416b>`_
+- These koji tests results are always changing.  We'll need to mock this long-term. `575fdc1e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/575fdc1e32088a6008a84a41b83757114d6798da>`_
+- Merge pull request #242 from fedora-infra/feature/new-hotness-messages `cdaf5cf73 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cdaf5cf7399452ebba055d69a218120f55517edb>`_
+
 0.4.7
 -----
 

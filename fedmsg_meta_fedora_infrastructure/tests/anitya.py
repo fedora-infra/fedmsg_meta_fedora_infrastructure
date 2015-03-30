@@ -511,6 +511,77 @@ class TestNewUpstreamVersion(Base):
     }
 
 
+class TestOddNewUpstreamVersion(Base):
+    """ The purpose of anitya is to monitor upstream projects and to
+    try and detect when they release new tarballs.
+
+    *These* messages are the ones that get published when a tarball is found
+    that is older than the one last seen in the `anitya
+    <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.version.update"
+    expected_subti = ('A new version of "2ping" has been detected:  '
+        '"2.1.0", packaged as "2ping"')
+    expected_link = "https://release-monitoring.org/project/2/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    #expected_secondary_icon = None
+    expected_packages = set([
+        '2ping',
+    ])
+    expected_usernames = set(['anitya'])
+    expected_objects = set([
+        'projects/2ping',
+    ])
+    msg = {
+        "username": "fedmsg",
+        "i": 1,
+        "timestamp": 1412234961,
+        "msg_id": "2014-f4dfc3e4-8909-45d7-b929-1862efb373cf",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.version.update",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "2ping",
+                "created_on": 1412174944.0,
+                "version": "2.1.1",
+                "version_url": "http://www.finnie.org/software/2ping/",
+                "updated_on": 1412179539.0,
+                "homepage": "http://www.finnie.org/software/2ping/",
+                "id": 2,
+                "backend": "custom"
+            },
+            "message": {
+                "versions": [
+                    "2.1.1"
+                ],
+                "old_version": "2.1.1",
+                "upstream_version": "2.1.0",
+                "project": {
+                    "regex": None,
+                    "name": "2ping",
+                    "created_on": 1412174944.0,
+                    "version": "2.1.1",
+                    "version_url": "http://www.finnie.org/software/2ping/",
+                    "updated_on": 1412179539.0,
+                    "homepage": "http://www.finnie.org/software/2ping/",
+                    "id": 2,
+                    "backend": "custom"
+                },
+                "odd_change": True,
+                "agent": "anitya",
+                "packages": [
+                    {
+                        "package_name": "2ping",
+                        "distro": "Fedora"
+                    }
+                ]
+            },
+            "distro": None
+          }
+    }
+
 class TestNewUpstreamVersionMutiMap(Base):
     """ The purpose of anitya is to monitor upstream projects and to
     try and detect when they release new tarballs.
@@ -533,71 +604,72 @@ class TestNewUpstreamVersionMutiMap(Base):
         'projects/SQLAlchemy',
     ])
     msg = {
-      "source_name": "datanommer", 
-      "i": 17, 
-      "timestamp": 1426296431.0, 
-      "msg_id": "2015-b2e3fab5-12a6-47b0-9ffc-c21d5789a2d0", 
-      "topic": "org.release-monitoring.prod.anitya.project.version.update", 
-      "source_version": "0.6.4", 
+      "source_name": "datanommer",
+      "i": 17,
+      "timestamp": 1426296431.0,
+      "msg_id": "2015-b2e3fab5-12a6-47b0-9ffc-c21d5789a2d0",
+      "topic": "org.release-monitoring.prod.anitya.project.version.update",
+      "source_version": "0.6.4",
       "msg": {
             "project": {
-            "regex": None, 
-            "name": "SQLAlchemy", 
+            "regex": None,
+            "name": "SQLAlchemy",
             "versions": [
-                "1.0.0b1", 
-                "0.9.9", 
-                "0.9.8", 
+                "1.0.0b1",
+                "0.9.9",
+                "0.9.8",
                 "0.9.7"
-                ], 
-            "created_on": 1412175085.0, 
-            "version": "1.0.0b1", 
-            "version_url": None, 
-            "updated_on": 1426296430.0, 
-            "homepage": "https://pypi.python.org/pypi/SQLAlchemy", 
-            "id": 4034, 
+                ],
+            "created_on": 1412175085.0,
+            "version": "1.0.0b1",
+            "version_url": None,
+            "updated_on": 1426296430.0,
+            "homepage": "https://pypi.python.org/pypi/SQLAlchemy",
+            "id": 4034,
             "backend": "pypi"
-            }, 
+            },
             "message": {
                 "versions": [
-                    "1.0.0b1", 
-                    "0.9.9", 
-                    "0.9.8", 
+                    "1.0.0b1",
+                    "0.9.9",
+                    "0.9.8",
                     "0.9.7"
-                    ], 
-                "old_version": "0.9.9", 
-                "upstream_version": "1.0.0b1", 
+                    ],
+                "old_version": "0.9.9",
+                "upstream_version": "1.0.0b1",
                 "project": {
-                    "regex": None, 
-                    "name": "SQLAlchemy", 
+                    "regex": None,
+                    "name": "SQLAlchemy",
                     "versions": [
-                    "1.0.0b1", 
-                    "0.9.9", 
-                    "0.9.8", 
+                    "1.0.0b1",
+                    "0.9.9",
+                    "0.9.8",
                     "0.9.7"
-                    ], 
-                "created_on": 1412175085.0, 
-                "version": "1.0.0b1", 
-                "version_url": None, 
-                "updated_on": 1426167440.0, 
-                "homepage": "https://pypi.python.org/pypi/SQLAlchemy", 
-                "id": 4034, 
+                    ],
+                "created_on": 1412175085.0,
+                "version": "1.0.0b1",
+                "version_url": None,
+                "updated_on": 1426167440.0,
+                "homepage": "https://pypi.python.org/pypi/SQLAlchemy",
+                "id": 4034,
                 "backend": "pypi"
-                 }, 
-                "agent": "anitya", 
+                 },
+                "agent": "anitya",
                 "packages": [
                     {
-                        "package_name": "python-sqlalchemy", 
+                        "package_name": "python-sqlalchemy",
                         "distro": "Fedora"
-                    }, 
+                    },
                     {
-                        "package_name": "python-sqlalchemy0.5", 
+                        "package_name": "python-sqlalchemy0.5",
                         "distro": "Fedora"
                     }
                 ]
-            }, 
+            },
             "distro": None
         }
     }
+
 
 class TestFirstNewUpstreamVersion(Base):
     """ The purpose of anitya is to monitor upstream projects and to

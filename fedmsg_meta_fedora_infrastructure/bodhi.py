@@ -97,6 +97,10 @@ class BodhiProcessor(BaseProcessor):
             gravatar = gravatar_url(username)
         return gravatar
 
+    def long_form(self, msg, **config):
+        if 'bodhi.update.comment' in msg['topic']:
+            return msg['msg']['comment']['text']
+
     def subtitle(self, msg, **config):
         markup = config.get('markup', False)
 
