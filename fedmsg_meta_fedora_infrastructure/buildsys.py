@@ -121,12 +121,13 @@ class KojiProcessor(BaseProcessor):
             log.warning(unicode(e))
             _build_str = unicode(e) + "\n"
 
-        if full_build['task_id'] is None:
+        task_id = full_build['task_id']
+        if task_id is None:
             _task_str = "Build imported into koji\n"
         else:
             try:
                 _task_str = "Closed tasks:\n-------------\n"
-                _task_str += cls._fill_task_template(sess, full_build['task_id'])
+                _task_str += cls._fill_task_template(sess, task_id)
             except Exception as e:
                 log.warning(unicode(e))
                 _task_str = unicode(e) + "\n"
