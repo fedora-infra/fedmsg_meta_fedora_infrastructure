@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.4.9
+-----
+
+- Be more careful with null task_ids. `1b0a00659 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1b0a0065924fcfbfd71ef2c1e8dfa17269cd44bb>`_
+- PEP8. `fe593bca9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fe593bca98a6e7f04aabea1d57f22dc6e6dcf10d>`_
+
 0.4.8
 -----
 
