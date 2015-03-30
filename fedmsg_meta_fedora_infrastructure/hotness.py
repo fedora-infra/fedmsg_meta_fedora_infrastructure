@@ -107,9 +107,19 @@ class HotnessProcessor(BaseProcessor):
             return prefix.format(thing=thing) + qualifiers.get(reason, errmsg)
         elif 'hotness.project.map' in msg['topic']:
             original = msg['msg']['trigger']['msg']
-            package = original['package_listing']['package']['name']
+            if 'package_listing' in original:
+                package = original['package_listing']['package']['name']
+            else:
+                package = original['package']['name']
 
-            if 'total' in msg['msg']:
+            if 'reason' in msg['msg']:
+                return self._(
+                    'hotness tried to map {package} to an upstream project, '
+                    'but failed:  "{reason}"').format(
+                        package=package,
+                        reason=msg['msg']['reason'],
+                    )
+            elif 'total' in msg['msg']:
                 return self._(
                     'hotness tried to map {package} to an upstream project, '
                     'but failed due to ambiguity.  {total} other projects '
@@ -161,6 +171,8 @@ class HotnessProcessor(BaseProcessor):
                 return base % msg['msg']['project']['id']
             elif 'package_listing' in original:
                 return original['package_listing']['package']['review_url']
+            elif 'package' in original:
+                return original['package']['upstream_url']
 
     def secondary_icon(self, msg, **config):
         return self.icon(msg, **config)
@@ -190,6 +202,13 @@ class HotnessProcessor(BaseProcessor):
                 projects += ['projects/' + msg['msg']['project']['name']]
             return set(packages + projects)
 
+        if 'package' in msg['msg']['trigger']['msg']:
+            original = msg['msg']['trigger']['msg']
+            packages = [
+                'packages/' + original['package']['name']
+            ]
+            return set(packages)
+
         return set(bugs)
 
     def usernames(self, msg, **config):
@@ -212,5 +231,9 @@ class HotnessProcessor(BaseProcessor):
 
         if 'buildsys.build' in msg['msg']['trigger']['topic']:
             return set([msg['msg']['trigger']['msg']['name']])
+
+        if 'package' in msg['msg']['trigger']['msg']:
+            original = msg['msg']['trigger']['msg']
+            return set([original['package']['name']])
 
         return set()
