@@ -62,8 +62,12 @@ class KojiProcessor(BaseProcessor):
         file_base = 'https://kojipkgs.fedoraproject.org/work/'
 
         info = sess.getTaskInfo(taskid)
-        host = sess.getHost(info['host_id'])
-        info['build_host'] = host['name']
+        if info['host_id'] is None:
+            info['build_host'] = '(unscheduled)'
+        else:
+            host = sess.getHost(info['host_id'])
+            info['build_host'] = host['name']
+
         weburl = sess.baseurl.rsplit('/', 1)[0] + '/koji/'
         info['url'] = weburl + 'taskinfo?taskID=%i' % info['id']
 
