@@ -1842,6 +1842,202 @@ class TestPkgdbPackageMonitorUpdate(Base):
     }
 
 
+class TestPkgdbPackageUnretireRequest(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when someone asks that a package is
+    **unretired**.
+    """
+    expected_title = "pkgdb.package.unretire.request"
+    expected_subti = ("moceap asks that netbeans-platform8 be unretired on "
+        "master")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "360e1873c56312ea5866123f5ffaf4e07d419570b03af7f475c0d20c7501db06"
+        "?s=64&d=retro")
+    expected_packages = set(['netbeans-platform8'])
+    expected_usernames = set(['moceap'])
+    expected_objects = set(['netbeans-platform8/unretire/master'])
+    msg = {
+        'i': 1,
+        'timestamp': 1427823120,
+        'msg_id': '2015-bb28a398-e638-4509-9fa0-57d41c2ae0a4',
+        'topic': 'org.fedoraproject.prod.pkgdb.package.unretire.request',
+        'msg': {
+            'collection': {
+                'status': 'UnderDevelopment',
+                'dist_tag': '.fc23',
+                'koji_name': 'rawhide',
+                'name': 'Fedora',
+                'version': 'devel',
+                'branchname': 'master'
+            },
+            'agent': 'moceap',
+            'package': {
+                'status': 'Approved',
+                'upstream_url': None,
+                'monitor': False,
+                'summary': 'NetBeansPlatform8',
+                'name': 'netbeans-platform8',
+                'acls': [
+                    {
+                        'status': 'Retired',
+                        'point_of_contact': 'orphan',
+                        'package': {
+                            'status': 'Approved',
+                            'upstream_url': None,
+                            'monitor': False,
+                            'summary': 'NetBeansPlatform8',
+                            'name': 'netbeans-platform8',
+                            'acls': [],
+                            'creation_date': 1400070978.0,
+                            'review_url': None,
+                            'description': 'NetBeansPlatformisaframeworkfordevelopmentof\nRichClientSwingApplications.Itcontainspowerful\nmodulesystemandasetofmodulesprovidingvarious\nfunctionalitiesneededforsimplificationof\ndevelopmentofmodulardesktopapplications.'
+                        },
+                        'collection': {
+                            'status': 'UnderDevelopment',
+                            'dist_tag': '.fc23',
+                            'koji_name': 'rawhide',
+                            'name': 'Fedora',
+                            'version': 'devel',
+                            'branchname': 'master'
+                        },
+                        'critpath': False,
+                        'status_change': 1400071169.0
+                    },
+                    {
+                        'status': 'Approved',
+                        'point_of_contact': 'victorv',
+                        'package': {
+                            'status': 'Approved',
+                            'upstream_url': None,
+                            'monitor': False,
+                            'summary': 'NetBeansPlatform8',
+                            'name': 'netbeans-platform8',
+                            'acls': [],
+                            'creation_date': 1400070978.0,
+                            'review_url': None,
+                            'description': 'NetBeansPlatformisaframeworkfordevelopmentof\nRichClientSwingApplications.Itcontainspowerful\nmodulesystemandasetofmodulesprovidingvarious\nfunctionalitiesneededforsimplificationof\ndevelopmentofmodulardesktopapplications.'
+                        },
+                        'collection': {
+                            'status': 'EOL',
+                            'dist_tag': '.fc10',
+                            'koji_name': 'dist-f10',
+                            'name': 'Fedora',
+                            'version': '10',
+                            'branchname': 'f10'
+                        },
+                        'acls': [
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'watchcommits'
+                            },
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'watchbugzilla'
+                            },
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'commit'
+                            },
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'approveacls'
+                            }
+                        ],
+                        'critpath': False,
+                        'status_change': 1400071253.0
+                    },
+                    {
+                        'status': 'Approved',
+                        'point_of_contact': 'victorv',
+                        'package': {
+                            'status': 'Approved',
+                            'upstream_url': None,
+                            'monitor': False,
+                            'summary': 'NetBeansPlatform8',
+                            'name': 'netbeans-platform8',
+                            'acls': [
+
+                            ],
+                            'creation_date': 1400070978.0,
+                            'review_url': None,
+                            'description': 'NetBeansPlatformisaframeworkfordevelopmentof\nRichClientSwingApplications.Itcontainspowerful\nmodulesystemandasetofmodulesprovidingvarious\nfunctionalitiesneededforsimplificationof\ndevelopmentofmodulardesktopapplications.'
+                        },
+                        'collection': {
+                            'status': 'EOL',
+                            'dist_tag': '.fc11',
+                            'koji_name': 'dist-f11',
+                            'name': 'Fedora',
+                            'version': '11',
+                            'branchname': 'f11'
+                        },
+                        'acls': [
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'watchcommits'
+                            },
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'watchbugzilla'
+                            },
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'commit'
+                            },
+                            {
+                                'fas_name': 'victorv',
+                                'status': 'Approved',
+                                'acl': 'approveacls'
+                            }
+                        ],
+                        'critpath': False,
+                        'status_change': 1400071427.0
+                    },
+                    {
+                        'status': 'Orphaned',
+                        'point_of_contact': 'orphan',
+                        'package': {
+                            'status': 'Approved',
+                            'upstream_url': None,
+                            'monitor': False,
+                            'summary': 'NetBeansPlatform8',
+                            'name': 'netbeans-platform8',
+                            'acls': [
+
+                            ],
+                            'creation_date': 1400070978.0,
+                            'review_url': None,
+                            'description': 'NetBeansPlatformisaframeworkfordevelopmentof\nRichClientSwingApplications.Itcontainspowerful\nmodulesystemandasetofmodulesprovidingvarious\nfunctionalitiesneededforsimplificationof\ndevelopmentofmodulardesktopapplications.'
+                        },
+                        'collection': {
+                            'status': 'EOL',
+                            'dist_tag': '.fc12',
+                            'koji_name': 'dist-f12',
+                            'name': 'Fedora',
+                            'version': '12',
+                            'branchname': 'f12'
+                        },
+                        'critpath': False,
+                        'status_change': 1400071659.0
+                    }
+                ],
+                'creation_date': 1400070978.0,
+                'review_url': None,
+                'description': 'NetBeansPlatformisaframeworkfordevelopmentof\nRichClientSwingApplications.Itcontainspowerful\nmodulesystemandasetofmodulesprovidingvarious\nfunctionalitiesneededforsimplificationof\ndevelopmentofmodulardesktopapplications.'
+            }
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
