@@ -47,6 +47,11 @@ class KoscheiProcessor(BaseProcessor):
         else:
             raise NotImplementedError("%r" % msg)
 
+    def secondary_icon(self, msg, **config):
+        tmpl = 'https://apps.fedoraproject.org/packages/images/icons/%s.png'
+        if 'koschei.package.state.change' in msg['topic']:
+            return tmpl % msg['msg']['name']
+
     def link(self, msg, **config):
         baseurl = 'http://koschei.cloud.fedoraproject.org'
         if 'koschei.package.state.change' in msg['topic']:
