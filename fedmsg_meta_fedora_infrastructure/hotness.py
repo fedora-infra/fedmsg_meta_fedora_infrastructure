@@ -175,7 +175,9 @@ class HotnessProcessor(BaseProcessor):
                 return original['package']['upstream_url']
 
     def secondary_icon(self, msg, **config):
-        return self.icon(msg, **config)
+        tmpl = 'https://apps.fedoraproject.org/packages/images/icons/%s.png'
+        packages = self.packages(msg, **config)
+        return tmpl % (list(packages)[0] if packages else "package_128x128")
 
     def objects(self, msg, **config):
         bugs = []

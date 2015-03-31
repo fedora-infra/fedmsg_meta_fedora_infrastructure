@@ -161,11 +161,16 @@ class AnityaProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         username = self._get_user(msg, **config)
+        packages = self.packages(msg, **config)
         if username:
             if '@' in username:
                 return gravatar_url_from_email(username)
             else:
                 return gravatar_url(username)
+        elif packages:
+            tmpl = 'https://apps.fedoraproject.org/packages/' + \
+                'images/icons/%s.png'
+            return tmpl % list(packages)[0]
         else:
             return None
 

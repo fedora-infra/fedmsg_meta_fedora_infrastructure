@@ -1,11 +1,18 @@
 Changelog
 =========
 
-0.4.10
+0.4.11
 ------
 
 - Be careful with a null host from koji. `8c28d021d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8c28d021dddbe8804584414735036251a15772c6>`_
 - Merge pull request #244 from fedora-infra/feature/careful-with-null-host `09e2a442a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/09e2a442a690935aaf14010d92dbb0e14913c96b>`_
+- 0.4.10 `80908230f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80908230f39b7cb65bf2c065b2a4a31d964e6545>`_
+- Use nice package icons where we can. `d4cf3aba7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d4cf3aba7774fe7ac5ea2c820fa83f9607e79c8d>`_
+- Remove redundant line. `eb9bdd171 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb9bdd1712a757d705badca54d6d8904b07b060a>`_
+- Merge pull request #245 from fedora-infra/feature/package-icons `2ea3f0892 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2ea3f0892ceaf573c4703b15eb3a7cf752eb03f1>`_
+- Add unit-tests for pkgdb messages sent when someone asks for a package to be unretired `923b3e918 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/923b3e9186bc0d83c26a21f4417e02ce33d13982>`_
+- Adjust the pkgdb processor for messages asking for unretirement `e75627f85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e75627f8567b4f3fa96370a078127427fd00d9b3>`_
+- Merge pull request #246 from fedora-infra/missing_pkgdb `3aa1190e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3aa1190e3b0046a2d319a8df5ae41615511eea5f>`_
 
 0.4.9
 -----
@@ -108,6 +115,89 @@ Changelog
 0.4.2
 -----
 
+- Comment out the buildsys cancel long form test. `f50eda651 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50eda6519a76f8eacf8e681e2b41e831c7ff7b6>`_
+- Be more careful with these timestamps. `64f6116cf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/64f6116cf59a0eda0fab1ff1a709ae8fe804cb7a>`_
+- 0.4.3 `4bbd5b245 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4bbd5b245314d6705cab494d68598eaf152db2d9>`_
+- Make github longform tests conditional. `4f46090dd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f46090ddb15c676b51b5b8537220612349b6a68>`_
+- Move zodbot tests to their own file, and make the long_form part conditional like the others. `0a99a6226 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a99a6226856c77ec35eb18a9e12eda7fa0d69b0>`_
+- Merge pull request #213 from fedora-infra/feature/more-longform-conditionals `b030cf966 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b030cf96603fd6117874814c2f04dab31dcb0b6f>`_
+- Don't return prematurely if parent task is still open. `1f80bf7c2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1f80bf7c2e666378f23ebe5c83d5e1222142c3c7>`_
+- Merge pull request #214 from fedora-infra/feature/koji-longform-fix `fd9cea78a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fd9cea78a2eeb68ffc91791ef224d254fa414e1e>`_
+- Handle case where result never gets defined. `727bbe1c7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/727bbe1c7085bd0a7e32ae2afdb75461328307e9>`_
+- Add new copr fields to the docs. `d7cb97119 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d7cb97119ec87d6e2576779f0ad9cd8f17b63fb0>`_
+- Adjust copr.end subtitle to indicate the version of the build. `186811dac <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/186811dacbf3b268240b31d927236d58716df024>`_
+- Add a long_form representation for copr build completions. `7488a49e9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7488a49e9d1df4c5f5c73a53bd6daa77228ab16a>`_
+- Add a build failure test just to make sure we have all the bases covered. `b4eb0807f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b4eb0807f6855a14028606669c344ff890f4bce3>`_
+- There is more info here now... `d8f8e3713 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d8f8e3713a7ba091d2e2374d39d17732cb0839f8>`_
+- Add a link to more useful logs at @danvratil's suggestion. `0a46fdd69 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a46fdd69e86884aa4ac00de06eae58adf54151d>`_
+- Also link to root.log. `dd1c085a8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dd1c085a8698e19b9ff5da3b43f6c8ea5e234a49>`_
+- Oh, and of course, https please. `4a15d69c5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4a15d69c51a808fb4ad9973bf9e7c5b600731961>`_
+- Merge pull request #215 from fedora-infra/feature/fancy-copr-messages `7367a5f53 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7367a5f536ee8c1b569b15ace59115684948b3f8>`_
+- Merge pull request #216 from fedora-infra/feature/koji-longform-testfix `a223aa0e2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a223aa0e23337fb96d05577af566f5d5dd7e504c>`_
+- Added Github Page_Build Message Handler `587bd3275 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/587bd327563465d71fe74575a663c2b207cdf448>`_
+- Merge pull request #217 from Ghost-script/page_build `b88644e06 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b88644e0614188ccce6edc4d2db428caba805d0d>`_
+- Added Github Tead_Add message handler `1fb35abab <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1fb35abab91ac60d09a87533a65de714d474eec1>`_
+- Merge pull request #219 from Ghost-script/team_add `f6f593bd7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f6f593bd7fb4d483f4c297cb1f19ae6acdf5606c>`_
+- Add processor for new karma messages. `c018104f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c018104f9a13cd052b7875c535935ed9ec5e6e4f>`_
+- Use FAS openid libravatar first for git.receive messages And porting scm tests from __init__.py to scm.py `45c2f47d1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/45c2f47d14a610b4e736eadb8fedac91e7ed148a>`_
+- These should be here. `94ece2b33 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/94ece2b3381b23846870484f57e2d06cb2a1908d>`_
+- Merge pull request #221 from Ghost-script/openid_libravatar `49e3df842 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/49e3df8421549b59d2f843123427cd0540c82fd2>`_
+- Add icon url for fedimg logo. `77f83a329 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77f83a32964258644930e9a8734cab9299debbb2>`_
+- Added message handler and tests for Github member (added to)/(removed from) messages `4f747e0f3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f747e0f39b26529670d642d03496e05b1d5e814>`_
+- Merge pull request #227 from Ghost-script/github_member `f50e03724 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50e03724e1f8ccdb1e16f0a3dcdfd13d24e5377>`_
+- Merge pull request #223 from fedora-infra/feature/fix-conglomerate `738d431ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/738d431ea1c2faec67f2837bee54853926fbfe35>`_
+- Merge pull request #224 from fedora-infra/feature/fedimg-icon `ef48b3a85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ef48b3a85873fa297f447cb34411e9c3f17c7c83>`_
+- 0.4.4 `eb6b92dfd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb6b92dfde4de6aea8f7046ae501d53bb3c41028>`_
+- Adding Anitya tests for new version of packages detected mapped to multiple packages `0f1ae6b0d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f1ae6b0ddd5415a9bac8b8e7d44bfde7b4539f9>`_
+- Removing N from the list of values passed to list_to_series() function `6684e7e60 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6684e7e6021487db3ddf1856f21dcdfa74f159ad>`_
+- Merge pull request #228 from Ghost-script/anitya `775595942 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77559594284e461ad058bbe3d77010aa82045020>`_
+- Merge pull request #222 from fedora-infra/feature/karma `44e5bf4ee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44e5bf4ee80439f553f3fa4bf2b33e439fcb657d>`_
+- Add tests and implementation for new meetbot line items. `6a96132c4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a96132c4358d89947bc050ddfac3c625da293ad>`_
+- Ignore koji longform tests if koji is not installed. `e2b53ef44 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e2b53ef44b7d04d45acfbecdb3098d2360d255b1>`_
+- Merge pull request #229 from fedora-infra/feature/halp-items `02bd9406b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/02bd9406b73b686643b899785182ed6b150b1604>`_
+- Merge pull request #230 from fedora-infra/feature/ignore-koji-longform-if-no-koji `83aad3c45 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/83aad3c45b25c67c7804c81a92874955dcaaa591>`_
+- 0.4.5 `23dece4ef <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/23dece4ef26b2e5d4e8d75429512ba7ffee6139a>`_
+- (meetbot) use the agent's name where available. `22b9d8280 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22b9d82800db58ba860afad308b7ae780fea96d3>`_
+- Merge pull request #231 from fedora-infra/feature/meetbot-tweaks `ad46e8983 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad46e8983eb5844522b25513bdda9053d317c817>`_
+- Add more info about why karma was given `cdeaf8070 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cdeaf8070bb58809f725ad9bf6d367724339185a>`_
+- Merge pull request #232 from fedora-infra/feature/karma-tweaks `c8ca14c43 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c8ca14c4304c2d3765af3d10c5b9b363579cb6d2>`_
+- Shorten git commit emails if they have already been seen. `452eb15ec <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/452eb15ec42e093cb4ecf9cbe477885d23c6cfb4>`_
+- Merge pull request #233 from fedora-infra/feature/seen-commits `514d67a0d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/514d67a0dc128afa9b8b433476bb3f46ccd557b1>`_
+- 0.4.6 `379251578 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/37925157809c583753982158edc34f4ef021eac4>`_
+- Be careful with the trac ticket summary. `6b2373fe7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b2373fe70ed500f557b99e35c50038de2876c66>`_
+- Strip out None values from the bodhi usernames list. `bb52a3440 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bb52a3440c0797bee280c817c85d764552e6c241>`_
+- Merge pull request #235 from fedora-infra/feature/bodhi-anon `c9733443b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9733443bd148a64958e900d93917a0bd28251d9>`_
+- Merge pull request #234 from fedora-infra/feature/fix-trac-summary `74305eafa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/74305eafa82ce48ecc1d3af41f7b0b554fb52c3f>`_
+- (unrelated) these failure tests are unsustainable.  they change underneath all the time... `9ec4ec087 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ec4ec0871b20a090378214ed1209e1fca03664c>`_
+- Add long_form for koji scratch builds. `12044f462 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/12044f462eeb28a5b5c8c1ceaaacdd978e33866c>`_
+- Merge pull request #236 from fedora-infra/feature/longform-for-scratch `b387c333e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b387c333e6077cfb928447886a0d49685fba046e>`_
+- De-duplicate subtitles from long_form representations. `312bb250e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/312bb250e649c45fb6f0be20cbdc4e13cb7d341e>`_
+- Merge pull request #237 from fedora-infra/feature/de-duplicate-subtitle `e7bf1014d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e7bf1014d3d87a5eee038a783126db2cf104f84b>`_
+- 0.4.7 `5e5ef52d8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5e5ef52d8cd326eaf28051e73e692f6ce0c503eb>`_
+- Add the Pagure processor for pagure's fedmsg messages `f1ce03a90 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f1ce03a9019cce32cf3a42a03f89a8fdb5ba7ca9>`_
+- Add unit-tests for pagure's fedmsg messages `85173cd70 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/85173cd704c795bbdb67f16e2e2d123d10c7bb00>`_
+- Declare the pagure processor in the setup.py script `8d6450c9f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8d6450c9f4b5762e7c0cd644c063ca8c384bfc3f>`_
+- Merge pull request #238 from fedora-infra/pagure `599ac8072 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/599ac8072418912b3fe12bb84bfb7e64032c6249>`_
+- Include the comment text in emails about bodhi comments. `576fe8ce5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/576fe8ce527a317d3f3c4a7baed32355e2afdc05>`_
+- Trim end of line spaces `f55d11e62 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f55d11e626b2a63d3f539f73561366af55d1d675>`_
+- Add support to anitya for odd changes `380d8c454 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/380d8c454dd519b4d569aae5ac90a61e83977502>`_
+- Add unit-tests for odd new upstream version `6e6d6f37a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6e6d6f37a74dc641bd2111018e77f3ff24711e2d>`_
+- Adjust docstring to represent the action `e495b3ac3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e495b3ac3fa4d7390c869e8756fdbf21d1820180>`_
+- Merge pull request #239 from fedora-infra/feature/fix-some-bodhi-things `96f883a24 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/96f883a24b4e53bad1345e415b98e5cdc98bfa05>`_
+- Merge pull request #240 from fedora-infra/fix_docstring `945b74ba7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/945b74ba721b881a91f3bcfc83ddfd441807151f>`_
+- Handle new hotness message type. `1ba0b6909 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1ba0b69090812bd2974a2106b6985ed6c404416b>`_
+- These koji tests results are always changing.  We'll need to mock this long-term. `575fdc1e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/575fdc1e32088a6008a84a41b83757114d6798da>`_
+- Merge pull request #242 from fedora-infra/feature/new-hotness-messages `cdaf5cf73 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cdaf5cf7399452ebba055d69a218120f55517edb>`_
+- 0.4.8 `3b88e2a5b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3b88e2a5b9506061faf8d345dab186f13c41bb95>`_
+- Be more careful with null task_ids. `1b0a00659 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1b0a0065924fcfbfd71ef2c1e8dfa17269cd44bb>`_
+- PEP8. `fe593bca9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fe593bca98a6e7f04aabea1d57f22dc6e6dcf10d>`_
+- 0.4.9 `2d7f90f9a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2d7f90f9ae53a2f449b6ad785d726ef4fb1b7a62>`_
+- Be careful with a null host from koji. `8c28d021d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8c28d021dddbe8804584414735036251a15772c6>`_
+- Merge pull request #244 from fedora-infra/feature/careful-with-null-host `09e2a442a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/09e2a442a690935aaf14010d92dbb0e14913c96b>`_
+
+0.4.10
+------
+
 - Add a long_form field for message about uploading files to the lookaside cache `86432850d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/86432850d2a6f631817672a9ac10e7c5526d9eb5>`_
 - Fix getting the current folder so that we can call that file directly `e73fe2b97 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e73fe2b971e543a85b6487b457228f86d10c435d>`_
 - Adjust the example patch for the change in cgit version `05e6f1f46 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/05e6f1f468ed481bbf49e06628fa6b445012a704>`_
@@ -124,6 +214,86 @@ Changelog
 - Also test longform for failed builds. `67c5fbab0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/67c5fbab0335e822b670e4b379f0a7a020977ed4>`_
 - Also test longform for cancelled builds. `9bab7ad7f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bab7ad7f25863d84d3c2b686e2a7e4f7b706b6f>`_
 - Merge pull request #210 from fedora-infra/feature/koji-longform `c60343c09 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c60343c091d221cfbdef64d3b47e793f53bd2fed>`_
+- 0.4.2 `900b4a596 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/900b4a596867d7c09b6fecd85353b40d010290ed>`_
+- Comment out the buildsys cancel long form test. `f50eda651 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50eda6519a76f8eacf8e681e2b41e831c7ff7b6>`_
+- Be more careful with these timestamps. `64f6116cf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/64f6116cf59a0eda0fab1ff1a709ae8fe804cb7a>`_
+- 0.4.3 `4bbd5b245 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4bbd5b245314d6705cab494d68598eaf152db2d9>`_
+- Make github longform tests conditional. `4f46090dd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f46090ddb15c676b51b5b8537220612349b6a68>`_
+- Move zodbot tests to their own file, and make the long_form part conditional like the others. `0a99a6226 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a99a6226856c77ec35eb18a9e12eda7fa0d69b0>`_
+- Merge pull request #213 from fedora-infra/feature/more-longform-conditionals `b030cf966 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b030cf96603fd6117874814c2f04dab31dcb0b6f>`_
+- Don't return prematurely if parent task is still open. `1f80bf7c2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1f80bf7c2e666378f23ebe5c83d5e1222142c3c7>`_
+- Merge pull request #214 from fedora-infra/feature/koji-longform-fix `fd9cea78a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fd9cea78a2eeb68ffc91791ef224d254fa414e1e>`_
+- Handle case where result never gets defined. `727bbe1c7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/727bbe1c7085bd0a7e32ae2afdb75461328307e9>`_
+- Add new copr fields to the docs. `d7cb97119 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d7cb97119ec87d6e2576779f0ad9cd8f17b63fb0>`_
+- Adjust copr.end subtitle to indicate the version of the build. `186811dac <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/186811dacbf3b268240b31d927236d58716df024>`_
+- Add a long_form representation for copr build completions. `7488a49e9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7488a49e9d1df4c5f5c73a53bd6daa77228ab16a>`_
+- Add a build failure test just to make sure we have all the bases covered. `b4eb0807f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b4eb0807f6855a14028606669c344ff890f4bce3>`_
+- There is more info here now... `d8f8e3713 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d8f8e3713a7ba091d2e2374d39d17732cb0839f8>`_
+- Add a link to more useful logs at @danvratil's suggestion. `0a46fdd69 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a46fdd69e86884aa4ac00de06eae58adf54151d>`_
+- Also link to root.log. `dd1c085a8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dd1c085a8698e19b9ff5da3b43f6c8ea5e234a49>`_
+- Oh, and of course, https please. `4a15d69c5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4a15d69c51a808fb4ad9973bf9e7c5b600731961>`_
+- Merge pull request #215 from fedora-infra/feature/fancy-copr-messages `7367a5f53 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7367a5f536ee8c1b569b15ace59115684948b3f8>`_
+- Merge pull request #216 from fedora-infra/feature/koji-longform-testfix `a223aa0e2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a223aa0e23337fb96d05577af566f5d5dd7e504c>`_
+- Added Github Page_Build Message Handler `587bd3275 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/587bd327563465d71fe74575a663c2b207cdf448>`_
+- Merge pull request #217 from Ghost-script/page_build `b88644e06 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b88644e0614188ccce6edc4d2db428caba805d0d>`_
+- Added Github Tead_Add message handler `1fb35abab <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1fb35abab91ac60d09a87533a65de714d474eec1>`_
+- Merge pull request #219 from Ghost-script/team_add `f6f593bd7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f6f593bd7fb4d483f4c297cb1f19ae6acdf5606c>`_
+- Add processor for new karma messages. `c018104f9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c018104f9a13cd052b7875c535935ed9ec5e6e4f>`_
+- Use FAS openid libravatar first for git.receive messages And porting scm tests from __init__.py to scm.py `45c2f47d1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/45c2f47d14a610b4e736eadb8fedac91e7ed148a>`_
+- These should be here. `94ece2b33 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/94ece2b3381b23846870484f57e2d06cb2a1908d>`_
+- Merge pull request #221 from Ghost-script/openid_libravatar `49e3df842 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/49e3df8421549b59d2f843123427cd0540c82fd2>`_
+- Add icon url for fedimg logo. `77f83a329 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77f83a32964258644930e9a8734cab9299debbb2>`_
+- Added message handler and tests for Github member (added to)/(removed from) messages `4f747e0f3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f747e0f39b26529670d642d03496e05b1d5e814>`_
+- Merge pull request #227 from Ghost-script/github_member `f50e03724 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f50e03724e1f8ccdb1e16f0a3dcdfd13d24e5377>`_
+- Merge pull request #223 from fedora-infra/feature/fix-conglomerate `738d431ea <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/738d431ea1c2faec67f2837bee54853926fbfe35>`_
+- Merge pull request #224 from fedora-infra/feature/fedimg-icon `ef48b3a85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ef48b3a85873fa297f447cb34411e9c3f17c7c83>`_
+- 0.4.4 `eb6b92dfd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb6b92dfde4de6aea8f7046ae501d53bb3c41028>`_
+- Adding Anitya tests for new version of packages detected mapped to multiple packages `0f1ae6b0d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f1ae6b0ddd5415a9bac8b8e7d44bfde7b4539f9>`_
+- Removing N from the list of values passed to list_to_series() function `6684e7e60 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6684e7e6021487db3ddf1856f21dcdfa74f159ad>`_
+- Merge pull request #228 from Ghost-script/anitya `775595942 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/77559594284e461ad058bbe3d77010aa82045020>`_
+- Merge pull request #222 from fedora-infra/feature/karma `44e5bf4ee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44e5bf4ee80439f553f3fa4bf2b33e439fcb657d>`_
+- Add tests and implementation for new meetbot line items. `6a96132c4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a96132c4358d89947bc050ddfac3c625da293ad>`_
+- Ignore koji longform tests if koji is not installed. `e2b53ef44 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e2b53ef44b7d04d45acfbecdb3098d2360d255b1>`_
+- Merge pull request #229 from fedora-infra/feature/halp-items `02bd9406b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/02bd9406b73b686643b899785182ed6b150b1604>`_
+- Merge pull request #230 from fedora-infra/feature/ignore-koji-longform-if-no-koji `83aad3c45 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/83aad3c45b25c67c7804c81a92874955dcaaa591>`_
+- 0.4.5 `23dece4ef <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/23dece4ef26b2e5d4e8d75429512ba7ffee6139a>`_
+- (meetbot) use the agent's name where available. `22b9d8280 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22b9d82800db58ba860afad308b7ae780fea96d3>`_
+- Merge pull request #231 from fedora-infra/feature/meetbot-tweaks `ad46e8983 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad46e8983eb5844522b25513bdda9053d317c817>`_
+- Add more info about why karma was given `cdeaf8070 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cdeaf8070bb58809f725ad9bf6d367724339185a>`_
+- Merge pull request #232 from fedora-infra/feature/karma-tweaks `c8ca14c43 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c8ca14c4304c2d3765af3d10c5b9b363579cb6d2>`_
+- Shorten git commit emails if they have already been seen. `452eb15ec <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/452eb15ec42e093cb4ecf9cbe477885d23c6cfb4>`_
+- Merge pull request #233 from fedora-infra/feature/seen-commits `514d67a0d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/514d67a0dc128afa9b8b433476bb3f46ccd557b1>`_
+- 0.4.6 `379251578 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/37925157809c583753982158edc34f4ef021eac4>`_
+- Be careful with the trac ticket summary. `6b2373fe7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b2373fe70ed500f557b99e35c50038de2876c66>`_
+- Strip out None values from the bodhi usernames list. `bb52a3440 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bb52a3440c0797bee280c817c85d764552e6c241>`_
+- Merge pull request #235 from fedora-infra/feature/bodhi-anon `c9733443b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9733443bd148a64958e900d93917a0bd28251d9>`_
+- Merge pull request #234 from fedora-infra/feature/fix-trac-summary `74305eafa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/74305eafa82ce48ecc1d3af41f7b0b554fb52c3f>`_
+- (unrelated) these failure tests are unsustainable.  they change underneath all the time... `9ec4ec087 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ec4ec0871b20a090378214ed1209e1fca03664c>`_
+- Add long_form for koji scratch builds. `12044f462 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/12044f462eeb28a5b5c8c1ceaaacdd978e33866c>`_
+- Merge pull request #236 from fedora-infra/feature/longform-for-scratch `b387c333e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b387c333e6077cfb928447886a0d49685fba046e>`_
+- De-duplicate subtitles from long_form representations. `312bb250e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/312bb250e649c45fb6f0be20cbdc4e13cb7d341e>`_
+- Merge pull request #237 from fedora-infra/feature/de-duplicate-subtitle `e7bf1014d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e7bf1014d3d87a5eee038a783126db2cf104f84b>`_
+- 0.4.7 `5e5ef52d8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5e5ef52d8cd326eaf28051e73e692f6ce0c503eb>`_
+- Add the Pagure processor for pagure's fedmsg messages `f1ce03a90 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f1ce03a9019cce32cf3a42a03f89a8fdb5ba7ca9>`_
+- Add unit-tests for pagure's fedmsg messages `85173cd70 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/85173cd704c795bbdb67f16e2e2d123d10c7bb00>`_
+- Declare the pagure processor in the setup.py script `8d6450c9f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8d6450c9f4b5762e7c0cd644c063ca8c384bfc3f>`_
+- Merge pull request #238 from fedora-infra/pagure `599ac8072 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/599ac8072418912b3fe12bb84bfb7e64032c6249>`_
+- Include the comment text in emails about bodhi comments. `576fe8ce5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/576fe8ce527a317d3f3c4a7baed32355e2afdc05>`_
+- Trim end of line spaces `f55d11e62 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f55d11e626b2a63d3f539f73561366af55d1d675>`_
+- Add support to anitya for odd changes `380d8c454 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/380d8c454dd519b4d569aae5ac90a61e83977502>`_
+- Add unit-tests for odd new upstream version `6e6d6f37a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6e6d6f37a74dc641bd2111018e77f3ff24711e2d>`_
+- Adjust docstring to represent the action `e495b3ac3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e495b3ac3fa4d7390c869e8756fdbf21d1820180>`_
+- Merge pull request #239 from fedora-infra/feature/fix-some-bodhi-things `96f883a24 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/96f883a24b4e53bad1345e415b98e5cdc98bfa05>`_
+- Merge pull request #240 from fedora-infra/fix_docstring `945b74ba7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/945b74ba721b881a91f3bcfc83ddfd441807151f>`_
+- Handle new hotness message type. `1ba0b6909 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1ba0b69090812bd2974a2106b6985ed6c404416b>`_
+- These koji tests results are always changing.  We'll need to mock this long-term. `575fdc1e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/575fdc1e32088a6008a84a41b83757114d6798da>`_
+- Merge pull request #242 from fedora-infra/feature/new-hotness-messages `cdaf5cf73 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cdaf5cf7399452ebba055d69a218120f55517edb>`_
+- 0.4.8 `3b88e2a5b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3b88e2a5b9506061faf8d345dab186f13c41bb95>`_
+- Be more careful with null task_ids. `1b0a00659 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1b0a0065924fcfbfd71ef2c1e8dfa17269cd44bb>`_
+- PEP8. `fe593bca9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fe593bca98a6e7f04aabea1d57f22dc6e6dcf10d>`_
+- 0.4.9 `2d7f90f9a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2d7f90f9ae53a2f449b6ad785d726ef4fb1b7a62>`_
+- Be careful with a null host from koji. `8c28d021d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8c28d021dddbe8804584414735036251a15772c6>`_
+- Merge pull request #244 from fedora-infra/feature/careful-with-null-host `09e2a442a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/09e2a442a690935aaf14010d92dbb0e14913c96b>`_
 
 0.4.1
 -----
