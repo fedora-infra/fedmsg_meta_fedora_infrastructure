@@ -19,8 +19,6 @@
 #
 """ Tests for Koschei messages """
 
-import unittest
-
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
 from common import add_doc
@@ -38,6 +36,8 @@ class TestKoscheiPackageStateChange(Base):
     expected_title = "koschei.package.state.change"
     expected_subti = "rnv's builds started to fail in f22 (arm)"
     expected_link = 'http://koschei.cloud.fedoraproject.org/package/rnv'
+    expected_secondary_icon = \
+        'https://apps.fedoraproject.org/packages/images/icons/rnv.png'
     expected_packages = set(['rnv'])
 
     msg = {
@@ -55,3 +55,6 @@ class TestKoscheiPackageStateChange(Base):
             "groups": ["c", "xml"]
         }
     }
+
+
+add_doc(locals())

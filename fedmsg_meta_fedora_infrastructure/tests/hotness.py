@@ -57,7 +57,9 @@ class TestHotnessBugFollowupScratchBuild(Base):
     expected_secondary_icon = expected_icon
     expected_packages = set([])
     expected_usernames = set([])
-    expected_objects = set(['bugs/1143475'])
+    expected_objects = set([
+        'bugs/1143475',
+    ])
     msg = {
         "username": "fedmsg",
         "i": 5,
@@ -140,7 +142,8 @@ class TestHotnessBugFollowupRealBuild(Base):
     expected_link = "https://partner-bugzilla.redhat.com/show_bug.cgi?id=1144231"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/gd.png"
     expected_packages = set(['gd'])
     expected_usernames = set(['jmlich'])
     expected_objects = set(['bugs/1144231'])
@@ -188,7 +191,8 @@ class TestHotnessBugFile(Base):
     expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1143475"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/perl-Makefile-DOM.png"
     expected_packages = set(['perl-Makefile-DOM'])
     expected_usernames = set([])
     expected_objects = set([
@@ -369,7 +373,8 @@ class TestHotnessDropPkgdb(Base):
     expected_link = "https://release-monitoring.org/project/3772/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-apsw.png"
     expected_packages = set(['python-apsw'])
     expected_usernames = set([])
     expected_objects = set(['projects/apsw', 'packages/python-apsw'])
@@ -453,7 +458,8 @@ class TestHotnessDropBugzilla(Base):
     expected_link = "https://release-monitoring.org/project/3772/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-apsw.png"
     expected_packages = set(['python-apsw'])
     expected_usernames = set([])
     expected_objects = set(['projects/apsw', 'packages/python-apsw'])
@@ -537,7 +543,8 @@ class TestHotnessMapFailAmbiguous(Base):
     expected_link = "https://bugzilla.redhat.com/1182533"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-django-angular.png"
     expected_packages = set(['python-django-angular'])
     expected_usernames = set([])
     expected_objects = set(['packages/python-django-angular'])
@@ -609,7 +616,8 @@ class TestHotnessMapMonitorToggle(Base):
     expected_link = "http://search.cpan.org/dist/Digest-Perl-MD5/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/perl-Digest-Perl-MD5.png"
     expected_packages = set(['perl-Digest-Perl-MD5'])
     expected_usernames = set([])
     expected_objects = set(['packages/perl-Digest-Perl-MD5'])
@@ -671,7 +679,8 @@ class TestHotnessMapFailJustOne(Base):
     expected_link = "https://release-monitoring.org/project/5510/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-django-angular.png"
     expected_packages = set(['python-django-angular'])
     expected_usernames = set([])
     expected_objects = set([
@@ -756,7 +765,8 @@ class TestHotnessMapSucceedJustOne(Base):
     expected_link = "https://release-monitoring.org/project/5510/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-django-angular.png"
     expected_packages = set(['python-django-angular'])
     expected_usernames = set([])
     expected_objects = set([
@@ -841,7 +851,8 @@ class TestHotnessMapSucceedBrandNew(Base):
     expected_link = u'https://bugzilla.redhat.com/1182533'
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-django-angular.png"
     expected_packages = set(['python-django-angular'])
     expected_usernames = set([])
     expected_objects = set(['packages/python-django-angular'])
@@ -911,7 +922,8 @@ class TestHotnessMapFailBrandNew(Base):
     expected_link = u'https://bugzilla.redhat.com/1182533'
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = expected_icon
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages" + \
+        "/images/icons/python-django-angular.png"
     expected_packages = set(['python-django-angular'])
     expected_usernames = set([])
     expected_objects = set(['packages/python-django-angular'])
