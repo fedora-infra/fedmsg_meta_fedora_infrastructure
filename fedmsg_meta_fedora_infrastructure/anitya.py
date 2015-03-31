@@ -170,7 +170,6 @@ class AnityaProcessor(BaseProcessor):
         elif packages:
             tmpl = 'https://apps.fedoraproject.org/packages/' + \
                 'images/icons/%s.png'
-            package = list(packages)[0]
             return tmpl % list(packages)[0]
         else:
             return None
