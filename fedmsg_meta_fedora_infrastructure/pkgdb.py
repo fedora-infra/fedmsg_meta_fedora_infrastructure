@@ -326,6 +326,13 @@ class PkgdbProcessor(BaseProcessor):
             status = msg['msg']['status']
             package = msg['msg']['package']['name']
             return tmpl.format(agent=agent, status=status, package=package)
+        elif msg['topic'].endswith('pkgdb.package.unretire.request'):
+            tmpl = self._(
+                u"{agent} asks that {package} be unretired on {branch}")
+            agent = msg['msg']['agent']
+            branch = msg['msg']['collection']['branchname']
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, branch=branch, package=package)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -468,6 +475,12 @@ class PkgdbProcessor(BaseProcessor):
                 '{package}/monitor/{status}'.format(
                 package=_msg['package']['name'],
                 status=str(_msg['status']).lower())
+            )
+        elif msg['topic'].endswith('pkgdb.package.unretire.request'):
+            objs.add(
+                '{package}/unretire/{branch}'.format(
+                package=_msg['package']['name'],
+                branch=msg['msg']['collection']['branchname'])
             )
 
         return objs
