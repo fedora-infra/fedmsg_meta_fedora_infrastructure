@@ -222,10 +222,18 @@ class HotnessProcessor(BaseProcessor):
     def packages(self, msg, **config):
         if 'anitya' in msg['msg']['trigger']['topic']:
             original = msg['msg']['trigger']['msg']
-            return set([
-                pkg['package_name'] for pkg in original['message']['packages']
-                if pkg['distro'] == 'Fedora'
-            ])
+
+            packages = None
+            if 'packages' in original['message']:
+                packages = original['message']['packages']
+            elif 'packages' in original:
+                packages = original['packages']
+
+            if packages:
+                return set([
+                    pkg['package_name'] for pkg in packages
+                    if pkg['distro'] == 'Fedora'
+                ])
 
         if 'package_listing' in msg['msg']['trigger']['msg']:
             original = msg['msg']['trigger']['msg']
