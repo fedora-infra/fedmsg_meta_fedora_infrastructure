@@ -111,6 +111,8 @@ class BodhiProcessor(BaseProcessor):
     def long_form(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
             return msg['msg']['comment']['text']
+        elif 'bodhi.errata.publish' in msg['topic']:
+            return msg['msg']['body']
 
     def subtitle(self, msg, **config):
         markup = config.get('markup', False)

@@ -1013,6 +1013,7 @@ class TestBodhiErrataPublish(Base):
     """
     expected_title = "bodhi.errata.publish"
     expected_subti = "This is the subject of the errata email"
+    expected_long_form = "This is the body of the errata email"
     expected_link = "https://admin.fedoraproject.org/updates/" + \
         "tzdata-2014i-1.fc19"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
