@@ -338,7 +338,7 @@ class TestBodhiMashTaskMashing(Base):
     expected_subti = "bodhi masher started mashing test_repo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = ''
+    expected_secondary_icon = expected_icon
     expected_objects = set(['repos/test_repo'])
 
     msg = {
@@ -362,7 +362,7 @@ class TestBodhiMashTaskStart(Base):
     expected_subti = "bodhi masher started a push"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = ''
+    expected_secondary_icon = expected_icon
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.start",
         'msg': {}
@@ -380,7 +380,7 @@ class TestBodhiMashTaskComplete(Base):
     expected_subti = "bodhi masher failed to mash test_repo"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = ''
+    expected_secondary_icon = expected_icon
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
         'msg': {'success': False, 'repo': 'test_repo'}
@@ -399,7 +399,7 @@ class TestBodhiMashTaskSyncWaitStart(Base):
         "to hit the master mirror"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = ''
+    expected_secondary_icon = expected_icon
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
         'msg': {'repo': 'test_repo'}
@@ -418,7 +418,7 @@ class TestBodhiMashTaskSyncWaitDone(Base):
         "to hit the master mirror"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
-    expected_secondary_icon = ''
+    expected_secondary_icon = expected_icon
 
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.done",
@@ -442,7 +442,8 @@ class TestBodhiRequestUnpush(Base):
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b" + \
+        "?s=64&d=retro"
     expected_usernames = set(['lmacken'])
     expected_packages = set(['foo'])
     expected_objects = set(['packages/foo'])
@@ -996,6 +997,127 @@ class TestBodhiUpdateEdit(Base):
                 }
             },
             "agent": "ralph"
+        }
+    }
+
+
+class TestBodhiErrataPublish(Base):
+    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_, along with many
+    other services, moved away from sending its own email notifications to
+    instead publish fedmsg messages that the `FMN system
+    <https://apps.fedoraproject.org/notifications>`_ would be responsible for
+    forwarding.
+
+    This message type comes from that move.  It represents the "errata" for a
+    package when it it mashed into a repository.
+    """
+    expected_title = "bodhi.errata.publish"
+    expected_subti = "This is the subject of the errata email"
+    expected_link = "https://admin.fedoraproject.org/updates/" + \
+        "tzdata-2014i-1.fc19"
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/tzdata.png"
+    expected_usernames = set([])
+    expected_packages = set(['tzdata'])
+    expected_objects = set(['packages/tzdata'])
+
+    msg = {
+        "username": "threebean",
+        "i": 2,
+        "timestamp": 1422302779,
+        "msg_id": "2015-21b9ae33-3fdf-42ab-aecb-5717d0d76018",
+        "topic": "org.fedoraproject.dev.bodhi.errata.publish",
+        "msg": {
+            "subject": "This is the subject of the errata email",
+            "body": "This is the body of the errata email",
+            "update": {
+                "close_bugs": True,
+                "old_updateid": None,
+                "pushed": False,
+                "require_testcases": True,
+                "critpath": False,
+                "cves": [],
+                "stable_karma": 3,
+                "date_pushed": None,
+                "requirements": "rpmlint",
+                "severity": "unspecified",
+                "title": "tzdata-2014i-1.fc19",
+                "suggest": "unspecified",
+                "require_bugs": True,
+                "comments": [
+                    {
+                        "bug_feedback": [],
+                        "user_id": 1681,
+                        "timestamp": "2015-01-28 03:02:44",
+                        "testcase_feedback": [],
+                        "karma_critpath": 0,
+                        "update": 54046,
+                        "update_id": 54046,
+                        "karma": 0,
+                        "anonymous": False,
+                        "text": "ralph edited this update. ",
+                        "id": 484236,
+                        "user": {
+                            "buildroot_overrides": [],
+                            "stacks": [],
+                            "name": "bodhi",
+                            "avatar": None
+                        }
+                    }
+                ],
+                "date_approved": None,
+                "type": "enhancement",
+                "status": "pending",
+                "date_submitted": "2014-10-29 20:02:57",
+                "unstable_karma": -3,
+                "user": {
+                    "buildroot_overrides": [],
+                    "stacks": [
+                        {
+                            "requirements": "depcheck upgradepath",
+                            "description": "This stack is so hack!",
+                            "name": "Hackey",
+                            "groups": [],
+                            "packages": [],
+                            "users": [
+                                1711
+                            ]
+                        },
+                    ],
+                    "name": "ralph",
+                    "avatar": None
+                },
+                "locked": False,
+                "builds": [
+                    {
+                        "override": None,
+                        "nvr": "tzdata-2014i-1.fc19"
+                    }
+                ],
+                "date_modified": "2015-01-28 03:02:55",
+                "notes": "the update notes go here...",
+                "request": "testing",
+                "bugs": [],
+                "alias": None,
+                "karma": 0,
+                "release": {
+                    "dist_tag": "f19",
+                    "name": "F19",
+                    "testing_tag": "f19-updates-testing",
+                    "pending_stable_tag": "f19-updates-pending",
+                    "long_name": "Fedora 19",
+                    "state": "disabled",
+                    "version": None,
+                    "override_tag": "f19-override",
+                    "branch": None,
+                    "id_prefix": "FEDORA",
+                    "pending_testing_tag": "f19-updates-testing-pending",
+                    "stable_tag": "f19-updates",
+                    "candidate_tag": "f19-updates-candidate"
+                }
+            },
         }
     }
 
