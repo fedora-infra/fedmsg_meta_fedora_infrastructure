@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
 
 
 class TaggerProcessor(BaseProcessor):
@@ -35,7 +35,7 @@ class TaggerProcessor(BaseProcessor):
 
         # Backwards compat with old tagger messages
         if hasattr(pack, 'keys'):
-            pack = pack.keys()[0]
+            pack = list(pack.keys())[0]
 
         if not pack and 'rating' in msg['msg']:
             pack = msg['msg']['rating']['package']['name']
@@ -56,7 +56,7 @@ class TaggerProcessor(BaseProcessor):
 
             # Backwards compat with old tagger messages
             if hasattr(package, 'keys'):
-                package = package.keys()[0]
+                package = list(package.keys())[0]
 
             if msg['msg']['vote']['like']:
                 verb = "up"
@@ -82,7 +82,7 @@ class TaggerProcessor(BaseProcessor):
 
             # Backwards compat with old tagger messages
             if hasattr(package, 'keys'):
-                package = package.keys()[0]
+                package = list(package.keys())[0]
 
             tmpl = self._('{user} added tag "{tag}" to {package}')
             return tmpl.format(user=user, tag=tag, package=package)
@@ -137,7 +137,7 @@ class TaggerProcessor(BaseProcessor):
 
             # Backwards compat with old tagger messages
             if hasattr(package, 'keys'):
-                package = package.keys()[0]
+                package = list(package.keys())[0]
 
             return set([package])
         elif 'fedoratagger.rating.update' in msg['topic']:

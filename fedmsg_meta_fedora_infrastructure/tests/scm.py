@@ -25,7 +25,7 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
-from common import add_doc
+from .common import add_doc
 
 
 here = os.path.dirname(os.path.abspath(__file__))

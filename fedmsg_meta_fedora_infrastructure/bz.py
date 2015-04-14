@@ -17,7 +17,8 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 
-from fasshim import gravatar_url, gravatar_url_from_email, email2fas
+from fedmsg_meta_fedora_infrastructure.fasshim import \
+        gravatar_url, gravatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 MAX_LEN = 40

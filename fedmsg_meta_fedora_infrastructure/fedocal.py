@@ -23,7 +23,7 @@ import dateutil.relativedelta
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
 
 
 def _get_common_attrs(msg):

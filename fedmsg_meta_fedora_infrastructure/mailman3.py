@@ -18,7 +18,8 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import avatar_url_from_email, avatar_url_from_openid, email2fas
+from fedmsg_meta_fedora_infrastructure.fasshim import \
+        avatar_url_from_email, avatar_url_from_openid, email2fas
 
 import email.utils
 import warnings
