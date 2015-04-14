@@ -98,8 +98,8 @@ class TestPkgdbConglomerateCommentSubject(
     },
     ]
     expected = [{
-        'subtitle': 'limb changed mcepl\'s watchcommits and approveacls '
-        'permissions on python-cryptography (master and epel7) '
+        'subtitle': 'limb changed mcepl\'s approveacls and watchcommits '
+        'permissions on python-cryptography (epel7 and master) '
         'to Approved.',
         'link': 'https://admin.fedoraproject.org/pkgdb/packager/mcepl/',
 

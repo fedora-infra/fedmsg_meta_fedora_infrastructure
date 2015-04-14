@@ -23,7 +23,7 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
-from common import add_doc
+from .common import add_doc
 
 _long_form_new = """Summary: test fedmsg
 Description: just testing fedmsg.

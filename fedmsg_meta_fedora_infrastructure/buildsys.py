@@ -19,7 +19,7 @@
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
 
 import datetime
 from pytz import UTC

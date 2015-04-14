@@ -20,7 +20,7 @@
 '''Preprocessor for fedora college'''
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from .fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
 
 
 class FedoraCollegeProcessor(BaseProcessor):

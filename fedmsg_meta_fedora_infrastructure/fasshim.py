@@ -1,5 +1,5 @@
+import collections
 import threading
-import urllib
 import socket
 from hashlib import sha256, md5
 
@@ -9,6 +9,16 @@ _fas_cache_lock = threading.Lock()
 import logging
 log = logging.getLogger("moksha.hub")
 
+from six.moves.urllib import parse
+
+def _ordered_query_params(params):
+    # if OrderedDict is available, preserver order of params
+    #  to make this easily testable on PY3
+    if hasattr(collections, 'OrderedDict'):
+        retval = collections.OrderedDict(params)
+    else:
+        retval = dict(params)
+    return params
 
 def avatar_url(username, size=64, default='retro'):
     openid = "http://%s.id.fedoraproject.org/" % username
@@ -30,8 +40,9 @@ def avatar_url_from_openid(openid, size=64, default='retro', dns=False):
             default=default,
         )
     else:
-        query = urllib.urlencode({'s': size, 'd': default})
-        hash = sha256(openid).hexdigest()
+        params = _ordered_query_params([('s', size), ('d', default)])
+        query = parse.urlencode(params)
+        hash = sha256(openid.encode('utf-8')).hexdigest()
         return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
 
@@ -50,8 +61,9 @@ def avatar_url_from_email(email, size=64, default='retro', dns=False):
             default=default,
         )
     else:
-        query = urllib.urlencode({'s': size, 'd': default})
-        hash = md5(email).hexdigest()
+        params = _ordered_query_params([('s', size), ('d', default)])
+        query = parse.urlencode(params)
+        hash = md5(email.encode('utf-8')).hexdigest()
         return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
 
