@@ -78,6 +78,12 @@ class BodhiProcessor(BaseProcessor):
         # package name (and not just the update name) to begin with.
         return [build.rsplit('-', 2)[0] for build in update.split(',')]
 
+    def title_or_alias(self, msg):
+        value = msg['msg']['update'].get('alias')
+        if not value:
+            value = msg['msg']['update']['title']
+        return value
+
     def secondary_icon(self, msg, **config):
         username = ''
         if 'bodhi.update.comment' in msg['topic']:
@@ -269,17 +275,17 @@ class BodhiProcessor(BaseProcessor):
         if 'bodhi.update.comment' in msg['topic']:
             return tmpl.format(title=msg['msg']['comment']['update_title'])
         elif 'bodhi.update.complete' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.request' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.edit' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.eject' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.errata.publish' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/updates/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
