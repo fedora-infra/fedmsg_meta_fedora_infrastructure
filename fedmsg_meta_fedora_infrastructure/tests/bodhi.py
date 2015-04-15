@@ -1008,7 +1008,7 @@ class TestBodhiKarmaThresholdStable(Base):
     expected_title = "bodhi.update.karma.threshold"
     expected_subti = "tzdata-2014i-1.fc19 reached the stable karma threshold"
     expected_link = "https://admin.fedoraproject.org/updates/" + \
-        "tzdata-2014i-1.fc19"
+        "FEDORA-EPEL-2015-0238"
     expected_icon = "https://admin.fedoraproject.org/updates" + \
         "/static/images/bodhi-icon-48.png"
     expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -1092,7 +1092,7 @@ class TestBodhiKarmaThresholdStable(Base):
                 "notes": "the update notes go here...",
                 "request": "testing",
                 "bugs": [],
-                "alias": None,
+                "alias": "FEDORA-EPEL-2015-0238",
                 "karma": 0,
                 "release": {
                     "dist_tag": "f19",
