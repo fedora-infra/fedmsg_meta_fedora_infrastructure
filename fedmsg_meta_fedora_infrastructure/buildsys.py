@@ -19,7 +19,7 @@
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 import datetime
 from pytz import UTC
@@ -245,7 +245,7 @@ class KojiProcessor(BaseProcessor):
         owner = msg['msg'].get('owner')
 
         if owner:
-            return gravatar_url(owner)
+            return avatar_url(owner)
 
         return self.__icon__
 

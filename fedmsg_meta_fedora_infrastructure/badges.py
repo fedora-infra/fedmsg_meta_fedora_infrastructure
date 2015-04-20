@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #           Luke Macken <lmacken@redhat.com>
 
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -66,7 +66,7 @@ class BadgesProcessor(BaseProcessor):
             return super(BadgesProcessor, self).icon(msg, **config)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(self._get_user(msg))
+        return avatar_url(self._get_user(msg))
 
     def usernames(self, msg, **config):
         return set([self._get_user(msg)])

@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #           Luke Macken <lmacken@redhat.com>
 
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -74,7 +74,7 @@ class NuancierProcessor(BaseProcessor):
         return tmpl.format(**kwargs)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['agent'])
+        return avatar_url(msg['msg']['agent'])
 
     def usernames(self, msg, **config):
         users = [msg['msg']['agent']]

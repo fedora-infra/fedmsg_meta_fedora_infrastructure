@@ -19,7 +19,7 @@
 
 import requests
 
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -194,7 +194,7 @@ class GithubProcessor(BaseProcessor):
         if 'github.webhook' in msg['topic']:
             return self.icon(msg, **config)
         # Otherwise
-        return gravatar_url(self._get_user(msg))
+        return avatar_url(self._get_user(msg))
 
     def usernames(self, msg, **config):
         return set([name for name in msg['msg']['fas_usernames'].values()

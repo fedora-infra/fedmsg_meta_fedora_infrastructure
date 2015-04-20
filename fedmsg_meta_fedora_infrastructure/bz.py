@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 
 from fedmsg_meta_fedora_infrastructure.fasshim import \
-        gravatar_url, gravatar_url_from_email, email2fas
+        avatar_url, avatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 MAX_LEN = 40
@@ -109,9 +109,9 @@ class BugzillaProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         user, is_fas = self._get_user(msg, **config)
         if is_fas:
-            return gravatar_url(user)
+            return avatar_url(user)
         else:
-            return gravatar_url_from_email(user)
+            return avatar_url_from_email(user)
 
     def _gather_emails(self, msg):
         users = set()

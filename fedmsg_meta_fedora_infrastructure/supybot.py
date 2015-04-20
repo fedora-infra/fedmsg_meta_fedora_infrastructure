@@ -21,7 +21,7 @@
 import requests
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas, gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas, avatar_url
 
 blacklisted_people = [
     'zodbot',
@@ -121,7 +121,7 @@ class SupybotProcessor(BaseProcessor):
             user = nick2fas(msg['msg']['details']['nick'], **config)
         else:
             user = nick2fas(msg['msg']['owner'], **config)
-        return gravatar_url(user)
+        return avatar_url(user)
 
     def objects(self, msg, **config):
         objs = set([

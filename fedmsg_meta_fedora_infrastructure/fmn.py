@@ -19,7 +19,7 @@
 
 import six
 
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -64,7 +64,7 @@ class FMNProcessor(BaseProcessor):
         return self.__link__
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(self.username(msg))
+        return avatar_url(self.username(msg))
 
     def usernames(self, msg, **config):
         return set([self.username(msg)])

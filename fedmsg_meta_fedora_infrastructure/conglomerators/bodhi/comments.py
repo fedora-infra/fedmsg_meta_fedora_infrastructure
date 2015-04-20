@@ -1,5 +1,5 @@
 import fedmsg.meta.base
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class ByUpdate(fedmsg.meta.base.BaseConglomerator):
@@ -46,7 +46,7 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
             msg['msg']['comment']['update_title'] for msg in constituents])
         subtitle = '{agent} commented on {updates}'
         tmpl['subtitle'] = subtitle.format(agent=agent, updates=updates)
-        tmpl['secondary_icon'] = gravatar_url(agent)
+        tmpl['secondary_icon'] = avatar_url(agent)
         base = 'https://admin.fedoraproject.org/updates/user/%s/'
         tmpl['link'] = base % agent
         return tmpl

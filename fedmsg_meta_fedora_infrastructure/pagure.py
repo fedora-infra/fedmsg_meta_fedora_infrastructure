@@ -18,7 +18,7 @@
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url, gravatar_url_from_email, email2fas
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url, avatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 import fedmsg.meta.base
 
@@ -228,7 +228,7 @@ class PagureProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         username = msg['msg'].get('agent')
         if username:
-            return gravatar_url(username)
+            return avatar_url(username)
         else:
             return None
 

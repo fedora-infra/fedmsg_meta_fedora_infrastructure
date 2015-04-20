@@ -21,7 +21,7 @@
 import re
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
         requests as bodhi_requests
@@ -100,9 +100,9 @@ class BodhiProcessor(BaseProcessor):
         if isinstance(username, dict):
             username = username['name']
 
-        gravatar = self.__icon__
+        avatar = self.__icon__
         if username:
-            gravatar = gravatar_url(username)
+            avatar = avatar_url(username)
         else:
             # If we don't have a user, then try with a package
             if 'update' in msg['msg']:
@@ -110,9 +110,9 @@ class BodhiProcessor(BaseProcessor):
                 tmpl = 'https://apps.fedoraproject.org/packages/' + \
                     'images/icons/%s.png'
                 if packages:
-                    gravatar = tmpl % packages[0]
+                    avatar = tmpl % packages[0]
 
-        return gravatar
+        return avatar
 
     def long_form(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
