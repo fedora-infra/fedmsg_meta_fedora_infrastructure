@@ -67,11 +67,6 @@ def avatar_url_from_email(email, size=64, default='retro', dns=False):
         return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
 
-avatar_url = avatar_url  # backwards compat
-avatar_url_from_openid = avatar_url_from_openid
-avatar_url_from_email = avatar_url_from_email
-
-
 def make_fas_cache(**config):
     global _fas_cache
     if _fas_cache:
