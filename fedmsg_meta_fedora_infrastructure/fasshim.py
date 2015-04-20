@@ -18,7 +18,7 @@ def _ordered_query_params(params):
         retval = collections.OrderedDict(params)
     else:
         retval = dict(params)
-    return params
+    return retval
 
 def avatar_url(username, size=64, default='retro'):
     openid = "http://%s.id.fedoraproject.org/" % username
@@ -65,11 +65,6 @@ def avatar_url_from_email(email, size=64, default='retro', dns=False):
         query = parse.urlencode(params)
         hash = md5(email.encode('utf-8')).hexdigest()
         return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
-
-
-gravatar_url = avatar_url  # backwards compat
-gravatar_url_from_openid = avatar_url_from_openid
-gravatar_url_from_email = avatar_url_from_email
 
 
 def make_fas_cache(**config):

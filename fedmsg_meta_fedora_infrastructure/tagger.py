@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class TaggerProcessor(BaseProcessor):
@@ -111,7 +111,7 @@ class TaggerProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         usernames = self.usernames(msg, **config)
         if usernames:
-            return gravatar_url(list(usernames)[0])
+            return avatar_url(list(usernames)[0])
         else:
             return self.__icon__
 

@@ -20,7 +20,7 @@
 import six
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 def string_or_dict(msg, key):
@@ -117,7 +117,7 @@ class FASProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         # Every fas fedmsg message has an "agent" field.. "whodunnit"
-        return gravatar_url(username=string_or_dict(msg['msg'], 'agent'))
+        return avatar_url(username=string_or_dict(msg['msg'], 'agent'))
 
     def usernames(self, msg, **config):
         users = []

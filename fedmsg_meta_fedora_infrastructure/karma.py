@@ -19,7 +19,7 @@
 #
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class KarmaProcessor(BaseProcessor):
@@ -49,10 +49,10 @@ class KarmaProcessor(BaseProcessor):
         return 'https://badges.fedoraproject.org/user/' + user
 
     def icon(self, msg, **config):
-        return gravatar_url(msg['msg']['agent'])
+        return avatar_url(msg['msg']['agent'])
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['recipient'])
+        return avatar_url(msg['msg']['recipient'])
 
     def usernames(self, msg, **config):
         return set([msg['msg']['agent'], msg['msg']['recipient']])

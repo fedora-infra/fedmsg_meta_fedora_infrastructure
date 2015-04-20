@@ -1,5 +1,5 @@
 import fedmsg.meta.base
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class AbstractPkgdbACLsConglomerator(fedmsg.meta.base.BaseConglomerator):
@@ -55,7 +55,7 @@ class BySubject(AbstractPkgdbACLsConglomerator):
 
     def get_secondary_icon(self, constituents, default):
         username = constituents[0]['msg']['username']
-        return gravatar_url(username)
+        return avatar_url(username)
 
     def get_link(self, constituents):
         username = constituents[0]['msg']['username']
@@ -73,7 +73,7 @@ class ByAgent(AbstractPkgdbACLsConglomerator):
 
     def get_secondary_icon(self, constituents, default):
         username = constituents[0]['msg']['agent']
-        return gravatar_url(username)
+        return avatar_url(username)
 
     def get_link(self, constituents):
         username = constituents[0]['msg']['agent']

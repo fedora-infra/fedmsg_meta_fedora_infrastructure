@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class SummerShumProcessor(BaseProcessor):
@@ -46,7 +46,7 @@ class SummerShumProcessor(BaseProcessor):
         return tmpl.format(**msg['msg']['original'])
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['original']['agent'])
+        return avatar_url(msg['msg']['original']['agent'])
 
     def usernames(self, msg, **config):
         return set([msg['msg']['original']['agent']])
