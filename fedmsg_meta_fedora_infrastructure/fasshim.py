@@ -18,7 +18,7 @@ def _ordered_query_params(params):
         retval = collections.OrderedDict(params)
     else:
         retval = dict(params)
-    return params
+    return retval
 
 def avatar_url(username, size=64, default='retro'):
     openid = "http://%s.id.fedoraproject.org/" % username
