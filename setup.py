@@ -101,6 +101,7 @@ entry_points = {
         "mm2=fedmsg_meta_fedora_infrastructure.mm2:MirrorManagerProcessor",
         "irc=fedmsg_meta_fedora_infrastructure.karma:KarmaProcessor",
         "pagure=fedmsg_meta_fedora_infrastructure.pagure:PagureProcessor",
+        "zanata=fedmsg_meta_fedora_infrastructure.zanata:ZanataProcessor",
     ]
 }
 
