@@ -9,7 +9,14 @@ _fas_cache_lock = threading.Lock()
 import logging
 log = logging.getLogger("moksha.hub")
 
-from six.moves.urllib import parse
+try:
+    from six.moves.urllib import parse
+except ImportError:
+    # Really really old 'six' doesn't have this move.. so we fall back to
+    # python-2 only usage.  If we're on an old 'six', then we can assume that
+    # we must also be on an old Python.
+    import urllib as parse
+
 
 def _ordered_query_params(params):
     # if OrderedDict is available, preserver order of params

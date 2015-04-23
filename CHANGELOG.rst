@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.5.1
+-----
+
+- Test against multiple version of six.  We have an old version on epel7. `3f47d4d88 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3f47d4d880fc0f20adc4497dc59bf57a93c52d1d>`_
+- Be careful with old python-six. `80aa83234 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80aa8323438fd5da8875c63ee22ca4e27355201a>`_
+- Adjust tox to test old python-six. `c637f3b94 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c637f3b94d2a114a0892a821b737789d954bebbd>`_
+- Merge pull request #258 from fedora-infra/feature/six-careful `db1435539 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/db1435539315b020e14710d247333dbef917a6ab>`_
+
 0.5.0
 -----
 
