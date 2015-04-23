@@ -24,7 +24,6 @@ class FedimgProcessor(BaseProcessor):
     __name__ = "fedimg"
     __description__ = "The Fedora cloud image service"
     __link__ = "https://github.com/oddshocks/fedimg"
-    # TODO: Create an icon and set its URL to __icon__
     __docs__ = "https://fedoraproject.org/wiki/Features/" + \
                "FirstClassCloudImages/KojiPlan"
     __obj__ = "New cloud image upload"
