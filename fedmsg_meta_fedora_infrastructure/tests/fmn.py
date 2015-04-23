@@ -243,6 +243,35 @@ class TestConfirmationUpdateStatus(Base):
         }
     }
 
+class TestRuleUpdate(Base):
+    """ Messages of this type are published whenever **a rule
+    is updated** in the `Fedora Notifications
+    <https://apps.fedoraproject.org/notifications>`_ app.
+    """
+    expected_title = "fmn.rule.update"
+    expected_subti = "raveit65 updated the filters on a fmn email rule"
+    expected_link = "https://apps.fedoraproject.org/notifications/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/fedmsg.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "15321e38b8a94a429e68a68a0f5029371b987c3aa7a0072326538b65ae54ec7e"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['raveit65'])
+    expected_objects = set(['raveit65/email/rule/filters'])
+    msg = {
+        "i": 1, 
+        "timestamp": 1427936259.0, 
+        "msg_id": "2015-ca011930-b7ba-4355-a75d-079ffbe88fd2", 
+        "topic": "org.fedoraproject.prod.fmn.rule.update", 
+        "source_version": "0.6.5", 
+        "msg": {
+            "openid": "raveit65.id.fedoraproject.org", 
+            "changed": "filters", 
+            "context": "email"
+        }
+    }
+
 
 add_doc(locals())
 
