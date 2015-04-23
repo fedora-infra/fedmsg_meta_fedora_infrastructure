@@ -24,7 +24,7 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
-from common import add_doc
+from .common import add_doc
 
 
 ## This works... but the state from koji changes all the time so we can't write
@@ -45,33 +45,34 @@ from common import add_doc
 #Task 9053697 is canceled
 #"""
 
-_build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
-Status:     failed
-Built by:   sharkcz
-ID:         288888
-Started:    Sat, 14 Mar 2015 19:09:10 UTC
-Finished:   Sat, 14 Mar 2015 19:11:02 UTC
-
-Closed tasks:
--------------
-Task 1755171 on fedora3.s390.bos.redhat.com
-Task Type: build (noarch)
-Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755171
-
-error building package (arch s390), mock exited with status 1; see build.log for more information
-
-Task 1755172 on fedora3.s390.bos.redhat.com
-Task Type: buildArch (s390)
-Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755172
-
-error building package (arch s390), mock exited with status 1; see build.log for more information
-
-Task 1755173 on fedora2.s390.bos.redhat.com
-Task Type: buildArch (s390x)
-Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755173
-
-error building package (arch s390x), mock exited with status 1; see build.log for more information
-"""
+## Same here.  the state in koji changes which makes this test change often.
+#_build_long_form_fail = """Package:    64tass-1.51.727-1.fc22
+#Status:     failed
+#Built by:   sharkcz
+#ID:         288888
+#Started:    Sat, 14 Mar 2015 19:09:10 UTC
+#Finished:   Sat, 14 Mar 2015 19:11:02 UTC
+#
+#Closed tasks:
+#-------------
+#Task 1755171 on fedora3.s390.bos.redhat.com
+#Task Type: build (noarch)
+#Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755171
+#
+#error building package (arch s390), mock exited with status 1; see build.log for more information
+#
+#Task 1755172 on fedora3.s390.bos.redhat.com
+#Task Type: buildArch (s390)
+#Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755172
+#
+#error building package (arch s390), mock exited with status 1; see build.log for more information
+#
+#Task 1755173 on fedora2.s390.bos.redhat.com
+#Task Type: buildArch (s390x)
+#Link: http://s390.koji.fedoraproject.org/koji/taskinfo?taskID=1755173
+#
+#error building package (arch s390x), mock exited with status 1; see build.log for more information
+#"""
 
 
 _build_long_form_complete = """Package:    ansible-1.8.3-1.el7
@@ -583,8 +584,8 @@ if koji and not (
 
     TestKojiBuildStateChangeComplete.expected_long_form = \
         _build_long_form_complete
-    TestKojiBuildStateChangeFail.expected_long_form = \
-        _build_long_form_fail
+    #TestKojiBuildStateChangeFail.expected_long_form = \
+    #    _build_long_form_fail
     #TestKojiBuildStateChangeCancel.expected_long_form = \
     #    _build_long_form_cancel
     TestKojiTaskStateChangeFail.expected_long_form = \

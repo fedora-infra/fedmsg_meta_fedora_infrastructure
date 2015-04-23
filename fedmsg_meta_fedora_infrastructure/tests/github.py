@@ -24,7 +24,7 @@ import unittest
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
-from common import add_doc
+from .common import add_doc
 
 full_patch1 = """From 404a417299f85eadb72457e94c08ac8ba39d53e8 Mon Sep 17 00:00:00 2001
 From: Ralph Bean <rbean@redhat.com>

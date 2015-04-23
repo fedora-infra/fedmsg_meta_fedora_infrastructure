@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class WikiProcessor(BaseProcessor):
@@ -51,7 +51,7 @@ class WikiProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         user = msg['msg'].get('user', msg['msg'].get('user_text', ''))
-        return gravatar_url(user.lower())
+        return avatar_url(user.lower())
 
     def usernames(self, msg, **config):
         user = msg['msg'].get('user', msg['msg'].get('user_text', ''))

@@ -20,7 +20,7 @@
 '''Preprocessor for fedora college'''
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from .fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class FedoraCollegeProcessor(BaseProcessor):
@@ -65,7 +65,7 @@ class FedoraCollegeProcessor(BaseProcessor):
         if not user:
             return ""
 
-        return gravatar_url(username=user)
+        return avatar_url(username=user)
 
     def usernames(self, msg, **config):
         if 'username' in msg['msg']:

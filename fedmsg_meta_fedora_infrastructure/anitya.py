@@ -20,7 +20,8 @@
 #           Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 
-from fasshim import gravatar_url, gravatar_url_from_email, email2fas
+from fedmsg_meta_fedora_infrastructure.fasshim import \
+        avatar_url, avatar_url_from_email, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 import fedmsg.meta.base
 
@@ -164,9 +165,9 @@ class AnityaProcessor(BaseProcessor):
         packages = self.packages(msg, **config)
         if username:
             if '@' in username:
-                return gravatar_url_from_email(username)
+                return avatar_url_from_email(username)
             else:
-                return gravatar_url(username)
+                return avatar_url(username)
         elif packages:
             tmpl = 'https://apps.fedoraproject.org/packages/' + \
                 'images/icons/%s.png'

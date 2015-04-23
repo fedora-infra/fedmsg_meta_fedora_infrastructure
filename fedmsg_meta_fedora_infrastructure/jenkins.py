@@ -18,7 +18,7 @@
 # Authors:  Ricky Elrod <codeblock@fedoraproject.org>
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class JenkinsProcessor(BaseProcessor):

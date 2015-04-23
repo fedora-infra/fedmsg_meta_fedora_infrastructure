@@ -17,7 +17,7 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -59,7 +59,7 @@ class KernelTestProcessor(BaseProcessor):
             return tmpl.format(user=user, release=release, support=support)
 
     def secondary_icon(self, msg, **config):
-        return gravatar_url(msg['msg']['agent'])
+        return avatar_url(msg['msg']['agent'])
 
     def usernames(self, msg, **config):
         return set([msg['msg']['agent']])

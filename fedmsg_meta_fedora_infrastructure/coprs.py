@@ -20,7 +20,7 @@
 import copy
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 _statuses = {
     0: 'failed',
@@ -111,7 +111,7 @@ class CoprsProcessor(BaseProcessor):
 
     def secondary_icon(self, msg, **config):
         if 'user' in msg['msg']:
-            return gravatar_url(msg['msg']['user'])
+            return avatar_url(msg['msg']['user'])
 
     def usernames(self, msg, **config):
         usernames = set()

@@ -19,7 +19,7 @@
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 fs_prefix = "/srv/web/infra/ansible/"
 
@@ -61,7 +61,7 @@ class AnsibleProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         user = msg['msg'].get('userid')
         if user:
-            return gravatar_url(user)
+            return avatar_url(user)
 
     def link(self, msg, **config):
         base = "http://infrastructure.fedoraproject.org/cgit/ansible.git/tree/"

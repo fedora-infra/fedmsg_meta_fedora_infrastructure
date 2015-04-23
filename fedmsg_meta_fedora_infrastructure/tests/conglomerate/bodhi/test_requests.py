@@ -155,7 +155,7 @@ class TestBodhiConglomerateTestingSamePackageSameUser(
     ]
     expected = [{
         'subtitle': 'pghmcfc submitted 2 perl-Devel-CheckBin '
-        'testing updates for F20 and F19',
+        'testing updates for F19 and F20',
         'link': 'https://admin.fedoraproject.org/updates/perl-Devel-CheckBin/',
         'icon': 'https://admin.fedoraproject.org/updates/'
         'static/images/bodhi-icon-48.png',
@@ -332,8 +332,8 @@ class TestBodhiConglomerateTestingSamePackageDifferentUser(
         },
     ]
     expected = [{
-        'subtitle': 'ralph and pghmcfc submitted 2 perl-Devel-CheckBin '
-        'updates for F20 and F19',
+        'subtitle': 'pghmcfc and ralph submitted 2 perl-Devel-CheckBin '
+        'updates for F19 and F20',
         'link': 'https://admin.fedoraproject.org/updates/perl-Devel-CheckBin/',
         'icon': 'https://admin.fedoraproject.org/updates/'
         'static/images/bodhi-icon-48.png',
@@ -510,7 +510,7 @@ class TestBodhiConglomerateTestingSameUserDifferentPackage(
     ]
     expected = [{
         'subtitle': 'pghmcfc submitted nethack and perl-Devel-CheckBin '
-        'updates for F20 and F19',
+        'updates for F19 and F20',
         'link': 'https://admin.fedoraproject.org/updates/user/pghmcfc/',
         'icon': 'https://admin.fedoraproject.org/updates/'
         'static/images/bodhi-icon-48.png',

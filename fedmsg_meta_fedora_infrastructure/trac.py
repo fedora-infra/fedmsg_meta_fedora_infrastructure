@@ -18,7 +18,7 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 short_repos = [
     '389',
@@ -207,7 +207,7 @@ class TracProcessor(BaseProcessor):
         if not user:
             return ""
 
-        return gravatar_url(username=user)
+        return avatar_url(username=user)
 
     def usernames(self, msg, **config):
         users = set()

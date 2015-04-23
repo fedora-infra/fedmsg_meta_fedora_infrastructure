@@ -17,15 +17,18 @@
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
+import six
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 try:
     from collections import OrderedDict
 except ImportError:
     from ordereddict import OrderedDict
 
-import conglomerators.pkgdb.acls
+from fedmsg_meta_fedora_infrastructure.conglomerators.pkgdb import \
+        acls as pkgdb_acls
 
 def get_agent(msg):
     """ Handy hack to handle legacy messages where 'agent' was a list.  """
@@ -44,9 +47,9 @@ class PkgdbProcessor(BaseProcessor):
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
     conglomerators = [
-        conglomerators.pkgdb.acls.BySubject,
-        conglomerators.pkgdb.acls.ByPackage,
-        conglomerators.pkgdb.acls.ByAgent,
+        pkgdb_acls.BySubject,
+        pkgdb_acls.ByPackage,
+        pkgdb_acls.ByAgent,
     ]
 
     def subtitle(self, msg, **config):
@@ -352,7 +355,7 @@ class PkgdbProcessor(BaseProcessor):
         if not user:
             return ""
 
-        return gravatar_url(username=user)
+        return avatar_url(username=user)
 
     def usernames(self, msg, **config):
         users = set()
@@ -500,7 +503,7 @@ class PkgdbProcessor(BaseProcessor):
             pass
 
         try:
-            if isinstance(msg['msg']['package'], basestring):
+            if isinstance(msg['msg']['package'], six.string_types):
                 packages.add(msg['msg']['package'])
             else:
                 packages.add(msg['msg']['package']['name'])

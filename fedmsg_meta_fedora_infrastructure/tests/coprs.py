@@ -23,7 +23,7 @@ import unittest
 
 from fedmsg.tests.test_meta import Base
 
-from common import add_doc
+from .common import add_doc
 
 
 _long_copr_end = """Package:  mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21

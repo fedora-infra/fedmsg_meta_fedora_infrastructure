@@ -1,5 +1,5 @@
 import fedmsg.meta.base
-from fedmsg_meta_fedora_infrastructure.fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
@@ -30,7 +30,7 @@ class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
             'testing updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, package=package, N=N, branches=branches)
-        tmpl['secondary_icon'] = gravatar_url(msg['agent'])
+        tmpl['secondary_icon'] = avatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % package
         return tmpl
@@ -64,7 +64,7 @@ class ByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
             'stable updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, package=package, N=N, branches=branches)
-        tmpl['secondary_icon'] = gravatar_url(msg['agent'])
+        tmpl['secondary_icon'] = avatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % package
         return tmpl
@@ -132,7 +132,7 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
             'updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, packages=packages, N=N, branches=branches)
-        tmpl['secondary_icon'] = gravatar_url(msg['agent'])
+        tmpl['secondary_icon'] = avatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/user/%s/'
         tmpl['link'] = base % agent
         return tmpl

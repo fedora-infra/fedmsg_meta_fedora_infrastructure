@@ -23,7 +23,7 @@ import dateutil.relativedelta
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 def _get_common_attrs(msg):
@@ -131,7 +131,7 @@ class FedocalProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         try:
             user = msg['msg']['agent']
-            return gravatar_url(user)
+            return avatar_url(user)
         except KeyError:
             return None
 

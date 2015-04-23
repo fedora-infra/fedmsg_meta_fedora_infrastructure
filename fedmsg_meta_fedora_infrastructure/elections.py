@@ -18,7 +18,7 @@
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #           Ralph Bean <rbean@redhat.com>
 
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
@@ -80,7 +80,7 @@ class ElectionsProcessor(BaseProcessor):
             agent = msg['msg']['agent']  # Old style
         else:
             agent = msg['msg']['fas_user']  # New style
-        return gravatar_url(agent)
+        return avatar_url(agent)
 
     def usernames(self, msg, **config):
         try:

@@ -24,7 +24,7 @@ import unittest
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
-from common import add_doc
+from .common import add_doc
 
 
 class TestNewDistro(Base):

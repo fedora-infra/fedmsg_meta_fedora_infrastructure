@@ -18,7 +18,8 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url, gravatar_url_from_email
+from fedmsg_meta_fedora_infrastructure.fasshim import \
+        avatar_url, avatar_url_from_email
 
 import requests
 
@@ -38,15 +39,15 @@ class SCMProcessor(BaseProcessor):
         if '.git.receive' in msg['topic']:
             if 'username' in msg['msg']['commit']:
                 username = msg['msg']['commit']['username']
-                return gravatar_url(username)
+                return avatar_url(username)
             email = msg['msg']['commit']['email']
-            return gravatar_url_from_email(email)
+            return avatar_url_from_email(email)
         elif '.git.lookaside' in msg['topic']:
             username = msg['msg']['agent']
-            return gravatar_url(username)
+            return avatar_url(username)
         elif 'agent' in msg['msg']:
             username = msg['msg']['agent']
-            return gravatar_url(username)
+            return avatar_url(username)
 
     def long_form(self, msg, **config):
         if '.git.receive' in msg['topic']:

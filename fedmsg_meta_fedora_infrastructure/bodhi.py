@@ -21,10 +21,12 @@
 import re
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
-from fasshim import gravatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
-import conglomerators.bodhi.requests
-import conglomerators.bodhi.comments
+from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
+        requests as bodhi_requests
+from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
+        comments as bodhi_comments
 
 
 def get_sync_product(msg):
@@ -62,12 +64,12 @@ class BodhiProcessor(BaseProcessor):
     __icon__ = ("https://admin.fedoraproject.org/updates"
                 "/static/images/bodhi-icon-48.png")
     conglomerators = [
-        conglomerators.bodhi.requests.ByUserAndPackageTesting,
-        conglomerators.bodhi.requests.ByUserAndPackageStable,
-        conglomerators.bodhi.requests.ByPackage,
-        conglomerators.bodhi.requests.ByUser,
-        conglomerators.bodhi.comments.ByUpdate,
-        conglomerators.bodhi.comments.ByUser,
+        bodhi_requests.ByUserAndPackageTesting,
+        bodhi_requests.ByUserAndPackageStable,
+        bodhi_requests.ByPackage,
+        bodhi_requests.ByUser,
+        bodhi_comments.ByUpdate,
+        bodhi_comments.ByUser,
     ]
 
     def _u2p(self, update):
@@ -75,6 +77,12 @@ class BodhiProcessor(BaseProcessor):
         # TODO -- make this unnecessary by having bodhi emit the
         # package name (and not just the update name) to begin with.
         return [build.rsplit('-', 2)[0] for build in update.split(',')]
+
+    def title_or_alias(self, msg):
+        value = msg['msg']['update'].get('alias')
+        if not value:
+            value = msg['msg']['update']['title']
+        return value
 
     def secondary_icon(self, msg, **config):
         username = ''
@@ -92,14 +100,25 @@ class BodhiProcessor(BaseProcessor):
         if isinstance(username, dict):
             username = username['name']
 
-        gravatar = ''
+        avatar = self.__icon__
         if username:
-            gravatar = gravatar_url(username)
-        return gravatar
+            avatar = avatar_url(username)
+        else:
+            # If we don't have a user, then try with a package
+            if 'update' in msg['msg']:
+                packages = self._u2p(msg['msg']['update']['title'])
+                tmpl = 'https://apps.fedoraproject.org/packages/' + \
+                    'images/icons/%s.png'
+                if packages:
+                    avatar = tmpl % packages[0]
+
+        return avatar
 
     def long_form(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
             return msg['msg']['comment']['text']
+        elif 'bodhi.errata.publish' in msg['topic']:
+            return msg['msg']['body']
 
     def subtitle(self, msg, **config):
         markup = config.get('markup', False)
@@ -242,8 +261,13 @@ class BodhiProcessor(BaseProcessor):
             agent = msg['msg']['agent']
             name = msg['msg']['stack']['name']
             return tmpl.format(agent=agent, name=name)
-        else:
-            raise NotImplementedError("%r" % msg)
+        elif 'bodhi.update.karma.threshold' in msg['topic']:
+            tmpl = self._("{title} reached the {status} karma threshold")
+            title = msg['msg']['update']['title']
+            status = msg['msg']['status']
+            return tmpl.format(title=title, status=status)
+        elif 'bodhi.errata.publish' in msg['topic']:
+            return msg['msg']['subject']
 
     def link(self, msg, **config):
         prefix = 'https://admin.fedoraproject.org'
@@ -251,13 +275,17 @@ class BodhiProcessor(BaseProcessor):
         if 'bodhi.update.comment' in msg['topic']:
             return tmpl.format(title=msg['msg']['comment']['update_title'])
         elif 'bodhi.update.complete' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.request' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.edit' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.eject' in msg['topic']:
-            return tmpl.format(title=msg['msg']['update']['title'])
+            return tmpl.format(title=self.title_or_alias(msg))
+        elif 'bodhi.update.karma.threshold' in msg['topic']:
+            return tmpl.format(title=self.title_or_alias(msg))
+        elif 'bodhi.errata.publish' in msg['topic']:
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/updates/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
@@ -289,6 +317,10 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.edit' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.update.eject' in msg['topic']:
+            return set(self._u2p(msg['msg']['update']['title']))
+        elif 'bodhi.update.karma.threshold' in msg['topic']:
+            return set(self._u2p(msg['msg']['update']['title']))
+        elif 'bodhi.errata.publish' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
             nvr = msg['msg']['override']['build']
@@ -360,6 +392,16 @@ class BodhiProcessor(BaseProcessor):
                 self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.update.eject' in msg['topic']:
+            return set([
+                'packages/' + p for p in
+                self._u2p(msg['msg']['update']['title'])
+            ])
+        elif 'bodhi.update.karma.threshold' in msg['topic']:
+            return set([
+                'packages/' + p for p in
+                self._u2p(msg['msg']['update']['title'])
+            ])
+        elif 'bodhi.errata.publish' in msg['topic']:
             return set([
                 'packages/' + p for p in
                 self._u2p(msg['msg']['update']['title'])
