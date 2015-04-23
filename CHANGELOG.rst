@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.4.11
-------
+0.5.0
+-----
 
 - Be careful with a null host from koji. `8c28d021d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8c28d021dddbe8804584414735036251a15772c6>`_
 - Merge pull request #244 from fedora-infra/feature/careful-with-null-host `09e2a442a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/09e2a442a690935aaf14010d92dbb0e14913c96b>`_
@@ -13,6 +13,27 @@ Changelog
 - Add unit-tests for pkgdb messages sent when someone asks for a package to be unretired `923b3e918 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/923b3e9186bc0d83c26a21f4417e02ce33d13982>`_
 - Adjust the pkgdb processor for messages asking for unretirement `e75627f85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e75627f8567b4f3fa96370a078127427fd00d9b3>`_
 - Merge pull request #246 from fedora-infra/missing_pkgdb `3aa1190e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3aa1190e3b0046a2d319a8df5ae41615511eea5f>`_
+- 0.4.11 `b6b3f80f5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b6b3f80f5c59bc0ead82cc3428c779f5d8f87bf1>`_
+- Try to workaround an odd variation in message structure. `c7f8dfae3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c7f8dfae32c491d8d06077d7e3cafc96454f9e96>`_
+- Merge pull request #248 from fedora-infra/feature/anitya-workaround `e89c8f171 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e89c8f171118b54f4ac94de680a0cdf99c7af359>`_
+- Port to Python 3: `e659faa93 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e659faa93072e4c366f4b5670a247cc9ba59710c>`_
+- Merge pull request #249 from bkabrda/develop `0fcd3f770 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0fcd3f77066ae7df7d168e0d476404f55c74de83>`_
+- Add tox config for fun and profit. `3846162f3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3846162f3e6da44fc7eae7cb4aefc69aca06dab9>`_
+- Add .tox to gitignore. `247d26166 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/247d261666514d6b426b761bdd0e96e9d1c330e3>`_
+- Handle bodhi errata messages for #96. `4266f9c82 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4266f9c82a589fac2c4e6b3a382d4c4a6451ec9e>`_
+- Use the errata email for the long_form repr.  Fixes #96. `2b73918a8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b73918a8951815c4f647f0d3da0ba885958c9a6>`_
+- Handle new update karma threshold messages. `f7895a2c6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f7895a2c6928daff60760533205c9b638231af31>`_
+- Merge pull request #251 from fedora-infra/feature/new-bodhi-messages `411bddc17 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/411bddc17f9ed6ca5c8324bce4961cdd889fc1f6>`_
+- Merge pull request #250 from fedora-infra/feature/tox `36d9f5652 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/36d9f56524cb11cb0ac90c81047a45d9837a8baf>`_
+- Use the bodhi "alias" instead of "title" if available. `917471103 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/917471103052886c971cd54f82818c964f78c006>`_
+- Merge pull request #253 from fedora-infra/feature/use-bodhi-alias `c468b2a4e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c468b2a4e2329a1e375b7e0ea500f9048bbde237>`_
+- Rename all occurences of "gravatar" to "avatar". `3da40c955 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3da40c95593a4dff41a696732e209148e89ecf4a>`_
+- Comment out a perennially-failing, network-dependent test case. `6560390b6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6560390b6cc11ab6f6d4ba5b1cd0f597970381f7>`_
+- Remove unnecessary lines. `6e6b3f041 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6e6b3f0416ef1be81fc35e9b107f15634f585935>`_
+- Fix typo'd return value. `4df5e94a5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4df5e94a5d15971fcc4baca7078d7b4f006c961d>`_
+- Merge pull request #254 from fedora-infra/feature/remove-gravatar `a5f06793c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a5f06793c4296c6ee9dadaae8053186fc9e91403>`_
+- Add zanata processor and tests. `d4c0deed2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d4c0deed25fdb724d29d45c0f2690aadf42c95cf>`_
+- Merge pull request #255 from fedora-infra/feature/zanata `b6599b694 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b6599b69401acc2a7d3c52d42d621181f739211d>`_
 
 0.4.9
 -----
@@ -194,6 +215,23 @@ Changelog
 - 0.4.9 `2d7f90f9a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2d7f90f9ae53a2f449b6ad785d726ef4fb1b7a62>`_
 - Be careful with a null host from koji. `8c28d021d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8c28d021dddbe8804584414735036251a15772c6>`_
 - Merge pull request #244 from fedora-infra/feature/careful-with-null-host `09e2a442a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/09e2a442a690935aaf14010d92dbb0e14913c96b>`_
+- 0.4.10 `80908230f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80908230f39b7cb65bf2c065b2a4a31d964e6545>`_
+- Use nice package icons where we can. `d4cf3aba7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d4cf3aba7774fe7ac5ea2c820fa83f9607e79c8d>`_
+- Remove redundant line. `eb9bdd171 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb9bdd1712a757d705badca54d6d8904b07b060a>`_
+- Merge pull request #245 from fedora-infra/feature/package-icons `2ea3f0892 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2ea3f0892ceaf573c4703b15eb3a7cf752eb03f1>`_
+- Add unit-tests for pkgdb messages sent when someone asks for a package to be unretired `923b3e918 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/923b3e9186bc0d83c26a21f4417e02ce33d13982>`_
+- Adjust the pkgdb processor for messages asking for unretirement `e75627f85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e75627f8567b4f3fa96370a078127427fd00d9b3>`_
+- Merge pull request #246 from fedora-infra/missing_pkgdb `3aa1190e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3aa1190e3b0046a2d319a8df5ae41615511eea5f>`_
+
+0.4.11
+------
+
+- Use nice package icons where we can. `d4cf3aba7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d4cf3aba7774fe7ac5ea2c820fa83f9607e79c8d>`_
+- Remove redundant line. `eb9bdd171 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb9bdd1712a757d705badca54d6d8904b07b060a>`_
+- Merge pull request #245 from fedora-infra/feature/package-icons `2ea3f0892 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2ea3f0892ceaf573c4703b15eb3a7cf752eb03f1>`_
+- Add unit-tests for pkgdb messages sent when someone asks for a package to be unretired `923b3e918 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/923b3e9186bc0d83c26a21f4417e02ce33d13982>`_
+- Adjust the pkgdb processor for messages asking for unretirement `e75627f85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e75627f8567b4f3fa96370a078127427fd00d9b3>`_
+- Merge pull request #246 from fedora-infra/missing_pkgdb `3aa1190e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3aa1190e3b0046a2d319a8df5ae41615511eea5f>`_
 
 0.4.10
 ------
