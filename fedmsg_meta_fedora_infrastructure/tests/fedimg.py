@@ -26,14 +26,13 @@ from fedmsg.tests.test_meta import Base
 from .common import add_doc
 
 
-class TestImageUpload(Base):
-    """ These messages are awarded when an image starts has started,
-    completes, or fails. """
+class TestImageUploadStart(Base):
+    """ These messages are awarded when an image upload has started. """
 
     expected_title = "fedimg.image.upload"
     image_name = "fedora-cloud-base-rawhide-20140604.x86_64"
     dest = "EC2-eu-west-1"
-    expected_subti = "Image {0} started uploading to {1}".format(image_name,
+    expected_subti = "{0} started uploading to {1}".format(image_name,
                                                                  dest)
     expected_link = None
     expected_icon = None
@@ -64,8 +63,11 @@ class TestImageTest(Base):
     expected_title = "fedimg.image.test"
     image_name = "fedora-cloud-base-rawhide-20140604.x86_64"
     dest = "EC2-eu-west-1"
-    expected_subti = "Image {0} started testing on {1}".format(image_name,
-                                                                 dest)
+    ami_id = 'ami-1234fda'
+    virt_type = 'HVM'
+    vol_type = 'gp2'
+    expected_subti = "{0} started testing on {1} ({2}, {3}, {4})".format(
+            image_name, dest, ami_id, virt_type, vol_type)
     expected_link = None
     expected_icon = None
     expected_secondary_icon = None
@@ -81,6 +83,11 @@ class TestImageTest(Base):
             u'image_name': 'fedora-cloud-base-rawhide-20140604.x86_64',
             u'destination': 'EC2-eu-west-1',
             u'status': 'started',
+            u'extra': {
+                u'id': 'ami-1234fda',
+                u'virt_type': 'HVM',
+                u'vol_type': 'gp2',
+            },
         },
         u'topic': u'org.fedoraproject.stg.fedimg.image.test',
         u'username': u'fedimg',
