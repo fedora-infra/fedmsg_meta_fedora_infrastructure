@@ -39,8 +39,10 @@ class FedimgProcessor(BaseProcessor):
             elif msg['msg']['status'] == "completed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
-                tmpl = self._('{image_name} finished uploading to to {dest}')
-                return tmpl.format(image_name=name, dest=dest)
+                extra = ', '.join(msg['msg']['extra'].keys())
+                tmpl = self._('{image_name} finished uploading to to {dest} '
+                              '({extra})')
+                return tmpl.format(image_name=name, dest=dest, extra=extra)
             elif msg['msg']['status'] == "failed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
@@ -50,15 +52,21 @@ class FedimgProcessor(BaseProcessor):
             if msg['msg']['status'] == "started":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
-                tmpl = self._('{image_name} started testing on {dest}')
-                return tmpl.format(image_name=name, dest=dest)
+                extra = ', '.join(msg['msg']['extra'].keys())
+                tmpl = self._('{image_name} started testing on {dest} '
+                              '({extra})')
+                return tmpl.format(image_name=name, dest=dest, extra=extra)
             elif msg['msg']['status'] == "completed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
-                tmpl = self._('{image_name} finished testing on {dest}')
-                return tmpl.format(image_name=name, dest=dest)
+                extra = ', '.join(msg['msg']['extra'].keys())
+                tmpl = self._('{image_name} finished testing on {dest} '
+                              '({extra})')
+                return tmpl.format(image_name=name, dest=dest, extra=extra)
             elif msg['msg']['status'] == "failed":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
-                tmpl = self._('{image_name} failed testing on {dest}')
-                return tmpl.format(image_name=name, dest=dest)
+                extra = ', '.join(msg['msg']['extra'].keys())
+                tmpl = self._('{image_name} failed testing on {dest} '
+                              '({extra})')
+                return tmpl.format(image_name=name, dest=dest, extra=extra)
