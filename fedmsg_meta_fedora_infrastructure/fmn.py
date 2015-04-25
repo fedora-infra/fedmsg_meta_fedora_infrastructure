@@ -42,6 +42,8 @@ class FMNProcessor(BaseProcessor):
         if 'fmn.confirmation.update' in msg['topic']:
             tmpl = self._("the {changed} of one of {user}'s "
                           "pending confirmations changed")
+        elif 'fmn.rule.update' in msg['topic']:
+            tmpl = self._("{user} updated the {changed} on a fmn {ctx} rule")
         elif 'fmn.filter.update' in msg['topic']:
             tmpl = self._("{user} updated the {changed} on a fmn {ctx} filter")
         elif 'fmn.preference.update' in msg['topic']:
