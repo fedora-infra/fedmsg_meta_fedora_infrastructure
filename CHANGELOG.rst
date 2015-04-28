@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.5.2
+-----
+
+- Added tests for "fmn.rule.update" `22e424de0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/22e424de0867369917fd9afe49083bf8bb26aac9>`_
+- Merge pull request #257 from Ghost-script/bug247 `0b1d4ea22 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0b1d4ea221133d09ab460561cc48855d2226c405>`_
+- FAF (ABRT server) processor with tests `f08878aa5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f08878aa5ea081379874aa4bc0d7e98e62ac43f3>`_
+- Merge pull request #259 from mbrysa/faf `19cc66e50 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/19cc66e50d57957826c6e3951c72705c628a9255>`_
+- Sometimes, there is no blog post title. `706fdf3ee <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/706fdf3ee130f6df2b3eec298007368994c99a2b>`_
+- Merge pull request #261 from fedora-infra/feature/no-planet-title `1cb772115 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1cb77211559aab2b9a7318492d9699f5fb131d08>`_
+
 0.5.1
 -----
 
