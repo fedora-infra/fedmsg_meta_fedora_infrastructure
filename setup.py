@@ -102,12 +102,13 @@ entry_points = {
         "irc=fedmsg_meta_fedora_infrastructure.karma:KarmaProcessor",
         "pagure=fedmsg_meta_fedora_infrastructure.pagure:PagureProcessor",
         "zanata=fedmsg_meta_fedora_infrastructure.zanata:ZanataProcessor",
+        "faf=fedmsg_meta_fedora_infrastructure.faf:FAFProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.5.1',
+    version='0.5.2',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

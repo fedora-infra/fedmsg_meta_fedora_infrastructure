@@ -32,7 +32,7 @@ class PlanetProcessor(BaseProcessor):
         return msg['msg']['post']['link']
 
     def subtitle(self, msg, **config):
-        title = msg['msg']['post']['title']
+        title = msg['msg']['post'].get('title', '(no title found)')
         if 'username' in msg['msg']:
             tmpl = self._('{user} posted "{title}"')
             return tmpl.format(title=title, user=msg['msg']['username'])
