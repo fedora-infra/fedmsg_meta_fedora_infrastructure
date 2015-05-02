@@ -1419,8 +1419,9 @@ class TestPkgdbAdminActionUpdate(Base):
     Admin Action**.
     """
     expected_title = "pkgdb.admin.action.status.update"
-    expected_subti = ("pingou updated action 18 from Awaiting Review to "
-                "Approved")
+    expected_subti = ("pingou changed pingou's package request for guake "
+                      "in master from Awaiting Review to Approved")
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1477,8 +1478,10 @@ class TestPkgdbAdminActionUpdate_Denied(Base):
     **denied/blocked**.
     """
     expected_title = "pkgdb.admin.action.status.update"
-    expected_subti = ("pingou updated action 2 from Awaiting Review to "
-                "Denied with message: This package should not be branched for EPEL7")
+    expected_subti = ("pingou changed pingou's branch request for R-Biobase "
+                      "in epel7 from Awaiting Review to Denied "
+                      "with message: "
+                      "This package should not be branched for EPEL7")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
