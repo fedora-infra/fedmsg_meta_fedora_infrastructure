@@ -32,7 +32,7 @@ class TestLegacyElectionsNew(Base):
 
     expected_title = "fedora_elections.election.new"
     expected_subti = 'pingou created election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test"
+    expected_link = "https://admin.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -65,12 +65,12 @@ class TestLegacyElectionsNew(Base):
 
 class TestElectionsEdit(Base):
     """ These messages are published when someone edit an elections in
-    `elections <https://apps.fedoraproject.org/voting/>`_.
+    `elections <https://admin.fedoraproject.org/voting/>`_.
     """
 
     expected_title = "fedora_elections.election.edit"
     expected_subti = 'pingou edited election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test"
+    expected_link = "https://admin.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -103,12 +103,12 @@ class TestElectionsEdit(Base):
 
 class TestElectionsCandidateNew(Base):
     """ These messages are published when someone added a candidate to an
-    elections in `elections <https://apps.fedoraproject.org/voting/>`_.
+    elections in `elections <https://admin.fedoraproject.org/voting/>`_.
     """
 
     expected_title = "fedora_elections.candidate.new"
     expected_subti = 'pingou added candidate "Toshio" to election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test"
+    expected_link = "https://admin.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -145,12 +145,12 @@ class TestElectionsCandidateNew(Base):
 
 class TestElectionsCandidateEdit(Base):
     """ These messages are published when someone edited a candidate of an
-    elections in `elections <https://apps.fedoraproject.org/voting/>`_.
+    elections in `elections <https://admin.fedoraproject.org/voting/>`_.
     """
 
     expected_title = "fedora_elections.candidate.edit"
     expected_subti = 'pingou edited candidate "Toshio" of election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test"
+    expected_link = "https://admin.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -187,12 +187,12 @@ class TestElectionsCandidateEdit(Base):
 
 class TestElectionsCandidateDelete(Base):
     """ These messages are published when someone add a candidate to an
-    elections in `elections <https://apps.fedoraproject.org/voting/>`_.
+    elections in `elections <https://admin.fedoraproject.org/voting/>`_.
     """
 
     expected_title = "fedora_elections.candidate.delete"
     expected_subti = 'pingou deleted candidate "Toshio" of election "test"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/test"
+    expected_link = "https://admin.fedoraproject.org/voting/about/test"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -229,12 +229,12 @@ class TestElectionsCandidateDelete(Base):
 
 class TestElectionsNew(Base):
     """ These messages are published when someone creates a new elections
-    in `elections <https://apps.fedoraproject.org/voting/>`_.
+    in `elections <https://admin.fedoraproject.org/voting/>`_.
     """
 
     expected_title = "fedora_elections.election.new"
     expected_subti = 'jreznik created election "council-nov14"'
-    expected_link = "https://apps.fedoraproject.org/voting/about/council-nov14"
+    expected_link = "https://admin.fedoraproject.org/voting/about/council-nov14"
     expected_icon = (None)
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
