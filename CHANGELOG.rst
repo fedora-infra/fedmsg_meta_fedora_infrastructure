@@ -1,6 +1,18 @@
 Changelog
 =========
 
+0.5.3
+-----
+
+- Try to make admin actions more understandable. `1b7508962 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1b75089623fa375808a94a4fc3d40f8c06013ac5>`_
+- Careful that there is no "agent" field. `1a7485e6e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1a7485e6ecc2efdc5fdf82287b5ec828d442694d>`_
+- Merge pull request #262 from fedora-infra/feature/admin-actions-redux `68e1febe2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/68e1febe2f5c48105368181135d608a667e56df5>`_
+- Merge pull request #264 from fedora-infra/feature/scm-no-agent `98c969cda <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/98c969cdad1fe123da8344a7937fffa778215b9f>`_
+- Fix broken links to election events. `0f2983b15 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f2983b1504eef39256185bbeea112f931d33224>`_
+- Merge pull request #265 from fedora-infra/feature/voting-link `082a6ca76 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/082a6ca761ccf62f8bae2986d50515a985f04c67>`_
+- Handle fp.o addresses. `8fcca42b0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8fcca42b02653085ae955482d96d68aaac3aa5a6>`_
+- Merge pull request #266 from fedora-infra/feature/fp-o-addresses `8674c71cb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8674c71cbc9b9f95ab1fff89bb9ea9176a4e18c4>`_
+
 0.5.2
 -----
 
