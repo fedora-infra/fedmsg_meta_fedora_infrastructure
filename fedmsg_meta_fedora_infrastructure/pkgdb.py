@@ -299,19 +299,38 @@ class PkgdbProcessor(BaseProcessor):
             return tmpl.format(agent=agent, branch=branch, package=package)
         elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
             tmpl = self._(
-                u"{agent} updated action {actionid} from {old_status} "
-                "to {new_status}")
+                u"{agent} changed {owner}'s {action} "
+                "for {package} in {branch} "
+                "from {old_status} to {new_status}")
             _msg = msg['msg']
-            actionid = _msg['action']['id']
+
+            agent = _msg['agent']
+            owner = _msg['action']['user']
+
+            branch = _msg['action']['collection']['branchname']
+            try:
+                package = _msg['action']['info']['pkg_name']
+            except KeyError:
+                package = _msg['action']['package']['name']
+
+            action = _msg['action']['action']
+            substitutes = {
+                'request.package': self._('package request'),
+                'request.branch': self._('branch request'),
+            }
+            action = substitutes.get(action, action)
+
             old_status = _msg['old_status']
             new_status = _msg['new_status']
+
             message = _msg['action'].get('message', None)
             if message:
                 tmpl += self._(" with message: {message}")
-            agent = msg['msg']['agent']
-            return tmpl.format(agent=agent, actionid=actionid,
-                               old_status=old_status, new_status=new_status,
-                               message=message)
+
+            return tmpl.format(
+                agent=agent, owner=owner, action=action,
+                package=package, branch=branch,
+                old_status=old_status, new_status=new_status, message=message)
         elif msg['topic'].endswith('pkgdb.package.critpath.update'):
             tmpl = self._(
                 u"{agent} {action} the critpath flag on the "
@@ -540,6 +559,14 @@ class PkgdbProcessor(BaseProcessor):
         ])):
             return tmpl.format(
                 package=msg['msg']['info']['pkg_name']
+            )
+
+
+        if any(map(msg['topic'].__contains__, [
+            'pkgdb.admin.action.status.update',
+        ])):
+            return tmpl.format(
+                package=msg['msg']['action']['info']['pkg_name']
             )
 
         if any(map(msg['topic'].__contains__, [

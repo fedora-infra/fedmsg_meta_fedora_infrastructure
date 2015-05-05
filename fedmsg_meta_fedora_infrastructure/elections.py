@@ -34,7 +34,7 @@ class ElectionsProcessor(BaseProcessor):
         if 'election' in msg:
             msg = msg['election']
         name = msg['alias']
-        return "https://apps.fedoraproject.org/voting/about/%s" % (name)
+        return "https://admin.fedoraproject.org/voting/about/%s" % (name)
 
     def subtitle(self, msg, **config):
         if 'election' in msg['msg']:

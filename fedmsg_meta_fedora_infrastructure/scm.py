@@ -137,7 +137,7 @@ class SCMProcessor(BaseProcessor):
                     ' with %i errors'
                 ) % errors
 
-        agent = msg['msg']['agent']
+        agent = msg['msg'].get('agent', '(somebody)')
         return tmpl.format(agent=agent)
 
     def link(self, msg, **config):
