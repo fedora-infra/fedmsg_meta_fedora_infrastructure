@@ -142,6 +142,9 @@ def nick2fas(nickname, **config):
 
 
 def email2fas(email, **config):
+    if email.endswith('@fedoraproject.org'):
+        return email.rsplit('@', 1)[0]
+
     log.debug("Acquiring _fas_cache_lock for emails.")
     with _fas_cache_lock:
         log.debug("Got _fas_cache_lock for emails.")
