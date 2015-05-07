@@ -73,7 +73,7 @@ class TestImageUploadComplete(Base):
     expected_subti = "{0} finished uploading to {1} ({2}, {3}, {4})".format(
             image_name, dest, ami_id, virt_type, vol_type)
     expected_link = None
-    expected_icon = None
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
@@ -114,7 +114,7 @@ class TestImageTestStart(Base):
     expected_subti = "{0} started testing on {1} ({2}, {3}, {4})".format(
             image_name, dest, ami_id, virt_type, vol_type)
     expected_link = None
-    expected_icon = None
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
