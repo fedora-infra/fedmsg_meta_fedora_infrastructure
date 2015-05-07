@@ -34,6 +34,7 @@ class FedimgProcessor(BaseProcessor):
             if msg['msg']['status'] == "started":
                 name = msg['msg']['image_name']
                 dest = msg['msg']['destination']
+                tmpl = self._('{image_name} started uploading to {dest}')
                 return tmpl.format(image_name=name, dest=dest)
             elif msg['msg']['status'] == "completed":
                 name = msg['msg']['image_name']
