@@ -62,3 +62,10 @@ class FedimgProcessor(BaseProcessor):
                 dest = msg['msg']['destination']
                 tmpl = self._('{image_name} failed testing on {dest}')
                 return tmpl.format(image_name=name, dest=dest)
+
+    def objects(self, msg, **config):
+        status = msg['msg']['status']
+        if 'image.upload' in msg['topic']:
+            return set(['image/upload/' + status])
+        elif 'image.test' in msg['topic']:
+            return set(['image/test/' + status])

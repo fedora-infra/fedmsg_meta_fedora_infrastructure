@@ -42,7 +42,7 @@ class TestImageUploadStart(Base):
     expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
-    expected_objects = set([])
+    expected_objects = set(['image/upload/started'])
     msg = {
         u'i': 1,
         u'msg': {
@@ -77,7 +77,7 @@ class TestImageUploadComplete(Base):
     expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
-    expected_objects = set([])
+    expected_objects = set(['image/upload/completed'])
     msg = {
         u'i': 1,
         u'msg': {
@@ -118,7 +118,7 @@ class TestImageTestStart(Base):
     expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
-    expected_objects = set([])
+    expected_objects = set(['image/test/started'])
     msg = {
         u'i': 1,
         u'msg': {
