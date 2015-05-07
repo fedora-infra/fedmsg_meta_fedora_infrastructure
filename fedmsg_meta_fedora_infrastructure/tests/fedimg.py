@@ -27,7 +27,10 @@ from .common import add_doc
 
 
 class TestImageUploadStart(Base):
-    """ These messages are awarded when an image upload has started. """
+    """ These messages are awarded when an image upload has started. 
+        At this point, Fedimg has picked up a completed Koji
+        createImage task and will begin the process of registering
+        the .raw.xz file as as an image with a cloud provider. """
 
     expected_title = "fedimg.image.upload"
     image_name = "fedora-cloud-base-rawhide-20140604.x86_64"
@@ -57,7 +60,9 @@ class TestImageUploadStart(Base):
 
 
 class TestImageUploadComplete(Base):
-    """ These messages are awarded when an image upload finishes. """
+    """ These messages are awarded when an image upload finishes.
+        At this point, Fedimg has completed registering a .raw.xz
+        image with a cloud provider. """
 
     expected_title = "fedimg.image.upload"
     image_name = "fedora-cloud-base-rawhide-20140604.x86_64"
@@ -95,7 +100,10 @@ class TestImageUploadComplete(Base):
 
 
 class TestImageTestStart(Base):
-    """ These messages are awarded when an image test has started. """
+    """ These messages are awarded when an image test has started.
+        At this point, Fedimg tries to start an instance of a
+        image that it registered in the previous step, and check
+        to see that it's running properly. """
 
     expected_title = "fedimg.image.test"
     image_name = "fedora-cloud-base-rawhide-20140604.x86_64"
