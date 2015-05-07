@@ -35,7 +35,7 @@ class TestImageUploadStart(Base):
     expected_subti = "{0} started uploading to {1}".format(image_name,
                                                                  dest)
     expected_link = None
-    expected_icon = None
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
     expected_usernames = set([])
