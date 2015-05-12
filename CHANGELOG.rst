@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.5.5
+-----
+
+- Fix syntax errors. `05452d49c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/05452d49cfeca05ce21bc30f8a6b688f37201076>`_
+
 0.5.4
 -----
 
