@@ -479,8 +479,9 @@ class PkgdbProcessor(BaseProcessor):
                 user=_msg['agent'],
             ))
         elif msg['topic'].endswith('pkgdb.admin.action.status.update'):
-            package = _msg['action'].get('info', {}).get('pkg_name', None)
-            if not package:
+            try:
+                package = _msg['action']['info']['pkg_name']
+            except KeyError:
                 package = _msg['action']['package']['name']
             objs.add(
                 'action/{actionid}/status/{package}/{branch}/{user}'.format(
@@ -565,9 +566,11 @@ class PkgdbProcessor(BaseProcessor):
         if any(map(msg['topic'].__contains__, [
             'pkgdb.admin.action.status.update',
         ])):
-            return tmpl.format(
-                package=msg['msg']['action']['info']['pkg_name']
-            )
+            try:
+                package = _msg['action']['info']['pkg_name']
+            except KeyError:
+                package = _msg['action']['package']['name']
+            return tmpl.format(package=package))
 
         if any(map(msg['topic'].__contains__, [
             'pkgdb.acl.update',
