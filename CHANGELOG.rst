@@ -1,6 +1,27 @@
 Changelog
 =========
 
+0.5.4
+-----
+
+- shorten Fedimg messages `31f79d788 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/31f79d788f4c09cbf8b60671120428d0869e7a00>`_
+- remove deprecated comment `ec3e8afac <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ec3e8afac0071b528edb186b2a5cea249fce9199>`_
+- add this missing tmpl line `a7da68284 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a7da68284846347b07f3a1553a598430d0b12813>`_
+- print extra details for fedimg actions when applicable `c78bde198 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c78bde198a7cdaf4f385af1d51720444180dd91a>`_
+- update tests for new extra dict in fedimg output `7e0ccafa3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7e0ccafa3732f96c8ca267112321662620ff33fd>`_
+- tests: test for fedimg task complete message `14e3abea2 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/14e3abea2e647368e24d035b18c0639240d79107>`_
+- typofix `bd845a291 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bd845a2913706e1071967ad6a75a5877c528fc17>`_
+- tests: there should be this icon here `9c07cba0e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9c07cba0e3f7bb930b92a6903a76740c211512f5>`_
+- expand on the fedimg docstrings in the tests `0c3293715 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0c32937156fd8977434be26a5ae156f53893bbde>`_
+- oops -- need icons here, too `39d97f5dd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/39d97f5dd401eb98da85ab71973344d3470dfcee>`_
+- tests: add some expected objects for Fedimg `8458c011a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8458c011aa79c7a95744dd70b293c8a656c9c1b8>`_
+- tests: missed tmpl assignment `cfe9ed6fb <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cfe9ed6fbdc285dbac5d8fb075ce67f60bb9c18b>`_
+- fedimg: refactor subtitle code a bit (fedimg tests run now) `6bc60607d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6bc60607da2fa98852b88b553857faba2a81352f>`_
+- fedimg docstrings: s/awarded/published/g `3599044af <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3599044af53c290804baf0ae5057f57ca16aa81c>`_
+- Merge pull request #260 from fedora-infra/feature/improve-fedimg-details `8ba23df1e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ba23df1e9f2747544ded447ffba2bb63be784a9>`_
+- Extract the "package" from inconsistent admin action messages in a consistent way. `fa2d9a2b1 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fa2d9a2b1dd29fe3c2636c5bb5c663ef4ac5673d>`_
+- Merge pull request #267 from fedora-infra/feature/admin-action-fix `5144e9f1d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5144e9f1dc97e6452839f1f87fda5334e9ef4afe>`_
+
 0.5.3
 -----
 
