@@ -567,10 +567,10 @@ class PkgdbProcessor(BaseProcessor):
             'pkgdb.admin.action.status.update',
         ])):
             try:
-                package = _msg['action']['info']['pkg_name']
+                package = msg['msg']['action']['info']['pkg_name']
             except KeyError:
-                package = _msg['action']['package']['name']
-            return tmpl.format(package=package))
+                package = msg['msg']['action']['package']['name']
+            return tmpl.format(package=package)
 
         if any(map(msg['topic'].__contains__, [
             'pkgdb.acl.update',
