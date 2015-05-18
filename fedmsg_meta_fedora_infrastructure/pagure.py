@@ -23,6 +23,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 import fedmsg.meta.base
 
 class PagureProcessor(BaseProcessor):
+    topic_prefix_re = 'io\\.pagure\\.(dev|stg|prod)'
 
     __name__ = "pagure"
     __description__ = "Pagure forge"
