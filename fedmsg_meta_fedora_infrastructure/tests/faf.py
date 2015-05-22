@@ -38,7 +38,7 @@ class TestFAFReport1(Base):
     expected_secondary_icon = "https://apps.fedoraproject.org/packages/images/icons/evolution.png"
     expected_long_form = """Packages: evolution
 Function: main
-Firtst occurrence: 2015-04-10
+First occurrence: 2015-04-10
 Type:     core
 Count:    7
 URL:      http://example.org/faf/reports/1234/
@@ -75,7 +75,7 @@ class TestFAFProblem10(Base):
     expected_secondary_icon = "https://apps.fedoraproject.org/packages/images/icons/evolution.png"
     expected_long_form = """Packages: evolution, thunderbird
 Function: main
-Firtst occurrence: 2015-04-10
+First occurrence: 2015-04-10
 Type:     core
 Count:    77
 URL:      http://example.org/faf/problems/4321/
