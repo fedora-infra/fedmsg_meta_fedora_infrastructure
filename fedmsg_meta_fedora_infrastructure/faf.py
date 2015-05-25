@@ -21,7 +21,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 _long_template = """Packages: {components}
 Function: {function}
-Firtst occurrence: {first_occurrence}
+First occurrence: {first_occurrence}
 Type:     {type}
 Count:    {count}
 URL:      {url}
