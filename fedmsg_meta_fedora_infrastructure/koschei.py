@@ -25,8 +25,7 @@ class KoscheiProcessor(BaseProcessor):
     __link__ = "http://koschei.cloud.fedoraproject.org"
     __docs__ = "http://koschei.cloud.fedoraproject.org/documentation"
     __obj__ = "Watched packages"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://fedoraproject.org/w/uploads/e/e9/Koschei.png")
 
     def subtitle(self, msg, **config):
         if 'koschei.package.state.change' in msg['topic']:
