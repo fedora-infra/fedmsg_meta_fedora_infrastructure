@@ -1324,6 +1324,237 @@ class TestNewPullRequestNew(Base):
     }
 
 
+class TestPullRequestFlagAdded(Base):
+    """ These messages are published when a someone flags a pull-request
+    on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.flag.added"
+    expected_subti = 'Jenkins flagged the pull-request#1: "Tests failed"'
+    expected_link = "https://pagure.io/test/pull-request/1"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test', 'pull-request/21'])
+    msg = {
+          "username": "pingou",
+          "i": 3,
+          "timestamp": 1433167960,
+          "msg_id": "2015-e7094e2a-1259-49da-91f5-635e81011ffa",
+          "topic": "io.pagure.dev.pagure.pull-request.flag.added",
+          "msg": {
+            "flag": {
+              "comment": "Tests failed",
+              "username": "Jenkins",
+              "uid": "jenkins_build_pagure_100+seed",
+              "url": "http://jenkins.cloud.fedoraproject.org/",
+              "percent": "0",
+              "pull_request_uid": "cb0cc178203046fe86f675779b31b913",
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              },
+              "date_created": "1433160759"
+            },
+            "pullrequest": {
+              "status": true,
+              "branch_from": "master",
+              "uid": "cb0cc178203046fe86f675779b31b913",
+              "title": "test pull-request",
+              "commit_start": null,
+              "project": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "commit_stop": null,
+              "repo_from": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "assignee": null,
+              "comments": [],
+              "branch": "master",
+              "date_created": "1433160759",
+              "id": 1,
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              }
+            },
+            "agent": "pingou"
+          }
+        }
+
+
+class TestPullRequestFlagUpdated(Base):
+    """ These messages are published when a someone updates a flag on a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.flag.updated"
+    expected_subti = 'Jenkins updated the flag of the pull-request#1: '\
+        '"Tests passed"'
+    expected_link = "https://pagure.io/test/pull-request/1"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test', 'pull-request/21'])
+    msg = {
+          "username": "pingou",
+          "i": 4,
+          "timestamp": 1433167960,
+          "msg_id": "2015-e7094e2a-1259-49da-91f5-635e81011ffa",
+          "topic": "io.pagure.dev.pagure.pull-request.flag.added",
+          "msg": {
+            "flag": {
+              "comment": "Tests passed",
+              "username": "Jenkins",
+              "uid": "jenkins_build_pagure_101+seed",
+              "url": "http://jenkins.cloud.fedoraproject.org/",
+              "percent": "100",
+              "pull_request_uid": "cb0cc178203046fe86f675779b31b913",
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              },
+              "date_created": "1433160759"
+            },
+            "pullrequest": {
+              "status": true,
+              "branch_from": "master",
+              "uid": "cb0cc178203046fe86f675779b31b913",
+              "title": "test pull-request",
+              "commit_start": null,
+              "project": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "commit_stop": null,
+              "repo_from": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "assignee": null,
+              "comments": [],
+              "branch": "master",
+              "date_created": "1433160759",
+              "id": 1,
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              }
+            },
+            "agent": "pingou"
+          }
+        }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
