@@ -227,7 +227,7 @@ class PagureProcessor(BaseProcessor):
             username = msg['msg']['flag']['username']
             comment = msg['msg']['flag']['comment']
             tmpl = self._(
-                '{username} flagged the pull-request#{id}: "{comment}"'
+                '{username} flagged {project} #{id} with "{comment}"'
             )
             return tmpl.format(username=username, id=prid, comment=comment)
 
@@ -236,7 +236,7 @@ class PagureProcessor(BaseProcessor):
             username = msg['msg']['flag']['username']
             comment = msg['msg']['flag']['comment']
             tmpl = self._(
-                '{username} updated the flag of the pull-request#{id} to: '
+                '{username} updated the flag of {project} #{id} with: '
                 '"{comment}"'
             )
             return tmpl.format(username=username, id=prid, comment=comment)

@@ -1329,7 +1329,7 @@ class TestPullRequestFlagAdded(Base):
     on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.flag.added"
-    expected_subti = 'Jenkins flagged the pull-request#1: "Tests failed"'
+    expected_subti = 'Jenkins flagged test #1 with "Tests failed"'
     expected_link = "https://pagure.io/test/pull-request/1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1444,7 +1444,7 @@ class TestPullRequestFlagUpdated(Base):
     pull-request on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.flag.updated"
-    expected_subti = 'Jenkins updated the flag of the pull-request#1: '\
+    expected_subti = 'Jenkins updated the flag of test #1 with '\
         '"Tests passed"'
     expected_link = "https://pagure.io/test/pull-request/1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
