@@ -4,7 +4,9 @@ python:
  - "2.7"
 # Someday, soon.
 # - "3.2"
-install: python setup.py install
+install:
+ - python setup.py install
+ - pip install arrow
 script: python setup.py test
 env: TRAVIS_CI=True
 notifications:

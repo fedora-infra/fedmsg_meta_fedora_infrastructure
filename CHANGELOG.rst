@@ -1,6 +1,21 @@
 Changelog
 =========
 
+0.5.6
+-----
+
+- Fix pagure regex. `6b451b01b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6b451b01b7c2043f92f46ef59349edb2e2a46841>`_
+- Merge pull request #269 from fedora-infra/feature/pagure-regex `99da5003c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/99da5003ce7395c5795e0e53967417d0a8e1d942>`_
+- Add arrow for the travis tests. `dc9b9a2a5 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dc9b9a2a5f2e2aa550d15fca1212bfb0c81bcaa0>`_
+- Fix a typo in the FAF processor. `ed6798fb8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ed6798fb8dbb0417f4e71f1b24092f57d13304ef>`_
+- Merge pull request #270 from fedora-infra/feature/typofix `ac080c469 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ac080c469da14ac2f08ab33812fb34d09a7cada2>`_
+- Update Koschei icon link `4e4f33824 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4e4f33824bcf993d96c138364dfce871ef935f96>`_
+- Merge pull request #271 from msimacek/feature/koschei-icon `aae60812a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/aae60812a91e86ad8a41bc0fdd583acd085545bf>`_
+- Add logic for the pagure's PR.flag.added and PR.flag.updated messages `ea86921ae <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ea86921ae03d8cf5d485ae0acaccad9c9e41eb9e>`_
+- Add unit-tests for pagure's PR.flag.added and PR.flag.updated messages `d37d61010 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d37d6101014a0bf616c603187f2f85e73a36afa0>`_
+- Adjust the subtitle as per @ralphbean's suggestions `86ec32958 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/86ec32958ca0914a1cfd9df52d939775654968a6>`_
+- Merge pull request #272 from fedora-infra/pagure_flags `e9b580933 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e9b580933f744e6cefa43267e59b64e090eb58d7>`_
+
 0.5.5
 -----
 

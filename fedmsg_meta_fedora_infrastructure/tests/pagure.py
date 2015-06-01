@@ -45,7 +45,7 @@ class TestNewProject(Base):
       "i": 1,
       "timestamp": 1427445138,
       "msg_id": "2015-a37b0f13-aead-40eb-ab53-7af8e89e6854",
-      "topic": "org.fedoraproject.dev.pagure.project.new",
+      "topic": "io.pagure.dev.pagure.project.new",
       "msg": {
         "project": {
           "description": "bar",
@@ -87,7 +87,7 @@ class TestNewIssue(Base):
       "i": 2,
       "timestamp": 1427445817,
       "msg_id": "2015-a9e8a8d6-6197-48b8-9fc9-a03967a9d4bb",
-      "topic": "org.fedoraproject.dev.pagure.issue.new",
+      "topic": "io.pagure.dev.pagure.issue.new",
       "msg": {
         "project": {
           "description": "bar",
@@ -148,7 +148,7 @@ class TestNewIssueComment(Base):
       "i": 1,
       "timestamp": 1427448698,
       "msg_id": "2015-539fc955-db5a-4bb5-a6a6-4a096a2d795d",
-      "topic": "org.fedoraproject.dev.pagure.issue.comment.added",
+      "topic": "io.pagure.dev.pagure.issue.comment.added",
       "msg": {
         "project": {
           "description": "bar",
@@ -223,7 +223,7 @@ class TestNewIssueTag(Base):
       "i": 4,
       "timestamp": 1427449624,
       "msg_id": "2015-64ac444e-915c-4a6c-820b-59e8daf14584",
-      "topic": "org.fedoraproject.dev.pagure.issue.tag.added",
+      "topic": "io.pagure.dev.pagure.issue.tag.added",
       "msg": {
         "project": {
           "description": "bar",
@@ -289,7 +289,7 @@ class TestRemovedIssueTag(Base):
       "i": 4,
       "timestamp": 1427450043,
       "msg_id": "2015-e1921852-c269-4c08-a611-dffe5c39417f",
-      "topic": "org.fedoraproject.dev.pagure.issue.tag.removed",
+      "topic": "io.pagure.dev.pagure.issue.tag.removed",
       "msg": {
         "project": {
           "description": "bar",
@@ -354,7 +354,7 @@ class TestAssignedIssue(Base):
       "i": 3,
       "timestamp": 1427450780,
       "msg_id": "2015-4ab5479a-1a99-4e26-a52f-e9e1ce423e40",
-      "topic": "org.fedoraproject.dev.pagure.issue.assigned.added",
+      "topic": "io.pagure.dev.pagure.issue.assigned.added",
       "msg": {
         "project": {
           "description": "bar",
@@ -422,7 +422,7 @@ class TestResetAssignedIssue(Base):
       "i": 3,
       "timestamp": 1427453148,
       "msg_id": "2015-bc20fa0e-8baa-4b6a-ac44-c30b9e579da3",
-      "topic": "org.fedoraproject.dev.pagure.issue.assigned.reset",
+      "topic": "io.pagure.dev.pagure.issue.assigned.reset",
       "msg": {
         "project": {
           "description": "bar",
@@ -485,7 +485,7 @@ class TestNewIssueDependency(Base):
       "i": 2,
       "timestamp": 1427453868,
       "msg_id": "2015-c8189e0c-ef22-4e72-92cc-9ffa68c35b7b",
-      "topic": "org.fedoraproject.dev.pagure.issue.dependency.added",
+      "topic": "io.pagure.dev.pagure.issue.dependency.added",
       "msg": {
         "project": {
           "description": "bar",
@@ -549,7 +549,7 @@ class TestRemovedIssueDependency(Base):
       "i": 3,
       "timestamp": 1427454576,
       "msg_id": "2015-cb2e1acd-c6c7-4da4-ba99-c136954bb039",
-      "topic": "org.fedoraproject.dev.pagure.issue.dependency.removed",
+      "topic": "io.pagure.dev.pagure.issue.dependency.removed",
       "msg": {
         "project": {
           "description": "bar",
@@ -615,7 +615,7 @@ class TestIssueEdit(Base):
       "i": 5,
       "timestamp": 1427454847,
       "msg_id": "2015-5755ee3a-43ba-4552-9423-8fe3b0a96662",
-      "topic": "org.fedoraproject.dev.pagure.issue.edit",
+      "topic": "io.pagure.dev.pagure.issue.edit",
       "msg": {
         "fields": [
           "status",
@@ -684,7 +684,7 @@ class TestProjectEdit(Base):
       "i": 2,
       "timestamp": 1427455343,
       "msg_id": "2015-3b53c72a-8585-4ddc-ba60-d7e969a0acbb",
-      "topic": "org.fedoraproject.dev.pagure.project.edit",
+      "topic": "io.pagure.dev.pagure.project.edit",
       "msg": {
         "project": {
           "description": "bar",
@@ -729,7 +729,7 @@ class TestProjectUserAdded(Base):
       "i": 4,
       "timestamp": 1427455518,
       "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
-      "topic": "org.fedoraproject.dev.pagure.project.user.added",
+      "topic": "io.pagure.dev.pagure.project.user.added",
       "msg": {
         "new_user": "ralph",
         "project": {
@@ -772,7 +772,7 @@ class TestProjectTagRemoved(Base):
       "i": 5,
       "timestamp": 1427455744,
       "msg_id": "2015-c6db4dd3-0a87-4eee-aab7-7758f566f36e",
-      "topic": "org.fedoraproject.dev.pagure.project.tag.removed",
+      "topic": "io.pagure.dev.pagure.project.tag.removed",
       "msg": {
         "project": {
           "description": "bar",
@@ -818,7 +818,7 @@ class TestProjectTagEdited(Base):
       "i": 2,
       "timestamp": 1427456487,
       "msg_id": "2015-79d76ac7-5c66-460d-8a39-17849e462a85",
-      "topic": "org.fedoraproject.dev.pagure.project.tag.edited",
+      "topic": "io.pagure.dev.pagure.project.tag.edited",
       "msg": {
         "project": {
           "description": "bar",
@@ -862,7 +862,7 @@ class TestProjectForked(Base):
       "i": 3,
       "timestamp": 1427456769,
       "msg_id": "2015-7ec8cd76-8ed7-4360-ac32-2e881273a7c2",
-      "topic": "org.fedoraproject.dev.pagure.project.forked",
+      "topic": "io.pagure.dev.pagure.project.forked",
       "msg": {
         "project": {
           "description": "",
@@ -920,7 +920,7 @@ class TestNewPullRequestComment(Base):
       "i": 2,
       "timestamp": 1427457362,
       "msg_id": "2015-cbf24329-b51c-4160-983c-ffa45ef63863",
-      "topic": "org.fedoraproject.dev.pagure.pull-request.comment.added",
+      "topic": "io.pagure.dev.pagure.pull-request.comment.added",
       "msg": {
         "pullrequest": {
           "status": True,
@@ -1030,7 +1030,7 @@ class TestNewPullRequestclosed(Base):
       "i": 2,
       "timestamp": 1427458544,
       "msg_id": "2015-c9636fda-3a4c-452b-85ee-870e29f63a03",
-      "topic": "org.fedoraproject.dev.pagure.pull-request.closed",
+      "topic": "io.pagure.dev.pagure.pull-request.closed",
       "msg": {
         "pullrequest": {
           "status": False,
@@ -1140,7 +1140,7 @@ class TestNewPullRequestMerged(Base):
       "i": 3,
       "timestamp": 1427458778,
       "msg_id": "2015-22ec6669-91fe-4c32-b324-db80fba696dd",
-      "topic": "org.fedoraproject.dev.pagure.pull-request.closed",
+      "topic": "io.pagure.dev.pagure.pull-request.closed",
       "msg": {
         "pullrequest": {
           "status": False,
@@ -1251,7 +1251,7 @@ class TestNewPullRequestNew(Base):
       "i": 4,
       "timestamp": 1427459070,
       "msg_id": "2015-1f03dc6a-3a0b-4b09-a06d-e4ca7d374729",
-      "topic": "org.fedoraproject.dev.pagure.pull-request.new",
+      "topic": "io.pagure.dev.pagure.pull-request.new",
       "msg": {
         "pullrequest": {
           "status": True,
@@ -1322,6 +1322,237 @@ class TestNewPullRequestNew(Base):
         "agent": "pingou"
       }
     }
+
+
+class TestPullRequestFlagAdded(Base):
+    """ These messages are published when a someone flags a pull-request
+    on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.flag.added"
+    expected_subti = 'Jenkins flagged test #1 with "Tests failed"'
+    expected_link = "https://pagure.io/test/pull-request/1"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test', 'pull-request/21'])
+    msg = {
+          "username": "pingou",
+          "i": 3,
+          "timestamp": 1433167960,
+          "msg_id": "2015-e7094e2a-1259-49da-91f5-635e81011ffa",
+          "topic": "io.pagure.dev.pagure.pull-request.flag.added",
+          "msg": {
+            "flag": {
+              "comment": "Tests failed",
+              "username": "Jenkins",
+              "uid": "jenkins_build_pagure_100+seed",
+              "url": "http://jenkins.cloud.fedoraproject.org/",
+              "percent": "0",
+              "pull_request_uid": "cb0cc178203046fe86f675779b31b913",
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              },
+              "date_created": "1433160759"
+            },
+            "pullrequest": {
+              "status": true,
+              "branch_from": "master",
+              "uid": "cb0cc178203046fe86f675779b31b913",
+              "title": "test pull-request",
+              "commit_start": null,
+              "project": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "commit_stop": null,
+              "repo_from": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "assignee": null,
+              "comments": [],
+              "branch": "master",
+              "date_created": "1433160759",
+              "id": 1,
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              }
+            },
+            "agent": "pingou"
+          }
+        }
+
+
+class TestPullRequestFlagUpdated(Base):
+    """ These messages are published when a someone updates a flag on a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.flag.updated"
+    expected_subti = 'Jenkins updated the flag of test #1 with '\
+        '"Tests passed"'
+    expected_link = "https://pagure.io/test/pull-request/1"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test', 'pull-request/21'])
+    msg = {
+          "username": "pingou",
+          "i": 4,
+          "timestamp": 1433167960,
+          "msg_id": "2015-e7094e2a-1259-49da-91f5-635e81011ffa",
+          "topic": "io.pagure.dev.pagure.pull-request.flag.added",
+          "msg": {
+            "flag": {
+              "comment": "Tests passed",
+              "username": "Jenkins",
+              "uid": "jenkins_build_pagure_101+seed",
+              "url": "http://jenkins.cloud.fedoraproject.org/",
+              "percent": "100",
+              "pull_request_uid": "cb0cc178203046fe86f675779b31b913",
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              },
+              "date_created": "1433160759"
+            },
+            "pullrequest": {
+              "status": true,
+              "branch_from": "master",
+              "uid": "cb0cc178203046fe86f675779b31b913",
+              "title": "test pull-request",
+              "commit_start": null,
+              "project": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "commit_stop": null,
+              "repo_from": {
+                "description": "test project #1",
+                "parent": null,
+                "settings": {
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "Web-hooks": null,
+                  "project_documentation": true,
+                  "pull_requests": true,
+                  "Only_assignee_can_merge_pull-request": false,
+                  "issue_tracker": true
+                },
+                "user": {
+                  "fullname": "PY C",
+                  "default_email": "bar@pingou.com",
+                  "emails": [
+                    "bar@pingou.com",
+                    "foo@pingou.com"
+                  ],
+                  "name": "pingou"
+                },
+                "date_created": "1433160759",
+                "id": 1,
+                "name": "test"
+              },
+              "assignee": null,
+              "comments": [],
+              "branch": "master",
+              "date_created": "1433160759",
+              "id": 1,
+              "user": {
+                "fullname": "PY C",
+                "default_email": "bar@pingou.com",
+                "emails": [
+                  "bar@pingou.com",
+                  "foo@pingou.com"
+                ],
+                "name": "pingou"
+              }
+            },
+            "agent": "pingou"
+          }
+        }
 
 
 add_doc(locals())

@@ -23,6 +23,7 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 import fedmsg.meta.base
 
 class PagureProcessor(BaseProcessor):
+    topic_prefix_re = 'io\\.pagure\\.(dev|stg|prod)'
 
     __name__ = "pagure"
     __description__ = "Pagure forge"
@@ -221,6 +222,24 @@ class PagureProcessor(BaseProcessor):
             )
             return tmpl.format(
                 user=user, id=prid, project=project, title=title)
+        elif 'pagure.pull-request.flag.added' in msg['topic']:
+            prid = msg['msg']['pullrequest']['id']
+            username = msg['msg']['flag']['username']
+            comment = msg['msg']['flag']['comment']
+            tmpl = self._(
+                '{username} flagged {project} #{id} with "{comment}"'
+            )
+            return tmpl.format(username=username, id=prid, comment=comment)
+
+        elif 'pagure.pull-request.flag.updated' in msg['topic']:
+            prid = msg['msg']['pullrequest']['id']
+            username = msg['msg']['flag']['username']
+            comment = msg['msg']['flag']['comment']
+            tmpl = self._(
+                '{username} updated the flag of {project} #{id} with: '
+                '"{comment}"'
+            )
+            return tmpl.format(username=username, id=prid, comment=comment)
 
         else:
             pass
