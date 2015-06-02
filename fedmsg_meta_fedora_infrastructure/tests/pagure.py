@@ -1338,7 +1338,7 @@ class TestPullRequestFlagAdded(Base):
         "?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['project/test', 'pull-request/21'])
+    expected_objects = set(['project/test', 'pull-request/1'])
     msg = {
           "username": "pingou",
           "i": 3,
@@ -1365,21 +1365,21 @@ class TestPullRequestFlagAdded(Base):
               "date_created": "1433160759"
             },
             "pullrequest": {
-              "status": true,
+              "status": True,
               "branch_from": "master",
               "uid": "cb0cc178203046fe86f675779b31b913",
               "title": "test pull-request",
-              "commit_start": null,
+              "commit_start": None,
               "project": {
                 "description": "test project #1",
-                "parent": null,
+                "parent": None,
                 "settings": {
                   "Minimum_score_to_merge_pull-request": -1,
-                  "Web-hooks": null,
-                  "project_documentation": true,
-                  "pull_requests": true,
-                  "Only_assignee_can_merge_pull-request": false,
-                  "issue_tracker": true
+                  "Web-hooks": None,
+                  "project_documentation": True,
+                  "pull_requests": True,
+                  "Only_assignee_can_merge_pull-request": False,
+                  "issue_tracker": True
                 },
                 "user": {
                   "fullname": "PY C",
@@ -1394,17 +1394,17 @@ class TestPullRequestFlagAdded(Base):
                 "id": 1,
                 "name": "test"
               },
-              "commit_stop": null,
+              "commit_stop": None,
               "repo_from": {
                 "description": "test project #1",
-                "parent": null,
+                "parent": None,
                 "settings": {
                   "Minimum_score_to_merge_pull-request": -1,
-                  "Web-hooks": null,
-                  "project_documentation": true,
-                  "pull_requests": true,
-                  "Only_assignee_can_merge_pull-request": false,
-                  "issue_tracker": true
+                  "Web-hooks": None,
+                  "project_documentation": True,
+                  "pull_requests": True,
+                  "Only_assignee_can_merge_pull-request": False,
+                  "issue_tracker": True
                 },
                 "user": {
                   "fullname": "PY C",
@@ -1419,7 +1419,7 @@ class TestPullRequestFlagAdded(Base):
                 "id": 1,
                 "name": "test"
               },
-              "assignee": null,
+              "assignee": None,
               "comments": [],
               "branch": "master",
               "date_created": "1433160759",
@@ -1444,7 +1444,7 @@ class TestPullRequestFlagUpdated(Base):
     pull-request on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.flag.updated"
-    expected_subti = 'Jenkins updated the flag of test #1 with '\
+    expected_subti = 'Jenkins updated the flag of test #1 with: '\
         '"Tests passed"'
     expected_link = "https://pagure.io/test/pull-request/1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -1454,13 +1454,13 @@ class TestPullRequestFlagUpdated(Base):
         "?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['project/test', 'pull-request/21'])
+    expected_objects = set(['project/test', 'pull-request/1'])
     msg = {
           "username": "pingou",
           "i": 4,
           "timestamp": 1433167960,
           "msg_id": "2015-e7094e2a-1259-49da-91f5-635e81011ffa",
-          "topic": "io.pagure.dev.pagure.pull-request.flag.added",
+          "topic": "io.pagure.dev.pagure.pull-request.flag.updated",
           "msg": {
             "flag": {
               "comment": "Tests passed",
@@ -1481,21 +1481,21 @@ class TestPullRequestFlagUpdated(Base):
               "date_created": "1433160759"
             },
             "pullrequest": {
-              "status": true,
+              "status": True,
               "branch_from": "master",
               "uid": "cb0cc178203046fe86f675779b31b913",
               "title": "test pull-request",
-              "commit_start": null,
+              "commit_start": None,
               "project": {
                 "description": "test project #1",
-                "parent": null,
+                "parent": None,
                 "settings": {
                   "Minimum_score_to_merge_pull-request": -1,
-                  "Web-hooks": null,
-                  "project_documentation": true,
-                  "pull_requests": true,
-                  "Only_assignee_can_merge_pull-request": false,
-                  "issue_tracker": true
+                  "Web-hooks": None,
+                  "project_documentation": True,
+                  "pull_requests": True,
+                  "Only_assignee_can_merge_pull-request": False,
+                  "issue_tracker": True
                 },
                 "user": {
                   "fullname": "PY C",
@@ -1510,17 +1510,17 @@ class TestPullRequestFlagUpdated(Base):
                 "id": 1,
                 "name": "test"
               },
-              "commit_stop": null,
+              "commit_stop": None,
               "repo_from": {
                 "description": "test project #1",
-                "parent": null,
+                "parent": None,
                 "settings": {
                   "Minimum_score_to_merge_pull-request": -1,
-                  "Web-hooks": null,
-                  "project_documentation": true,
-                  "pull_requests": true,
-                  "Only_assignee_can_merge_pull-request": false,
-                  "issue_tracker": true
+                  "Web-hooks": None,
+                  "project_documentation": True,
+                  "pull_requests": True,
+                  "Only_assignee_can_merge_pull-request": False,
+                  "issue_tracker": True
                 },
                 "user": {
                   "fullname": "PY C",
@@ -1535,7 +1535,7 @@ class TestPullRequestFlagUpdated(Base):
                 "id": 1,
                 "name": "test"
               },
-              "assignee": null,
+              "assignee": None,
               "comments": [],
               "branch": "master",
               "date_created": "1433160759",
