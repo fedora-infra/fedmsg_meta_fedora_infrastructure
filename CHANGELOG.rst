@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.5.7
+-----
+
+- Fix problems with pagure processor and test suite. `de7fc3f22 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/de7fc3f2264ab9e39d36070d76fafd83a848b43c>`_
+- Merge pull request #273 from fedora-infra/feature/fix-pagure-tests `e5096fd5f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e5096fd5f9668bfabc039520a13535bfd116f5f7>`_
+
 0.5.6
 -----
 
