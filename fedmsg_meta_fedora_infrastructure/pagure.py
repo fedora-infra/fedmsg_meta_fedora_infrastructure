@@ -46,7 +46,11 @@ class PagureProcessor(BaseProcessor):
         try:
             project = self.__get_project(msg['msg'])
         except KeyError:
-            project = self.__get_project(msg['msg']['pullrequest'])
+            try:
+                project = self.__get_project(msg['msg']['pullrequest'])
+            except KeyError:
+                project = "(unknown)"
+
         base_url = "https://pagure.io"
 
         tmpl = '{base_url}/{project}'
@@ -73,7 +77,10 @@ class PagureProcessor(BaseProcessor):
         try:
             project = self.__get_project(msg['msg'])
         except KeyError:
-            project = self.__get_project(msg['msg']['pullrequest'])
+            try:
+                project = self.__get_project(msg['msg']['pullrequest'])
+            except KeyError:
+                project = "(unknown)"
         user = msg['msg']['agent']
 
         if 'pagure.project.new' in msg['topic']:
@@ -263,7 +270,10 @@ class PagureProcessor(BaseProcessor):
         try:
             project = self.__get_project(msg['msg'])
         except KeyError:
-            project = self.__get_project(msg['msg']['pullrequest'])
+            try:
+                project = self.__get_project(msg['msg']['pullrequest'])
+            except KeyError:
+                project = "(unknown)"
 
         if 'pagure.project' in msg['topic']:
             return set([
