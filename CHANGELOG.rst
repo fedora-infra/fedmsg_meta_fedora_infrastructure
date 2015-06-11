@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.5.8
+-----
+
+- Try to avoid pagure exceptions for some unhandled message type. `6488cea86 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6488cea8620c97a1e6b6a8abc4846bc9dec69ed9>`_
+- Merge pull request #274 from fedora-infra/feature/dance-around-pagure `494ca8edd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/494ca8edda22469554edae6e02e5474d752ea96f>`_
+
 0.5.7
 -----
 
