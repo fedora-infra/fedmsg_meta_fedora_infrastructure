@@ -7,6 +7,7 @@ Changelog
 - Add support for pagure's message about commits `180899ccc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/180899cccd6950cd8930ac574fc8d13997639236>`_
 - User email2fas to be a little more FAS' username friendly `2aac21a45 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2aac21a45a69fe8f06804eb841472564957e80ad>`_
 - Merge pull request #276 from fedora-infra/more_pagure `a7570d83a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a7570d83a193f7f7f42e6ff4fde2e342206337c8>`_
+- 0.5.9 `fd241927e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fd241927ef852979c0ab227d7b508b247be69a7e>`_
 
 0.5.8
 -----
