@@ -1555,6 +1555,75 @@ class TestPullRequestFlagUpdated(Base):
         }
 
 
+class TestGitCommit(Base):
+    """ These messages are published when a someone updates a flag on a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.git.receive"
+    expected_subti = 'pingou pushed to pagure (bleach). '\
+        '"Use the default attributes for bleach and then add our own"'
+    expected_link = "https://pagure.io/pagure/131e07ed2538839d509880a011cd7d55c0967171"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pagure'])
+    msg = {
+        'i': 1,
+        'msg': {
+            'commit': {
+                'agent': 'git',
+                'branch': 'refs/heads/bleach',
+                'email': 'pingou@fedoraproject.org',
+                'message': 'Use the default attributes for bleach and then add our own',
+                'name': 'Pierre-Yves Chibon',
+                'path': '/srv/git/repositories/pagure.git',
+                'repo': {
+                    'date_created': '1431549490',
+                    'description': 'A git centered forge',
+                    'id': 10,
+                    'name': 'pagure',
+                    'parent': None,
+                    'settings': {
+                        'Minimum_score_to_merge_pull-request': -1,
+                        'Only_assignee_can_merge_pull-request': False,
+                        'Web-hooks': None,
+                        'issue_tracker': True,
+                        'project_documentation': True,
+                        'pull_requests': True},
+                        'user': {
+                            'fullname': 'Pierre-YvesChibon',
+                            'name': 'pingou'
+                        }
+                },
+                'rev': '131e07ed2538839d509880a011cd7d55c0967171',
+                'seen': False,
+                'stats': {
+                    'files': {
+                        'pagure/ui/filters.py': {
+                            'additions': 4,
+                            'deletions': 4,
+                            'lines': 8
+                        }
+                    },
+                    'total': {
+                        'additions': 4,
+                        'deletions': 4,
+                        'files': 1,
+                        'lines': 8
+                    }
+                },
+                'summary': 'Use the default attributes for bleach and then add our own',
+                'username': None}},
+         'msg_id': '2015-c6561fe2-3815-469c-a288-8f36cf8fdda3',
+         'source_name': 'datanommer',
+         'source_version': '0.6.5',
+         'timestamp': 1434213042.0,
+         'topic': 'io.pagure.prod.pagure.git.receive'
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':

@@ -18,7 +18,7 @@
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 
-from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 class PagureProcessor(BaseProcessor):
@@ -32,13 +32,13 @@ class PagureProcessor(BaseProcessor):
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
 
-    def __get_project(self, msg):
+    def __get_project(self, msg, key='project'):
         ''' Return the project as `foo` or `user/foo` if the project is a
         fork.
         '''
-        project = msg['project']['name']
-        if msg['project']['parent']:
-            user = msg['project']['user']['name']
+        project = msg[key]['name']
+        if msg[key]['parent']:
+            user = msg[key]['user']['name']
             project = '/'.join([user, project])
         return project
 
@@ -68,6 +68,12 @@ class PagureProcessor(BaseProcessor):
             tmpl += '/pull-request/{id}'
             return tmpl.format(
                 base_url=base_url, project=project, id=prid)
+        elif 'pagure.git.receive' in msg['topic']:
+            project = self.__get_project(msg['msg']['commit'], key='repo')
+            commit = msg['msg']['commit']['rev']
+            tmpl += '/{commit}'
+            return tmpl.format(
+                base_url=base_url, project=project, commit=commit)
         else:
             return base_url
 
@@ -81,7 +87,7 @@ class PagureProcessor(BaseProcessor):
                 project = self.__get_project(msg['msg']['pullrequest'])
             except KeyError:
                 project = "(unknown)"
-        user = msg['msg']['agent']
+        user = msg['msg'].get('agent')
 
         if 'pagure.project.new' in msg['topic']:
             tmpl = self._(
@@ -248,6 +254,21 @@ class PagureProcessor(BaseProcessor):
             )
             return tmpl.format(
                 username=username, id=prid, comment=comment, project=project)
+        elif 'pagure.git.receive' in msg['topic']:
+            repo = self.__get_project(msg['msg']['commit'], key='repo')
+            email = msg['msg']['commit']['email']
+            user = email2fas(email, **config)
+            summ = msg['msg']['commit']['summary']
+            whole = msg['msg']['commit']['message']
+            if summ.strip() != whole.strip():
+                summ += " (..more)"
+
+            branch = msg['msg']['commit']['branch']
+            if 'refs/heads/' in branch:
+                branch = branch.replace('refs/heads/', '')
+            tmpl = self._('{user} pushed to {repo} ({branch}). "{summary}"')
+            return tmpl.format(user=user or email, repo=repo,
+                               branch=branch, summary=summ)
 
         else:
             pass
@@ -261,6 +282,10 @@ class PagureProcessor(BaseProcessor):
 
     def usernames(self, msg, **config):
         username = msg['msg'].get('agent')
+        if not username and 'pagure.git.receive' in msg['topic']:
+            email = msg['msg']['commit']['email']
+            username = email2fas(email, **config)
+
         if username:
             return set([username])
         else:
@@ -287,6 +312,11 @@ class PagureProcessor(BaseProcessor):
         elif 'pagure.pull-request' in msg['topic']:
             return set([
                 'pull-request/%s' % msg['msg']['pullrequest']['id'],
+                'project/%s' % project,
+            ])
+        elif 'pagure.git.receive' in msg['topic']:
+            project = self.__get_project(msg['msg']['commit'], key='repo')
+            return set([
                 'project/%s' % project,
             ])
 
