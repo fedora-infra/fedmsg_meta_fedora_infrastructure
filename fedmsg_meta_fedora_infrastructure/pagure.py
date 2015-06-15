@@ -18,7 +18,7 @@
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 
-from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 class PagureProcessor(BaseProcessor):
@@ -256,7 +256,8 @@ class PagureProcessor(BaseProcessor):
                 username=username, id=prid, comment=comment, project=project)
         elif 'pagure.git.receive' in msg['topic']:
             repo = self.__get_project(msg['msg']['commit'], key='repo')
-            user = msg['msg']['commit']['email']
+            email = msg['msg']['commit']['email']
+            user = email2fas(email, **config)
             summ = msg['msg']['commit']['summary']
             whole = msg['msg']['commit']['message']
             if summ.strip() != whole.strip():
@@ -266,7 +267,7 @@ class PagureProcessor(BaseProcessor):
             if 'refs/heads/' in branch:
                 branch = branch.replace('refs/heads/', '')
             tmpl = self._('{user} pushed to {repo} ({branch}). "{summary}"')
-            return tmpl.format(user=user, repo=repo,
+            return tmpl.format(user=user or email, repo=repo,
                                branch=branch, summary=summ)
 
         else:
@@ -281,6 +282,10 @@ class PagureProcessor(BaseProcessor):
 
     def usernames(self, msg, **config):
         username = msg['msg'].get('agent')
+        if not username and 'pagure.git.receive' in msg['topic']:
+            email = msg['msg']['commit']['email']
+            username = email2fas(email, **config)
+
         if username:
             return set([username])
         else:

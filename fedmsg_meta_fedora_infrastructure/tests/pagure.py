@@ -1560,14 +1560,14 @@ class TestGitCommit(Base):
     pull-request on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.git.receive"
-    expected_subti = 'pingou@fp.o pushed to pagure (bleach). '\
+    expected_subti = 'pingou pushed to pagure (bleach). '\
         '"Use the default attributes for bleach and then add our own"'
     expected_link = "https://pagure.io/pagure/131e07ed2538839d509880a011cd7d55c0967171"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = None
     expected_packages = set([])
-    expected_usernames = set()
+    expected_usernames = set(['pingou'])
     expected_objects = set(['project/pagure'])
     msg = {
         'i': 1,
@@ -1575,7 +1575,7 @@ class TestGitCommit(Base):
             'commit': {
                 'agent': 'git',
                 'branch': 'refs/heads/bleach',
-                'email': 'pingou@fp.o',
+                'email': 'pingou@fedoraproject.org',
                 'message': 'Use the default attributes for bleach and then add our own',
                 'name': 'Pierre-Yves Chibon',
                 'path': '/srv/git/repositories/pagure.git',
