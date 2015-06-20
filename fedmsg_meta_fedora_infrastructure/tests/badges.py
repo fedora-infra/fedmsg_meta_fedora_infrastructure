@@ -35,6 +35,7 @@ class TestNewBadge(Base):
     expected_title = "fedbadges.badge.award"
     expected_subti = 'ralph has been awarded the ' + \
         '"Something on your mind" badge'
+    expected_long_form = "You have commented on 2 or more bodhi updates."
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "http://example.com/image.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
