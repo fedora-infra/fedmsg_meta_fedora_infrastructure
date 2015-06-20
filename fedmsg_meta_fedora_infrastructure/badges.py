@@ -41,6 +41,10 @@ class BadgesProcessor(BaseProcessor):
         username = self._get_user(msg)
         return "https://badges.fedoraproject.org/user/%s" % username
 
+    def long_form(self, msg, **config):
+        if 'badge.award' in msg['topic']:
+            return msg['msg']['badge']['description']
+
     def subtitle(self, msg, **config):
         user = self._get_user(msg)
         if 'badge.award' in msg['topic']:
