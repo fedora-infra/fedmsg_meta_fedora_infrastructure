@@ -214,15 +214,131 @@ class TestGithubPush(Base):
         }
     }
 
+class TestGithubIssueOpen(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
 
-class TestGithubIssue(Base):
+    Messages of *this* type are published whenever someone **opens an issue
+    on an enabled github repository**.
+    """
+
+    expected_title = "github.issue.opened"
+    expected_subti = 'ralph opened issue #94 on fedora-infra/mirrormanager2: ' +
+                     'Add a script to check all the metalink urls'
+    expected_link = "https://github.com/fedora-infra/mirrormanager2/94"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'fedora-infra/mirrormanager2/issues/94',
+    ])
+    msg = {
+        "i": 1,
+        "timestamp": 1434803346.0,
+        "msg_id": "2015-2adf3e7c-a5ac-41dd-a588-8b0ee5b152a2",
+        "topic": "org.fedoraproject.prod.github.issue.opened",
+        "source_version": "0.6.5",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/ralphbean",
+                "site_admin": false,
+                "html_url": "https://github.com/ralphbean",
+                "gravatar_id": "",
+                "login": "ralphbean",
+                "type": "User",
+                "id": 331338
+            },
+            "repository": {
+                "has_wiki": false,
+                "has_pages": false,
+                "updated_at": "2015-05-14T14:01:01Z",
+                "private": false,
+                "full_name": "fedora-infra/mirrormanager2",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": false,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 19425076,
+                "size": 33108,
+                "watchers_count": 3,
+                "forks": 7,
+                "homepage": "https://fedorahosted.org/mirrormanager/",
+                "fork": false,
+                "description": "Rewrite of the MirrorManager application in Flask and SQLAlchemy",
+                "has_downloads": true,
+                "forks_count": 7,
+                "default_branch": "master",
+                "html_url": "https://github.com/fedora-infra/mirrormanager2",
+                "has_issues": true,
+                "stargazers_count": 3,
+                "open_issues_count": 11,
+                "watchers": 3,
+                "name": "mirrormanager2",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/mirrormanager2",
+                "created_at": "2014-05-04T11:26:26Z",
+                "pushed_at": "2015-06-20T02:04:19Z",
+                "open_issues": 11
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "ralphbean": "ralph"
+            },
+            "action": "opened",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "description": null,
+                "id": 3316637
+            },
+            "issue": {
+                "body": "We had some metalink doom over the last couple [...]",
+                "locked": false,
+                "title": "Add a script to check all the metalink urls",
+                "updated_at": "2015-06-20T12:29:04Z",
+                "created_at": "2015-06-20T12:29:04Z",
+                "labels": [],
+                "html_url": "https://github.com/fedora-infra/mirrormanager2/issues/94",
+                "comments": 0,
+                "number": 94,
+                "assignee": null,
+                "state": "open",
+                "url": "https://api.github.com/repos/fedora-infra/mirrormanager2/issues/94",
+                "milestone": null,
+                "closed_at": null,
+                "id": 89763382,
+                "user": {
+                    "url": "https://api.github.com/users/ralphbean",
+                    "site_admin": false,
+                    "html_url": "https://github.com/ralphbean",
+                    "gravatar_id": "",
+                    "login": "ralphbean",
+                    "type": "User",
+                    "id": 331338
+                }
+            }
+        }
+    }
+
+class TestGithubIssueReopen(Base):
     """ There exists `a service
     <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
     repos of fedora contributors with the fedmsg bus.
 
     Messages of *this* type are published whenever someone **changes an issue
-    on an enabled github repository**.  This includes closing, opening,
-    re-opening issues.
+    on an enabled github repository**.  This includes closing and re-opening
+    issues (opening issues is handled in another test, above because we
+    special-case it internally to show titles).
 
     Here's an example of re-opening:
     """
@@ -338,7 +454,7 @@ class TestGithubIssueComment(Base):
     <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
     repos of fedora contributors with the fedmsg bus.
 
-    Messages of *this* type are published whenever someone **comment on an
+    Messages of *this* type are published whenever someone **comments on an
     issue on an enabled github repository**.
     """
 
@@ -1861,81 +1977,81 @@ class TestGithubPageBuild(Base):
         "source_version": "0.6.4",
         "msg": {
             "sender": {
-              "url": "https://api.github.com/users/relrod", 
-              "site_admin": False, 
-              "html_url": "https://github.com/relrod", 
-              "gravatar_id": "", 
-              "login": "relrod", 
-              "type": "User", 
+              "url": "https://api.github.com/users/relrod",
+              "site_admin": False,
+              "html_url": "https://github.com/relrod",
+              "gravatar_id": "",
+              "login": "relrod",
+              "type": "User",
               "id": 43930
-            }, 
+            },
             "repository": {
-              "has_wiki": True, 
-              "has_pages": True, 
-              "updated_at": "2015-01-15T18:13:37Z", 
-              "private": False, 
-              "full_name": "fedora-infra/fas3-api-haskell", 
+              "has_wiki": True,
+              "has_pages": True,
+              "updated_at": "2015-01-15T18:13:37Z",
+              "private": False,
+              "full_name": "fedora-infra/fas3-api-haskell",
               "owner": {
-                "url": "https://api.github.com/users/fedora-infra", 
-                "site_admin": False, 
-                "html_url": "https://github.com/fedora-infra", 
-                "gravatar_id": "", 
-                "login": "fedora-infra", 
-                "type": "Organization", 
+                "url": "https://api.github.com/users/fedora-infra",
+                "site_admin": False,
+                "html_url": "https://github.com/fedora-infra",
+                "gravatar_id": "",
+                "login": "fedora-infra",
+                "type": "Organization",
                 "id": 3316637
-                }, 
-              "id": 29308328, 
-              "size": 0, 
-              "watchers_count": 0, 
-              "forks": 0, 
-              "homepage": "https://relrod.github.io/fas3", 
-              "fork": False, 
-              "description": "Haskell API bindings for the upcoming Fedora Accounts System v3", 
-              "has_downloads": True, 
-              "forks_count": 0, 
-              "default_branch": "master", 
-              "html_url": "https://github.com/fedora-infra/fas3-api-haskell", 
-              "has_issues": True, 
-              "stargazers_count": 0, 
-              "open_issues_count": 0, 
-              "watchers": 0, 
-              "name": "fas3-api-haskell", 
-              "language": "Shell", 
-              "url": "https://api.github.com/repos/fedora-infra/fas3-api-haskell", 
-              "created_at": "2015-01-15T17:12:50Z", 
-              "pushed_at": "2015-01-15T17:13:15Z", 
+                },
+              "id": 29308328,
+              "size": 0,
+              "watchers_count": 0,
+              "forks": 0,
+              "homepage": "https://relrod.github.io/fas3",
+              "fork": False,
+              "description": "Haskell API bindings for the upcoming Fedora Accounts System v3",
+              "has_downloads": True,
+              "forks_count": 0,
+              "default_branch": "master",
+              "html_url": "https://github.com/fedora-infra/fas3-api-haskell",
+              "has_issues": True,
+              "stargazers_count": 0,
+              "open_issues_count": 0,
+              "watchers": 0,
+              "name": "fas3-api-haskell",
+              "language": "Shell",
+              "url": "https://api.github.com/repos/fedora-infra/fas3-api-haskell",
+              "created_at": "2015-01-15T17:12:50Z",
+              "pushed_at": "2015-01-15T17:13:15Z",
               "open_issues": 0
-            }, 
+            },
             "fas_usernames": {
-              "fedora-infra": "github_org_fedora-infra", 
+              "fedora-infra": "github_org_fedora-infra",
               "relrod": "codeblock"
-            }, 
+            },
             "build": {
-              "status": "built", 
+              "status": "built",
               "pusher": {
-                "url": "https://api.github.com/users/relrod", 
-                "site_admin": False, 
-                "html_url": "https://github.com/relrod", 
-                "gravatar_id": "", 
-                "login": "relrod", 
-                "type": "User", 
+                "url": "https://api.github.com/users/relrod",
+                "site_admin": False,
+                "html_url": "https://github.com/relrod",
+                "gravatar_id": "",
+                "login": "relrod",
+                "type": "User",
                 "id": 43930
-              }, 
-              "url": "https://api.github.com/repos/fedora-infra/fas3-api-haskell/pages/builds/12773963", 
-              "created_at": "2015-01-15T18:13:38Z", 
-              "updated_at": "2015-01-15T18:13:41Z", 
+              },
+              "url": "https://api.github.com/repos/fedora-infra/fas3-api-haskell/pages/builds/12773963",
+              "created_at": "2015-01-15T18:13:38Z",
+              "updated_at": "2015-01-15T18:13:41Z",
               "error": {
                 "message": None
-              }, 
-              "duration": 3718, 
+              },
+              "duration": 3718,
               "commit": "670613e19f0b41beb837554b9be84959ccd7085e"
-            }, 
+            },
             "organization": {
-              "url": "https://api.github.com/orgs/fedora-infra", 
-              "login": "fedora-infra", 
-              "description": None, 
+              "url": "https://api.github.com/orgs/fedora-infra",
+              "login": "fedora-infra",
+              "description": None,
               "id": 3316637
-            }, 
+            },
             "id": 12773963
         }
     }
@@ -1967,66 +2083,66 @@ class TestGithubTeamAdd(Base):
         "source_version": "0.6.4",
         "msg": {
         "organization": {
-          "url": "https://api.github.com/orgs/fedora-infra", 
-          "login": "fedora-infra", 
-          "description": None, 
+          "url": "https://api.github.com/orgs/fedora-infra",
+          "login": "fedora-infra",
+          "description": None,
           "id": 3316637
-        }, 
+        },
         "team": {
-          "description": None, 
-          "permission": "admin", 
-          "url": "https://api.github.com/teams/319263", 
-          "id": 319263, 
-          "slug": "owners", 
+          "description": None,
+          "permission": "admin",
+          "url": "https://api.github.com/teams/319263",
+          "id": 319263,
+          "slug": "owners",
           "name": "Owners"
-        }, 
+        },
         "fas_usernames": {
           "fedora-infra": "github_org_fedora-infra"
-        }, 
+        },
         "repository": {
-          "has_wiki": True, 
-          "has_pages": True, 
-          "updated_at": "2015-01-15T18:13:37Z", 
-          "private": False, 
-          "full_name": "fedora-infra/fas3-api-haskell", 
+          "has_wiki": True,
+          "has_pages": True,
+          "updated_at": "2015-01-15T18:13:37Z",
+          "private": False,
+          "full_name": "fedora-infra/fas3-api-haskell",
           "owner": {
-            "url": "https://api.github.com/users/fedora-infra", 
-            "site_admin": False, 
-            "html_url": "https://github.com/fedora-infra", 
-            "gravatar_id": "", 
-            "login": "fedora-infra", 
-            "type": "Organization", 
+            "url": "https://api.github.com/users/fedora-infra",
+            "site_admin": False,
+            "html_url": "https://github.com/fedora-infra",
+            "gravatar_id": "",
+            "login": "fedora-infra",
+            "type": "Organization",
             "id": 3316637
-          }, 
-          "id": 29308328, 
-          "size": 0, 
-          "watchers_count": 0, 
-          "forks": 0, 
-          "homepage": "https://relrod.github.io/fas3", 
-          "fork": False, 
-          "description": "Haskell API bindings for the upcoming Fedora Accounts System v3", 
-          "has_downloads": True, 
-          "forks_count": 0, 
-          "default_branch": "master", 
-          "html_url": "https://github.com/fedora-infra/fas3-api-haskell", 
-          "has_issues": True, 
-          "stargazers_count": 0, 
-          "open_issues_count": 0, 
-          "watchers": 0, 
-          "name": "fas3-api-haskell", 
-          "language": "Shell", 
-          "url": "https://api.github.com/repos/fedora-infra/fas3-api-haskell", 
-          "created_at": "2015-01-15T17:12:50Z", 
-          "pushed_at": "2015-01-15T17:13:15Z", 
+          },
+          "id": 29308328,
+          "size": 0,
+          "watchers_count": 0,
+          "forks": 0,
+          "homepage": "https://relrod.github.io/fas3",
+          "fork": False,
+          "description": "Haskell API bindings for the upcoming Fedora Accounts System v3",
+          "has_downloads": True,
+          "forks_count": 0,
+          "default_branch": "master",
+          "html_url": "https://github.com/fedora-infra/fas3-api-haskell",
+          "has_issues": True,
+          "stargazers_count": 0,
+          "open_issues_count": 0,
+          "watchers": 0,
+          "name": "fas3-api-haskell",
+          "language": "Shell",
+          "url": "https://api.github.com/repos/fedora-infra/fas3-api-haskell",
+          "created_at": "2015-01-15T17:12:50Z",
+          "pushed_at": "2015-01-15T17:13:15Z",
           "open_issues": 0
-        }, 
+        },
         "sender": {
-          "url": "https://api.github.com/users/fedora-infra", 
-          "site_admin": False, 
-          "html_url": "https://github.com/fedora-infra", 
-          "gravatar_id": "", 
-          "login": "fedora-infra", 
-          "type": "Organization", 
+          "url": "https://api.github.com/users/fedora-infra",
+          "site_admin": False,
+          "html_url": "https://github.com/fedora-infra",
+          "gravatar_id": "",
+          "login": "fedora-infra",
+          "type": "Organization",
           "id": 3316637
         }
       }
