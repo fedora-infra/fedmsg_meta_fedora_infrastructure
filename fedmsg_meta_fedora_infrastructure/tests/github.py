@@ -224,7 +224,7 @@ class TestGithubIssueOpen(Base):
     """
 
     expected_title = "github.issue.opened"
-    expected_subti = 'ralph opened issue #94 on fedora-infra/mirrormanager2: ' +
+    expected_subti = 'ralph opened issue #94 on fedora-infra/mirrormanager2: ' + \
                      'Add a script to check all the metalink urls'
     expected_link = "https://github.com/fedora-infra/mirrormanager2/94"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
@@ -246,7 +246,7 @@ class TestGithubIssueOpen(Base):
         "msg": {
             "sender": {
                 "url": "https://api.github.com/users/ralphbean",
-                "site_admin": false,
+                "site_admin": False,
                 "html_url": "https://github.com/ralphbean",
                 "gravatar_id": "",
                 "login": "ralphbean",
@@ -254,14 +254,14 @@ class TestGithubIssueOpen(Base):
                 "id": 331338
             },
             "repository": {
-                "has_wiki": false,
-                "has_pages": false,
+                "has_wiki": False,
+                "has_pages": False,
                 "updated_at": "2015-05-14T14:01:01Z",
-                "private": false,
+                "private": False,
                 "full_name": "fedora-infra/mirrormanager2",
                 "owner": {
                     "url": "https://api.github.com/users/fedora-infra",
-                    "site_admin": false,
+                    "site_admin": False,
                     "html_url": "https://github.com/fedora-infra",
                     "gravatar_id": "",
                     "login": "fedora-infra",
@@ -273,13 +273,13 @@ class TestGithubIssueOpen(Base):
                 "watchers_count": 3,
                 "forks": 7,
                 "homepage": "https://fedorahosted.org/mirrormanager/",
-                "fork": false,
+                "fork": False,
                 "description": "Rewrite of the MirrorManager application in Flask and SQLAlchemy",
-                "has_downloads": true,
+                "has_downloads": True,
                 "forks_count": 7,
                 "default_branch": "master",
                 "html_url": "https://github.com/fedora-infra/mirrormanager2",
-                "has_issues": true,
+                "has_issues": True,
                 "stargazers_count": 3,
                 "open_issues_count": 11,
                 "watchers": 3,
@@ -298,12 +298,12 @@ class TestGithubIssueOpen(Base):
             "organization": {
                 "url": "https://api.github.com/orgs/fedora-infra",
                 "login": "fedora-infra",
-                "description": null,
+                "description": None,
                 "id": 3316637
             },
             "issue": {
                 "body": "We had some metalink doom over the last couple [...]",
-                "locked": false,
+                "locked": False,
                 "title": "Add a script to check all the metalink urls",
                 "updated_at": "2015-06-20T12:29:04Z",
                 "created_at": "2015-06-20T12:29:04Z",
@@ -311,15 +311,15 @@ class TestGithubIssueOpen(Base):
                 "html_url": "https://github.com/fedora-infra/mirrormanager2/issues/94",
                 "comments": 0,
                 "number": 94,
-                "assignee": null,
+                "assignee": None,
                 "state": "open",
                 "url": "https://api.github.com/repos/fedora-infra/mirrormanager2/issues/94",
-                "milestone": null,
-                "closed_at": null,
+                "milestone": None,
+                "closed_at": None,
                 "id": 89763382,
                 "user": {
                     "url": "https://api.github.com/users/ralphbean",
-                    "site_admin": false,
+                    "site_admin": False,
                     "html_url": "https://github.com/ralphbean",
                     "gravatar_id": "",
                     "login": "ralphbean",
@@ -2239,7 +2239,7 @@ class TestGithubMember(Base):
 
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
     TestGithubPush.expected_long_form = full_patch1
-    TestGithubIssue.expected_long_form = "Testing stuff."
+    TestGithubIssueOpen.expected_long_form = "Testing stuff."
     TestGithubIssueComment.expected_long_form = "This issue is super great!"
     TestGithubPullRequestComment.expected_long_form = \
         "I was thinking the ``flask.request.args.get(..."
