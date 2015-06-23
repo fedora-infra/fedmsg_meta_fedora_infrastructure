@@ -18,6 +18,11 @@
 # Authors:  Ralph Bean <rbean@redhat.com>
 #
 
+try:
+    import re2 as re
+except ImportError:
+    import re
+
 import requests
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
@@ -27,6 +32,7 @@ blacklisted_people = [
     'zodbot',
 ]
 
+link_regex = re.compile('(https?:\/\/[a-z0-9\.:].*?)[ $]')
 
 class SupybotProcessor(BaseProcessor):
     __name__ = "meetbot"
@@ -39,6 +45,13 @@ class SupybotProcessor(BaseProcessor):
     def link(self, msg, **config):
         if 'meetbot.meeting.complete' in msg['topic']:
             return msg['msg']['url'].replace('http://', 'https://') + ".html"
+        elif 'meetbot.meeting.item.link' in msg['topic']:
+            line = msg['msg']['details']['line']
+            print line
+            results = link_regex.findall(line)
+            if not results:
+                return None
+            return results[0]
         else:
             return None
 
