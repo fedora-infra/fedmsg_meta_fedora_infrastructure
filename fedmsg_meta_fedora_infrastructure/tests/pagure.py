@@ -135,7 +135,7 @@ class TestNewIssueComment(Base):
     """
     expected_title = "pagure.issue.comment.added"
     expected_subti = 'pingou commented on the ticket foo#4: "bug"'
-    expected_link = "https://pagure.io/foo/issue/4"
+    expected_link = "https://pagure.io/foo/issue/4#comment-1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -907,7 +907,7 @@ class TestNewPullRequestComment(Base):
     expected_title = "pagure.pull-request.comment.added"
     expected_subti = 'pingou commented on the pull-request#6 of '\
         'project "test"'
-    expected_link = "https://pagure.io/test/pull-request/6"
+    expected_link = "https://pagure.io/test/pull-request/6#comment-1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
