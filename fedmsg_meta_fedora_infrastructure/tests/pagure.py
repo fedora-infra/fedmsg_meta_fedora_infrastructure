@@ -134,7 +134,7 @@ class TestNewIssueComment(Base):
     opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.comment.added"
-    expected_subti = 'pingou commented on the ticket foo#4: "bug"'
+    expected_subti = 'pingou commented on ticket foo#4: "bug"'
     expected_link = "https://pagure.io/foo/issue/4#comment-1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -209,7 +209,7 @@ class TestNewIssueTag(Base):
     opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.tag.added"
-    expected_subti = 'pingou tagged the ticket foo#4: easyfix, bug'
+    expected_subti = 'pingou tagged ticket foo#4: bug and easyfix'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -274,7 +274,7 @@ class TestRemovedIssueTag(Base):
     ticket opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.tag.removed"
-    expected_subti = 'pingou removed tags: feature, future, from the '\
+    expected_subti = 'pingou removed the feature and future tags from '\
         'ticket foo#4'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -340,7 +340,7 @@ class TestAssignedIssue(Base):
     ticket opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.assigned.added"
-    expected_subti = 'pingou assigned ralph to the ticket foo#4'
+    expected_subti = 'pingou assigned ticket foo#4 to ralph'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -408,7 +408,7 @@ class TestResetAssignedIssue(Base):
     of a ticket opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.assigned.reset"
-    expected_subti = 'pingou reset the assignee of the ticket foo#4'
+    expected_subti = 'pingou reset the assignee of ticket foo#4'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -470,7 +470,7 @@ class TestNewIssueDependency(Base):
     of a ticket opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.dependency.added"
-    expected_subti = 'pingou added on the ticket foo#2 a dependency on '\
+    expected_subti = 'pingou added ticket foo#2 as a dependency of '\
     'ticket foo#4'
     expected_link = "https://pagure.io/foo/issue/2"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -534,7 +534,7 @@ class TestRemovedIssueDependency(Base):
     of a ticket opened against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.dependency.removed"
-    expected_subti = 'pingou removed on the ticket foo#4 the dependency on '\
+    expected_subti = 'pingou removed ticket foo#4 as a dependency of '\
     'ticket foo#2'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -600,7 +600,7 @@ class TestIssueEdit(Base):
     against a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.issue.edit"
-    expected_subti = 'pingou edited the fields: "status", "private" of the '\
+    expected_subti = 'pingou edited the private and status fields of '\
         'ticket foo#4'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -669,7 +669,7 @@ class TestProjectEdit(Base):
     `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.edit"
-    expected_subti = 'pingou edited the fields: "project_docs" of the '\
+    expected_subti = 'pingou edited the project_docs fields of '\
         'project foo'
     expected_link = "https://pagure.io/foo"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -715,7 +715,7 @@ class TestProjectUserAdded(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.user.added"
-    expected_subti = 'pingou added "ralph" to the project foo'
+    expected_subti = 'pingou added "ralph" to project foo'
     expected_link = "https://pagure.io/foo"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -758,7 +758,7 @@ class TestProjectTagRemoved(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.tag.removed"
-    expected_subti = 'pingou removed tags "easyfix1" of the project foo'
+    expected_subti = 'pingou removed tags "easyfix1" from project foo'
     expected_link = "https://pagure.io/foo"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -803,8 +803,8 @@ class TestProjectTagEdited(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.tag.edited"
-    expected_subti = 'pingou edited tags "easyfix1" of the project foo '\
-        'to "easyfix"'
+    expected_subti = 'pingou altered tags on project foo from ' + \
+        '"easyfix1" to "easyfix"'
     expected_link = "https://pagure.io/foo"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -905,7 +905,7 @@ class TestNewPullRequestComment(Base):
     pull-request of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.comment.added"
-    expected_subti = 'pingou commented on the pull-request#6 of '\
+    expected_subti = 'pingou commented on pull-request#6 of '\
         'project "test"'
     expected_link = "https://pagure.io/test/pull-request/6#comment-1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -1015,7 +1015,7 @@ class TestNewPullRequestclosed(Base):
     of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.closed"
-    expected_subti = 'pingou closed (without merging) the pull-request#6 '\
+    expected_subti = 'pingou closed (without merging) pull-request#6 '\
         'of project "test"'
     expected_link = "https://pagure.io/test/pull-request/6"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -1126,7 +1126,7 @@ class TestNewPullRequestMerged(Base):
     of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.closed"
-    expected_subti = 'pingou merged the pull-request#7 of project "test"'
+    expected_subti = 'pingou merged pull-request#7 of project "test"'
     expected_link = "https://pagure.io/test/pull-request/7"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1236,8 +1236,8 @@ class TestNewPullRequestNew(Base):
     on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.new"
-    expected_subti = 'pingou opened the pull-request#21: "Improve loading '\
-        'speed" for the project "test"'
+    expected_subti = 'pingou opened pull-request#21: "Improve loading '\
+        'speed" on project "test"'
     expected_link = "https://pagure.io/test/pull-request/21"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1329,7 +1329,7 @@ class TestPullRequestFlagAdded(Base):
     on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.flag.added"
-    expected_subti = 'Jenkins flagged test #1 with "Tests failed"'
+    expected_subti = 'Jenkins flagged test#1 with "Tests failed"'
     expected_link = "https://pagure.io/test/pull-request/1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1444,7 +1444,7 @@ class TestPullRequestFlagUpdated(Base):
     pull-request on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.flag.updated"
-    expected_subti = 'Jenkins updated the flag of test #1 with: '\
+    expected_subti = 'Jenkins updated the flags on test#1 with: '\
         '"Tests passed"'
     expected_link = "https://pagure.io/test/pull-request/1"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
