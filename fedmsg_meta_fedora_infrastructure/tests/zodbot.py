@@ -428,6 +428,64 @@ class TestSupybotMeetingItemHelp(Base):
     }
 
 
+class TestSupybotMeetingItemLink(Base):
+    """ As IRC meetings chug along, people can declare items for the record.
+    Here's an example of someone **linking to information** on some item:
+    """
+    expected_title = "meetbot.meeting.item.link"
+    expected_subti = (
+        'mizmo linked to more information in the "Server SIG Weekly Meeting '
+        '(2015-06-23)" meeting in #fedora-meeting-1: "https://bugzilla.redhat.'
+        'com/show_bug.cgi?id=1234653 basically stops all media booting in most'
+        ' cases"')
+
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/' + \
+        '2b820632db285cd534651e5f0da285d7c0a0a1bf600da16e19063163ce21db31' + \
+        '?s=64&d=retro'
+    expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1234653"
+    expected_usernames = set(['mizmo', 'nirik'])
+    expected_objects = set([
+        'attendees/mizmo',
+        'attendees/nirik',
+        'channels/#fedora-meeting-1',
+        'titles/Server SIG Weekly Meeting (2015-06-23)',
+        'topics/Open Floor',
+    ])
+
+    msg = {
+        "i": 999,
+        "msg": {
+            "attendees": {
+                "mizmo": 0,
+                "nirik": 9,
+                "zodbot": 5
+            },
+            "chairs": {
+                "mizmo": True,
+                "nirik": True,
+            },
+            "channel": "#fedora-meeting-1",
+            "details": {
+                "line": "https://bugzilla.redhat.com/show_bug.cgi?id=1234653 "
+                "basically stops all media booting in most cases",
+                "linenum": 122,
+                "nick": "mizmo",
+                "time_": 1435074475.0
+            },
+            "meeting_topic": "Server SIG Weekly Meeting (2015-06-23)",
+            "owner": "nirik",
+            "topic": "Open Floor",
+            "url": "http://meetbot.fedoraproject.org/fedora-meeting-1/"
+            "2015-06-23/fedora-meeting-1.2015-06-23-15.03"
+        },
+        "msg_id": "2015-2fc83ae5-2cbc-445c-85c3-266debd8df2d",
+        "source_name": "datanommer",
+        "source_version": "0.6.5",
+        "timestamp": 1435074475.0,
+        "topic": "org.fedoraproject.prod.meetbot.meeting.item.link"
+    }
+
+
 class TestSupybotKarma(Base):
     """ In IRC, users can give each other "karma" by saying ``user++``
     (and zodbot publishes messages for that too).
