@@ -47,7 +47,6 @@ class SupybotProcessor(BaseProcessor):
             return msg['msg']['url'].replace('http://', 'https://') + ".html"
         elif 'meetbot.meeting.item.link' in msg['topic']:
             line = msg['msg']['details']['line']
-            print line
             results = link_regex.findall(line)
             if not results:
                 return None
