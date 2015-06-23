@@ -58,16 +58,28 @@ class PagureProcessor(BaseProcessor):
             tmpl = '{base_url}/fork/{project}'
         if 'pagure.issue' in msg['topic']:
             issueid = msg['msg']['issue']['id']
-            tmpl += '/issue/{id}'
-            return tmpl.format(
-                base_url=base_url, project=project, id=issueid)
-        elif 'pagure.project' in msg['topic']:
-            return tmpl.format(base_url=base_url, project=project)
+            if 'comment' in msg['topic']:
+                tmpl += '/issue/{id}#comment-{comment}'
+                return tmpl.format(
+                    base_url=base_url, project=project, id=issueid,
+                    comment=len(msg['msg']['issue']['comments']))
+            else:
+                tmpl += '/issue/{id}'
+                return tmpl.format(
+                    base_url=base_url, project=project, id=issueid)
         elif 'pagure.pull-request' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
-            tmpl += '/pull-request/{id}'
-            return tmpl.format(
-                base_url=base_url, project=project, id=prid)
+            if 'comment' in msg['topic']:
+                tmpl += '/pull-request/{id}#comment-{comment}'
+                return tmpl.format(
+                    base_url=base_url, project=project, id=prid,
+                    comment=len(msg['msg']['pullrequest']['comments']))
+            else:
+                tmpl += '/pull-request/{id}'
+                return tmpl.format(
+                    base_url=base_url, project=project, id=prid)
+        elif 'pagure.project' in msg['topic']:
+            return tmpl.format(base_url=base_url, project=project)
         elif 'pagure.git.receive' in msg['topic']:
             project = self.__get_project(msg['msg']['commit'], key='repo')
             commit = msg['msg']['commit']['rev']
