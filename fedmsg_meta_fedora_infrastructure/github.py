@@ -116,8 +116,19 @@ class GithubProcessor(BaseProcessor):
         elif 'github.pull_request.' in msg['topic']:
             action = msg['msg']['action']
             n = msg['msg']['number']
-            tmpl = self._('{user} {action} pull request #{n} on {repo}')
-            return tmpl.format(user=user, action=action, n=n, repo=repo)
+            if action == 'opened':
+                title = msg['msg']['pull_request']['title']
+                tmpl = self._(
+                    '{user} {action} pull request #{n} on {repo}: {title}')
+                return tmpl.format(
+                    user=user,
+                    action=action,
+                    n=n,
+                    repo=repo,
+                    title=title)
+            else:
+                tmpl = self._('{user} {action} pull request #{n} on {repo}')
+                return tmpl.format(user=user, action=action, n=n, repo=repo)
         elif 'github.issue.' in msg['topic']:
             if 'comment' in msg['msg']:
                 action = 'commented on'
@@ -129,8 +140,18 @@ class GithubProcessor(BaseProcessor):
             except KeyError:
                 n = msg['msg']['issue']['number']
 
-            tmpl = self._('{user} {action} issue #{n} on {repo}')
-            return tmpl.format(user=user, action=action, n=n, repo=repo)
+            if action == 'opened':
+                title = msg['msg']['issue']['title']
+                tmpl = self._('{user} {action} issue #{n} on {repo}: {title}')
+                return tmpl.format(
+                    user=user,
+                    action=action,
+                    n=n,
+                    repo=repo,
+                    title=title)
+            else:
+                tmpl = self._('{user} {action} issue #{n} on {repo}')
+                return tmpl.format(user=user, action=action, n=n, repo=repo)
         elif 'github.pull_request_review_comment' in msg['topic']:
             n = msg['msg']['pull_request']['number']
             tmpl = self._('{user} commented on PR #{n} on {repo}')
