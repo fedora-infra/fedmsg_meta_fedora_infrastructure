@@ -226,7 +226,7 @@ class TestGithubIssueOpen(Base):
     expected_title = "github.issue.opened"
     expected_subti = 'ralph opened issue #94 on fedora-infra/mirrormanager2: ' + \
                      'Add a script to check all the metalink urls'
-    expected_link = "https://github.com/fedora-infra/mirrormanager2/94"
+    expected_link = "https://github.com/fedora-infra/mirrormanager2/issues/94"
     expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -2239,7 +2239,7 @@ class TestGithubMember(Base):
 
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
     TestGithubPush.expected_long_form = full_patch1
-    TestGithubIssueOpen.expected_long_form = "Testing stuff."
+    TestGithubIssueReopen.expected_long_form = "Testing stuff."
     TestGithubIssueComment.expected_long_form = "This issue is super great!"
     TestGithubPullRequestComment.expected_long_form = \
         "I was thinking the ``flask.request.args.get(..."

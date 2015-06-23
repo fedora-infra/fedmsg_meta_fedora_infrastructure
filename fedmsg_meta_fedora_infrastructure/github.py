@@ -117,6 +117,7 @@ class GithubProcessor(BaseProcessor):
             action = msg['msg']['action']
             n = msg['msg']['number']
             if action == 'opened':
+                title = msg['msg']['pull_request']['title']
                 tmpl = self._(
                     '{user} {action} pull request #{n} on {repo}: {title}')
                 return tmpl.format(
@@ -140,6 +141,7 @@ class GithubProcessor(BaseProcessor):
                 n = msg['msg']['issue']['number']
 
             if action == 'opened':
+                title = msg['msg']['issue']['title']
                 tmpl = self._('{user} {action} issue #{n} on {repo}: {title}')
                 return tmpl.format(
                     user=user,
