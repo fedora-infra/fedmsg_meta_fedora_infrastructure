@@ -22,8 +22,8 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 class KoscheiProcessor(BaseProcessor):
     __name__ = 'koschei'
     __description__ = "Continuous integration for Fedora packages"
-    __link__ = "http://koschei.cloud.fedoraproject.org"
-    __docs__ = "http://koschei.cloud.fedoraproject.org/documentation"
+    __link__ = "https://apps.fedoraproject.org/koschei"
+    __docs__ = "https://apps.fedoraproject.org/koschei/documentation"
     __obj__ = "Watched packages"
     __icon__ = ("https://fedoraproject.org/w/uploads/e/e9/Koschei.png")
 
@@ -52,7 +52,7 @@ class KoscheiProcessor(BaseProcessor):
             return tmpl % msg['msg']['name']
 
     def link(self, msg, **config):
-        baseurl = 'http://koschei.cloud.fedoraproject.org'
+        baseurl = 'https://apps.fedoraproject.org/koschei'
         if 'koschei.package.state.change' in msg['topic']:
             return '{baseurl}/package/{name}'.format(baseurl=baseurl,
                                                      name=msg['msg']['name'])
