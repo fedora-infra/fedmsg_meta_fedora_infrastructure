@@ -355,6 +355,14 @@ class PkgdbProcessor(BaseProcessor):
             branch = msg['msg']['collection']['branchname']
             package = msg['msg']['package']['name']
             return tmpl.format(agent=agent, branch=branch, package=package)
+        elif msg['topic'].endswith('pkgdb.package.koschei.update'):
+            tmpl = self._(
+                u"{agent} set the koschei monitoring flag of {package} to "
+                "{status}")
+            agent = msg['msg']['agent']
+            status = msg['msg']['status']
+            package = msg['msg']['package']['name']
+            return tmpl.format(agent=agent, status=status, package=package)
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -496,6 +504,12 @@ class PkgdbProcessor(BaseProcessor):
         elif msg['topic'].endswith('pkgdb.package.monitor.update'):
             objs.add(
                 '{package}/monitor/{status}'.format(
+                package=_msg['package']['name'],
+                status=str(_msg['status']).lower())
+            )
+        elif msg['topic'].endswith('pkgdb.package.koschei.update'):
+            objs.add(
+                '{package}/koschei/{status}'.format(
                 package=_msg['package']['name'],
                 status=str(_msg['status']).lower())
             )
