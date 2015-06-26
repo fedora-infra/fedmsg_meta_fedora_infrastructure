@@ -21,6 +21,8 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
+import fedmsg.meta.base
+
 import datetime
 from pytz import UTC
 
@@ -222,24 +224,34 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.task.state.change' in msg['topic']:
             templates = {
                 'OPEN': self._(
-                    "{owner}'s scratch build of {srpm} started{inst}"),
+                    "{owner}'s scratch build of {srpm}{target} started{inst}"),
                 'FAILED': self._(
-                    "{owner}'s scratch build of {srpm} failed{inst}"),
+                    "{owner}'s scratch build of {srpm}{target} failed{inst}"),
                 'CLOSED': self._(
-                    "{owner}'s scratch build of {srpm} completed{inst}"),
+                    "{owner}'s scratch build of {srpm}{target} completed{inst}"),
                 'CANCELED': self._(
-                    "{owner}'s scratch build of {srpm} "
+                    "{owner}'s scratch build of {srpm}{target} "
                     "was cancelled{inst}"),
             }
+            target = ''
+            if msg['msg'].get('info', {}).get('request'):
+                targets = set()
+                for item in msg['msg']['info']['request']:
+                    if not isinstance(item, dict) and not item.endswith('.rpm'):
+                        targets.add(item)
+                if targets:
+                    target = ' for %s'  % (
+                        fedmsg.meta.base.BaseConglomerator.list_to_series(
+                            targets))
             default = self._(
-                "{owner}'s scratch build of {srpm} changed{inst}")
+                "{owner}'s scratch build of {srpm}{target} changed{inst}")
             tmpl = templates.get(msg['msg']['new'], default)
 
             # If there was no owner of the build, chop off the prefix.
             if not msg['msg']['owner']:
                 tmpl = tmpl[len("{owner}'s "):]
 
-            return tmpl.format(inst=inst, **msg['msg'])
+            return tmpl.format(inst=inst, target=target, **msg['msg'])
 
     def secondary_icon(self, msg, **config):
         owner = msg['msg'].get('owner')
