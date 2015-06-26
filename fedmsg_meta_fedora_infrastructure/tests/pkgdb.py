@@ -2042,6 +2042,48 @@ class TestPkgdbPackageUnretireRequest(Base):
     }
 
 
+class TestPkgdbPackageKoscheiUpdate(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when someone changes the
+    `koschei<https://apps.fedoraproject.org/koschei>`_ status of a package.
+    """
+    expected_title = "pkgdb.package.koschei.update"
+    expected_subti = ("pingou set the koschei monitoring flag of guake to True")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['guake'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['guake/koschei/true'])
+    msg = {
+        'username': u'pierrey',
+        'i': 3,
+        'timestamp': 1435313134,
+        'msg_id': u'2015-7d0ecbd6-6892-4b34-98ff-b212d1fef74e',
+        'topic': u'org.fedoraproject.dev.pkgdb.package.koschei.update',
+        'msg': {
+            'status': True,
+            'agent': u'pingou',
+            'package': {
+                'status': u'Approved',
+                'upstream_url': u'http: //www.guake.org/',
+                'koschei_monitor': True,
+                'monitor': False,
+                'summary': u'Drop-downterminalforGNOME',
+                'name': u'guake',
+                    'acls': [
+                ],
+                'creation_date': 1400063778.0,
+                'review_url': None,
+                'description': 'Guake is a drop-down terminal for Gnome'
+            }
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
