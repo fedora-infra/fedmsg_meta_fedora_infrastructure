@@ -2045,7 +2045,7 @@ class TestPkgdbPackageUnretireRequest(Base):
 class TestPkgdbPackageKoscheiUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when someone changes the
-    `koschei<https://apps.fedoraproject.org/koschei>`_ status of a package.
+    `koschei <https://apps.fedoraproject.org/koschei>`_ status of a package.
     """
     expected_title = "pkgdb.package.koschei.update"
     expected_subti = ("pingou set the koschei monitoring flag of guake to True")
