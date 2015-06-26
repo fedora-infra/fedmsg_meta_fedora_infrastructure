@@ -239,6 +239,86 @@ class TestKojiTaskStateChangeFail(Base):
     }
 
 
+class TestKojiTaskStateChangeFailWithTarget(Base):
+    """ Koji emits messages on this topic anytime the state of a **scratch**
+    build changes.
+
+    For reasons internal to koji itself, the state codes for **scratch** builds
+    are not as cryptic as the ones for regular builds.  It is worth noting that
+    the `task` state codes are different from the `build` state codes.  If you
+    wanted to know the numeric equivalents, you could check with koji itself:
+
+        >>> import koji
+        >>> koji.TASK_STATES
+        {
+            'FREE': 0,
+            'OPEN': 1,
+            'CLOSED': 2,
+            'CANCELED': 3,
+            'ASSIGNED': 4,
+            'FAILED': 5,
+        }
+
+    Here's an example message of a **scratch build failing**.
+    """
+    expected_title = "buildsys.task.state.change"
+    expected_subti = "ralph's scratch build of " + \
+        "python-websocket-client-0.12.0-1.fc20.src.rpm for epel7-candidate failed"
+    expected_icon = ("https://fedoraproject.org/w/uploads/2/20/"
+                     "Artwork_DesignService_koji-icon-48.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
+    expected_usernames = set(['ralph'])
+    expected_packages = set([])
+    expected_objects = set([
+        'primary/scratch_builds/python-websocket-client-0.12.0-1.fc20.src.rpm',
+    ])
+    expected_link = ("http://koji.fedoraproject.org/koji/"
+                     "taskinfo?taskID=6380373")
+    msg = {
+        "username": "root",
+        "i": 1,
+        "timestamp": 1389298512,
+        "msg_id": "2014-991dbbad-b5f5-4f62-b889-d3b637d0cb49",
+        "topic": "org.fedoraproject.prod.buildsys.task.state.change",
+        "msg": {
+            "old": "OPEN",
+            "attribute": "state",
+            "method": "build",
+            "owner": "ralph",
+            "srpm": "python-websocket-client-0.12.0-1.fc20.src.rpm",
+            "new": "FAILED",
+            "id": 6380373,
+            "info": {
+                "parent": None,
+                "completion_time": None,
+                "start_time": "2015-06-22 14:04:41.44985",
+                "request": [
+                    "cli-build/1434981816.694115.CAAulQZy/pagure-0.1.18-1.fc21.src.rpm",
+                    "epel7-candidate",
+                    {
+                        "scratch": True
+                    }
+                ],
+                "waiting": None,
+                "awaited": None,
+                "id": 10177586,
+                "priority": 20,
+                "channel_id": 1,
+                "state": 1,
+                "create_time": "2015-06-22 14:04:40.523486",
+                "owner": 456,
+                "host_id": 60,
+                "method": "build",
+                "label": None,
+                "arch": "noarch",
+                "children": []
+            },
+        }
+    }
+
+
 class TestKojiBuildTag(Base):
     """ Koji emits these messages when a build has a certain tag added to it.
     """
