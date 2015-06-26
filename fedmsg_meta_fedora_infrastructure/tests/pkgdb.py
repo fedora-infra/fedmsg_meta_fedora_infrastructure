@@ -1808,8 +1808,9 @@ class TestPkgdbPackageBranchNew(Base):
 
 class TestPkgdbPackageMonitorUpdate(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
-    publishes messages like these when a **new branch** is created for a
-    package.
+    publishes messages like these when someone changes the
+    `monitoring <https://fedoraproject.org/wiki/Upstream_release_monitoring>`_
+    status of a package.
     """
     expected_title = "pkgdb.package.monitor.update"
     expected_subti = ("pingou set the monitor flag of guake to False")
