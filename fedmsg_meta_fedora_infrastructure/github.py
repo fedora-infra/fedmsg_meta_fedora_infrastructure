@@ -115,6 +115,8 @@ class GithubProcessor(BaseProcessor):
             return tmpl.format(user=user, repo=repo, n=n)
         elif 'github.pull_request.' in msg['topic']:
             action = msg['msg']['action']
+            if action == 'synchronize':
+                action = 'synchronized'
             n = msg['msg']['number']
             tmpl = self._('{user} {action} pull request #{n} on {repo}')
             return tmpl.format(user=user, action=action, n=n, repo=repo)
