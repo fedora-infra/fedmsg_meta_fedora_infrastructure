@@ -64,7 +64,7 @@ class PagureProcessor(BaseProcessor):
                 tmpl += '/issue/{id}#comment-{comment}'
                 return tmpl.format(
                     base_url=base_url, project=project, id=issueid,
-                    comment=len(msg['msg']['issue']['comments']))
+                    comment=msg['msg']['issue']['comments'][-1]['id'])
             else:
                 tmpl += '/issue/{id}'
                 return tmpl.format(
@@ -75,7 +75,7 @@ class PagureProcessor(BaseProcessor):
                 tmpl += '/pull-request/{id}#comment-{comment}'
                 return tmpl.format(
                     base_url=base_url, project=project, id=prid,
-                    comment=len(msg['msg']['pullrequest']['comments']))
+                    comment=msg['msg']['pullrequest']['comments'][-1]['id'])
             else:
                 tmpl += '/pull-request/{id}'
                 return tmpl.format(
