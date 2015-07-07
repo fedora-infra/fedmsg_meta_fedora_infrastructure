@@ -18,6 +18,8 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         playbooks_text = self.list_to_series(playbooks)
 
         N = len([m for m in ms if m['topic'].endswith('start')])
+        if not N:
+            N = len(ms)
 
         if len(playbooks) > 1:
             N = 's %i' % N
