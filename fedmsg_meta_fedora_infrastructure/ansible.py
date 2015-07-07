@@ -21,6 +21,9 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
+from fedmsg_meta_fedora_infrastructure.conglomerators.ansible import \
+        playbooks as ansible_playbooks
+
 fs_prefix = "/srv/web/infra/ansible/"
 
 
@@ -45,6 +48,10 @@ class AnsibleProcessor(BaseProcessor):
     __docs__ = \
         "https://fedoraproject.org/wiki/Infrastructure_ansible_migration"
     __obj__ = "Ansible Runs"
+
+    conglomerators = [
+        ansible_playbooks.ByUser,
+    ]
 
     def subtitle(self, msg, **config):
         user = msg['msg'].get('userid', '(no user specified)')
