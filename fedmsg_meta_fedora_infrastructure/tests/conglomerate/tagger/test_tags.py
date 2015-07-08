@@ -3,7 +3,6 @@ import fedmsg.tests.test_meta
 
 class TestTaggerConglomerateByUser(
         fedmsg.tests.test_meta.ConglomerateBase):
-    expected = []
     expected =[
         {'categories': set(['fedoratagger']),
          'end_time': 1436284694.0,
