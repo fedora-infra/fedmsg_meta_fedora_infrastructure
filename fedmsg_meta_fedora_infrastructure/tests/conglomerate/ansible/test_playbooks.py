@@ -6,7 +6,7 @@ class TestPkgdbConglomerateCommentSubject(
     expected = [{
         'categories': set(['ansible']),
         'end_time': 1436292424.0,
-        'human_time': u'an hour ago',
+        'human_time': arrow.get(1436290771.0714285).humanize(),
         'icon': 'https://apps.fedoraproject.org/img/icons/ansible.png',
         'link': 'http://infrastructure.fedoraproject.org/infra/ansible.git/',
         'packages': set([]),
