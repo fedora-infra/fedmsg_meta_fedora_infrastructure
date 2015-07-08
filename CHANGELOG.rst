@@ -1,6 +1,48 @@
 Changelog
 =========
 
+0.5.10
+------
+
+- Use badge.award 'description' in long_form `dbb892eb6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dbb892eb635154ffcd6bb9427436120991c8d775>`_
+- Merge pull request #280 from pranavk/develop `1b0cf481f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1b0cf481f5f4699bf3deacce07ec741f649a58d3>`_
+- Attempt to add titles to github PR/issue openings `649637393 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/649637393f21049120ba80304e528591f9d7bebe>`_
+- Fix some syntax errors. `8ac39b3af <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ac39b3af0294c53c197d94b214293bc48510ef9>`_
+- make tests pass `b2214a082 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b2214a0820c1c69bd3d0b30e42c409062957c927>`_
+- Merge pull request #282 from fedora-infra/issue-open-titles `d438f45d6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d438f45d6c2735b787b4761a5c051df8874032bb>`_
+- Faster, please. `28170f2d9 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/28170f2d91678a98ee585746ae51e83595a77b13>`_
+- Link directly to pagure comments. `633a39bbf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/633a39bbfe3373eabbd7fbd79494d2d0fbd4c3ce>`_
+- Merge pull request #283 from fedora-infra/feature/pagure-links `9d1feda98 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9d1feda98397ba0ec02b1472354e34e78cd87381>`_
+- Update language for pagure messages. `bd3da61ef <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bd3da61efd0bf6a53c5f0621da3620a935f34dc1>`_
+- Merge pull request #284 from fedora-infra/feature/pagure-language-changes `837191f7d <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/837191f7da987ec46885c2affac1ed3f40b902da>`_
+- We should return a link... for #link things in irc meetings. `2b0ad74ab <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2b0ad74ab30231c49c2f282d8308f1c131dca7a6>`_
+- Remove spurious print statement. `f1748ed76 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f1748ed7682c4202bd43e9fcfdad879b23c72563>`_
+- Merge pull request #285 from fedora-infra/feature/link-link `8e3e2128c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8e3e2128c32f2584b8e6af78787c97391adb9a86>`_
+- Update Koschei URL `4e08316e3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4e08316e3a206680584bddc36b6f096a71635c9a>`_
+- Merge pull request #287 from mizdebsk/koschei `634098d16 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/634098d167c8dc7216094bd2ea65a8d85c7d6ca6>`_
+- Adjust the docstring to reflect the test `2aef1ebcd <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2aef1ebcdba69559e898fcc9f075fb5050cba36f>`_
+- Add logic to process messages sent by pkgdb when changing the koschei monitoring flag `554038f11 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/554038f1133f5fdc4937eea864773fc5ec441501>`_
+- Add unit-tests for the message sent by pkgdb when updating the koschei monitoring flag `97351e2f7 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/97351e2f7c2b125f3964786201d2585d1e7d4503>`_
+- Add missing space to make the link work properly `43664879c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/43664879ce6af5daf2fc076cf488e281ac76fb70>`_
+- Add test message of a failed scratch build with information about the target `ba65c7241 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ba65c72414c4dacf3a7d330a58939f436c326fff>`_
+- Specify the target of the build if we can extract it from the message `a60706c22 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a60706c22cfa47e26aa4cc48d7b0e1e985af7984>`_
+- Merge pull request #288 from fedora-infra/pkgdb_koschei `2a3066914 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2a3066914f9a5f1fe21fd59ee15f959c876b80e9>`_
+- Merge pull request #289 from fedora-infra/scratch_with_target `79294105f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/79294105ffb9377af3692679c82369a4d091212c>`_
+- Careful for x-archived-at being None. `92e77072a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/92e77072a61a57385df5a40822dd8e32a0d90b84>`_
+- Fix grammar for github.pull_request.synchronize `42df2c3d4 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/42df2c3d4b92e108c96c1e3f33d43ee21ca99504>`_
+- Merge pull request #290 from fedora-infra/synchronize-past-tense `7a1c74a81 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7a1c74a81ec1ec1d631e662dffa0a971171def01>`_
+- Update pagure comment links. `b23e24247 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b23e242473d749ed7c1256981d2cbce5dea04ab1>`_
+- Merge pull request #292 from fedora-infra/feature/pagure-link `60b33fe40 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/60b33fe4029c5739b8fa6eaaf058c1841324a41c>`_
+- Ansible conglomerator (for fedora-hubs) `6a1d55773 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a1d55773ea33902cbebd94d3ef8fc5423e7ce01>`_
+- Handle case where constituents have been pre-filtered. `e8e760e0e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e8e760e0e0361cbf6cffad5133f0db6c57b13b84>`_
+- Tagger conglomerator (for fedora-hubs) `6e6202e39 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6e6202e39804be3ac64db2e8badec5aecb4390ad>`_
+- Consistency. `ec985c8d0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ec985c8d0f9910f533b0c3f303deaee5cb4673d9>`_
+- Remove duplicate declaration. `ef62ab93e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ef62ab93e6002fa2f7e35fa495eec2b217ef8ea8>`_
+- Merge pull request #294 from fedora-infra/feature/tagger-conglomerator `8a70eb667 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8a70eb6671567fb37864ef641822310d42f3b97a>`_
+- Drop hardcoding of humanized time in the test. `4eb882116 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4eb882116db88926d8862d2d7702d26227b99d03>`_
+- Try to handle all these plural cases. `c55e09523 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c55e09523adc135b7c79b9e6eecb1374c1775267>`_
+- Merge pull request #293 from fedora-infra/feature/ansible-conglomerator `9cf772c48 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9cf772c48bb68ad4cbf95b77b554f54ec70c69d8>`_
+
 0.5.9
 -----
 
