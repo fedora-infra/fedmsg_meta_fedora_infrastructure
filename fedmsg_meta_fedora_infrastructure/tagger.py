@@ -20,6 +20,8 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
+from fedmsg_meta_fedora_infrastructure.conglomerators.tagger \
+    import tags as tagger_tags
 
 class TaggerProcessor(BaseProcessor):
     __name__ = "fedoratagger"
@@ -28,6 +30,11 @@ class TaggerProcessor(BaseProcessor):
     __docs__ = "https://github.com/ralphbean/fedora-tagger"
     __icon__ = "https://apps.fedoraproject.org/img/icons/tagger.png"
     __obj__ = "Package Tag Votes"
+
+    conglomerators = [
+        tagger_tags.UpdateByUser,
+        tagger_tags.CreateByUser,
+    ]
 
     def link(self, msg, **config):
         vote = msg.get('msg', {}).get('vote', {})
