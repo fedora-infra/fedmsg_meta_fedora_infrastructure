@@ -21,16 +21,17 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         if not N:
             N = len(ms)
 
-        if len(playbooks) > 1:
-            N = 's %i' % N
-        else:
-            N = ' %i' % N
+        playbooks_predicate = 'playbooks' if len(playbooks) > 1 else 'playbook'
+        times_predicate = 'times' if N > 1 else 'time'
 
-        subtitle = '{agent} ran the {playbooks} playbook{N} times'
+        subtitle = '{agent} ran the {playbooks} ' + \
+            '{playbooks_predicate} {N} {times_predicate}'
 
         tmpl = self.produce_template(constituents, **config)
         tmpl['subtitle'] = subtitle.format(
-            agent=agent, playbooks=playbooks_text, N=N)
+            agent=agent, playbooks=playbooks_text, N=N,
+            playbooks_predicate=playbooks_predicate,
+            times_predicate=times_predicate)
 
         default = tmpl['icon']
 
