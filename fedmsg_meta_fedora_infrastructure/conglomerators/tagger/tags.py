@@ -6,7 +6,7 @@ class AbstractTaggerConglomerator(fedmsg.meta.base.BaseConglomerator):
     def merge(self, constituents, **config):
         ms = constituents  # shorthand
 
-        user = constituents[0]['msg']['user']['username']
+        user = ms[0]['msg']['user']['username']
         tags = set([m['msg']['vote']['tag']['tag'] for m in ms])
         pkgs = set([m['msg']['vote']['tag']['package'] for m in ms])
 
