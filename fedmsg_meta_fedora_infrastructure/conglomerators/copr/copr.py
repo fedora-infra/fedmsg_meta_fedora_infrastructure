@@ -1,0 +1,73 @@
+import fedmsg.meta.base
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
+
+
+class AbstractCoprConglomerator(fedmsg.meta.base.BaseConglomerator):
+    def can_handle(self, msg, **config):
+        return '.copr.' in msg['topic']
+
+    def merge(self, constituents, **config):
+        ms = constituents  # shorthand
+
+        agents = set([m['msg']['user'] for m in ms])
+        coprs = set([m['msg']['copr'] for m in ms])
+        starts = len([1 for m in ms
+                      if m['topic'].endswith('copr.build.start')])
+
+        rebuild_predicate = 'rebuilds' if starts > 1 else 'rebuild'
+        copr_predicate = 'coprs' if len(coprs) > 1 else 'copr'
+
+        agents = self.list_to_series(agents)
+        coprs = self.list_to_series(coprs)
+
+        subtitle = '{agents} kicked off {starts} {rebuild_predicate} ' + \
+            'of the {coprs} {copr_predicate}'
+
+        tmpl = self.produce_template(constituents, **config)
+        tmpl['subtitle'] = subtitle.format(
+            agents=agents, starts=starts, coprs=coprs,
+            copr_predicate=copr_predicate, rebuild_predicate=rebuild_predicate)
+
+        default = tmpl['icon']
+
+        tmpl['secondary_icon'] = self.get_secondary_icon(constituents, default)
+        tmpl['link'] = self.get_link(constituents)
+
+        return tmpl
+
+
+class ByCopr(AbstractCoprConglomerator):
+    def matches(self, a, b, **config):
+        a, b = a['msg'], b['msg']
+        if a['copr'] != b['copr']:
+            return False
+        return True
+
+    def get_secondary_icon(self, constituents, default):
+        agents = set([m['msg']['user'] for m in constituents])
+        if len(agents) == 1:
+            user = constituents[0]['msg']['user']
+            return avatar_url(user)
+        else:
+            return 'https://apps.fedoraproject.org/img/icons/copr.png'
+
+    def get_link(self, constituents):
+        owner = constituents[0]['msg']['owner']
+        copr = constituents[0]['msg']['copr']
+        return 'https://copr.fedoraproject.org/coprs/%s/%s/' % (owner, copr)
+
+
+class ByUser(AbstractCoprConglomerator):
+    def matches(self, a, b, **config):
+        a, b = a['msg'], b['msg']
+        if a['user'] != b['user']:
+            return False
+        return True
+
+    def get_secondary_icon(self, constituents, default):
+        user = constituents[0]['msg']['user']
+        return avatar_url(user)
+
+    def get_link(self, constituents):
+        user = constituents[0]['msg']['user']
+        return 'https://copr.fedoraproject.org/coprs/' + user
