@@ -22,6 +22,9 @@ import copy
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
+from fedmsg_meta_fedora_infrastructure.conglomerators.copr import \
+        copr as copr_conglomerator
+
 _statuses = {
     0: 'failed',
     1: 'success',
@@ -53,6 +56,11 @@ class CoprsProcessor(BaseProcessor):
     __docs__ = "https://fedorahosted.org/copr"
     __obj__ = "Extra Repository Updates"
     __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
+
+    conglomerators = [
+        copr_conglomerator.ByCopr,
+        copr_conglomerator.ByUser,
+    ]
 
     def long_form(self, msg, **config):
         if 'copr.build.end' in msg['topic']:
