@@ -237,7 +237,8 @@ class KojiProcessor(BaseProcessor):
             if msg['msg'].get('info', {}).get('request'):
                 targets = set()
                 for item in msg['msg']['info']['request']:
-                    if not isinstance(item, dict) and not item.endswith('.rpm'):
+                    if not isinstance(item, (dict, list)) and \
+                            not item.endswith('.rpm'):
                         targets.add(item)
                 if targets:
                     target = ' for %s'  % (
