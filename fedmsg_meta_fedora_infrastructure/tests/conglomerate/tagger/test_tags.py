@@ -1,12 +1,14 @@
 import fedmsg.tests.test_meta
 
+import arrow
+
 
 class TestTaggerConglomerateByUser(
         fedmsg.tests.test_meta.ConglomerateBase):
     expected =[
         {'categories': set(['fedoratagger']),
          'end_time': 1436284694.0,
-         'human_time': u'3 hours ago',
+         'human_time': arrow.get(1436284677.6666667).humanize(),
          'icon': 'https://apps.fedoraproject.org/img/icons/tagger.png',
          'link': 'http://infrastructure.fedoraproject.org/infra/ansible.git/',
          'packages': set(['php-pear-console-color2']),
@@ -21,7 +23,7 @@ class TestTaggerConglomerateByUser(
          'usernames': set(['nalin'])},
         {'categories': set(['fedoratagger']),
          'end_time': 1436270087.0,
-         'human_time': u'7 hours ago',
+         'human_time': arrow.get(1436269900.93).humanize(),
          'icon': 'https://apps.fedoraproject.org/img/icons/tagger.png',
          'link': 'http://infrastructure.fedoraproject.org/infra/ansible.git/',
          'packages': set(['GtkAda3',
@@ -42,7 +44,7 @@ class TestTaggerConglomerateByUser(
          'usernames': set(['pbrobinson'])},
         {'categories': set(['fedoratagger']),
          'end_time': 1436269913.0,
-         'human_time': u'7 hours ago',
+         'human_time': arrow.get(1436269860.75).humanize(),
          'icon': 'https://apps.fedoraproject.org/img/icons/tagger.png',
          'link': 'http://infrastructure.fedoraproject.org/infra/ansible.git/',
          'packages': set(['fedmsg', 'pam_krb5', 'rstp']),
