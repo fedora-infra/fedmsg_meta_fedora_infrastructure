@@ -74,7 +74,7 @@ class MirrorManagerProcessor(BaseProcessor):
         if 'mirrormanager.crawler' in msg['topic']:
             if 'hosts' in msg['msg']:
                 return set([
-                    'mirrors/%s' % host['host']
+                    'mirrors/%s' % host.get('host', host.get('name'))
                     for host in msg['msg']['hosts']
                 ])
             else:
