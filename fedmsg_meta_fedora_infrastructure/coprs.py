@@ -40,10 +40,10 @@ Status:   {status}
 ID:       {build}
 
 Logs:
-  Build:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log
-  Root:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log
+  Build:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log.gz
+  Root:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log.gz
   Copr:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
-  Mockchain: https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/mockchain.log
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/mockchain.log.gz
 Results:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
 Repodata:    https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/repodata/
 """
@@ -71,6 +71,9 @@ class CoprsProcessor(BaseProcessor):
                 kwargs['owner'] = kwargs['user']
 
             kwargs['status'] = _statuses.get(kwargs.get('status'), 'unknown')
+
+            # Zero pad buildid
+            kwargs['build'] = '%08d' % (kwargs['build'])
 
             details = _long_template.format(**kwargs)
             return details
