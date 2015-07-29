@@ -293,7 +293,7 @@ class TestSCMSingleLine(Base):
     }
 
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
-    TestGitReceiveOldModified.expected_long_form = full_patch
+    TestGitReceiveLegacyModified.expected_long_form = full_patch
 
 
 add_doc(locals())
