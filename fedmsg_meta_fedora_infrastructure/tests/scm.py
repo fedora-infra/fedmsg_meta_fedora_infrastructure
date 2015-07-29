@@ -33,7 +33,7 @@ with open(here + '/example.patch', 'r') as f:
     full_patch = f.read()
 
 
-class TestGitReceiveOldModified(Base):
+class TestGitReceiveLegacyModified(Base):
     """ Sample message from the first generation of git-category messages that
     have been modified in datanommer to match the new topics.
     """
