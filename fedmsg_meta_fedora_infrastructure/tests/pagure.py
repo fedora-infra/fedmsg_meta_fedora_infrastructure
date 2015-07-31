@@ -1623,6 +1623,70 @@ class TestGitCommit(Base):
          'topic': 'io.pagure.prod.pagure.git.receive'
     }
 
+class TestIssueDrop(Base):
+    """ These messages are published when a ticket is deleted against a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.issue.drop"
+    expected_subti = 'yangl1996 deleted ticket docs-test#42: "foobar"'
+    expected_link = "https://pagure.io/docs-test/issue/42"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "4535d62cac804e6e0cb25386c9a7701e680deb176efa79829d076fc63c2b96e7" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['yangl1996'])
+    expected_objects = set(['project/docs-test', 'issue/42'])
+    msg = {
+        'source_name': 'datanommer',
+        'i': 1,
+        'timestamp': 1434790435.0,
+        'msg_id': '2015-9ab3ba70-02aa-4034-a532-8791696165fd',
+        'topic': 'io.pagure.prod.pagure.issue.drop',
+        'source_version': '0.6.5',
+        'msg': {
+            'project': {
+                'description': '',
+                'parent': None,
+                'settings': {
+                    'Minimum_score_to_merge_pull-request': '-1',
+                    'Web-hooks': 'http://128.199.82.190:7655',
+                    'project_documentation': 'y',
+                    'pull_requests': 'y',
+                    'Enforce_signed-off_commits_in_pull-request': False,
+                    'Only_assignee_can_merge_pull-request': False,
+                    'issue_tracker': 'y'
+                },
+                'user': {
+                    'fullname': 'Lei Yang',
+                    'name': 'yangl1996'
+                },
+                'date_created': '1434262409',
+                'id': 78,
+                'name': 'docs-test'
+            },
+            'issue': {
+                'status': 'Open',
+                'blocks': [],
+                'tags': [],
+                'title': 'foobar',
+                'comments': [],
+                'content': 'report',
+                'assignee': None,
+                'depends': [],
+                'private': False,
+                'date_created': '1434789890',
+                'id': 42,
+                'user': {
+                    'fullname': 'Lei Yang',
+                    'name': 'yangl1996'
+                }
+            },
+            'agent': 'yangl1996'
+        }
+    }
+
 
 add_doc(locals())
 
