@@ -101,6 +101,9 @@ class TestPkgdbConglomerateCommentSubject(
         'subtitle': 'limb changed mcepl\'s approveacls and watchcommits '
         'permissions on python-cryptography (epel7 and master) '
         'to Approved.',
+        'subjective': 'limb changed mcepl\'s approveacls and watchcommits '
+        'permissions on python-cryptography (epel7 and master) '
+        'to Approved.',
         'link': 'https://admin.fedoraproject.org/pkgdb/packager/mcepl/',
 
         'icon': 'https://apps.fedoraproject.org/packages/images/'

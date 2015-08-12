@@ -16,7 +16,7 @@ class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
             return False
         return True
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         N = len(constituents)
         msg = constituents[0]['msg']
         agent = msg['agent']
@@ -25,11 +25,12 @@ class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
             constituent['msg']['update']['release']['name']
             for constituent in constituents])
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         subtitle = '{agent} submitted {N} {package} ' + \
             'testing updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, package=package, N=N, branches=branches)
+        tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % package
@@ -50,7 +51,7 @@ class ByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
             return False
         return True
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         N = len(constituents)
         msg = constituents[0]['msg']
         agent = msg['agent']
@@ -59,11 +60,12 @@ class ByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
             constituent['msg']['update']['release']['name']
             for constituent in constituents])
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         subtitle = '{agent} requested {N} {package} ' + \
             'stable updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, package=package, N=N, branches=branches)
+        tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % package
@@ -85,7 +87,7 @@ class ByPackage(fedmsg.meta.base.BaseConglomerator):
             return False
         return True
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         N = len(constituents)
         msg = constituents[0]['msg']
         package = self.processor._u2p(msg['update']['title'])[0]
@@ -93,12 +95,13 @@ class ByPackage(fedmsg.meta.base.BaseConglomerator):
             constituent['msg']['update']['release']['name']
             for constituent in constituents])
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         agents = self.list_to_series(list(tmpl['usernames']))
         subtitle = '{agents} submitted {N} {package} ' + \
             'updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agents=agents, package=package, N=N, branches=branches)
+        tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = tmpl['icon']
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % package
@@ -118,7 +121,7 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
             return False
         return True
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         N = len(constituents)
         msg = constituents[0]['msg']
         agent = msg['agent']
@@ -126,12 +129,13 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
             constituent['msg']['update']['release']['name']
             for constituent in constituents])
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         packages = self.list_to_series(list(tmpl['packages']))
         subtitle = '{agent} submitted {packages} ' + \
             'updates for {branches}'
         tmpl['subtitle'] = subtitle.format(
             agent=agent, packages=packages, N=N, branches=branches)
+        tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(msg['agent'])
         base = 'https://admin.fedoraproject.org/updates/user/%s/'
         tmpl['link'] = base % agent

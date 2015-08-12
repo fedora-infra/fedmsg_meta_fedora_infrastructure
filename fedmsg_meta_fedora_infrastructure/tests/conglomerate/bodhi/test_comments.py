@@ -71,6 +71,7 @@ class TestBodhiConglomerateCommentSameUpdate(
     ]
     expected = [{
         'subtitle': 'hreindl and volter commented on sqlite-3.8.6-2.fc20',
+        'subjective': 'hreindl and volter commented on sqlite-3.8.6-2.fc20',
         'link': 'https://admin.fedoraproject.org/updates/sqlite-3.8.6-2.fc20/',
         'icon': 'https://admin.fedoraproject.org/updates/'
         'static/images/bodhi-icon-48.png',
@@ -92,6 +93,8 @@ class TestBodhiConglomerateCommentSameUpdate(
         ],
     }, {
         'subtitle': u'hreindl commented on bodhi update '
+        'file-5.19-4.fc20 (karma: 1)',
+        'subjective': u'hreindl commented on bodhi update '
         'file-5.19-4.fc20 (karma: 1)',
         'link': 'https://admin.fedoraproject.org/updates/file-5.19-4.fc20',
         'icon': 'https://admin.fedoraproject.org/updates/'
@@ -161,6 +164,8 @@ class TestBodhiConglomerateCommentSameUser(
     ]
     expected = [{
         'subtitle': 'hreindl commented on file-5.19-4.fc20 '
+        'and sqlite-3.8.6-2.fc20',
+        'subjective': 'hreindl commented on file-5.19-4.fc20 '
         'and sqlite-3.8.6-2.fc20',
         'link': 'https://admin.fedoraproject.org/updates/user/hreindl/',
         'icon': 'https://admin.fedoraproject.org/updates/'

@@ -10,7 +10,7 @@ class AbstractPkgdbACLsConglomerator(fedmsg.meta.base.BaseConglomerator):
         """ Given a name, return the possessive form. """
         return self._("{name}'s").format(name=name)
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
         agents = self.list_to_series([m['msg']['agent'] for m in ms])
         usernames = self.list_to_series([
@@ -26,7 +26,7 @@ class AbstractPkgdbACLsConglomerator(fedmsg.meta.base.BaseConglomerator):
         subtitle = '{agents} changed {usernames} {acls} permissions on ' + \
             '{packages} ({branches}) to {statuses}.'
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         tmpl['subtitle'] = subtitle.format(
             agents=agents,
             usernames=usernames,
@@ -35,6 +35,7 @@ class AbstractPkgdbACLsConglomerator(fedmsg.meta.base.BaseConglomerator):
             branches=branches,
             statuses=statuses,
         )
+        tmpl['subjective'] = tmpl['subtitle']
 
         default = tmpl['icon']
 
