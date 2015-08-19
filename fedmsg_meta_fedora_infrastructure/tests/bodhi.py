@@ -211,14 +211,14 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """
     expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted " + \
-        "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18" + \
+        "gnome-settings-daemon-3.6.1-1.fc18,contr..." + \
         " to testing"
     expected_markup = (
         "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
         "lmacken</a> submitted "
         "<a href='https://admin.fedoraproject.org/updates/"
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18'>"
-        "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18</a>"
+        "gnome-settings-daemon-3.6.1-1.fc18,contr...</a>"
         " to testing")
     expected_link = "https://admin.fedoraproject.org/updates/" + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18"
