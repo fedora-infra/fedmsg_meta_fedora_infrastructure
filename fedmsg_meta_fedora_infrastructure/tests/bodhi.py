@@ -1235,6 +1235,122 @@ class TestBodhiErrataPublish(Base):
     }
 
 
+mash_list = """
+- qt-creator-3.4.1-3.fc23
+- rakudo-star-0.0.2015.06-1.fc21
+- rakudo-star-0.0.2015.06-1.fc22
+- nqp-0.0.2015.06-1.fc21
+- nqp-0.0.2015.06-1.fc22
+- moarvm-0.2015.06-1.fc21
+- moarvm-0.2015.06-1.fc22
+- libetonyek-0.1.3-1.fc22
+- bind-9.10.2-2.P1.fc22,bind-dyndb-ldap-7.0-5.fc22,dnsperf-2.0.0.0-16.fc22
+- gap-pkg-autodoc-2015.04.29-2.fc22
+- hawaii-widget-styles-0.5.0-1.fc21
+- php-pear-PHP-CodeSniffer-2.3.3-1.fc21
+- php-pear-PHP-CodeSniffer-2.3.3-1.fc22
+- hawaii-widget-styles-0.5.0-1.fc22
+- MySQL-python-1.3.6-3.fc22
+- xdg-app-0.3.5-1.fc21
+- linux-firmware-20150521-53.git3161bfa4.fc22,ivtv-firmware-20080701-28
+- xdg-app-0.3.5-1.fc22
+- selinux-policy-3.13.1-105.18.fc21
+- dnf-plugins-core-0.1.9-1.fc22
+"""
+
+class TestBodhiMashKickooff(Base):
+    """ This message is published by an admin when they send a request to
+    the `Bodhi2 <https://admin.fedoraproject.org/updates>`_ backend, telling it
+    to start a mash.
+    """
+    expected_title = "bodhi.masher.start"
+    expected_subti = "ralph requested a mash of 20 updates"
+    expected_long_form = mash_list
+    expected_link = None
+    expected_icon = "https://admin.fedoraproject.org/updates" + \
+        "/static/images/bodhi-icon-48.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_packages = set([
+        "qt-creator",
+        "rakudo-star",
+        "nqp",
+        "moarvm",
+        "libetonyek",
+        "bind",
+        "bind-dyndb-ldap",
+        "dnsperf",
+        "gap-pkg-autodoc",
+        "hawaii-widget-styles",
+        "php-pear-PHP-CodeSniffer",
+        "hawaii-widget-styles",
+        "MySQL-python",
+        "xdg-app",
+        "linux-firmware",
+        "ivtv-firmware",
+        "xdg-app",
+        "selinux-policy",
+        "dnf-plugins-core",
+    ])
+    expected_objects = set([
+        "packages/qt-creator",
+        "packages/rakudo-star",
+        "packages/nqp",
+        "packages/moarvm",
+        "packages/libetonyek",
+        "packages/bind",
+        "packages/bind-dyndb-ldap",
+        "packages/dnsperf",
+        "packages/gap-pkg-autodoc",
+        "packages/hawaii-widget-styles",
+        "packages/php-pear-PHP-CodeSniffer",
+        "packages/hawaii-widget-styles",
+        "packages/MySQL-python",
+        "packages/xdg-app",
+        "packages/linux-firmware",
+        "packages/ivtv-firmware",
+        "packages/xdg-app",
+        "packages/selinux-policy",
+        "packages/dnf-plugins-core",
+    ])
+    msg = {
+        "username": "threebean",
+        "i": 1,
+        "timestamp": 1439929069,
+        "msg_id": "2015-d370d1cd-4015-4c30-a249-792605db003f",
+        "topic": "org.fedoraproject.dev.bodhi.masher.start",
+        "msg": {
+            "updates": [
+                "qt-creator-3.4.1-3.fc23",
+                "rakudo-star-0.0.2015.06-1.fc21",
+                "rakudo-star-0.0.2015.06-1.fc22",
+                "nqp-0.0.2015.06-1.fc21",
+                "nqp-0.0.2015.06-1.fc22",
+                "moarvm-0.2015.06-1.fc21",
+                "moarvm-0.2015.06-1.fc22",
+                "libetonyek-0.1.3-1.fc22",
+                "bind-9.10.2-2.P1.fc22,bind-dyndb-ldap-7.0-5.fc22,"
+                "dnsperf-2.0.0.0-16.fc22",
+                "gap-pkg-autodoc-2015.04.29-2.fc22",
+                "hawaii-widget-styles-0.5.0-1.fc21",
+                "php-pear-PHP-CodeSniffer-2.3.3-1.fc21",
+                "php-pear-PHP-CodeSniffer-2.3.3-1.fc22",
+                "hawaii-widget-styles-0.5.0-1.fc22",
+                "MySQL-python-1.3.6-3.fc22",
+                "xdg-app-0.3.5-1.fc21",
+                "linux-firmware-20150521-53.git3161bfa4.fc22,"
+                "ivtv-firmware-20080701-28",
+                "xdg-app-0.3.5-1.fc22",
+                "selinux-policy-3.13.1-105.18.fc21",
+                "dnf-plugins-core-0.1.9-1.fc22"
+            ],
+            "agent": "ralph"
+        }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
