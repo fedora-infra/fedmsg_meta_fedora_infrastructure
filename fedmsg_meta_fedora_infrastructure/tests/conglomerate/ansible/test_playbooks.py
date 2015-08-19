@@ -3,6 +3,7 @@ import arrow
 
 class TestPkgdbConglomerateCommentSubject(
         fedmsg.tests.test_meta.ConglomerateBase):
+    subject = 'lmacken'
     expected = [{
         'categories': set(['ansible']),
         'end_time': 1436292424.0,
@@ -13,12 +14,14 @@ class TestPkgdbConglomerateCommentSubject(
         'secondary_icon': 'https://seccdn.libravatar.org/avatar/203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro',
         'start_time': 1436290155.0,
         'subtitle': 'lmacken ran the bodhi2.yml and proxies.yml playbooks 7 times',
+        'subjective': 'You ran the bodhi2.yml and proxies.yml playbooks 7 times',
         'timestamp': 1436290771.0714285,
         'topics': set(['org.fedoraproject.prod.ansible.playbook.complete',
                        'org.fedoraproject.prod.ansible.playbook.start']),
         'usernames': set(['lmacken']),
     }, {
         'subtitle': 'kevin ran the jenkins-cloud.yml playbook 5 times',
+        'subjective': 'kevin ran the jenkins-cloud.yml playbook 5 times',
         'link': 'http://infrastructure.fedoraproject.org/infra/ansible.git/',
 
         'icon': 'https://apps.fedoraproject.org/img/icons/ansible.png',

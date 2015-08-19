@@ -13,15 +13,16 @@ class ByUpdate(fedmsg.meta.base.BaseConglomerator):
             return False
         return True
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         N = len(constituents)
         msg = constituents[0]['msg']
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         agents = self.list_to_series(list(tmpl['usernames']))
         update = msg['comment']['update_title']
         subtitle = '{agents} commented on {update}'
         tmpl['subtitle'] = subtitle.format(agents=agents, update=update)
+        tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = tmpl['icon']
         base = 'https://admin.fedoraproject.org/updates/%s/'
         tmpl['link'] = base % update
@@ -38,14 +39,15 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
             return False
         return True
 
-    def merge(self, constituents, **config):
-        tmpl = self.produce_template(constituents, **config)
+    def merge(self, constituents, subject, **config):
+        tmpl = self.produce_template(constituents, subject, **config)
         msg = constituents[0]
         agent = msg['msg']['agent']
         updates = self.list_to_series([
             msg['msg']['comment']['update_title'] for msg in constituents])
         subtitle = '{agent} commented on {updates}'
         tmpl['subtitle'] = subtitle.format(agent=agent, updates=updates)
+        tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(agent)
         base = 'https://admin.fedoraproject.org/updates/user/%s/'
         tmpl['link'] = base % agent

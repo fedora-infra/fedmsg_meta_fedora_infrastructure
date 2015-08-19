@@ -6,7 +6,7 @@ class AbstractCoprConglomerator(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return '.copr.' in msg['topic']
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
 
         agents = set([m['msg']['user'] for m in ms])
@@ -23,10 +23,11 @@ class AbstractCoprConglomerator(fedmsg.meta.base.BaseConglomerator):
         subtitle = '{agents} kicked off {starts} {rebuild_predicate} ' + \
             'of the {coprs} {copr_predicate}'
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         tmpl['subtitle'] = subtitle.format(
             agents=agents, starts=starts, coprs=coprs,
             copr_predicate=copr_predicate, rebuild_predicate=rebuild_predicate)
+        tmpl['subjective'] = tmpl['subtitle']
 
         default = tmpl['icon']
 
