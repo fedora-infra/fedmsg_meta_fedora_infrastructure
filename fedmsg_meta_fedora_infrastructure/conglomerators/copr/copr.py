@@ -11,21 +11,29 @@ class AbstractCoprConglomerator(fedmsg.meta.base.BaseConglomerator):
 
         agents = set([m['msg']['user'] for m in ms])
         coprs = set([m['msg']['copr'] for m in ms])
-        starts = len([1 for m in ms
+        count = len([1 for m in ms
                       if m['topic'].endswith('copr.build.start')])
 
-        rebuild_predicate = 'rebuilds' if starts > 1 else 'rebuild'
+        if count > 0:
+            subtitle = '{agents} kicked off {count} {rebuild_predicate} ' + \
+                'of the {coprs} {copr_predicate}'
+        else:
+            # If count is zero, then there are zero start messages in the
+            # constituents list, so change tack and render "finishes" instead
+            # of "starts".
+            count = len(ms)
+            subtitle = 'The {coprs} {copr_predicate} finished ' + \
+                '{count} {rebuild_predicate} by {agents}'
+
+        rebuild_predicate = 'rebuilds' if count > 1 else 'rebuild'
         copr_predicate = 'coprs' if len(coprs) > 1 else 'copr'
 
         agents = self.list_to_series(agents)
         coprs = self.list_to_series(coprs)
 
-        subtitle = '{agents} kicked off {starts} {rebuild_predicate} ' + \
-            'of the {coprs} {copr_predicate}'
-
         tmpl = self.produce_template(constituents, subject, **config)
         tmpl['subtitle'] = subtitle.format(
-            agents=agents, starts=starts, coprs=coprs,
+            agents=agents, count=count, coprs=coprs,
             copr_predicate=copr_predicate, rebuild_predicate=rebuild_predicate)
         tmpl['subjective'] = tmpl['subtitle']
 
