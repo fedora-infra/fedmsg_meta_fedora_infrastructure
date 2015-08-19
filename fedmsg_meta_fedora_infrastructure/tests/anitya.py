@@ -450,7 +450,7 @@ class TestNewUpstreamVersion(Base):
     """
     expected_title = "anitya.project.version.update"
     expected_subti = ('A new version of "2ping" has been detected:  "2.1.1" '
-        'in advance of "2.1.0", packaged as "2ping"')
+        'newer than "2.1.0", packaged as "2ping"')
     expected_link = "https://release-monitoring.org/project/2/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -592,7 +592,7 @@ class TestNewUpstreamVersionMutiMap(Base):
     """
     expected_title = "anitya.project.version.update"
     expected_subti = ('A new version of "SQLAlchemy" has been detected:  '
-        '"1.0.0b1" in advance of "0.9.9", packaged as '
+        '"1.0.0b1" newer than "0.9.9", packaged as '
         '"python-sqlalchemy and python-sqlalchemy0.5"')
     expected_link = "https://release-monitoring.org/project/4034/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \

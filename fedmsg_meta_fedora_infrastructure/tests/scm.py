@@ -33,7 +33,7 @@ with open(here + '/example.patch', 'r') as f:
     full_patch = f.read()
 
 
-class TestGitReceiveOldModified(Base):
+class TestGitReceiveLegacyModified(Base):
     """ Sample message from the first generation of git-category messages that
     have been modified in datanommer to match the new topics.
     """
@@ -293,7 +293,7 @@ class TestSCMSingleLine(Base):
     }
 
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
-    TestGitReceiveOldModified.expected_long_form = full_patch
+    TestGitReceiveLegacyModified.expected_long_form = full_patch
 
 
 add_doc(locals())

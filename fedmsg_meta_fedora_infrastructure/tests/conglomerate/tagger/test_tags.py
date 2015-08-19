@@ -18,6 +18,8 @@ class TestTaggerConglomerateByUser(
          'start_time': 1436284655.0,
          'subtitle': 'nalin voted on the tags: library '
          'and module to the packages: php-pear-console-color2',
+         'subjective': 'nalin voted on the tags: library '
+         'and module to the packages: php-pear-console-color2',
          'timestamp': 1436284677.6666667,
          'topics': set(['org.fedoraproject.prod.fedoratagger.tag.update']),
          'usernames': set(['nalin'])},
@@ -39,6 +41,8 @@ class TestTaggerConglomerateByUser(
          'start_time': 1436269755.0,
          'subtitle': 'pbrobinson voted on the tags: ada, crypto, '
          'and 13 others to the packages: GtkAda3, fedmsg, and 5 others',
+         'subjective': 'pbrobinson voted on the tags: ada, crypto, '
+         'and 13 others to the packages: GtkAda3, fedmsg, and 5 others',
          'timestamp': 1436269900.9333334,
          'topics': set(['org.fedoraproject.prod.fedoratagger.tag.update']),
          'usernames': set(['pbrobinson'])},
@@ -53,6 +57,8 @@ class TestTaggerConglomerateByUser(
          '?s=64&d=retro',
          'start_time': 1436269765.0,
          'subtitle': 'pbrobinson created new tags: authentication, msgbus, '
+         'and 2 others on the packages: fedmsg, pam_krb5, and rstp',
+         'subjective': 'pbrobinson created new tags: authentication, msgbus, '
          'and 2 others on the packages: fedmsg, pam_krb5, and rstp',
          'timestamp': 1436269860.75,
          'topics': set(['org.fedoraproject.prod.fedoratagger.tag.create']),

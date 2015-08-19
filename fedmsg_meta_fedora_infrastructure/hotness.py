@@ -33,10 +33,14 @@ class HotnessProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         if 'hotness.update.bug.file' in msg['topic']:
             original = msg['msg']['trigger']['msg']
-            packages = [
-                pkg['package_name'] for pkg in original['message']['packages']
-                if pkg['distro'] == 'Fedora'
-            ]
+            if msg['msg']['trigger']['topic'].endswith('.project.map.new'):
+                packages = [original['message']['new']]
+            else:
+                packages = [
+                    pkg['package_name']
+                    for pkg in original['message']['packages']
+                    if pkg['distro'] == 'Fedora'
+                ]
             tmpl= self._('the-new-hotness filed a bug on {packages}')
             return tmpl.format(packages=", ".join(packages))
         elif 'hotness.update.bug.followup' in msg['topic']:

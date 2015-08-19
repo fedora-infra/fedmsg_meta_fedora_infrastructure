@@ -143,7 +143,7 @@ class AnityaProcessor(BaseProcessor):
             if old and not odd:
                 tmpl = self._(
                     'A new version of "{project}" has been detected:  '
-                    '"{new}" in advance of "{old}", packaged as "{packages}"')
+                    '"{new}" newer than "{old}", packaged as "{packages}"')
 
             return tmpl.format(project=project, new=new, old=old, packages=packages)
         elif 'project.version.remove' in msg['topic']:

@@ -52,7 +52,13 @@ def author_link(username):
 
 def update_link(title):
     return "<a href='https://admin.fedoraproject.org/updates/" + \
-        "{title}'>{title}</a>".format(title=title)
+        "{title1}'>{title2}</a>".format(title1=title, title2=truncate(title))
+
+
+def truncate(title):
+    if len(title) >= 40:
+        title = title[:40] + "..."
+    return title
 
 
 class BodhiProcessor(BaseProcessor):
@@ -119,6 +125,8 @@ class BodhiProcessor(BaseProcessor):
             return msg['msg']['comment']['text']
         elif 'bodhi.errata.publish' in msg['topic']:
             return msg['msg']['body']
+        elif 'bodhi.masher.start' in msg['topic']:
+            return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
 
     def subtitle(self, msg, **config):
         markup = config.get('markup', False)
@@ -130,19 +138,22 @@ class BodhiProcessor(BaseProcessor):
                 'New {product} {release} {repo} content synced out '
                 '({bytes} changed with {deleted} files deleted)')
             return tmpl.format(product=product, **msg)
+        elif 'bodhi.masher.start' in msg['topic']:
+            agent = msg['msg']['agent']
+            updates = len(msg['msg']['updates'])
+            tmpl = self._("{agent} requested a mash of {updates} updates")
+            return tmpl.format(agent=agent, updates=updates)
         elif 'bodhi.update.comment' in msg['topic']:
             author = msg['msg']['comment']['author']
             karma = msg['msg']['comment']['karma']
             title = msg['msg']['comment']['update_title']
 
-            if len(title) >= 35:
-                title = title[:35] + '...'
-
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
             )
             if not markup:
-                return tmpl.format(author=author, karma=karma, title=title)
+                return tmpl.format(author=author, karma=karma,
+                                   title=truncate(title))
             else:
                 return tmpl.format(
                     author=author_link(author),
@@ -154,7 +165,7 @@ class BodhiProcessor(BaseProcessor):
             author = msg['msg']['update']['submitter']
             if isinstance(author, dict):
                 author = author['name']
-            package = msg['msg']['update']['title']
+            package = truncate(msg['msg']['update']['title'])
             status = msg['msg']['update']['status']
             tmpl = self._(
                 "{author}'s {package} bodhi update completed push to {status}"
@@ -164,7 +175,7 @@ class BodhiProcessor(BaseProcessor):
             author = msg['msg']['update']['submitter']
             if isinstance(author, dict):
                 author = author['name']
-            package = msg['msg']['update']['title']
+            package = truncate(msg['msg']['update']['title'])
             repo = msg['msg']['repo']
             reason = msg['msg']['reason']
             tmpl = self._(
@@ -174,7 +185,7 @@ class BodhiProcessor(BaseProcessor):
                                repo=repo, reason=reason)
         elif 'bodhi.update.edit' in msg['topic']:
             author = msg['msg']['agent']
-            update = msg['msg']['update']['title']
+            update = truncate(msg['msg']['update']['title'])
             tmpl = self._("{author} edited {update}")
             return tmpl.format(author=author, update=update)
         elif 'bodhi.update.request' in msg['topic']:
@@ -189,7 +200,8 @@ class BodhiProcessor(BaseProcessor):
                 tmpl = self._("{author} submitted {title} to {status}")
 
             if not markup:
-                return tmpl.format(author=author, title=title, status=status)
+                return tmpl.format(author=author, title=truncate(title),
+                                   status=status)
             else:
                 return tmpl.format(
                     author=author_link(author),
@@ -263,7 +275,7 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(agent=agent, name=name)
         elif 'bodhi.update.karma.threshold' in msg['topic']:
             tmpl = self._("{title} reached the {status} karma threshold")
-            title = msg['msg']['update']['title']
+            title = truncate(msg['msg']['update']['title'])
             status = msg['msg']['status']
             return tmpl.format(title=title, status=status)
         elif 'bodhi.errata.publish' in msg['topic']:
@@ -329,6 +341,10 @@ class BodhiProcessor(BaseProcessor):
             return set(self._u2p(nvr))
         elif 'bodhi.stack' in msg['topic']:
             return set([p['name'] for p in msg['msg']['stack']['packages']])
+        elif 'bodhi.masher.start' in msg['topic']:
+            return set(sum([
+                self._u2p(update) for update in msg['msg']['updates']
+            ], []))
 
         return set()
 
@@ -421,5 +437,10 @@ class BodhiProcessor(BaseProcessor):
                     for p in msg['msg']['stack']['packages']
                 ] + ['stacks/' + msg['msg']['stack']['name']]
             )
+        elif 'bodhi.masher.start' in msg['topic']:
+            packages = sum([self._u2p(u) for u in msg['msg']['updates']], [])
+            return set([
+                'packages/' + package for package in packages
+            ])
 
         return set()

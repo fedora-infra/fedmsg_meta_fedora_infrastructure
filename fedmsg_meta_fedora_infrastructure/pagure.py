@@ -115,6 +115,13 @@ class PagureProcessor(BaseProcessor):
                 '{user} opened a new ticket {project}#{id}: "{title}"')
             return tmpl.format(
                 user=user, project=project, title=title, id=issueid)
+        elif 'pagure.issue.drop' in msg['topic']:
+            issueid = msg['msg']['issue']['id']
+            title = msg['msg']['issue']['title']
+            tmpl = self._(
+                '{user} deleted ticket {project}#{id}: "{title}"')
+            return tmpl.format(
+                user=user,project=project,title=title,id=issueid)
         elif 'pagure.issue.comment.added' in msg['topic']:
             issueid = msg['msg']['issue']['id']
             title = msg['msg']['issue']['title']

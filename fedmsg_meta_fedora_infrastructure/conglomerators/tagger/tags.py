@@ -3,7 +3,7 @@ from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 class AbstractTaggerConglomerator(fedmsg.meta.base.BaseConglomerator):
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
 
         user = ms[0]['msg']['user']['username']
@@ -14,8 +14,9 @@ class AbstractTaggerConglomerator(fedmsg.meta.base.BaseConglomerator):
         pkgs = self.list_to_series(pkgs)
 
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         tmpl['subtitle'] = self.subtitle.format(user=user, tags=tags, pkgs=pkgs)
+        tmpl['subjective'] = tmpl['subtitle']
 
         default = tmpl['icon']
 

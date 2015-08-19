@@ -32,14 +32,16 @@ class FedimgProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         name = msg['msg']['image_name']
         dest = msg['msg']['destination']
+        extra = msg['msg'].get('extra')
+        extra = extra or {}
         if 'image.upload' in msg['topic']:
             if msg['msg']['status'] == "started":
                 tmpl = self._('{image_name} started uploading to {dest}')
                 return tmpl.format(image_name=name, dest=dest)
             elif msg['msg']['status'] == "completed":
-                ami = msg['msg']['extra']['id']
-                virt = msg['msg']['extra']['virt_type']
-                vol = msg['msg']['extra']['vol_type']
+                ami = extra.get('id')
+                virt = extra.get('virt_type')
+                vol = extra.get('vol_type')
                 tmpl = self._('{image_name} finished uploading to {dest} '
                               '({ami}, {virt}, {vol})')
                 return tmpl.format(image_name=name, dest=dest, ami=ami,
@@ -49,11 +51,10 @@ class FedimgProcessor(BaseProcessor):
                 return tmpl.format(image_name=name, dest=dest)
         if 'image.test' in msg['topic']:
             tmpl = ''
-            ami = msg['msg']['extra']['id']
-            virt = msg['msg']['extra']['virt_type']
-            vol = msg['msg']['extra']['vol_type']
+            ami = extra.get('id')
+            virt = extra.get('virt_type')
+            vol = extra.get('vol_type')
             if msg['msg']['status'] == "started":
-                extra = msg['msg']['extra']
                 tmpl = self._('{image_name} started testing on {dest} '
                               '({ami}, {virt}, {vol})')
             elif msg['msg']['status'] == "completed":

@@ -10,7 +10,7 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         """ Given a name, return the possessive form. """
         return self._("{name}'s").format(name=name)
 
-    def merge(self, constituents, **config):
+    def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
 
         agent = ms[0]['msg']['userid']
@@ -27,9 +27,15 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         subtitle = '{agent} ran the {playbooks} ' + \
             '{playbooks_predicate} {N} {times_predicate}'
 
-        tmpl = self.produce_template(constituents, **config)
+        tmpl = self.produce_template(constituents, subject, **config)
         tmpl['subtitle'] = subtitle.format(
             agent=agent, playbooks=playbooks_text, N=N,
+            playbooks_predicate=playbooks_predicate,
+            times_predicate=times_predicate)
+
+        subjective_agent = 'You' if agent == subject else agent
+        tmpl['subjective'] = subtitle.format(
+            agent=subjective_agent, playbooks=playbooks_text, N=N,
             playbooks_predicate=playbooks_predicate,
             times_predicate=times_predicate)
 
