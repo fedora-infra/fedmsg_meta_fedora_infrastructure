@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.5.11
+0.15.0
 ------
 
 - Use badge.award 'description' in long_form `dbb892eb6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dbb892eb635154ffcd6bb9427436120991c8d775>`_
@@ -50,6 +50,29 @@ Changelog
 - Merge pull request #296 from fedora-infra/feature/copr-conglomerators `a4874f254 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4874f2547141cde45e338afe614677e69a61a5c>`_
 - Protect ourselves from lists. `8ecfad370 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ecfad3709de3f94745a7aa37388b8fbccf97a43>`_
 - Merge pull request #297 from fedora-infra/feature/buildsys-fix-weirdness `7b82342ab <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7b82342ab7c8e7f89835d6598346c4b96b1bbbaf>`_
+- 0.5.11 `9a2b24c52 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9a2b24c52160956c1d00b84099e7531e0aec3d21>`_
+- Update copr urls `ad8a1092b <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad8a1092b759adebf765939a18c1bf9134bc916e>`_
+- Fix #96  "in advance of" should read "newer than" `684c98411 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/684c984118c52126154ad4b03bacf1497635a4b9>`_
+- Update tests `facff07e6 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/facff07e62f74251c72eae2cea73441c2f3df365>`_
+- Be still more careful with this mm2 field. `7a6a3e161 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7a6a3e161f7f0cff08eaa52b201fe387b9287994>`_
+- Merge pull request #299 from vhalli/develop `6d5f2f800 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6d5f2f800f8fb4a8bab6369e447923bdc21c2e65>`_
+- Merge pull request #300 from fedora-infra/feature/mm2-fix-again `883b464dc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/883b464dcd31fead4391df14a6f5b42b658382f3>`_
+- Merge pull request #298 from opoplawski/copr `ec625c4aa <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ec625c4aa086fd481873f83ed35d718725bf70e0>`_
+- Rename this to Legacy so it gets hidden from the html docs. `d9a8a3c0f <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d9a8a3c0f93fae6e7cb4cbca7fc2e110f06e741f>`_
+- Adjust this to match. `c6ad8b491 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c6ad8b4917f54f13247d444f196ea1ffb45ff075>`_
+- Fix for #277 unhandled 'pagure.issue.drop' messages `1f727829a <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1f727829aeac4bc102a9ceba67a8b826d301f6a9>`_
+- Merge pull request #301 from Ghost-script/Fix `7ed111ccc <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7ed111ccc2804827b10dbd0db48971640b30eb3f>`_
+- Handle a case where there is a different nested message for the-new-hotness. `e39da1936 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e39da193613680d5de9474fdacd2b8061f964c5e>`_
+- Merge pull request #303 from fedora-infra/feature/handle-another-hotness-case `57bfb6ec3 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/57bfb6ec38cc01dbad1d250bdf3a3e8546d31121>`_
+- Be **extra** careful. `edc7e61db <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/edc7e61db2e4eb02719136c2ebe4c87a0cd4b5d2>`_
+- Merge pull request #304 from fedora-infra/feature/extra-careful `0f1f01a9e <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f1f01a9e1dc603da537332a341eb7e9f3b217a4>`_
+- Update conglomerators for fedmsg API change. `e50a2b823 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e50a2b823885ac1fe3939979ef52b1900b5a3f5e>`_
+- Processor for bodhi.masher.start `4df2b4247 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4df2b42471886333a9a7946a3f9a04234b23e781>`_
+- Truncate bodhi update titles when they're ridiculous long. `055d24de0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/055d24de0aef5f3fecb8436e22dd8449dac31a98>`_
+- Merge pull request #309 from fedora-infra/feature/truncate-update-title `056b867e8 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/056b867e8194036895196670460fe39638ce6112>`_
+- Merge pull request #308 from fedora-infra/feature/bodhi-mash-start `181db5834 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/181db5834d733fc699d95c0da9c44a01c0cf19ef>`_
+- Merge pull request #305 from fedora-infra/feature/subjective-conglomeration `ef932e552 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ef932e552740ae7bc2cdc248551684f1d26b3965>`_
+- Handle edge-case in copr conglomerator. `f759b6c0c <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f759b6c0c891fb8d82ac0e960a0a49652870e6ac>`_
 
 0.5.9
 -----
@@ -217,6 +240,25 @@ Changelog
 - Drop hardcoding of humanized time in the test. `4eb882116 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4eb882116db88926d8862d2d7702d26227b99d03>`_
 - Try to handle all these plural cases. `c55e09523 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c55e09523adc135b7c79b9e6eecb1374c1775267>`_
 - Merge pull request #293 from fedora-infra/feature/ansible-conglomerator `9cf772c48 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9cf772c48bb68ad4cbf95b77b554f54ec70c69d8>`_
+- 0.5.10 `3bc79cebf <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3bc79cebf66a9c42aaa06cd78aa96941055a445f>`_
+- Fix incorrect key. `8e33726e0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8e33726e0ca3fa8597d4ea46659d3ff8732377a6>`_
+- Merge pull request #295 from fedora-infra/feature/mm2-fix `43f26b3af <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/43f26b3af8563909806193fa934d31ecc443f897>`_
+- Remove hardcoded relative time from tests. `435080a85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/435080a85579bbd79d7ebafcd6f0d2bd3032fce0>`_
+- Copr conglomerator. `7c7fdce89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7c7fdce89753a77a87e87eebf126d39f11998b03>`_
+- Merge pull request #296 from fedora-infra/feature/copr-conglomerators `a4874f254 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4874f2547141cde45e338afe614677e69a61a5c>`_
+- Protect ourselves from lists. `8ecfad370 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ecfad3709de3f94745a7aa37388b8fbccf97a43>`_
+- Merge pull request #297 from fedora-infra/feature/buildsys-fix-weirdness `7b82342ab <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7b82342ab7c8e7f89835d6598346c4b96b1bbbaf>`_
+
+0.5.11
+------
+
+- Fix incorrect key. `8e33726e0 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8e33726e0ca3fa8597d4ea46659d3ff8732377a6>`_
+- Merge pull request #295 from fedora-infra/feature/mm2-fix `43f26b3af <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/43f26b3af8563909806193fa934d31ecc443f897>`_
+- Remove hardcoded relative time from tests. `435080a85 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/435080a85579bbd79d7ebafcd6f0d2bd3032fce0>`_
+- Copr conglomerator. `7c7fdce89 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7c7fdce89753a77a87e87eebf126d39f11998b03>`_
+- Merge pull request #296 from fedora-infra/feature/copr-conglomerators `a4874f254 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4874f2547141cde45e338afe614677e69a61a5c>`_
+- Protect ourselves from lists. `8ecfad370 <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ecfad3709de3f94745a7aa37388b8fbccf97a43>`_
+- Merge pull request #297 from fedora-infra/feature/buildsys-fix-weirdness `7b82342ab <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7b82342ab7c8e7f89835d6598346c4b96b1bbbaf>`_
 
 0.5.10
 ------
