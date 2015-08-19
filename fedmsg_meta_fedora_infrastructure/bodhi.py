@@ -125,6 +125,8 @@ class BodhiProcessor(BaseProcessor):
             return msg['msg']['comment']['text']
         elif 'bodhi.errata.publish' in msg['topic']:
             return msg['msg']['body']
+        elif 'bodhi.masher.start' in msg['topic']:
+            return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
 
     def subtitle(self, msg, **config):
         markup = config.get('markup', False)
@@ -136,6 +138,11 @@ class BodhiProcessor(BaseProcessor):
                 'New {product} {release} {repo} content synced out '
                 '({bytes} changed with {deleted} files deleted)')
             return tmpl.format(product=product, **msg)
+        elif 'bodhi.masher.start' in msg['topic']:
+            agent = msg['msg']['agent']
+            updates = len(msg['msg']['updates'])
+            tmpl = self._("{agent} requested a mash of {updates} updates")
+            return tmpl.format(agent=agent, updates=updates)
         elif 'bodhi.update.comment' in msg['topic']:
             author = msg['msg']['comment']['author']
             karma = msg['msg']['comment']['karma']
@@ -334,6 +341,10 @@ class BodhiProcessor(BaseProcessor):
             return set(self._u2p(nvr))
         elif 'bodhi.stack' in msg['topic']:
             return set([p['name'] for p in msg['msg']['stack']['packages']])
+        elif 'bodhi.masher.start' in msg['topic']:
+            return set(sum([
+                self._u2p(update) for update in msg['msg']['updates']
+            ], []))
 
         return set()
 
@@ -426,5 +437,10 @@ class BodhiProcessor(BaseProcessor):
                     for p in msg['msg']['stack']['packages']
                 ] + ['stacks/' + msg['msg']['stack']['name']]
             )
+        elif 'bodhi.masher.start' in msg['topic']:
+            packages = sum([self._u2p(u) for u in msg['msg']['updates']], [])
+            return set([
+                'packages/' + package for package in packages
+            ])
 
         return set()
