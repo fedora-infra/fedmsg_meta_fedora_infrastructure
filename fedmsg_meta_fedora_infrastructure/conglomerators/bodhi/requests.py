@@ -32,7 +32,7 @@ class ByUserAndPackageTesting(fedmsg.meta.base.BaseConglomerator):
             agent=agent, package=package, N=N, branches=branches)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(msg['agent'])
-        base = 'https://admin.fedoraproject.org/updates/%s/'
+        base = 'https://bodhi.fedoraproject.org/updates/%s'
         tmpl['link'] = base % package
         return tmpl
 
@@ -67,7 +67,7 @@ class ByUserAndPackageStable(fedmsg.meta.base.BaseConglomerator):
             agent=agent, package=package, N=N, branches=branches)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(msg['agent'])
-        base = 'https://admin.fedoraproject.org/updates/%s/'
+        base = 'https://bodhi.fedoraproject.org/users/%s'
         tmpl['link'] = base % package
         return tmpl
 
@@ -103,7 +103,7 @@ class ByPackage(fedmsg.meta.base.BaseConglomerator):
             agents=agents, package=package, N=N, branches=branches)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = tmpl['icon']
-        base = 'https://admin.fedoraproject.org/updates/%s/'
+        base = 'https://bodhi.fedoraproject.org/updates/%s'
         tmpl['link'] = base % package
         return tmpl
 
@@ -137,6 +137,6 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
             agent=agent, packages=packages, N=N, branches=branches)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(msg['agent'])
-        base = 'https://admin.fedoraproject.org/updates/user/%s/'
+        base = 'https://bodhi.fedoraproject.org/users/%s'
         tmpl['link'] = base % agent
         return tmpl
