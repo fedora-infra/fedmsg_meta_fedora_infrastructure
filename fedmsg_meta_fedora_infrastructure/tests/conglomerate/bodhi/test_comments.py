@@ -72,11 +72,9 @@ class TestBodhiConglomerateCommentSameUpdate(
     expected = [{
         'subtitle': 'hreindl and volter commented on sqlite-3.8.6-2.fc20',
         'subjective': 'hreindl and volter commented on sqlite-3.8.6-2.fc20',
-        'link': 'https://admin.fedoraproject.org/updates/sqlite-3.8.6-2.fc20/',
-        'icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
-        'secondary_icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
+        'link': 'https://bodhi.fedoraproject.org/updates/sqlite-3.8.6-2.fc20',
+        'icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
+        'secondary_icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
 
         'start_time': 1408787444.0,
         'end_time': 1408799776.0,
@@ -96,9 +94,8 @@ class TestBodhiConglomerateCommentSameUpdate(
         'file-5.19-4.fc20 (karma: 1)',
         'subjective': u'hreindl commented on bodhi update '
         'file-5.19-4.fc20 (karma: 1)',
-        'link': 'https://admin.fedoraproject.org/updates/file-5.19-4.fc20',
-        'icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
+        'link': 'https://bodhi.fedoraproject.org/updates/file-5.19-4.fc20',
+        'icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
         'secondary_icon': 'https://seccdn.libravatar.org/avatar/'
         'c82951c2d404ca0cfea20f51b040175ba4d1624f51e8ec366e75565b672e943d'
         '?s=64&d=retro',
@@ -167,9 +164,8 @@ class TestBodhiConglomerateCommentSameUser(
         'and sqlite-3.8.6-2.fc20',
         'subjective': 'hreindl commented on file-5.19-4.fc20 '
         'and sqlite-3.8.6-2.fc20',
-        'link': 'https://admin.fedoraproject.org/updates/user/hreindl/',
-        'icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
+        'link': 'https://bodhi.fedoraproject.org/users/hreindl',
+        'icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
         'secondary_icon': 'https://seccdn.libravatar.org/avatar/'
         'c82951c2d404ca0cfea20f51b040175ba4d1624f51e8ec366e75565b672e943d'
         '?s=64&d=retro',

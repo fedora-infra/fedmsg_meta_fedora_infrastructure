@@ -46,12 +46,12 @@ def is_ftp_sync(msg):
 
 
 def author_link(username):
-    return "<a href='https://admin.fedoraproject.org/updates/" + \
-        "user/{user}'>{user}</a>".format(user=username)
+    return "<a href='https://bodhi.fedoraproject.org/" + \
+        "users/{user}'>{user}</a>".format(user=username)
 
 
 def update_link(title):
-    return "<a href='https://admin.fedoraproject.org/updates/" + \
+    return "<a href='https://bodhi.fedoraproject.org/updates/" + \
         "{title1}'>{title2}</a>".format(title1=title, title2=truncate(title))
 
 
@@ -64,11 +64,10 @@ def truncate(title):
 class BodhiProcessor(BaseProcessor):
     __name__ = "Bodhi"
     __description__ = "the Fedora update system"
-    __link__ = "https://admin.fedoraproject.org/updates"
+    __link__ = "https://bodhi.fedoraproject.org/"
     __docs__ = "https://fedoraproject.org/wiki/Bodhi"
     __obj__ = "Package Updates"
-    __icon__ = ("https://admin.fedoraproject.org/updates"
-                "/static/images/bodhi-icon-48.png")
+    __icon__ = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     conglomerators = [
         bodhi_requests.ByUserAndPackageTesting,
         bodhi_requests.ByUserAndPackageStable,
@@ -282,7 +281,7 @@ class BodhiProcessor(BaseProcessor):
             return msg['msg']['subject']
 
     def link(self, msg, **config):
-        prefix = 'https://admin.fedoraproject.org'
+        prefix = 'https://bodhi.fedoraproject.org'
         tmpl = prefix + "/updates/{title}"
         if 'bodhi.update.comment' in msg['topic']:
             return tmpl.format(title=msg['msg']['comment']['update_title'])
@@ -299,7 +298,7 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.errata.publish' in msg['topic']:
             return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.stack' in msg['topic']:
-            return prefix + "/updates/stacks/{title}".format(
+            return prefix + "/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
