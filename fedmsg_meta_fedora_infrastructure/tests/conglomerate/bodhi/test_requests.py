@@ -158,9 +158,8 @@ class TestBodhiConglomerateTestingSamePackageSameUser(
         'testing updates for F19 and F20',
         'subjective': 'pghmcfc submitted 2 perl-Devel-CheckBin '
         'testing updates for F19 and F20',
-        'link': 'https://admin.fedoraproject.org/updates/perl-Devel-CheckBin/',
-        'icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
+        'link': 'https://bodhi.fedoraproject.org/updates/perl-Devel-CheckBin',
+        'icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
         'secondary_icon': 'https://seccdn.libravatar.org/avatar/'
         'f9800f2daf8aabc0b33bca9b4033019c74db77b3baca2d9f98cc629147430e20'
         '?s=64&d=retro',
@@ -338,11 +337,9 @@ class TestBodhiConglomerateTestingSamePackageDifferentUser(
         'updates for F19 and F20',
         'subjective': 'pghmcfc and ralph submitted 2 perl-Devel-CheckBin '
         'updates for F19 and F20',
-        'link': 'https://admin.fedoraproject.org/updates/perl-Devel-CheckBin/',
-        'icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
-        'secondary_icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
+        'link': 'https://bodhi.fedoraproject.org/updates/perl-Devel-CheckBin',
+        'icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
+        'secondary_icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
 
         'start_time': 1408636105.0,
         'end_time': 1408636112.0,
@@ -517,9 +514,8 @@ class TestBodhiConglomerateTestingSameUserDifferentPackage(
         'updates for F19 and F20',
         'subjective': 'pghmcfc submitted nethack and perl-Devel-CheckBin '
         'updates for F19 and F20',
-        'link': 'https://admin.fedoraproject.org/updates/user/pghmcfc/',
-        'icon': 'https://admin.fedoraproject.org/updates/'
-        'static/images/bodhi-icon-48.png',
+        'link': 'https://bodhi.fedoraproject.org/users/pghmcfc',
+        'icon': 'https://apps.fedoraproject.org/img/icons/bodhi.png',
         'secondary_icon': 'https://seccdn.libravatar.org/avatar/'
         'f9800f2daf8aabc0b33bca9b4033019c74db77b3baca2d9f98cc629147430e20'
         '?s=64&d=retro',

@@ -24,7 +24,7 @@ class ByUpdate(fedmsg.meta.base.BaseConglomerator):
         tmpl['subtitle'] = subtitle.format(agents=agents, update=update)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = tmpl['icon']
-        base = 'https://admin.fedoraproject.org/updates/%s/'
+        base = 'https://bodhi.fedoraproject.org/updates/%s'
         tmpl['link'] = base % update
         return tmpl
 
@@ -49,6 +49,6 @@ class ByUser(fedmsg.meta.base.BaseConglomerator):
         tmpl['subtitle'] = subtitle.format(agent=agent, updates=updates)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = avatar_url(agent)
-        base = 'https://admin.fedoraproject.org/updates/user/%s/'
+        base = 'https://bodhi.fedoraproject.org/users/%s'
         tmpl['link'] = base % agent
         return tmpl

@@ -27,7 +27,7 @@ from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
 
 
 class LegacyTestBodhiUpdateComplete(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever an update
     **completes it's push to the testing repository**.  Here's a
     straightforward example:
@@ -40,10 +40,9 @@ class LegacyTestBodhiUpdateComplete(Base):
     expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
         "completed push to testing"
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "fedmsg-0.2.7-2.el6"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -123,17 +122,16 @@ class LegacyTestBodhiUpdateComplete(Base):
 
 
 class TestBodhiUpdateEject(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever an update
     **is ejected from the mash** due to some failure:
     """
     expected_title = "bodhi.update.eject"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
         "was ejected from the test_repo mash.  Reason: \"some reason\""
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "fedmsg-0.2.7-2.el6"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -167,7 +165,7 @@ class TestBodhiUpdateEject(Base):
 
 
 class TestBodhiUpdateComplete(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever an update
     **completes it's push to the testing repository**.  Here's a
     straightforward example:
@@ -175,10 +173,9 @@ class TestBodhiUpdateComplete(Base):
     expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
         "completed push to testing"
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "fedmsg-0.2.7-2.el6"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -203,7 +200,7 @@ class TestBodhiUpdateComplete(Base):
 
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* requests that an update
     be pushed to the testing repository. Some updates may contain *multiple
     packages*, which can be a little tricky if you're not ready for it.  Here's
@@ -214,16 +211,15 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
         "gnome-settings-daemon-3.6.1-1.fc18,contr..." + \
         " to testing"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18'>"
         "gnome-settings-daemon-3.6.1-1.fc18,contr...</a>"
         " to testing")
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "0d574577afa8deac19df2673cdea9aef45549ff8fac798ddaba61541c69e185a?s=64&d=retro"
     expected_usernames = set(['lmacken', 'hadess'])
@@ -327,7 +323,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
 
 
 class TestBodhiMashTaskMashing(Base):
-    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever it starts mashing
     a particular repository.
 
@@ -336,8 +332,7 @@ class TestBodhiMashTaskMashing(Base):
     """
     expected_title = "bodhi.mashtask.mashing"
     expected_subti = "bodhi masher started mashing test_repo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
     expected_objects = set(['repos/test_repo'])
 
@@ -352,7 +347,7 @@ class TestBodhiMashTaskMashing(Base):
 
 
 class TestBodhiMashTaskStart(Base):
-    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever it **begins** its work.
 
     Note that, these messages are broken (serverside) due to `this
@@ -360,8 +355,7 @@ class TestBodhiMashTaskStart(Base):
     """
     expected_title = "bodhi.mashtask.start"
     expected_subti = "bodhi masher started a push"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.start",
@@ -370,7 +364,7 @@ class TestBodhiMashTaskStart(Base):
 
 
 class TestBodhiMashTaskComplete(Base):
-    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever it **finishes** its work.
 
     Note that, these messages are broken (serverside) due to `this
@@ -378,8 +372,7 @@ class TestBodhiMashTaskComplete(Base):
     """
     expected_title = "bodhi.mashtask.complete"
     expected_subti = "bodhi masher failed to mash test_repo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
@@ -388,7 +381,7 @@ class TestBodhiMashTaskComplete(Base):
 
 
 class TestBodhiMashTaskSyncWaitStart(Base):
-    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic when it begins **waiting to sync**.
 
     Note that, these messages are broken (serverside) due to `this
@@ -397,8 +390,7 @@ class TestBodhiMashTaskSyncWaitStart(Base):
     expected_title = "bodhi.mashtask.sync.wait"
     expected_subti = "bodhi masher is waiting for test_repo " + \
         "to hit the master mirror"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
@@ -407,7 +399,7 @@ class TestBodhiMashTaskSyncWaitStart(Base):
 
 
 class TestBodhiMashTaskSyncWaitDone(Base):
-    """ The `Bodhi Masher <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic when it finishes syncing.
 
     Note that, these messages are broken (serverside) due to `this
@@ -416,8 +408,7 @@ class TestBodhiMashTaskSyncWaitDone(Base):
     expected_title = "bodhi.mashtask.sync.done"
     expected_subti = "bodhi masher finished waiting for test_repo " + \
         "to hit the master mirror"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
 
     msg = {
@@ -427,20 +418,19 @@ class TestBodhiMashTaskSyncWaitDone(Base):
 
 
 class TestBodhiRequestUnpush(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* requests that an update
     be **unpushed**.
     """
     expected_title = "bodhi.update.request.unpush"
     expected_subti = "lmacken unpushed foo"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> unpushed "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "foo'>foo</a>")
-    expected_link = "https://admin.fedoraproject.org/updates/foo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/updates/foo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b" + \
         "?s=64&d=retro"
@@ -461,20 +451,19 @@ class TestBodhiRequestUnpush(Base):
 
 
 class TestBodhiRequestObsolete(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* requests that an update
     be **obsoleted**.
     """
     expected_title = "bodhi.update.request.obsolete"
     expected_subti = "lmacken obsoleted foo"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> obsoleted "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "foo'>foo</a>")
-    expected_link = "https://admin.fedoraproject.org/updates/foo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/updates/foo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -494,20 +483,19 @@ class TestBodhiRequestObsolete(Base):
 
 
 class TestBodhiRequestStable(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* requests that an update
     be marked as **stable**.
     """
     expected_title = "bodhi.update.request.stable"
     expected_subti = "lmacken submitted foo to stable"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "foo'>foo</a> to stable")
-    expected_link = "https://admin.fedoraproject.org/updates/foo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/updates/foo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -527,20 +515,19 @@ class TestBodhiRequestStable(Base):
 
 
 class TestBodhiRequestRevoke(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* revokes a prior
     request on an update.
     """
     expected_title = "bodhi.update.request.revoke"
     expected_subti = "lmacken revoked foo"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> revoked "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "foo'>foo</a>")
-    expected_link = "https://admin.fedoraproject.org/updates/foo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/updates/foo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -560,20 +547,19 @@ class TestBodhiRequestRevoke(Base):
 
 
 class TestBodhiRequestTesting(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* requests that an
     update be pushed to the testing repository.
     """
     expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted foo to testing"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "foo'>foo</a> to testing")
-    expected_link = "https://admin.fedoraproject.org/updates/foo"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/updates/foo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -593,7 +579,7 @@ class TestBodhiRequestTesting(Base):
 
 
 class TestBodhiComment(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user **comments** on a bodhi
     update.
     """
@@ -602,13 +588,12 @@ class TestBodhiComment(Base):
     expected_long_form = "Can you believe how much testing we're doing? " + \
         "/cc @codeblock."
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/ralph'>"
+        "<a href='https://bodhi.fedoraproject.org/users/ralph'>"
         "ralph</a> commented on bodhi update "
-        "<a href='https://admin.fedoraproject.org/updates/"
+        "<a href='https://bodhi.fedoraproject.org/updates/"
         "fedmsg-1.0-1'>fedmsg-1.0-1</a> (karma: -1)")
-    expected_link = "https://admin.fedoraproject.org/updates/fedmsg-1.0-1"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/updates/fedmsg-1.0-1"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro"
     expected_usernames = set(['ralph', 'codeblock'])
@@ -635,17 +620,16 @@ class TestBodhiComment(Base):
 
 
 class TestBodhiOverrideTagged(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user **requests a buildroot
     override** for an update.
     """
     expected_title = "bodhi.buildroot_override.tag"
     expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -671,17 +655,16 @@ class TestBodhiOverrideTagged(Base):
 
 
 class LegacyTestBodhiOverrideTagged(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user **requests a buildroot
     override** for an update.
     """
     expected_title = "bodhi.buildroot_override.tag"
     expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -702,17 +685,16 @@ class LegacyTestBodhiOverrideTagged(Base):
 
 
 class TestBodhiOverrideUntagged(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user explicitly removes a
     previously requested buildroot override.
     """
     expected_title = "bodhi.buildroot_override.untag"
     expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -739,17 +721,16 @@ class TestBodhiOverrideUntagged(Base):
 
 
 class LegacyTestBodhiOverrideUntagged(Base):
-    """ The `Bodhi Updates System <https://admin.fedoraproject.org/updates>`_
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user explicitly removes a
     previously requested buildroot override.
     """
     expected_title = "bodhi.buildroot_override.untag"
     expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
     expected_markup = (
-        "<a href='https://admin.fedoraproject.org/updates/user/lmacken'>"
+        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
     expected_usernames = set(['lmacken'])
@@ -770,16 +751,15 @@ class LegacyTestBodhiOverrideUntagged(Base):
 
 
 class TestBodhiStackSave(Base):
-    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_ introduced the
+    """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ introduced the
     concept of *stacks* of packages that can be grouped for to share
     requirements.  That system publishes messages like this anytime a user
     **modifies or creates a new stack**.
     """
     expected_title = "bodhi.stack.save"
     expected_subti = "ralph updated the \"hacking\" stack"
-    expected_link = "https://admin.fedoraproject.org/updates/stacks/hacking"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/stacks/hacking"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -829,16 +809,15 @@ class TestBodhiStackSave(Base):
 
 
 class TestBodhiStackDelete(Base):
-    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_ introduced the
+    """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ introduced the
     concept of *stacks* of packages that can be grouped for to share
     requirements.  That system publishes messages like this anytime a user
     **deletes a stack**.
     """
     expected_title = "bodhi.stack.delete"
     expected_subti = "ralph deleted the \"hacking\" stack"
-    expected_link = "https://admin.fedoraproject.org/updates/stacks/hacking"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_link = "https://bodhi.fedoraproject.org/stacks/hacking"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -888,16 +867,15 @@ class TestBodhiStackDelete(Base):
 
 
 class TestBodhiUpdateEdit(Base):
-    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_ publishes
+    """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ publishes
     this kind of message when a package maintainer **edits a pre-existing
     update**.
     """
     expected_title = "bodhi.update.edit"
     expected_subti = "ralph edited tzdata-2014i-1.fc19"
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "tzdata-2014i-1.fc19"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
@@ -1002,15 +980,14 @@ class TestBodhiUpdateEdit(Base):
 
 
 class TestBodhiKarmaThresholdStable(Base):
-    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_ publishes these
+    """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ publishes these
     messages when an update reaches the stable or unstable karma thresholds.
     """
     expected_title = "bodhi.update.karma.threshold"
     expected_subti = "tzdata-2014i-1.fc19 reached the stable karma threshold"
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "FEDORA-EPEL-2015-0238"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/tzdata.png"
     expected_usernames = set([])
@@ -1115,7 +1092,7 @@ class TestBodhiKarmaThresholdStable(Base):
 
 
 class TestBodhiErrataPublish(Base):
-    """ `Bodhi2 <https://admin.fedoraproject.org/updates>`_, along with many
+    """ `Bodhi2 <https://bodhi.fedoraproject.org>`_, along with many
     other services, moved away from sending its own email notifications to
     instead publish fedmsg messages that the `FMN system
     <https://apps.fedoraproject.org/notifications>`_ would be responsible for
@@ -1127,10 +1104,9 @@ class TestBodhiErrataPublish(Base):
     expected_title = "bodhi.errata.publish"
     expected_subti = "This is the subject of the errata email"
     expected_long_form = "This is the body of the errata email"
-    expected_link = "https://admin.fedoraproject.org/updates/" + \
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "tzdata-2014i-1.fc19"
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/tzdata.png"
     expected_usernames = set([])
@@ -1260,15 +1236,14 @@ mash_list = """
 
 class TestBodhiMashKickooff(Base):
     """ This message is published by an admin when they send a request to
-    the `Bodhi2 <https://admin.fedoraproject.org/updates>`_ backend, telling it
+    the `Bodhi2 <https://bodhi.fedoraproject.org>`_ backend, telling it
     to start a mash.
     """
     expected_title = "bodhi.masher.start"
     expected_subti = "ralph requested a mash of 20 updates"
     expected_long_form = mash_list
     expected_link = None
-    expected_icon = "https://admin.fedoraproject.org/updates" + \
-        "/static/images/bodhi-icon-48.png"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"
