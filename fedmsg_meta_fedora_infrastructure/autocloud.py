@@ -33,17 +33,20 @@ class AutoCloudProcessor(BaseProcessor):
             if status == "queued":
                 tmpl = self._("{image_name} is {status} for testing")
             if status == "running":
-                tmpl = self._("The tests for the {image_name} has"
+                tmpl = self._("The tests for the {image_name} has "
                               "started {status}")
             if status == "aborted":
-                tmpl = self._("The tests for the {image_name} has"
+                tmpl = self._("The tests for the {image_name} has "
                               "been {status}")
             if status == "failed":
-                tmpl = self._("The test for the {image_name} {status}")
+                tmpl = self._("The tests for the {image_name} {status}")
             if status == "success":
                 tmpl = self._("The tests for {image_name} was {status}")
 
             return tmpl.format(image_name=image_name, status=status)
+
+    def link(self, msg, **config):
+        return self.__link__
 
     def objects(self, msg, **config):
         status = msg['msg']['status']

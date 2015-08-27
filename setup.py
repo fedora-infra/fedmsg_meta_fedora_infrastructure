@@ -103,6 +103,8 @@ entry_points = {
         "pagure=fedmsg_meta_fedora_infrastructure.pagure:PagureProcessor",
         "zanata=fedmsg_meta_fedora_infrastructure.zanata:ZanataProcessor",
         "faf=fedmsg_meta_fedora_infrastructure.faf:FAFProcessor",
+        "autocloud=fedmsg_meta_fedora_infrastructure.autocloud:"
+        "AutoCloudProcessor",
     ]
 }
 

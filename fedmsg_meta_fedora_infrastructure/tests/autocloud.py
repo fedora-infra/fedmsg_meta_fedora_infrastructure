@@ -23,6 +23,9 @@ import unittest
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
+from .common import add_doc
+
+
 class TestImageTestQueued(Base):
     """ These messages are published when an image is queued for testing in Autocloud app.
     """
@@ -37,7 +40,7 @@ class TestImageTestQueued(Base):
         u'i': 1,
         "timestamp": 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
-        u'topic': u'org.fedoraproject.prod.autocloud.queued',
+        u'topic': u'org.fedoraproject.prod.autocloud.image.queued',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'queued',
@@ -61,7 +64,7 @@ class TestImageTestRunning(Base):
         u'i': 1,
         "timestamp": 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
-        u'topic': u'org.fedoraproject.prod.autocloud.running',
+        u'topic': u'org.fedoraproject.prod.autocloud.image.running',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'running',
@@ -85,7 +88,7 @@ class TestImageTestAborted(Base):
         u'i': 1,
         "timestamp": 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
-        u'topic': u'org.fedoraproject.prod.autocloud.aborted',
+        u'topic': u'org.fedoraproject.prod.autocloud.image.aborted',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'aborted',
@@ -109,7 +112,7 @@ class TestImageTestFailed(Base):
         u'i': 1,
         "timestamp": 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
-        u'topic': u'org.fedoraproject.prod.autocloud.failed',
+        u'topic': u'org.fedoraproject.prod.autocloud.image.failed',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'failed',
@@ -123,7 +126,7 @@ class TestImageTestSuccess(Base):
     completes in Autocloud app.
     """
     expected_title = "autocloud.image.success"
-    expected_subti = 'The tests for the Fedora-Cloud-Atomic was success'
+    expected_subti = 'The tests for Fedora-Cloud-Atomic was success'
     expected_link = "https://github.com/kushaldas/autocloud"
     expected_packages = set([])
     expected_usernames = set([])
@@ -133,12 +136,17 @@ class TestImageTestSuccess(Base):
         u'i': 1,
         "timestamp": 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
-        u'topic': u'org.fedoraproject.prod.autocloud.success',
+        u'topic': u'org.fedoraproject.prod.autocloud.image.success',
         u'msg': {
             u'buildid': u'10291410',
-            u'status': u'aborted',
+            u'status': u'success',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
             u'image_name': u'Fedora-Cloud-Atomic'
         }
     }
 
+
+add_doc(locals())
+
+if __name__ == '__main__':
+    unittest.main()
