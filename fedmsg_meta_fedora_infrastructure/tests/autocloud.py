@@ -27,7 +27,8 @@ from .common import add_doc
 
 
 class TestImageTestQueued(Base):
-    """ These messages are published when an image is queued for testing in Autocloud app.
+    """ These messages are published when an image is queued for testing in
+    Autocloud app.
     """
     expected_title = "autocloud.image.queued"
     expected_subti = 'Fedora-Cloud-Atomic is queued for testing'
@@ -38,16 +39,18 @@ class TestImageTestQueued(Base):
     msg = {
         u'username': u'apache',
         u'i': 1,
-        "timestamp": 1379638157.759283,
+        u'timestamp': 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
         u'topic': u'org.fedoraproject.prod.autocloud.image.queued',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'queued',
-            u'image_url': u'https://kojipkgs.fedoraproject.org//work/taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
+            u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
+            'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
             u'image_name': u'Fedora-Cloud-Atomic'
         }
     }
+
 
 class TestImageTestRunning(Base):
     """ These messages are published when tests for an image starts
@@ -62,16 +65,18 @@ class TestImageTestRunning(Base):
     msg = {
         u'username': u'apache',
         u'i': 1,
-        "timestamp": 1379638157.759283,
+        u'timestamp': 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
         u'topic': u'org.fedoraproject.prod.autocloud.image.running',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'running',
-            u'image_url': u'https://kojipkgs.fedoraproject.org//work/taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
+            u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
+            'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
             u'image_name': u'Fedora-Cloud-Atomic'
         }
     }
+
 
 class TestImageTestAborted(Base):
     """ These messages are published when tests for an image starts
@@ -86,16 +91,18 @@ class TestImageTestAborted(Base):
     msg = {
         u'username': u'apache',
         u'i': 1,
-        "timestamp": 1379638157.759283,
+        u'timestamp': 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
         u'topic': u'org.fedoraproject.prod.autocloud.image.aborted',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'aborted',
-            u'image_url': u'https://kojipkgs.fedoraproject.org//work/taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
+            u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
+            'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
             u'image_name': u'Fedora-Cloud-Atomic'
         }
     }
+
 
 class TestImageTestFailed(Base):
     """ These messages are published when tests for an image starts
@@ -110,16 +117,18 @@ class TestImageTestFailed(Base):
     msg = {
         u'username': u'apache',
         u'i': 1,
-        "timestamp": 1379638157.759283,
+        u'timestamp': 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
         u'topic': u'org.fedoraproject.prod.autocloud.image.failed',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'failed',
-            u'image_url': u'https://kojipkgs.fedoraproject.org//work/taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
+            u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
+            'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
             u'image_name': u'Fedora-Cloud-Atomic'
         }
     }
+
 
 class TestImageTestSuccess(Base):
     """ These messages are published when tests for an image successfully
@@ -134,13 +143,14 @@ class TestImageTestSuccess(Base):
     msg = {
         u'username': u'apache',
         u'i': 1,
-        "timestamp": 1379638157.759283,
+        u'timestamp': 1379638157.759283,
         u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
         u'topic': u'org.fedoraproject.prod.autocloud.image.success',
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'success',
-            u'image_url': u'https://kojipkgs.fedoraproject.org//work/taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
+            u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
+            'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
             u'image_name': u'Fedora-Cloud-Atomic'
         }
     }

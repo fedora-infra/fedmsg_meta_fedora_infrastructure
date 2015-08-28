@@ -19,6 +19,7 @@
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
+
 class AutoCloudProcessor(BaseProcessor):
     __name__ = "autocloud"
     __description__ = "Automated Fedora Cloud Image Testing service"
@@ -51,4 +52,3 @@ class AutoCloudProcessor(BaseProcessor):
     def objects(self, msg, **config):
         status = msg['msg']['status']
         return set(['autocloud/image/' + status])
-
