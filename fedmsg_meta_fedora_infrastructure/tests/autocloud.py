@@ -31,8 +31,11 @@ class TestImageTestQueued(Base):
     Autocloud app.
     """
     expected_title = "autocloud.image.queued"
-    expected_subti = 'Fedora-Cloud-Atomic is queued for testing'
-    expected_link = "https://github.com/kushaldas/autocloud"
+    expected_subti = 'Fedora-Cloud-Base is queued for testing'
+    expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
+        'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
+        "fedimg.png"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['autocloud/image/queued'])
@@ -47,7 +50,7 @@ class TestImageTestQueued(Base):
             u'status': u'queued',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Atomic'
+            u'image_name': u'Fedora-Cloud-Base'
         }
     }
 
@@ -57,8 +60,11 @@ class TestImageTestRunning(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.running"
-    expected_subti = 'The tests for the Fedora-Cloud-Atomic has started running'
-    expected_link = "https://github.com/kushaldas/autocloud"
+    expected_subti = 'The tests for the Fedora-Cloud-Base has started running'
+    expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
+        'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
+        "fedimg.png"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['autocloud/image/running'])
@@ -73,7 +79,7 @@ class TestImageTestRunning(Base):
             u'status': u'running',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Atomic'
+            u'image_name': u'Fedora-Cloud-Base'
         }
     }
 
@@ -83,8 +89,11 @@ class TestImageTestAborted(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.aborted"
-    expected_subti = 'The tests for the Fedora-Cloud-Atomic has been aborted'
-    expected_link = "https://github.com/kushaldas/autocloud"
+    expected_subti = 'The tests for the Fedora-Cloud-Base has been aborted'
+    expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
+        'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
+        "fedimg.png"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['autocloud/image/aborted'])
@@ -99,7 +108,7 @@ class TestImageTestAborted(Base):
             u'status': u'aborted',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Atomic'
+            u'image_name': u'Fedora-Cloud-Base'
         }
     }
 
@@ -109,8 +118,11 @@ class TestImageTestFailed(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.failed"
-    expected_subti = 'The tests for the Fedora-Cloud-Atomic failed'
-    expected_link = "https://github.com/kushaldas/autocloud"
+    expected_subti = 'The tests for the Fedora-Cloud-Base failed'
+    expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
+        'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
+        "fedimg.png"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['autocloud/image/failed'])
@@ -125,7 +137,7 @@ class TestImageTestFailed(Base):
             u'status': u'failed',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Atomic'
+            u'image_name': u'Fedora-Cloud-Base'
         }
     }
 
@@ -135,8 +147,11 @@ class TestImageTestSuccess(Base):
     completes in Autocloud app.
     """
     expected_title = "autocloud.image.success"
-    expected_subti = 'The tests for Fedora-Cloud-Atomic was success'
-    expected_link = "https://github.com/kushaldas/autocloud"
+    expected_subti = 'The tests for Fedora-Cloud-Base was success'
+    expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
+        'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
+        "fedimg.png"
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set(['autocloud/image/success'])
@@ -151,7 +166,7 @@ class TestImageTestSuccess(Base):
             u'status': u'success',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Atomic'
+            u'image_name': u'Fedora-Cloud-Base'
         }
     }
 

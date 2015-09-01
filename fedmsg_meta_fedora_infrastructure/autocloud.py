@@ -25,6 +25,7 @@ class AutoCloudProcessor(BaseProcessor):
     __description__ = "Automated Fedora Cloud Image Testing service"
     __link__ = "https://github.com/kushaldas/autocloud"
     __docs__ = "https://github.com/kushaldas/autocloud"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/fedimg.png"
     __obj__ = "Cloud Image Test"
 
     def subtitle(self, msg, **config):
@@ -48,6 +49,13 @@ class AutoCloudProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         return self.__link__
+
+    def secondary_icon(self, msg, **config):
+        return self.__icon__
+
+    def link(self, msg, **config):
+        image_url = msg['msg']['image_url']
+        return image_url
 
     def objects(self, msg, **config):
         status = msg['msg']['status']
