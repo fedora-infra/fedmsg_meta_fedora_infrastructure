@@ -37,7 +37,6 @@ class TestImageUploadStart(Base):
     dest = "EC2-eu-west-1"
     expected_subti = "{0} started uploading to {1}".format(image_name,
                                                                  dest)
-    expected_link = None
     expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
@@ -72,7 +71,6 @@ class TestImageUploadComplete(Base):
     vol_type = 'gp2'
     expected_subti = "{0} finished uploading to {1} ({2}, {3}, {4})".format(
             image_name, dest, ami_id, virt_type, vol_type)
-    expected_link = None
     expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
@@ -113,7 +111,6 @@ class TestImageTestStart(Base):
     vol_type = 'gp2'
     expected_subti = "{0} started testing on {1} ({2}, {3}, {4})".format(
             image_name, dest, ami_id, virt_type, vol_type)
-    expected_link = None
     expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
