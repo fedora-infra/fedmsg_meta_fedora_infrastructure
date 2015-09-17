@@ -98,6 +98,19 @@ def write(fname, s=''):
     outfile.write(s + '\n')
 
 
+def datagrepper_link(topic):
+    suffix = '.'.join(topic.split('.')[3:])
+    category = topic.split('.')[3]
+    base_url = 'https://apps.fedoraproject.org/datagrepper/raw'
+    topic_link = base_url + '?topic=%s' % topic
+    category_link = base_url + '?category=%s' % category
+    tmpl = (
+        "You can view the history of `messages with the %s topic <%s>`_ "
+        "or `all %s messages <%s>`_ in datagrepper."
+    )
+    return tmpl % (suffix, topic_link, category, category_link)
+
+
 def load_classes(module):
     return list(nose.loader.defaultTestLoader().loadTestsFromModule(module))
 
@@ -165,6 +178,9 @@ def make_topics_doc(output_dir):
             if getattr(cls.context, 'doc', None):
                 write(fname, textwrap.dedent("    " + cls.context.doc.strip()))
                 write(fname)
+
+            write(fname, datagrepper_link(cls.context.msg['topic']))
+            write(fname)
 
             write(fname, ".. code-block:: python")
             write(fname, '\n    ' + pprint.pformat(cls.context.msg, indent=2)
