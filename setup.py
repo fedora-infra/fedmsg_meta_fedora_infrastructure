@@ -105,6 +105,8 @@ entry_points = {
         "faf=fedmsg_meta_fedora_infrastructure.faf:FAFProcessor",
         "autocloud=fedmsg_meta_fedora_infrastructure.autocloud:"
         "AutoCloudProcessor",
+        "infragit=fedmsg_meta_fedora_infrastructure.infragit:"
+        "InfraGitProcessor",
     ]
 }
 
