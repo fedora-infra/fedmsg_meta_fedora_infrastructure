@@ -14,6 +14,8 @@ import nose
 import pprint
 import textwrap
 
+from fedmsg.tests.test_meta import Unspecified
+
 header = """
 List of Message Topics
 ======================
@@ -135,7 +137,7 @@ def make_topics_doc(output_dir):
     write(fname, header)
 
     for cls in test_classes:
-        if cls.context.msg:
+        if not cls.context.msg is Unspecified:
             # Adjust {stg,dev} to prod.
             cls.context.msg['topic'] = cls.context.msg['topic']\
                 .replace('.stg.', '.prod.')\
@@ -154,7 +156,7 @@ def make_topics_doc(output_dir):
 
     seen = []
     for cls in test_classes:
-        if cls.context.msg:
+        if not cls.context.msg is Unspecified:
             topic = cls.__topic
 
             # Ignore tests that check old messages.
