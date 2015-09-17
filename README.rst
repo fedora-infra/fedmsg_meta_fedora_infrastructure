@@ -51,3 +51,12 @@ Running the Tests
 
     # Run the tests
     $ python setup.py test
+
+Building the Docs
+-----------------
+
+::
+
+    # Install additional dependencies
+    $ pip install mako sphinx
+    $ sphinx-build doc/ htmldocs/
