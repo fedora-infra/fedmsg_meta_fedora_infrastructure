@@ -103,12 +103,16 @@ entry_points = {
         "pagure=fedmsg_meta_fedora_infrastructure.pagure:PagureProcessor",
         "zanata=fedmsg_meta_fedora_infrastructure.zanata:ZanataProcessor",
         "faf=fedmsg_meta_fedora_infrastructure.faf:FAFProcessor",
+        "autocloud=fedmsg_meta_fedora_infrastructure.autocloud:"
+        "AutoCloudProcessor",
+        "infragit=fedmsg_meta_fedora_infrastructure.infragit:"
+        "InfraGitProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.15.1',
+    version='0.15.2',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
