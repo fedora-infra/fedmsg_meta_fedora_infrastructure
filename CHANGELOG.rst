@@ -1,3 +1,44 @@
+
+0.15.2
+------
+
+Pull Requests
+
+- (@sayanchowdhury) add Proccessor and Tests for autocloud `#317
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/317>`_
+- (@ralphbean)      Improve the doc with the list of topics. `#319
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/319>`_
+- (@ralphbean)      Add and test an infragit processor. `#318
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/318>`_
+
+Commits
+
+- Fix a bodhi conglomerator link. `808ae1afc
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/808ae1afc>`_
+- Add processor for autocloud messages. `24896c8c8
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/24896c8c8>`_
+- add tests for autocloud `f47d351ff
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f47d351ff>`_
+- fix issues and and tests for autocloud `016e88bf0
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/016e88bf0>`_
+- minor PEP8 fixes `6a6fd81df
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6a6fd81df>`_
+- fix the copyright year and holder `b0184c9e0
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b0184c9e0>`_
+- 1. change the test image name to Fedora-Cloud-Base 2. Add icon, secondary_icon along with tests 3. Fix link and tests for the link `0c09a135d
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0c09a135d>`_
+- Remove these unspecified tests. `c0429b06c
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c0429b06c>`_
+- Add and test an infragit processor. `7cd5a0d9e
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7cd5a0d9e>`_
+- Include links to datagrepper queries in the docs. `4c90530b5
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4c90530b5>`_
+- Check for Unspecified instead of None. `9d12cffe5
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9d12cffe5>`_
+- Use mako to make this way more awesome. `bc4aaed95
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bc4aaed95>`_
+- Turns out re2 doesn't even have a findall method... `7cf235bab
+  <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7cf235bab>`_
 Changelog
 =========
 
