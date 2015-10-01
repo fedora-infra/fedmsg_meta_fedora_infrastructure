@@ -58,5 +58,5 @@ Building the Docs
 ::
 
     # Install additional dependencies
-    $ pip install mako sphinx
+    $ pip install -r doc/requirements.txt
     $ sphinx-build doc/ htmldocs/
