@@ -106,6 +106,8 @@ class HotnessProcessor(BaseProcessor):
                 'bugzilla': self._("a bugzilla ticket had already been filed"),
                 'pkgdb': self._("pkgdb says the package owner is not "
                                 "interested in bugs being filed"),
+                'rawhide': self._("no rawhide version of the "
+                                  "package could be found yet")
             }
             errmsg = self._('.... I dunno.  Whatever.')
             return prefix.format(thing=thing) + qualifiers.get(reason, errmsg)
