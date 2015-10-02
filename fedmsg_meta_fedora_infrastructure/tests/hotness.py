@@ -369,7 +369,7 @@ class TestHotnessDropPkgdb(Base):
 
     expected_title = "hotness.update.drop"
     expected_subti = "the-new-hotness saw an update for python-apsw, but " + \
-        "pkgdb says the package owner is not interested in bugs being filed"
+        "pkgdb says the maintainers are not interested in bugs being filed"
     expected_link = "https://release-monitoring.org/project/3772/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
