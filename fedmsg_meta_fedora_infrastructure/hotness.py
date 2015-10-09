@@ -104,8 +104,10 @@ class HotnessProcessor(BaseProcessor):
                 'anitya': self._("release-monitoring.org doesn't know what "
                                  "that project is called in Fedora land"),
                 'bugzilla': self._("a bugzilla ticket had already been filed"),
-                'pkgdb': self._("pkgdb says the package owner is not "
+                'pkgdb': self._("pkgdb says the maintainers are not "
                                 "interested in bugs being filed"),
+                'rawhide': self._("no rawhide version of the "
+                                  "package could be found yet")
             }
             errmsg = self._('.... I dunno.  Whatever.')
             return prefix.format(thing=thing) + qualifiers.get(reason, errmsg)

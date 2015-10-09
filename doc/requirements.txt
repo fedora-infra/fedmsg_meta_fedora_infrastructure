@@ -3,3 +3,4 @@ pyzmq-static
 nose
 requests
 fedmsg>=0.10.0
+mako
