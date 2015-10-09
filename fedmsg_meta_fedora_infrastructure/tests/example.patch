@@ -3,6 +3,9 @@ From: Ralph Bean <rbean@redhat.com>
 Date: Mon, 8 Oct 2012 13:25:49 -0400
 Subject: Try removing requirement on python-bunch.
 
+---
+ datanommer.spec | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
 diff --git a/datanommer.spec b/datanommer.spec
 index c34b795..1db1d0a 100644
@@ -39,5 +42,5 @@ index c34b795..1db1d0a 100644
  - More flexible database field types.
  * Fri Sep 28 2012 Ralph Bean <rbean@redhat.com> - 0.1.7-1
 -- 
-cgit v0.10.2
+cgit v0.11.2
 
