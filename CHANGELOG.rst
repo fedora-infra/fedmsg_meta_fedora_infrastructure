@@ -1,4 +1,23 @@
 
+0.15.3
+------
+
+Pull Requests
+
+- (@ralphbean)      #321, Handle new "reason" from hotness.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/321
+- (@pypingou)       #322, Change the wording from packager owner to maintainers
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/322
+
+Commits
+
+- 0390e57d6 Handle new "reason" from hotness.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0390e57d6
+- db97d9cc7 Leverage doc/requirements.txt
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/db97d9cc7
+- 509a75b1c Change the wording from packager owner to maintainers
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/509a75b1c
+
 0.15.2
 ------
 
