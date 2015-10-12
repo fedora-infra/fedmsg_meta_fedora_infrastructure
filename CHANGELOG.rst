@@ -1,4 +1,23 @@
 
+0.15.4
+------
+
+Pull Requests
+
+- (@mkrizek)        #323, Add taskotron
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/323
+
+Commits
+
+- a5db97622 Add taskotron
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a5db97622
+- 72a0ea692 Update example.patch from our latest cgit.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/72a0ea692
+- 4075781cb Add taskotron icon
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4075781cb
+- 8db04d202 Remove old CHANGELOG header.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8db04d202
+
 0.15.3
 ------
 
@@ -58,8 +77,6 @@ Commits
   <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bc4aaed95>`_
 - Turns out re2 doesn't even have a findall method... `7cf235bab
   <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7cf235bab>`_
-Changelog
-=========
 
 0.15.1
 ------
