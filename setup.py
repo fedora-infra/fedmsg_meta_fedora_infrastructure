@@ -107,6 +107,8 @@ entry_points = {
         "AutoCloudProcessor",
         "infragit=fedmsg_meta_fedora_infrastructure.infragit:"
         "InfraGitProcessor",
+        "taskotron=fedmsg_meta_fedora_infrastructure.taskotron:"
+        "TaskotronProcessor",
     ]
 }
 

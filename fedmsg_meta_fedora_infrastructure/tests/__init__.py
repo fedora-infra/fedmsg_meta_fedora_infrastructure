@@ -57,6 +57,7 @@ from fedmsg_meta_fedora_infrastructure.tests.faf import *
 from fedmsg_meta_fedora_infrastructure.tests.pagure import *
 from fedmsg_meta_fedora_infrastructure.tests.autocloud import *
 from fedmsg_meta_fedora_infrastructure.tests.infragit import *
+from fedmsg_meta_fedora_infrastructure.tests.taskotron import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
