@@ -26,6 +26,7 @@ class TaskotronProcessor(BaseProcessor):
     __link__ = "https://taskotron.fedoraproject.org/"
     __docs__ = "https://docs.qadevel.cloud.fedoraproject.org/libtaskotron/latest/"
     __obj__ = "Automated task results"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/taskotron.png"
 
     def subtitle(self, msg, **config):
         if msg['topic'].endswith('taskotron.result.new'):
@@ -37,3 +38,6 @@ class TaskotronProcessor(BaseProcessor):
     def link(self, msg, **config):
         if msg['topic'].endswith('taskotron.result.new'):
             return msg['msg']['result'].get('log_url', '')
+
+    def secondary_icon(self, msg, **config):
+        return self.__icon__

@@ -35,6 +35,7 @@ class TestTaskotronResultNew(Base):
     expected_subti = "fedoratest PASSED for foobar-1.0-1.fc99"
     expected_link = ("https://taskotron.fedoraproject.org/taskmaster/"
                      "/builders/x86_64/builds/1/steps/runtask/logs/stdio")
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/taskotron.png"
     msg = {
         u'username': u'taskotron',
         u'i': 1,
