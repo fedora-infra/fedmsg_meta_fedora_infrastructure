@@ -58,8 +58,6 @@ Commits
   <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bc4aaed95>`_
 - Turns out re2 doesn't even have a findall method... `7cf235bab
   <https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7cf235bab>`_
-Changelog
-=========
 
 0.15.1
 ------
