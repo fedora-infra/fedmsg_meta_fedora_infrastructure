@@ -143,10 +143,11 @@ class BodhiProcessor(BaseProcessor):
             tmpl = self._("{agent} requested a mash of {updates} updates")
             return tmpl.format(agent=agent, updates=updates)
         elif 'bodhi.update.comment' in msg['topic']:
-            author = msg['msg']['comment']['author']
-            karma = msg['msg']['comment']['karma']
-            title = msg['msg']['comment']['update_title']
-            alias = msg['msg']['comment'].get('update', {}).get('alias') or title
+            comment = msg['msg']['comment']
+            author = comment['author']
+            karma = comment['karma']
+            title = comment['update_title']
+            alias = comment.get('update', {}).get('alias') or title
 
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
