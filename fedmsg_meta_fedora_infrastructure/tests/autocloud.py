@@ -60,7 +60,7 @@ class TestImageTestRunning(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.running"
-    expected_subti = 'The tests for the Fedora-Cloud-Base has started running'
+    expected_subti = 'The tests for the Fedora-Cloud-Base (rawhide) have started running'
     expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
         'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
@@ -79,7 +79,8 @@ class TestImageTestRunning(Base):
             u'status': u'running',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Base'
+            u'image_name': u'Fedora-Cloud-Base',
+            u'release': 'rawhide',
         }
     }
 
@@ -89,7 +90,7 @@ class TestImageTestAborted(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.aborted"
-    expected_subti = 'The tests for the Fedora-Cloud-Base has been aborted'
+    expected_subti = 'The tests for the Fedora-Cloud-Base (rawhide) have been aborted'
     expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
         'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
@@ -108,7 +109,8 @@ class TestImageTestAborted(Base):
             u'status': u'aborted',
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Base'
+            u'image_name': u'Fedora-Cloud-Base',
+            u'release': 'rawhide',
         }
     }
 
@@ -118,9 +120,8 @@ class TestImageTestFailed(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.failed"
-    expected_subti = 'The tests for the Fedora-Cloud-Base failed'
-    expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
-        'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
+    expected_subti = 'The tests for the Fedora-Cloud-Base (23) failed'
+    expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/412/output'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
     expected_packages = set([])
@@ -135,9 +136,11 @@ class TestImageTestFailed(Base):
         u'msg': {
             u'buildid': u'10291410',
             u'status': u'failed',
+            u'job_id': 412,
             u'image_url': u'https://kojipkgs.fedoraproject.org//work/'
             'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2',
-            u'image_name': u'Fedora-Cloud-Base'
+            u'image_name': u'Fedora-Cloud-Base',
+            u'release': u'23',
         }
     }
 
@@ -147,7 +150,7 @@ class TestImageTestSuccess(Base):
     completes in Autocloud app.
     """
     expected_title = "autocloud.image.success"
-    expected_subti = 'The tests for Fedora-Cloud-Base was success'
+    expected_subti = 'The tests for Fedora-Cloud-Base were a success'
     expected_link = 'https://kojipkgs.fedoraproject.org//work/' + \
         'taskstasks/1410/10291410/Fedora-Cloud-Base-22-20150705.i386.qcow2'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
