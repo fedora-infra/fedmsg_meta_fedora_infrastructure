@@ -109,6 +109,7 @@ entry_points = {
         "InfraGitProcessor",
         "taskotron=fedmsg_meta_fedora_infrastructure.taskotron:"
         "TaskotronProcessor",
+        "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
     ]
 }
 
