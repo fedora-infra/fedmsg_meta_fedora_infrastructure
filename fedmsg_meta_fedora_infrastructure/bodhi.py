@@ -27,6 +27,8 @@ from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
         requests as bodhi_requests
 from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
         comments as bodhi_comments
+from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
+        overrides as bodhi_overrides
 
 
 def get_sync_product(msg):
@@ -75,6 +77,8 @@ class BodhiProcessor(BaseProcessor):
         bodhi_requests.ByUser,
         bodhi_comments.ByUpdate,
         bodhi_comments.ByUser,
+        bodhi_overrides.ByUserTag,
+        bodhi_overrides.ByUserUnTag,
     ]
 
     def _u2p(self, update):
