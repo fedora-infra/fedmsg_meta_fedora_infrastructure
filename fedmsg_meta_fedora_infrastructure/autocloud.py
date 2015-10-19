@@ -54,8 +54,10 @@ class AutoCloudProcessor(BaseProcessor):
         return self.__icon__
 
     def link(self, msg, **config):
-        image_url = msg['msg']['image_url']
-        return image_url
+        output_url_templ = "https://apps.fedoraproject.org/" + \
+                           "autocloud/jobs/{job_id}/output"
+        job_id = msg['msg']['job_id']
+        return output_url_templ.format(job_id=job_id)
 
     def objects(self, msg, **config):
         status = msg['msg']['status']
