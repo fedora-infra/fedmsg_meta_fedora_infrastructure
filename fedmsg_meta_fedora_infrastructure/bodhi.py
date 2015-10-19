@@ -303,6 +303,11 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
+        elif 'bodhi.buildroot_override' in msg['topic']:
+            build = msg['msg']['override']['build']
+            if isinstance(build, dict):
+                build = build['nvr']
+            return prefix + "/overrides/{nvr}".format(nvr=build)
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
             repo = msg['msg']['repo']

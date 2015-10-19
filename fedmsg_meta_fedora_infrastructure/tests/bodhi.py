@@ -629,6 +629,7 @@ class TestBodhiOverrideTagged(Base):
     expected_markup = (
         "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
+    expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
@@ -664,6 +665,7 @@ class LegacyTestBodhiOverrideTagged(Base):
     expected_markup = (
         "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
+    expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
@@ -694,6 +696,7 @@ class TestBodhiOverrideUntagged(Base):
     expected_markup = (
         "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
+    expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
@@ -730,6 +733,7 @@ class LegacyTestBodhiOverrideUntagged(Base):
     expected_markup = (
         "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
         "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
+    expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b?s=64&d=retro"
