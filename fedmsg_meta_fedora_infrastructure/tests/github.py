@@ -2237,6 +2237,128 @@ class TestGithubMember(Base):
     }
 
 
+class TestGithubDeploymentStatus(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever github **updates the
+    deployment status** of a repo.
+    """
+    expected_title = "github.deployment_status"
+    expected_subti = "kracekumar's deployment status for " + \
+        "pythonindia/junction updated to \"success\""
+    expected_link = "https://junctiondemo.herokuapp.com/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "293c68a7eb257300467436adc8ff26c20a75d7394bd46f44f48854cc91cb97b0"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set([])  # kracekumar is not a FAS user
+    expected_objects = set(['pythonindia/junction/deployment_status'])
+    msg = {
+        "i": 3,
+        "timestamp": 1435852322.0,
+        "topic": "org.fedoraproject.prod.github.deployment_status",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/kracekumar",
+                "site_admin": False,
+                "html_url": "https://github.com/kracekumar",
+                "gravatar_id": "",
+                "login": "kracekumar",
+                "type": "User",
+                "id": 311929
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": True,
+                "updated_at": "2015-06-30T14:13:26Z",
+                "private": False,
+                "full_name": "pythonindia/junction",
+                "owner": {
+                    "url": "https://api.github.com/users/pythonindia",
+                    "site_admin": False,
+                    "html_url": "https://github.com/pythonindia",
+                    "gravatar_id": "",
+                    "login": "pythonindia",
+                    "type": "Organization",
+                    "id": 1763047
+                },
+                "id": 27966694,
+                "size": 5497,
+                "watchers_count": 26,
+                "forks": 38,
+                "homepage": "",
+                "fork": False,
+                "description": "Junction is a software to manage proposals, reviews, schedule, feedback during conference.",
+                "has_downloads": True,
+                "forks_count": 38,
+                "default_branch": "master",
+                "html_url": "https://github.com/pythonindia/junction",
+                "has_issues": True,
+                "stargazers_count": 26,
+                "open_issues_count": 43,
+                "watchers": 26,
+                "name": "junction",
+                "language": "CSS",
+                "url": "https://api.github.com/repos/pythonindia/junction",
+                "created_at": "2014-12-13T16:40:17Z",
+                "pushed_at": "2015-07-02T15:48:47Z",
+                "open_issues": 43
+            },
+            "fas_usernames": {
+                "pythonindia": "github_org_pythonindia"
+            },
+            "deployment": {
+                "task": "deploy",
+                "description": None,
+                "creator": {
+                    "url": "https://api.github.com/users/kracekumar",
+                    "site_admin": False,
+                    "html_url": "https://github.com/kracekumar",
+                    "gravatar_id": "",
+                    "login": "kracekumar",
+                    "type": "User",
+                    "id": 311929
+                },
+                "url": "https://api.github.com/repos/pythonindia/junction/deployments/1128986",
+                "created_at": "2015-07-02T15:51:23Z",
+                "updated_at": "2015-07-02T15:51:23Z",
+                "payload": {},
+                "environment": "junctiondemo",
+                "sha": "291c9005b3ec899c8bc0cac3bf8dbf1d1948713b",
+                "ref": "291c9005b3ec899c8bc0cac3bf8dbf1d1948713b",
+                "id": 1128986
+            },
+            "organization": {
+                "url": "https://api.github.com/orgs/pythonindia",
+                "login": "pythonindia",
+                "description": None,
+                "id": 1763047
+            },
+            "deployment_status": {
+                "target_url": "https://junctiondemo.herokuapp.com/",
+                "description": None,
+                "creator": {
+                    "url": "https://api.github.com/users/kracekumar",
+                    "site_admin": False,
+                    "html_url": "https://github.com/kracekumar",
+                    "gravatar_id": "",
+                    "login": "kracekumar",
+                    "type": "User",
+                    "id": 311929
+                },
+                "url": "https://api.github.com/repos/pythonindia/junction/deployments/1128986/statuses/1923714",
+                "created_at": "2015-07-02T15:52:02Z",
+                "updated_at": "2015-07-02T15:52:02Z",
+                "state": "success",
+                "id": 1923714
+            }
+        }
+    }
+
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
     TestGithubPush.expected_long_form = full_patch1
     TestGithubIssueReopen.expected_long_form = "Testing stuff."
