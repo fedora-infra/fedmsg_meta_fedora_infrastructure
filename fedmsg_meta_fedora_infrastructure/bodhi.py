@@ -50,9 +50,9 @@ def author_link(username):
         "users/{user}'>{user}</a>".format(user=username)
 
 
-def update_link(title):
+def update_link(alias, title):
     return "<a href='https://bodhi.fedoraproject.org/updates/" + \
-        "{title1}'>{title2}</a>".format(title1=title, title2=truncate(title))
+        "{alias}'>{title}</a>".format(alias=alias, title=truncate(title))
 
 
 def truncate(title):
@@ -143,9 +143,11 @@ class BodhiProcessor(BaseProcessor):
             tmpl = self._("{agent} requested a mash of {updates} updates")
             return tmpl.format(agent=agent, updates=updates)
         elif 'bodhi.update.comment' in msg['topic']:
-            author = msg['msg']['comment']['author']
-            karma = msg['msg']['comment']['karma']
-            title = msg['msg']['comment']['update_title']
+            comment = msg['msg']['comment']
+            author = comment['author']
+            karma = comment['karma']
+            title = comment['update_title']
+            alias = comment.get('update', {}).get('alias') or title
 
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
@@ -156,7 +158,7 @@ class BodhiProcessor(BaseProcessor):
             else:
                 return tmpl.format(
                     author=author_link(author),
-                    title=update_link(title),
+                    title=update_link(alias, title),
                     karma=karma,
                 )
 
@@ -191,6 +193,7 @@ class BodhiProcessor(BaseProcessor):
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
             title = msg['msg']['update']['title']
+            alias = msg['msg']['update'].get('alias') or title
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
@@ -204,7 +207,7 @@ class BodhiProcessor(BaseProcessor):
             else:
                 return tmpl.format(
                     author=author_link(author),
-                    title=update_link(title),
+                    title=update_link(alias, title),
                     status=status,
                 )
         elif 'bodhi.mashtask.mashing' in msg['topic']:
