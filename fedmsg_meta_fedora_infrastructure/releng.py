@@ -26,6 +26,7 @@ class RelengProcessor(BaseProcessor):
     __link__ = "https://git.fedorahosted.org/cgit/releng"
     __docs__ = "https://fedoraproject.org/wiki/ReleaseEngineering"
     __obj__ = "Releng Events"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/atomic.png"
 
     def subtitle(self, msg, **config):
         release = msg['msg']['atomic_raw'].get('release', '')
@@ -43,6 +44,9 @@ class RelengProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         return "https://download.fedoraproject.org/pub/alt/atomic/stable/"
+
+    def secondary_icon(self, msg, **config):
+        return self.__icon__
 
     def objects(self, msg, **config):
         return set([

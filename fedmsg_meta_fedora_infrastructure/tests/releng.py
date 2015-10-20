@@ -42,6 +42,8 @@ class TestTwoWeekAtomicBegin(Base):
     expected_title = "releng.atomic.twoweek.begin"
     expected_subti = "Release engineering scripts started evaluating a " + \
         "new set of builds for a Fedora 22 Atomic Host release"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/atomic.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/atomic.png"
     expected_link = "https://download.fedoraproject.org/pub/alt/atomic/stable/"
     expected_objects = set(['22/atomic_qcow2', '22/atomic_raw'])
 
@@ -82,6 +84,8 @@ class TestTwoWeekAtomicComplete(Base):
 
     expected_title = "releng.atomic.twoweek.complete"
     expected_subti = "A new release of Fedora 22 Atomic Host is ready"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/atomic.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/atomic.png"
     expected_link = "https://download.fedoraproject.org/pub/alt/atomic/stable/"
     expected_objects = set(['22/atomic_qcow2', '22/atomic_raw'])
 
