@@ -45,6 +45,7 @@ install_requires = [
     'fedmsg',
     'python-fedora',
     'python-dateutil',
+    'pytz'
 ]
 tests_require = [
     'nose',
