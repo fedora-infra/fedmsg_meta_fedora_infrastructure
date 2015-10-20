@@ -27,7 +27,23 @@ def _ordered_query_params(params):
         retval = dict(params)
     return retval
 
+
+# https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/issues/320
+hardcoded_avatars = {
+    'bodhi': 'https://apps.fedoraproject.org/img/icons/bodhi-{size}.png',
+    'koschei': 'https://apps.fedoraproject.org/img/icons/koschei-{size}.png',
+    # Taskotron may have a new logo at some point.  Check this out:
+    # https://mashaleonova.wordpress.com/2015/08/18/a-logo-for-taskotron/
+    # Ask tflink before actually putting this in place though.  we need
+    # a nice small square version.  It'll look great!
+    # In the meantime, we can use this temporary logo.
+    'taskotron': 'https://apps.fedoraproject.org/img/icons/taskotron-{size}.png'
+}
+
+
 def avatar_url(username, size=64, default='retro'):
+    if username in hardcoded_avatars:
+        return hardcoded_avatars[username].format(size=size)
     openid = "http://%s.id.fedoraproject.org/" % username
     return avatar_url_from_openid(openid, size, default)
 
