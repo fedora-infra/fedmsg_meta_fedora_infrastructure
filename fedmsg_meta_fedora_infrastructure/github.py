@@ -158,6 +158,14 @@ class GithubProcessor(BaseProcessor):
                     n=n,
                     repo=repo,
                     title=title)
+            elif action == 'labeled':
+                label = msg['msg']['label']['name']
+                tmpl = self._('{user} added label {label} to issue #{n} on {repo}')
+                return tmpl.format(
+                    user=user,
+                    label=label,
+                    n=n,
+                    repo=repo)
             else:
                 tmpl = self._('{user} {action} issue #{n} on {repo}')
                 return tmpl.format(user=user, action=action, n=n, repo=repo)
