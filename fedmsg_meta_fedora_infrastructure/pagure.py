@@ -179,6 +179,13 @@ class PagureProcessor(BaseProcessor):
         elif 'pagure.issue.edit' in msg['topic']:
             issueid = msg['msg']['issue']['id']
             fields = msg['msg']['fields']
+            if fields == ['status']:
+                status = msg['msg']['issue']['status']
+                tmpl = self._(
+                    '{user} set the status of ticket {project}#{id} to: '
+                    '{status}')
+                return tmpl.format(
+                    user=user, project=project, id=issueid, status=status)
             fields = fedmsg.meta.base.BaseConglomerator.list_to_series(fields)
             tmpl = self._(
                 '{user} edited the {fields} fields of ticket '
