@@ -158,7 +158,7 @@ class AnityaProcessor(BaseProcessor):
                 '{user} deleted the distro "{project}"')
             return tmpl.format(user=user, project=project)
         elif msg['topic'].endswith('project.flag'):
-            project = msg['msg']['distro']['name']
+            project = msg['msg']['project']['name']
             tmpl = self._(
                 '{user} flagged the "{project}"')
             return tmpl.format(user=user, project=project)
