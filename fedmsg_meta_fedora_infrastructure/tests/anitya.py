@@ -868,7 +868,7 @@ class TestRemoveDistro(Base):
     }
 
 
-class TestProjecFlag(Base):
+class TestProjectFlag(Base):
     """ These messages are published when an user *flags* a project
     in the `anitya <https://release-monitoring.org>`_ database to ask an
     admin to do something on a project.
@@ -913,6 +913,58 @@ class TestProjecFlag(Base):
               "agent": "pingou@fedoraproject.org"
             },
             "distro": None
+          }
+        }
+
+
+class TestProjectFlag_WithPackages(Base):
+    """ These messages are published when an user *flags* a project
+    in the `anitya <https://release-monitoring.org>`_ database to ask an
+    admin to do something on a project.
+    """
+    expected_title = "anitya.project.flag"
+    expected_subti = 'pingou flagged the project "generic-colouriser"'
+    expected_link = "https://release-monitoring.org/project/5777/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['projects/generic-colouriser'])
+    msg = {
+          "source_name": "datanommer",
+          "i": 4,
+          "timestamp": 1445900487.0,
+          "msg_id": "2015-7b2fca29-7409-43f2-949f-c688437ba5d4",
+          "topic": "org.release-monitoring.prod.anitya.project.flag",
+          "source_version": "0.6.5",
+          "msg": {
+            "project": {
+              "regex": "",
+              "name": "generic-colouriser",
+              "versions": [
+                "v1.9",
+                "v1.7"
+              ],
+              "created_on": 1425912743.0,
+              "version": "v1.9",
+              "version_url": "garabik/grc",
+              "updated_on": 1427848695.0,
+              "homepage": "http://kassiopeia.juls.savba.sk/~garabik/software/grc.html",
+              "id": 5777,
+              "backend": "Github"
+            },
+            "message": {
+              "project": "generic-colouriser",
+              "reason": "Delete in favor of the correctly configured 7894.",
+              "agent": "pingou@fedoraproject.org"
+            },
+            "distro": None,
+            "packages": [
+                {"package_name": "generic-colouriser", "distro": "Fedora"}
+            ]
           }
         }
 
