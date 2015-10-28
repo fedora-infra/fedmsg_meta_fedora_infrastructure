@@ -501,14 +501,14 @@ class TestSupybotMeetingItemInfo(Base):
     expected_link = "http://meetbot.fedoraproject.org/fedora-meeting-2/2015-10-27/fedora-meeting-2.2015-10-27-16.03"
     expected_usernames = set(['threebean','jflory7','decause','bee2502','smdeep','Southern_Gentlem','mailga','lmacken'])
     expected_objects = set([
-    	'attendees/threebean',
-    	'attendees/jflory7',
-    	'attendees/decause',
-    	'attendees/bee2502',
-    	'attendees/smdeep',
-    	'attendees/Southern_Gentlem',
-    	'attendees/mailga',
-    	'attendees/lmacken',
+        'attendees/threebean',
+        'attendees/jflory7',
+        'attendees/decause',
+        'attendees/bee2502',
+        'attendees/smdeep',
+        'attendees/Southern_Gentlem',
+        'attendees/mailga',
+        'attendees/lmacken',
         'channels/#fedora-meeting-2',
         'titles/CommOps',
         'topics/CommOps: Q&A',
