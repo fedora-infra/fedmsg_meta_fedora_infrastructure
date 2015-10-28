@@ -485,6 +485,7 @@ class TestSupybotMeetingItemLink(Base):
         "topic": "org.fedoraproject.prod.meetbot.meeting.item.link"
     }
 
+
 class TestSupybotMeetingItemInfo(Base):
     """ As IRC meetings chug along, people can add information on important items to the minutes.
     Here's an example of someone **adding information** on some item:
@@ -551,9 +552,9 @@ class TestSupybotMeetingItemInfo(Base):
         }
         "msg_id": "2015-8c68f07c-2cf5-4c2d-87f7-1fa96d13ac1e", 
         "source_name": "datanommer",
-      	"source_version": "0.6.5", 
+        "source_version": "0.6.5", 
         "timestamp": 1445964758.0, 
-      	"topic": "org.fedoraproject.prod.meetbot.meeting.item.info"  	
+        "topic": "org.fedoraproject.prod.meetbot.meeting.item.info"  	
     }
 
 
