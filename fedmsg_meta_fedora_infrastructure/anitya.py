@@ -160,7 +160,7 @@ class AnityaProcessor(BaseProcessor):
         elif msg['topic'].endswith('project.flag'):
             project = msg['msg']['project']['name']
             tmpl = self._(
-                '{user} flagged the "{project}"')
+                '{user} flagged the project "{project}"')
             return tmpl.format(user=user, project=project)
         else:
             pass
