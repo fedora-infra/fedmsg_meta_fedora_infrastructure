@@ -485,6 +485,73 @@ class TestSupybotMeetingItemLink(Base):
         "topic": "org.fedoraproject.prod.meetbot.meeting.item.link"
     }
 
+class TestSupybotMeetingItemInfo(Base):
+    """ As IRC meetings chug along, people can add information on important items to the minutes.
+    Here's an example of someone **adding information** on some item:
+    """
+    expected_title = "meetbot.meeting.item.info"
+    expected_subti = (
+        ' decause raised a point of information in the "CommOps" meeting in' + \
+        ' #fedora-meeting-2: "Outreachy applications are due by Nov 2nd, ' + \
+        ' Selection ends by Nov 17th, and the work cycle runs full-time from' + \
+        ' Dec 7th-March 7th" ')
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/"+\
+                              "48e9519b487843512d133a31c4e73d25183110fda6d774e02c49a326939ff71b?s=128&d=retro"
+    expected_link = "http://meetbot.fedoraproject.org/fedora-meeting-2/2015-10-27/fedora-meeting-2.2015-10-27-16.03"
+    expected_usernames = set(['threebean','jflory7','decause','bee2502','smdeep','Southern_Gentlem','mailga','lmacken'])
+    expected_objects = set([
+	'attendees/threebean',
+	'attendees/jflory7',
+	'attendees/decause',
+	'attendees/bee2502',
+	'attendees/smdeep',
+	'attendees/Southern_Gentlem',
+	'attendees/mailga',
+	'attendees/lmacken',
+        'channels/#fedora-meeting-2',
+        'titles/CommOps',
+        'topics/CommOps: Q&A',
+    ])
+    msg= {
+	"i": 1325, 
+  	"msg": {
+  	    "meeting_topic": "CommOps", 
+    	    "attendees": {
+      		"threebean": 11, 
+            "jflory7": 11, 
+            "decause": 117, 
+            "bee2502": 9, 
+            "zodbot": 11, 
+            "jflory": 0, 
+            "smdeep": 4, 
+            "Southern_Gentlem": 16, 
+            "mailga": 11, 
+            "lmacken": 0
+         }, 
+        "chairs": {
+            "decause": true, 
+            "lmacken": true, 
+            "jflory": true, 
+            "threebean": true
+         }, 
+        "details": {
+            "linenum": 190, 
+            "line": "Outreachy applications are due by Nov 2nd, Selection ends by Nov 17th, and the work cycle runs full-time from Dec 7th-March 7th", 
+            "time_": 1445964758.0, 
+            "nick": "decause"
+        }, 
+        "topic": "CommOps: Q&A", 
+        "url": "http://meetbot.fedoraproject.org/fedora-meeting-2/2015-10-27/fedora-meeting-2.2015-10-27-16.03", 
+        "owner": "decause", 
+        "channel": "#fedora-meeting-2"
+    }
+    "msg_id": "2015-8c68f07c-2cf5-4c2d-87f7-1fa96d13ac1e", 
+    "source_name": "datanommer",
+  	"source_version": "0.6.5", 
+    "timestamp": 1445964758.0, 
+  	"topic": "org.fedoraproject.prod.meetbot.meeting.item.info"  	
+  	}
+
 
 class TestSupybotKarma(Base):
     """ In IRC, users can give each other "karma" by saying ``user++``
