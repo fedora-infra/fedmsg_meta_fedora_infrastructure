@@ -930,7 +930,7 @@ class TestProjectFlag_WithPackages(Base):
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
         "?s=64&d=retro"
-    expected_packages = set([])
+    expected_packages = set(['generic-colouriser'])
     expected_usernames = set(['pingou'])
     expected_objects = set(['projects/generic-colouriser'])
     msg = {
