@@ -255,5 +255,12 @@ class AnityaProcessor(BaseProcessor):
                 for pkg in packages
                 if pkg['distro'].lower() == 'fedora'
             ])
+        elif msg['topic'].endswith('project.flag'):
+            packages = msg['msg'].get('packages', [])
+            return set([
+                pkg['package_name']
+                for pkg in packages
+                if pkg['distro'].lower() == 'fedora'
+            ])
 
         return set([])
