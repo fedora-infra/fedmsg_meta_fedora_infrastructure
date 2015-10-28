@@ -157,6 +157,11 @@ class AnityaProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} deleted the distro "{project}"')
             return tmpl.format(user=user, project=project)
+        elif msg['topic'].endswith('project.flag'):
+            project = msg['msg']['project']['name']
+            tmpl = self._(
+                '{user} flagged the project "{project}"')
+            return tmpl.format(user=user, project=project)
         else:
             pass
 
@@ -212,6 +217,8 @@ class AnityaProcessor(BaseProcessor):
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.add' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
+        elif msg['topic'].endswith('project.flag'):
+            return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'distro.add' in msg['topic']:
             distro = msg['msg']['distro']['name']
             return set(['distros/%s' % distro])
@@ -243,6 +250,13 @@ class AnityaProcessor(BaseProcessor):
                 packages = msg['msg']['message']['packages']
             else:
                 packages = msg['msg']['packages']
+            return set([
+                pkg['package_name']
+                for pkg in packages
+                if pkg['distro'].lower() == 'fedora'
+            ])
+        elif msg['topic'].endswith('project.flag'):
+            packages = msg['msg'].get('packages', [])
             return set([
                 pkg['package_name']
                 for pkg in packages
