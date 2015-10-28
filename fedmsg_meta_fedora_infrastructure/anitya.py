@@ -157,6 +157,11 @@ class AnityaProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} deleted the distro "{project}"')
             return tmpl.format(user=user, project=project)
+        elif msg['topic'].endswith('project.flag'):
+            project = msg['msg']['distro']['name']
+            tmpl = self._(
+                '{user} flagged the "{project}"')
+            return tmpl.format(user=user, project=project)
         else:
             pass
 
@@ -211,6 +216,8 @@ class AnityaProcessor(BaseProcessor):
         elif 'project.add.tried' in msg['topic']:
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'project.add' in msg['topic']:
+            return set(['projects/%s' % msg['msg']['project']['name']])
+        elif msg['topic'].endswith('project.flag'):
             return set(['projects/%s' % msg['msg']['project']['name']])
         elif 'distro.add' in msg['topic']:
             distro = msg['msg']['distro']['name']
