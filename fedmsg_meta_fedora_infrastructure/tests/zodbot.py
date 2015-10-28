@@ -518,7 +518,7 @@ class TestSupybotMeetingItemInfo(Base):
     	"i": 1325, 
       	"msg": {
       	    "attendees": {
-          		"threebean": 11, 
+        	"threebean": 11, 
                 "jflory7": 11, 
                 "decause": 117, 
                 "bee2502": 9, 
