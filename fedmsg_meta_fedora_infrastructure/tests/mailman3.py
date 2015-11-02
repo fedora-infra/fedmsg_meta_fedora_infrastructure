@@ -77,9 +77,9 @@ class TestMailman3NewReply(Base):
                 "suspicious-header",
                 "references": "<5de4f14ae46cce6de03cf68ca06526a9.squirrel@"
                 "arekh.dyndns.org>\n\t<519DFB93.1060502@laiskiainen.org>",
-                "archived-at": "https://lists.fedoraproject.org/archives/"
+                "archived-at": "<https://lists.fedoraproject.org/archives/"
                 "list/devel@mm3test.fedoraproject.org/message/"
-                "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/",
+                "S3PHLMD7PGWXXLBN3GENHVK7JJ37UWLJ/>",
                 "message-id": "<d4f0cefb4a7b845451ecab2c4026fe4d.squirrel@"
                 "arekh.dyndns.org>",
                 "subject": "[Devel] Re:Software Management call for RFEs"

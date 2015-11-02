@@ -83,6 +83,10 @@ class MailmanProcessor(BaseProcessor):
     def link(self, msg, **config):
         base_url = 'https://lists.fedoraproject.org/archives'
         archived_at = msg['msg']['msg']['archived-at']
+        if archived_at and archived_at.startswith('<'):
+            archived_at = archived_at[1:]
+        if archived_at and archived_at.endswith('>'):
+            archived_at = archived_at[:-1]
         if archived_at and archived_at.startswith('http'):
             return archived_at
         elif archived_at:
