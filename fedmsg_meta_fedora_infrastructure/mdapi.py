@@ -21,8 +21,6 @@
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 
-import fedmsg.meta.base
-
 def get_packages(message):
     ''' Returns the list of all the packages mentionned in the message. '''
     pkgs = set()
