@@ -43,7 +43,7 @@ def get_summary(message):
     for category in message['msg']['differences']:
         cnt_a = len(message['msg']['differences'][category]['added'])
         cnt_d = len(message['msg']['differences'][category]['removed'])
-        summary.append('{}: +{}/-{}'.format(category, cnt_a, cnt_d))
+        summary.append('{0}: +{1}/-{2}'.format(category, cnt_a, cnt_d))
     return summary
 
 
