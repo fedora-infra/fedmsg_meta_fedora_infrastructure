@@ -35,12 +35,25 @@ def get_packages(message):
                 pkgs.add(name)
     return pkgs
 
+
+def get_objects(message):
+    repo = message['msg']['name']
+    for category in message['msg']['differences']:
+        for action in message['msg']['differences'][category]:
+            for details in message['msg']['differences'][category][action]:
+                if '/' in details[0]:
+                    name = details[-1]
+                else:
+                    name = details[0]
+                yield '%s/%s/%s/%s' % (repo, category, action, name)
+
+
 def get_summary(message):
     ''' Returns a summary of the addition/deletion for each category in
     the specified message.
     '''
     summary = list()
-    for category in message['msg']['differences']:
+    for category in sorted(message['msg']['differences']):
         cnt_a = len(message['msg']['differences'][category]['added'])
         cnt_d = len(message['msg']['differences'][category]['removed'])
         summary.append('{0}: +{1}/-{2}'.format(category, cnt_a, cnt_d))
@@ -67,23 +80,17 @@ class MdapiProcessor(BaseProcessor):
             raise NotImplementedError("%r" % msg)
 
     def secondary_icon(self, msg, **config):
-        return ""
+        return self.__icon__
 
     def link(self, msg, **config):
-        return "https://apps.fedoraproject.org/mdapi"
+        url = msg['msg']['url']
+        if url.startswith('http'):
+            return url
+        else:
+            return 'https://download.fedoraproject.org/pub/' + url
 
     def objects(self, msg, **config):
-        objs = set()
-
-        if 'mdapi.repo.update' in msg['topic']:
-            objs.add('mdapi/repo/update')
-
-        return objs
+        return set(get_objects(msg))
 
     def packages(self, msg, **config):
-        packages = set()
-
-        if 'mdapi.repo.update' in msg['topic']:
-            packages.update(get_packages(msg))
-
-        return packages
+        return set(get_packages(msg))

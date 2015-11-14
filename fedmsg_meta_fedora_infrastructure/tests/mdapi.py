@@ -31,14 +31,27 @@ class TestNewProject(Base):
     `pagure <https://pagure.io>`_.
     """
     expected_title = "mdapi.repo.update"
-    expected_subti = 'mdapi meta-data update: files: +5/-4, '\
-        'enhances: +0/-0, recommends: +2/-1, supplements: +0/-0, '\
-        'obsoletes: +2/-2, provides: +2/-2, suggests: +2/-2, '\
-        'conflicts: +1/-2, packages: +2/-3, requires: +2/-2'
+    expected_subti = (
+        'mdapi meta-data update: '
+        'conflicts: +1/-2, '
+        'enhances: +0/-0, '
+        'files: +5/-4, '
+        'obsoletes: +2/-2, '
+        'packages: +2/-3, '
+        'provides: +2/-2, '
+        'recommends: +2/-1, '
+        'requires: +2/-2, '
+        'suggests: +2/-2, '
+        'supplements: +0/-0')
     expected_link = "https://apps.fedoraproject.org/mdapi"
+    expected_link = "https://download.fedoraproject.org/pub/fedora/linux/" + \
+        "development/rawhide/x86_64/os/repodata/" + \
+        "a0c75ee3abe48a4b602560d1c7c408d8d151caa1865678d2e0e1eb442d96ba90-" + \
+        "filelists.sqlite.xz"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
-    expected_secondary_icon = ""
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
     expected_packages = set([
         'java-1.8.0-openjdk-devel-debug',
         'vips',
@@ -51,10 +64,10 @@ class TestNewProject(Base):
         'akonadi-mysql',
         'java-1.8.0-openjdk-headless',
         'python-wrapt-doc',
-        'python3-yui(x86-64)',
+        'python3-yui',
         'python-faker-doc',
         'python3-PyQt4-devel',
-        'boost(x86-32)',
+        'boost',
         'PyOpenGL',
         'audit-libs-devel',
         'python-simplegeneric',
@@ -65,12 +78,47 @@ class TestNewProject(Base):
         'tyrus-container-servlet',
         'python3-devel',
         'waf-python3',
-        'avahi-ui-sharp-devel(x86-64)',
+        'avahi-ui-sharp-devel',
         'python2-XStatic-roboto-fontface',
-        'python-Traits(x86-64)',
+        'python-Traits',
     ])
     expected_usernames = set([])
-    expected_objects = set(['mdapi/repo/update'])
+    expected_objects = set([
+        'rawhide/recommends/added/journal-brief',
+        'rawhide/files/removed/python3-devel',
+        'rawhide/provides/added/python2-XStatic-roboto-fontface',
+        'rawhide/files/removed/python3-celery',
+        'rawhide/provides/added/avahi-ui-sharp-devel(x86-64)',
+        'rawhide/packages/removed/python-wrapt-doc',
+        'rawhide/files/added/python3',
+        'rawhide/files/added/java-1.8.0-openjdk-headless',
+        'rawhide/obsoletes/removed/python-Traits(x86-64)',
+        'rawhide/requires/removed/rpm',
+        'rawhide/packages/removed/python3-dropbox',
+        'rawhide/suggests/added/meataxe',
+        'rawhide/recommends/removed/journal-brief',
+        'rawhide/provides/removed/django-markdown2',
+        'rawhide/conflicts/added/vips',
+        'rawhide/files/removed/waf-python3',
+        'rawhide/requires/added/libfdisk',
+        'rawhide/recommends/added/akonadi-mysql',
+        'rawhide/packages/added/python3-PyQt4-devel',
+        'rawhide/obsoletes/added/python-pytools',
+        'rawhide/obsoletes/added/python-aniso8601',
+        'rawhide/conflicts/removed/vips',
+        'rawhide/suggests/added/python-faker-doc',
+        'rawhide/suggests/removed/python-faker-doc',
+        'rawhide/requires/removed/boost(x86-32)',
+        'rawhide/files/added/java-1.8.0-openjdk-devel-debug',
+        'rawhide/packages/removed/audit-libs-devel',
+        'rawhide/provides/removed/python3-yui(x86-64)',
+        'rawhide/files/removed/java-1.8.0-openjdk-headless',
+        'rawhide/requires/added/PyOpenGL',
+        'rawhide/files/added/python3-celery',
+        'rawhide/conflicts/removed/python3',
+        'rawhide/packages/added/tyrus-container-servlet',
+        'rawhide/obsoletes/removed/python-simplegeneric',
+    ])
     msg = {
   "source_name": "datanommer",
   "certificate": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVWakNDQTcrZ0F3SUJBZ0lDQWpJd0RRWUpLb1pJaHZjTkFRRUZCUUF3Z2FBeEN6QUpCZ05WQkFZVEFsVlQKTVFzd0NRWURWUVFJRXdKT1F6RVFNQTRHQTFVRUJ4TUhVbUZzWldsbmFERVhNQlVHQTFVRUNoTU9SbVZrYjNKaApJRkJ5YjJwbFkzUXhEekFOQmdOVkJBc1RCbVpsWkcxelp6RVBNQTBHQTFVRUF4TUdabVZrYlhObk1ROHdEUVlEClZRUXBFd1ptWldSdGMyY3hKakFrQmdrcWhraUc5dzBCQ1FFV0YyRmtiV2x1UUdabFpHOXlZWEJ5YjJwbFkzUXUKYjNKbk1CNFhEVEUxTVRFd09URTFNRGN3TjFvWERUSTFNVEV3TmpFMU1EY3dOMW93Z2VReEN6QUpCZ05WQkFZVApBbFZUTVFzd0NRWURWUVFJRXdKT1F6RVFNQTRHQTFVRUJ4TUhVbUZzWldsbmFERVhNQlVHQTFVRUNoTU9SbVZrCmIzSmhJRkJ5YjJwbFkzUXhEekFOQmdOVkJBc1RCbVpsWkcxelp6RXhNQzhHQTFVRUF4TW9iV1JoY0drdGJXUmgKY0drd01TNXpkR2N1Y0doNE1pNW1aV1J2Y21Gd2NtOXFaV04wTG05eVp6RXhNQzhHQTFVRUtSTW9iV1JoY0drdApiV1JoY0drd01TNXpkR2N1Y0doNE1pNW1aV1J2Y21Gd2NtOXFaV04wTG05eVp6RW1NQ1FHQ1NxR1NJYjNEUUVKCkFSWVhZV1J0YVc1QVptVmtiM0poY0hKdmFtVmpkQzV2Y21jd2daOHdEUVlKS29aSWh2Y05BUUVCQlFBRGdZMEEKTUlHSkFvR0JBSzlPcmtWRUEyQXBPSUFwajZjTm95UEFzNjduaCswZTJHVzl4c0lCNEh3MkFkSUFERC9oVk1PeApZMitnSFA0SHRlb2F0dUpYcXpoZ0cybDJBNi8vTmVBQy9BZmhFSzJvUVcwNWs3K01nbklKbEdNb0ROU1hGL3FDCkdzNk1KL1VJdUQ1RXBCOTgwczNVSHRldjc0VnFVTE85Wi9UTkhIRTFOc1BKQVNOUlFtaVRBZ01CQUFHamdnRlgKTUlJQlV6QUpCZ05WSFJNRUFqQUFNQzBHQ1dDR1NBR0crRUlCRFFRZ0ZoNUZZWE41TFZKVFFTQkhaVzVsY21GMApaV1FnUTJWeWRHbG1hV05oZEdVd0hRWURWUjBPQkJZRUZMQXJsbEpZV3lTN2NLV1pSTkxRZzFITXptUTFNSUhWCkJnTlZIU01FZ2Mwd2djcUFGR3RBV3ZrU0NJbFo1MW5sQmZVQ0hRcE9meFFBb1lHbXBJR2pNSUdnTVFzd0NRWUQKVlFRR0V3SlZVekVMTUFrR0ExVUVDQk1DVGtNeEVEQU9CZ05WQkFjVEIxSmhiR1ZwWjJneEZ6QVZCZ05WQkFvVApEa1psWkc5eVlTQlFjbTlxWldOME1ROHdEUVlEVlFRTEV3Wm1aV1J0YzJjeER6QU5CZ05WQkFNVEJtWmxaRzF6Clp6RVBNQTBHQTFVRUtSTUdabVZrYlhObk1TWXdKQVlKS29aSWh2Y05BUWtCRmhkaFpHMXBia0JtWldSdmNtRncKY205cVpXTjBMbTl5WjRJSkFPTlFIa2RQRng1Rk1CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUNNQXNHQTFVZApEd1FFQXdJSGdEQU5CZ2txaGtpRzl3MEJBUVVGQUFPQmdRQUN3dGhVTmxHVlJndjViKzBsUWNyMHlzVHVPM3ZKCmhKNHl3a2x4U2Z0TEZUWGlQTWVBeU5COWxUOHN0Tk00SkhLbmZjT2pScVAzRi9CVy8vUFdKczg0eEtza1dLeXQKWFI5NGp6RXl3bnBycENhOTdHbWFjZVRHM3h4ci9PQ1o4Q09OK3pqRjg1ODlDNWxMcFBFR1FTbG4rcU1PdWlXNAp2TzBseFNrQUtXeW1Odz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K",
