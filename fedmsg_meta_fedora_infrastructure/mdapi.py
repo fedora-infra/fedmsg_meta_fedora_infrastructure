@@ -28,9 +28,11 @@ def get_packages(message):
         for action in message['msg']['differences'][category]:
             for details in message['msg']['differences'][category][action]:
                 if '/' in details[0]:
-                    pkgs.add(details[-1])
+                    name = details[-1]
                 else:
-                    pkgs.add(details[0])
+                    name = details[0]
+                name = name.split('(')[0]
+                pkgs.add(name)
     return pkgs
 
 def get_summary(message):
