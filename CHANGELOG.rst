@@ -1,4 +1,97 @@
 
+0.15.5
+------
+
+Pull Requests
+
+- (@ralphbean)      #325, Various fixes for autocloud.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/325
+- (@ralphbean)      #327, New processor for two-week atomic releng messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/327
+- (@ralphbean)      #324, Use aliases for bodhi links
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/324
+- (@ralphbean)      #328, Add links for bodhi buildroot overrides.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/328
+- (@ralphbean)      #329, Handle github "deployment" messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/329
+- (@ralphbean)      #331, Add a conglomerator for bodhi buildroot overrides.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/331
+- (@puiterwijk)     #332, buildsys.py needs pytz
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/332
+- (@puiterwijk)     #333, Add github.issue.labeled subtitle
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/333
+- (@puiterwijk)     #334, If only status is updated, show status in subtitle
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/334
+- (@ralphbean)      #330, Add hardcoded avatars for some system users.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/330
+- (@ralphbean)      #335, Add atomic icon for atomic messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/335
+- (@pypingou)       #336, Add support and test for anitya's messages about flagged projects
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/336
+- (@ralphbean)      #339, Test and fix mailman3 archived-at links that are surrounded with arrow braces.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/339
+- (@pypingou)       #341, Mdapi processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/341
+
+Commits
+
+- f997d8649 Use aliases for bodhi links in the last few places where its missing.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f997d8649
+- 1e775b208 pep8.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1e775b208
+- dc66d39ee Various fixes for autocloud.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dc66d39ee
+- 264d9620d New processor for two-week atomic releng messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/264d9620d
+- 4babded14 Add hardcoded avatars for some system users.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4babded14
+- 1e786e1aa Add links for bodhi buildroot overrides.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1e786e1aa
+- b8dd96e0a Handle github "deployment" messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b8dd96e0a
+- b5b61f47b Add a conglomerator for bodhi buildroot overrides.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b5b61f47b
+- a87f41591 Use nose to run the tests.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a87f41591
+- 2cba8fac2 buildsys.py needs pytz
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2cba8fac2
+- 6f9635933 Add github.issue.labeled subtitle
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6f9635933
+- ca3ac00ff If only status is updated, show status in subtitle
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ca3ac00ff
+- f0dbe654c Add atomic icon for atomic messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f0dbe654c
+- 1522086a5 Add support and test for anitya's messages about flagged projects
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1522086a5
+- f86f60d35 Fix the tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f86f60d35
+- a70d87f9c Fix the tests, again
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a70d87f9c
+- ba8804c41 Let's be forward compatible and support flag messages including the packages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ba8804c41
+- 6ec90bb95 Fix typo and adjust the unit-tests to include tests with packages information
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6ec90bb95
+- 1be3b8078 When we have packages information, it should return them
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1be3b8078
+- 3fdde3e42 Test and fix mailman3 archived-at links that are surrounded with arrow braces.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3fdde3e42
+- 0948044b5 Python3 support.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0948044b5
+- b6ad013a3 Add the mdapi processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b6ad013a3
+- 3e9bc64a4 Add the mdapi unit-tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3e9bc64a4
+- 80361b9fe Fix build for py2.6
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80361b9fe
+- 6ac6207b9 Remove unused import.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6ac6207b9
+- 78538f6bf Strip parenthetical suffix from package names.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/78538f6bf
+- e38703409 Some updates to mdapi.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e38703409
+- b73c12380 Whitespace.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b73c12380
+
 0.15.4
 ------
 
