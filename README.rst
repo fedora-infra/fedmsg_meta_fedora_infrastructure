@@ -50,7 +50,8 @@ Running the Tests
     $ python setup.py develop
 
     # Run the tests
-    $ python setup.py test
+    $ pip install nose
+    $ $(which nosetests)
 
 Building the Docs
 -----------------

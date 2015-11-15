@@ -27,6 +27,8 @@ from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
         requests as bodhi_requests
 from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
         comments as bodhi_comments
+from fedmsg_meta_fedora_infrastructure.conglomerators.bodhi import \
+        overrides as bodhi_overrides
 
 
 def get_sync_product(msg):
@@ -50,9 +52,9 @@ def author_link(username):
         "users/{user}'>{user}</a>".format(user=username)
 
 
-def update_link(title):
+def update_link(alias, title):
     return "<a href='https://bodhi.fedoraproject.org/updates/" + \
-        "{title1}'>{title2}</a>".format(title1=title, title2=truncate(title))
+        "{alias}'>{title}</a>".format(alias=alias, title=truncate(title))
 
 
 def truncate(title):
@@ -75,6 +77,8 @@ class BodhiProcessor(BaseProcessor):
         bodhi_requests.ByUser,
         bodhi_comments.ByUpdate,
         bodhi_comments.ByUser,
+        bodhi_overrides.ByUserTag,
+        bodhi_overrides.ByUserUnTag,
     ]
 
     def _u2p(self, update):
@@ -143,9 +147,11 @@ class BodhiProcessor(BaseProcessor):
             tmpl = self._("{agent} requested a mash of {updates} updates")
             return tmpl.format(agent=agent, updates=updates)
         elif 'bodhi.update.comment' in msg['topic']:
-            author = msg['msg']['comment']['author']
-            karma = msg['msg']['comment']['karma']
-            title = msg['msg']['comment']['update_title']
+            comment = msg['msg']['comment']
+            author = comment['author']
+            karma = comment['karma']
+            title = comment['update_title']
+            alias = comment.get('update', {}).get('alias') or title
 
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
@@ -156,7 +162,7 @@ class BodhiProcessor(BaseProcessor):
             else:
                 return tmpl.format(
                     author=author_link(author),
-                    title=update_link(title),
+                    title=update_link(alias, title),
                     karma=karma,
                 )
 
@@ -191,6 +197,7 @@ class BodhiProcessor(BaseProcessor):
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
             title = msg['msg']['update']['title']
+            alias = msg['msg']['update'].get('alias') or title
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
@@ -204,7 +211,7 @@ class BodhiProcessor(BaseProcessor):
             else:
                 return tmpl.format(
                     author=author_link(author),
-                    title=update_link(title),
+                    title=update_link(alias, title),
                     status=status,
                 )
         elif 'bodhi.mashtask.mashing' in msg['topic']:
@@ -300,6 +307,11 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
+        elif 'bodhi.buildroot_override' in msg['topic']:
+            build = msg['msg']['override']['build']
+            if isinstance(build, dict):
+                build = build['nvr']
+            return prefix + "/overrides/{nvr}".format(nvr=build)
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
             repo = msg['msg']['repo']

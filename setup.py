@@ -45,6 +45,7 @@ install_requires = [
     'fedmsg',
     'python-fedora',
     'python-dateutil',
+    'pytz'
 ]
 tests_require = [
     'nose',
@@ -109,12 +110,14 @@ entry_points = {
         "InfraGitProcessor",
         "taskotron=fedmsg_meta_fedora_infrastructure.taskotron:"
         "TaskotronProcessor",
+        "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
+        "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.15.4',
+    version='0.15.5',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

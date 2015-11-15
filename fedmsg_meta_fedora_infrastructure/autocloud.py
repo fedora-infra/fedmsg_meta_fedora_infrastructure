@@ -31,31 +31,36 @@ class AutoCloudProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         image_name = msg['msg']['image_name']
         status = msg['msg']['status']
+        release = msg['msg'].get('release')
         if 'autocloud.image' in msg['topic']:
             if status == "queued":
                 tmpl = self._("{image_name} is {status} for testing")
             if status == "running":
-                tmpl = self._("The tests for the {image_name} has "
+                tmpl = self._("The tests for the {image_name} have "
                               "started {status}")
             if status == "aborted":
-                tmpl = self._("The tests for the {image_name} has "
+                tmpl = self._("The tests for the {image_name} have "
                               "been {status}")
             if status == "failed":
                 tmpl = self._("The tests for the {image_name} {status}")
             if status == "success":
-                tmpl = self._("The tests for {image_name} was {status}")
+                tmpl = self._("The tests for {image_name} were a {status}")
+
+            if release:
+                image_name = "%s (%s)" % (image_name, release)
 
             return tmpl.format(image_name=image_name, status=status)
-
-    def link(self, msg, **config):
-        return self.__link__
 
     def secondary_icon(self, msg, **config):
         return self.__icon__
 
     def link(self, msg, **config):
-        image_url = msg['msg']['image_url']
-        return image_url
+        job_id = msg['msg'].get('job_id')
+        if job_id:
+            template = 'https://apps.fedoraproject.org/autocloud/jobs/%s/output'
+            return template % job_id
+        else:
+            return msg['msg']['image_url']
 
     def objects(self, msg, **config):
         status = msg['msg']['status']

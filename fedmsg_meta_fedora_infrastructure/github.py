@@ -61,6 +61,8 @@ class GithubProcessor(BaseProcessor):
             return None
 
     def link(self, msg, **config):
+        if 'github.deployment_status' in msg['topic']:
+            return msg['msg']['deployment_status']['target_url']
         if 'github.watch' in msg['topic']:
             return msg['msg']['repository']['html_url'] + "/watchers"
         if 'github.star' in msg['topic']:
@@ -109,6 +111,11 @@ class GithubProcessor(BaseProcessor):
         repo = self._get_repo(msg)
         if 'github.webhook' in msg['topic']:
             return self._('A new github repository has been added to fedmsg')
+        elif 'github.deployment_status' in msg['topic']:
+            tmpl = self._('{user}\'s deployment status for {repo} '
+                          'updated to "{status}"')
+            status = msg['msg']['deployment_status']['state']
+            return tmpl.format(user=user, repo=repo, status=status)
         elif 'github.push' in msg['topic']:
             n = len(msg['msg']['commits'])
             tmpl = self._('{user} pushed {n} commit(s) to {repo}')
@@ -151,6 +158,14 @@ class GithubProcessor(BaseProcessor):
                     n=n,
                     repo=repo,
                     title=title)
+            elif action == 'labeled':
+                label = msg['msg']['label']['name']
+                tmpl = self._('{user} added label {label} to issue #{n} on {repo}')
+                return tmpl.format(
+                    user=user,
+                    label=label,
+                    n=n,
+                    repo=repo)
             else:
                 tmpl = self._('{user} {action} issue #{n} on {repo}')
                 return tmpl.format(user=user, action=action, n=n, repo=repo)
@@ -240,7 +255,8 @@ class GithubProcessor(BaseProcessor):
             'github.star': None,
             'github.page_build': 'page_build',
             'github.team_add': 'team_add',
-            'github.member': 'member'
+            'github.member': 'member',
+            'github.deployment_status': 'deployment_status',
         }
 
         if suffix not in lookup:

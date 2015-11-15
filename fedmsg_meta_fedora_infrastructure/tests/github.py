@@ -330,6 +330,132 @@ class TestGithubIssueOpen(Base):
         }
     }
 
+class TestGithubIssueLabel(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **adds a label to an
+    issue on an enabled github repository**.
+    """
+
+    expected_title = "github.issue.labeled"
+    expected_subti = 'ralph added label JS to issue #664 on fedora-infra/bodhi'
+    expected_link = "https://github.com/fedora-infra/bodhi/issues/664"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'fedora-infra/bodhi/issues/664',
+    ])
+    msg = {
+        "i": 2,
+        "timestamp": 1445299902.0,
+        "msg_id": "2015-57ff1231-66ac-4273-8959-61b064aeb333",
+        "topic": "org.fedoraproject.prod.github.issue.labeled",
+        "source_version": "0.6.5",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/ralphbean",
+                "site_admin": False,
+                "html_url": "https://github.com/ralphbean",
+                "gravatar_id": "",
+                "login": "ralphbean",
+                "type": "User",
+                "id": 331338
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2015-10-18T19:35:29Z",
+                "private": False,
+                "full_name": "fedora-infra/bodhi",
+                "owner": {
+                    "url": "https://api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https://github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 123299,
+                "size": 37504,
+                "watchers_count": 18,
+                "forks": 40,
+                "homepage": "http://bodhi.fedorahosted.org",
+                "fork": False,
+                "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                "has_downloads": True,
+                "forks_count": 40,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "has_issues": True,
+                "stargazers_count": 18,
+                "open_issues_count": 104,
+                "watchers": 18,
+                "name": "bodhi",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "created_at": "2009-02-06T19:38:10Z",
+                "pushed_at": "2015-10-19T16:21:53Z",
+                "open_issues": 104
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "ralphbean": "ralph"
+            },
+            "label": {
+                "color": "006b75",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/labels/JS",
+                "name": "JS"
+            },
+            "action": "labeled",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "description": "",
+                "id": 3316637
+            }, 
+            "issue": {
+                "body": "... both  Candidate Builds and Related Bugs frames are affected.\r\n\r\nPossible solution: remove anything added through association with the currently used input, only then reflect the data from the new query.  Provided that each query is processed anew, these queries are time sensitive, so that the new and old data for the same input can differ.",
+                "locked": False,
+                "title": "Create New Update: repeated search for the same package leads to duplication clutter",
+                "updated_at": "2015-10-20T00:11:50Z",
+                "created_at": "2015-10-19T20:39:37Z",
+                "labels": [
+                    {
+                        "color": "006b75",
+                        "url": "https://api.github.com/repos/fedora-infra/bodhi/labels/JS",
+                        "name": "JS"
+                    }
+                ],
+                "html_url": "https://github.com/fedora-infra/bodhi/issues/664",
+                "comments": 2,
+                "number": 664,
+                "assignee": None,
+                "state": "open",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/issues/664",
+                "milestone": None,
+                "closed_at": None,
+                "id": 112228308,
+                "user": {
+                    "url": "https://api.github.com/users/jnpkrn",
+                    "site_admin": False,
+                    "html_url": "https://github.com/jnpkrn",
+                    "gravatar_id": "",
+                    "login": "jnpkrn",
+                    "type": "User",
+                    "id": 1391681
+                }
+            }
+        }
+    }
+
 class TestGithubIssueReopen(Base):
     """ There exists `a service
     <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
@@ -2236,6 +2362,128 @@ class TestGithubMember(Base):
         }
     }
 
+
+class TestGithubDeploymentStatus(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever github **updates the
+    deployment status** of a repo.
+    """
+    expected_title = "github.deployment_status"
+    expected_subti = "kracekumar's deployment status for " + \
+        "pythonindia/junction updated to \"success\""
+    expected_link = "https://junctiondemo.herokuapp.com/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "293c68a7eb257300467436adc8ff26c20a75d7394bd46f44f48854cc91cb97b0"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set([])  # kracekumar is not a FAS user
+    expected_objects = set(['pythonindia/junction/deployment_status'])
+    msg = {
+        "i": 3,
+        "timestamp": 1435852322.0,
+        "topic": "org.fedoraproject.prod.github.deployment_status",
+        "msg": {
+            "sender": {
+                "url": "https://api.github.com/users/kracekumar",
+                "site_admin": False,
+                "html_url": "https://github.com/kracekumar",
+                "gravatar_id": "",
+                "login": "kracekumar",
+                "type": "User",
+                "id": 311929
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": True,
+                "updated_at": "2015-06-30T14:13:26Z",
+                "private": False,
+                "full_name": "pythonindia/junction",
+                "owner": {
+                    "url": "https://api.github.com/users/pythonindia",
+                    "site_admin": False,
+                    "html_url": "https://github.com/pythonindia",
+                    "gravatar_id": "",
+                    "login": "pythonindia",
+                    "type": "Organization",
+                    "id": 1763047
+                },
+                "id": 27966694,
+                "size": 5497,
+                "watchers_count": 26,
+                "forks": 38,
+                "homepage": "",
+                "fork": False,
+                "description": "Junction is a software to manage proposals, reviews, schedule, feedback during conference.",
+                "has_downloads": True,
+                "forks_count": 38,
+                "default_branch": "master",
+                "html_url": "https://github.com/pythonindia/junction",
+                "has_issues": True,
+                "stargazers_count": 26,
+                "open_issues_count": 43,
+                "watchers": 26,
+                "name": "junction",
+                "language": "CSS",
+                "url": "https://api.github.com/repos/pythonindia/junction",
+                "created_at": "2014-12-13T16:40:17Z",
+                "pushed_at": "2015-07-02T15:48:47Z",
+                "open_issues": 43
+            },
+            "fas_usernames": {
+                "pythonindia": "github_org_pythonindia"
+            },
+            "deployment": {
+                "task": "deploy",
+                "description": None,
+                "creator": {
+                    "url": "https://api.github.com/users/kracekumar",
+                    "site_admin": False,
+                    "html_url": "https://github.com/kracekumar",
+                    "gravatar_id": "",
+                    "login": "kracekumar",
+                    "type": "User",
+                    "id": 311929
+                },
+                "url": "https://api.github.com/repos/pythonindia/junction/deployments/1128986",
+                "created_at": "2015-07-02T15:51:23Z",
+                "updated_at": "2015-07-02T15:51:23Z",
+                "payload": {},
+                "environment": "junctiondemo",
+                "sha": "291c9005b3ec899c8bc0cac3bf8dbf1d1948713b",
+                "ref": "291c9005b3ec899c8bc0cac3bf8dbf1d1948713b",
+                "id": 1128986
+            },
+            "organization": {
+                "url": "https://api.github.com/orgs/pythonindia",
+                "login": "pythonindia",
+                "description": None,
+                "id": 1763047
+            },
+            "deployment_status": {
+                "target_url": "https://junctiondemo.herokuapp.com/",
+                "description": None,
+                "creator": {
+                    "url": "https://api.github.com/users/kracekumar",
+                    "site_admin": False,
+                    "html_url": "https://github.com/kracekumar",
+                    "gravatar_id": "",
+                    "login": "kracekumar",
+                    "type": "User",
+                    "id": 311929
+                },
+                "url": "https://api.github.com/repos/pythonindia/junction/deployments/1128986/statuses/1923714",
+                "created_at": "2015-07-02T15:52:02Z",
+                "updated_at": "2015-07-02T15:52:02Z",
+                "state": "success",
+                "id": 1923714
+            }
+        }
+    }
 
 if not 'FEDMSG_META_NO_NETWORK' in os.environ:
     TestGithubPush.expected_long_form = full_patch1

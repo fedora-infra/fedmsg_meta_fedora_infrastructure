@@ -664,6 +664,73 @@ class TestIssueEdit(Base):
     }
 
 
+class TestIssueEditStatus(Base):
+    """ These messages are published when a someone edited a ticket opened
+    against a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.issue.edit"
+    expected_subti = 'pingou set the status of ticket foo#4 to: Fixed'
+    expected_link = "https://pagure.io/foo/issue/4"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo', 'issue/4'])
+    msg = {
+      "i": 5,
+      "timestamp": 1427454847,
+      "msg_id": "2015-5755ee3a-43ba-4552-9423-8fe3b0a96662",
+      "topic": "io.pagure.dev.pagure.issue.edit",
+      "msg": {
+        "fields": [
+          "status"
+        ],
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": True,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "issue": {
+          "status": "Fixed",
+          "blocks": [],
+          "title": "bug",
+          "tags": [
+            "0.1"
+          ],
+          "comments": [],
+          "content": "report",
+          "assignee": None,
+          "depends": [],
+          "private": False,
+          "date_created": "1427442217",
+          "id": 4,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
 class TestProjectEdit(Base):
     """ These messages are published when a someone edited a project on
     `pagure <https://pagure.io>`_.
