@@ -111,6 +111,7 @@ entry_points = {
         "taskotron=fedmsg_meta_fedora_infrastructure.taskotron:"
         "TaskotronProcessor",
         "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
+        "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
     ]
 }
 
