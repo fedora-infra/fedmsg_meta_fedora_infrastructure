@@ -32,7 +32,7 @@ class TestNewProject(Base):
     """
     expected_title = "mdapi.repo.update"
     expected_subti = (
-        'mdapi meta-data update: '
+        'mdapi noticed a rawhide repomd change: '
         'conflicts: +1/-2, '
         'enhances: +0/-0, '
         'files: +5/-4, '

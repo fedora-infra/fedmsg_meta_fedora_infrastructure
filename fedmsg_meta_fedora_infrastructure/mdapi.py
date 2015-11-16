@@ -72,10 +72,11 @@ class MdapiProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         if 'mdapi.repo.update' in msg['topic']:
             tmpl = self._(
-                u"mdapi meta-data update: {summary}"
+                u"mdapi noticed a {repo} repomd change: {summary}"
             )
+            repo = msg['msg']['name']
             summary = ', '.join(get_summary(msg))
-            return tmpl.format(summary=summary)
+            return tmpl.format(repo=repo, summary=summary)
         else:
             raise NotImplementedError("%r" % msg)
 
