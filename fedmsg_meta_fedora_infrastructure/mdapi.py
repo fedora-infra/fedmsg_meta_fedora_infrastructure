@@ -54,9 +54,11 @@ def get_summary(message):
     '''
     summary = list()
     for category in sorted(message['msg']['differences']):
-        cnt_a = len(message['msg']['differences'][category]['added'])
-        cnt_d = len(message['msg']['differences'][category]['removed'])
-        summary.append('{0}: +{1}/-{2}'.format(category, cnt_a, cnt_d))
+        count_a = len(message['msg']['differences'][category]['added'])
+        count_b = len(message['msg']['differences'][category]['removed'])
+        if not count_a and not count_b:
+            continue
+        summary.append('{0}: +{1}/-{2}'.format(category, count_a, count_b))
     return summary
 
 
@@ -72,10 +74,11 @@ class MdapiProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         if 'mdapi.repo.update' in msg['topic']:
             tmpl = self._(
-                u"mdapi meta-data update: {summary}"
+                u"mdapi noticed a {repo} repomd change: {summary}"
             )
+            repo = msg['msg']['name']
             summary = ', '.join(get_summary(msg))
-            return tmpl.format(summary=summary)
+            return tmpl.format(repo=repo, summary=summary)
         else:
             raise NotImplementedError("%r" % msg)
 
