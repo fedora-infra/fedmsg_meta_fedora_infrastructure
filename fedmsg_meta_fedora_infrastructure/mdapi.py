@@ -54,9 +54,11 @@ def get_summary(message):
     '''
     summary = list()
     for category in sorted(message['msg']['differences']):
-        cnt_a = len(message['msg']['differences'][category]['added'])
-        cnt_d = len(message['msg']['differences'][category]['removed'])
-        summary.append('{0}: +{1}/-{2}'.format(category, cnt_a, cnt_d))
+        count_a = len(message['msg']['differences'][category]['added'])
+        count_b = len(message['msg']['differences'][category]['removed'])
+        if not count_a and not count_b:
+            continue
+        summary.append('{0}: +{1}/-{2}'.format(category, count_a, count_b))
     return summary
 
 
