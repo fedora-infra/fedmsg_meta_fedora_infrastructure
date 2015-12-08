@@ -1,0 +1,58 @@
+# This file is part of fedmsg.
+# Copyright (C) 2015 Red Hat, Inc.
+#
+# fedmsg is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# fedmsg is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public
+# License along with fedmsg; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+#
+# Authors:  Ralph Bean <rbean@redhat.com>
+#
+from fedmsg_meta_fedora_infrastructure import BaseProcessor
+
+
+class PungiKojiProcessor(BaseProcessor):
+    __name__ = "pungi"
+    __description__ = "Fedora Release Engineering"
+    __link__ = "https://git.fedorahosted.org/cgit/releng"
+    __docs__ = "https://fedoraproject.org/wiki/ReleaseEngineering"
+    __obj__ = "Composes"
+
+    def subtitle(self, msg, **config):
+        compose = msg['msg']['compose_id']
+        if msg['topic'].endswith('pungi.compose.status.change'):
+            statuses = {
+                'STARTED': self._('started'),
+                'FINISHED': self._('just finished'),
+                'DOOMED': self._('failed in a horrible fire'),
+            }
+            status = statuses.get(msg['msg']['status'], msg['msg']['status'])
+            tmpl = self._("pungi-koji compose of {compose} {status}")
+            return tmpl.format(compose=compose, status=status)
+        elif msg['topic'].endswith('pungi.compose.phase.start'):
+            phase = msg['msg']['phase_name']
+            tmpl = self._("pungi-koji started the {phase} phase "
+                          "of the {compose} compose")
+            return tmpl.format(compose=compose, phase=phase)
+        elif msg['topic'].endswith('pungi.compose.phase.stop'):
+            phase = msg['msg']['phase_name']
+            tmpl = self._("pungi-koji finished the {phase} phase "
+                          "of the {compose} compose")
+            return tmpl.format(compose=compose, phase=phase)
+
+    def link(self, msg, **config):
+        compose = msg['msg']['compose_id']
+        return "https://kojipkgs.fedoraproject.org/compose/rawhide/" + compose
+
+    def objects(self, msg, **config):
+        compose = msg['msg']['compose_id']
+        return set(["rawhide/" + "/".join(compose.split('.'))])
