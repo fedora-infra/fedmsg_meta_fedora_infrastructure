@@ -23,8 +23,8 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 class ComposeProcessor(BaseProcessor):
     __name__ = "compose"
     __description__ = "Fedora Release Engineering"
-    __link__ = "https://git.fedorahosted.org/cgit/releng"
-    __docs__ = "https://fedoraproject.org/wiki/ReleaseEngineering"
+    __link__ = "https://pagure.io/releng"
+    __docs__ = "https://pagure.io/docs/releng"
     __obj__ = "Composes"
 
     def subtitle(self, msg, **config):
