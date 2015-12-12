@@ -62,8 +62,8 @@ class PungiKojiProcessor(BaseProcessor):
             return tmpl.format(N=N)
 
     def link(self, msg, **config):
-        compose = msg['msg']['compose_id']
-        return "https://kojipkgs.fedoraproject.org/compose/rawhide/" + compose
+        if 'location' in msg['msg']:
+            return msg['msg']['location'].strip('/').strip('/compose')
 
     def objects(self, msg, **config):
         if 'deliverables' in msg['msg']:

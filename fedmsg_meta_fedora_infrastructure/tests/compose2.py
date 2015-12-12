@@ -34,12 +34,14 @@ class TestPungiKojiStart(Base):
     """
     expected_title = "pungi.compose.status.change"
     expected_subti = "pungi-koji compose of Fedora-24-20151208.n.7 started"
-    expected_link = "https://kojipkgs.fedoraproject.org/" + \
-        "compose/rawhide/Fedora-24-20151208.n.7"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//rawhide/Fedora-24-20151208.n.7"
     expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
     msg = {
         "msg": {
             "compose_id": "Fedora-24-20151208.n.7",
+            "location": "http://kojipkgs.fedoraproject.org/compose/"
+            "/rawhide/Fedora-24-20151208.n.7/compose",
             "status": "STARTED"
         },
         "timestamp": 1449600728.0,
@@ -57,12 +59,14 @@ class TestPungiKojiComplete(Base):
     """
     expected_title = "pungi.compose.status.change"
     expected_subti = "pungi-koji compose of Fedora-24-20151208.n.7 just finished"
-    expected_link = "https://kojipkgs.fedoraproject.org/" + \
-        "compose/rawhide/Fedora-24-20151208.n.7"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//rawhide/Fedora-24-20151208.n.7"
     expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
     msg = {
         "msg": {
             "compose_id": "Fedora-24-20151208.n.7",
+            "location": "http://kojipkgs.fedoraproject.org/compose/"
+            "/rawhide/Fedora-24-20151208.n.7/compose",
             "status": "FINISHED"
         },
         "timestamp": 1449600728.0,
@@ -82,8 +86,8 @@ class TestPungiPhaseStart(Base):
     expected_title = "pungi.compose.phase.start"
     expected_subti = "pungi-koji started the createrepo phase of the " + \
         "Fedora-24-20151208.n.7 compose"
-    expected_link = "https://kojipkgs.fedoraproject.org/" + \
-        "compose/rawhide/Fedora-24-20151208.n.7"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//rawhide/Fedora-24-20151208.n.7"
     expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
     msg = {
         "i": 1,
@@ -92,7 +96,9 @@ class TestPungiPhaseStart(Base):
         "topic": "org.fedoraproject.prod.pungi.compose.phase.start",
         "msg": {
             "phase_name": "createrepo",
-            "compose_id": "Fedora-24-20151208.n.7"
+            "compose_id": "Fedora-24-20151208.n.7",
+            "location": "http://kojipkgs.fedoraproject.org/compose/"
+            "/rawhide/Fedora-24-20151208.n.7/compose",
         }
     }
 
@@ -107,8 +113,8 @@ class TestPungiCreateISOTargets(Base):
     """
     expected_title = "pungi.compose.createiso.targets"
     expected_subti = "pungi-koji assigned 3 createiso targets"
-    expected_link = "https://kojipkgs.fedoraproject.org/" + \
-        "compose/rawhide/Fedora-24-20151208.n.7"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//rawhide/Fedora-24-20151208.n.7"
     expected_objects = set([
         "mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose/Server/"
         "armhfp/iso/Fedora-24-20151208.n.7-Server-armhfp-dvd1.iso",
@@ -128,7 +134,9 @@ class TestPungiCreateISOTargets(Base):
                 "/mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose/Server/i386/iso/Fedora-24-20151208.n.7-Server-i386-dvd1.iso",
                 "/mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose/Server/x86_64/iso/Fedora-24-20151208.n.7-Server-x86_64-dvd1.iso"
             ],
-            "compose_id": "Fedora-24-20151208.n.7"
+            "compose_id": "Fedora-24-20151208.n.7",
+            "location": "http://kojipkgs.fedoraproject.org/compose/"
+            "/rawhide/Fedora-24-20151208.n.7/compose",
         }
     }
 
@@ -144,8 +152,8 @@ class TestPungiCreateISOWin(Base):
     expected_title = "pungi.compose.createiso.imagedone"
     expected_subti = "pungi-koji finished createiso for " + \
             "Server/i386/iso/Fedora-24-20151208.n.7-Server-i386-dvd1.iso"
-    expected_link = "https://kojipkgs.fedoraproject.org/" + \
-        "compose/rawhide/Fedora-24-20151208.n.7"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//rawhide/Fedora-24-20151208.n.7"
     expected_objects = set([
         "mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose/Server/"
         "i386/iso/Fedora-24-20151208.n.7-Server-i386-dvd1.iso",
@@ -160,7 +168,9 @@ class TestPungiCreateISOWin(Base):
             "arch": "i386",
             "file": "/mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose"
             "/Server/i386/iso/Fedora-24-20151208.n.7-Server-i386-dvd1.iso",
-            "compose_id": "Fedora-24-20151208.n.7"
+            "compose_id": "Fedora-24-20151208.n.7",
+            "location": "http://kojipkgs.fedoraproject.org/compose/"
+            "/rawhide/Fedora-24-20151208.n.7/compose",
         }
     }
 
