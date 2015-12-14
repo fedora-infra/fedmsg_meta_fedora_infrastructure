@@ -210,13 +210,6 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     expected_subti = "lmacken submitted " + \
         "gnome-settings-daemon-3.6.1-1.fc18,contr..." + \
         " to testing"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> submitted "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18'>"
-        "gnome-settings-daemon-3.6.1-1.fc18,contr...</a>"
-        " to testing")
     expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
@@ -424,11 +417,6 @@ class TestBodhiRequestUnpush(Base):
     """
     expected_title = "bodhi.update.request.unpush"
     expected_subti = "lmacken unpushed foo"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> unpushed "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "foo'>foo</a>")
     expected_link = "https://bodhi.fedoraproject.org/updates/foo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -457,11 +445,6 @@ class TestBodhiRequestObsolete(Base):
     """
     expected_title = "bodhi.update.request.obsolete"
     expected_subti = "lmacken obsoleted foo"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> obsoleted "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "foo'>foo</a>")
     expected_link = "https://bodhi.fedoraproject.org/updates/foo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -489,11 +472,6 @@ class TestBodhiRequestStable(Base):
     """
     expected_title = "bodhi.update.request.stable"
     expected_subti = "lmacken submitted foo to stable"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> submitted "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "foo'>foo</a> to stable")
     expected_link = "https://bodhi.fedoraproject.org/updates/foo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -521,11 +499,6 @@ class TestBodhiRequestRevoke(Base):
     """
     expected_title = "bodhi.update.request.revoke"
     expected_subti = "lmacken revoked foo"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> revoked "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "foo'>foo</a>")
     expected_link = "https://bodhi.fedoraproject.org/updates/foo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -553,11 +526,6 @@ class TestBodhiRequestTesting(Base):
     """
     expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted foo to testing"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> submitted "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "foo'>foo</a> to testing")
     expected_link = "https://bodhi.fedoraproject.org/updates/foo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -587,11 +555,6 @@ class TestBodhiComment(Base):
     expected_subti = "ralph commented on bodhi update fedmsg-1.0-1 (karma: -1)"
     expected_long_form = "Can you believe how much testing we're doing? " + \
         "/cc @codeblock."
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/ralph'>"
-        "ralph</a> commented on bodhi update "
-        "<a href='https://bodhi.fedoraproject.org/updates/"
-        "fedmsg-1.0-1'>fedmsg-1.0-1</a> (karma: -1)")
     expected_link = "https://bodhi.fedoraproject.org/updates/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -626,9 +589,6 @@ class TestBodhiOverrideTagged(Base):
     """
     expected_title = "bodhi.buildroot_override.tag"
     expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
     expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -662,9 +622,6 @@ class LegacyTestBodhiOverrideTagged(Base):
     """
     expected_title = "bodhi.buildroot_override.tag"
     expected_subti = "lmacken submitted a buildroot override for fedmsg-1.0-1"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> submitted a buildroot override for fedmsg-1.0-1")
     expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -693,9 +650,6 @@ class TestBodhiOverrideUntagged(Base):
     """
     expected_title = "bodhi.buildroot_override.untag"
     expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
     expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
@@ -730,9 +684,6 @@ class LegacyTestBodhiOverrideUntagged(Base):
     """
     expected_title = "bodhi.buildroot_override.untag"
     expected_subti = "lmacken expired a buildroot override for fedmsg-1.0-1"
-    expected_markup = (
-        "<a href='https://bodhi.fedoraproject.org/users/lmacken'>"
-        "lmacken</a> expired a buildroot override for fedmsg-1.0-1")
     expected_link = "https://bodhi.fedoraproject.org/overrides/fedmsg-1.0-1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
