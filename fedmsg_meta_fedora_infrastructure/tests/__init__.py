@@ -23,6 +23,7 @@ import unittest
 
 from fedmsg_meta_fedora_infrastructure.tests.bodhi import *
 from fedmsg_meta_fedora_infrastructure.tests.compose import *
+from fedmsg_meta_fedora_infrastructure.tests.compose2 import *
 from fedmsg_meta_fedora_infrastructure.tests.pkgdb import *
 from fedmsg_meta_fedora_infrastructure.tests.planet import *
 from fedmsg_meta_fedora_infrastructure.tests.buildsys import *
