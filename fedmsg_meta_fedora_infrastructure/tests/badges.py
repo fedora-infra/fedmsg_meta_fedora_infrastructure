@@ -124,10 +124,6 @@ class TestFirstLogin(Base):
     expected_title = "fedbadges.person.login.first"
     expected_subti = "ralph logged in to badges.fedoraproject.org " + \
         "for the first time"
-    #expected_markup = (
-    #    "<a href='https://badges.fedoraproject.org/user/ralph'>ralph</a> "
-    #    "logged in to <a href='https://badges.fedoraproject.org'>"
-    #    "badges.fedoraproject.org</a> for the first time")
     expected_link = "https://badges.fedoraproject.org/user/ralph"
     expected_icon = "https://apps.fedoraproject.org/img/icons/badges.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
