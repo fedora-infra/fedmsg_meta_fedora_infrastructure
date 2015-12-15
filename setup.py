@@ -113,6 +113,7 @@ entry_points = {
         "TaskotronProcessor",
         "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
         "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
+        "nagios=fedmsg_meta_fedora_infrastructure.nagios:NagiosProcessor",
     ]
 }
 
