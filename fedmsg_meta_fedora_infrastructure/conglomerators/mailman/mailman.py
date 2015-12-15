@@ -55,10 +55,15 @@ class ByMessageId(fedmsg.meta.base.BaseConglomerator):
         people = self.list_to_series(people)
         mlists = self.list_to_series(mlists)
 
-        subjects = set([
-            m['msg']['msg']['subject'].lower().split('re: ')[-1]
-            for m in ms
-        ])
+        # Build a set of subjects and strip off the leading 'Re: RE: re: ...'
+        subjects = set()
+        for m in ms:
+            subject = m['msg']['msg']['subject']
+            if 're: ' in subject.lower():
+                index = subject.lower().rindex('re: ') + 4
+                subject = subject[index:]
+            subjects.add(subject)
+
         # Just take the first....
         subject = list(subjects)[0]
 
