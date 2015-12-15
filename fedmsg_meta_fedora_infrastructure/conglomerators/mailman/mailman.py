@@ -56,7 +56,7 @@ class ByMessageId(fedmsg.meta.base.BaseConglomerator):
         mlists = self.list_to_series(mlists)
 
         subjects = set([
-            m['msg']['msg']['subject'].split('Re: ')[-1]
+            m['msg']['msg']['subject'].lower().split('re: ')[-1]
             for m in ms
         ])
         # Just take the first....
