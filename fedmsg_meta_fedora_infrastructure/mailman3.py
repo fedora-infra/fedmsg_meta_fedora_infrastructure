@@ -21,6 +21,9 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import \
         avatar_url_from_email, avatar_url_from_openid, email2fas
 
+from fedmsg_meta_fedora_infrastructure.conglomerators.mailman import \
+        mailman as mailman_conglomerator
+
 import email.utils
 import warnings
 
@@ -44,6 +47,10 @@ class MailmanProcessor(BaseProcessor):
                 "Communicating_and_getting_help#Mailing_Lists")
     __obj__ = "Mailing List Messages"
     __icon__ = "http://cloud.ohloh.net/attachments/37686/mailman_med.png"
+
+    conglomerators = [
+        mailman_conglomerator.ByMessageId,
+    ]
 
     def subtitle(self, msg, **config):
         if 'receive' in msg['topic']:
