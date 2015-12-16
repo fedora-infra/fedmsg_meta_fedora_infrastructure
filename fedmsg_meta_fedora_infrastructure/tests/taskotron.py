@@ -16,9 +16,11 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Martin Krizek <mkrizek@redhat.com>
+#           Ralph Bean <rbean@redhat.com>
 #
 """ Tests for taskotron messages """
 
+import os
 import unittest
 
 from fedmsg.tests.test_meta import Base
@@ -29,13 +31,17 @@ from .common import add_doc
 class TestTaskotronResultNew(Base):
     """ Taskotron emits messages on this topic anytime a task finishes.
 
-    Here's an example message of a new **taskotron result**.
+    Here's an example message of a new **taskotron result** published about a
+    **koji build**.
     """
     expected_title = "taskotron.result.new"
     expected_subti = "fedoratest PASSED for foobar-1.0-1.fc99"
     expected_link = ("https://taskotron.fedoraproject.org/taskmaster/"
                      "/builders/x86_64/builds/1/steps/runtask/logs/stdio")
-    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/taskotron.png"
+    expected_secondary_icon = ("https://apps.fedoraproject.org/packages/"
+                               "images/icons/foobar.png")
+    expected_packages = set(['foobar'])
+    expected_objects = set(['fedoratest/foobar/PASSED'])
     msg = {
         u'username': u'taskotron',
         u'i': 1,
@@ -58,6 +64,53 @@ class TestTaskotronResultNew(Base):
             },
         }
     }
+
+
+class TestTaskotronBodhiUpdate(Base):
+    """ Taskotron emits messages on this topic anytime a task finishes.
+
+    Here's an example message of a new **taskotron result** published about a
+    **bodhi update**.
+    """
+    expected_title = "taskotron.result.new"
+    expected_subti = "upgradepath PASSED for FEDORA-2015-2f6c7508b7"
+    expected_link = ("https://taskotron.fedoraproject.org/artifacts/"
+                     "all/64981220-a418-11e5-91ee-52540053ee00/"
+                     "task_output/FEDORA-2015-2f6c7508b7.log")
+    msg = {
+        "i": 177,
+        "timestamp": 1450286061.0,
+        "msg_id": "2015-2ff9d8af-8263-4886-8e3d-61cc7a5eeeb4",
+        "topic": "org.fedoraproject.prod.taskotron.result.new",
+        "msg": {
+            "task": {
+                "item": "FEDORA-2015-2f6c7508b7",
+                "type": "bodhi_update",
+                "name": "upgradepath"
+            },
+            "result": {
+                "job_url": ("https://taskotron.fedoraproject.org/execdb/"
+                            "/jobs/64981220-a418-11e5-91ee-52540053ee00"),
+                "submit_time": "2015-12-16 17:14:21 UTC",
+                "outcome": "PASSED",
+                "id": 5202575,
+                "log_url": ("https://taskotron.fedoraproject.org/artifacts/"
+                            "all/64981220-a418-11e5-91ee-52540053ee00/"
+                            "task_output/FEDORA-2015-2f6c7508b7.log"),
+            }
+        }
+    }
+
+
+#  only run these two tests if we have network connectivity.
+#  (they'll fail in koji)
+if not 'FEDMSG_META_NO_NETWORK' in os.environ:
+    TestTaskotronBodhiUpdate.expected_secondary_icon = (
+        "https://apps.fedoraproject.org/packages/"
+        "images/icons/copy-jdk-configs.png")
+    TestTaskotronBodhiUpdate.expected_packages = set(['copy-jdk-configs'])
+    TestTaskotronBodhiUpdate.expected_objects = set([
+        'upgradepath/copy-jdk-configs/PASSED'])
 
 
 add_doc(locals())
