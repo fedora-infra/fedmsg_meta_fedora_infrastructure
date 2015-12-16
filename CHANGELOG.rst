@@ -1,4 +1,51 @@
 
+0.15.6
+------
+
+Pull Requests
+
+- (@ralphbean)      #343, Change text of mdapi subtitle.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/343
+- (@ralphbean)      #344, Add some preliminary processors for the new pungi-koji compose stuff.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/344
+- (@ralphbean)      #347, Remove the "markup" stuff.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/347
+- (@ralphbean)      #346, Add a conglomerator for mailman3 messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/346
+- (@ralphbean)      #348, Processor and handler for new nagios messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/348
+
+Commits
+
+- c82fd4c42 Change text of mdapi subtitle.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c82fd4c42
+- 0982dc1d8 Remove +0/-0 text.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0982dc1d8
+- 801309cd0 Add some preliminary processors for the new pungi-koji compose stuff.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/801309cd0
+- 559fe2685 More pungi-koji stuff.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/559fe2685
+- a4ee3be77 Use the new location field passed along by pungi-koji.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a4ee3be77
+- ad0b2caa8 Add a conglomerator for mailman3 messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad0b2caa8
+- cbf328c66 Remove the "markup" stuff.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/cbf328c66
+- ffcda6d6b Processor and handler for new nagios messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ffcda6d6b
+- abef89168 Forgotten setup.py line.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/abef89168
+- eb6f1faa6 Remove debug statement.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/eb6f1faa6
+- 295105785 Smash case, as per review.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/295105785
+- 5b5abb0b9 Fix subject stripping.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5b5abb0b9
+- b9d36e25c Copyright years.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b9d36e25c
+- d96c71f57 Cosmetic whitespace.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d96c71f57
+
 0.15.5
 ------
 
