@@ -29,7 +29,6 @@ class NagiosProcessor(BaseProcessor):
     __obj__ = "Service Outage Alerts"
     __icon__ = "https://apps.fedoraproject.org/img/icons/nagios-logo.png"
 
-
     def subtitle(self, msg, **config):
         states = {
             'CRITICAL': self._('down'),

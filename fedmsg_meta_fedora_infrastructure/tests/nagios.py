@@ -52,6 +52,7 @@ class TestLegacyNagiosHostStateChange(Base):
         }
     }
 
+
 class TestLegacyNagiosServiceStateChange(Base):
     expected_title = "nagios.service.state.change"
     expected_subti = "some service is down on mm-frontend02.phx2.fedoraproject.org"
