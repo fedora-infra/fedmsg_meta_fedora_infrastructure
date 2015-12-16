@@ -71,6 +71,7 @@ entry_points = {
         "wiki=fedmsg_meta_fedora_infrastructure.mediawiki:WikiProcessor",
         "fas=fedmsg_meta_fedora_infrastructure.fas:FASProcessor",
         "comp=fedmsg_meta_fedora_infrastructure.compose:ComposeProcessor",
+        "comp2=fedmsg_meta_fedora_infrastructure.compose2:PungiKojiProcessor",
         "pkgdb=fedmsg_meta_fedora_infrastructure.pkgdb:PkgdbProcessor",
         "buildsys="
         "fedmsg_meta_fedora_infrastructure.buildsys:KojiProcessor",
@@ -112,18 +113,19 @@ entry_points = {
         "TaskotronProcessor",
         "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
         "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
+        "nagios=fedmsg_meta_fedora_infrastructure.nagios:NagiosProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.15.5',
+    version='0.15.6',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
     author='Ralph Bean',
     author_email='rbean@redhat.com',
-    url='https://github.com/ralphbean/fedmsg_meta_fedora_infrastructure/',
+    url='https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/',
     license='LGPLv2+',
     install_requires=install_requires,
     tests_require=tests_require,

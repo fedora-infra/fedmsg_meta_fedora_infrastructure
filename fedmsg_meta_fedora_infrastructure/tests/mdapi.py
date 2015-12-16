@@ -32,17 +32,15 @@ class TestNewProject(Base):
     """
     expected_title = "mdapi.repo.update"
     expected_subti = (
-        'mdapi meta-data update: '
+        'mdapi noticed a rawhide repomd change: '
         'conflicts: +1/-2, '
-        'enhances: +0/-0, '
         'files: +5/-4, '
         'obsoletes: +2/-2, '
         'packages: +2/-3, '
         'provides: +2/-2, '
         'recommends: +2/-1, '
         'requires: +2/-2, '
-        'suggests: +2/-2, '
-        'supplements: +0/-0')
+        'suggests: +2/-2')
     expected_link = "https://apps.fedoraproject.org/mdapi"
     expected_link = "https://download.fedoraproject.org/pub/fedora/linux/" + \
         "development/rawhide/x86_64/os/repodata/" + \

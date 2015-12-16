@@ -47,16 +47,6 @@ def is_ftp_sync(msg):
     return 'bodhi.updates.' in msg['topic'] and msg['topic'].endswith('.sync')
 
 
-def author_link(username):
-    return "<a href='https://bodhi.fedoraproject.org/" + \
-        "users/{user}'>{user}</a>".format(user=username)
-
-
-def update_link(alias, title):
-    return "<a href='https://bodhi.fedoraproject.org/updates/" + \
-        "{alias}'>{title}</a>".format(alias=alias, title=truncate(title))
-
-
 def truncate(title):
     if len(title) >= 40:
         title = title[:40] + "..."
@@ -132,8 +122,6 @@ class BodhiProcessor(BaseProcessor):
             return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
 
     def subtitle(self, msg, **config):
-        markup = config.get('markup', False)
-
         if is_ftp_sync(msg):
             product = get_sync_product(msg)
             msg = msg['msg']
@@ -151,20 +139,11 @@ class BodhiProcessor(BaseProcessor):
             author = comment['author']
             karma = comment['karma']
             title = comment['update_title']
-            alias = comment.get('update', {}).get('alias') or title
-
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
             )
-            if not markup:
-                return tmpl.format(author=author, karma=karma,
-                                   title=truncate(title))
-            else:
-                return tmpl.format(
-                    author=author_link(author),
-                    title=update_link(alias, title),
-                    karma=karma,
-                )
+            return tmpl.format(author=author, karma=karma,
+                               title=truncate(title))
 
         elif 'bodhi.update.complete.' in msg['topic']:
             author = msg['msg']['update']['submitter']
@@ -197,7 +176,6 @@ class BodhiProcessor(BaseProcessor):
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
             title = msg['msg']['update']['title']
-            alias = msg['msg']['update'].get('alias') or title
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
@@ -205,15 +183,8 @@ class BodhiProcessor(BaseProcessor):
             else:
                 tmpl = self._("{author} submitted {title} to {status}")
 
-            if not markup:
-                return tmpl.format(author=author, title=truncate(title),
-                                   status=status)
-            else:
-                return tmpl.format(
-                    author=author_link(author),
-                    title=update_link(alias, title),
-                    status=status,
-                )
+            return tmpl.format(author=author, title=truncate(title),
+                               status=status)
         elif 'bodhi.mashtask.mashing' in msg['topic']:
             repo = msg['msg'].get('repo')
             tmpl = self._("bodhi masher started mashing {repo}")
@@ -247,11 +218,7 @@ class BodhiProcessor(BaseProcessor):
             if isinstance(build, dict):
                 build = build['nvr']
 
-            if markup:
-                return tmpl.format(submitter=author_link(submitter),
-                                   build=build)
-            else:
-                return tmpl.format(submitter=submitter, build=build)
+            return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.buildroot_override.untag' in msg['topic']:
             tmpl = self._("{submitter} expired a buildroot override " +
                           "for {build}")
@@ -264,11 +231,7 @@ class BodhiProcessor(BaseProcessor):
             if isinstance(build, dict):
                 build = build['nvr']
 
-            if markup:
-                return tmpl.format(submitter=author_link(submitter),
-                                   build=build)
-            else:
-                return tmpl.format(submitter=submitter, build=build)
+            return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.stack.save' in msg['topic']:
             tmpl = self._("{agent} updated the \"{name}\" stack")
             agent = msg['msg']['agent']
