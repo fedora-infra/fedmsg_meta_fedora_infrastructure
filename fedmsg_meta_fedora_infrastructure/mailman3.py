@@ -127,4 +127,7 @@ class MailmanProcessor(BaseProcessor):
         else:
             tokens = [message_id, 'message']
 
+        lst = msg['msg']['mlist']['list_name']
+        tokens = [lst] + tokens
+
         return set(['/'.join(tokens)])
