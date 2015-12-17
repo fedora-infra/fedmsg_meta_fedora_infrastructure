@@ -16,8 +16,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Martin Krizek <mkrizek@redhat.com>
-#
+#           Ralph Bean <rbean@redhat.com>
+
+import logging
+
+import requests
+
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
+
+log = logging.getLogger('fedmsg.meta')
 
 
 class TaskotronProcessor(BaseProcessor):
@@ -39,5 +46,45 @@ class TaskotronProcessor(BaseProcessor):
         if msg['topic'].endswith('taskotron.result.new'):
             return msg['msg']['result'].get('log_url', '')
 
+    def objects(self, msg, **config):
+        packages = self.packages(msg, **config)
+        return set([
+            '/'.join([
+                msg['msg']['task'].get('name', ''),
+                package,
+                msg['msg']['result'].get('outcome', '')
+            ])
+            for package in packages
+        ])
+    def packages(self, msg, **config):
+        type = msg['msg']['task']['type']
+        if type == 'koji_build':
+            nvr = msg['msg']['task']['item']
+            name, version, release = nvr.rsplit('-', 2)
+            return set([name])
+        elif type == 'bodhi_update':
+            alias = msg['msg']['task']['item']
+            default_url = 'https://bodhi.fedoraproject.org'
+            bodhi_url = config.get('bodhi_url', default_url)
+            resp = requests.get(bodhi_url + '/updates/' + alias)
+            if not bool(resp):
+                log.warn("Failed to talk to bodhi %r %r" % (resp, resp.url))
+                return set()
+            data = resp.json()
+            builds = data['update']['builds']
+            nvrs = [build['nvr'] for build in builds]
+            packages = [nvr.rsplit('-', 2)[0] for nvr in nvrs]
+            return set(packages)
+
+        log.warn('Unhandled taskotron type %r' % type)
+        return set()
+
     def secondary_icon(self, msg, **config):
-        return self.__icon__
+        packages = self.packages(msg, **config)
+        if len(packages) != 1:
+            # If it is 0 or greater than 1, just use the taskotron icon.
+            return self.__icon__
+        else:
+            url = 'https://apps.fedoraproject.org/packages/images/icons/%s.png'
+            package = list(packages)[0]
+            return url % package
