@@ -56,6 +56,7 @@ class TaskotronProcessor(BaseProcessor):
             ])
             for package in packages
         ])
+
     def packages(self, msg, **config):
         type = msg['msg']['task']['type']
         if type == 'koji_build':
