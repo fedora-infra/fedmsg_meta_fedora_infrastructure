@@ -1,4 +1,27 @@
 
+0.15.7
+------
+
+Pull Requests
+
+- (@ralphbean)      #349, Return package-centric information about taskotron events.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/349
+- (@ralphbean)      #350, Make mailman activity look a little more interesting in gource.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/350
+- (@ralphbean)      #351, Replace newlines with spaces for mailman subjects.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/351
+
+Commits
+
+- 166776c0d Return package-centric information about taskotron events.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/166776c0d
+- 9bcb39f0d Make mailman activity look a little more interesting in gource.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9bcb39f0d
+- c9a8cb021 Whitespace.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c9a8cb021
+- 3935f77fb Replace newlines with spaces for mailman subjects.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3935f77fb
+
 0.15.6
 ------
 
