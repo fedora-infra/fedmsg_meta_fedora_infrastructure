@@ -55,7 +55,7 @@ class MailmanProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         if 'receive' in msg['topic']:
             lst = msg['msg']['mlist']['list_name']
-            subject = msg['msg']['msg']['subject']
+            subject = msg['msg']['msg']['subject'].replace('\n', ' ')
 
             full_from = msg['msg']['msg']['from']
             user = _email_to_username(_full_email_to_email(full_from))
@@ -126,5 +126,8 @@ class MailmanProcessor(BaseProcessor):
             tokens = ['/'.join(references), message_id, 'message']
         else:
             tokens = [message_id, 'message']
+
+        lst = msg['msg']['mlist']['list_name']
+        tokens = [lst] + tokens
 
         return set(['/'.join(tokens)])

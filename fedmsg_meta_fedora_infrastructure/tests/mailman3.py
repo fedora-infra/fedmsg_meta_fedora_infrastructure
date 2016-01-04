@@ -51,7 +51,7 @@ class TestMailman3NewReply(Base):
     ])
     expected_objects = set([
         # There is only one item in this set, not four.  It's just long.
-        "5de4f14ae46cce6de03cf68ca06526a9.squirrel@arekh.dyndns.org/"
+        "devel/5de4f14ae46cce6de03cf68ca06526a9.squirrel@arekh.dyndns.org/"
         "519DFB93.1060502@laiskiainen.org/"
         "d4f0cefb4a7b845451ecab2c4026fe4d.squirrel@arekh.dyndns.org/"
         "message",
@@ -111,7 +111,7 @@ class TestMailman3NewMail(Base):
     expected_packages = set([])
     expected_usernames = set([])
     expected_objects = set([
-        "306436886.6773069.1369333725371.JavaMail.root@redhat.com/message",
+        "devel/306436886.6773069.1369333725371.JavaMail.root@redhat.com/message",
     ])
     msg = {
         "i": 1,
