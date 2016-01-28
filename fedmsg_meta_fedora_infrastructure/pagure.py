@@ -62,6 +62,9 @@ class PagureProcessor(BaseProcessor):
             issueid = msg['msg']['issue']['id']
             if 'comment' in msg['topic']:
                 tmpl += '/issue/{id}#comment-{comment}'
+                if 'comment' in msg['msg']:
+                    # This is for an edited issue..
+                    return base_url
                 return tmpl.format(
                     base_url=base_url, project=project, id=issueid,
                     comment=msg['msg']['issue']['comments'][-1]['id'])
@@ -122,6 +125,13 @@ class PagureProcessor(BaseProcessor):
                 '{user} deleted ticket {project}#{id}: "{title}"')
             return tmpl.format(
                 user=user,project=project,title=title,id=issueid)
+        elif 'pagure.issue.comment.edited' in msg['topic']:
+            issueid = msg['msg']['issue']['id']
+            title = msg['msg']['issue']['title']
+            tmpl = self._(
+                '{user} edited a comment on ticket {project}#{id}: "{title}"')
+            return tmpl.format(
+                user=user, project=project, title=title, id=issueid)
         elif 'pagure.issue.comment.added' in msg['topic']:
             issueid = msg['msg']['issue']['id']
             title = msg['msg']['issue']['title']
