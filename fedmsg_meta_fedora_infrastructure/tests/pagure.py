@@ -1755,6 +1755,104 @@ class TestIssueDrop(Base):
     }
 
 
+class TestIssueCommentEditLegacy(Base):
+    """ These messages are published when someone edits a comment on a ticket
+    on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.issue.comment.edited"
+    expected_subti = 'adamwill edited a comment on ticket (unknown)#5: ' + \
+        '"Don\'t use `-` characters in metadata values"'
+    expected_link = "https://pagure.io"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "0e6c01c694d74afb0cbb65bc1be91950111503818caf492c0938dc2b97c48c41" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['adamwill'])
+    expected_objects = set(['project/(unknown)', 'issue/5'])
+    msg = {
+        "i": 2,
+        "msg": {
+            "agent": "adamwill",
+            "comment": {
+                "comment": "For reference, the practical case I have here is "
+                "that for openQA purposes I need to create a `flavor`, "
+                "which is something like \"the server boot iso\" or \"the "
+                "cloud atomic qcow disk image\". The logical way to do this "
+                "is to combine a few Pungi metadata values; right now I'm "
+                "using `variant` plus `type` plus `format` (format seems to "
+                "be necessary to distinguish, say, 'cloud base qcow2' from "
+                "'cloud base img' or whatever).\r\n\r\nIf `variant` can be "
+                "`Cloud_Atomic` and `format` can be `raw-xz`, what character "
+                "am I supposed to use to join the values such that I can "
+                "reliably split them up again later (which I also need to "
+                "do)?",
+                "date_created": "1454009026",
+                "edited_on": "1454009050",
+                "editor": {
+                    "fullname": "Adam Williamson",
+                    "name": "adamwill",
+                },
+                "id":1489,
+                "parent":None,
+                "user": {
+                    "fullname": "Adam Williamson",
+                    "name": "adamwill",
+                },
+            },
+            "issue": {
+                "assignee":None,
+                "blocks":[],
+                "comments":[],
+                "content": "So I'm looking at "
+                "https://pagure.io/pungi-fedora/blob/master/f/fedora."
+                "conf#_270 :\r\n\r\n                'format': [('"
+                "qcow2','qcow2'), ('raw-xz','raw.xz')]\r\n\r\nI'm "
+                "guessing the value `'raw-xz'` is what would show up in the "
+                "metadata as the `format` of that image.\r\n\r\nHowever, in "
+                "other metadata fields - e.g. the arch, `x86_64`, and I "
+                "think some variants, e.g. `Cloud_Atomic` - we use _ to "
+                "separate words inside values.\r\n\r\nHaving some fields "
+                "use `_` as an internal separator and others use `-` as an "
+                "internal separator is going to be *very* messy; people tend "
+                "to join values with one character or the other, but if both "
+                "characters are used within values, splitting them back out "
+                "again becomes impossible or messy.\r\n\r\nThe [naming "
+                "policy](https://fedoraproject.org/wiki/User:Adamwill/Draft_"
+                "fedora_image_naming_policy) explicitly covers this and "
+                "forbids the use of `-` within values:\r\n\r\n\"Fields may "
+                "only contain ASCII alphanumeric characters and underscores. "
+                "Particularly of note, the character '-' is reserved for use "
+                "as a field separator. No field may itself contain that "
+                "character.\"\r\n\r\nSo, can we please change `raw-xz` to "
+                "`raw_xz` and generally make it a rule that the metadata "
+                "values don't use `-`? Thanks!\r\n\r\n(I see also `distro` "
+                "and `name` fields that use `-`, but I'm not sure either of "
+                "those actually winds up in the output metadata, which is "
+                "what I care about).",
+                "date_created": "1454008733",
+                "depends":[],
+                "id":5,
+                "private":False,
+                "status": "Open",
+                "tags":[],
+                "title": "Don't use `-` characters in metadata values",
+                "user": {
+                    "fullname": "Adam Williamson",
+                    "name": "adamwill",
+                },
+            },
+        },
+        "msg_id": "2016-6e2bb7ae-9af1-460d-ad7d-ff5bf12df989",
+        "source_name": "datanommer",
+        "source_version": "0.6.5",
+        "timestamp":1454009050.0,
+        "topic": "io.pagure.prod.pagure.issue.comment.edited",
+    }
+
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
