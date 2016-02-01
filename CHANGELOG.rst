@@ -1,4 +1,21 @@
 
+0.15.8
+------
+
+Pull Requests
+
+- (@ralphbean)      #354, Handle edits to pagure issue comments.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/354
+- (@ralphbean)      #355, Handle a whole slough of new squirely releng messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/355
+
+Commits
+
+- b5f03c760 Handle edits to pagure issue comments.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b5f03c760
+- b67615175 Handle a whole slough of new squirely releng messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b67615175
+
 0.15.7
 ------
 
