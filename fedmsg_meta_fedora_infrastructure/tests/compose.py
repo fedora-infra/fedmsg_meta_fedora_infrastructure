@@ -19,8 +19,6 @@
 #
 """ Tests for compose messages """
 
-import unittest
-
 from fedmsg.tests.test_meta import Base
 
 from .common import add_doc
@@ -1015,5 +1013,30 @@ class TestSecondaryArchComposeRawhideRsyncComplete(Base):
             "arch": "arm",
         },
     }
+
+
+class TestMakeUpdatesStarted(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    produce these messages when they have **started** the make-updates process
+    (which is how we do periodic re-spins of our cloud, atomic, and docker
+    images).  Here's an example of a message from F23:
+    """
+    expected_title = "compose.23.make-updates.start"
+    expected_subti = \
+        "started a run of F23 make-updates"
+    expected_link = \
+        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+    expected_objects = set(['23/primary'])
+    msg = {
+        "i": 1,
+        "msg": {
+            "branch": "23",
+            "log": "start"
+        },
+        "timestamp": 1454303707.0,
+        "topic": "org.fedoraproject.prod.compose.23.make-updates.start"
+    }
+
 
 add_doc(locals())
