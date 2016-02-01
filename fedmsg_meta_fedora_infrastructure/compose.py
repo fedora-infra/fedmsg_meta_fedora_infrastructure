@@ -59,12 +59,54 @@ class ComposeProcessor(BaseProcessor):
         elif msg['topic'].endswith('.pungify.complete'):
             tmpl = self._(
                 "finished building boot.iso for {branch}{arch}")
+
+        elif msg['topic'].endswith('make-updates.start'):
+            tmpl = self._("started a run of F{branch} make-updates")
+        elif msg['topic'].endswith('make-updates.start'):
+            tmpl = self._("finished a run of F{branch} make-updates")
+
+        elif msg['topic'].endswith('cloudimg-build.start'):
+            tmpl = self._("started the cloudimg-build phase of "
+                          "a F{branch} make-updates run")
+        elif msg['topic'].endswith('cloudimg-build.done'):
+            tmpl = self._("the cloudimg-build phase of "
+                          "a F{branch} make-updates run completed")
+
+        elif msg['topic'].endswith('mash-atomic.start'):
+            tmpl = self._("started the mash-atomic phase of "
+                          "a F{branch} make-updates run")
+        elif msg['topic'].endswith('mash-atomic.stop'):  # yes, stop, not done.
+            tmpl = self._("the mash-atomic phase of "
+                          "a F{branch} make-updates run completed")
+
+        elif msg['topic'].endswith('atomic-lorax.start'):
+            tmpl = self._("started the atomic-lorax phase of "
+                          "a F{branch} make-updates run")
+        elif msg['topic'].endswith('atomic-lorax.done'):
+            tmpl = self._("the atomic-lorax phase of "
+                          "a F{branch} make-updates run completed")
+
+        elif msg['topic'].endswith('cloudimg-checksum.start'):
+            tmpl = self._("started the cloudimg-checksum phase of "
+                          "a F{branch} make-updates run")
+        elif msg['topic'].endswith('cloudimg-checksum.done'):
+            tmpl = self._("the cloudimg-checksum phase of "
+                          "a F{branch} make-updates run completed")
+
+        elif msg['topic'].endswith('cloudimg-staging.start'):
+            tmpl = self._("started the cloudimg-staging phase of "
+                          "a F{branch} make-updates run")
+        elif msg['topic'].endswith('cloudimg-staging.done'):
+            tmpl = self._("the cloudimg-staging phase of "
+                          "a F{branch} make-updates run completed")
+
         elif msg['topic'].endswith('.start'):
             tmpl = self._("{branch} compose{arch} started")
         elif msg['topic'].endswith('.complete'):
             tmpl = self._("{branch} compose{arch} completed")
+
         else:
-            raise NotImplementedError("%r" % msg)
+            tmpl = self._("(unhandled releng compose message)")
 
         return tmpl.format(branch=branch, arch=arch)
 
@@ -76,9 +118,19 @@ class ComposeProcessor(BaseProcessor):
         else:
             if 'epelbeta' in msg['topic']:
                 base = "https://dl.fedoraproject.org/pub/epel/beta/7"
-            else:
+            elif 'branched' in msg['topic'] or 'rawhide' in msg['topic']:
                 base = "https://dl.fedoraproject.org/pub/" + \
                     "fedora/linux/development"
+            else:
+                branch = msg['msg'].get('branch', 'not-a-number')
+                try:
+                    int(branch)
+                except TypeError:
+                    base = "https://dl.fedoraproject.org/pub/" + \
+                        "fedora/linux/development"
+                else:
+                    base = "https://dl.fedoraproject.org/pub/" + \
+                        "fedora/linux/releases"
 
         return base + "/" + msg['msg'].get('branch', '')
 
