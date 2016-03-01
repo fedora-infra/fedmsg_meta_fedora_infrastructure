@@ -61,13 +61,19 @@ class PagureProcessor(BaseProcessor):
         if 'pagure.issue' in msg['topic']:
             issueid = msg['msg']['issue']['id']
             if 'comment' in msg['topic']:
-                tmpl += '/issue/{id}#comment-{comment}'
                 if 'comment' in msg['msg']:
                     # This is for an edited issue..
                     return base_url
-                return tmpl.format(
-                    base_url=base_url, project=project, id=issueid,
-                    comment=msg['msg']['issue']['comments'][-1]['id'])
+                comments = msg['msg']['pullrequest']['comments']
+                if comments:
+                    tmpl += '/issue/{id}#comment-{comment}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=issueid,
+                        comment=comments[-1]['id'])
+                else:
+                    tmpl += '/issue/{id}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=issueid)
             else:
                 tmpl += '/issue/{id}'
                 return tmpl.format(
@@ -75,10 +81,17 @@ class PagureProcessor(BaseProcessor):
         elif 'pagure.pull-request' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             if 'comment' in msg['topic']:
-                tmpl += '/pull-request/{id}#comment-{comment}'
-                return tmpl.format(
-                    base_url=base_url, project=project, id=prid,
-                    comment=msg['msg']['pullrequest']['comments'][-1]['id'])
+
+                comments = msg['msg']['pullrequest']['comments']
+                if comments:
+                    tmpl += '/pull-request/{id}#comment-{comment}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=prid,
+                        comment=comments[-1]['id'])
+                else:
+                    tmpl += '/pull-request/{id}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=prid)
             else:
                 tmpl += '/pull-request/{id}'
                 return tmpl.format(
