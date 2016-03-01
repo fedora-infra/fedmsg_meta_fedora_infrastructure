@@ -64,7 +64,7 @@ class PagureProcessor(BaseProcessor):
                 if 'comment' in msg['msg']:
                     # This is for an edited issue..
                     return base_url
-                comments = msg['msg']['pullrequest']['comments']
+                comments = msg['msg']['issue']['comments']
                 if comments:
                     tmpl += '/issue/{id}#comment-{comment}'
                     return tmpl.format(
