@@ -16,6 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
+#           Ralph Bean <rbean@redhat.com>
 #
 """ Tests for mdapi messages """
 
@@ -26,10 +27,8 @@ from fedmsg_meta_fedora_infrastructure.tests.base import Base
 from .common import add_doc
 
 
-class TestNewProject(Base):
-    """ These messages are published when a new project is created on
-    `pagure <https://pagure.io>`_.
-    """
+class TestNewProjectLegacy(Base):
+    """ These are what the messages used to look like... """
     expected_title = "mdapi.repo.update"
     expected_subti = (
         'mdapi noticed a rawhide repomd change: '
@@ -442,6 +441,131 @@ class TestNewProject(Base):
               ]
             }
           },
+          "name": "rawhide"
+        }
+      }
+
+
+class TestNewProject(Base):
+    """ These messages are published when a new project is created on
+    `pagure <https://pagure.io>`_.
+    """
+    expected_title = "mdapi.repo.update"
+    expected_subti = (
+        'mdapi noticed a rawhide repomd change: '
+        'PyOpenGL, akonadi-mysql, and 26 others'
+    )
+    expected_link = "https://apps.fedoraproject.org/mdapi"
+    expected_link = "https://download.fedoraproject.org/pub/fedora/linux/" + \
+        "development/rawhide/x86_64/os/repodata/" + \
+        "a0c75ee3abe48a4b602560d1c7c408d8d151caa1865678d2e0e1eb442d96ba90-" + \
+        "filelists.sqlite.xz"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_packages = set([
+        'java-1.8.0-openjdk-devel-debug',
+        'vips',
+        'python3-celery',
+        'python3-dropbox',
+        'libfdisk',
+        'journal-brief',
+        'meataxe',
+        'rpm',
+        'akonadi-mysql',
+        'java-1.8.0-openjdk-headless',
+        'python-wrapt-doc',
+        'python3-yui',
+        'python-faker-doc',
+        'python3-PyQt4-devel',
+        'boost',
+        'PyOpenGL',
+        'audit-libs-devel',
+        'python-simplegeneric',
+        'python-aniso8601',
+        'python3',
+        'django-markdown2',
+        'python-pytools',
+        'tyrus-container-servlet',
+        'python3-devel',
+        'waf-python3',
+        'avahi-ui-sharp-devel',
+        'python2-XStatic-roboto-fontface',
+        'python-Traits',
+    ])
+    expected_usernames = set([])
+    expected_objects = set([
+        'rawhide/java-1.8.0-openjdk-devel-debug',
+        'rawhide/vips',
+        'rawhide/python3-celery',
+        'rawhide/python3-dropbox',
+        'rawhide/libfdisk',
+        'rawhide/journal-brief',
+        'rawhide/meataxe',
+        'rawhide/rpm',
+        'rawhide/akonadi-mysql',
+        'rawhide/java-1.8.0-openjdk-headless',
+        'rawhide/python-wrapt-doc',
+        'rawhide/python3-yui',
+        'rawhide/python-faker-doc',
+        'rawhide/python3-PyQt4-devel',
+        'rawhide/boost',
+        'rawhide/PyOpenGL',
+        'rawhide/audit-libs-devel',
+        'rawhide/python-simplegeneric',
+        'rawhide/python-aniso8601',
+        'rawhide/python3',
+        'rawhide/django-markdown2',
+        'rawhide/python-pytools',
+        'rawhide/tyrus-container-servlet',
+        'rawhide/python3-devel',
+        'rawhide/waf-python3',
+        'rawhide/avahi-ui-sharp-devel',
+        'rawhide/python2-XStatic-roboto-fontface',
+        'rawhide/python-Traits',
+    ])
+    msg = {
+        "source_name": "datanommer",
+        "i": 3,
+        "timestamp": 1447413644.0,
+        "msg_id": "2015-dbf52782-0a87-448f-a6fb-20c506cdd4eb",
+        "topic": "org.fedoraproject.stg.mdapi.repo.update",
+        "source_version": "0.6.5",
+        "msg": {
+          "url": "fedora/linux/development/rawhide/x86_64/os/repodata/"
+            "a0c75ee3abe48a4b602560d1c7c408d8d151caa1865678d2e0e1eb442d96ba90"
+            "-filelists.sqlite.xz",
+          "packages": [
+            'java-1.8.0-openjdk-devel-debug',
+            'vips',
+            'python3-celery',
+            'python3-dropbox',
+            'libfdisk',
+            'journal-brief',
+            'meataxe',
+            'rpm',
+            'akonadi-mysql',
+            'java-1.8.0-openjdk-headless',
+            'python-wrapt-doc',
+            'python3-yui',
+            'python-faker-doc',
+            'python3-PyQt4-devel',
+            'boost',
+            'PyOpenGL',
+            'audit-libs-devel',
+            'python-simplegeneric',
+            'python-aniso8601',
+            'python3',
+            'django-markdown2',
+            'python-pytools',
+            'tyrus-container-servlet',
+            'python3-devel',
+            'waf-python3',
+            'avahi-ui-sharp-devel',
+            'python2-XStatic-roboto-fontface',
+            'python-Traits',
+          ],
           "name": "rawhide"
         }
       }

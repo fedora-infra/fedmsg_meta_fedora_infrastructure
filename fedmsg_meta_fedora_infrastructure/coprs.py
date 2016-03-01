@@ -130,7 +130,8 @@ class CoprsProcessor(BaseProcessor):
             usernames.add(msg['msg']['user'])
         if 'owner' in msg['msg']:
             usernames.add(msg['msg']['owner'])
-        return usernames
+        # Filter out any None values
+        return set([u for u in usernames if u])
 
     def objects(self, msg, **config):
         items = ['coprs']

@@ -1,4 +1,23 @@
 
+0.15.9
+------
+
+Pull Requests
+
+- (@ralphbean)      #357, Filter out None values from copr here.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/357
+- (@ralphbean)      #358, Handle new mdapi format.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/358
+
+Commits
+
+- 9cb81048a Filter out None values from copr here.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9cb81048a
+- 80d56e989 Handle new mdapi format.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/80d56e989
+- 5a077034d Typofix.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5a077034d
+
 0.15.8
 ------
 

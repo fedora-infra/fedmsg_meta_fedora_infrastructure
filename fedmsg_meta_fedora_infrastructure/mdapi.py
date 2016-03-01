@@ -16,13 +16,22 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
+#           Ralph Bean <rbean@redhat.com>
 #
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
+import fedmsg.meta.base
+
 
 def get_packages(message):
     ''' Returns the list of all the packages mentionned in the message. '''
+    if 'differences' in message['msg']:
+        return _get_packages_oldschool(message)
+    else:
+        return _get_packages_newschool(message)
+
+def _get_packages_oldschool(message):
     pkgs = set()
     for category in message['msg']['differences']:
         for action in message['msg']['differences'][category]:
@@ -36,7 +45,17 @@ def get_packages(message):
     return pkgs
 
 
+def _get_packages_newschool(message):
+    return message['msg']['packages']
+
+
 def get_objects(message):
+    if 'differences' in message['msg']:
+        return _get_objects_oldschool(message)
+    else:
+        return _get_objects_newschool(message)
+
+def _get_objects_oldschool(message):
     repo = message['msg']['name']
     for category in message['msg']['differences']:
         for action in message['msg']['differences'][category]:
@@ -48,10 +67,22 @@ def get_objects(message):
                 yield '%s/%s/%s/%s' % (repo, category, action, name)
 
 
+def _get_objects_newschool(message):
+    repo = message['msg']['name']
+    for name in message['msg']['packages']:
+        yield '%s/%s' % (repo, name)
+
+
 def get_summary(message):
     ''' Returns a summary of the addition/deletion for each category in
     the specified message.
     '''
+    if 'differences' in message['msg']:
+        return ', '.join(_get_summary_oldschool(message))
+    else:
+        return _get_summary_newschool(message)
+
+def _get_summary_oldschool(message):
     summary = list()
     for category in sorted(message['msg']['differences']):
         count_a = len(message['msg']['differences'][category]['added'])
@@ -61,6 +92,9 @@ def get_summary(message):
         summary.append('{0}: +{1}/-{2}'.format(category, count_a, count_b))
     return summary
 
+def _get_summary_newschool(message):
+    packages = message['msg']['packages']
+    return fedmsg.meta.base.BaseConglomerator.list_to_series(packages)
 
 class MdapiProcessor(BaseProcessor):
     __name__ = "mdapi"
@@ -77,7 +111,7 @@ class MdapiProcessor(BaseProcessor):
                 u"mdapi noticed a {repo} repomd change: {summary}"
             )
             repo = msg['msg']['name']
-            summary = ', '.join(get_summary(msg))
+            summary = get_summary(msg)
             return tmpl.format(repo=repo, summary=summary)
         else:
             raise NotImplementedError("%r" % msg)
