@@ -28,7 +28,7 @@ from .common import add_doc
 
 
 class TestNewProjectLegacy(Base):
-    """ These are whta the messages used to look like... """
+    """ These are what the messages used to look like... """
     expected_title = "mdapi.repo.update"
     expected_subti = (
         'mdapi noticed a rawhide repomd change: '
