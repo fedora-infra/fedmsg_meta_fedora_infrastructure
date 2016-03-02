@@ -1,4 +1,19 @@
 
+0.15.10
+-------
+
+Pull Requests
+
+- (@ralphbean)      #359, Fix situation where pagure messages have zero comments.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/359
+
+Commits
+
+- 34ff3a732 Fix situation where pagure messages have zero comments.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/34ff3a732
+- 15b507dd0 Typofix.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/15b507dd0
+
 0.15.9
 ------
 
