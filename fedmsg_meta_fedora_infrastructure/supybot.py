@@ -25,6 +25,9 @@ import requests
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import nick2fas, avatar_url
 
+from fedmsg_meta_fedora_infrastructure.conglomerators.meetbot import \
+        meetbot as meetbot_conglomerator
+
 blacklisted_people = [
     'zodbot',
 ]
@@ -38,6 +41,10 @@ class SupybotProcessor(BaseProcessor):
     __docs__ = "https://fedoraproject.org/wiki/Zodbot"
     __obj__ = "IRC Meetings"
     __icon__ = "https://apps.fedoraproject.org/img/icons/meetbot.png"
+
+    conglomerators = [
+        meetbot_conglomerator.ByURL,
+    ]
 
     def link(self, msg, **config):
         if 'meetbot.meeting.complete' in msg['topic']:
