@@ -1076,6 +1076,151 @@ class TestNewPullRequestComment(Base):
       }
     }
 
+class TestEditPullRequestComment(Base):
+    """ These messages are published when a someone commented on a
+    pull-request of a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.comment.edited"
+    expected_subti = 'lmacken edited a comment on pull-request#31 of '\
+        'project "mdapi"'
+    expected_link = "https://pagure.io/mdapi/pull-request/31#comment-2922"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['lmacken'])
+    expected_objects = set(['project/mdapi', 'pull-request/31'])
+    msg = {
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1456854211.0,
+      "msg_id": "2016-79bbee62-ed68-4989-a930-d40f09edd1da",
+      "topic": "io.pagure.prod.pagure.pull-request.comment.edited",
+      "source_version": "0.6.5",
+      "msg": {
+        "comment": {
+          "comment": "From https://docs.python.org/3/library/asyncio-task.html\r\n"
+              "\r\nThings a coroutine can do:\r\n\r\n"
+              "`result = await future` or `result = yield from future` \u2013...",
+          "parent": None,
+          "notification": False,
+          "tree": None,
+          "filename": None,
+          "edited_on": "1456854211",
+          "editor": {
+            "fullname": "Luke Macken",
+            "name": "lmacken"
+          },
+          "date_created": "1456854157",
+          "commit": None,
+          "line": None,
+          "id": 2922,
+          "user": {
+            "fullname": "Luke Macken",
+            "name": "lmacken"
+          }
+        },
+        "project": {
+          "description": "Expose the repo metadata information in a simple api",
+          "parent": None,
+          "settings": {
+            "Minimum_score_to_merge_pull-request": -1,
+            "Web-hooks": None,
+            "project_documentation": False,
+            "always_merge": False,
+            "pull_requests": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "tags": [
+            "fedmsg",
+            "fedora-infra"
+          ],
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1445511838",
+          "id": 221,
+          "name": "mdapi"
+        },
+        "pullrequest": {
+          "status": "Open",
+          "branch_from": "more_asyncio",
+          "uid": "d358fb141cab47dda84fe1cd1a19f042",
+          "commit_stop": "e307cc14de0f0ab38a5fbf235e62d5d8e106dd9c",
+          "title": "Chain the method as coroutines to make the process more asynchronous",
+          "comments": [],
+          "id": 31,
+          "project": {
+            "description": "Expose the repo metadata information in a simple api",
+            "parent": None,
+            "settings": {
+              "Minimum_score_to_merge_pull-request": -1,
+              "Web-hooks": None,
+              "project_documentation": False,
+              "always_merge": False,
+              "pull_requests": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "tags": [
+              "fedmsg",
+              "fedora-infra"
+            ],
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1445511838",
+            "id": 221,
+            "name": "mdapi"
+          },
+          "assignee": None,
+          "repo_from": {
+            "description": "Expose the repo metadata information in a simple api",
+            "parent": None,
+            "settings": {
+              "Minimum_score_to_merge_pull-request": -1,
+              "Web-hooks": None,
+              "project_documentation": False,
+              "always_merge": False,
+              "pull_requests": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "tags": [
+              "fedmsg",
+              "fedora-infra"
+            ],
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1445511838",
+            "id": 221,
+            "name": "mdapi"
+          },
+          "updated_on": "1456853926",
+          "commit_start": "e307cc14de0f0ab38a5fbf235e62d5d8e106dd9c",
+          "branch": "master",
+          "date_created": "1456770725",
+          "closed_at": None,
+          "remote_git": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "lmacken"
+      }
+    }
 
 class TestNewPullRequestclosed(Base):
     """ These messages are published when a someone closed a pull-request
@@ -1622,7 +1767,7 @@ class TestPullRequestFlagUpdated(Base):
         }
 
 
-class TestGitCommit(Base):
+class LegacyTestGitCommit(Base):
     """ These messages are published when a someone updates a flag on a
     pull-request on a project on `pagure <https://pagure.io>`_.
     """
@@ -1690,6 +1835,198 @@ class TestGitCommit(Base):
          'topic': 'io.pagure.prod.pagure.git.receive'
     }
 
+
+class TestGitCommit(Base):
+    """ These messages are published when a someone updates a flag on a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.git.receive"
+    expected_subti = 'pingou pushed 3 to pagure (master)'
+    expected_link = "https://pagure.io/pagure/branch/master"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/' + \
+        '01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c' + \
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pagure'])
+    msg = {
+      "username": "pierrey",
+      "i": 1,
+      "timestamp": 1457444969,
+      "msg_id": "2016-15d9bed1-7fe8-47f0-8c8e-3463125e55ea",
+      'topic': 'io.pagure.prod.pagure.git.receive',
+      "msg": {
+        "commits": [
+          {
+            "username": None,
+            "stats": {
+              "files": {
+                "test2": {
+                  "deletions": 0,
+                  "additions": 1,
+                  "lines": 1
+                }
+              },
+              "total": {
+                "deletions": 0,
+                "files": 1,
+                "additions": 1,
+                "lines": 1
+              }
+            },
+            "name": "Pierre-Yves Chibon",
+            "rev": "00619c4f1adfc9cc598a984e53d544145565ad79",
+            "agent": "pierrey",
+            "summary": "Add 8 to test2",
+            "repo": {
+              "description": "test project #1",
+              "parent": None,
+              "settings": {
+                "Minimum_score_to_merge_pull-request": -1,
+                "Web-hooks": None,
+                "project_documentation": False,
+                "always_merge": True,
+                "pull_requests": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "Comment-editing": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "tags": [
+                "fedora-infra",
+                "fedora"
+              ],
+              "user": {
+                "fullname": "Pierre-Yves  \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Ch\u00efb\u00f3\u00f1",
+                "name": "pingou"
+              },
+              "date_created": "1426500194",
+              "id": 1,
+              "name": "pagure"
+            },
+            "branch": "refs/heads/master",
+            "seen": False,
+            "path": "/home/pierrey/repos/gitrepo/pagure/repos/test.git",
+            "message": "Add 8 to test2",
+            "email": "pingou@pingoured.fr"
+          },
+          {
+            "username": None,
+            "stats": {
+              "files": {
+                "test2": {
+                  "deletions": 0,
+                  "additions": 1,
+                  "lines": 1
+                }
+              },
+              "total": {
+                "deletions": 0,
+                "files": 1,
+                "additions": 1,
+                "lines": 1
+              }
+            },
+            "name": "Pierre-Yves Chibon",
+            "rev": "64aefb9721572ec9676b841cc5f33fb03c167531",
+            "agent": "pierrey",
+            "summary": "Add 9 to test2",
+            "repo": {
+              "description": "test project #1",
+              "parent": None,
+              "settings": {
+                "Minimum_score_to_merge_pull-request": -1,
+                "Web-hooks": None,
+                "project_documentation": False,
+                "always_merge": True,
+                "pull_requests": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "Comment-editing": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "tags": [
+                "fedora-infra",
+                "fedora"
+              ],
+              "user": {
+                "fullname": "Pierre-Yves  \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Ch\u00efb\u00f3\u00f1",
+                "name": "pingou"
+              },
+              "date_created": "1426500194",
+              "id": 1,
+              "name": "test"
+            },
+            "branch": "refs/heads/master",
+            "seen": False,
+            "path": "/home/pierrey/repos/gitrepo/pagure/repos/test.git",
+            "message": "Add 9 to test2",
+            "email": "pingou@pingoured.fr"
+          },
+          {
+            "username": None,
+            "stats": {
+              "files": {
+                "test2": {
+                  "deletions": 0,
+                  "additions": 1,
+                  "lines": 1
+                }
+              },
+              "total": {
+                "deletions": 0,
+                "files": 1,
+                "additions": 1,
+                "lines": 1
+              }
+            },
+            "name": "Pierre-Yves Chibon",
+            "rev": "90747ca902dd3213a900c18d683380439f6a769e",
+            "agent": "pierrey",
+            "summary": "Add 10 to test2",
+            "repo": {
+              "description": "test project #1",
+              "parent": None,
+              "settings": {
+                "Minimum_score_to_merge_pull-request": -1,
+                "Web-hooks": None,
+                "project_documentation": False,
+                "always_merge": True,
+                "pull_requests": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "Comment-editing": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "tags": [
+                "fedora-infra",
+                "fedora"
+              ],
+              "user": {
+                "fullname": "Pierre-Yves  \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Ch\u00efb\u00f3\u00f1",
+                "name": "pingou"
+              },
+              "date_created": "1426500194",
+              "id": 1,
+              "name": "test"
+            },
+            "branch": "refs/heads/master",
+            "seen": False,
+            "path": "/home/pierrey/repos/gitrepo/pagure/repos/test.git",
+            "message": "Add 10 to test2",
+            "email": "pingou@pingoured.fr"
+          }
+        ],
+        "branch": "refs/heads/master",
+        "agent": "pingou",
+        "forced": False
+      }
+    }
+
+
+
 class TestIssueDrop(Base):
     """ These messages are published when a ticket is deleted against a
     project on `pagure <https://pagure.io>`_.
@@ -1755,7 +2092,7 @@ class TestIssueDrop(Base):
     }
 
 
-class TestIssueCommentEditLegacy(Base):
+class TestIssueCommentEdit(Base):
     """ These messages are published when someone edits a comment on a ticket
     on `pagure <https://pagure.io>`_.
     """
