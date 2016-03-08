@@ -23,6 +23,50 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 import fedmsg.meta.base
 
+def _get_project(msg, key='project'):
+    ''' Return the project as `foo` or `user/foo` if the project is a
+    fork.
+    '''
+    project = msg[key]['name']
+    if msg[key]['parent']:
+        user = msg[key]['user']['name']
+        project = '/'.join([user, project])
+    return project
+
+
+def _git_receive_v1(msg, tmpl, **config):
+    ''' Return the subtitle for the first version of pagure git.receive
+    messages.
+    '''
+    repo = _get_project(msg['msg']['commit'], key='repo')
+    email = msg['msg']['commit']['email']
+    user = email2fas(email, **config)
+    summ = msg['msg']['commit']['summary']
+    whole = msg['msg']['commit']['message']
+    if summ.strip() != whole.strip():
+        summ += " (..more)"
+
+    branch = msg['msg']['commit']['branch']
+    if 'refs/heads/' in branch:
+        branch = branch.replace('refs/heads/', '')
+    return tmpl.format(user=user or email, repo=repo,
+                       branch=branch, summary=summ)
+
+
+def _git_receive_v2(msg, tmpl):
+    ''' Return the subtitle for the second version of pagure git.receive
+    messages.
+    '''
+    repo = _get_project(msg['msg']['commits'][0], key='repo')
+    user = msg['msg']['agent']
+    n_commits = len(msg['msg']['commits'])
+    branch = msg['msg']['branch']
+    if 'refs/heads/' in branch:
+        branch = branch.replace('refs/heads/', '')
+    return tmpl.format(user=user, repo=repo,
+                       branch=branch, n_commits=n_commits)
+
+
 class PagureProcessor(BaseProcessor):
     topic_prefix_re = 'io\\.pagure\\.(dev|stg|prod)'
 
@@ -34,22 +78,13 @@ class PagureProcessor(BaseProcessor):
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
 
-    def __get_project(self, msg, key='project'):
-        ''' Return the project as `foo` or `user/foo` if the project is a
-        fork.
-        '''
-        project = msg[key]['name']
-        if msg[key]['parent']:
-            user = msg[key]['user']['name']
-            project = '/'.join([user, project])
-        return project
 
     def link(self, msg, **config):
         try:
-            project = self.__get_project(msg['msg'])
+            project = _get_project(msg['msg'])
         except KeyError:
             try:
-                project = self.__get_project(msg['msg']['pullrequest'])
+                project = _get_project(msg['msg']['pullrequest'])
             except KeyError:
                 project = "(unknown)"
 
@@ -99,11 +134,19 @@ class PagureProcessor(BaseProcessor):
         elif 'pagure.project' in msg['topic']:
             return tmpl.format(base_url=base_url, project=project)
         elif 'pagure.git.receive' in msg['topic']:
-            project = self.__get_project(msg['msg']['commit'], key='repo')
-            commit = msg['msg']['commit']['rev']
-            tmpl += '/{commit}'
+            if 'commit' in msg['msg']:
+                project = _get_project(msg['msg']['commit'], key='repo')
+                item = msg['msg']['commit']['rev']
+                tmpl += '/{item}'
+            else:
+                project = _get_project(msg['msg']['commits'][0], key='repo')
+                item = msg['msg']['branch']
+                if 'refs/heads/' in item:
+                    item = item.replace('refs/heads/', '')
+                tmpl += '/branch/{item}'
             return tmpl.format(
-                base_url=base_url, project=project, commit=commit)
+                base_url=base_url, project=project, item=item)
+
         else:
             return base_url
 
@@ -111,10 +154,10 @@ class PagureProcessor(BaseProcessor):
 
     def subtitle(self, msg, **config):
         try:
-            project = self.__get_project(msg['msg'])
+            project = _get_project(msg['msg'])
         except KeyError:
             try:
-                project = self.__get_project(msg['msg']['pullrequest'])
+                project = _get_project(msg['msg']['pullrequest'])
             except KeyError:
                 project = "(unknown)"
         user = msg['msg'].get('agent')
@@ -303,20 +346,12 @@ class PagureProcessor(BaseProcessor):
             return tmpl.format(
                 username=username, id=prid, comment=comment, project=project)
         elif 'pagure.git.receive' in msg['topic']:
-            repo = self.__get_project(msg['msg']['commit'], key='repo')
-            email = msg['msg']['commit']['email']
-            user = email2fas(email, **config)
-            summ = msg['msg']['commit']['summary']
-            whole = msg['msg']['commit']['message']
-            if summ.strip() != whole.strip():
-                summ += " (..more)"
-
-            branch = msg['msg']['commit']['branch']
-            if 'refs/heads/' in branch:
-                branch = branch.replace('refs/heads/', '')
-            tmpl = self._('{user} pushed to {repo} ({branch}). "{summary}"')
-            return tmpl.format(user=user or email, repo=repo,
-                               branch=branch, summary=summ)
+            if 'commit' in msg['msg']:
+                tmpl = self._('{user} pushed to {repo} ({branch}). "{summary}"')
+                return _git_receive_v1(msg, tmpl, **config)
+            else:
+                tmpl = self._('{user} pushed {n_commits} to {repo} ({branch})')
+                return _git_receive_v2(msg, tmpl)
 
         else:
             pass
@@ -341,10 +376,10 @@ class PagureProcessor(BaseProcessor):
 
     def objects(self, msg, **config):
         try:
-            project = self.__get_project(msg['msg'])
+            project = _get_project(msg['msg'])
         except KeyError:
             try:
-                project = self.__get_project(msg['msg']['pullrequest'])
+                project = _get_project(msg['msg']['pullrequest'])
             except KeyError:
                 project = "(unknown)"
 
@@ -363,7 +398,10 @@ class PagureProcessor(BaseProcessor):
                 'project/%s' % project,
             ])
         elif 'pagure.git.receive' in msg['topic']:
-            project = self.__get_project(msg['msg']['commit'], key='repo')
+            if 'commit' in msg['msg']:
+                project = _get_project(msg['msg']['commit'], key='repo')
+            else:
+                project = _get_project(msg['msg']['commits'][0], key='repo')
             return set([
                 'project/%s' % project,
             ])

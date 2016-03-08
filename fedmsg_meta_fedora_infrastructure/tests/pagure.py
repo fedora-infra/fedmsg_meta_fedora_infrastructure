@@ -1622,7 +1622,7 @@ class TestPullRequestFlagUpdated(Base):
         }
 
 
-class TestGitCommit(Base):
+class LegacyTestGitCommit(Base):
     """ These messages are published when a someone updates a flag on a
     pull-request on a project on `pagure <https://pagure.io>`_.
     """
@@ -1689,6 +1689,198 @@ class TestGitCommit(Base):
          'timestamp': 1434213042.0,
          'topic': 'io.pagure.prod.pagure.git.receive'
     }
+
+
+class TestGitCommit(Base):
+    """ These messages are published when a someone updates a flag on a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.git.receive"
+    expected_subti = 'pingou pushed 3 to pagure (master)'
+    expected_link = "https://pagure.io/pagure/branch/master"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/' + \
+        '01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c' + \
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pagure'])
+    msg = {
+      "username": "pierrey",
+      "i": 1,
+      "timestamp": 1457444969,
+      "msg_id": "2016-15d9bed1-7fe8-47f0-8c8e-3463125e55ea",
+      'topic': 'io.pagure.prod.pagure.git.receive',
+      "msg": {
+        "commits": [
+          {
+            "username": None,
+            "stats": {
+              "files": {
+                "test2": {
+                  "deletions": 0,
+                  "additions": 1,
+                  "lines": 1
+                }
+              },
+              "total": {
+                "deletions": 0,
+                "files": 1,
+                "additions": 1,
+                "lines": 1
+              }
+            },
+            "name": "Pierre-Yves Chibon",
+            "rev": "00619c4f1adfc9cc598a984e53d544145565ad79",
+            "agent": "pierrey",
+            "summary": "Add 8 to test2",
+            "repo": {
+              "description": "test project #1",
+              "parent": None,
+              "settings": {
+                "Minimum_score_to_merge_pull-request": -1,
+                "Web-hooks": None,
+                "project_documentation": False,
+                "always_merge": True,
+                "pull_requests": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "Comment-editing": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "tags": [
+                "fedora-infra",
+                "fedora"
+              ],
+              "user": {
+                "fullname": "Pierre-Yves  \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Ch\u00efb\u00f3\u00f1",
+                "name": "pingou"
+              },
+              "date_created": "1426500194",
+              "id": 1,
+              "name": "pagure"
+            },
+            "branch": "refs/heads/master",
+            "seen": False,
+            "path": "/home/pierrey/repos/gitrepo/pagure/repos/test.git",
+            "message": "Add 8 to test2",
+            "email": "pingou@pingoured.fr"
+          },
+          {
+            "username": None,
+            "stats": {
+              "files": {
+                "test2": {
+                  "deletions": 0,
+                  "additions": 1,
+                  "lines": 1
+                }
+              },
+              "total": {
+                "deletions": 0,
+                "files": 1,
+                "additions": 1,
+                "lines": 1
+              }
+            },
+            "name": "Pierre-Yves Chibon",
+            "rev": "64aefb9721572ec9676b841cc5f33fb03c167531",
+            "agent": "pierrey",
+            "summary": "Add 9 to test2",
+            "repo": {
+              "description": "test project #1",
+              "parent": None,
+              "settings": {
+                "Minimum_score_to_merge_pull-request": -1,
+                "Web-hooks": None,
+                "project_documentation": False,
+                "always_merge": True,
+                "pull_requests": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "Comment-editing": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "tags": [
+                "fedora-infra",
+                "fedora"
+              ],
+              "user": {
+                "fullname": "Pierre-Yves  \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Ch\u00efb\u00f3\u00f1",
+                "name": "pingou"
+              },
+              "date_created": "1426500194",
+              "id": 1,
+              "name": "test"
+            },
+            "branch": "refs/heads/master",
+            "seen": False,
+            "path": "/home/pierrey/repos/gitrepo/pagure/repos/test.git",
+            "message": "Add 9 to test2",
+            "email": "pingou@pingoured.fr"
+          },
+          {
+            "username": None,
+            "stats": {
+              "files": {
+                "test2": {
+                  "deletions": 0,
+                  "additions": 1,
+                  "lines": 1
+                }
+              },
+              "total": {
+                "deletions": 0,
+                "files": 1,
+                "additions": 1,
+                "lines": 1
+              }
+            },
+            "name": "Pierre-Yves Chibon",
+            "rev": "90747ca902dd3213a900c18d683380439f6a769e",
+            "agent": "pierrey",
+            "summary": "Add 10 to test2",
+            "repo": {
+              "description": "test project #1",
+              "parent": None,
+              "settings": {
+                "Minimum_score_to_merge_pull-request": -1,
+                "Web-hooks": None,
+                "project_documentation": False,
+                "always_merge": True,
+                "pull_requests": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "Comment-editing": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "tags": [
+                "fedora-infra",
+                "fedora"
+              ],
+              "user": {
+                "fullname": "Pierre-Yves  \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Ch\u00efb\u00f3\u00f1",
+                "name": "pingou"
+              },
+              "date_created": "1426500194",
+              "id": 1,
+              "name": "test"
+            },
+            "branch": "refs/heads/master",
+            "seen": False,
+            "path": "/home/pierrey/repos/gitrepo/pagure/repos/test.git",
+            "message": "Add 10 to test2",
+            "email": "pingou@pingoured.fr"
+          }
+        ],
+        "branch": "refs/heads/master",
+        "agent": "pingou",
+        "forced": False
+      }
+    }
+
+
 
 class TestIssueDrop(Base):
     """ These messages are published when a ticket is deleted against a
