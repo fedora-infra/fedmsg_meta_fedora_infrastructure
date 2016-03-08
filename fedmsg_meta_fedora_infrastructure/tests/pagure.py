@@ -1076,6 +1076,151 @@ class TestNewPullRequestComment(Base):
       }
     }
 
+class TestEditPullRequestComment(Base):
+    """ These messages are published when a someone commented on a
+    pull-request of a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.comment.edited"
+    expected_subti = 'lmacken edited a comment on pull-request#31 of '\
+        'project "mdapi"'
+    expected_link = "https://pagure.io/mdapi/pull-request/31#comment-2922"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "203f6cb95b44b5d38aa21425b066dd522d3e19d8919cf4b339f29e0ea7f03e9b" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['lmacken'])
+    expected_objects = set(['project/mdapi', 'pull-request/31'])
+    msg = {
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1456854211.0,
+      "msg_id": "2016-79bbee62-ed68-4989-a930-d40f09edd1da",
+      "topic": "io.pagure.prod.pagure.pull-request.comment.edited",
+      "source_version": "0.6.5",
+      "msg": {
+        "comment": {
+          "comment": "From https://docs.python.org/3/library/asyncio-task.html\r\n"
+              "\r\nThings a coroutine can do:\r\n\r\n"
+              "`result = await future` or `result = yield from future` \u2013...",
+          "parent": None,
+          "notification": False,
+          "tree": None,
+          "filename": None,
+          "edited_on": "1456854211",
+          "editor": {
+            "fullname": "Luke Macken",
+            "name": "lmacken"
+          },
+          "date_created": "1456854157",
+          "commit": None,
+          "line": None,
+          "id": 2922,
+          "user": {
+            "fullname": "Luke Macken",
+            "name": "lmacken"
+          }
+        },
+        "project": {
+          "description": "Expose the repo metadata information in a simple api",
+          "parent": None,
+          "settings": {
+            "Minimum_score_to_merge_pull-request": -1,
+            "Web-hooks": None,
+            "project_documentation": False,
+            "always_merge": False,
+            "pull_requests": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "tags": [
+            "fedmsg",
+            "fedora-infra"
+          ],
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1445511838",
+          "id": 221,
+          "name": "mdapi"
+        },
+        "pullrequest": {
+          "status": "Open",
+          "branch_from": "more_asyncio",
+          "uid": "d358fb141cab47dda84fe1cd1a19f042",
+          "commit_stop": "e307cc14de0f0ab38a5fbf235e62d5d8e106dd9c",
+          "title": "Chain the method as coroutines to make the process more asynchronous",
+          "comments": [],
+          "id": 31,
+          "project": {
+            "description": "Expose the repo metadata information in a simple api",
+            "parent": None,
+            "settings": {
+              "Minimum_score_to_merge_pull-request": -1,
+              "Web-hooks": None,
+              "project_documentation": False,
+              "always_merge": False,
+              "pull_requests": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "tags": [
+              "fedmsg",
+              "fedora-infra"
+            ],
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1445511838",
+            "id": 221,
+            "name": "mdapi"
+          },
+          "assignee": None,
+          "repo_from": {
+            "description": "Expose the repo metadata information in a simple api",
+            "parent": None,
+            "settings": {
+              "Minimum_score_to_merge_pull-request": -1,
+              "Web-hooks": None,
+              "project_documentation": False,
+              "always_merge": False,
+              "pull_requests": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "tags": [
+              "fedmsg",
+              "fedora-infra"
+            ],
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1445511838",
+            "id": 221,
+            "name": "mdapi"
+          },
+          "updated_on": "1456853926",
+          "commit_start": "e307cc14de0f0ab38a5fbf235e62d5d8e106dd9c",
+          "branch": "master",
+          "date_created": "1456770725",
+          "closed_at": None,
+          "remote_git": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "lmacken"
+      }
+    }
 
 class TestNewPullRequestclosed(Base):
     """ These messages are published when a someone closed a pull-request

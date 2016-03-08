@@ -116,13 +116,18 @@ class PagureProcessor(BaseProcessor):
         elif 'pagure.pull-request' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             if 'comment' in msg['topic']:
-
                 comments = msg['msg']['pullrequest']['comments']
                 if comments:
                     tmpl += '/pull-request/{id}#comment-{comment}'
                     return tmpl.format(
                         base_url=base_url, project=project, id=prid,
                         comment=comments[-1]['id'])
+                elif msg['msg'].get('comment'):
+                    comment_id = msg['msg']['comment']['id']
+                    tmpl += '/pull-request/{id}#comment-{comment}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=prid,
+                        comment=comment_id)
                 else:
                     tmpl += '/pull-request/{id}'
                     return tmpl.format(
@@ -299,6 +304,13 @@ class PagureProcessor(BaseProcessor):
             prid = msg['msg']['pullrequest']['id']
             tmpl = self._(
                 '{user} commented on pull-request#{id} of project '
+                '"{project}"'
+            )
+            return tmpl.format(user=user, id=prid, project=project)
+        elif 'pagure.pull-request.comment.edited' in msg['topic']:
+            prid = msg['msg']['pullrequest']['id']
+            tmpl = self._(
+                '{user} edited a comment on pull-request#{id} of project '
                 '"{project}"'
             )
             return tmpl.format(user=user, id=prid, project=project)
