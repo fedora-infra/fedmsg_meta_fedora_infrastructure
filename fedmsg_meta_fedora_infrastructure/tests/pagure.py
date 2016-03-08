@@ -2092,7 +2092,7 @@ class TestIssueDrop(Base):
     }
 
 
-class TestIssueCommentEditLegacy(Base):
+class TestIssueCommentEdit(Base):
     """ These messages are published when someone edits a comment on a ticket
     on `pagure <https://pagure.io>`_.
     """
