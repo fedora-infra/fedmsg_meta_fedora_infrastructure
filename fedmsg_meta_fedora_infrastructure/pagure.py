@@ -57,9 +57,9 @@ def _git_receive_v2(msg, tmpl):
     ''' Return the subtitle for the second version of pagure git.receive
     messages.
     '''
-    repo = _get_project(msg['msg']['commits'][0], key='repo')
+    repo = _get_project(msg['msg'], key='repo')
     user = msg['msg']['agent']
-    n_commits = len(msg['msg']['commits'])
+    n_commits = msg['msg']['total_commits']
     branch = msg['msg']['branch']
     if 'refs/heads/' in branch:
         branch = branch.replace('refs/heads/', '')
@@ -144,7 +144,7 @@ class PagureProcessor(BaseProcessor):
                 item = msg['msg']['commit']['rev']
                 tmpl += '/{item}'
             else:
-                project = _get_project(msg['msg']['commits'][0], key='repo')
+                project = _get_project(msg['msg'], key='repo')
                 item = msg['msg']['branch']
                 if 'refs/heads/' in item:
                     item = item.replace('refs/heads/', '')
@@ -346,7 +346,6 @@ class PagureProcessor(BaseProcessor):
             )
             return tmpl.format(
                 username=username, id=prid, comment=comment, project=project)
-
         elif 'pagure.pull-request.flag.updated' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             username = msg['msg']['flag']['username']
@@ -413,7 +412,7 @@ class PagureProcessor(BaseProcessor):
             if 'commit' in msg['msg']:
                 project = _get_project(msg['msg']['commit'], key='repo')
             else:
-                project = _get_project(msg['msg']['commits'][0], key='repo')
+                project = _get_project(msg['msg'], key='repo')
             return set([
                 'project/%s' % project,
             ])
