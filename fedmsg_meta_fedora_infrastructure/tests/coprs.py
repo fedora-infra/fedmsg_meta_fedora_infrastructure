@@ -33,11 +33,11 @@ Status:   success
 ID:       00000100
 
 Logs:
-  Build:     https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21/build.log.gz
-  Root:      https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21/root.log.gz
+  Build:     https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-mutt-kz/build.log.gz
+  Root:      https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-mutt-kz/root.log.gz
   Copr:      https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/build-00000100.log
-  Mockchain: https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21/mockchain.log.gz
-Results:     https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21/
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-mutt-kz/mockchain.log.gz
+Results:     https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-mutt-kz/
 Repodata:    https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/repodata/
 """
 
@@ -49,11 +49,11 @@ Status:   failed
 ID:       00080794
 
 Logs:
-  Build:     https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/glib2-2.42.2-1.01.fc21/build.log.gz
-  Root:      https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/glib2-2.42.2-1.01.fc21/root.log.gz
+  Build:     https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/00080794-glib2/build.log.gz
+  Root:      https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/00080794-glib2/root.log.gz
   Copr:      https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/build-00080794.log
-  Mockchain: https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/glib2-2.42.2-1.01.fc21/mockchain.log.gz
-Results:     https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/glib2-2.42.2-1.01.fc21/
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/00080794-glib2/mockchain.log.gz
+Results:     https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/00080794-glib2/
 Repodata:    https://copr-be.cloud.fedoraproject.org/results/brianjmurrell/glib2/fedora-21-x86_64/repodata/
 """
 
