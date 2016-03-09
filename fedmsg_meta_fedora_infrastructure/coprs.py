@@ -40,11 +40,11 @@ Status:   {status}
 ID:       {build}
 
 Logs:
-  Build:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/build.log.gz
-  Root:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/root.log.gz
+  Build:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{build}-{pkg_name}/build.log.gz
+  Root:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{build}-{pkg_name}/root.log.gz
   Copr:      https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/build-{build}.log
-  Mockchain: https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/mockchain.log.gz
-Results:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{pkg}/
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{build}-{pkg_name}/mockchain.log.gz
+Results:     https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/{build}-{pkg_name}/
 Repodata:    https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chroot}/repodata/
 """
 
@@ -52,7 +52,7 @@ Repodata:    https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chr
 class CoprsProcessor(BaseProcessor):
     __name__ = "Copr"
     __description__ = "the Cool Other Package Repositories system"
-    __link__ = "https://copr-fe.cloud.fedoraproject.org"
+    __link__ = "https://copr.fedorainfracloud.org"
     __docs__ = "https://fedorahosted.org/copr"
     __obj__ = "Extra Repository Updates"
     __icon__ = "https://apps.fedoraproject.org/img/icons/copr.png"
@@ -74,6 +74,10 @@ class CoprsProcessor(BaseProcessor):
 
             # Zero pad buildid
             kwargs['build'] = '%08d' % (kwargs['build'])
+
+            # Also, extract the name from the NVR.
+            name, version, release = kwargs['pkg'].rsplit('-', 2)
+            kwargs['pkg_name'] = name
 
             details = _long_template.format(**kwargs)
             return details
