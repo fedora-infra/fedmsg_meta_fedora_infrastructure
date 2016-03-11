@@ -1,4 +1,35 @@
 
+0.15.11
+-------
+
+Pull Requests
+
+- (@ralphbean)      #361, Conglomerate irc meeting events (for fedora-hubs).
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/361
+- (@pypingou)       #362, Adjust the pagure processor for the new format of the fedmsg message sent
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/362
+- (@ralphbean)      #364, Fix copr links.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/364
+- (@pypingou)       #365, Adjust the pagure processor for the new pagure message format
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/365
+
+Commits
+
+- 6cabffc38 Fix this cgit test.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6cabffc38
+- 3a0861851 Conglomerate irc meeting events (for fedora-hubs).
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3a0861851
+- a1d63ca68 Adjust the pagure processor for the new format of the fedmsg message sent
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a1d63ca68
+- 9ac1caf3f Adjust the pagure processor for PR comment editing
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9ac1caf3f
+- 8af38a1a4 Rename TestIssueCommentEditLegacy to TestIssueCommentEdit
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8af38a1a4
+- 25875edb6 Fix copr links.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/25875edb6
+- edfa5e688 Adjust the pagure processor for the new pagure message format
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/edfa5e688
+
 0.15.10
 -------
 
