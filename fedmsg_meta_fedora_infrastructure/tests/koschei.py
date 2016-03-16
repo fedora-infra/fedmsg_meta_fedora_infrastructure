@@ -34,7 +34,7 @@ class TestKoscheiPackageStateChange(Base):
     """
 
     expected_title = "koschei.package.state.change"
-    expected_subti = "rnv's builds started to fail in f22 (arm)"
+    expected_subti = "rnv's builds started to fail in Fedora 22 (arm)"
     expected_link = 'https://apps.fedoraproject.org/koschei/package/rnv'
     expected_secondary_icon = \
         'https://apps.fedoraproject.org/packages/images/icons/rnv.png'
@@ -52,6 +52,8 @@ class TestKoscheiPackageStateChange(Base):
             "new": "failing",
             "koji_instance": "arm",
             "repo": "f22",
+            "collection": "f22",
+            "collection_name": "Fedora 22",
             "groups": ["c", "xml"]
         }
     }
