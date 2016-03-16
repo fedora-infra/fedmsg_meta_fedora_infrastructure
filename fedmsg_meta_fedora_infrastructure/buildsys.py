@@ -102,6 +102,16 @@ class KojiProcessor(BaseProcessor):
     @classmethod
     def _fill_build_template(cls, sess, build):
         full_build = sess.getBuild(build['build_id'])
+
+        # We *often* hit a race condition with koji here.
+        # It publishes the fedmsg message before it has committed the details
+        # its database.  When we receive the message, we here try to query koji
+        # for more details but... the fedmsg got to us before the db commit
+        # finished and koji says "I know nothing."
+        if not full_build:
+            errmsg = "    Failed to retrieve further details about %r"
+            return errmsg % build['build_id']
+
         lookup = dict(zip(*zip(*koji.BUILD_STATES.items())[::-1]))
         full_build['status'] = lookup[full_build['state']].lower()
 
