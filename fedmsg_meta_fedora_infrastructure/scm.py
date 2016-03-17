@@ -73,6 +73,11 @@ class SCMProcessor(BaseProcessor):
             tmpl = self._("{xsum}  {filename}")
             return tmpl.format(xsum=xsum, filename=filename)
 
+    def lexer(self, msg, **config):
+        if '.git.receive' in msg['topic']:
+            import pygments.lexers.diff
+            return pygments.lexers.diff.DiffLexer()
+
     def subtitle(self, msg, **config):
         if '.git.receive' in msg['topic']:
             try:
