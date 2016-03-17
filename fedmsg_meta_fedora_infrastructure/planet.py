@@ -40,6 +40,19 @@ class PlanetProcessor(BaseProcessor):
         tmpl = self._('New post: "{title}"')
         return tmpl.format(title=title)
 
+    def long_form(self, msg, **config):
+        if 'summary' in msg['msg']['post']:
+            return msg['msg']['post']['summary']
+        elif 'content' in msg['msg']['post']:
+            if msg['msg']['post']['content']:
+                return msg['msg']['post']['content'][0]['value']
+
+    def lexer(self, msg, **config):
+        # Be explicit about returning None here.  We don't want to lex the html
+        # from their summary.. but we want to return it literally.  So, don't
+        # implement a lexer here, please.  --ralph
+        return None
+
     def secondary_icon(self, msg, **config):
         return msg['msg'].get('face', None)
 
