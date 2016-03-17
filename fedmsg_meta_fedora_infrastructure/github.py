@@ -106,6 +106,14 @@ class GithubProcessor(BaseProcessor):
             if response.status_code == 200:
                 return response.text
 
+    def lexer(self, msg, **config):
+        if 'github.push' in msg['topic']:
+            import pygments.lexers.diff
+            return pygments.lexers.diff.DiffLexer()
+        else:
+            import pygments_markdown_lexer
+            return pygments_markdown_lexer.MarkdownLexer()
+
     def subtitle(self, msg, **config):
         user = self._get_user(msg)
         repo = self._get_repo(msg)
