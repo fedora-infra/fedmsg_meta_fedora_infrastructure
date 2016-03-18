@@ -1,4 +1,21 @@
 
+0.17.0
+------
+
+Pull Requests
+
+- (@ralphbean)      #367, Start adding some lexers.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/367
+- (@ralphbean)      #366, Pad against a race condition with koji.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/366
+
+Commits
+
+- 4015cc361 Pad against a race condition with koji.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4015cc361
+- ff9b042a7 Start adding some lexers.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ff9b042a7
+
 0.15.11
 -------
 
