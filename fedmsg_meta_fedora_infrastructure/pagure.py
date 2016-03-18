@@ -21,6 +21,9 @@
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url, email2fas
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
+from fedmsg_meta_fedora_infrastructure.conglomerators.pagure import \
+        pagure as pagure_conglomerator
+
 import fedmsg.meta.base
 
 def _get_project(msg, key='project'):
@@ -77,6 +80,12 @@ class PagureProcessor(BaseProcessor):
     __obj__ = "Pagure forge"
     __icon__ = ("https://apps.fedoraproject.org/packages/"
                 "images/icons/package_128x128.png")
+
+    conglomerators = [
+        pagure_conglomerator.ByPR,
+        pagure_conglomerator.ByIssue,
+        #pagure_conglomerator.ByUserCommits,
+    ]
 
 
     def link(self, msg, **config):
