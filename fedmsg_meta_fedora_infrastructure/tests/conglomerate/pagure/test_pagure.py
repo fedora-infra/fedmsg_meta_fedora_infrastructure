@@ -5,145 +5,155 @@ import fedmsg.tests.test_meta
 import arrow
 
 
-class TestPagureConglomerator(
+class TestPagureConglomeratorByIssueAndPR(
     fedmsg.tests.test_meta.ConglomerateBase):
     expected = [
-        {'categories': set(['pagure']),
-        'end_time': 1458308863.0,
-        'human_time': arrow.get(1458307676).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pungi/issue/231',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/a89b57d99dcf12d40ec2b9fb05910b90293b13b0b87415208bedc897bc18a354?s=64&d=retro',
-        'start_time': 1458306489.0,
-        'subjective': 'ausil and lsedlar interacted with issue #231 of project "pungi" 2 times',
-        'subtitle': 'ausil and lsedlar interacted with issue #231 of project "pungi" 2 times',
-        'timestamp': 1458307676.0,
-        'topics': set(['io.pagure.prod.pagure.issue.comment.added']),
-        'usernames': set(['ausil', 'lsedlar'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458307490.0,
-        'human_time': arrow.get(1458307490).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/fork/bonnegent/pagure',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/1216fff466c9dbb6ce85ac95bf8f45b9e19421af97de67945852722b899a34ee?s=64&d=retro',
-        'start_time': 1458307490.0,
-        'subjective': u'bonnegent forked project "pagure" to "bonnegent/pagure"',
-        'subtitle': u'bonnegent forked project "pagure" to "bonnegent/pagure"',
-        'timestamp': 1458307490.0,
-        'topics': set(['io.pagure.prod.pagure.project.forked']),
-        'usernames': set(['bonnegent'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458307394.0,
-        'human_time': arrow.get(1458307394).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pungi-fedora/pull-request/19',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/0929fed032bd0a481ef74c46023fefe443f3d1b72dbe3efd293b25ed4fc843fd?s=64&d=retro',
-        'start_time': 1458307394.0,
-        'subjective': 'sgallagh interacted with pull-request #19 of project "pungi-fedora" 2 times',
-        'subtitle': 'sgallagh interacted with pull-request #19 of project "pungi-fedora" 2 times',
-        'timestamp': 1458307394.0,
-        'topics': set(['io.pagure.prod.pagure.pull-request.comment.added',
-                        'io.pagure.prod.pagure.pull-request.new']),
-        'usernames': set(['sgallagh'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458307333.0,
-        'human_time': arrow.get(1458307333).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pungi-fedora/pull-request/18',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/0929fed032bd0a481ef74c46023fefe443f3d1b72dbe3efd293b25ed4fc843fd?s=64&d=retro',
-        'start_time': 1458307333.0,
-        'subjective': 'sgallagh interacted with pull-request #18 of project "pungi-fedora" 2 times',
-        'subtitle': 'sgallagh interacted with pull-request #18 of project "pungi-fedora" 2 times',
-        'timestamp': 1458307333.0,
-        'topics': set(['io.pagure.prod.pagure.pull-request.comment.added',
-                        'io.pagure.prod.pagure.pull-request.new']),
-        'usernames': set(['sgallagh'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458306395.0,
-        'human_time': arrow.get(1458306374.5).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pungi/pull-request/235',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/e11f439e57cde0130fda04ad14b4f24376d56f6b0daae3e8f41fda1a05600651?s=64&d=retro',
-        'start_time': 1458306354.0,
-        'subjective': 'lsedlar interacted with pull-request #235 of project "pungi" 2 times',
-        'subtitle': 'lsedlar interacted with pull-request #235 of project "pungi" 2 times',
-        'timestamp': 1458306374.5,
-        'topics': set(['io.pagure.prod.pagure.pull-request.flag.added',
-                        'io.pagure.prod.pagure.pull-request.new']),
-        'usernames': set(['lsedlar'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458306074.0,
-        'human_time': arrow.get(1458305616.4).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pungi/pull-request/234',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/e11f439e57cde0130fda04ad14b4f24376d56f6b0daae3e8f41fda1a05600651?s=64&d=retro',
-        'start_time': 1458304911.0,
-        'subjective': 'lsedlar interacted with pull-request #234 of project "pungi" 5 times',
-        'subtitle': 'lsedlar interacted with pull-request #234 of project "pungi" 5 times',
-        'timestamp': 1458305616.4,
-        'topics': set(['io.pagure.prod.pagure.pull-request.closed',
-                        'io.pagure.prod.pagure.pull-request.comment.added',
-                        'io.pagure.prod.pagure.pull-request.flag.added',
-                        'io.pagure.prod.pagure.pull-request.new']),
-        'usernames': set(['lsedlar'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458305858.0,
-        'human_time': arrow.get(1458305858.0).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pagure/issue/849',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/1216fff466c9dbb6ce85ac95bf8f45b9e19421af97de67945852722b899a34ee?s=64&d=retro',
-        'start_time': 1458305858.0,
-        'subjective': u'bonnegent opened a new ticket pagure#849: "pagure on python3"',
-        'subtitle': u'bonnegent opened a new ticket pagure#849: "pagure on python3"',
-        'timestamp': 1458305858.0,
-        'topics': set(['io.pagure.prod.pagure.issue.new']),
-        'usernames': set(['bonnegent'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458303598.0,
-        'human_time': arrow.get(1458299536.142857).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pagure/pull-request/843',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/ad9e5c1cfd5d5180a6b9a8ebdc5fc91fbd899dd4d2fe780b4f9963598216d7f8?s=64&d=retro',
-        'start_time': 1458298555.0,
-        'subjective': 'aavrug and pingou interacted with pull-request #843 of project "pagure" 7 times',
-        'subtitle': 'aavrug and pingou interacted with pull-request #843 of project "pagure" 7 times',
-        'timestamp': 1458299536.142857,
-        'topics': set(['io.pagure.prod.pagure.pull-request.comment.added']),
-        'usernames': set(['aavrug', 'pingou'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458298137.0,
-        'human_time': arrow.get(1458298005.5).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pagure/issue/833',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c?s=64&d=retro',
-        'start_time': 1458297874.0,
-        'subjective': 'pingou interacted with issue #833 of project "pagure" 2 times',
-        'subtitle': 'pingou interacted with issue #833 of project "pagure" 2 times',
-        'timestamp': 1458298005.5,
-        'topics': set(['io.pagure.prod.pagure.issue.comment.added']),
-        'usernames': set(['pingou'])},
-        {'categories': set(['pagure']),
-        'end_time': 1458297187.0,
-        'human_time': arrow.get(1458297187.0).humanize(),
-        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
-        'link': 'https://pagure.io/pagure/pull-request/848#comment-3484',
-        'packages': set([]),
-        'secondary_icon': 'https://seccdn.libravatar.org/avatar/01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c?s=64&d=retro',
-        'start_time': 1458297187.0,
-        'subjective': u'pingou commented on pull-request#848 of project "pagure"',
-        'subtitle': u'pingou commented on pull-request#848 of project "pagure"',
-        'timestamp': 1458297187.0,
-        'topics': set(['io.pagure.prod.pagure.pull-request.comment.added']),
-        'usernames': set(['pingou'])}
+        {
+            'categories': set(['pagure']),
+            'end_time': 1458308863.0,
+            'human_time': arrow.get(1458307676).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pungi/issue/231',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/a89b57d99dcf12d40ec2b9fb05910b90293b13b0b87415208bedc897bc18a354?s=64&d=retro',
+            'start_time': 1458306489.0,
+            'subjective': 'ausil and lsedlar interacted with issue #231 of project "pungi" 2 times',
+            'subtitle': 'ausil and lsedlar interacted with issue #231 of project "pungi" 2 times',
+            'timestamp': 1458307676.0,
+            'topics': set(['io.pagure.prod.pagure.issue.comment.added']),
+            'usernames': set(['ausil', 'lsedlar'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458307490.0,
+            'human_time': arrow.get(1458307490).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/fork/bonnegent/pagure',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/1216fff466c9dbb6ce85ac95bf8f45b9e19421af97de67945852722b899a34ee?s=64&d=retro',
+            'start_time': 1458307490.0,
+            'subjective': u'bonnegent forked project "pagure" to "bonnegent/pagure"',
+            'subtitle': u'bonnegent forked project "pagure" to "bonnegent/pagure"',
+            'timestamp': 1458307490.0,
+            'topics': set(['io.pagure.prod.pagure.project.forked']),
+            'usernames': set(['bonnegent'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458307394.0,
+            'human_time': arrow.get(1458307394).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pungi-fedora/pull-request/19',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/0929fed032bd0a481ef74c46023fefe443f3d1b72dbe3efd293b25ed4fc843fd?s=64&d=retro',
+            'start_time': 1458307394.0,
+            'subjective': 'sgallagh interacted with pull-request #19 of project "pungi-fedora" 2 times',
+            'subtitle': 'sgallagh interacted with pull-request #19 of project "pungi-fedora" 2 times',
+            'timestamp': 1458307394.0,
+            'topics': set(['io.pagure.prod.pagure.pull-request.comment.added',
+                           'io.pagure.prod.pagure.pull-request.new']),
+            'usernames': set(['sgallagh'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458307333.0,
+            'human_time': arrow.get(1458307333).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pungi-fedora/pull-request/18',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/0929fed032bd0a481ef74c46023fefe443f3d1b72dbe3efd293b25ed4fc843fd?s=64&d=retro',
+            'start_time': 1458307333.0,
+            'subjective': 'sgallagh interacted with pull-request #18 of project "pungi-fedora" 2 times',
+            'subtitle': 'sgallagh interacted with pull-request #18 of project "pungi-fedora" 2 times',
+            'timestamp': 1458307333.0,
+            'topics': set(['io.pagure.prod.pagure.pull-request.comment.added',
+                           'io.pagure.prod.pagure.pull-request.new']),
+            'usernames': set(['sgallagh'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458306395.0,
+            'human_time': arrow.get(1458306374.5).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pungi/pull-request/235',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/e11f439e57cde0130fda04ad14b4f24376d56f6b0daae3e8f41fda1a05600651?s=64&d=retro',
+            'start_time': 1458306354.0,
+            'subjective': 'lsedlar interacted with pull-request #235 of project "pungi" 2 times',
+            'subtitle': 'lsedlar interacted with pull-request #235 of project "pungi" 2 times',
+            'timestamp': 1458306374.5,
+            'topics': set(['io.pagure.prod.pagure.pull-request.flag.added',
+                           'io.pagure.prod.pagure.pull-request.new']),
+            'usernames': set(['lsedlar'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458306074.0,
+            'human_time': arrow.get(1458305616.4).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pungi/pull-request/234',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/e11f439e57cde0130fda04ad14b4f24376d56f6b0daae3e8f41fda1a05600651?s=64&d=retro',
+            'start_time': 1458304911.0,
+            'subjective': 'lsedlar interacted with pull-request #234 of project "pungi" 5 times',
+            'subtitle': 'lsedlar interacted with pull-request #234 of project "pungi" 5 times',
+            'timestamp': 1458305616.4,
+            'topics': set(['io.pagure.prod.pagure.pull-request.closed',
+                           'io.pagure.prod.pagure.pull-request.comment.added',
+                           'io.pagure.prod.pagure.pull-request.flag.added',
+                           'io.pagure.prod.pagure.pull-request.new']),
+            'usernames': set(['lsedlar'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458305858.0,
+            'human_time': arrow.get(1458305858.0).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pagure/issue/849',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/1216fff466c9dbb6ce85ac95bf8f45b9e19421af97de67945852722b899a34ee?s=64&d=retro',
+            'start_time': 1458305858.0,
+            'subjective': u'bonnegent opened a new ticket pagure#849: "pagure on python3"',
+            'subtitle': u'bonnegent opened a new ticket pagure#849: "pagure on python3"',
+            'timestamp': 1458305858.0,
+            'topics': set(['io.pagure.prod.pagure.issue.new']),
+            'usernames': set(['bonnegent'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458303598.0,
+            'human_time': arrow.get(1458299536.142857).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pagure/pull-request/843',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/ad9e5c1cfd5d5180a6b9a8ebdc5fc91fbd899dd4d2fe780b4f9963598216d7f8?s=64&d=retro',
+            'start_time': 1458298555.0,
+            'subjective': 'aavrug and pingou interacted with pull-request #843 of project "pagure" 7 times',
+            'subtitle': 'aavrug and pingou interacted with pull-request #843 of project "pagure" 7 times',
+            'timestamp': 1458299536.142857,
+            'topics': set(['io.pagure.prod.pagure.pull-request.comment.added']),
+            'usernames': set(['aavrug', 'pingou']),
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458298137.0,
+            'human_time': arrow.get(1458298005.5).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pagure/issue/833',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c?s=64&d=retro',
+            'start_time': 1458297874.0,
+            'subjective': 'pingou interacted with issue #833 of project "pagure" 2 times',
+            'subtitle': 'pingou interacted with issue #833 of project "pagure" 2 times',
+            'timestamp': 1458298005.5,
+            'topics': set(['io.pagure.prod.pagure.issue.comment.added']),
+            'usernames': set(['pingou']),
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458297187.0,
+            'human_time': arrow.get(1458297187.0).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/pagure/pull-request/848#comment-3484',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c?s=64&d=retro',
+            'start_time': 1458297187.0,
+            'subjective': u'pingou commented on pull-request#848 of project "pagure"',
+            'subtitle': u'pingou commented on pull-request#848 of project "pagure"',
+            'timestamp': 1458297187.0,
+            'topics': set(['io.pagure.prod.pagure.pull-request.comment.added']),
+            'usernames': set(['pingou'])}
     ]
     originals = [
         {
@@ -5546,3 +5556,456 @@ class TestPagureConglomerator(
     "topic": "io.pagure.prod.pagure.pull-request.comment.added"
     }
     ]
+
+
+class TestPagureConglomeratorByOldStyleCommit(
+    fedmsg.tests.test_meta.ConglomerateBase):
+    expected = [
+        {
+            'categories': set(['pagure']),
+            'end_time': 1458324396.0,
+            'human_time': arrow.get(1458324396).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/fedora-hubs/3704095da807fc94f6ceff2f9d3c8d1de4888c22',
+            'packages': set([]),
+            'secondary_icon': None,
+            'start_time': 1458324396.0,
+            'subjective': u'rbean@redhat.com pushed to fedora-hubs (develop). "We need this to match our locally-stored datanommer topics so that the feed works."',
+            'subtitle': u'rbean@redhat.com pushed to fedora-hubs (develop). "We need this to match our locally-stored datanommer topics so that the feed works."',
+            'timestamp': 1458324396.0,
+            'topics': set(['io.pagure.prod.pagure.git.receive']),
+            'usernames': set(['rbean@redhat.com'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458298728.0,
+            'human_time': arrow.get(1458292032).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/fedora-websites/commits',
+            'packages': set([]),
+            'secondary_icon': 'https://seccdn.libravatar.org/avatar/f507d9bd18d7298a62d4efd485ce9136dea6145d728077d74f349d8b8bb02605?s=64&d=retro',
+            'start_time': 1458288685.0,
+            'subjective': 'robyduck pushed 3 commits to the fedora-websites project',
+            'subtitle': 'robyduck pushed 3 commits to the fedora-websites project',
+            'timestamp': 1458292032.6666667,
+            'topics': set(['io.pagure.prod.pagure.git.receive']),
+            'usernames': set(['robyduck'])
+        }, {
+            'categories': set(['pagure']),
+            'end_time': 1458294681.0,
+            'human_time': arrow.get(1458294681).humanize(),
+            'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+            'link': 'https://pagure.io/fedoramagazine-images/d71918d84ae82565837e9eaa8c42954c754fef4c',
+            'packages': set([]),
+            'secondary_icon': None,
+            'start_time': 1458294681.0,
+            'subjective': u'rlerch@redhat.com pushed to fedoramagazine-images (openvpn). "added openVPN image"',
+            'subtitle': u'rlerch@redhat.com pushed to fedoramagazine-images (openvpn). "added openVPN image"',
+            'timestamp': 1458294681.0,
+            'topics': set(['io.pagure.prod.pagure.git.receive']),
+            'usernames': set(['rlerch@redhat.com'])
+        }
+    ]
+
+    originals = [
+        {
+            "i": 1,
+            "msg": {
+                "commit": {
+                    "agent": "git",
+                    "branch": "refs/heads/develop",
+                    "email": "rbean@redhat.com",
+                    "message": "We need this to match our locally-stored datanommer topics so that the feed works.",
+                    "name": "Ralph Bean",
+                    "path": "/srv/git/repositories/fedora-hubs.git",
+                    "repo": {
+                        "date_created": "1433438868",
+                        "description": "Fedora Hubs",
+                        "id": 50,
+                        "name": "fedora-hubs",
+                        "parent": None,
+                        "settings": {
+                            "Enforce_signed-off_commits_in_pull-request": False,
+                            "Minimum_score_to_merge_pull-request": -1,
+                            "Only_assignee_can_merge_pull-request": False,
+                            "Web-hooks": None,
+                            "always_merge": False,
+                            "issue_tracker": True,
+                            "project_documentation": False,
+                            "pull_requests": True
+                        },
+                        "tags": [
+                            "fedora-infra"
+                        ],
+                        "user": {
+                            "fullname": "Remy DeCausemaker",
+                            "name": "decause"
+                        }
+                    },
+                    "rev": "3704095da807fc94f6ceff2f9d3c8d1de4888c22",
+                    "seen": False,
+                    "stats": {
+                        "files": {
+                            "fedmsg.d/base.py": {
+                                "additions": 1,
+                                "deletions": 1,
+                                "lines": 2
+                            }
+                        },
+                        "total": {
+                            "additions": 1,
+                            "deletions": 1,
+                            "files": 1,
+                            "lines": 2
+                        }
+                    },
+                    "summary": "We need this to match our locally-stored datanommer topics so that the feed works.",
+                    "username": None
+                }
+    },
+    "msg_id": "2016-9e3e2b6e-3155-4785-b6eb-7f493d1f46af",
+    "timestamp": 1458324396.0,
+    "topic": "io.pagure.prod.pagure.git.receive"
+    },
+    {
+        "i": 1,
+        "msg": {
+            "commit": {
+                "agent": "git",
+                "branch": "refs/heads/master",
+                "email": "robyduck@fedoraproject.org",
+                "message": "budget numbers title needs a hyperlink",
+                "name": "Robert Mayr",
+                "path": "/srv/git/repositories/fedora-websites.git",
+                "repo": {
+                    "date_created": "1456583771",
+                    "description": "Fedora Websites",
+                    "id": 375,
+                    "name": "fedora-websites",
+                    "parent": None,
+                    "settings": {
+                        "Enforce_signed-off_commits_in_pull-request": False,
+                        "Minimum_score_to_merge_pull-request": -1,
+                        "Only_assignee_can_merge_pull-request": False,
+                        "Web-hooks": None,
+                        "always_merge": False,
+                        "issue_tracker": True,
+                        "project_documentation": True,
+                        "pull_requests": True
+                    },
+                    "tags": [
+                        "fedmsg",
+                        "fedora-app"
+                    ],
+                    "user": {
+                        "fullname": "Robert Mayr",
+                        "name": "robyduck"
+                    }
+                },
+                "rev": "c1cdc52d08cb51b6f4d9f6fd5e34759590f8a9a4",
+                "seen": False,
+                "stats": {
+                    "files": {
+                        "budget.fedoraproject.org/data/content/index.html": {
+                            "additions": 1,
+                            "deletions": 1,
+                            "lines": 2
+                        }
+                    },
+                    "total": {
+                        "additions": 1,
+                        "deletions": 1,
+                        "files": 1,
+                        "lines": 2
+                    }
+                },
+                "summary": "budget numbers title needs a hyperlink",
+                "username": None
+    }
+    },
+    "msg_id": "2016-78f3efd4-7842-4488-9899-7f23f1037aa6",
+    "timestamp": 1458298728.0,
+    "topic": "io.pagure.prod.pagure.git.receive"
+    },
+    {
+        "i": 1,
+        "msg": {
+            "commit": {
+                "agent": "git",
+                "branch": "refs/heads/openvpn",
+                "email": "rlerch@redhat.com",
+                "message": "added openVPN image",
+                "name": "Ryan Lerch",
+                "path": "/srv/git/repositories/fedoramagazine-images.git",
+                "repo": {
+                    "date_created": "1440421477",
+                    "description": "Cover Images for the Fedora Magazine",
+                    "id": 147,
+                    "name": "fedoramagazine-images",
+                    "parent": None,
+                    "settings": {
+                        "Enforce_signed-off_commits_in_pull-request": False,
+                        "Minimum_score_to_merge_pull-request": -1,
+                        "Only_assignee_can_merge_pull-request": False,
+                        "Web-hooks": None,
+                        "always_merge": False,
+                        "issue_tracker": True,
+                        "project_documentation": True,
+                        "pull_requests": True
+                    },
+                    "tags": [
+                        "SVG",
+                        "magazine",
+                        "assets"
+                    ],
+                    "user": {
+                        "fullname": "ryan lerch",
+                        "name": "ryanlerch"
+                    }
+                },
+                "rev": "d71918d84ae82565837e9eaa8c42954c754fef4c",
+                "seen": False,
+                "stats": {
+                    "files": {
+                        "images/openvpn.svg": {
+                            "additions": 1007,
+                            "deletions": 0,
+                            "lines": 1007
+                        }
+                    },
+                    "total": {
+                        "additions": 1007,
+                        "deletions": 0,
+                        "files": 1,
+                        "lines": 1007
+                    }
+                },
+                "summary": "added openVPN image",
+    "username": None
+    }
+    },
+    "msg_id": "2016-44a40335-b644-409e-ac1b-3bf4b421109e",
+    "timestamp": 1458294681.0,
+    "topic": "io.pagure.prod.pagure.git.receive"
+    },
+    {
+        "i": 1,
+        "msg": {
+            "commit": {
+                "agent": "git",
+                "branch": "refs/heads/master",
+                "email": "robyduck@fedoraproject.org",
+                "message": "fix anchor id for budget numbers",
+                "name": "Robert Mayr",
+                "path": "/srv/git/repositories/fedora-websites.git",
+                "repo": {
+                    "date_created": "1456583771",
+                    "description": "Fedora Websites",
+                    "id": 375,
+                    "name": "fedora-websites",
+                    "parent": None,
+                    "settings": {
+                        "Enforce_signed-off_commits_in_pull-request": False,
+                        "Minimum_score_to_merge_pull-request": -1,
+                        "Only_assignee_can_merge_pull-request": False,
+                        "Web-hooks": None,
+                        "always_merge": False,
+                        "issue_tracker": True,
+                        "project_documentation": True,
+                        "pull_requests": True
+                    },
+                    "tags": [
+                        "fedmsg",
+                        "fedora-app"
+                    ],
+                    "user": {
+                        "fullname": "Robert Mayr",
+                        "name": "robyduck"
+                    }
+                },
+                "rev": "ec1d633b89a4dfdc05a09bd01b3a84cbe6aecbf7",
+                "seen": False,
+                "stats": {
+                    "files": {
+                        "budget.fedoraproject.org/data/content/index.html": {
+                            "additions": 1,
+                            "deletions": 1,
+                            "lines": 2
+                        }
+                    },
+                    "total": {
+                        "additions": 1,
+                        "deletions": 1,
+                        "files": 1,
+                        "lines": 2
+                    }
+                },
+                "summary": "fix anchor id for budget numbers",
+                "username": None
+    }
+    },
+    "msg_id": "2016-9ad5642e-b9d9-49fc-9d0a-0f9e22b34158",
+    "timestamp": 1458288685.0,
+    "topic": "io.pagure.prod.pagure.git.receive"
+    },
+    {
+        "i": 2,
+        "msg": {
+            "commit": {
+                "agent": "git",
+                "branch": "refs/heads/master",
+                "email": "robyduck@fedoraproject.org",
+                "message": "fix genshi markups for regional delegate titles",
+                "name": "Robert Mayr",
+                "path": "/srv/git/repositories/fedora-websites.git",
+                "repo": {
+                    "date_created": "1456583771",
+                    "description": "Fedora Websites",
+                    "id": 375,
+                    "name": "fedora-websites",
+                    "parent": None,
+                    "settings": {
+                        "Enforce_signed-off_commits_in_pull-request": False,
+                        "Minimum_score_to_merge_pull-request": -1,
+                        "Only_assignee_can_merge_pull-request": False,
+                        "Web-hooks": None,
+                        "always_merge": False,
+                        "issue_tracker": True,
+                        "project_documentation": True,
+                        "pull_requests": True
+                    },
+                    "tags": [
+                        "fedmsg",
+                        "fedora-app"
+                    ],
+                    "user": {
+                        "fullname": "Robert Mayr",
+                        "name": "robyduck"
+                    }
+                },
+                "rev": "e8523c28ea57af1a58f2e5aa4180338a5d5a6bd8",
+                "seen": False,
+                "stats": {
+                    "files": {
+                        "budget.fedoraproject.org/data/content/index.html": {
+                            "additions": 4,
+                            "deletions": 4,
+                            "lines": 8
+                        }
+                    },
+                    "total": {
+                        "additions": 4,
+                        "deletions": 4,
+                        "files": 1,
+                        "lines": 8
+                    }
+                },
+                "summary": "fix genshi markups for regional delegate titles",
+                "username": None
+    }
+    },
+    "msg_id": "2016-e6dd6d1f-b013-4fe3-aa2b-09f275ada088",
+    "timestamp": 1458288685.0,
+    "topic": "io.pagure.prod.pagure.git.receive"
+    }
+    ]
+
+
+class TestPagureConglomeratorByNewStyleCommit(
+    fedmsg.tests.test_meta.ConglomerateBase):
+    expected = [{
+        'categories': set(['pagure']),
+        'end_time': 1457538778,
+        'human_time': arrow.get(1457538778).humanize(),
+        'icon': 'https://apps.fedoraproject.org/packages/images/icons/package_128x128.png',
+        'link': 'https://pagure.io/pagure/commits',
+        'packages': set([]),
+        'secondary_icon': 'https://seccdn.libravatar.org/avatar/01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c?s=64&d=retro',
+        'start_time': 1457538778,
+        'subjective': u'pingou pushed 5 to pagure (master and feature)',
+        'subtitle': u'pingou pushed 5 to pagure (master and feature)',
+        'timestamp': 1457538778,
+        'topics': set(['io.pagure.prod.pagure.git.receive']),
+        'usernames': set(['pingou']),
+    }]
+
+    originals = [{
+      "username": "pingou",
+      "i": 1,
+      "timestamp": 1457538778,
+      "msg_id": "2016-c854f690-5691-42e8-b488-2d65aef80fdc",
+      "topic": "io.pagure.prod.pagure.git.receive",
+      "msg": {
+        "forced": False,
+        "agent": "pingou",
+        "repo": {
+          "description": "test project #1",
+          "parent": None,
+          "settings": {
+            "Minimum_score_to_merge_pull-request": -1,
+            "Web-hooks": None,
+            "project_documentation": False,
+            "always_merge": True,
+            "pull_requests": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "Comment-editing": False,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "tags": [
+            "fedora-infra",
+            "fedora"
+          ],
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1426500194",
+          "id": 1,
+          "name": "pagure"
+        },
+        "end_commit": "edc02fbb423d3957d174c571896418f29fa169b8",
+        "branch": "refs/heads/master",
+        "total_commits": 3,
+        "start_commit": "b5e65479e4bd91554d8d3084bf378ffb6e4ef605"
+      }
+    }, {
+      "username": "pingou",
+      "i": 1,
+      "timestamp": 1457538778,
+      "msg_id": "2016-c854f690-5691-42e8-b488-2d65aef80fdc",
+      "topic": "io.pagure.prod.pagure.git.receive",
+      "msg": {
+        "forced": False,
+        "agent": "pingou",
+        "repo": {
+          "description": "test project #1",
+          "parent": None,
+          "settings": {
+            "Minimum_score_to_merge_pull-request": -1,
+            "Web-hooks": None,
+            "project_documentation": False,
+            "always_merge": True,
+            "pull_requests": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "Comment-editing": False,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "tags": [
+            "fedora-infra",
+            "fedora"
+          ],
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1426500194",
+          "id": 1,
+          "name": "pagure"
+        },
+        "end_commit": "edc02fbb423d3957d174c571896418f29fa169b8",
+        "branch": "refs/heads/feature",
+        "total_commits": 2,
+        "start_commit": "b5e65479e4bd91554d8d3084bf378ffb6e4ef605"
+      }
+    }]

@@ -1,5 +1,5 @@
 import fedmsg.meta.base
-from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url, email2fas
 
 
 
@@ -68,3 +68,37 @@ class ByIssue(AbstractPagureTicketConglomerator):
 
     def get_repo(self, msg):
         return msg['msg']['project']['name']
+
+# TODO -- we need to write one of these for new style pagure commits too...
+class ByOldStyleCommit(fedmsg.meta.base.BaseConglomerator):
+    def can_handle(self, msg, **config):
+        return '.pagure.git.receive' in msg['topic'] and 'commit' in msg['msg']
+
+    def matches(self, a, b, **config):
+        a, b = a['msg'], b['msg']
+        return a['commit']['path'] == b['commit']['path']
+
+    def merge(self, constituents, subject, **config):
+        ms = constituents  # shorthand
+
+        count = len(ms)
+        agents = set([
+            email2fas(m['msg']['commit']['email'], **config) for m in ms
+        ])
+        repo = ms[0]['msg']['commit']['repo']['name']
+        subtitle = '{agents} pushed {count} commits to the {repo} project'
+        agents = self.list_to_series(agents)
+
+        tmpl = self.produce_template(constituents, subject, **config)
+        tmpl['subtitle'] = subtitle.format(
+            agents=agents,
+            repo=repo,
+            count=count,
+        )
+        tmpl['subjective'] = tmpl['subtitle']
+
+        tmpl['secondary_icon'] = avatar_url(list(agents)[0])
+        link_template = 'https://pagure.io/{repo}/commits'
+        tmpl['link'] = link_template.format(repo=repo)
+
+        return tmpl
