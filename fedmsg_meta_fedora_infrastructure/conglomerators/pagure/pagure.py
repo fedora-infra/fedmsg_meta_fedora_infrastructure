@@ -69,7 +69,42 @@ class ByIssue(AbstractPagureTicketConglomerator):
     def get_repo(self, msg):
         return msg['msg']['project']['name']
 
-# TODO -- we need to write one of these for new style pagure commits too...
+
+class ByNewStyleCommit(fedmsg.meta.base.BaseConglomerator):
+    def can_handle(self, msg, **config):
+        return '.pagure.git.receive' in msg['topic'] and 'commit' not  in msg['msg']
+
+    def matches(self, a, b, **config):
+        a, b = a['msg'], b['msg']
+        return a['repo']['name'] == b['repo']['name']
+
+    def merge(self, constituents, subject, **config):
+        ms = constituents  # shorthand
+
+        count = sum([m['msg']['total_commits'] for m in ms])
+        agents = set([m['msg']['agent'] for m in ms])
+        branches = [m['msg']['branch'].replace('refs/heads/', '') for m in ms]
+        repo = ms[0]['msg']['repo']['name']
+        subtitle = '{agents} pushed {count} commits to {repo} ({branches})'
+        agents = self.list_to_series(agents)
+        branches = self.list_to_series(branches)
+
+        tmpl = self.produce_template(constituents, subject, **config)
+        tmpl['subtitle'] = subtitle.format(
+            agents=agents,
+            repo=repo,
+            count=count,
+            branches=branches,
+        )
+        tmpl['subjective'] = tmpl['subtitle']
+
+        tmpl['secondary_icon'] = avatar_url(ms[0]['msg']['agent'])
+        link_template = 'https://pagure.io/{repo}/commits'
+        tmpl['link'] = link_template.format(repo=repo)
+
+        return tmpl
+
+
 class ByOldStyleCommit(fedmsg.meta.base.BaseConglomerator):
     def can_handle(self, msg, **config):
         return '.pagure.git.receive' in msg['topic'] and 'commit' in msg['msg']

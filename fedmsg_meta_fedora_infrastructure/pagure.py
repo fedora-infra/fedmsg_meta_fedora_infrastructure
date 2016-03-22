@@ -84,6 +84,7 @@ class PagureProcessor(BaseProcessor):
     conglomerators = [
         pagure_conglomerator.ByPR,
         pagure_conglomerator.ByIssue,
+        pagure_conglomerator.ByNewStyleCommit,
         pagure_conglomerator.ByOldStyleCommit,
     ]
 
