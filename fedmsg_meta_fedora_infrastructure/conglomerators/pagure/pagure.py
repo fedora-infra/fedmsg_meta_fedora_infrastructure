@@ -2,9 +2,8 @@ import fedmsg.meta.base
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url, email2fas
 
 
-
-
 class AbstractPagureTicketConglomerator(fedmsg.meta.base.BaseConglomerator):
+
     def can_handle(self, msg, **config):
         return '.{entity_name}.'.format(entity_name=self.entity_name) in msg['topic']
 
