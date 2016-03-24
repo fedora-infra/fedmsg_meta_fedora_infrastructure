@@ -1,4 +1,29 @@
 
+0.17.1
+------
+
+Pull Requests
+
+- (@ralphbean)      #368, Long form for planet.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/368
+- (@ralphbean)      #369, Conglomerate pagure events.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/369
+
+Commits
+
+- c0afe605f Long form for planet.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c0afe605f
+- 82dea450f First stab at some pagure conglomerators.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/82dea450f
+- 9256efaea Merge pagure events by old style commits.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9256efaea
+- decaa16e3 Handle conglomerating new-style pagure commits.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/decaa16e3
+- 7a287bf74 Newlines!
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7a287bf74
+- 4e08755c9 Limit this only to pagure messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4e08755c9
+
 0.17.0
 ------
 
