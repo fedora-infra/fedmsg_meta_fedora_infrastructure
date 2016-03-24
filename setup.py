@@ -114,6 +114,7 @@ entry_points = {
         "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
         "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
         "nagios=fedmsg_meta_fedora_infrastructure.nagios:NagiosProcessor",
+        "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
     ]
 }
 
