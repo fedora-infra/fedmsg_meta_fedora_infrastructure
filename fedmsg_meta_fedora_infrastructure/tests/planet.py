@@ -33,6 +33,7 @@ class TestPlanetNewPost(Base):
 
     expected_title = "planet.post.new"
     expected_subti = 'ralph posted "Test Post 6"'
+    expected_long_form = 'Test Post 6'
     expected_link = "http://threebean.org/blog/test-post-6"
     expected_icon = 'https://apps.fedoraproject.org/img/icons/planet_logo.png'
     expected_secondary_icon = ("https://secure.gravatar.com/avatar/"
