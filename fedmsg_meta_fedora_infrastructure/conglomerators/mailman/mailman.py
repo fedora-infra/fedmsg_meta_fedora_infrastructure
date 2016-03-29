@@ -43,7 +43,7 @@ class ByMessageId(fedmsg.meta.base.BaseConglomerator):
     def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
 
-        subtitle = '{people} wrote {N} replies to the ' + \
+        subtitle = u'{people} wrote {N} replies to the ' + \
             '"{subject}" thread on the {mlists} {predicate}'
 
         people = set([
