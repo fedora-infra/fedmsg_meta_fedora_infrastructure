@@ -180,7 +180,7 @@ class TestCoprsBuildFailure(Base):
             "version": "2.42.2-1.01.fc21",
             "build": 80794,
             "owner": "brianjmurrell",
-            "pkg": "glib2-2.42.2-1.01.fc21"
+            "pkg": "glib2",
         }
     }
 

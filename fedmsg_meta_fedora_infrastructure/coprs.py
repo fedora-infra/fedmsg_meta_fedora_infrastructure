@@ -49,6 +49,17 @@ Repodata:    https://copr-be.cloud.fedoraproject.org/results/{owner}/{copr}/{chr
 """
 
 
+def apply_backwards_compat(msg):
+    if msg.get('pkg') and msg.get('version'):
+        if msg['version'] not in msg['pkg']:
+            msg['pkg'] = msg['pkg'] + '-' + msg['version']
+
+    if 'user' in msg and 'owner' not in msg:
+        msg['owner'] = msg['user']
+
+    return msg
+
+
 class CoprsProcessor(BaseProcessor):
     __name__ = "Copr"
     __description__ = "the Cool Other Package Repositories system"
@@ -66,9 +77,7 @@ class CoprsProcessor(BaseProcessor):
         if 'copr.build.end' in msg['topic']:
             kwargs = copy.copy(msg['msg'])
 
-            # For backwards compat with ancient messages
-            if 'owner' not in kwargs:
-                kwargs['owner'] = kwargs['user']
+            kwargs = apply_backwards_compat(kwargs)
 
             kwargs['status'] = _statuses.get(kwargs.get('status'), 'unknown')
 
@@ -83,6 +92,9 @@ class CoprsProcessor(BaseProcessor):
             return details
 
     def subtitle(self, msg, **config):
+
+        # So many changes to this message format over time...
+        msg['msg'] = apply_backwards_compat(msg['msg'])
 
         user = msg['msg'].get('user')
         copr = msg['msg'].get('copr')
