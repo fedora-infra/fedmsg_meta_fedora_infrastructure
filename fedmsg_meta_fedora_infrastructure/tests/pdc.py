@@ -67,7 +67,7 @@ class TestPDCImagesImport(Base):
     expected_subti = ("PDC imported metadata for 3 images for "
                       "the Fedora-Rawhide-20160331.n.0 nightly compose")
     expected_link = ("https://pdc.fedoraproject.org/rest_api/v1/"
-                     "compose-images/Fedora-Rawhide-20160331.n.0/")
+                     "composes/Fedora-Rawhide-20160331.n.0/")
     expected_objects = set(['Fedora-Rawhide-20160331.n.0/import/images'])
     msg = {
         "timestamp": 1459420734.0,
@@ -98,7 +98,7 @@ class TestPDCRPMsImport(Base):
     expected_subti = ("PDC imported metadata for 207 rpms for "
                       "the Fedora-Rawhide-20160331.n.0 nightly compose")
     expected_link = ("https://pdc.fedoraproject.org/rest_api/v1/"
-                     "compose-rpms/Fedora-Rawhide-20160331.n.0/")
+                     "composes/Fedora-Rawhide-20160331.n.0/")
     expected_objects = set(['Fedora-Rawhide-20160331.n.0/import/rpms'])
     msg = {
         "timestamp": 1459420734.0,

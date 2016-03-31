@@ -43,18 +43,9 @@ class PDCProcessor(BaseProcessor):
         return tmpl.format(**msg['msg'])
 
     def link(self, msg, **config):
-        endpoint = ''
         idx = msg['msg']['compose_id']
-        tmpl = 'https://pdc.fedoraproject.org/rest_api/v1/{endpoint}/{idx}/'
-
-        if msg['topic'].endswith('.pdc.rpms'):
-            endpoint = 'compose-rpms'
-        elif msg['topic'].endswith('.pdc.images'):
-            endpoint = 'compose-images'
-        elif msg['topic'].endswith('.pdc.compose'):
-            endpoint = 'composes'
-
-        return tmpl.format(idx=idx, endpoint=endpoint)
+        tmpl = 'https://pdc.fedoraproject.org/rest_api/v1/composes/{idx}/'
+        return tmpl.format(idx=idx)
 
     def objects(self, msg, **config):
         attr = msg['topic'].split('.')[-1]
