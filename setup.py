@@ -115,6 +115,7 @@ entry_points = {
         "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
         "nagios=fedmsg_meta_fedora_infrastructure.nagios:NagiosProcessor",
         "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
+        "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
     ]
 }
 
