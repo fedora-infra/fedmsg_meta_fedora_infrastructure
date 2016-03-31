@@ -19,6 +19,7 @@
 
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
+
 class KoscheiProcessor(BaseProcessor):
     __name__ = 'koschei'
     __description__ = "Continuous integration for Fedora packages"
@@ -33,15 +34,18 @@ class KoscheiProcessor(BaseProcessor):
             if content['new'] == 'ok' and content['old'] == 'ignored':
                 info = "{name} added to Koschei"
             else:
-                info = {'failing': "{name}'s builds started to fail",
-                        'ok': "{name}'s builds are back to normal",
-                        'ignored': "{name} became retired or ignored",
-                        'unresolved': "{name}'s dependencies failed to resolve",
-                        }[content['new']]
-            info += ' in {repo}'
+                info = {
+                    'failing': "{name}'s builds started to fail",
+                    'ok': "{name}'s builds are back to normal",
+                    'ignored': "{name} became retired or ignored",
+                    'unresolved': "{name}'s dependencies failed to resolve",
+                }[content['new']]
+            info += ' in {collection}'
             if content['koji_instance'] != 'primary':
                 info += ' ({koji_instance})'
-            return info.format(name=content['name'], repo=content['repo'],
+            collection = content.get('collection_name', content.get('repo'))
+            return info.format(name=content['name'],
+                               collection=collection,
                                koji_instance=content['koji_instance'])
         else:
             raise NotImplementedError("%r" % msg)
