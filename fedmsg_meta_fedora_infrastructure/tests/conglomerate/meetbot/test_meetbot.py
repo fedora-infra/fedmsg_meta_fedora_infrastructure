@@ -1,6 +1,8 @@
 import fedmsg.tests.test_meta
 import arrow
 
+import os
+
 
 class TestMeetbotConglomerateByURL(
         fedmsg.tests.test_meta.ConglomerateBase):
@@ -843,3 +845,7 @@ class TestMeetbotConglomerateByURL(
             "topic": "org.fedoraproject.prod.meetbot.meeting.item.info"
         }
     ]
+
+
+if 'FEDMSG_META_NO_NETWORK' in os.environ:
+    TestMeetbotConglomerateByURL = None
