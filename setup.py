@@ -114,12 +114,14 @@ entry_points = {
         "releng=fedmsg_meta_fedora_infrastructure.releng:RelengProcessor",
         "mdapi=fedmsg_meta_fedora_infrastructure.mdapi:MdapiProcessor",
         "nagios=fedmsg_meta_fedora_infrastructure.nagios:NagiosProcessor",
+        "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
+        "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.17.1',
+    version='0.17.2',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

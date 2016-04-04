@@ -1,4 +1,37 @@
 
+0.17.2
+------
+
+Pull Requests
+
+- (@AdamWill)       #370, add openQA processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/370
+- (@Devyani-Divs)   #371, Fixed unicode encode error
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/371
+- (@ralphbean)      #372, Handle new compat issues with copr messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/372
+- (@msimacek)       #373, Add collection field to koschei processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/373
+- (@ralphbean)      #374, Add a PDC processor with tests.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/374
+
+Commits
+
+- 47a9d9a1a add openQA processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/47a9d9a1a
+- 6117913ad Fixed unicode encode error
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6117913ad
+- 387d4f4df Handle new compat issues with copr messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/387d4f4df
+- 2794c59dd Handle new compat issues with copr messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2794c59dd
+- 98e288cb5 Add collection attributes to koschei processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/98e288cb5
+- 284c6a7fd Add a PDC processor with tests.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/284c6a7fd
+- ad9a7d974 Bury those links.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ad9a7d974
+
 0.17.1
 ------
 
