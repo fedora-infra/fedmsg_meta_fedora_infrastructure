@@ -1,4 +1,12 @@
 
+0.17.3
+------
+
+Commits
+
+- fc4f25c50 Disable this test in koji.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fc4f25c50
+
 0.17.2
 ------
 
