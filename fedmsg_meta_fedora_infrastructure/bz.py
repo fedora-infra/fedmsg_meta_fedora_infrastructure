@@ -23,6 +23,11 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 
 MAX_LEN = 40
 
+bz_components_that_are_not_packages = [
+    'Package Review',
+    # ... can you think of any others?
+]
+
 
 def comma_join(fields, oxford=True):
     """ Join together words. """
@@ -144,6 +149,12 @@ class BugzillaProcessor(BaseProcessor):
                 continue
 
         return users
+
+    def packages(self, msg, **config):
+        component = msg['msg']['bug']['component']
+        if component in bz_components_that_are_not_packages:
+            return set()
+        return set([component])
 
     def usernames(self, msg, **config):
         emails = self._gather_emails(msg)
