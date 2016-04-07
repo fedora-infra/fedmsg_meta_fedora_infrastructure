@@ -157,6 +157,10 @@ def make_topics_doc(output_dir):
             if 'Legacy' in cls.context.__name__:
                 continue
 
+            # You can also exclude a test from the docs with nodoc = True
+            if getattr(cls, 'nodoc', False) is True:
+                continue
+
             modname = topic.split('.')[0]
             if not modname in seen:
                 seen.append(modname)
