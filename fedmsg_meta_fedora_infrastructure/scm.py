@@ -107,6 +107,11 @@ class SCMProcessor(BaseProcessor):
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
                 branch = msg['topic'].split('.')[-1]
 
+            try:
+                repo = msg['msg']['namespace'] + '/' + repo
+            except KeyError:
+                pass
+
             agent = msg['msg']['agent']
             tmpl = self._(
                 "{agent} created branch '{branch}' for the '{repo}' package"
@@ -164,8 +169,12 @@ class SCMProcessor(BaseProcessor):
             except KeyError:
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
                 branch = msg['topic'].split('.')[-1]
-            tmpl = "{prefix}/{repo}.git/log/?h={branch}"
-            return tmpl.format(prefix=prefix, repo=repo, branch=branch)
+            try:
+                ns = msg['msg']['namespace'] + '/'
+            except KeyError:
+                ns = ''
+            tmpl = "{prefix}/{ns}{repo}.git/log/?h={branch}"
+            return tmpl.format(prefix=prefix, repo=repo, branch=branch, ns=ns)
         elif '.git.lookaside' in msg['topic']:
             prefix = "http://pkgs.fedoraproject.org/lookaside/pkgs"
 
@@ -193,6 +202,12 @@ class SCMProcessor(BaseProcessor):
             return set()
 
     def packages(self, msg, **config):
+
+        # If its not an rpms/ thing, then its not a package.
+        if 'namespace' in msg['msg']:
+            if msg['msg']['namespace'] != 'rpms':
+                return set()
+
         if 'git.receive' in msg['topic']:
             try:
                 # Newer fedmsg
