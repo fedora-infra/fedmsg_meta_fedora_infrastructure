@@ -205,7 +205,7 @@ class SCMProcessor(BaseProcessor):
 
         # If its not an rpms/ thing, then its not a package.
         if 'namespace' in msg['msg']:
-            if msg['msg']['namespace'] != 'rpms':
+            if not msg['msg']['namespace'] in ['rpms', 'rpms-checks']:
                 return set()
 
         if 'git.receive' in msg['topic']:
