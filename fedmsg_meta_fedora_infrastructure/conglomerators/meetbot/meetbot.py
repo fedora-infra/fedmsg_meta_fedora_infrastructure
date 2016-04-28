@@ -16,7 +16,7 @@ class ByURL(fedmsg.meta.base.BaseConglomerator):
     def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
         usernames = self.list_to_series(
-            sum([m['msg']['attendees'].keys() for m in ms], [])
+            sum([list(m['msg']['attendees'].keys()) for m in ms], [])
         )
         channel = ms[0]['msg']['channel']
         title = self.get_title(ms)

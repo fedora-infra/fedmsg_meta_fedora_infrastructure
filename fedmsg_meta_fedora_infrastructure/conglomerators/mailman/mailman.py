@@ -24,7 +24,7 @@ class ByMessageId(fedmsg.meta.base.BaseConglomerator):
         agents = set([m['msg']['msg']['from'] for m in constituents])
 
         # Just take the first.
-        agent = list(agents)[0]
+        agent = sorted(agents)[0]
 
         email = agent.split('<')[-1].split('>')[0]
 
@@ -34,7 +34,7 @@ class ByMessageId(fedmsg.meta.base.BaseConglomerator):
         links = set([m['msg']['msg']['archived-at'] for m in constituents])
 
         # Just take the first.
-        link = list(links)[0]
+        link = sorted(links)[0]
 
         link = link.split('<')[-1].split('>')[0]
 
@@ -65,7 +65,7 @@ class ByMessageId(fedmsg.meta.base.BaseConglomerator):
             subjects.add(subject)
 
         # Just take the first....
-        subject = list(subjects)[0]
+        subject = sorted(subjects)[0]
 
         tmpl = self.produce_template(constituents, subject, **config)
         tmpl['subtitle'] = subtitle.format(
