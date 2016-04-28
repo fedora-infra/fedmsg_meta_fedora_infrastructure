@@ -1,4 +1,37 @@
 
+0.17.4
+------
+
+Pull Requests
+
+- (@ralphbean)      #375, Return the package associated with a bz update.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/375
+- (@AdamWill)       #376, openQA: revise meta processor for pending new message format
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/376
+- (@ralphbean)      #378, Handle some namespaced scm things.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/378
+- (@ralphbean)      #381, Fix up the test suite.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/381
+
+Commits
+
+- 7dc58687d Return the package associated with a bz update.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/7dc58687d
+- 8b6f5bdae openQA: revise meta processor for pending new message format
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8b6f5bdae
+- 9d8c44d75 Handle some namespaced scm things.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9d8c44d75
+- ab39be0de Also allow rpms-checks.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ab39be0de
+- 8beb2d316 Make the order here independent of the hash seed.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8beb2d316
+- 2d71a8526 Explicit unicode here.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2d71a8526
+- ea01d17a7 Update tox.ini to run the tests on things we know we need (six-1.3 is gone from old rhel now).
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ea01d17a7
+- 52468da55 Make py3 happy (cannot sum over type dict_keys).
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/52468da55
+
 0.17.3
 ------
 
