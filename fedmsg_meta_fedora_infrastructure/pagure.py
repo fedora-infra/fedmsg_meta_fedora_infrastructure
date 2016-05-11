@@ -60,11 +60,13 @@ def _git_receive_v2(msg, tmpl):
     repo = _get_project(msg['msg'], key='repo')
     user = msg['msg']['agent']
     n_commits = msg['msg']['total_commits']
+    commit_lbl = 'commit' if str(n_commits) == '1' else 'commits'
     branch = msg['msg']['branch']
     if 'refs/heads/' in branch:
         branch = branch.replace('refs/heads/', '')
     return tmpl.format(user=user, repo=repo,
-                       branch=branch, n_commits=n_commits)
+                       branch=branch, n_commits=n_commits,
+                       commit_lbl=commit_lbl)
 
 
 class PagureProcessor(BaseProcessor):
@@ -361,7 +363,9 @@ class PagureProcessor(BaseProcessor):
                 tmpl = self._('{user} pushed to {repo} ({branch}). "{summary}"')
                 return _git_receive_v1(msg, tmpl, **config)
             else:
-                tmpl = self._('{user} pushed {n_commits} to {repo} ({branch})')
+                tmpl = self._(
+                    '{user} pushed {n_commits} {commit_lbl} '
+                    'to {repo} ({branch})')
                 return _git_receive_v2(msg, tmpl)
 
         else:
