@@ -1,6 +1,7 @@
 import collections
 import threading
 import socket
+import string
 from hashlib import sha256, md5
 
 _fas_cache = {}
