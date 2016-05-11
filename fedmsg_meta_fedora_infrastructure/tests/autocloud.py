@@ -31,7 +31,8 @@ class TestImageTestQueued(Base):
     Autocloud app.
     """
     expected_title = "autocloud.image.queued"
-    expected_subti = 'Fedora-Cloud-Base-24-20160420.n.0 (24)(Fedora-24-20160420.n.0) is queued for testing'
+    expected_subti = 'Fedora-Cloud-Base-24-20160420.n.0 (24)' + \
+        '(Fedora-24-20160420.n.0) is queued for testing'
     expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/27/output'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
@@ -46,7 +47,9 @@ class TestImageTestQueued(Base):
         u'topic': u'org.fedoraproject.prod.autocloud.image.queued',
         u'msg': {
             u'compose_id': u'Fedora-24-20160420.n.0',
-            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
+            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//" + \
+            "branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/" + \
+            "images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
             u'family': u'Base',
             u'image_name': u'Fedora-Cloud-Base-24-20160420.n.0',
             u'job_id': 27,
@@ -62,7 +65,8 @@ class TestImageTestRunning(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.running"
-    expected_subti = 'The tests for the Fedora-Cloud-Base-24-20160420.n.0 (24)(Fedora-24-20160420.n.0) have started running'
+    expected_subti = 'The tests for the Fedora-Cloud-Base-24-20160420.n.0' + \
+        ' (24)(Fedora-24-20160420.n.0) have started running'
     expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/27/output'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
@@ -77,7 +81,9 @@ class TestImageTestRunning(Base):
         u'topic': u'org.fedoraproject.prod.autocloud.image.running',
         u'msg': {
             u'compose_id': u'Fedora-24-20160420.n.0',
-            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
+            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//" + \
+            "branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/" + \
+            "images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
             u'family': u'Base',
             u'image_name': u'Fedora-Cloud-Base-24-20160420.n.0',
             u'job_id': 27,
@@ -93,7 +99,8 @@ class TestImageTestAborted(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.aborted"
-    expected_subti = 'The tests for the Fedora-Cloud-Base-24-20160420.n.0 (24)(Fedora-24-20160420.n.0) have been aborted'
+    expected_subti = 'The tests for the Fedora-Cloud-Base-24-20160420.n.0 ' + \
+        '(24)(Fedora-24-20160420.n.0) have been aborted'
     expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/27/output'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
@@ -108,7 +115,9 @@ class TestImageTestAborted(Base):
         u'topic': u'org.fedoraproject.prod.autocloud.image.aborted',
         u'msg': {
             u'compose_id': u'Fedora-24-20160420.n.0',
-            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
+            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//" + \
+            "branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/" + \
+            "images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
             u'family': u'Base',
             u'image_name': u'Fedora-Cloud-Base-24-20160420.n.0',
             u'job_id': 27,
@@ -124,7 +133,8 @@ class TestImageTestFailed(Base):
     in Autocloud app.
     """
     expected_title = "autocloud.image.failed"
-    expected_subti = 'The tests for the Fedora-Cloud-Base-24-20160420.n.0 (24)(Fedora-24-20160420.n.0) failed'
+    expected_subti = 'The tests for the Fedora-Cloud-Base-24-20160420.n.0 ' + \
+        '(24)(Fedora-24-20160420.n.0) failed'
     expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/27/output'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
@@ -139,7 +149,9 @@ class TestImageTestFailed(Base):
         u'topic': u'org.fedoraproject.prod.autocloud.image.failed',
         u'msg': {
             u'compose_id': u'Fedora-24-20160420.n.0',
-            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
+            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//" + \
+            "branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/" + \
+            "images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
             u'family': u'Base',
             u'image_name': u'Fedora-Cloud-Base-24-20160420.n.0',
             u'job_id': 27,
@@ -155,7 +167,8 @@ class TestImageTestSuccess(Base):
     completes in Autocloud app.
     """
     expected_title = "autocloud.image.success"
-    expected_subti = 'The tests for Fedora-Cloud-Base-24-20160420.n.0 (24)(Fedora-24-20160420.n.0) were a success'
+    expected_subti = 'The tests for Fedora-Cloud-Base-24-20160420.n.0 (24)' + \
+        '(Fedora-24-20160420.n.0) were a success'
     expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/27/output'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
@@ -170,7 +183,9 @@ class TestImageTestSuccess(Base):
         u'topic': u'org.fedoraproject.prod.autocloud.image.success',
         u'msg': {
             u'compose_id': u'Fedora-24-20160420.n.0',
-            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
+            u'compose_url': u'http://kojipkgs.fedoraproject.org/compose//" + \
+            "branched/Fedora-24-20160420.n.0/compose/CloudImages/x86_64/" + \
+            "images/Fedora-Cloud-Base-24-20160420.n.0.x86_64.qcow2',
             u'family': u'Base',
             u'image_name': u'Fedora-Cloud-Base-24-20160420.n.0',
             u'job_id': 27,
@@ -239,6 +254,7 @@ class ComposeTestRunning(Base):
             u'id': u'Fedora-24-20160419.n.1'
         }
     }
+
 
 class ComposeTestCompleted(Base):
     """ These messages are published when tests for a compose completes

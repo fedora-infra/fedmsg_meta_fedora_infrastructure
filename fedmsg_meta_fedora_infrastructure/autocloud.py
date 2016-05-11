@@ -48,8 +48,8 @@ class AutoCloudProcessor(BaseProcessor):
                 tmpl = self._("The tests for the {image_name}({compose_id}) "
                               "{status}")
             if status == "success":
-                tmpl = self._("The tests for {image_name}({compose_id}) were a "
-                              "{status}")
+                tmpl = self._("The tests for {image_name}({compose_id}) were a"
+                              " {status}")
 
             if release:
                 image_name = "%s (%s)" % (image_name, release)
@@ -76,13 +76,15 @@ class AutoCloudProcessor(BaseProcessor):
         if 'autocloud.image' in msg['topic']:
             job_id = msg['msg'].get('job_id')
             if job_id:
-                template = 'https://apps.fedoraproject.org/autocloud/jobs/%s/output'
+                template = 'https://apps.fedoraproject.org/autocloud/jobs/' + \
+                    '%s/output'
                 return template % job_id
             else:
                 return msg['msg']['image_url']
         elif 'autocloud.compose' in msg['topic']:
             compose_job_id = msg['msg']['compose_job_id']
-            return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % compose_job_id
+            return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % (
+                compose_job_id)
 
     def objects(self, msg, **config):
         status = msg['msg']['status']
