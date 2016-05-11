@@ -29,39 +29,64 @@ class AutoCloudProcessor(BaseProcessor):
     __obj__ = "Cloud Image Test"
 
     def subtitle(self, msg, **config):
-        image_name = msg['msg']['image_name']
         status = msg['msg']['status']
-        release = msg['msg'].get('release')
         if 'autocloud.image' in msg['topic']:
+            compose_id = msg['msg']['compose_id']
+            image_name = msg['msg']['image_name']
+            release = msg['msg'].get('release')
+
             if status == "queued":
-                tmpl = self._("{image_name} is {status} for testing")
+                tmpl = self._("{image_name}({compose_id}) is {status} for "
+                              "testing")
             if status == "running":
-                tmpl = self._("The tests for the {image_name} have "
-                              "started {status}")
+                tmpl = self._("The tests for the {image_name}({compose_id}) "
+                              "have started {status}")
             if status == "aborted":
-                tmpl = self._("The tests for the {image_name} have "
-                              "been {status}")
+                tmpl = self._("The tests for the {image_name}({compose_id}) "
+                              "have been {status}")
             if status == "failed":
-                tmpl = self._("The tests for the {image_name} {status}")
+                tmpl = self._("The tests for the {image_name}({compose_id}) "
+                              "{status}")
             if status == "success":
-                tmpl = self._("The tests for {image_name} were a {status}")
+                tmpl = self._("The tests for {image_name}({compose_id}) were a "
+                              "{status}")
 
             if release:
                 image_name = "%s (%s)" % (image_name, release)
 
-            return tmpl.format(image_name=image_name, status=status)
+            return tmpl.format(image_name=image_name, status=status,
+                               compose_id=compose_id)
+
+        if "autocloud.compose" in msg['topic']:
+            compose_id = msg['msg']['id']
+
+            if status == 'queued':
+                tmpl = self._("{compose_id} is {status} for testing")
+            if status == 'running':
+                tmpl = self._("{compose_id} tests have started {status}")
+            if status == 'completed':
+                tmpl = self._("{compose_id} tests have {status}")
+
+            return tmpl.format(compose_id=compose_id, status=status)
 
     def secondary_icon(self, msg, **config):
         return self.__icon__
 
     def link(self, msg, **config):
-        job_id = msg['msg'].get('job_id')
-        if job_id:
-            template = 'https://apps.fedoraproject.org/autocloud/jobs/%s/output'
-            return template % job_id
-        else:
-            return msg['msg']['image_url']
+        if 'autocloud.image' in msg['topic']:
+            job_id = msg['msg'].get('job_id')
+            if job_id:
+                template = 'https://apps.fedoraproject.org/autocloud/jobs/%s/output'
+                return template % job_id
+            else:
+                return msg['msg']['image_url']
+        elif 'autocloud.compose' in msg['topic']:
+            compose_job_id = msg['msg']['compose_job_id']
+            return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % compose_job_id
 
     def objects(self, msg, **config):
         status = msg['msg']['status']
-        return set(['autocloud/image/' + status])
+        if 'autocloud.image' in msg['topic']:
+            return set(['autocloud/image/' + status])
+        elif 'autocloud.compose' in msg['topic']:
+            return set(['autocloud/compose/' + status])
