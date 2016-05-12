@@ -1076,6 +1076,7 @@ class TestNewPullRequestComment(Base):
       }
     }
 
+
 class TestEditPullRequestComment(Base):
     """ These messages are published when a someone commented on a
     pull-request of a project on `pagure <https://pagure.io>`_.
@@ -1221,6 +1222,7 @@ class TestEditPullRequestComment(Base):
         "agent": "lmacken"
       }
     }
+
 
 class TestNewPullRequestclosed(Base):
     """ These messages are published when a someone closed a pull-request
@@ -1841,7 +1843,7 @@ class TestGitCommit(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.git.receive"
-    expected_subti = 'pingou pushed 3 to pagure (master)'
+    expected_subti = 'pingou pushed 3 commits to pagure (master)'
     expected_link = "https://pagure.io/pagure/branch/master"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1892,9 +1894,6 @@ class TestGitCommit(Base):
         "start_commit": "b5e65479e4bd91554d8d3084bf378ffb6e4ef605"
       }
     }
-
-
-
 
 
 class TestIssueDrop(Base):
@@ -2057,7 +2056,6 @@ class TestIssueCommentEdit(Base):
         "timestamp":1454009050.0,
         "topic": "io.pagure.prod.pagure.issue.comment.edited",
     }
-
 
 
 add_doc(locals())
