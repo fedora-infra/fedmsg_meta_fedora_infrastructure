@@ -35,7 +35,7 @@ class TestKoscheiPackageStateChange(Base):
 
     expected_title = "koschei.package.state.change"
     expected_subti = "rnv's builds started to fail in Fedora 22 (arm)"
-    expected_link = 'https://apps.fedoraproject.org/koschei/package/rnv'
+    expected_link = 'https://apps.fedoraproject.org/koschei/package/rnv?collection=f22'
     expected_secondary_icon = \
         'https://apps.fedoraproject.org/packages/images/icons/rnv.png'
     expected_packages = set(['rnv'])
