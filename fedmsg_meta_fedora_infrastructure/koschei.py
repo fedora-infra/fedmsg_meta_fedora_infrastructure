@@ -58,8 +58,11 @@ class KoscheiProcessor(BaseProcessor):
     def link(self, msg, **config):
         baseurl = 'https://apps.fedoraproject.org/koschei'
         if 'koschei.package.state.change' in msg['topic']:
-            return '{baseurl}/package/{name}'.format(baseurl=baseurl,
-                                                     name=msg['msg']['name'])
+            url = '{baseurl}/package/{name}'.format(baseurl=baseurl,
+                                                    name=msg['msg']['name'])
+            if 'collection' in msg['msg']:
+                url += '?collection=' + msg['msg']['collection']
+            return url
         else:
             raise NotImplementedError("%r" % msg)
 
