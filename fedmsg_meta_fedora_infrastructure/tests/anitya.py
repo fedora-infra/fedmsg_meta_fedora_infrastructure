@@ -48,7 +48,7 @@ class TestNewDistro(Base):
         'i': 4,
         'timestamp': 1467814080,
         'msg_id': u'2016-55d13473-2e48-4b6e-9542-3bc1882152ef',
-        'topic': u'org.fedoraproject.dev.anitya.distro.add',
+        'topic': u'org.release-monitoring.prod.anitya.distro.add',
         'msg': {
             'project': None,
             'message': {
