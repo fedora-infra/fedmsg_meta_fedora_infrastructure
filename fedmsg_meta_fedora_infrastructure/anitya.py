@@ -44,7 +44,7 @@ class AnityaProcessor(BaseProcessor):
         else:
             if 'id.fedoraproject.org' in agent:
                 agent = agent.partition(
-                    '.id.fedoraproject.org')[0].agent.partition('//')[-1]
+                    '.id.fedoraproject.org')[0].partition('//')[-1]
                 return agent
             elif agent.endswith('@fedoraproject.org'):
                 return agent.split('@fedoraproject.org')[0]
