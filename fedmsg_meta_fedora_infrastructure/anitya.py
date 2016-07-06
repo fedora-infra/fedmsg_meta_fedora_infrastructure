@@ -38,14 +38,19 @@ class AnityaProcessor(BaseProcessor):
 
     def _get_user(self, msg, **config):
         try:
-            email = msg['msg']['message']['agent']
+            agent = msg['msg']['message']['agent']
         except KeyError:
             return msg.get('username', 'anitya')
         else:
-            if email.endswith('@fedoraproject.org'):
-                return email.split('@fedoraproject.org')[0]
+            if 'id.fedoraproject.org' in agent:
+                agent = agent.parition(
+                    '.id.fedoraproject.org')[0].agent.partition('//')[-1]
+            elif agent.endswith('@fedoraproject.org'):
+                return agent.split('@fedoraproject.org')[0]
+            elif '@' in agent:
+                return email2fas(agent, **config)
             else:
-                return email2fas(email, **config)
+                return agent
 
     def link(self, msg, **config):
         if msg['msg']['project']:
@@ -133,7 +138,8 @@ class AnityaProcessor(BaseProcessor):
             for package in message.get('packages', []):
                 if package['distro'] == 'Fedora':
                     packages.append(package['package_name'])
-            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(packages)
+            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(
+                packages)
             odd = message.get('odd_change', False)
             old = message['old_version']
             new = message['upstream_version']
