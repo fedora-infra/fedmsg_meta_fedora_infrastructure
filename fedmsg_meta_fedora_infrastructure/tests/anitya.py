@@ -32,7 +32,7 @@ class TestNewDistro(Base):
     to the database of `anitya <https://release-monitoring.org>`_.
     """
     expected_title = "anitya.distro.add"
-    expected_subti = 'pingou added the distro named' + \
+    expected_subti = 'foobar added the distro named' + \
         ' "CentOS" to anitya'
     expected_link = "https://release-monitoring.org/distros"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
@@ -52,11 +52,11 @@ class TestNewDistro(Base):
         'msg': {
             'project': None,
             'message': {
-                'agent': 'http://pingou.id.fedoraproject.org/',
+                'agent': 'foobar',
                 'distro': u'CentOS'
             },
             'distro': {
-                'name': 'Ubuntu'
+                'name': 'CentOS'
             }
         }
     }
