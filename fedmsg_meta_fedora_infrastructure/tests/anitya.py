@@ -38,10 +38,10 @@ class TestNewDistro(Base):
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "e202b61fca3f40ccc4c790d4ecf6ed42" + \
+        "8d504e09d5ad44ac17e7c872c30d2e4b679a5fdcf0616e825af39466d4b14383" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set([])
+    expected_usernames = set(['foobar'])
     expected_objects = set(['distros/CentOS'])
     msg = {
         'username': 'apache',
