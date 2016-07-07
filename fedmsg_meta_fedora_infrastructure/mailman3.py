@@ -46,7 +46,7 @@ class MailmanProcessor(BaseProcessor):
     __docs__ = ("https://fedoraproject.org/wiki/"
                 "Communicating_and_getting_help#Mailing_Lists")
     __obj__ = "Mailing List Messages"
-    __icon__ = "http://cloud.ohloh.net/attachments/37686/mailman_med.png"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/hyperkitty.png"
 
     conglomerators = [
         mailman_conglomerator.ByMessageId,
