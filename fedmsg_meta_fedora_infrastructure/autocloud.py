@@ -34,9 +34,9 @@ class AutoCloudProcessor(BaseProcessor):
         FNAME = 'handle_%s_autocloud_%s'
 
         if 'compose_id' in msg['msg'] or 'compose_job_id' in msg['msg']:
-            return getattr(self, FNAME % ('new', fname))(msg, **config)
+            return getattr(self, FNAME % ('v2', fname))(msg, **config)
         else:
-            return getattr(self, FNAME % ('old', fname))(msg, **config)
+            return getattr(self, FNAME % ('v1', fname))(msg, **config)
 
     def subtitle(self, msg, **config):
         return self._func_router(msg, 'subtitle', **config)
@@ -50,7 +50,7 @@ class AutoCloudProcessor(BaseProcessor):
     def objects(self, msg, **config):
         return self._func_router(msg, 'objects', **config)
 
-    def handle_new_autocloud_subtitle(self, msg, **config):
+    def handle_v2_autocloud_subtitle(self, msg, **config):
         status = msg['msg']['status']
         if 'autocloud.image' in msg['topic']:
             compose_id = msg['msg']['compose_id']
@@ -91,7 +91,7 @@ class AutoCloudProcessor(BaseProcessor):
 
             return tmpl.format(compose_id=compose_id, status=status)
 
-    def handle_new_autocloud_link(self, msg, **config):
+    def handle_v2_autocloud_link(self, msg, **config):
         if 'autocloud.image' in msg['topic']:
             job_id = msg['msg'].get('job_id')
             if job_id:
@@ -105,14 +105,14 @@ class AutoCloudProcessor(BaseProcessor):
             return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % (
                 compose_job_id)
 
-    def handle_new_autocloud_objects(self, msg, **config):
+    def handle_v2_autocloud_objects(self, msg, **config):
         status = msg['msg']['status']
         if 'autocloud.image' in msg['topic']:
             return set(['autocloud/image/' + status])
         elif 'autocloud.compose' in msg['topic']:
             return set(['autocloud/compose/' + status])
 
-    def handle_old_autocloud_subtitle(self, msg, **config):
+    def handle_v1_autocloud_subtitle(self, msg, **config):
         image_name = msg['msg']['image_name']
         status = msg['msg']['status']
         release = msg['msg'].get('release')
@@ -135,7 +135,7 @@ class AutoCloudProcessor(BaseProcessor):
 
             return tmpl.format(image_name=image_name, status=status)
 
-    def handle_old_autocloud_link(self, msg, **config):
+    def handle_v1_autocloud_link(self, msg, **config):
         job_id = msg['msg'].get('job_id')
         if job_id:
             template = 'https://apps.fedoraproject.org/autocloud/jobs/%s/output'
@@ -143,7 +143,7 @@ class AutoCloudProcessor(BaseProcessor):
         else:
             return msg['msg']['image_url']
 
-    def handle_old_autocloud_objects(self,msg, **config):
+    def handle_v1_autocloud_objects(self,msg, **config):
         status = msg['msg']['status']
         return set(['autocloud/image/' + status])
 
