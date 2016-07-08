@@ -1,4 +1,39 @@
 
+0.17.5
+------
+
+Pull Requests
+
+- (@pypingou)       #384, Fix pagure message when pushing one or more commits
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/384
+- (@msimacek)       #385, Add collection argument to koschei links
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/385
+- (@Prashant-Surya) #388, Fix mailman3 icon broken link
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/388
+- (@sayanchowdhury) #386, Update Autocloud Processor with the new autocloud message format
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/386
+
+Commits
+
+- 352db860b Specify what was pushed in pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/352db860b
+- b40d1a8e8 Fix tests for the new message on pushing commits and pep8 fixes
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b40d1a8e8
+- 48bc9252f Add collection argument to koschei links
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/48bc9252f
+- 9944ac25e Update Autocloud Processor with the new changes
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/9944ac25e
+- 123706b99 PEP8 fixes for the Autocloud Processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/123706b99
+- 5de1a6389 Add/Handle all the old tests as legacy so that it is comaptible with datagrepper
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5de1a6389
+- adf881071 Fix mailman3 icon broken link
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/adf881071
+- 3f9f63874 Change new/old to v2/v1 as a provision for future changes
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3f9f63874
+- e5991c9e2 Update doc for the function router method
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e5991c9e2
+
 0.17.4
 ------
 
