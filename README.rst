@@ -42,7 +42,7 @@ Running the Tests
 ::
 
     # Create a virtualenv
-    $ sudo yum install python-virtualenv
+    $ sudo dnf install python-virtualenv
     $ virtualenv my-env
     $ source my-env/bin/activate
 
