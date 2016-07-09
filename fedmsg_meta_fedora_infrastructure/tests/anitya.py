@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012 Red Hat, Inc.
+# Copyright (C) 2012-2016 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -28,6 +28,41 @@ from .common import add_doc
 
 
 class TestNewDistro(Base):
+    """ These messages are published when a new Linux distribution is added
+    to the database of `anitya <https://release-monitoring.org>`_.
+    """
+    expected_title = "anitya.distro.add"
+    expected_subti = 'foobar added the distro named' + \
+        ' "CentOS" to anitya'
+    expected_link = "https://release-monitoring.org/distros"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "8d504e09d5ad44ac17e7c872c30d2e4b679a5fdcf0616e825af39466d4b14383" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['foobar'])
+    expected_objects = set(['distros/CentOS'])
+    msg = {
+        'username': 'apache',
+        'i': 4,
+        'timestamp': 1467814080,
+        'msg_id': u'2016-55d13473-2e48-4b6e-9542-3bc1882152ef',
+        'topic': u'org.release-monitoring.prod.anitya.distro.add',
+        'msg': {
+            'project': None,
+            'message': {
+                'agent': 'foobar',
+                'distro': u'CentOS'
+            },
+            'distro': {
+                'name': 'CentOS'
+            }
+        }
+    }
+
+
+class LegacyTestNewDistro(Base):
     """ These messages are published when a new Linux distribution is added
     to the database of `anitya <https://release-monitoring.org>`_.
     """
@@ -91,6 +126,43 @@ class TestEditDistro(Base):
             "message": {
                 "new": "Debian",
                 "old": "Debia",
+                'agent': 'http://pingou.id.fedoraproject.org/',
+            },
+            "distro": {
+                "name": "Debia"
+            }
+        }
+    }
+
+
+class LegacyTestEditDistro(Base):
+    """ These messages are published when a Linux distribution's entry is
+    edited in the `anitya <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.distro.edit"
+    expected_subti = 'pingou changed a distro name' + \
+        ' from "Debia" to "Debian"'
+    expected_link = "https://release-monitoring.org/distros"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['distros/Debia', 'distros/Debian'])
+    msg = {
+        "username": "apache",
+        "i": 5,
+        "timestamp": 1412328814,
+        "msg_id": "2014-746c39cf-9fb0-4ed1-a817-d57bc901e027",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.distro.edit",
+        "msg": {
+            "project": None,
+            "message": {
+                "new": "Debian",
+                "old": "Debia",
                 "agent": "pingou@fedoraproject.org"
             },
             "distro": {
@@ -101,6 +173,50 @@ class TestEditDistro(Base):
 
 
 class TestAddProject(Base):
+    """ These messages are published when someone adds a new project to
+    `anitya's <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.add"
+    expected_subti = 'ralph added the project "arrow" to anitya'
+    expected_link = "https://release-monitoring.org/project/5314/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['projects/arrow'])
+    msg = {
+        "username": "apache",
+        "i": 8,
+        "timestamp": 1412328939,
+        "msg_id": "2014-c95e6b4c-d033-43d9-9eb1-e1f92ac87c75",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.add",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "arrow",
+                "created_on": 1412328939.0,
+                "version": None,
+                "versions": [],
+                "version_url": None,
+                "updated_on": 1412328939.0,
+                "homepage": "https://pypi.python.org/pypi/arrow",
+                "id": 5314,
+                "backend": "PyPI"
+            },
+            "message": {
+                "project": "arrow",
+                'agent': 'http://ralph.id.fedoraproject.org/',
+            },
+            "distro": None
+        }
+    }
+
+
+class LegacyTestAddProject(Base):
     """ These messages are published when someone adds a new project to
     `anitya's <https://release-monitoring.org>`_ database.
     """
@@ -173,6 +289,52 @@ class TestAddProjectTried(Base):
                 "logs": None,
                 "created_on": 1386839688.0,
                 "version": None,
+                "version": [],
+                "version_url": "PYPI-DEFAULT:ansi2html",
+                "updated_on": 1386839688.0,
+                "packages": [],
+                "homepage": "https://github.com/ralphbean/ansi2html",
+                "name": "ansi2html"
+            },
+            "message": {
+                "project": "ansi2html",
+                "agent": 'http://ralph.id.fedoraproject.org/'
+            },
+            "distro": None,
+        }
+    }
+
+
+class LegacyTestAddProjectTried(Base):
+    """ These messages are published when someone *tries* to add a new project
+    to `anitya's <https://release-monitoring.org>`_ database, but that project
+    was already present.
+    """
+    expected_title = "anitya.project.add.tried"
+    expected_subti = 'ralph tried to add the project "ansi2html" to anitya' + \
+        ' (but it already exists there)'
+    expected_link = "https://release-monitoring.org/project/4/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['projects/ansi2html'])
+    msg = {
+        "username": "apache",
+        "i": 4,
+        "timestamp": 1386821688,
+        "msg_id": "2013-154429ec-842e-4d7f-acae-8d7434b4cbff",
+        "topic": "org.release-monitoring.prod.anitya.project.add.tried",
+        "msg": {
+            "project": {
+                "id": 4,
+                "regex": "DEFAULT:ansi2html",
+                "logs": None,
+                "created_on": 1386839688.0,
+                "version": None,
                 "version_url": "PYPI-DEFAULT:ansi2html",
                 "updated_on": 1386839688.0,
                 "packages": [],
@@ -189,6 +351,54 @@ class TestAddProjectTried(Base):
 
 
 class TestEditProject(Base):
+    """ These messages are published when someone edits the details of a
+    project in `anitya's <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.edit"
+    expected_subti = 'ralph edited the following ' + \
+        'fields of the "arrow" project: homepage'
+    expected_link = "https://release-monitoring.org/project/5314/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['projects/arrow'])
+    msg = {
+        "username": "apache",
+        "i": 6,
+        "timestamp": 1412329027,
+        "msg_id": "2014-f25b6634-d7b9-4f2d-9f93-23ef73034024",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.edit",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "arrow",
+                "created_on": 1412328939.0,
+                "version": None,
+                "versions": [],
+                "version_url": None,
+                "updated_on": 1412328939.0,
+                "homepage": "http://crsmithdev.com/arrow",
+                "id": 5314,
+                "backend": "PyPI"
+            },
+            "message": {
+                "project": "arrow",
+                "fields": [
+                    "homepage"
+                ],
+                "agent": "http://ralph.id.fedoraproject.org/"
+            },
+            "distro": None
+        }
+    }
+
+
+class LegacyTestEditProject(Base):
     """ These messages are published when someone edits the details of a
     project in `anitya's <https://release-monitoring.org>`_ database.
     """
@@ -236,6 +446,50 @@ class TestEditProject(Base):
 
 
 class TestRemoveProject(Base):
+    """ These messages are published when someone *removes* a project from
+    `anitya's <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.remove"
+    expected_subti = 'ralph deleted the "guake" project'
+    expected_link = "https://release-monitoring.org/project/5311/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['projects/guake'])
+    msg = {
+        "username": "apache",
+        "i": 11,
+        "timestamp": 1412331340,
+        "msg_id": "2014-94864be5-f649-4b3f-8694-32f238ac7174",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.remove",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "guake",
+                "created_on": 1412237149.0,
+                "version": "0.5.0",
+                "versions": [],
+                "version_url": "guake/guake",
+                "updated_on": 1412237231.0,
+                "homepage": "http://guake.org",
+                "id": 5311,
+                "backend": "GitHub"
+            },
+            "message": {
+                "project": "guake",
+                "agent": "http://ralph.id.fedoraproject.org/"
+            },
+            "distro": None
+        }
+    }
+
+
+class LegacyTestRemoveProject(Base):
     """ These messages are published when someone *removes* a project from
     `anitya's <https://release-monitoring.org>`_ database.
     """
@@ -308,6 +562,60 @@ class TestNewMappingProject(Base):
         "topic": "org.release-monitoring.prod.anitya.project.map.new",
         "msg": {
             "project": {
+                "regex": None,
+                "name": "arrow",
+                "created_on": 1412328939.0,
+                "version": None,
+                "versions": [],
+                "version_url": None,
+                "updated_on": 1412329027.0,
+                "homepage": "http://crsmithdev.com/arrow",
+                "id": 5314,
+                "backend": "PyPI"
+            },
+            "message": {
+                "project": "arrow",
+                "new": "python-arrow",
+                "agent": "http://ralph.id.fedoraproject.org/",
+                "distro": "Fedora"
+            },
+            "distro": {
+                "name": "Fedora"
+            }
+        }
+    }
+
+
+class LegacyTestNewMappingProject(Base):
+    """ These messages are published when someone maps an upstream project to a
+    package name in a particular distribution (in the `anitya
+    <https://release-monitoring.org>`_ database...)
+    """
+    expected_title = "anitya.project.map.new"
+    expected_subti = 'ralph mapped the name of "arrow"' + \
+        ' in Fedora to "python-arrow"'
+    expected_link = "https://release-monitoring.org/project/5314/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_packages = set(['python-arrow'])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'projects/arrow',
+        'mappings/Fedora/python-arrow',
+        'distros/Fedora',
+    ])
+    msg = {
+        "username": "apache",
+        "i": 7,
+        "timestamp": 1412329216,
+        "msg_id": "2014-9ebf960a-115e-4568-a615-34cc7d8d462e",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.map.new",
+        "msg": {
+            "project": {
             "regex": "",
             "name": "arrow",
             "created_on": 1412328939.0,
@@ -332,6 +640,68 @@ class TestNewMappingProject(Base):
 
 
 class TestUpdatedMappingProject(Base):
+    """ These messages are published when someone updates the mapping between
+    an upstream project and a package name in a particular distribution
+    (in the `anitya <https://release-monitoring.org>`_ database...)
+    """
+    expected_title = "anitya.project.map.update"
+    expected_subti = 'ralph updated the name of ' + \
+        '"guake" in "Fedora" from "guake2" to "guake"'
+    expected_link = "https://release-monitoring.org/project/5311/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_packages = set([
+        'guake',
+        'guake2',
+    ])
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'projects/guake',
+        'mappings/Fedora/guake2',
+        'mappings/Fedora/guake',
+        'distros/Fedora',
+    ])
+    msg = {
+        "username": "apache",
+        "i": 8,
+        "timestamp": 1412329667,
+        "msg_id": "2014-5bd228ac-4ba1-452f-b6d2-b4df53c9af14",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.map.update",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "guake",
+                "created_on": 1412237149.0,
+                "version": "0.5.0",
+                "versions": [],
+                "version_url": "guake/guake",
+                "updated_on": 1412237231.0,
+                "homepage": "http://guake.org",
+                "id": 5311,
+                "backend": "Github"
+            },
+            "message": {
+                "edited": [
+                    "package_name"
+                ],
+                "agent": "http://ralph.id.fedoraproject.org/",
+                "project": "guake",
+                "new": "guake",
+                "prev": "guake2",
+                "distro": "Fedora"
+            },
+            "distro": {
+                "name": "Fedora"
+            }
+        }
+    }
+
+
+class LegacyTestUpdatedMappingProject(Base):
     """ These messages are published when someone updates the mapping between
     an upstream project and a package name in a particular distribution
     (in the `anitya <https://release-monitoring.org>`_ database...)
@@ -782,6 +1152,53 @@ class TestRemoveMappingProject(Base):
             },
             "message": {
                 "project": "guake",
+                "agent": "http://pingou.id.fedoraproject.org/",
+                "distro": "Fedora"
+            },
+            "distro": None
+        }
+    }
+
+
+class LegacyTestRemoveMappingProject(Base):
+    """ These messages are published when someone *removes* a mapping
+    between an upstream project and a package name in a particular
+    distribution (in the `anitya <https://release-monitoring.org>`_
+    database...)
+    """
+    expected_title = "anitya.project.map.remove"
+    expected_subti = 'pingou deleted the mapping of ' + \
+        '"guake" project on "Fedora"'
+    expected_link = "https://release-monitoring.org/project/5311/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['projects/guake'])
+    msg = {
+        "username": "apache",
+        "i": 10,
+        "timestamp": 1412330764,
+        "msg_id": "2014-1d43e5ab-e398-4007-8269-26b4f209d55b",
+        "crypto": "x509",
+        "topic": "org.release-monitoring.prod.anitya.project.map.remove",
+        "msg": {
+            "project": {
+                "regex": "",
+                "name": "guake",
+                "created_on": 1412237149.0,
+                "version": "0.5.0",
+                "version_url": "guake/guake",
+                "updated_on": 1412237231.0,
+                "homepage": "http://guake.org",
+                "id": 5311,
+                "backend": "Github"
+            },
+            "message": {
+                "project": "guake",
                 "agent": "pingou@fedoraproject.org",
                 "distro": "Fedora"
             },
@@ -791,6 +1208,51 @@ class TestRemoveMappingProject(Base):
 
 
 class TestRemoveVersionProject(Base):
+    """ These messages are published when an admin *removes* a version
+    from a particular project (in the `anitya <https://release-monitoring.org>`_
+    database...)
+    """
+    expected_title = "anitya.project.version.remove"
+    expected_subti = 'pingou deleted the version 0.7.1.1 of "3proxy"'
+    expected_link = "https://release-monitoring.org/project/3/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['projects/3proxy'])
+    msg = {
+        "username": "pingou",
+        "i": 1,
+        "timestamp": 1415118527,
+        "msg_id": "2014-7926f638-1d0c-470c-b589-de84f5d34fad",
+        "topic": "org.release-monitoring.prod.anitya.project.version.remove",
+        "msg": {
+            "project": {
+                "regex": None,
+                "name": "3proxy",
+                "created_on": 1409917223.0,
+                "version": "0.7.1.1",
+                "versions": [],
+                "version_url": "http://www.3proxy.ru/download/",
+                "updated_on": 1412690620.0,
+                "homepage": "http://www.3proxy.ru/download/",
+                "id": 3,
+                "backend": "custom"
+            },
+            "message": {
+                "project": "3proxy",
+                "version": "0.7.1.1",
+                "agent": "http://pingou.id.fedoraproject.org/"
+            },
+            "distro": None
+        }
+    }
+
+
+class LegacyTestRemoveVersionProject(Base):
     """ These messages are published when an admin *removes* a version
     from a particular project (in the `anitya <https://release-monitoring.org>`_
     database...)
@@ -858,6 +1320,40 @@ class TestRemoveDistro(Base):
         "msg": {
             "project": None,
             "message": {
+                "agent": "http://pingou.id.fedoraproject.org/",
+                "distro": "Arch"
+            },
+            "distro": {
+                "name": "Arch"
+            }
+        }
+    }
+
+
+class LegacyTestRemoveDistro(Base):
+    """ These messages are published when an admin *removes* a distribution
+    (in the `anitya <https://release-monitoring.org>`_ database...)
+    """
+    expected_title = "anitya.distro.remove"
+    expected_subti = 'pingou deleted the distro "Arch"'
+    expected_link = "https://release-monitoring.org/distros"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['distros/Arch'])
+    msg = {
+        "username": "pierrey",
+        "i": 4,
+        "timestamp": 1418315977,
+        "msg_id": "2014-745132e5-17eb-4785-8663-fa89801a08ee",
+        "topic": "org.release-monitoring.dev.anitya.distro.remove",
+        "msg": {
+            "project": None,
+            "message": {
                 "agent": "pingou@fedoraproject.org",
                 "distro": "Arch"
             },
@@ -869,6 +1365,55 @@ class TestRemoveDistro(Base):
 
 
 class TestProjectFlag(Base):
+    """ These messages are published when an user *flags* a project
+    in the `anitya <https://release-monitoring.org>`_ database to ask an
+    admin to do something on a project.
+    """
+    expected_title = "anitya.project.flag"
+    expected_subti = 'pingou flagged the project "generic-colouriser"'
+    expected_link = "https://release-monitoring.org/project/5777/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['projects/generic-colouriser'])
+    msg = {
+          "source_name": "datanommer",
+          "i": 4,
+          "timestamp": 1445900487.0,
+          "msg_id": "2015-7b2fca29-7409-43f2-949f-c688437ba5d4",
+          "topic": "org.release-monitoring.prod.anitya.project.flag",
+          "source_version": "0.6.5",
+          "msg": {
+            "project": {
+              "regex": None,
+              "name": "generic-colouriser",
+              "versions": [
+                "v1.9",
+                "v1.7"
+              ],
+              "created_on": 1425912743.0,
+              "version": "v1.9",
+              "version_url": "garabik/grc",
+              "updated_on": 1427848695.0,
+              "homepage": "http://kassiopeia.juls.savba.sk/~garabik/software/grc.html",
+              "id": 5777,
+              "backend": "Github"
+            },
+            "message": {
+              "project": "generic-colouriser",
+              "reason": "Delete in favor of the correctly configured 7894.",
+              "agent": "http://pingou.id.fedoraproject.org/"
+            },
+            "distro": None
+          }
+        }
+
+
+class LegacyTestProjectFlag(Base):
     """ These messages are published when an user *flags* a project
     in the `anitya <https://release-monitoring.org>`_ database to ask an
     admin to do something on a project.
@@ -942,6 +1487,58 @@ class TestProjectFlag_WithPackages(Base):
           "source_version": "0.6.5",
           "msg": {
             "project": {
+              "regex": None,
+              "name": "generic-colouriser",
+              "versions": [
+                "v1.9",
+                "v1.7"
+              ],
+              "created_on": 1425912743.0,
+              "version": "v1.9",
+              "version_url": "garabik/grc",
+              "updated_on": 1427848695.0,
+              "homepage": "http://kassiopeia.juls.savba.sk/~garabik/software/grc.html",
+              "id": 5777,
+              "backend": "GitHub"
+            },
+            "message": {
+              "project": "generic-colouriser",
+              "reason": "Delete in favor of the correctly configured 7894.",
+              "agent": "http://pingou.id.fedoraproject.org/"
+            },
+            "distro": None,
+            "packages": [
+                {"package_name": "generic-colouriser", "distro": "Fedora"}
+            ]
+          }
+        }
+
+
+class LegacyTestProjectFlag_WithPackages(Base):
+    """ These messages are published when an user *flags* a project
+    in the `anitya <https://release-monitoring.org>`_ database to ask an
+    admin to do something on a project.
+    """
+    expected_title = "anitya.project.flag"
+    expected_subti = 'pingou flagged the project "generic-colouriser"'
+    expected_link = "https://release-monitoring.org/project/5777/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set(['generic-colouriser'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['projects/generic-colouriser'])
+    msg = {
+          "source_name": "datanommer",
+          "i": 4,
+          "timestamp": 1445900487.0,
+          "msg_id": "2015-7b2fca29-7409-43f2-949f-c688437ba5d4",
+          "topic": "org.release-monitoring.prod.anitya.project.flag",
+          "source_version": "0.6.5",
+          "msg": {
+            "project": {
               "regex": "",
               "name": "generic-colouriser",
               "versions": [
@@ -967,6 +1564,7 @@ class TestProjectFlag_WithPackages(Base):
             ]
           }
         }
+
 
 
 add_doc(locals())
