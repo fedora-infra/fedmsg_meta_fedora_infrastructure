@@ -1579,7 +1579,7 @@ class TestFlagSet(Base):
         "b8e2f8211b6dfb3aadb150f118358af5" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['pingou@fp.o'])
+    expected_usernames = set(['pingou'])
     expected_objects = set(['flag/184'])
     msg = {
           "source_name": "datanommer",
@@ -1593,7 +1593,7 @@ class TestFlagSet(Base):
             "message": {
               "flag": 184,
               "state": "closed",
-              "agent": "pingou@fp.o"
+              "agent": "pingou@fedoraproject.org"
             },
             "distro": None
           }
