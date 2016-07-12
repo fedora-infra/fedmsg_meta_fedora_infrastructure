@@ -27,6 +27,131 @@ from .common import add_doc
 
 
 class TestImageUploadStart(Base):
+    """ These messages are published when an image upload has started.
+    Fedimg picks up this message when a compose finishes and will begin
+    the process of registering the .raw.xz file as as an image
+    with a cloud provider.
+    """
+
+    expected_title = "fedimg.image.upload"
+    image_name = "Fedora-Cloud-Base-24-20160710.0.x86_64"
+    dest = "EC2-eu-west-1"
+    expected_subti = "{0} started uploading to {1}".format(image_name,
+                                                                 dest)
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['image/upload/started'])
+
+    msg = {
+        u'i': 1,
+        u'msg': {
+            u'image_url': 'http://kojipkgs.fedoraproject.org/compose//twoweek/'
+                          'Fedora-Atomic-24-20160710.0/compose/CloudImages/'
+                          'x86_64/images/Fedora-Cloud-Base-24-'
+                          '20160710.0.x86_64.raw.xz',
+            u'image_name': 'Fedora-Cloud-Base-24-20160710.0.x86_64',
+            u'destination': 'EC2-eu-west-1',
+            u'status': 'started',
+            u'compose': {
+                u'compose_id': 'Fedora-Atomic-24-20160710.0',
+            }
+        },
+        u'topic': u'org.fedoraproject.stg.fedimg.image.upload',
+        u'username': u'fedimg',
+        u'timestamp': 1371498303.125771,
+    }
+
+
+class TestImageUploadComplete(Base):
+    """ These messages are published when an image upload finishes.
+        At this point, Fedimg has completed registering a .raw.xz
+        image with a cloud provider. """
+
+    expected_title = "fedimg.image.upload"
+    image_name = "Fedora-Cloud-Base-24-20160710.0.x86_64"
+    dest = "EC2-eu-west-1"
+    ami_id = 'ami-1234fda'
+    virt_type = 'HVM'
+    vol_type = 'gp2'
+    expected_subti = "{0} finished uploading to {1} ({2}, {3}, {4})".format(
+            image_name, dest, ami_id, virt_type, vol_type)
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['image/upload/completed'])
+    msg = {
+        u'i': 1,
+        u'msg': {
+            u'image_url': 'http://kojipkgs.fedoraproject.org/compose//twoweek/'
+                          'Fedora-Atomic-24-20160710.0/compose/CloudImages/'
+                          'x86_64/images/Fedora-Cloud-Base-24-'
+                          '20160710.0.x86_64.raw.xz',
+            u'image_name': 'Fedora-Cloud-Base-24-20160710.0.x86_64',
+            u'destination': 'EC2-eu-west-1',
+            u'status': 'completed',
+            u'extra': {
+                u'id': 'ami-1234fda',
+                u'virt_type': 'HVM',
+                u'vol_type': 'gp2',
+            },
+            u'compose': {
+                u'compose_id': 'Fedora-Atomic-24-20160710.0',
+            }
+        },
+        u'topic': u'org.fedoraproject.stg.fedimg.image.upload',
+        u'username': u'fedimg',
+        u'timestamp': 1371498303.125771,
+    }
+
+
+class TestImageTestStart(Base):
+    """ These messages are published when an image test has started.
+        At this point, Fedimg tries to start an instance of a
+        image that it registered in the previous step, and check
+        to see that it's running properly. """
+
+    expected_title = "fedimg.image.test"
+    image_name = "Fedora-Cloud-Base-24-20160710.0.x86_64"
+    dest = "EC2-eu-west-1"
+    ami_id = 'ami-1234fda'
+    virt_type = 'HVM'
+    vol_type = 'gp2'
+    expected_subti = "{0} started testing on {1} ({2}, {3}, {4})".format(
+            image_name, dest, ami_id, virt_type, vol_type)
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['image/test/started'])
+    msg = {
+        u'i': 1,
+        u'msg': {
+            u'image_url': 'http://kojipkgs.fedoraproject.org/compose//twoweek/'
+                          'Fedora-Atomic-24-20160710.0/compose/CloudImages/'
+                          'x86_64/images/Fedora-Cloud-Base-24-'
+                          '20160710.0.x86_64.raw.xz',
+            u'image_name': 'Fedora-Cloud-Base-24-20160710.0.x86_64',
+            u'destination': 'EC2-eu-west-1',
+            u'status': 'started',
+            u'extra': {
+                u'id': 'ami-1234fda',
+                u'virt_type': 'HVM',
+                u'vol_type': 'gp2',
+            },
+            u'compose': {
+                u'compose_id': 'Fedora-Atomic-24-20160710.0',
+            }
+        },
+        u'topic': u'org.fedoraproject.stg.fedimg.image.test',
+        u'username': u'fedimg',
+        u'timestamp': 1371498303.125771,
+    }
+
+
+class LegacyTestImageUploadStart(Base):
     """ These messages are published when an image upload has started. 
         At this point, Fedimg has picked up a completed Koji
         createImage task and will begin the process of registering
@@ -58,7 +183,7 @@ class TestImageUploadStart(Base):
     }
 
 
-class TestImageUploadComplete(Base):
+class LegacyTestImageUploadComplete(Base):
     """ These messages are published when an image upload finishes.
         At this point, Fedimg has completed registering a .raw.xz
         image with a cloud provider. """
@@ -97,7 +222,7 @@ class TestImageUploadComplete(Base):
     }
 
 
-class TestImageTestStart(Base):
+class LegacyTestImageTestStart(Base):
     """ These messages are published when an image test has started.
         At this point, Fedimg tries to start an instance of a
         image that it registered in the previous step, and check
