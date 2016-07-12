@@ -1566,6 +1566,39 @@ class LegacyTestProjectFlag_WithPackages(Base):
         }
 
 
+class TestFlagSet(Base):
+    """ These messages are published when an user change the status of a
+    flag in the `anitya <https://release-monitoring.org>`_ database.
+    """
+    expected_title = "anitya.project.flag.set"
+    expected_subti = 'pingou closed flag "184"'
+    expected_link = "https://release-monitoring.org/"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['flag/184'])
+    msg = {
+          "source_name": "datanommer",
+          "i": 4,
+          "timestamp": 1468318351.0,
+          "msg_id": "2016-fc73c74c-fc5a-4f65-8ae9-87145bae82e4",
+          "topic": "org.release-monitoring.prod.anitya.project.flag.set",
+          "source_version": "0.6.5",
+          "msg": {
+            "project": None,
+            "message": {
+              "flag": 184,
+              "state": "closed",
+              "agent": "pingou@fedoraproject.org"
+            },
+            "distro": None
+          }
+        }
+
 
 add_doc(locals())
 

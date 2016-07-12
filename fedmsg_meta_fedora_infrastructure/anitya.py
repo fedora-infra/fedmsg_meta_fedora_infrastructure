@@ -57,6 +57,8 @@ class AnityaProcessor(BaseProcessor):
         if msg['msg']['project']:
             proj = msg['msg']['project']['id']
             return "https://release-monitoring.org/project/%s/" % proj
+        elif msg['topic'].endswith('project.flag.set'):
+            return "https://release-monitoring.org/"
         else:
             return "https://release-monitoring.org/distros"
 
@@ -164,6 +166,12 @@ class AnityaProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} deleted the distro "{project}"')
             return tmpl.format(user=user, project=project)
+        elif msg['topic'].endswith('project.flag.set'):
+            action = msg['msg']['message']['state']
+            flagid = msg['msg']['message']['flag']
+            tmpl = self._(
+                '{user} {action} flag "{flagid}"')
+            return tmpl.format(user=user, action=action, flagid=flagid)
         elif msg['topic'].endswith('project.flag'):
             project = msg['msg']['project']['name']
             tmpl = self._(
@@ -239,6 +247,9 @@ class AnityaProcessor(BaseProcessor):
         elif 'distro.remove' in msg['topic']:
             distro = msg['msg']['distro']['name']
             return set(['distros/%s' % distro])
+        elif msg['topic'].endswith('project.flag.set'):
+            flagid = msg['msg']['message']['flag']
+            return set(['flag/%s' % flagid])
 
         return set([])
 
