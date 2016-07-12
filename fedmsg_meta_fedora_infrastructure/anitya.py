@@ -245,7 +245,7 @@ class AnityaProcessor(BaseProcessor):
         elif 'distro.remove' in msg['topic']:
             distro = msg['msg']['distro']['name']
             return set(['distros/%s' % distro])
-        elif.msg['topic'].endswith('project.flag.set'):
+        elif msg['topic'].endswith('project.flag.set'):
             flagid = msg['msg']['message']['flag']
             return set(['flag/%s' % flagid])
 
