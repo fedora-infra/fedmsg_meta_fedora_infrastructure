@@ -1571,15 +1571,15 @@ class TestFlagSet(Base):
     flag in the `anitya <https://release-monitoring.org>`_ database.
     """
     expected_title = "anitya.project.flag.set"
-    expected_subti = 'pingou closed flag "184"'
+    expected_subti = 'pingou@fp.o closed flag "184"'
     expected_link = "https://release-monitoring.org/"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
-        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "b8e2f8211b6dfb3aadb150f118358af5" + \
         "?s=64&d=retro"
     expected_packages = set([])
-    expected_usernames = set(['pingou'])
+    expected_usernames = set(['pingou@fp.o'])
     expected_objects = set(['flag/184'])
     msg = {
           "source_name": "datanommer",
