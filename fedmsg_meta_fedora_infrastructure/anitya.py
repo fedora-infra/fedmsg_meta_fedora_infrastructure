@@ -57,6 +57,8 @@ class AnityaProcessor(BaseProcessor):
         if msg['msg']['project']:
             proj = msg['msg']['project']['id']
             return "https://release-monitoring.org/project/%s/" % proj
+        elif msg['topic'].endswith('project.flag.set'):
+            return "https://release-monitoring.org/"
         else:
             return "https://release-monitoring.org/distros"
 
