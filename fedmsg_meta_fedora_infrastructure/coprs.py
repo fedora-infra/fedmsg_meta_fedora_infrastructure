@@ -104,11 +104,19 @@ class CoprsProcessor(BaseProcessor):
         status = _statuses.get(msg['msg'].get('status'), 'unknown')
 
         if 'copr.build.start' in msg['topic']:
-            tmpl = self._("{user} started a new build of the {copr} copr")
+            if user:
+                tmpl = self._("{user} started a new build of the {copr} copr")
+            else:
+                tmpl = self._("Automated build of the {copr} copr has been started")
         elif 'copr.build.end' in msg['topic']:
-            tmpl = self._(
-                "{user}'s {copr} copr build of {pkg} for {chroot} "
-                "finished with '{status}'")
+            if user:
+                tmpl = self._(
+                    "{user}'s {copr} copr build of {pkg} for {chroot} "
+                    "finished with '{status}'")
+            else:
+                tmpl = self._(
+                    "Automated {copr} copr build of {pkg} for {chroot} "
+                    "finished with '{status}'")
         elif 'copr.chroot.start' in msg['topic']:
             tmpl = self._("{user}'s {copr} copr started a new {chroot} chroot")
         elif 'copr.worker.create' in msg['topic']:
