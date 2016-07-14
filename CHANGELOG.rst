@@ -1,4 +1,67 @@
 
+0.17.6
+------
+
+Pull Requests
+
+- (@pypingou)       #387, Update the anitya backend for the new agent string format
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/387
+- (@msimacek)       #382, Special message for Copr automated builds
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/382
+- (@pypingou)       #391, Improve the anitya processor for project.flag.set messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/391
+- (@sayanchowdhury) #390, Add the updated messages to fedimg tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/390
+- (@sayanchowdhury) #394, Add the test for the broken messages and the fix for the Autocloud Processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/394
+
+Commits
+
+- 07fde3232 Special message for Copr automatic builds
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/07fde3232
+- 40e0d1d2a Adjust the anitya backend for the new agent string
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/40e0d1d2a
+- 89377f32b Adjust the tests for the anitya backend
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/89377f32b
+- 96e3584ed Let's not forget to return the agent's username
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/96e3584ed
+- 026550163 Typo typo
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/026550163
+- 2ef313f00 Fix the topic, hoping it fixes the tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/2ef313f00
+- f450a0a5f One more typo to fix
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/f450a0a5f
+- bff49426f Fix distro name and test w/ a non-Fedora user
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bff49426f
+- 0f42d063c Last adjustments for the anitya tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0f42d063c
+- 6d4c9fba1 0.17.5
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/6d4c9fba1
+- 86cc038ae Add the updated messages to fedimg test
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/86cc038ae
+- 68f284008 Add logic to handle the anitya messages about project.flag.set
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/68f284008
+- 8ef05e0a6 Add unit-tests for the anitya.project.flag.set messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/8ef05e0a6
+- daff56c93 Typo typo
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/daff56c93
+- 5a1f603ae Typo typo - v2
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5a1f603ae
+- e5f165fbc Fix the link for project flags
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/e5f165fbc
+- db7bc5238 Adjust unit-tests to get them passing
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/db7bc5238
+- db6b07ae7 We need a valid FP address to return the right user
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/db6b07ae7
+- dea5ef8f8 Now that the username is valid, adjust the rest of the tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/dea5ef8f8
+- bcd4c94cb Add the test for the broken messages and the fix for the Autocloud Processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/bcd4c94cb
+- d30e12647 Update the check to one-liner as suggested by @pypingou along with default value
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d30e12647
+- 47a69be39 Return the autocloud link as default
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/47a69be39
+
 0.17.5
 ------
 
