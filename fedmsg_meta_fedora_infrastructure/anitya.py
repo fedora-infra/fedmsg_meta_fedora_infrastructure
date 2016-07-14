@@ -38,19 +38,27 @@ class AnityaProcessor(BaseProcessor):
 
     def _get_user(self, msg, **config):
         try:
-            email = msg['msg']['message']['agent']
+            agent = msg['msg']['message']['agent']
         except KeyError:
             return msg.get('username', 'anitya')
         else:
-            if email.endswith('@fedoraproject.org'):
-                return email.split('@fedoraproject.org')[0]
+            if 'id.fedoraproject.org' in agent:
+                agent = agent.partition(
+                    '.id.fedoraproject.org')[0].partition('//')[-1]
+                return agent
+            elif agent.endswith('@fedoraproject.org'):
+                return agent.split('@fedoraproject.org')[0]
+            elif '@' in agent:
+                return email2fas(agent, **config)
             else:
-                return email2fas(email, **config)
+                return agent
 
     def link(self, msg, **config):
         if msg['msg']['project']:
             proj = msg['msg']['project']['id']
             return "https://release-monitoring.org/project/%s/" % proj
+        elif msg['topic'].endswith('project.flag.set'):
+            return "https://release-monitoring.org/"
         else:
             return "https://release-monitoring.org/distros"
 
@@ -133,7 +141,8 @@ class AnityaProcessor(BaseProcessor):
             for package in message.get('packages', []):
                 if package['distro'] == 'Fedora':
                     packages.append(package['package_name'])
-            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(packages)
+            packages = fedmsg.meta.base.BaseConglomerator.list_to_series(
+                packages)
             odd = message.get('odd_change', False)
             old = message['old_version']
             new = message['upstream_version']
@@ -157,6 +166,12 @@ class AnityaProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} deleted the distro "{project}"')
             return tmpl.format(user=user, project=project)
+        elif msg['topic'].endswith('project.flag.set'):
+            action = msg['msg']['message']['state']
+            flagid = msg['msg']['message']['flag']
+            tmpl = self._(
+                '{user} {action} flag "{flagid}"')
+            return tmpl.format(user=user, action=action, flagid=flagid)
         elif msg['topic'].endswith('project.flag'):
             project = msg['msg']['project']['name']
             tmpl = self._(
@@ -232,6 +247,9 @@ class AnityaProcessor(BaseProcessor):
         elif 'distro.remove' in msg['topic']:
             distro = msg['msg']['distro']['name']
             return set(['distros/%s' % distro])
+        elif msg['topic'].endswith('project.flag.set'):
+            flagid = msg['msg']['message']['flag']
+            return set(['flag/%s' % flagid])
 
         return set([])
 

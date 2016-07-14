@@ -38,7 +38,8 @@ class AutoCloudProcessor(BaseProcessor):
         """
         FNAME = 'handle_%s_autocloud_%s'
 
-        if 'compose_id' in msg['msg'] or 'compose_job_id' in msg['msg']:
+        if ('compose_id' in msg['msg'] or 'compose_job_id' in msg['msg'] or
+                'autocloud.compose' in msg['topic']):
             return getattr(self, FNAME % ('v2', fname))(msg, **config)
         else:
             return getattr(self, FNAME % ('v1', fname))(msg, **config)
@@ -85,7 +86,8 @@ class AutoCloudProcessor(BaseProcessor):
                                 compose_id=compose_id)
 
         if "autocloud.compose" in msg['topic']:
-            compose_id = msg['msg']['id']
+            compose_id = msg['msg'].get(
+                    'id', msg['msg'].get('compose_id', 'A compose'))
 
             if status == 'queued':
                 tmpl = self._("{compose_id} is {status} for testing")
@@ -106,9 +108,11 @@ class AutoCloudProcessor(BaseProcessor):
             else:
                 return msg['msg']['image_url']
         elif 'autocloud.compose' in msg['topic']:
-            compose_job_id = msg['msg']['compose_job_id']
-            return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % (
-                compose_job_id)
+            compose_job_id = msg['msg'].get('compose_job_id')
+            if compose_job_id is not None:
+                return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % (
+                    compose_job_id)
+        return 'https://apps.fedoraproject.org/autocloud/'
 
     def handle_v2_autocloud_objects(self, msg, **config):
         status = msg['msg']['status']
