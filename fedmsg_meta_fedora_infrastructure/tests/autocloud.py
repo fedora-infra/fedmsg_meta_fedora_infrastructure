@@ -353,6 +353,39 @@ class LegacyComposeTestCompleted(Base):
     }
 
 
+class LegacyDefaultComposeTestCompleted(Base):
+    """ These messages are published when tests for a compose completes
+    in Autocloud app but the message has both compose_id and id key missing
+    """
+    expected_title = "autocloud.compose.complete"
+    expected_subti = 'A compose tests have completed'
+    expected_link = 'https://apps.fedoraproject.org/autocloud/jobs/37'
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
+        "fedimg.png"
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set(['autocloud/compose/completed'])
+    msg = {
+        u'username': u'apache',
+        u'i': 1,
+        u'timestamp': 1379638157.759283,
+        u'msg_id': u'2015-4b5aae66-b713-4c22-bb4a-1277d4402375',
+        u'topic': u'org.fedoraproject.prod.autocloud.compose.complete',
+        u'msg': {
+            u'status': u'completed',
+            u'respin': 1,
+            u'release': u'24',
+            u'results': {
+                u'failed': 0,
+                u'success': 6
+            },
+            u'compose_job_id': 37,
+            u'date': u'20160419',
+            u'type': u'nightly',
+        }
+    }
+
+
 class LegacyTestImageTestQueued(Base):
     """ These messages are published when an image is queued for testing in
     Autocloud app.

@@ -86,10 +86,8 @@ class AutoCloudProcessor(BaseProcessor):
                                 compose_id=compose_id)
 
         if "autocloud.compose" in msg['topic']:
-            compose_id = msg['msg'].get('id', '')
-
-            if compose_id == '' and "complete" in msg['topic']:
-                compose_id = msg['msg'].get('compose_id', '')
+            compose_id = msg['msg'].get(
+                    'id', msg['msg'].get('compose_id', 'A compose'))
 
             if status == 'queued':
                 tmpl = self._("{compose_id} is {status} for testing")
