@@ -112,6 +112,7 @@ class AutoCloudProcessor(BaseProcessor):
             if compose_job_id is not None:
                 return 'https://apps.fedoraproject.org/autocloud/jobs/%s' % (
                     compose_job_id)
+        return 'https://apps.fedoraproject.org/autocloud/'
 
     def handle_v2_autocloud_objects(self, msg, **config):
         status = msg['msg']['status']

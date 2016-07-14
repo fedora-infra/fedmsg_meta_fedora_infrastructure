@@ -296,7 +296,7 @@ class LegacyComposeTestRunning(Base):
     """
     expected_title = "autocloud.compose.running"
     expected_subti = 'Fedora-24-20160419.n.1 tests have started running'
-    expected_link = None
+    expected_link = 'https://apps.fedoraproject.org/autocloud/'
     expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/" + \
         "fedimg.png"
     expected_packages = set([])
