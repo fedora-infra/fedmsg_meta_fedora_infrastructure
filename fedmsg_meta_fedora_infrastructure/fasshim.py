@@ -129,11 +129,11 @@ def make_fas_cache(**config):
                 auth=True)
         except fedora.client.ServerError as e:
             log.warning("Failed to download fas cache for %s %r" % (key, e))
-            request = {'people': []}
+            continue
         finally:
             socket.setdefaulttimeout(timeout)
 
-        log.info("Caching necessary user data")
+        log.info("Caching necessary user data for %s*" % key)
         for user in request['people']:
             nick = user['ircnick']
             if nick:
