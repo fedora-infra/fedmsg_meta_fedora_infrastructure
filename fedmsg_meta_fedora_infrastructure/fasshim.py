@@ -123,7 +123,7 @@ def make_fas_cache(**config):
         socket.setdefaulttimeout(600)
         try:
             log.info("Downloading FAS cache for %s*" % key)
-            request = fasclient.send_request(
+            response = fasclient.send_request(
                 '/user/list',
                 req_params={'search': '%s*' % key},
                 auth=True)
@@ -134,7 +134,7 @@ def make_fas_cache(**config):
             socket.setdefaulttimeout(timeout)
 
         log.info("Caching necessary user data for %s*" % key)
-        for user in request['people']:
+        for user in response['people']:
             nick = user['ircnick']
             if nick:
                 _fas_cache[nick] = user['username']
@@ -143,7 +143,7 @@ def make_fas_cache(**config):
             if email:
                 _fas_cache[email] = user['username']
 
-        del request
+        del response
 
     del fasclient
     del fedora.client.fas2
