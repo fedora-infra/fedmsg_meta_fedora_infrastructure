@@ -9,7 +9,7 @@ class AbstractCoprConglomerator(fedmsg.meta.base.BaseConglomerator):
     def merge(self, constituents, subject, **config):
         ms = constituents  # shorthand
 
-        agents = set([m['msg']['user'] for m in ms])
+        agents = set([m['msg']['user'] for m in ms if m['msg']['user']])
         coprs = set([m['msg']['copr'] for m in ms])
         count = len([1 for m in ms
                       if m['topic'].endswith('copr.build.start')])
