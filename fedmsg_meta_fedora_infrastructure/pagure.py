@@ -284,10 +284,27 @@ class PagureProcessor(BaseProcessor):
             return tmpl.format(user=user, project=project, fields=fields)
         elif 'pagure.project.user.added' in msg['topic']:
             new_user = msg['msg']['new_user']
+            access = msg['msg'].get('access')
+            if access:
+                tmpl = self._(
+                    '{user} added "{new_user}" to project {project} '
+                    'with {access} access'
+                )
+            else:
+                tmpl = self._(
+                    '{user} added "{new_user}" to project {project}'
+                )
+            return tmpl.format(
+                user=user, project=project, new_user=new_user, access=access)
+        elif 'pagure.project.user.access.updated' in msg['topic']:
+            new_user = msg['msg']['new_user']
+            new_access = msg['msg']['new_access']
             tmpl = self._(
-                '{user} added "{new_user}" to project {project}'
+                '{user} updated access of "{new_user}" to {new_access} '
+                'in project {project}'
             )
-            return tmpl.format(user=user, project=project, new_user=new_user)
+            return tmpl.format(
+                user=user, project=project, new_user=new_user, new_access=new_access)
         elif 'pagure.project.tag.removed' in msg['topic']:
             tags = msg['msg']['tags']
             tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
