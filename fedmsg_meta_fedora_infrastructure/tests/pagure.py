@@ -17,7 +17,7 @@
 #
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #
-""" Tests for anitya messages """
+""" Tests for pagure messages """
 
 import unittest
 
