@@ -282,6 +282,29 @@ class PagureProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} edited the {fields} fields of project {project}')
             return tmpl.format(user=user, project=project, fields=fields)
+        elif 'pagure.project.group.added' in msg['topic']:
+            new_group = msg['msg']['new_group']
+            access = msg['msg'].get('access')
+            if access:
+                tmpl = self._(
+                    '{user} added group "{new_group}" to project {project} ' + \
+                    'with {access} access'
+                )
+            else:
+                tmpl = self._(
+                    '{user} added group "{new_group}" to project {project}'
+                )
+            return tmpl.format(
+                user=user, project=project, new_group=new_group, access=access)
+        elif 'pagure.project.group.access.updated' in msg['topic']:
+            new_group = msg['msg']['new_group']
+            new_access = msg['msg']['new_access']
+            tmpl = self._(
+                '{user} updated access of group "{new_group}" ' + \
+                'to {new_access} on project {project}'
+            )
+            return tmpl.format(
+                user=user, project=project, new_group=new_group, new_access=new_access)
         elif 'pagure.project.user.added' in msg['topic']:
             new_user = msg['msg']['new_user']
             access = msg['msg'].get('access')

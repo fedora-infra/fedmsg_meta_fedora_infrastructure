@@ -822,6 +822,138 @@ class TestProjectUserAccessUpdated(Base):
     }
 
 
+class LegacyTestProjectGroupAdded(Base):
+    """ These messages are published when a someone gave admin rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.group.added"
+    expected_subti = 'pingou added group "awesome" to project foo'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.group.added",
+      "msg": {
+        "new_group": "awesome",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestProjectGroupAdded(Base):
+    """ These messages are published when a someone gave some rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.group.added"
+    expected_subti = 'pingou added group "awesome" to project foo with admin access'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.group.added",
+      "msg": {
+        "new_group": "awesome",
+        "access": "admin",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestProjectGroupAccessUpdated(Base):
+    """ These messages are published when a someone updated someone's rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.group.access.updated"
+    expected_subti = 'pingou updated access of group "awesome" to commit ' + \
+        'on project foo'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.group.access.updated",
+      "msg": {
+        "new_group": "awesome",
+        "new_access": "commit",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
 class TestProjectUserAdded(Base):
     """ These messages are published when a someone gave some rights on a
     project on `pagure <https://pagure.io>`_.
