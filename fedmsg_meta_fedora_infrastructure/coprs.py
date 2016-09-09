@@ -129,6 +129,9 @@ class CoprsProcessor(BaseProcessor):
 
     def link(self, msg, **config):
         user = msg['msg'].get('owner', msg['msg'].get('user'))
+        if user.startswith('@'):
+            # It's a group
+            user = user.replace('@', 'g/')
         copr = msg['msg'].get('copr')
         chroot = msg['msg'].get('chroot', None)
         build = msg['msg'].get('build')
