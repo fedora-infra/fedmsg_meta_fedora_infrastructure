@@ -256,7 +256,7 @@ class TestCoprsGroupLink(Base):
     expected_link = ("https://copr.fedoraproject.org/coprs/"
                      "g/python/python26/build/450811/")
 
-    {
+    msg = {
         u'source_name': u'datanommer',
         u'i': 3,
         u'timestamp': 1473355790.0,
