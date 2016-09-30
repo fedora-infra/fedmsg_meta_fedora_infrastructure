@@ -5,6 +5,7 @@ python:
 # Someday, soon.
 # - "3.2"
 install:
+ - pip install --upgrade setuptools pip
  - python setup.py install
  - pip install arrow
 script: python setup.py test
