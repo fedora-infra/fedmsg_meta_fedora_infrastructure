@@ -253,6 +253,10 @@ class TestCoprsGroupLink(Base):
     """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
     when a build has completed.  This is an example of a group repo.
     """
+    expected_title = "copr.build.end"
+    expected_subti = (
+        "churchyard's python26 copr build of python26-2.6.9-1.fc26 for "
+        "fedora-23-i386 finished with 'failed'")
     expected_link = ("https://copr.fedoraproject.org/coprs/"
                      "g/python/python26/build/450811/")
 
