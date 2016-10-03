@@ -60,6 +60,14 @@ class PungiKojiProcessor(BaseProcessor):
             N = len(msg['msg']['deliverables'])
             tmpl = self._("pungi-koji assigned {N} createiso targets")
             return tmpl.format(N=N)
+        elif msg['topic'].endswith('pungi.compose.ostree'):
+            ref = msg['msg']['ref']
+            arch = msg['msg']['arch']
+            commitid = msg['msg']['commitid']
+            tmpl = self._('pungi-koji ostree compose {compose} produced '
+                          'ostree commit {commitid} for {arch} {ref}')
+            return tmpl.format(compose=compose, arch=arch, commitid=commitid,
+                               ref=ref)
 
     def link(self, msg, **config):
         if 'location' in msg['msg']:

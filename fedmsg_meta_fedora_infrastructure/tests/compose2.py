@@ -175,5 +175,39 @@ class TestPungiCreateISOWin(Base):
     }
 
 
+class TestPungiOstree(Base):
+    """ In 2016, the `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ team started moving
+    the compose process to ``pungi4``, which emits messages like this as it
+    does its composition work.
+
+    Here's an example message published when an ostree phase completed
+    succesfully.
+    """
+    cid = 'f99114401ffce2753bd7cd5401bff056a029bb80474859ab769f68586978248d'
+    expected_title = "pungi.compose.ostree"
+    expected_subti = "pungi-koji ostree compose Fedora-25-20161002.n.0 " + \
+        "produced ostree commit %s for x86_64 " % cid + \
+        "fedora-atomic/25/x86_64/docker-host"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//branched/Fedora-25-20161002.n.0"
+    expected_objects = set([
+        "rawhide/Fedora-25-20161002/n/0"
+    ])
+    msg = {
+        "i": 1, 
+        "timestamp": 1475402944.0, 
+        "msg_id": "2016-7e49afa4-c85b-424b-90d8-da36bed006b5", 
+        "topic": "org.fedoraproject.prod.pungi.compose.ostree", 
+        "msg": {
+            "arch": "x86_64", 
+            "variant": "Atomic", 
+            "commitid": "f99114401ffce2753bd7cd5401bff056a029bb80474859ab769f68586978248d", 
+            "location": "http://kojipkgs.fedoraproject.org/compose//branched/Fedora-25-20161002.n.0/compose", 
+            "ref": "fedora-atomic/25/x86_64/docker-host", 
+            "compose_id": "Fedora-25-20161002.n.0"
+        }
+    }
+
 
 add_doc(locals())
