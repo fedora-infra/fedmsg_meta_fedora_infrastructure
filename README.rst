@@ -9,7 +9,7 @@ fedmsg metadata providers for Fedora Infrastructure's deployment
 `fedmsg <http://fedmsg.com>`_ is a set of tools for knitting together services
 and webapps into a realtime messaging net.  This package contains metadata
 provider plugins for the primary deployment of that system:  `Fedora
-Infrastructure <http://fedoraproject.org/wiki/Infrastructure>`_.
+Infrastructure <https://fedoraproject.org/wiki/Infrastructure>`_.
 
 If you were to deploy fedmsg at another site, you would like want to write your
 own module like this one that could provide textual representations of *your*
@@ -41,8 +41,8 @@ Running the Tests
 
 ::
 
-    # Create a virtualenv
-    $ sudo yum install python-virtualenv
+    # Create a virtualenv and install deps
+    $ sudo dnf install python-virtualenv libffi-devel
     $ virtualenv my-env
     $ source my-env/bin/activate
 
