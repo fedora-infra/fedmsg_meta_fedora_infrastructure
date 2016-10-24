@@ -32,7 +32,7 @@ class TestHotnessBugFollowupScratchBuild(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published in a couple different scenarios:
 
@@ -121,7 +121,7 @@ class TestHotnessBugFollowupRealBuild(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published in a couple different scenarios:
 
@@ -180,7 +180,7 @@ class TestHotnessBugFile(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a **bug gets filed** notifying
     packager owners that they should update their packages in rawhide.
@@ -269,7 +269,7 @@ class TestHotnessDropAnitya(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     Sometimes, there is a new upstream release of something, but there is no
     explicit mapping in `release-monitoring.org
@@ -355,7 +355,7 @@ class TestHotnessDropPkgdb(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     Before it tries to file a bugzilla ticket, it checks to see if the
     ``'monitor'`` setting is ``True`` for this package in the `Fedora PkgDB
@@ -444,7 +444,7 @@ class TestHotnessDropBugzilla(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a new notification arrives, but
     **a bugzilla ticket has already been filed for that update** -- so
@@ -529,7 +529,7 @@ class TestHotnessMapFailAmbiguous(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a new package gets added to
     Fedora and the-new-hotness **tries to add that package to
@@ -602,7 +602,7 @@ class TestHotnessMapMonitorToggle(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a package has its monitoring
     flag toggled in pkgdb and the-new-hotness **tries to map that package in
@@ -665,7 +665,7 @@ class TestHotnessMapFailJustOne(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a new package gets added to
     Fedora and the-new-hotness **tries to add that package to
@@ -752,7 +752,7 @@ class TestHotnessMapSucceedJustOne(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a new package gets added to
     Fedora and the-new-hotness **adds that package to
@@ -838,7 +838,7 @@ class TestHotnessMapSucceedBrandNew(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a new package gets added to
     Fedora and the-new-hotness **adds that package to
@@ -909,7 +909,7 @@ class TestHotnessMapFailBrandNew(Base):
     It watches for new upstream release notifications from
     `release-monitoring.org <https://release-monitoring.org>`_ and in response
     it files bugs in `bugzilla <https://bugzilla.redhat.com>`_ and kicks off
-    scratch builds in `koji <https://koji.fedoraproject.org/koji>`_.
+    scratch builds in `koji <http://koji.fedoraproject.org/koji>`_.
 
     These kinds of messages get published when a new package gets added to
     Fedora and the-new-hotness **tries to add that package to
