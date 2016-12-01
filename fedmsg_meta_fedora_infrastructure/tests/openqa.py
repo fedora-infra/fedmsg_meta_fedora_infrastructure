@@ -23,6 +23,89 @@ import unittest
 from fedmsg.tests.test_meta import Base
 from .common import add_doc
 
+class TestOpenQACommentCreate(Base):
+    """openQA emits messages on this topic when a new comment is
+    created.
+    """
+    expected_title = "openqa.comment.create"
+    expected_subti = (
+        "perci created comment #1 on openQA job 15052, text: test comment")
+    expected_link = "https://openqa.fedoraproject.org/tests/15052#comments"
+    expected_objects = set([15052])
+    expected_usernames = set(['perci'])
+    msg = {
+        "i": 1,
+        "msg": {
+            "created": "2016-12-01T12:22:52Z",
+            "group_id": None,
+            "id": 1,
+            "job_id": 15052,
+            "text": "test comment",
+            "updated": "2016-12-01T12:22:52Z",
+            "user": "perci"
+        },
+        "msg_id": "2016-809a50c2-0829-46b7-beb1-e9cf0ed2ca1a",
+        "source_name": "datanommer",
+        "source_version": "0.6.5",
+        "timestamp": 1458740621.0,
+        "topic": "org.fedoraproject.prod.openqa.comment.create"
+    }
+
+class TestOpenQACommentUpdate(Base):
+    """openQA emits messages on this topic when a comment is updated.
+    """
+    expected_title = "openqa.comment.update"
+    expected_subti = (
+        "perci updated comment #2 on openQA group 1, text: "
+        "some text longer than 30 chara...")
+    expected_link = "https://openqa.fedoraproject.org/group_overview/1"
+    expected_objects = set([1])
+    expected_usernames = set(['perci'])
+    msg = {
+        "i": 1,
+        "msg": {
+            "created": "2016-12-01T12:22:52Z",
+            "group_id": 1,
+            "id": 2,
+            "job_id": None,
+            "text": "some text longer than 30 characters",
+            "updated": "2016-12-01T12:22:52Z",
+            "user": "perci"
+        },
+        "msg_id": "2016-809a50c2-0829-46b7-beb1-e9cf0ed2ca1a",
+        "source_name": "datanommer",
+        "source_version": "0.6.5",
+        "timestamp": 1458740621.0,
+        "topic": "org.fedoraproject.prod.openqa.comment.update"
+    }
+
+class TestOpenQACommentDelete(Base):
+    """openQA emits messages on this topic when a comment is deleted.
+    """
+    expected_title = "openqa.comment.delete"
+    expected_subti = (
+        "perci deleted comment #1 on openQA job 15052, text: test comment")
+    expected_link = "https://openqa.fedoraproject.org/tests/15052#comments"
+    expected_objects = set([15052])
+    expected_usernames = set(['perci'])
+    msg = {
+        "i": 1,
+        "msg": {
+            "created": "2016-12-01T12:22:52Z",
+            "group_id": None,
+            "id": 1,
+            "job_id": 15052,
+            "text": "test comment",
+            "updated": "2016-12-01T12:22:52Z",
+            "user": "perci"
+        },
+        "msg_id": "2016-809a50c2-0829-46b7-beb1-e9cf0ed2ca1a",
+        "source_name": "datanommer",
+        "source_version": "0.6.5",
+        "timestamp": 1458740621.0,
+        "topic": "org.fedoraproject.prod.openqa.comment.delete"
+    }
+
 class TestOpenQAJobDuplicateAuto(Base):
     """openQA emits messages on this topic when a job is duplicated.
     The 'id' is the job that was duplicated, the 'result' is the new
