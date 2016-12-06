@@ -204,6 +204,140 @@ class TestNewIssueComment(Base):
     }
 
 
+class TestNewIssueCommentNamespace(Base):
+    """ These messages are published when a someone comments on a ticket
+    opened against a project on `pagure <https://pagure.io>`_ that has a
+    namespace.
+    """
+    expected_title = "pagure.issue.comment.added"
+    expected_subti = 'langdon commented on ticket Fedora-Council/tickets#79: '\
+        '"Have a training period for new first time Council members"'
+    expected_link = "https://pagure.io/Fedora-Council/tickets/issue/79"\
+        "#comment-45749"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "2aa80b67cfecf15ad4ec6afe96dfce2bd6ce64113b4977eda84ae03d0d7d0fc5" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['langdon'])
+    expected_objects = set(['project/Fedora-Council/tickets', 'issue/79'])
+    msg = {
+      "source_name": "datanommer",
+      "i": 3,
+      "timestamp": 1480963588.0,
+      "msg_id": "2016-b4b8c21f-cbfd-4045-96d2-6a471e9bd3f3",
+      "topic": "io.pagure.prod.pagure.issue.comment.added",
+      "source_version": "0.6.5",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "description": "The Fedora Council uses this to record ongoing work and to track issues which need a specific resolution. ",
+          "parent": None,
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": False,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "tags": [],
+          "namespace": "Fedora-Council",
+          "priorities": {
+            "": "",
+            "1": "Next Meeting",
+            "3": "Back Burner",
+            "2": "Coming Up"
+          },
+          "close_status": [
+            "approved",
+            "declined",
+            "no action needed",
+            "duplicate",
+            "deferred"
+          ],
+          "milestones": {},
+          "user": {
+            "fullname": "Matthew Miller",
+            "name": "mattdm"
+          },
+          "date_created": "1479131198",
+          "id": 1383,
+          "name": "tickets"
+        },
+        "issue": {
+          "status": "Open",
+          "priority": None,
+          "last_updated": "1480963471",
+          "blocks": [],
+          "tags": [],
+          "title": "Have a training period for new first time Council members",
+          "milestone": None,
+          "comments": [
+            {
+              "comment": "CC: @jflory7 ",
+              "parent": None,
+              "notification": False,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1480450913",
+              "id": 43594,
+              "user": {
+                "fullname": "Justin W. Flory",
+                "name": "jflory7"
+              }
+            },
+            {
+              "comment": "I'd rather see this piloted in a more focused group first.  If we start there, at a more likely entry point for new-to-elections people then we can figure out what works and scale up.  This also gives it definition, imho.  The council is a rather wide-ranging set of duties.",
+              "parent": None,
+              "notification": False,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1480963470",
+              "id": 45748,
+              "user": {
+                "fullname": "Brian (bex) Exelbierd",
+                "name": "bex"
+              }
+            },
+            {
+              "comment": "Separate? related conversion on the council-discuss ML: https://lists.fedoraproject.org/archives/list/council-discuss@lists.fedoraproject.org/thread/77H3WDTTQJRN4ZJE2U36TYVJCVEGRPJF/",
+              "parent": None,
+              "notification": False,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1480963587",
+              "id": 45749,
+              "user": {
+                "fullname": "Langdon White",
+                "name": "langdon"
+              }
+            }
+          ],
+          "id": 79,
+          "content": "New people may feel intimidated to join the council, and having a process for them to learn could encourage more volunteers. This would remove some of the feelings of inadequacy that many people have about doing something new. \r\n\r\nThe training period could involve having someone shadow another council member and ask them questions, or have a few council members act as mentors to help the new people with the process and questions they may have. A handbook or guide on what council members do and their expected behavior and duties and how do carry them out would also be helpful.",
+          "assignee": None,
+          "depends": [],
+          "private": False,
+          "date_created": "1480443846",
+          "closed_at": None,
+          "close_status": None,
+          "custom_fields": [],
+          "user": {
+            "fullname": "Dolores Portalatin",
+            "name": "meskarune"
+          }
+        },
+        "agent": "langdon"
+      }
+    }
+
+
 class TestNewIssueTag(Base):
     """ These messages are published when a someone adds a tag on a ticket
     opened against a project on `pagure <https://pagure.io>`_.
@@ -1136,7 +1270,7 @@ class TestProjectForked(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.forked"
-    expected_subti = 'pingou forked project "fedmsg" to "pingou/fedmsg"'
+    expected_subti = 'pingou forked project "fedmsg" to "fork/pingou/fedmsg"'
     expected_link = "https://pagure.io/fork/pingou/fedmsg"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1145,7 +1279,7 @@ class TestProjectForked(Base):
         "?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['project/pingou/fedmsg'])
+    expected_objects = set(['project/fork/pingou/fedmsg'])
     msg = {
       "i": 3,
       "timestamp": 1427456769,
