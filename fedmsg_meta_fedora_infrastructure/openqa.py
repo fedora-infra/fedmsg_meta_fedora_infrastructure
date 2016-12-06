@@ -25,10 +25,25 @@ class OpenQAProcessor(BaseProcessor):
     __link__ = "https://openqa.fedoraproject.org"
     __docs__ = "https://os-autoinst.github.io/openQA/documentation/"
     __obj__ = "openQA test results"
-    # there is no distro-neutral openQA icon, they use the SUSE geeko
-    #__icon__ = "https://apps.fedoraproject.org/img/icons/taskotron.png"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/openqa.png"
+
+    def _msg_type(self, msg):
+        """We often have to handle different types of messages in
+        entirely different ways; this is the identification logic, so
+        we don't keep repeating it.
+        """
+        if '.job.' in msg['topic']:
+            return 'job'
+        if '.comment.' in msg['topic']:
+            return 'comment'
 
     def subtitle(self, msg, **config):
+        if self._msg_type(msg) == 'job':
+            return self._subtitle_job(msg, **config)
+        elif self._msg_type(msg) == 'comment':
+            return self._subtitle_comment(msg, **config)
+
+    def _subtitle_job(self, msg, **config):
         job = msg['msg'].get('id', '')
         # old messages had 'build' not 'BUILD'
         build = msg['msg'].get('BUILD', msg['msg'].get('build', ''))
@@ -76,11 +91,60 @@ class OpenQAProcessor(BaseProcessor):
             msgtmpl += "completed for {0}, {1} remaining jobs"
             return msgtmpl.format(build, remain)
 
+    def _subtitle_comment(self, msg, **config):
+        # get the info
+        extract = msg['msg'].get('text', '')
+        if len(extract) > 30:
+            extract = extract[:30] + "..."
+        user = msg['msg'].get('user', 'someone')
+        comment = msg['msg'].get('id')
+        job = msg['msg'].get('job_id')
+        group = msg['msg'].get('group_id')
+        action = 'did something to'
+        if msg['topic'].endswith('comment.create'):
+            action = 'created'
+        elif msg['topic'].endswith('comment.update'):
+            action = 'updated'
+        elif msg['topic'].endswith('comment.delete'):
+            action = 'deleted'
+
+        # construct the message
+        subtitle = "{0} {1} comment #{2} on openQA".format(user, action, comment)
+        if job:
+            subtitle += " job {0}".format(job)
+        elif group:
+            subtitle += " group {0}".format(group)
+        if extract:
+            subtitle += ", text: {0}".format(extract)
+
+        # return it
+        return subtitle
+
     def link(self, msg, **config):
-        urltmpl = 'https://openqa.fedoraproject.org/tests/{0}'
         if '.stg' in msg['topic']:
-            urltmpl = 'https://openqa.stg.fedoraproject.org/tests/{0}'
-        return urltmpl.format(msg['msg'].get('id'))
+            baseurl = 'https://openqa.stg.fedoraproject.org'
+        else:
+            baseurl = 'https://openqa.fedoraproject.org'
+
+        if self._msg_type(msg) == 'job':
+            # job messages
+            urltmpl = '{0}/tests/{1}'
+            return urltmpl.format(baseurl, msg['msg'].get('id'))
+
+        elif self._msg_type(msg) == 'comment':
+            # comment messages
+            job = msg['msg'].get('job_id')
+            group = msg['msg'].get('group_id')
+            if job:
+                urltmpl = '{0}/tests/{1}#comments'
+                return urltmpl.format(baseurl, job)
+            elif group:
+                # comments are just right on the page
+                urltmpl = '{0}/group_overview/{1}'
+                return urltmpl.format(baseurl, group)
+            else:
+                # we have no idea, just return openQA
+                return baseurl
 
     def objects(self, msg, **config):
         objs = []
@@ -96,4 +160,17 @@ class OpenQAProcessor(BaseProcessor):
         elif 'HDD_1' in msg['msg']:
             objs.append(msg['msg']['HDD_1'])
 
+        if msg['msg'].get('job_id'):
+            objs.append(msg['msg']['job_id'])
+        if msg['msg'].get('group_id'):
+            objs.append(msg['msg']['group_id'])
+
         return set(objs)
+
+    def usernames(self, msg, **config):
+        # comment messages have a 'user', job messages don't
+        user = msg['msg'].get('user')
+        if user:
+            return set((user,))
+        else:
+            return set()
