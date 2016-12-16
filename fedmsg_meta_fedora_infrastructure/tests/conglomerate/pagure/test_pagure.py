@@ -31,8 +31,8 @@ class TestPagureConglomeratorByIssueAndPR(
             'packages': set([]),
             'secondary_icon': 'https://seccdn.libravatar.org/avatar/1216fff466c9dbb6ce85ac95bf8f45b9e19421af97de67945852722b899a34ee?s=64&d=retro',
             'start_time': 1458307490.0,
-            'subjective': u'bonnegent forked project "pagure" to "bonnegent/pagure"',
-            'subtitle': u'bonnegent forked project "pagure" to "bonnegent/pagure"',
+            'subjective': u'bonnegent forked project "pagure" to "fork/bonnegent/pagure"',
+            'subtitle': u'bonnegent forked project "pagure" to "fork/bonnegent/pagure"',
             'timestamp': 1458307490.0,
             'topics': set(['io.pagure.prod.pagure.project.forked']),
             'usernames': set(['bonnegent'])

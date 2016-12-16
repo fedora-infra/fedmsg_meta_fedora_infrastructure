@@ -31,9 +31,12 @@ def _get_project(msg, key='project'):
     fork.
     '''
     project = msg[key]['name']
+    ns = msg[key].get('namespace')
+    if ns:
+        project = '/'.join([ns, project])
     if msg[key]['parent']:
         user = msg[key]['user']['name']
-        project = '/'.join([user, project])
+        project = '/'.join(['fork', user, project])
     return project
 
 
@@ -103,8 +106,6 @@ class PagureProcessor(BaseProcessor):
         base_url = "https://pagure.io"
 
         tmpl = '{base_url}/{project}'
-        if '/' in project:
-            tmpl = '{base_url}/fork/{project}'
         if 'pagure.issue' in msg['topic']:
             issueid = msg['msg']['issue']['id']
             if 'comment' in msg['topic']:
