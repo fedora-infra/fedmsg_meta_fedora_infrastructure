@@ -23,6 +23,7 @@ from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 import fedmsg.meta.base
 
+import copy
 import datetime
 from pytz import UTC
 
@@ -210,7 +211,12 @@ class KojiProcessor(BaseProcessor):
             tmpl = self._('Koji build '
                           '{name}-{version}-{release}.{arch}.rpm '
                           'signed with sigkey \'{sigkey}\'')
-            return tmpl.format(**msg['msg']['info'])
+            if 'info' in msg['msg']:
+                kwargs = copy.copy(msg['msg']['info'])
+            else:
+                kwargs = copy.copy(msg['msg']['rpm'])
+                kwargs['sigkey'] = msg['msg']['sigkey']
+            return tmpl.format(**kwargs)
         elif 'buildsys.build.state.change' in msg['topic']:
             templates = [
                 self._("{owner}'s {name}-{version}-{release} "
@@ -320,7 +326,10 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.package.list.change' in msg['topic']:
             return set([msg['msg']['package']])
         elif 'buildsys.rpm.sign' in msg['topic']:
-            return set([msg['msg']['info']['name']])
+            if 'info' in msg['msg']:
+                return set([msg['msg']['info']['name']])
+            else:
+                return set([msg['msg']['rpm']['name']])
         elif 'buildsys.build.state.change' in msg['topic']:
             return set([msg['msg']['name']])
         elif 'buildsys.task.state.change' in msg['topic']:
@@ -369,8 +378,11 @@ class KojiProcessor(BaseProcessor):
         elif 'buildsys.package.list.change' in msg['topic']:
             return None
         elif 'buildsys.rpm.sign' in msg['topic']:
-            return base + "/buildinfo?buildID=%i" \
-                % (msg['msg']['info']['build_id'])
+            if 'info' in msg['msg']:
+                idx = msg['msg']['info']['build_id']
+            else:
+                idx = msg['msg']['rpm']['build_id']
+            return base + "/buildinfo?buildID=%i" % idx
         else:
             return base
 
@@ -440,6 +452,10 @@ class KojiProcessor(BaseProcessor):
                 msg['msg'].get('tag', 'unknown'),
             ])])
         elif 'buildsys.rpm.sign' in msg['topic']:
-            return set(['signatures/' + msg['msg']['info']['name']])
+            if 'info' in msg['msg']:
+                name = msg['msg']['info']['name']
+            else:
+                name = msg['msg']['rpm']['name']
+            return set(['signatures/' + name])
 
         return set()
