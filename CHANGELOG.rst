@@ -1,4 +1,77 @@
 
+0.17.7
+------
+
+Pull Requests
+
+- (@pypingou)       #383, Perform 26 smaller queries instead of 1 to retrieve the entire list of users
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/383
+- (@pypingou)       #396, Fix something we faced in FMN stg, copr messages where the agent is None
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/396
+- (@vivekanand1101) #397, Adjust after diff access levels in pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/397
+- (@vivekanand1101) #398, Add support for project.group.added and project.group.access.updated …
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/398
+- (@hroncok)        #400, When copr repo belongs to a group, alter the link
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/400
+- (@puiterwijk)     #401, Add pungi-ostree messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/401
+- (@tyll)           #405, Use https, mention libffi-devel
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/405
+- (@AdamWill)       #408, update openQA processor and tests for comment messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/408
+- (@ralphbean)      #403, Handle new koji rpm.sign message format.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/403
+- (@pypingou)       #409, Include the namespace if there is one and fork/ if it is one
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/409
+
+Commits
+
+- c7802467d Perform 26 smaller queries instead of 1 to retrieve the entire list of users
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c7802467d
+- 3098d58ee Add missing import of the string module
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/3098d58ee
+- 03c1a2bca 0.17.6
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/03c1a2bca
+- ef0af85bf Small improvements on user iteration.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/ef0af85bf
+- 1c7cd8eb5 This is really a response, not a request.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/1c7cd8eb5
+- b9bd9d90b Fix something we faced in FMN stg, copr messages where the agent is None
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b9bd9d90b
+- 0a411fd6e pagure has access levels now, update: add user to project, update user access level to a project
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/0a411fd6e
+- 109b51726 pagure != anitya :o
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/109b51726
+- 63dc77123 adjust tests for adding of user to a project on pagure after diff access levels
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/63dc77123
+- 5641323e2 add tests for update of access level for a user in pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/5641323e2
+- 75483d2b1 Add support for project.group.added and project.group.access.updated for pagure msgs
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/75483d2b1
+- d96803321 When copr repo belongs to a group, alter the link
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d96803321
+- b304612b0 Make sure user is a str before checking how it starts
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/b304612b0
+- c557bc742 Test case for Copr group repo link
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/c557bc742
+- affa60ac5 Save the actual msg
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/affa60ac5
+- d7832a38c Add expected title and subtitle for #400
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/d7832a38c
+- aa65a8c9c Travis CI: Upgrade pip and setuptools
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/aa65a8c9c
+- 39d81cb2e Add pungi-ostree messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/39d81cb2e
+- fb4e189ac Handle new koji rpm.sign message format.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/fb4e189ac
+- 44756cd53 Use https, dnf, mention libffi-devel
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/44756cd53
+- a02297357 update openQA processor and tests for comment messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/a02297357
+- 4f1f9134e Include the namespace if there is one and fork/ if it is one
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f1f9134e
+
 0.17.6
 ------
 
