@@ -157,11 +157,11 @@ class KojiProcessor(BaseProcessor):
         if instance == 'primary':
             url = "https://koji.fedoraproject.org/kojihub"
         elif instance == 'ppc':
-            url = "http://ppc.koji.fedoraproject.org/kojihub"
+            url = "https://ppc.koji.fedoraproject.org/kojihub"
         elif instance == 's390':
-            url = "http://s390.koji.fedoraproject.org/kojihub"
+            url = "https://s390.koji.fedoraproject.org/kojihub"
         elif instance == 'arm':
-            url = "http://arm.koji.fedoraproject.org/kojihub"
+            url = "https://arm.koji.fedoraproject.org/kojihub"
 
         if 'buildsys.build.state.change' in msg['topic'] and koji:
             session = koji.ClientSession(url)
