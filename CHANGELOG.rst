@@ -1,4 +1,19 @@
 
+0.17.8
+------
+
+Pull Requests
+
+- (@puiterwijk)     #410, All kojis now use https
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/410
+
+Commits
+
+- 682032986 All kojis now use https
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/682032986
+- 96957a490 Fix distgit URLs (#411)
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/96957a490
+
 0.17.7
 ------
 
