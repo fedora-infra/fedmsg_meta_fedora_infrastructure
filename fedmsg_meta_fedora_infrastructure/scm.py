@@ -30,7 +30,7 @@ already_seen_msg = "This commit already existed in another branch."
 class SCMProcessor(BaseProcessor):
     __name__ = "git"
     __description__ = "the Fedora version control system"
-    __link__ = "http://pkgs.fedoraproject.org/cgit"
+    __link__ = "https://src.fedoraproject.org/cgit"
     __docs__ = "https://fedoraproject.org/wiki/Using_Fedora_GIT"
     __obj__ = "Package Commits"
     __icon__ = "https://apps.fedoraproject.org/img/icons/git-logo.png"
@@ -62,7 +62,7 @@ class SCMProcessor(BaseProcessor):
             if seen:
                 return already_seen_msg
 
-            url = 'http://pkgs.fedoraproject.org/cgit/' + \
+            url = 'https://src.fedoraproject.org/cgit/' + \
                 '{repo}.git/patch/?id={rev}'
             response = requests.get(url.format(repo=repo, rev=rev))
             if response.status_code == 200:
@@ -151,7 +151,7 @@ class SCMProcessor(BaseProcessor):
         return tmpl.format(agent=agent)
 
     def link(self, msg, **config):
-        prefix = "http://pkgs.fedoraproject.org/cgit"
+        prefix = "https://src.fedoraproject.org/cgit"
         if '.git.receive' in msg['topic']:
             try:
                 repo = msg['msg']['commit']['repo']
@@ -176,7 +176,7 @@ class SCMProcessor(BaseProcessor):
             tmpl = "{prefix}/{ns}{repo}.git/log/?h={branch}"
             return tmpl.format(prefix=prefix, repo=repo, branch=branch, ns=ns)
         elif '.git.lookaside' in msg['topic']:
-            prefix = "http://pkgs.fedoraproject.org/lookaside/pkgs"
+            prefix = "https://src.fedoraproject.org/lookaside/pkgs"
 
             if 'path' in msg['msg']:
                 path = msg['msg']['path']

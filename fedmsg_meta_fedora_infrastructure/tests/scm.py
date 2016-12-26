@@ -48,7 +48,7 @@ class TestGitReceiveLegacyModified(Base):
     expected_packages = set(['datanommer'])
     expected_usernames = set()
     expected_objects = set(['datanommer/datanommer.spec'])
-    expected_link = ("http://pkgs.fedoraproject.org/cgit/datanommer.git/commit"
+    expected_link = ("https://src.fedoraproject.org/cgit/datanommer.git/commit"
                      "/?h=master&id=66abdea4014eb2f0745fc38f86e20c7d7009237e")
 
     msg = {
@@ -89,7 +89,7 @@ class TestSCMSuperLegacy(Base):
     expected_title = "git.receive.valgrind.master"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
-    expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
+    expected_link = "https://src.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
@@ -140,7 +140,7 @@ class TestSCMLegacy(Base):
     expected_title = "git.receive.valgrind.master"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
-    expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
+    expected_link = "https://src.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
@@ -193,7 +193,7 @@ class TestSCM(Base):
     expected_title = "git.receive"
     expected_subti = 'mjw pushed to valgrind (master).  ' + \
         '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
-    expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
+    expected_link = "https://src.fedoraproject.org/cgit/" + \
         "valgrind.git/commit/" + \
         "?h=master&id=7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1"
     expected_long_form = "This commit already existed in another branch."
@@ -248,7 +248,7 @@ class TestSCMSingleLine(Base):
     expected_title = "git.receive"
     expected_subti = 'spot pushed to ember (master).  ' + \
         '"another missing patch? ridiculous."'
-    expected_link = "http://pkgs.fedoraproject.org/cgit/" + \
+    expected_link = "https://src.fedoraproject.org/cgit/" + \
         "ember.git/commit/" + \
         "?h=master&id=aa2df80f3d8dd217c7cbfe2d3451190028f3fe14"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
