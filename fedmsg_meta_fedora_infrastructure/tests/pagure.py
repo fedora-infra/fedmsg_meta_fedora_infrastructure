@@ -537,6 +537,73 @@ class TestAssignedIssue(Base):
     }
 
 
+class TestBrokenAssignedIssue(Base):
+    """ These messages are published when a someone is assigned to a
+    ticket opened against a project on `pagure <https://pagure.io>`_.
+
+    This tests the dealing with assignee=None.
+    This was a breakage in Pagure, filed as https://pagure.io/pagure/issue/1896
+    but since messages containing this bug have been sent to the bus, we need
+    to deal with it.
+    """
+    expected_title = "pagure.issue.assigned.added"
+    expected_subti = 'pingou assigned ticket foo#4 to ?? Someone ??'
+    expected_link = "https://pagure.io/foo/issue/4"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo', 'issue/4'])
+    msg = {
+      "i": 3,
+      "timestamp": 1427450780,
+      "msg_id": "2015-4ab5479a-1a99-4e26-a52f-e9e1ce423e40",
+      "topic": "io.pagure.dev.pagure.issue.assigned.added",
+      "msg": {
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": True,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "issue": {
+          "status": "Open",
+          "blocks": "",
+          "title": "bug",
+          "tags": [],
+          "comments": [],
+          "content": "report",
+          "assignee": None,
+          "depends": "",
+          "private": False,
+          "date_created": "1427442217",
+          "id": 4,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
 class TestResetAssignedIssue(Base):
     """ These messages are published when a someone is reset the assignee
     of a ticket opened against a project on `pagure <https://pagure.io>`_.
