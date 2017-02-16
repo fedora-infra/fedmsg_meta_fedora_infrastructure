@@ -35,7 +35,7 @@ class TestModuleBuildStateChange(Base):
     expected_subti = "ralph's build of modules/testmodule " + \
         "entered the wait state."
     expected_link = "https://mbs.fedoraproject.org/module-build-service/1/module-builds/2"
-    expected_icon = "TODO - modularity logo goes here."
+    expected_icon = "https://apps.fedoraproject.org/img/icons/modularity.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
         "?s=64&d=retro"

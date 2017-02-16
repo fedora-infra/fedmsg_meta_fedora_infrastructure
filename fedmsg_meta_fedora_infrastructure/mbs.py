@@ -27,7 +27,7 @@ class MBSProcessor(BaseProcessor):
     __link__ = "https://mbs.fedoraproject.org"
     __docs__ = "https://fedoraproject.org/wiki/Changes/ModuleBuildService"
     __obj__ = "Module Builds"
-    __icon__ = "TODO - modularity logo goes here."
+    __icon__ = "https://apps.fedoraproject.org/img/icons/modularity.png"
 
     def link(self, msg, **config):
         tmpl = "https://mbs.fedoraproject.org/module-build-service/1/module-builds/{id}"
