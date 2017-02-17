@@ -64,6 +64,7 @@ from fedmsg_meta_fedora_infrastructure.tests.mdapi import *
 from fedmsg_meta_fedora_infrastructure.tests.nagios import *
 from fedmsg_meta_fedora_infrastructure.tests.openqa import *
 from fedmsg_meta_fedora_infrastructure.tests.pdc import *
+from fedmsg_meta_fedora_infrastructure.tests.mbs import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
