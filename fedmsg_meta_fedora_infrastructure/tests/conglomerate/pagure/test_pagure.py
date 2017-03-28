@@ -31,8 +31,8 @@ class TestPagureConglomeratorByIssueAndPR(
             'packages': set([]),
             'secondary_icon': 'https://seccdn.libravatar.org/avatar/1216fff466c9dbb6ce85ac95bf8f45b9e19421af97de67945852722b899a34ee?s=64&d=retro',
             'start_time': 1458307490.0,
-            'subjective': u'bonnegent forked project "pagure" to "fork/bonnegent/pagure"',
-            'subtitle': u'bonnegent forked project "pagure" to "fork/bonnegent/pagure"',
+            'subjective': u'bonnegent forked pagure to fork/bonnegent/pagure',
+            'subtitle': u'bonnegent forked pagure to fork/bonnegent/pagure',
             'timestamp': 1458307490.0,
             'topics': set(['io.pagure.prod.pagure.project.forked']),
             'usernames': set(['bonnegent'])
@@ -149,8 +149,8 @@ class TestPagureConglomeratorByIssueAndPR(
             'packages': set([]),
             'secondary_icon': 'https://seccdn.libravatar.org/avatar/01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c?s=64&d=retro',
             'start_time': 1458297187.0,
-            'subjective': u'pingou commented on pull-request#848 of project "pagure"',
-            'subtitle': u'pingou commented on pull-request#848 of project "pagure"',
+            'subjective': u'pingou commented on PR #848 on pagure',
+            'subtitle': u'pingou commented on PR #848 on pagure',
             'timestamp': 1458297187.0,
             'topics': set(['io.pagure.prod.pagure.pull-request.comment.added']),
             'usernames': set(['pingou'])}
