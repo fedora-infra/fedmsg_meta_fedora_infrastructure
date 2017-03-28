@@ -33,8 +33,8 @@ class TestPkgdbACLUpdate(Base):
 
     expected_title = "pkgdb.acl.update"
     expected_subti = ("ralph changed ralph's 'watchbugzilla' permission on "
-                      "python-sh (EL-6) to 'Awaiting Review'")
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/python-sh/"
+                      "rpms/python-sh (EL-6) to 'Awaiting Review'")
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/python-sh/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -86,8 +86,8 @@ class TestPkgdbPackageNew(Base):
     <http://fedoraproject.org/wiki/Package_SCM_admin_requests>`_.
     """
     expected_title = "pkgdb.package.new"
-    expected_subti = "ralph added a new package 'php-zmq' (devel)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph added a new package 'rpms/php-zmq' (devel)"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -134,8 +134,8 @@ class TestPkgdbOwnerUpdate(Base):
     the string 'orphan' as its value.)
     """
     expected_title = "pkgdb.owner.update"
-    expected_subti = "ralph changed owner of php-zmq (EL-6) to 'orphan'"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph changed owner of rpms/php-zmq (EL-6) to 'orphan'"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -180,8 +180,8 @@ class TestLegacyPkgdbACLRequestToggle(Base):
     was toggled on a package.
     """
     expected_title = "pkgdb.acl.request.toggle"
-    expected_subti = "ralph has requested 'commit' on php-zmq (EL-6)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph has requested 'commit' on rpms/php-zmq (EL-6)"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -227,8 +227,8 @@ class TestLegacyPkgdbACLRequestToggle(Base):
 class TestLegacyPkgdbPackageUpdate(Base):
     """ Test old school messages. """
     expected_title = "pkgdb.package.update"
-    expected_subti = "ralph made some updates to php-zmq"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph made some updates to rpms/php-zmq"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -255,8 +255,8 @@ class TestPkgdbPackageUpdateStatus(Base):
     publishes this message when the status of a package is updated.
     """
     expected_title = "pkgdb.package.update.status"
-    expected_subti = "ralph unretired guake in F-18"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
+    expected_subti = "ralph unretired rpms/guake in F-18"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/guake/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -303,8 +303,8 @@ class TestPkgdbPackageUpdate(Base):
     publishes this message when metadata for a package is updated.
     """
     expected_title = "pkgdb.package.update"
-    expected_subti = "pkgdb_updater updated: summary, description of guake"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
+    expected_subti = "pkgdb_updater updated: summary, description of rpms/guake"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/guake/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -341,8 +341,8 @@ class LegacyTestPkgdbBranchClone(Base):
     package.
     """
     expected_title = "pkgdb.branch.clone"
-    expected_subti = "ralph branched php-zmq f18 from devel"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph branched rpms/php-zmq f18 from devel"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -402,8 +402,8 @@ class TestPkgdbPackageUpdateStatus2(Base):
     Here's an example of a package being retired:
     """
     expected_title = "pkgdb.package.update.status"
-    expected_subti = "till retired libvmime07 in master"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/libvmime07/"
+    expected_subti = "till retired rpms/libvmime07 in master"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/libvmime07/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -480,8 +480,8 @@ class TestLegacyPkgdbPackageRetire(Base):
     publishes messages on this topic when a package is retired.  For example:
     """
     expected_title = "pkgdb.package.retire"
-    expected_subti = "ralph retired php-zmq (EL-6)!"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph retired rpms/php-zmq (EL-6)!"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -527,8 +527,8 @@ class LegacyTestPkgdbUserRemove(Base):
     when a user is removed from a package ACL.
     """
     expected_title = "pkgdb.acl.user.remove"
-    expected_subti = "ralph removed ralph from php-zmq (EL-6, F18)"
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/php-zmq/"
+    expected_subti = "ralph removed ralph from rpms/php-zmq (EL-6, F18)"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/php-zmq/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -789,7 +789,7 @@ class TestPkgdbDeletePackage(Base):
     together.
     """
     expected_title = "pkgdb.package.delete"
-    expected_subti = ("ausil deleted the 'pipelight' package from the pkgdb")
+    expected_subti = ("ausil deleted the 'rpms/pipelight' package from the pkgdb")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1170,7 +1170,7 @@ class TestPkgdbDeleteBranch(Base):
     particular package.
     """
     expected_title = "pkgdb.package.branch.delete"
-    expected_subti = "ausil deleted the f21 branch of the 'pipelight' package"
+    expected_subti = "ausil deleted the f21 branch of the 'rpms/pipelight' package"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1267,7 +1267,7 @@ class TestPkgdbDeleteAcl(Base):
     """
     expected_title = "pkgdb.acl.delete"
     expected_subti = ("ausil deleted awjb's watchcommits "
-                      "rights from pipelight (f20)")
+                      "rights from rpms/pipelight (f20)")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1326,7 +1326,7 @@ class TestPkgdbBranchRequest(Base):
     a particular package.
     """
     expected_title = "pkgdb.package.branch.request"
-    expected_subti = ("pingou requested branch epel7 for package R-BiocGenerics")
+    expected_subti = ("pingou requested branch epel7 for package rpms/R-BiocGenerics")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1371,10 +1371,10 @@ class TestPkgdbPackageRequest(Base):
     to be added into Package DB.
     """
     expected_title = "pkgdb.package.new.request"
-    expected_subti = ("pingou requested package guake on branch master")
+    expected_subti = ("pingou requested package rpms/guake on branch master")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/guake/"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
         "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
@@ -1419,9 +1419,9 @@ class TestPkgdbAdminActionUpdate(Base):
     Admin Action**.
     """
     expected_title = "pkgdb.admin.action.status.update"
-    expected_subti = ("pingou changed pingou's package request for guake "
+    expected_subti = ("pingou changed pingou's package request for rpms/guake "
                       "in master from Awaiting Review to Approved")
-    expected_link = "https://admin.fedoraproject.org/pkgdb/package/guake/"
+    expected_link = "https://admin.fedoraproject.org/pkgdb/package/rpms/guake/"
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1478,7 +1478,7 @@ class TestPkgdbAdminActionUpdate_Denied(Base):
     **denied/blocked**.
     """
     expected_title = "pkgdb.admin.action.status.update"
-    expected_subti = ("pingou changed pingou's branch request for R-Biobase "
+    expected_subti = ("pingou changed pingou's branch request for rpms/R-Biobase "
                       "in epel7 from Awaiting Review to Denied "
                       "with message: "
                       "This package should not be branched for EPEL7")
@@ -1540,7 +1540,7 @@ class TestPkgdbCritpathUpdate(Base):
     """
     expected_title = "pkgdb.package.critpath.update"
     expected_subti = ("pingou set the critpath flag on the "
-                      "openbox package (f21)")
+                      "rpms/openbox package (f21)")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1749,7 +1749,7 @@ class TestPkgdbPackageBranchNew(Base):
     """
     expected_title = "pkgdb.package.branch.new"
     expected_subti = ("pingou created the branch 'epel7' for the package "
-                "'R-BSgenome'")
+                "'docker/R-BSgenome'")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1776,7 +1776,8 @@ class TestPkgdbPackageBranchNew(Base):
                     "acls": [],
                     "creation_date": 1400063778.0,
                     "review_url": None,
-                    "name": "R-BSgenome"
+                    "name": "R-BSgenome",
+                    "namespace": "docker",
                 },
                 "point_of_contact": "pingou",
                 "collection": {
@@ -1800,7 +1801,8 @@ class TestPkgdbPackageBranchNew(Base):
                 "acls": [],
                 "creation_date": 1400063778.0,
                 "review_url": None,
-                "name": "R-BSgenome"
+                "name": "R-BSgenome",
+                "namespace": "docker",
             }
         }
     }
@@ -1813,7 +1815,7 @@ class TestPkgdbPackageMonitorUpdate(Base):
     status of a package.
     """
     expected_title = "pkgdb.package.monitor.update"
-    expected_subti = ("pingou set the monitor flag of guake to False")
+    expected_subti = ("pingou set the monitor flag of rpms/guake to False")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
@@ -1852,7 +1854,7 @@ class TestPkgdbPackageUnretireRequest(Base):
     **unretired**.
     """
     expected_title = "pkgdb.package.unretire.request"
-    expected_subti = ("moceap asks that netbeans-platform8 be unretired on "
+    expected_subti = ("moceap asks that rpms/netbeans-platform8 be unretired on "
         "master")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
@@ -2048,7 +2050,7 @@ class TestPkgdbPackageKoscheiUpdate(Base):
     `koschei <https://apps.fedoraproject.org/koschei>`_ status of a package.
     """
     expected_title = "pkgdb.package.koschei.update"
-    expected_subti = ("pingou set the koschei monitoring flag of guake to True")
+    expected_subti = ("pingou set the koschei monitoring flag of rpms/guake to True")
     expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
                      "package_128x128.png")
     expected_secondary_icon = (
