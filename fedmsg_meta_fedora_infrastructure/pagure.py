@@ -231,13 +231,13 @@ class PagureProcessor(BaseProcessor):
                 user=user, project=project, id=issueid, tags=tags)
         elif 'pagure.issue.assigned.added' in msg['topic']:
             issueid = msg['msg']['issue']['id']
-            if msg['msg']['issue']['assignee'] is None:
-                # https://pagure.io/pagure/issue/1896
-                assignee = '?? Someone ??'
-            else:
-                assignee = msg['msg']['issue']['assignee']['name']
+            assignee = ''
+            if msg['msg']['issue']['assignee']:
+                assignee = ' to {0}'.format(
+                    msg['msg']['issue']['assignee']['name']
+                )
             tmpl = self._(
-                '{user} assigned ticket {project}#{id} to {assignee}')
+                '{user} assigned ticket {project}#{id}{assignee}')
             return tmpl.format(
                 user=user, project=project, id=issueid, assignee=assignee)
         elif 'pagure.issue.assigned.reset' in msg['topic']:

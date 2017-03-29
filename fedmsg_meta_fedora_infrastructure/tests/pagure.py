@@ -547,7 +547,7 @@ class TestBrokenAssignedIssue(Base):
     to deal with it.
     """
     expected_title = "pagure.issue.assigned.added"
-    expected_subti = 'pingou assigned ticket foo#4 to ?? Someone ??'
+    expected_subti = 'pingou assigned ticket foo#4'
     expected_link = "https://pagure.io/foo/issue/4"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
