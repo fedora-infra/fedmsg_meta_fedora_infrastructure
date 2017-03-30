@@ -1741,8 +1741,12 @@ class TestPkgdbCritpathUpdate(Base):
         },
     }
 
+    def setUp(self):
+        super(TestPkgdbCritpathUpdate, self).setUp()
+        self.config['namespace'] = 'docker'
 
-class TestPkgdbPackageBranchNew(Base):
+
+class TestPkgdbPackageBranchNewCustomNamespace(Base):
     """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
     publishes messages like these when a **new branch** is created for a
     package.
@@ -1803,6 +1807,76 @@ class TestPkgdbPackageBranchNew(Base):
                 "review_url": None,
                 "name": "R-BSgenome",
                 "namespace": "docker",
+            }
+        }
+    }
+
+    def setUp(self):
+        super(TestPkgdbPackageBranchNewCustomNamespace, self).setUp()
+        self.config['namespace'] = 'docker'
+
+
+class TestPkgdbPackageBranchNew(Base):
+    """ The Fedora `Package DB <https://admin.fedoraproject.org/pkgdb>`_
+    publishes messages like these when a **new branch** is created for a
+    package.
+    """
+    expected_title = "pkgdb.package.branch.new"
+    expected_subti = ("pingou created the branch 'epel7' for the package "
+                "'rpms/R-BSgenome'")
+    expected_icon = ("https://apps.fedoraproject.org/packages/images/icons/"
+                     "package_128x128.png")
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c"
+        "?s=64&d=retro")
+    expected_packages = set(['R-BSgenome'])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['R-BSgenome/epel7/new'])
+    msg = {
+        "i": 1,
+        "timestamp": 1408957258,
+        "msg_id": "2014-645038a7-1f95-4a81-aa68-489c0ae55803",
+        "topic": "org.fedoraproject.dev.pkgdb.package.branch.new",
+        "msg": {
+            "package_listing": {
+                "status": "Approved",
+                "package": {
+                    "status": "Approved",
+                    "upstream_url": None,
+                    "description": None,
+                    "summary": "Infrastructure shared by all the "
+                    "Biostrings-based genome",
+                    "acls": [],
+                    "creation_date": 1400063778.0,
+                    "review_url": None,
+                    "name": "R-BSgenome",
+                    "namespace": "rpms",
+                },
+                "point_of_contact": "pingou",
+                "collection": {
+                    "status": "Under Development",
+                    "dist_tag": ".el7",
+                    "koji_name": "epel7",
+                    "name": "Fedora EPEL",
+                    "version": "7",
+                    "branchname": "epel7"
+                },
+                "critpath": False,
+                "status_change": 1408950057.0
+            },
+            "agent": "pingou",
+            "package": {
+                "status": "Approved",
+                "upstream_url": None,
+                "description": None,
+                "summary": "Infrastructure shared by all the "
+                "Biostrings-based genome",
+                "acls": [],
+                "creation_date": 1400063778.0,
+                "review_url": None,
+                "name": "R-BSgenome",
+                "namespace": "rpms",
             }
         }
     }

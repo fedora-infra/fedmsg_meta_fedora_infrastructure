@@ -561,44 +561,61 @@ class PkgdbProcessor(BaseProcessor):
         return objs
 
     def packages(self, msg, **config):
+        requested_namespace = config.get('namespace', 'rpms')
         packages = set()
 
         try:
-            packages.add(msg['msg']['package_listing']['package']['name'])
+            package = msg['msg']['package_listing']['package']
+            if 'namespace' not in package or package['namespace'] == requested_namespace:
+                packages.add(package['name'])
         except KeyError:
             pass
 
         try:
             for package in msg['msg']['package_listings']:
-                packages.add(package['package']['name'])
+                package = package['package']
+                if 'namespace' not in package or package['namespace'] == requested_namespace:
+                    packages.add(package['name'])
         except KeyError:
             pass
 
         try:
             if isinstance(msg['msg']['package'], six.string_types):
-                packages.add(msg['msg']['package'])
+                if 'namespace' not in msg['msg'] or \
+                        msg['msg']['namespace'] == requested_namespace:
+                    packages.add(msg['msg']['package'])
             else:
-                packages.add(msg['msg']['package']['name'])
+                package = msg['msg']['package']
+                if 'namespace' not in package or package['namespace'] == requested_namespace:
+                    packages.add(package['name'])
         except (KeyError, TypeError):
             pass
 
         try:
-            packages.add(msg['msg']['acl']['packagelist']['package']['name'])
+            package = msg['msg']['acl']['packagelist']['package']
+            if 'namespace' not in package or package['namespace'] == requested_namespace:
+                packages.add(package['name'])
         except (KeyError, TypeError):
             pass
 
         try:
-            packages.add(msg['msg']['info']['pkg_name'])
+            if 'pkg_namespace' not in msg['msg']['info'] or  \
+                    msg['msg']['info']['pkg_namespace'] == requested_namespace:
+                packages.add(msg['msg']['info']['pkg_name'])
         except (KeyError, TypeError):
             pass
 
         try:
-            packages.add(msg['msg']['action']['info']['pkg_name'])
+            if 'pkg_namespace' not in msg['msg']['action']['info'] or  \
+                    msg['msg']['info']['action']['pkg_namespace'] == requested_namespace:
+                packages.add(msg['msg']['action']['info']['pkg_name'])
         except (KeyError, TypeError):
             pass
 
         try:
-            packages.add(msg['msg']['action']['package']['name'])
+            if 'namespace' not in msg['msg']['action']['package'] or  \
+                    msg['msg']['action']['package']['namespace'] == requested_namespace:
+                packages.add(msg['msg']['action']['package']['name'])
         except (KeyError, TypeError):
             pass
 
