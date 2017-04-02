@@ -1337,7 +1337,7 @@ class TestProjectForked(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.forked"
-    expected_subti = 'pingou forked project "fedmsg" to "fork/pingou/fedmsg"'
+    expected_subti = 'pingou forked fedmsg to fork/pingou/fedmsg'
     expected_link = "https://pagure.io/fork/pingou/fedmsg"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1394,8 +1394,7 @@ class TestNewPullRequestComment(Base):
     pull-request of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.comment.added"
-    expected_subti = 'pingou commented on pull-request#6 of '\
-        'project "test"'
+    expected_subti = 'pingou commented on PR #6 on test'
     expected_link = "https://pagure.io/test/pull-request/6#comment-16"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1504,8 +1503,7 @@ class TestEditPullRequestComment(Base):
     pull-request of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.comment.edited"
-    expected_subti = 'lmacken edited a comment on pull-request#31 of '\
-        'project "mdapi"'
+    expected_subti = 'lmacken edited a comment on PR #31 on mdapi'
     expected_link = "https://pagure.io/mdapi/pull-request/31#comment-2922"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1651,8 +1649,7 @@ class TestNewPullRequestclosed(Base):
     of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.closed"
-    expected_subti = 'pingou closed (without merging) pull-request#6 '\
-        'of project "test"'
+    expected_subti = 'pingou closed (without merging) pull request #6 on test'
     expected_link = "https://pagure.io/test/pull-request/6"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1762,7 +1759,7 @@ class TestNewPullRequestMerged(Base):
     of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.closed"
-    expected_subti = 'pingou merged pull-request#7 of project "test"'
+    expected_subti = 'pingou merged pull request #7 on test'
     expected_link = "https://pagure.io/test/pull-request/7"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1872,8 +1869,8 @@ class TestNewPullRequestNew(Base):
     on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.new"
-    expected_subti = 'pingou opened pull-request#21: "Improve loading '\
-        'speed" on project "test"'
+    expected_subti = 'pingou opened pull request #21 on test: Improve loading '\
+        'speed'
     expected_link = "https://pagure.io/test/pull-request/21"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
