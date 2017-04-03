@@ -249,6 +249,43 @@ class TestCoprsWorkerCreate(Base):
     }
 
 
+class TestCoprsGroupLink(Base):
+    """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
+    when a build has completed.  This is an example of a group repo.
+    """
+    expected_title = "copr.build.end"
+    expected_subti = (
+        "churchyard's python26 copr build of python26-2.6.9-1.fc26 for "
+        "fedora-23-i386 finished with 'failed'")
+    expected_link = ("https://copr.fedoraproject.org/coprs/"
+                     "g/python/python26/build/450811/")
+
+    msg = {
+        u'source_name': u'datanommer',
+        u'i': 3,
+        u'timestamp': 1473355790.0,
+        u'msg_id': u'2016-31e1e282-c176-4a9e-94bc-e4ae34536d47',
+        u'topic': u'org.fedoraproject.prod.copr.build.end',
+        u'source_version': u'0.6.5',
+        u'msg': {
+            u'status': 0,
+            u'what': u'build end: user:churchyard copr:python26 build:450811'
+            '  pkg: python26  version: 2.6.9-1.fc26 ip:172.25.83.110'
+            '  pid:7513 status:0',
+            u'chroot': u'fedora-23-i386',
+            u'ip': u'172.25.83.110',
+            u'user': u'churchyard',
+            u'who': u'backend.worker-6023-PC',
+            u'pid': 7513,
+            u'copr': u'python26',
+            u'version': u'2.6.9-1.fc26',
+            u'build': 450811,
+            u'owner': u'@python',
+            u'pkg': u'python26',
+        },
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':

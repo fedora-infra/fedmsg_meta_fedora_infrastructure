@@ -64,6 +64,7 @@ from fedmsg_meta_fedora_infrastructure.tests.mdapi import *
 from fedmsg_meta_fedora_infrastructure.tests.nagios import *
 from fedmsg_meta_fedora_infrastructure.tests.openqa import *
 from fedmsg_meta_fedora_infrastructure.tests.pdc import *
+from fedmsg_meta_fedora_infrastructure.tests.mbs import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
@@ -315,7 +316,7 @@ class TestPkgdb2BrCreateLegacy(Base):
         "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
         "?s=64&d=retro"
     expected_link = \
-        "http://pkgs.fedoraproject.org/cgit/valgrind.git/log/?h=master"
+        "https://src.fedoraproject.org/cgit/valgrind.git/log/?h=master"
     expected_usernames = set(['limburgher'])
     expected_packages = set(['valgrind'])
     expected_objects = set(['valgrind/__git__'])
@@ -343,7 +344,7 @@ class TestPkgdb2BrCreate(Base):
     expected_subti = \
         "limburgher created branch 'master' for the 'valgrind' package"
     expected_link = \
-        "http://pkgs.fedoraproject.org/cgit/valgrind.git/log/?h=master"
+        "https://src.fedoraproject.org/cgit/valgrind.git/log/?h=master"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "67fc36d5974ea45ec922a650dc117d83acf0a1f646cd17ba80e9e0fe6e2ed164" + \
         "?s=64&d=retro"
@@ -374,7 +375,7 @@ class TestLookaside(Base):
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "e0e8e0c4d995109cdac8ae4eb5766a73cf09c7a8d2d8bac57f761e6223ca094b?s=64&" + \
         "d=retro"
-    expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
+    expected_link = 'https://src.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
         'pst-diffraction.doc.tar.xz'
@@ -406,7 +407,7 @@ class TestLookasideLegacy(Base):
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "e0e8e0c4d995109cdac8ae4eb5766a73cf09c7a8d2d8bac57f761e6223ca094b?s=64&" + \
         "d=retro"
-    expected_link = 'http://pkgs.fedoraproject.org/lookaside/pkgs/' + \
+    expected_link = 'https://src.fedoraproject.org/lookaside/pkgs/' + \
         'texlive/pst-diffraction.doc.tar.xz/' + \
         'dacad985394b3977f9dcf0c75f51a357/' + \
         'pst-diffraction.doc.tar.xz'

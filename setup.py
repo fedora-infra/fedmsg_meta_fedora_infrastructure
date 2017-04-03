@@ -116,12 +116,13 @@ entry_points = {
         "nagios=fedmsg_meta_fedora_infrastructure.nagios:NagiosProcessor",
         "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
         "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
+        "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.17.6',
+    version='0.18.0',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

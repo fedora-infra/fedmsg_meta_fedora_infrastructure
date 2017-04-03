@@ -31,9 +31,12 @@ def _get_project(msg, key='project'):
     fork.
     '''
     project = msg[key]['name']
+    ns = msg[key].get('namespace')
+    if ns:
+        project = '/'.join([ns, project])
     if msg[key]['parent']:
         user = msg[key]['user']['name']
-        project = '/'.join([user, project])
+        project = '/'.join(['fork', user, project])
     return project
 
 
@@ -103,8 +106,6 @@ class PagureProcessor(BaseProcessor):
         base_url = "https://pagure.io"
 
         tmpl = '{base_url}/{project}'
-        if '/' in project:
-            tmpl = '{base_url}/fork/{project}'
         if 'pagure.issue' in msg['topic']:
             issueid = msg['msg']['issue']['id']
             if 'comment' in msg['topic']:
@@ -230,7 +231,11 @@ class PagureProcessor(BaseProcessor):
                 user=user, project=project, id=issueid, tags=tags)
         elif 'pagure.issue.assigned.added' in msg['topic']:
             issueid = msg['msg']['issue']['id']
-            assignee = msg['msg']['issue']['assignee']['name']
+            if msg['msg']['issue']['assignee'] is None:
+                # https://pagure.io/pagure/issue/1896
+                assignee = '?? Someone ??'
+            else:
+                assignee = msg['msg']['issue']['assignee']['name']
             tmpl = self._(
                 '{user} assigned ticket {project}#{id} to {assignee}')
             return tmpl.format(
@@ -282,12 +287,52 @@ class PagureProcessor(BaseProcessor):
             tmpl = self._(
                 '{user} edited the {fields} fields of project {project}')
             return tmpl.format(user=user, project=project, fields=fields)
+        elif 'pagure.project.group.added' in msg['topic']:
+            new_group = msg['msg']['new_group']
+            access = msg['msg'].get('access')
+            if access:
+                tmpl = self._(
+                    '{user} added group "{new_group}" to project {project} ' + \
+                    'with {access} access'
+                )
+            else:
+                tmpl = self._(
+                    '{user} added group "{new_group}" to project {project}'
+                )
+            return tmpl.format(
+                user=user, project=project, new_group=new_group, access=access)
+        elif 'pagure.project.group.access.updated' in msg['topic']:
+            new_group = msg['msg']['new_group']
+            new_access = msg['msg']['new_access']
+            tmpl = self._(
+                '{user} updated access of group "{new_group}" ' + \
+                'to {new_access} on project {project}'
+            )
+            return tmpl.format(
+                user=user, project=project, new_group=new_group, new_access=new_access)
         elif 'pagure.project.user.added' in msg['topic']:
             new_user = msg['msg']['new_user']
+            access = msg['msg'].get('access')
+            if access:
+                tmpl = self._(
+                    '{user} added "{new_user}" to project {project} '
+                    'with {access} access'
+                )
+            else:
+                tmpl = self._(
+                    '{user} added "{new_user}" to project {project}'
+                )
+            return tmpl.format(
+                user=user, project=project, new_user=new_user, access=access)
+        elif 'pagure.project.user.access.updated' in msg['topic']:
+            new_user = msg['msg']['new_user']
+            new_access = msg['msg']['new_access']
             tmpl = self._(
-                '{user} added "{new_user}" to project {project}'
+                '{user} updated access of "{new_user}" to {new_access} '
+                'in project {project}'
             )
-            return tmpl.format(user=user, project=project, new_user=new_user)
+            return tmpl.format(
+                user=user, project=project, new_user=new_user, new_access=new_access)
         elif 'pagure.project.tag.removed' in msg['topic']:
             tags = msg['msg']['tags']
             tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
@@ -308,22 +353,20 @@ class PagureProcessor(BaseProcessor):
         elif 'pagure.project.forked' in msg['topic']:
             old_project = msg['msg']['project']['parent']['name']
             tmpl = self._(
-                '{user} forked project "{old_project}" to "{project}"'
+                '{user} forked {old_project} to {project}'
             )
             return tmpl.format(
                 user=user, old_project=old_project, project=project)
         elif 'pagure.pull-request.comment.added' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             tmpl = self._(
-                '{user} commented on pull-request#{id} of project '
-                '"{project}"'
+                '{user} commented on PR #{id} on {project}'
             )
             return tmpl.format(user=user, id=prid, project=project)
         elif 'pagure.pull-request.comment.edited' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             tmpl = self._(
-                '{user} edited a comment on pull-request#{id} of project '
-                '"{project}"'
+                '{user} edited a comment on PR #{id} on {project}'
             )
             return tmpl.format(user=user, id=prid, project=project)
         elif 'pagure.pull-request.closed' in msg['topic']:
@@ -331,21 +374,19 @@ class PagureProcessor(BaseProcessor):
             merged = msg['msg']['merged']
             if merged:
                 tmpl = self._(
-                    '{user} merged pull-request#{id} of project '
-                    '"{project}"'
+                    '{user} merged pull request #{id} on {project}'
                 )
             else:
                 tmpl = self._(
-                    '{user} closed (without merging) pull-request#{id} '
-                    'of project "{project}"'
+                    '{user} closed (without merging) pull request #{id} '
+                    'on {project}'
                 )
             return tmpl.format(user=user, id=prid, project=project)
         elif 'pagure.pull-request.new' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             title = msg['msg']['pullrequest']['title']
             tmpl = self._(
-                '{user} opened pull-request#{id}: "{title}" on '
-                'project "{project}"'
+                '{user} opened pull request #{id} on {project}: {title}'
             )
             return tmpl.format(
                 user=user, id=prid, project=project, title=title)

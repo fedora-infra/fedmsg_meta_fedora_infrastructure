@@ -1,6 +1,7 @@
 import collections
 import threading
 import socket
+import string
 from hashlib import sha256, md5
 
 _fas_cache = {}
@@ -118,29 +119,32 @@ def make_fas_cache(**config):
     )
 
     timeout = socket.getdefaulttimeout()
-    socket.setdefaulttimeout(600)
-    try:
-        log.info("Downloading FAS cache")
-        request = fasclient.send_request('/user/list',
-                                         req_params={'search': '*'},
-                                         auth=True)
-    except fedora.client.ServerError as e:
-        log.warning("Failed to download fas cache %r" % e)
-        return {}
-    finally:
-        socket.setdefaulttimeout(timeout)
+    for key in string.ascii_lowercase:
+        socket.setdefaulttimeout(600)
+        try:
+            log.info("Downloading FAS cache for %s*" % key)
+            response = fasclient.send_request(
+                '/user/list',
+                req_params={'search': '%s*' % key},
+                auth=True)
+        except fedora.client.ServerError as e:
+            log.warning("Failed to download fas cache for %s %r" % (key, e))
+            continue
+        finally:
+            socket.setdefaulttimeout(timeout)
 
-    log.info("Caching necessary user data")
-    for user in request['people']:
-        nick = user['ircnick']
-        if nick:
-            _fas_cache[nick] = user['username']
+        log.info("Caching necessary user data for %s*" % key)
+        for user in response['people']:
+            nick = user['ircnick']
+            if nick:
+                _fas_cache[nick] = user['username']
 
-        email = user['email']
-        if email:
-            _fas_cache[email] = user['username']
+            email = user['email']
+            if email:
+                _fas_cache[email] = user['username']
 
-    del request
+        del response
+
     del fasclient
     del fedora.client.fas2
 

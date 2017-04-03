@@ -17,7 +17,7 @@
 #
 # Authors:  Pierre-Yves Chibon <pingou@pingoured.fr>
 #
-""" Tests for anitya messages """
+""" Tests for pagure messages """
 
 import unittest
 
@@ -204,6 +204,140 @@ class TestNewIssueComment(Base):
     }
 
 
+class TestNewIssueCommentNamespace(Base):
+    """ These messages are published when a someone comments on a ticket
+    opened against a project on `pagure <https://pagure.io>`_ that has a
+    namespace.
+    """
+    expected_title = "pagure.issue.comment.added"
+    expected_subti = 'langdon commented on ticket Fedora-Council/tickets#79: '\
+        '"Have a training period for new first time Council members"'
+    expected_link = "https://pagure.io/Fedora-Council/tickets/issue/79"\
+        "#comment-45749"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "2aa80b67cfecf15ad4ec6afe96dfce2bd6ce64113b4977eda84ae03d0d7d0fc5" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['langdon'])
+    expected_objects = set(['project/Fedora-Council/tickets', 'issue/79'])
+    msg = {
+      "source_name": "datanommer",
+      "i": 3,
+      "timestamp": 1480963588.0,
+      "msg_id": "2016-b4b8c21f-cbfd-4045-96d2-6a471e9bd3f3",
+      "topic": "io.pagure.prod.pagure.issue.comment.added",
+      "source_version": "0.6.5",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "description": "The Fedora Council uses this to record ongoing work and to track issues which need a specific resolution. ",
+          "parent": None,
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": False,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "tags": [],
+          "namespace": "Fedora-Council",
+          "priorities": {
+            "": "",
+            "1": "Next Meeting",
+            "3": "Back Burner",
+            "2": "Coming Up"
+          },
+          "close_status": [
+            "approved",
+            "declined",
+            "no action needed",
+            "duplicate",
+            "deferred"
+          ],
+          "milestones": {},
+          "user": {
+            "fullname": "Matthew Miller",
+            "name": "mattdm"
+          },
+          "date_created": "1479131198",
+          "id": 1383,
+          "name": "tickets"
+        },
+        "issue": {
+          "status": "Open",
+          "priority": None,
+          "last_updated": "1480963471",
+          "blocks": [],
+          "tags": [],
+          "title": "Have a training period for new first time Council members",
+          "milestone": None,
+          "comments": [
+            {
+              "comment": "CC: @jflory7 ",
+              "parent": None,
+              "notification": False,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1480450913",
+              "id": 43594,
+              "user": {
+                "fullname": "Justin W. Flory",
+                "name": "jflory7"
+              }
+            },
+            {
+              "comment": "I'd rather see this piloted in a more focused group first.  If we start there, at a more likely entry point for new-to-elections people then we can figure out what works and scale up.  This also gives it definition, imho.  The council is a rather wide-ranging set of duties.",
+              "parent": None,
+              "notification": False,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1480963470",
+              "id": 45748,
+              "user": {
+                "fullname": "Brian (bex) Exelbierd",
+                "name": "bex"
+              }
+            },
+            {
+              "comment": "Separate? related conversion on the council-discuss ML: https://lists.fedoraproject.org/archives/list/council-discuss@lists.fedoraproject.org/thread/77H3WDTTQJRN4ZJE2U36TYVJCVEGRPJF/",
+              "parent": None,
+              "notification": False,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1480963587",
+              "id": 45749,
+              "user": {
+                "fullname": "Langdon White",
+                "name": "langdon"
+              }
+            }
+          ],
+          "id": 79,
+          "content": "New people may feel intimidated to join the council, and having a process for them to learn could encourage more volunteers. This would remove some of the feelings of inadequacy that many people have about doing something new. \r\n\r\nThe training period could involve having someone shadow another council member and ask them questions, or have a few council members act as mentors to help the new people with the process and questions they may have. A handbook or guide on what council members do and their expected behavior and duties and how do carry them out would also be helpful.",
+          "assignee": None,
+          "depends": [],
+          "private": False,
+          "date_created": "1480443846",
+          "closed_at": None,
+          "close_status": None,
+          "custom_fields": [],
+          "user": {
+            "fullname": "Dolores Portalatin",
+            "name": "meskarune"
+          }
+        },
+        "agent": "langdon"
+      }
+    }
+
+
 class TestNewIssueTag(Base):
     """ These messages are published when a someone adds a tag on a ticket
     opened against a project on `pagure <https://pagure.io>`_.
@@ -386,6 +520,73 @@ class TestAssignedIssue(Base):
             ],
             "name": "ralph"
           },
+          "depends": "",
+          "private": False,
+          "date_created": "1427442217",
+          "id": 4,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestBrokenAssignedIssue(Base):
+    """ These messages are published when a someone is assigned to a
+    ticket opened against a project on `pagure <https://pagure.io>`_.
+
+    This tests the dealing with assignee=None.
+    This was a breakage in Pagure, filed as https://pagure.io/pagure/issue/1896
+    but since messages containing this bug have been sent to the bus, we need
+    to deal with it.
+    """
+    expected_title = "pagure.issue.assigned.added"
+    expected_subti = 'pingou assigned ticket foo#4 to ?? Someone ??'
+    expected_link = "https://pagure.io/foo/issue/4"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo', 'issue/4'])
+    msg = {
+      "i": 3,
+      "timestamp": 1427450780,
+      "msg_id": "2015-4ab5479a-1a99-4e26-a52f-e9e1ce423e40",
+      "topic": "io.pagure.dev.pagure.issue.assigned.added",
+      "msg": {
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": True,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "issue": {
+          "status": "Open",
+          "blocks": "",
+          "title": "bug",
+          "tags": [],
+          "comments": [],
+          "content": "report",
+          "assignee": None,
           "depends": "",
           "private": False,
           "date_created": "1427442217",
@@ -777,7 +978,228 @@ class TestProjectEdit(Base):
     }
 
 
+class TestProjectUserAccessUpdated(Base):
+    """ These messages are published when a someone updates someones rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.user.access.updated"
+    expected_subti = 'pingou updated access of "ralph" to commit in ' + \
+        'project foo'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.user.access.updated",
+      "msg": {
+        "new_user": "ralph",
+        "new_access": "commit",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class LegacyTestProjectGroupAdded(Base):
+    """ These messages are published when a someone gave admin rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.group.added"
+    expected_subti = 'pingou added group "awesome" to project foo'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.group.added",
+      "msg": {
+        "new_group": "awesome",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestProjectGroupAdded(Base):
+    """ These messages are published when a someone gave some rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.group.added"
+    expected_subti = 'pingou added group "awesome" to project foo with admin access'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.group.added",
+      "msg": {
+        "new_group": "awesome",
+        "access": "admin",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestProjectGroupAccessUpdated(Base):
+    """ These messages are published when a someone updated someone's rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.group.access.updated"
+    expected_subti = 'pingou updated access of group "awesome" to commit ' + \
+        'on project foo'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.group.access.updated",
+      "msg": {
+        "new_group": "awesome",
+        "new_access": "commit",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
 class TestProjectUserAdded(Base):
+    """ These messages are published when a someone gave some rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.user.added"
+    expected_subti = 'pingou added "ralph" to project foo with admin access'
+    expected_link = "https://pagure.io/foo"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/foo'])
+    msg = {
+      "i": 4,
+      "timestamp": 1427455518,
+      "msg_id": "2015-b3c2e568-259a-4b1f-9ecc-79493b89687a",
+      "topic": "io.pagure.dev.pagure.project.user.added",
+      "msg": {
+        "new_user": "ralph",
+        "access": "admin",
+        "project": {
+          "description": "bar",
+          "parent": None,
+          "project_docs": False,
+          "issue_tracker": True,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "emails": [
+              "pingou@fedoraproject.org"
+            ],
+            "name": "pingou"
+          },
+          "date_created": "1427441537",
+          "id": 7,
+          "name": "foo"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class LegacyTestProjectUserAdded(Base):
     """ These messages are published when a someone gave admins rights on a
     project on `pagure <https://pagure.io>`_.
     """
@@ -915,7 +1337,7 @@ class TestProjectForked(Base):
     project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.forked"
-    expected_subti = 'pingou forked project "fedmsg" to "pingou/fedmsg"'
+    expected_subti = 'pingou forked fedmsg to fork/pingou/fedmsg'
     expected_link = "https://pagure.io/fork/pingou/fedmsg"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -924,7 +1346,7 @@ class TestProjectForked(Base):
         "?s=64&d=retro"
     expected_packages = set([])
     expected_usernames = set(['pingou'])
-    expected_objects = set(['project/pingou/fedmsg'])
+    expected_objects = set(['project/fork/pingou/fedmsg'])
     msg = {
       "i": 3,
       "timestamp": 1427456769,
@@ -972,8 +1394,7 @@ class TestNewPullRequestComment(Base):
     pull-request of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.comment.added"
-    expected_subti = 'pingou commented on pull-request#6 of '\
-        'project "test"'
+    expected_subti = 'pingou commented on PR #6 on test'
     expected_link = "https://pagure.io/test/pull-request/6#comment-16"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1082,8 +1503,7 @@ class TestEditPullRequestComment(Base):
     pull-request of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.comment.edited"
-    expected_subti = 'lmacken edited a comment on pull-request#31 of '\
-        'project "mdapi"'
+    expected_subti = 'lmacken edited a comment on PR #31 on mdapi'
     expected_link = "https://pagure.io/mdapi/pull-request/31#comment-2922"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1229,8 +1649,7 @@ class TestNewPullRequestclosed(Base):
     of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.closed"
-    expected_subti = 'pingou closed (without merging) pull-request#6 '\
-        'of project "test"'
+    expected_subti = 'pingou closed (without merging) pull request #6 on test'
     expected_link = "https://pagure.io/test/pull-request/6"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1340,7 +1759,7 @@ class TestNewPullRequestMerged(Base):
     of a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.closed"
-    expected_subti = 'pingou merged pull-request#7 of project "test"'
+    expected_subti = 'pingou merged pull request #7 on test'
     expected_link = "https://pagure.io/test/pull-request/7"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
@@ -1450,8 +1869,8 @@ class TestNewPullRequestNew(Base):
     on a project on `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.pull-request.new"
-    expected_subti = 'pingou opened pull-request#21: "Improve loading '\
-        'speed" on project "test"'
+    expected_subti = 'pingou opened pull request #21 on test: Improve loading '\
+        'speed'
     expected_link = "https://pagure.io/test/pull-request/21"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
