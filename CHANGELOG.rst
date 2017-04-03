@@ -1,4 +1,16 @@
 
+0.18.0
+------
+
+Pull Requests
+
+- (@pypingou)       #383, Perform 26 smaller queries instead of 1 to retrieve the entire list of users
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/383
+- (@pypingou)       #396, Fix something we faced in FMN stg, copr messages where the agent is None
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/396
+- (@vivekanand1101) #397, Adjust after diff access levels in pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/397
+
 0.17.8
 ------
 
