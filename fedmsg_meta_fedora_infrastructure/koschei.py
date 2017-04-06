@@ -47,6 +47,20 @@ class KoscheiProcessor(BaseProcessor):
             return info.format(name=content['name'],
                                collection=collection,
                                koji_instance=content['koji_instance'])
+        elif 'koschei.collection.state.change' in msg['topic']:
+            content = msg['msg']
+            if content['new'] == 'ok' and content['old'] == 'unknown':
+                info = "{collection} added to Koschei"
+            else:
+                info = {
+                    'ok': "{collection} buildroot was fixed",
+                    'unresolved': "{collection} buildroot was broken",
+                }[content['new']]
+            if content['koji_instance'] != 'primary':
+                info += ' ({koji_instance})'
+            collection = content['collection_name']
+            return info.format(collection=collection,
+                               koji_instance=content['koji_instance'])
         else:
             raise NotImplementedError("%r" % msg)
 
@@ -62,6 +76,10 @@ class KoscheiProcessor(BaseProcessor):
                                                     name=msg['msg']['name'])
             if 'collection' in msg['msg']:
                 url += '?collection=' + msg['msg']['collection']
+            return url
+        elif 'koschei.collection.state.change' in msg['topic']:
+            url = '{baseurl}/collection/{name}'.format(baseurl=baseurl,
+                                                    name=msg['msg']['collection'])
             return url
         else:
             raise NotImplementedError("%r" % msg)

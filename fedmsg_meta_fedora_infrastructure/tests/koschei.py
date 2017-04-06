@@ -59,4 +59,34 @@ class TestKoscheiPackageStateChange(Base):
     }
 
 
+class TestKoscheiCollectionStateChange(Base):
+    """ Koschei is a continuous integration system for RPM packages. It tracks
+        dependency changes done in Koji repositories and rebuilds packages whose
+        build dependencies change too much.
+
+    This message type is published by Koschei when collection resolution
+    state changes.
+    """
+
+    expected_title = "koschei.collection.state.change"
+    expected_subti = "Fedora 26 buildroot was broken"
+    expected_link = 'https://apps.fedoraproject.org/koschei/collection/f26'
+
+    msg = {
+        "username": "msimacek",
+        "i": 2,
+        "timestamp": 1412260063,
+        "msg_id": "2014-45d99116-f93e-45ef-8611-04fa2eabbb82",
+        "topic": "org.fedoraproject.dev.koschei.collection.state.change",
+        "msg": {
+            "name": "rnv",
+            "old": "ok",
+            "new": "unresolved",
+            "koji_instance": "primary",
+            "collection": "f26",
+            "collection_name": "Fedora 26"
+        }
+    }
+
+
 add_doc(locals())
