@@ -214,6 +214,7 @@ class TestGithubPush(Base):
         }
     }
 
+
 class TestGithubIssueOpen(Base):
     """ There exists `a service
     <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
@@ -330,6 +331,7 @@ class TestGithubIssueOpen(Base):
         }
     }
 
+
 class TestGithubIssueLabel(Base):
     """ There exists `a service
     <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
@@ -420,7 +422,7 @@ class TestGithubIssueLabel(Base):
                 "login": "fedora-infra",
                 "description": "",
                 "id": 3316637
-            }, 
+            },
             "issue": {
                 "body": "... both  Candidate Builds and Related Bugs frames are affected.\r\n\r\nPossible solution: remove anything added through association with the currently used input, only then reflect the data from the new query.  Provided that each query is processed anew, these queries are time sensitive, so that the new and old data for the same input can differ.",
                 "locked": False,
@@ -455,6 +457,7 @@ class TestGithubIssueLabel(Base):
             }
         }
     }
+
 
 class TestGithubIssueReopen(Base):
     """ There exists `a service
@@ -2182,6 +2185,7 @@ class TestGithubPageBuild(Base):
         }
     }
 
+
 class TestGithubTeamAdd(Base):
     """ There exists `a service
     <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
@@ -2273,6 +2277,7 @@ class TestGithubTeamAdd(Base):
         }
       }
     }
+
 
 class TestGithubMember(Base):
     """ There exists `a service
@@ -2481,6 +2486,1062 @@ class TestGithubDeploymentStatus(Base):
                 "updated_at": "2015-07-02T15:52:02Z",
                 "state": "success",
                 "id": 1923714
+            }
+        }
+    }
+
+
+class TestGithubPullRequestReviewPending(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **comments on pull
+    request review** but it's in pending state and only visible to commenter.
+    """
+
+    expected_title = "github.pull_request_review"
+    expected_subti = "bowlofeggs commented on PR #1420 on fedora-infra/bodhi which is in pending state"
+    expected_link = "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "2def3c902372f3cdad2450f86481f1cd1632419cce90220c18ea9da06c7bca24"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['bowlofeggs'])
+    expected_objects = set([
+        'fedora-infra/bodhi/pull/1420',
+    ])
+    msg = {
+        "i": 2,
+        "timestamp": 1492101909.0,
+        "msg_id": "2017-51169b3a-1ce8-4714-9a48-4238b2d82705",
+        "topic": "org.fedoraproject.prod.github.pull_request_review",
+        "source_version": "0.6.5",
+        "msg":  {
+            "sender": {
+                "url": "https: //api.github.com/users/bowlofeggs",
+                "site_admin": False,
+                "html_url": "https: //github.com/bowlofeggs",
+                "gravatar_id": "",
+                "login": "bowlofeggs",
+                "type": "User",
+                "id": 354506
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2017-04-06T13:49:47Z",
+                "private": False,
+                "full_name": "fedora-infra/bodhi",
+                "owner": {
+                    "url": "https: //api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https: //github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 123299,
+                "size": 38852,
+                "has_projects": True,
+                "watchers_count": 37,
+                "forks": 84,
+                "homepage": "https://bodhi.fedoraproject.org",
+                "fork": False,
+                "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                "has_downloads": True,
+                "forks_count": 84,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "has_issues": True,
+                "stargazers_count": 37,
+                "open_issues_count": 281,
+                "watchers": 37,
+                "name": "bodhi",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "created_at": "2009-02-06T19:38:10Z",
+                "pushed_at": "2017-04-13T16:42:44Z",
+                "open_issues": 281
+            },
+            "review": {
+                "body": None,
+                "commit_id": "941c2d48d91d796f8660b0f2566539897d8d823f",
+                "submitted_at": "2017-04-13T16:45:07Z",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568",
+                "state": "pending",
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                },
+                "id": 32681568
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "bowlofeggs": "bowlofeggs"
+            },
+            "pull_request": {
+                "body": "This commit reworks the Build model to be polymorphic to allow it to support more types than just RPMs.",
+                "head": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2016-06-10T20:19:19Z",
+                        "private": False,
+                        "full_name": "bowlofeggs/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/bowlofeggs",
+                            "site_admin": False,
+                            "html_url": "https://github.com/bowlofeggs",
+                            "gravatar_id": "",
+                            "login": "bowlofeggs",
+                            "type": "User",
+                            "id": 354506
+                        },
+                        "id": 60874522,
+                        "size": 38702,
+                        "has_projects": True,
+                        "watchers_count": 0,
+                        "forks": 0,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": True,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 0,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/bowlofeggs/bodhi",
+                        "has_issues": False,
+                        "stargazers_count": 0,
+                        "open_issues_count": 0,
+                        "watchers": 0,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/bowlofeggs/bodhi",
+                        "created_at": "2016-06-10T20:19:18Z",
+                        "pushed_at": "2017-04-13T16:42:43Z",
+                        "open_issues": 0
+                    },
+                    "sha": "4acc56334698108de017c7a39bf35b5eae8774c5",
+                    "ref": "1393",
+                    "user": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "label": "bowlofeggs:1393"
+                },
+                "locked": False,
+                "merged_at": None,
+                "assignees": [
+
+                ],
+                "updated_at": "2017-04-13T16:45:07Z",
+                "title": "Split the Build model to be polymorphic.",
+                "created_at": "2017-04-07T18:45:28Z",
+                "merge_commit_sha": "35fcffad184cf4c54d9251f614233bba16eb62f5",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420",
+                "number": 1420,
+                "assignee": None,
+                "state": "open",
+                "base": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2017-04-06T13:49:47Z",
+                        "private": False,
+                        "full_name": "fedora-infra/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/fedora-infra",
+                            "site_admin": False,
+                            "html_url": "https://github.com/fedora-infra",
+                            "gravatar_id": "",
+                            "login": "fedora-infra",
+                            "type": "Organization",
+                            "id": 3316637
+                        },
+                        "id": 123299,
+                        "size": 38852,
+                        "has_projects": True,
+                        "watchers_count": 37,
+                        "forks": 84,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": False,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 84,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/fedora-infra/bodhi",
+                        "has_issues": True,
+                        "stargazers_count": 37,
+                        "open_issues_count": 281,
+                        "watchers": 37,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                        "created_at": "2009-02-06T19:38:10Z",
+                        "pushed_at": "2017-04-13T16:42:44Z",
+                        "open_issues": 281
+                    },
+                    "sha": "305f9aa8663ede691ccdd10cef005124276cbd21",
+                    "ref": "develop",
+                    "user": {
+                        "url": "https://api.github.com/users/fedora-infra",
+                        "site_admin": False,
+                        "html_url": "https://github.com/fedora-infra",
+                        "gravatar_id": "",
+                        "login": "fedora-infra",
+                        "type": "Organization",
+                        "id": 3316637
+                    },
+                    "label": "fedora-infra:develop"
+                },
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/pulls/1420",
+                "milestone": {
+                    "description": "This milestone tracks the work needed for Bodhi to support multiple content types.",
+                    "creator": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "updated_at": "2017-04-07T18:45:28Z",
+                    "created_at": "2017-03-03T17:16:18Z",
+                    "title": "Multi-type support (Bodhi 3.0.0?)",
+                    "html_url": "https://github.com/fedora-infra/bodhi/milestone/4",
+                    "number": 4,
+                    "open_issues": 12,
+                    "state": "open",
+                    "url": "https://api.github.com/repos/fedora-infra/bodhi/milestones/4",
+                    "closed_issues": 4,
+                    "due_on": "2017-08-29T07:00:00Z",
+                    "closed_at": None,
+                    "id": 2361630
+                },
+                "closed_at": None,
+                "id": 114876965,
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                }
+            },
+            "action": "submitted",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "description": "Fedora Infrastructure Team",
+                "id": 3316637
+            }
+        }
+    }
+
+
+class TestGithubPullRequestReviewApproved(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **approves a pull
+    request**.
+    """
+
+    expected_title = "github.pull_request_review"
+    expected_subti = "bowlofeggs approved the changes on PR #1420 on fedora-infra/bodhi"
+    expected_link = "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "2def3c902372f3cdad2450f86481f1cd1632419cce90220c18ea9da06c7bca24"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['bowlofeggs'])
+    expected_objects = set([
+        'fedora-infra/bodhi/pull/1420',
+    ])
+    msg = {
+        "i": 2,
+        "timestamp": 1492101909.0,
+        "msg_id": "2017-51169b3a-1ce8-4714-9a48-4238b2d82705",
+        "topic": "org.fedoraproject.prod.github.pull_request_review",
+        "source_version": "0.6.5",
+        "msg":  {
+            "sender": {
+                "url": "https: //api.github.com/users/bowlofeggs",
+                "site_admin": False,
+                "html_url": "https: //github.com/bowlofeggs",
+                "gravatar_id": "",
+                "login": "bowlofeggs",
+                "type": "User",
+                "id": 354506
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2017-04-06T13:49:47Z",
+                "private": False,
+                "full_name": "fedora-infra/bodhi",
+                "owner": {
+                    "url": "https: //api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https: //github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 123299,
+                "size": 38852,
+                "has_projects": True,
+                "watchers_count": 37,
+                "forks": 84,
+                "homepage": "https://bodhi.fedoraproject.org",
+                "fork": False,
+                "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                "has_downloads": True,
+                "forks_count": 84,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "has_issues": True,
+                "stargazers_count": 37,
+                "open_issues_count": 281,
+                "watchers": 37,
+                "name": "bodhi",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "created_at": "2009-02-06T19:38:10Z",
+                "pushed_at": "2017-04-13T16:42:44Z",
+                "open_issues": 281
+            },
+            "review": {
+                "body": None,
+                "commit_id": "941c2d48d91d796f8660b0f2566539897d8d823f",
+                "submitted_at": "2017-04-13T16:45:07Z",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568",
+                "state": "approved",
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                },
+                "id": 32681568
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "bowlofeggs": "bowlofeggs"
+            },
+            "pull_request": {
+                "body": "This commit reworks the Build model to be polymorphic to allow it to support more types than just RPMs.",
+                "head": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2016-06-10T20:19:19Z",
+                        "private": False,
+                        "full_name": "bowlofeggs/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/bowlofeggs",
+                            "site_admin": False,
+                            "html_url": "https://github.com/bowlofeggs",
+                            "gravatar_id": "",
+                            "login": "bowlofeggs",
+                            "type": "User",
+                            "id": 354506
+                        },
+                        "id": 60874522,
+                        "size": 38702,
+                        "has_projects": True,
+                        "watchers_count": 0,
+                        "forks": 0,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": True,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 0,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/bowlofeggs/bodhi",
+                        "has_issues": False,
+                        "stargazers_count": 0,
+                        "open_issues_count": 0,
+                        "watchers": 0,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/bowlofeggs/bodhi",
+                        "created_at": "2016-06-10T20:19:18Z",
+                        "pushed_at": "2017-04-13T16:42:43Z",
+                        "open_issues": 0
+                    },
+                    "sha": "4acc56334698108de017c7a39bf35b5eae8774c5",
+                    "ref": "1393",
+                    "user": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "label": "bowlofeggs:1393"
+                },
+                "locked": False,
+                "merged_at": None,
+                "assignees": [
+
+                ],
+                "updated_at": "2017-04-13T16:45:07Z",
+                "title": "Split the Build model to be polymorphic.",
+                "created_at": "2017-04-07T18:45:28Z",
+                "merge_commit_sha": "35fcffad184cf4c54d9251f614233bba16eb62f5",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420",
+                "number": 1420,
+                "assignee": None,
+                "state": "open",
+                "base": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2017-04-06T13:49:47Z",
+                        "private": False,
+                        "full_name": "fedora-infra/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/fedora-infra",
+                            "site_admin": False,
+                            "html_url": "https://github.com/fedora-infra",
+                            "gravatar_id": "",
+                            "login": "fedora-infra",
+                            "type": "Organization",
+                            "id": 3316637
+                        },
+                        "id": 123299,
+                        "size": 38852,
+                        "has_projects": True,
+                        "watchers_count": 37,
+                        "forks": 84,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": False,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 84,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/fedora-infra/bodhi",
+                        "has_issues": True,
+                        "stargazers_count": 37,
+                        "open_issues_count": 281,
+                        "watchers": 37,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                        "created_at": "2009-02-06T19:38:10Z",
+                        "pushed_at": "2017-04-13T16:42:44Z",
+                        "open_issues": 281
+                    },
+                    "sha": "305f9aa8663ede691ccdd10cef005124276cbd21",
+                    "ref": "develop",
+                    "user": {
+                        "url": "https://api.github.com/users/fedora-infra",
+                        "site_admin": False,
+                        "html_url": "https://github.com/fedora-infra",
+                        "gravatar_id": "",
+                        "login": "fedora-infra",
+                        "type": "Organization",
+                        "id": 3316637
+                    },
+                    "label": "fedora-infra:develop"
+                },
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/pulls/1420",
+                "milestone": {
+                    "description": "This milestone tracks the work needed for Bodhi to support multiple content types.",
+                    "creator": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "updated_at": "2017-04-07T18:45:28Z",
+                    "created_at": "2017-03-03T17:16:18Z",
+                    "title": "Multi-type support (Bodhi 3.0.0?)",
+                    "html_url": "https://github.com/fedora-infra/bodhi/milestone/4",
+                    "number": 4,
+                    "open_issues": 12,
+                    "state": "open",
+                    "url": "https://api.github.com/repos/fedora-infra/bodhi/milestones/4",
+                    "closed_issues": 4,
+                    "due_on": "2017-08-29T07:00:00Z",
+                    "closed_at": None,
+                    "id": 2361630
+                },
+                "closed_at": None,
+                "id": 114876965,
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                }
+            },
+            "action": "submitted",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "description": "Fedora Infrastructure Team",
+                "id": 3316637
+            }
+        }
+    }
+
+
+class TestGithubPullRequestReviewRequestChanges(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **requests changes
+    on pull request review**.
+    """
+
+    expected_title = "github.pull_request_review"
+    expected_subti = "bowlofeggs requested changes on PR #1420 on fedora-infra/bodhi"
+    expected_link = "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "2def3c902372f3cdad2450f86481f1cd1632419cce90220c18ea9da06c7bca24"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['bowlofeggs'])
+    expected_objects = set([
+        'fedora-infra/bodhi/pull/1420',
+    ])
+    msg = {
+        "i": 2,
+        "timestamp": 1492101909.0,
+        "msg_id": "2017-51169b3a-1ce8-4714-9a48-4238b2d82705",
+        "topic": "org.fedoraproject.prod.github.pull_request_review",
+        "source_version": "0.6.5",
+        "msg":  {
+            "sender": {
+                "url": "https: //api.github.com/users/bowlofeggs",
+                "site_admin": False,
+                "html_url": "https: //github.com/bowlofeggs",
+                "gravatar_id": "",
+                "login": "bowlofeggs",
+                "type": "User",
+                "id": 354506
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2017-04-06T13:49:47Z",
+                "private": False,
+                "full_name": "fedora-infra/bodhi",
+                "owner": {
+                    "url": "https: //api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https: //github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 123299,
+                "size": 38852,
+                "has_projects": True,
+                "watchers_count": 37,
+                "forks": 84,
+                "homepage": "https://bodhi.fedoraproject.org",
+                "fork": False,
+                "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                "has_downloads": True,
+                "forks_count": 84,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "has_issues": True,
+                "stargazers_count": 37,
+                "open_issues_count": 281,
+                "watchers": 37,
+                "name": "bodhi",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "created_at": "2009-02-06T19:38:10Z",
+                "pushed_at": "2017-04-13T16:42:44Z",
+                "open_issues": 281
+            },
+            "review": {
+                "body": None,
+                "commit_id": "941c2d48d91d796f8660b0f2566539897d8d823f",
+                "submitted_at": "2017-04-13T16:45:07Z",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568",
+                "state": "changes_requested",
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                },
+                "id": 32681568
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "bowlofeggs": "bowlofeggs"
+            },
+            "pull_request": {
+                "body": "This commit reworks the Build model to be polymorphic to allow it to support more types than just RPMs.",
+                "head": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2016-06-10T20:19:19Z",
+                        "private": False,
+                        "full_name": "bowlofeggs/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/bowlofeggs",
+                            "site_admin": False,
+                            "html_url": "https://github.com/bowlofeggs",
+                            "gravatar_id": "",
+                            "login": "bowlofeggs",
+                            "type": "User",
+                            "id": 354506
+                        },
+                        "id": 60874522,
+                        "size": 38702,
+                        "has_projects": True,
+                        "watchers_count": 0,
+                        "forks": 0,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": True,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 0,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/bowlofeggs/bodhi",
+                        "has_issues": False,
+                        "stargazers_count": 0,
+                        "open_issues_count": 0,
+                        "watchers": 0,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/bowlofeggs/bodhi",
+                        "created_at": "2016-06-10T20:19:18Z",
+                        "pushed_at": "2017-04-13T16:42:43Z",
+                        "open_issues": 0
+                    },
+                    "sha": "4acc56334698108de017c7a39bf35b5eae8774c5",
+                    "ref": "1393",
+                    "user": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "label": "bowlofeggs:1393"
+                },
+                "locked": False,
+                "merged_at": None,
+                "assignees": [
+
+                ],
+                "updated_at": "2017-04-13T16:45:07Z",
+                "title": "Split the Build model to be polymorphic.",
+                "created_at": "2017-04-07T18:45:28Z",
+                "merge_commit_sha": "35fcffad184cf4c54d9251f614233bba16eb62f5",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420",
+                "number": 1420,
+                "assignee": None,
+                "state": "open",
+                "base": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2017-04-06T13:49:47Z",
+                        "private": False,
+                        "full_name": "fedora-infra/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/fedora-infra",
+                            "site_admin": False,
+                            "html_url": "https://github.com/fedora-infra",
+                            "gravatar_id": "",
+                            "login": "fedora-infra",
+                            "type": "Organization",
+                            "id": 3316637
+                        },
+                        "id": 123299,
+                        "size": 38852,
+                        "has_projects": True,
+                        "watchers_count": 37,
+                        "forks": 84,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": False,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 84,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/fedora-infra/bodhi",
+                        "has_issues": True,
+                        "stargazers_count": 37,
+                        "open_issues_count": 281,
+                        "watchers": 37,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                        "created_at": "2009-02-06T19:38:10Z",
+                        "pushed_at": "2017-04-13T16:42:44Z",
+                        "open_issues": 281
+                    },
+                    "sha": "305f9aa8663ede691ccdd10cef005124276cbd21",
+                    "ref": "develop",
+                    "user": {
+                        "url": "https://api.github.com/users/fedora-infra",
+                        "site_admin": False,
+                        "html_url": "https://github.com/fedora-infra",
+                        "gravatar_id": "",
+                        "login": "fedora-infra",
+                        "type": "Organization",
+                        "id": 3316637
+                    },
+                    "label": "fedora-infra:develop"
+                },
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/pulls/1420",
+                "milestone": {
+                    "description": "This milestone tracks the work needed for Bodhi to support multiple content types.",
+                    "creator": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "updated_at": "2017-04-07T18:45:28Z",
+                    "created_at": "2017-03-03T17:16:18Z",
+                    "title": "Multi-type support (Bodhi 3.0.0?)",
+                    "html_url": "https://github.com/fedora-infra/bodhi/milestone/4",
+                    "number": 4,
+                    "open_issues": 12,
+                    "state": "open",
+                    "url": "https://api.github.com/repos/fedora-infra/bodhi/milestones/4",
+                    "closed_issues": 4,
+                    "due_on": "2017-08-29T07:00:00Z",
+                    "closed_at": None,
+                    "id": 2361630
+                },
+                "closed_at": None,
+                "id": 114876965,
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                }
+            },
+            "action": "submitted",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "description": "Fedora Infrastructure Team",
+                "id": 3316637
+            }
+        }
+    }
+
+
+class TestGithubPullRequestReviewComment(Base):
+    """ There exists `a service
+    <https://apps.fedoraproject.org/github2fedmsg>`_ to link the select github
+    repos of fedora contributors with the fedmsg bus.
+
+    Messages of *this* type are published whenever someone **comments on pull
+    request review**.
+    """
+
+    expected_title = "github.pull_request_review"
+    expected_subti = "bowlofeggs commented on PR #1420 on fedora-infra/bodhi"
+    expected_link = "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/github.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "2def3c902372f3cdad2450f86481f1cd1632419cce90220c18ea9da06c7bca24"
+        "?s=64&d=retro")
+    expected_packages = set([])
+    expected_usernames = set(['bowlofeggs'])
+    expected_objects = set([
+        'fedora-infra/bodhi/pull/1420',
+    ])
+    msg = {
+        "i": 2,
+        "timestamp": 1492101909.0,
+        "msg_id": "2017-51169b3a-1ce8-4714-9a48-4238b2d82705",
+        "topic": "org.fedoraproject.prod.github.pull_request_review",
+        "source_version": "0.6.5",
+        "msg":  {
+            "sender": {
+                "url": "https: //api.github.com/users/bowlofeggs",
+                "site_admin": False,
+                "html_url": "https: //github.com/bowlofeggs",
+                "gravatar_id": "",
+                "login": "bowlofeggs",
+                "type": "User",
+                "id": 354506
+            },
+            "repository": {
+                "has_wiki": True,
+                "has_pages": False,
+                "updated_at": "2017-04-06T13:49:47Z",
+                "private": False,
+                "full_name": "fedora-infra/bodhi",
+                "owner": {
+                    "url": "https: //api.github.com/users/fedora-infra",
+                    "site_admin": False,
+                    "html_url": "https: //github.com/fedora-infra",
+                    "gravatar_id": "",
+                    "login": "fedora-infra",
+                    "type": "Organization",
+                    "id": 3316637
+                },
+                "id": 123299,
+                "size": 38852,
+                "has_projects": True,
+                "watchers_count": 37,
+                "forks": 84,
+                "homepage": "https://bodhi.fedoraproject.org",
+                "fork": False,
+                "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                "has_downloads": True,
+                "forks_count": 84,
+                "default_branch": "develop",
+                "html_url": "https://github.com/fedora-infra/bodhi",
+                "has_issues": True,
+                "stargazers_count": 37,
+                "open_issues_count": 281,
+                "watchers": 37,
+                "name": "bodhi",
+                "language": "Python",
+                "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                "created_at": "2009-02-06T19:38:10Z",
+                "pushed_at": "2017-04-13T16:42:44Z",
+                "open_issues": 281
+            },
+            "review": {
+                "body": None,
+                "commit_id": "941c2d48d91d796f8660b0f2566539897d8d823f",
+                "submitted_at": "2017-04-13T16:45:07Z",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420#pullrequestreview-32681568",
+                "state": "commented",
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                },
+                "id": 32681568
+            },
+            "fas_usernames": {
+                "fedora-infra": "github_org_fedora-infra",
+                "bowlofeggs": "bowlofeggs"
+            },
+            "pull_request": {
+                "body": "This commit reworks the Build model to be polymorphic to allow it to support more types than just RPMs.",
+                "head": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2016-06-10T20:19:19Z",
+                        "private": False,
+                        "full_name": "bowlofeggs/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/bowlofeggs",
+                            "site_admin": False,
+                            "html_url": "https://github.com/bowlofeggs",
+                            "gravatar_id": "",
+                            "login": "bowlofeggs",
+                            "type": "User",
+                            "id": 354506
+                        },
+                        "id": 60874522,
+                        "size": 38702,
+                        "has_projects": True,
+                        "watchers_count": 0,
+                        "forks": 0,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": True,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 0,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/bowlofeggs/bodhi",
+                        "has_issues": False,
+                        "stargazers_count": 0,
+                        "open_issues_count": 0,
+                        "watchers": 0,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/bowlofeggs/bodhi",
+                        "created_at": "2016-06-10T20:19:18Z",
+                        "pushed_at": "2017-04-13T16:42:43Z",
+                        "open_issues": 0
+                    },
+                    "sha": "4acc56334698108de017c7a39bf35b5eae8774c5",
+                    "ref": "1393",
+                    "user": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "label": "bowlofeggs:1393"
+                },
+                "locked": False,
+                "merged_at": None,
+                "assignees": [
+
+                ],
+                "updated_at": "2017-04-13T16:45:07Z",
+                "title": "Split the Build model to be polymorphic.",
+                "created_at": "2017-04-07T18:45:28Z",
+                "merge_commit_sha": "35fcffad184cf4c54d9251f614233bba16eb62f5",
+                "html_url": "https://github.com/fedora-infra/bodhi/pull/1420",
+                "number": 1420,
+                "assignee": None,
+                "state": "open",
+                "base": {
+                    "repo": {
+                        "has_wiki": True,
+                        "has_pages": False,
+                        "updated_at": "2017-04-06T13:49:47Z",
+                        "private": False,
+                        "full_name": "fedora-infra/bodhi",
+                        "owner": {
+                            "url": "https://api.github.com/users/fedora-infra",
+                            "site_admin": False,
+                            "html_url": "https://github.com/fedora-infra",
+                            "gravatar_id": "",
+                            "login": "fedora-infra",
+                            "type": "Organization",
+                            "id": 3316637
+                        },
+                        "id": 123299,
+                        "size": 38852,
+                        "has_projects": True,
+                        "watchers_count": 37,
+                        "forks": 84,
+                        "homepage": "https://bodhi.fedoraproject.org",
+                        "fork": False,
+                        "description": "Bodhi is a web-system that facilitates the process of publishing updates for a Fedora-based software distribution.",
+                        "has_downloads": True,
+                        "forks_count": 84,
+                        "default_branch": "develop",
+                        "html_url": "https://github.com/fedora-infra/bodhi",
+                        "has_issues": True,
+                        "stargazers_count": 37,
+                        "open_issues_count": 281,
+                        "watchers": 37,
+                        "name": "bodhi",
+                        "language": "Python",
+                        "url": "https://api.github.com/repos/fedora-infra/bodhi",
+                        "created_at": "2009-02-06T19:38:10Z",
+                        "pushed_at": "2017-04-13T16:42:44Z",
+                        "open_issues": 281
+                    },
+                    "sha": "305f9aa8663ede691ccdd10cef005124276cbd21",
+                    "ref": "develop",
+                    "user": {
+                        "url": "https://api.github.com/users/fedora-infra",
+                        "site_admin": False,
+                        "html_url": "https://github.com/fedora-infra",
+                        "gravatar_id": "",
+                        "login": "fedora-infra",
+                        "type": "Organization",
+                        "id": 3316637
+                    },
+                    "label": "fedora-infra:develop"
+                },
+                "url": "https://api.github.com/repos/fedora-infra/bodhi/pulls/1420",
+                "milestone": {
+                    "description": "This milestone tracks the work needed for Bodhi to support multiple content types.",
+                    "creator": {
+                        "url": "https://api.github.com/users/bowlofeggs",
+                        "site_admin": False,
+                        "html_url": "https://github.com/bowlofeggs",
+                        "gravatar_id": "",
+                        "login": "bowlofeggs",
+                        "type": "User",
+                        "id": 354506
+                    },
+                    "updated_at": "2017-04-07T18:45:28Z",
+                    "created_at": "2017-03-03T17:16:18Z",
+                    "title": "Multi-type support (Bodhi 3.0.0?)",
+                    "html_url": "https://github.com/fedora-infra/bodhi/milestone/4",
+                    "number": 4,
+                    "open_issues": 12,
+                    "state": "open",
+                    "url": "https://api.github.com/repos/fedora-infra/bodhi/milestones/4",
+                    "closed_issues": 4,
+                    "due_on": "2017-08-29T07:00:00Z",
+                    "closed_at": None,
+                    "id": 2361630
+                },
+                "closed_at": None,
+                "id": 114876965,
+                "user": {
+                    "url": "https://api.github.com/users/bowlofeggs",
+                    "site_admin": False,
+                    "html_url": "https://github.com/bowlofeggs",
+                    "gravatar_id": "",
+                    "login": "bowlofeggs",
+                    "type": "User",
+                    "id": 354506
+                }
+            },
+            "action": "submitted",
+            "organization": {
+                "url": "https://api.github.com/orgs/fedora-infra",
+                "login": "fedora-infra",
+                "description": "Fedora Infrastructure Team",
+                "id": 3316637
             }
         }
     }
