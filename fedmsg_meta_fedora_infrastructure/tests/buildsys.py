@@ -40,7 +40,7 @@ from .common import add_doc
 #-------------
 #Task 9053697 on arm04-builder11.arm.fedoraproject.org
 #Task Type: build (noarch)
-#Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=9053697
+#Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=9053697
 #
 #Task 9053697 is canceled
 #"""
@@ -86,11 +86,11 @@ Closed tasks:
 -------------
 Task 8973154 on arm02-builder15.arm.fedoraproject.org
 Task Type: build (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973154
+Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=8973154
 
 Task 8973158 on buildhw-11.phx2.fedoraproject.org
 Task Type: buildSRPMFromSCM (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973158
+Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=8973158
 logs:
   https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/root.log
   https://kojipkgs.fedoraproject.org/work/tasks/3158/8973158/build.log
@@ -100,7 +100,7 @@ srpm:
 
 Task 8973189 on buildhw-04.phx2.fedoraproject.org
 Task Type: buildArch (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973189
+Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=8973189
 logs:
   https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/root.log
   https://kojipkgs.fedoraproject.org/work/tasks/3189/8973189/build.log
@@ -112,18 +112,18 @@ srpms:
 
 Task 8973199 on arm02-builder15.arm.fedoraproject.org
 Task Type: tagBuild (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=8973199
+Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=8973199
 """
 
 _scratch_long_form_fail = """Task 6380373 on arm02-builder22.arm.fedoraproject.org
 Task Type: build (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=6380373
+Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=6380373
 
 error building package (arch noarch), mock exited with status 1; see build.log for more information
 
 Task 6380374 on buildvm-17.phx2.fedoraproject.org
 Task Type: buildArch (noarch)
-Link: https://koji.fedoraproject.org/koji/taskinfo?taskID=6380374
+Link: http://koji.fedoraproject.org/koji/taskinfo?taskID=6380374
 
 error building package (arch noarch), mock exited with status 1; see build.log for more information
 """

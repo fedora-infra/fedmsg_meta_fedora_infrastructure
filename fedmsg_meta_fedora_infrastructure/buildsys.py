@@ -155,7 +155,7 @@ class KojiProcessor(BaseProcessor):
         instance = msg['msg'].get('instance', 'primary')
 
         if instance == 'primary':
-            url = "https://koji.fedoraproject.org/kojihub"
+            url = "http://koji.fedoraproject.org/kojihub"
         elif instance == 'ppc':
             url = "https://ppc.koji.fedoraproject.org/kojihub"
         elif instance == 's390':
