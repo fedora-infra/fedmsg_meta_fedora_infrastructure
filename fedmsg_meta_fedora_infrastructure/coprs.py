@@ -84,8 +84,13 @@ class CoprsProcessor(BaseProcessor):
             # Zero pad buildid
             kwargs['build'] = '%08d' % (kwargs['build'])
 
-            # Also, extract the name from the NVR.
-            name, version, release = kwargs['pkg'].rsplit('-', 2)
+            if '-' not in kwargs['version']:
+                # This has happened.
+                # Example: 2017-c1e242e3-3a1c-4de9-8d37-61640b5e99fa
+                name = '?? WHO KNOWS ??'
+            else:
+                # Also, extract the name from the NVR.
+                name, version, release = kwargs['pkg'].rsplit('-', 2)
             kwargs['pkg_name'] = name
 
             details = _long_template.format(**kwargs)
