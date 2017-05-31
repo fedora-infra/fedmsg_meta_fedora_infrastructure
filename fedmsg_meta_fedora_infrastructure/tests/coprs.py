@@ -42,6 +42,22 @@ Repodata:    https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedor
 """
 
 
+_long_copr_end_broken = """Package:  mutt-kz-1.5.23.1
+COPR:     fatka/mutt-kz
+Built by: fatka
+Status:   success
+ID:       00000100
+
+Logs:
+  Build:     https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-?? WHO KNOWS ??/build.log.gz
+  Root:      https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-?? WHO KNOWS ??/root.log.gz
+  Copr:      https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/build-00000100.log
+  Mockchain: https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-?? WHO KNOWS ??/mockchain.log.gz
+Results:     https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/00000100-?? WHO KNOWS ??/
+Repodata:    https://copr-be.cloud.fedoraproject.org/results/fatka/mutt-kz/fedora-20-x86_64/repodata/
+"""
+
+
 _long_copr_end_fail = """Package:  glib2-2.42.2-1.01.fc21
 COPR:     brianjmurrell/glib2
 Built by: brianjmurrell
@@ -134,6 +150,51 @@ class TestCoprsBuildEnd(Base):
             u'copr': u'mutt-kz',
             u'version': '1.5.23.1-1.20150203.git.c8504a8a.fc21',
             u'pkg': 'mutt-kz-1.5.23.1-1.20150203.git.c8504a8a.fc21',
+            u'build': 100,
+            u'user': u'fatka',
+        },
+    }
+
+
+class TestCoprsBuildEndBrokenNOVR(Base):
+    """ `Copr <https://fedorahosted.org/copr/>`_ publishes these messages
+    when a build has completed.  This is an example of a build that **completed
+    successfully**.
+    """
+    expected_title = "copr.build.end"
+    expected_subti = (
+        "fatka's mutt-kz copr build of "
+        "mutt-kz-1.5.23.1 "
+        "for fedora-20-x86_64 finished with 'success'")
+    expected_long_form = _long_copr_end_broken
+    expected_secondary_icon = (
+        'https://seccdn.libravatar.org/avatar/'
+        'b9d974c03597da48d9c3b11d4423bf30c6e0c01c23bcd3a192167a95f7c506bc?'
+        's=64&d=retro')
+    expected_packages = set([])
+    expected_usernames = set(['fatka'])
+    expected_objects = set([
+        'coprs/mutt-kz/build.end',
+    ])
+    expected_link = (
+        "https://copr.fedoraproject.org/coprs/fatka/mutt-kz/build/100/")
+    msg = {
+        u'username': u'copr',
+        u'i': 4,
+        u'timestamp': 1383956707.6340001,
+        u'msg_id': u'2013-b05a323d-37ee-4396-9635-7b5dfaf5441b',
+        u'topic': u'org.fedoraproject.prod.copr.build.end',
+        u'msg': {
+            u'status': 1,
+            u'chroot': u'fedora-20-x86_64',
+            u'what': u'build end: user:fatka copr:mutt-kz build:100 '
+            'ip:172.16.3.3  pid:12010 status:1',
+            u'ip': u'172.16.3.3',
+            u'who': u'worker-2',
+            u'pid': 12010,
+            u'copr': u'mutt-kz',
+            u'version': '1.5.23.1',
+            u'pkg': 'mutt-kz',
             u'build': 100,
             u'user': u'fatka',
         },
