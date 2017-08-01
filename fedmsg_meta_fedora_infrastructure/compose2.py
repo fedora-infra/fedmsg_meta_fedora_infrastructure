@@ -25,6 +25,7 @@ class PungiKojiProcessor(BaseProcessor):
     __description__ = "Fedora Release Engineering"
     __link__ = "https://pagure.io/releng"
     __docs__ = "https://pagure.io/docs/releng"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/pungi.png"
     __obj__ = "Composes"
 
     def subtitle(self, msg, **config):
