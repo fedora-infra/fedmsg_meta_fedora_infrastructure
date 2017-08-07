@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2012-2014 Red Hat, Inc.
+# Copyright (C) 2012-2017 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,6 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  Ralph Bean <rbean@redhat.com>
+#           Pierre-Yves Chibon <pingou@pingoured.fr>
 #
 from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import \
@@ -30,7 +31,7 @@ already_seen_msg = "This commit already existed in another branch."
 class SCMProcessor(BaseProcessor):
     __name__ = "git"
     __description__ = "the Fedora version control system"
-    __link__ = "https://src.fedoraproject.org/cgit"
+    __link__ = "https://src.fedoraproject.org/"
     __docs__ = "https://fedoraproject.org/wiki/Using_Fedora_GIT"
     __obj__ = "Package Commits"
     __icon__ = "https://apps.fedoraproject.org/img/icons/git-logo.png"
@@ -56,17 +57,23 @@ class SCMProcessor(BaseProcessor):
             except KeyError:
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
 
+            namespace = msg['msg']['commit'].get('namespace', 'rpms')
             rev = msg['msg']['commit']['rev']
 
             seen = msg['msg']['commit'].get('seen', False)
             if seen:
                 return already_seen_msg
 
-            url = 'https://src.fedoraproject.org/cgit/' + \
-                '{repo}.git/patch/?id={rev}'
-            response = requests.get(url.format(repo=repo, rev=rev))
-            if response.status_code == 200:
-                return response.text
+            url = 'https://src.fedoraproject.org/' + \
+                '{namespace}/{repo}/c/{rev}.patch'
+            url = url.format(namespace=namespace, repo=repo, rev=rev)
+
+            try:
+                response = requests.get(url, timeout=30)
+                if response.status_code == 200:
+                    return response.text
+            except requests.exceptions.RequestException:
+                return "Could not successfully call: {}".format(url)
         elif '.git.lookaside' in msg['topic']:
             filename = msg['msg']['filename']
             xsum = msg['msg']['md5sum']
@@ -151,17 +158,19 @@ class SCMProcessor(BaseProcessor):
         return tmpl.format(agent=agent)
 
     def link(self, msg, **config):
-        prefix = "https://src.fedoraproject.org/cgit"
+        prefix = "https://src.fedoraproject.org"
         if '.git.receive' in msg['topic']:
             try:
                 repo = msg['msg']['commit']['repo']
             except KeyError:
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
+            namespace = msg['msg']['commit'].get('namespace', 'rpms')
             rev = msg['msg']['commit']['rev']
             branch = msg['msg']['commit']['branch']
-            tmpl = "{prefix}/{repo}.git/commit/?h={branch}&id={rev}"
-            return tmpl.format(prefix=prefix, repo=repo,
-                               branch=branch, rev=rev)
+            tmpl = "{prefix}/{namespace}/{repo}/c/{rev}?branch={branch}"
+            return tmpl.format(
+                prefix=prefix, namespace=namespace, repo=repo,
+                branch=branch, rev=rev)
         elif '.git.branch' in msg['topic']:
             try:
                 repo = msg['msg']['name']
@@ -169,12 +178,10 @@ class SCMProcessor(BaseProcessor):
             except KeyError:
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
                 branch = msg['topic'].split('.')[-1]
-            try:
-                ns = msg['msg']['namespace'] + '/'
-            except KeyError:
-                ns = ''
-            tmpl = "{prefix}/{ns}{repo}.git/log/?h={branch}"
-            return tmpl.format(prefix=prefix, repo=repo, branch=branch, ns=ns)
+            namespace = msg['msg'].get('namespace', 'rpms')
+            tmpl = "{prefix}/{namespace}/{repo}/commits/{branch}"
+            return tmpl.format(
+                prefix=prefix, namespace=namespace, repo=repo, branch=branch)
         elif '.git.lookaside' in msg['topic']:
             prefix = "https://src.fedoraproject.org/lookaside/pkgs"
 
