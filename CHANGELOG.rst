@@ -1,3 +1,18 @@
+0.19.0
+------
+
+Pull Requests
+
+- (@Metonimie)      #427, Correcting the displayed link for ask.stg.*
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/427
+- (@ sayanchowdhury) #428, Add support for PR reviews in Github processor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/428
+- (@pypingou)       #424, Be a little less obvious when the assignee is missing
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/424
+- (@ralphbean)      #433,  Turns out that pungi has an icon. Who knew?
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/433
+- (@pypingou)       #436, Adjust the scm links to the deployment of pagure over dist-git
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/436
 
 0.18.0
 ------
