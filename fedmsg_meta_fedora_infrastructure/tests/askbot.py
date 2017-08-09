@@ -133,6 +133,60 @@ class TestAskbotNewQuestion(Base):
     }
 
 
+class LegacyTestAskbotNewQuestionStg(Base):
+    """ Messages get emitted on this topic anytime an `Ask Fedora
+    <https://ask.stg.fedoraproject.org/questions/>`_ question is updated.
+    The snippet we have below is an example of a user posting a brand **new
+    question** to `Ask Fedora <https://ask.stg.fedoraproject.org/questions/>`_.
+    """
+    expected_title = "askbot.post.edit"
+    expected_subti = "ralph asked the question 'I have a new question'"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/ask_fedora.png"
+    expected_secondary_icon = (
+        "https://seccdn.libravatar.org/avatar/"
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c?s=64&d=retro")
+    expected_packages = set()
+    expected_usernames = set(['ralph'])
+    expected_objects = set([
+        'tags/lolol',
+        'threads/3',
+    ])
+    expected_link = "https://ask.stg.fedoraproject.org/question/3/"
+    msg = {
+        "i": 2,
+        "msg": {
+            "thread": {
+                "tagnames": [
+                    "lolol"
+                ],
+                "pk": 3,
+                "title": "I have a new question"
+            },
+            "topmost_post_id": 3,
+            "created": True,
+            "timestamp": 1359946267.0,
+            "agent": "ralph",
+            "newly_mentioned_users": [],
+            "diff": "lololol\n\nthis is my entry, I hope that you "
+            "like it so very much.\n ...",
+            "post": {
+                "vote_up_count": 0,
+                "text": "lololol\r\n\r\nthis is my entry, I hope that "
+                "you like it so very much.",
+                "summary": "lololol\n\nthis is my entry, I hope that "
+                "you like it so very much.\n ...",
+                "comment_count": 0,
+                "vote_down_count": 0,
+                "pk": 4,
+                "post_type": "question"
+            }
+        },
+        "topic": "org.fedoraproject.stg.askbot.post.edit",
+        "username": "threebean",
+        "timestamp": 1359946267.401213
+    }
+
+
 class TestAskbotNewAnswer(Base):
     """ Messages get emitted on this topic anytime a question is updated.
     An 'update' includes a new question, a new answer, and a modification

@@ -36,6 +36,7 @@ class TestPungiKojiStart(Base):
     expected_subti = "pungi-koji compose of Fedora-24-20151208.n.7 started"
     expected_link = "http://kojipkgs.fedoraproject.org/" + \
         "compose//rawhide/Fedora-24-20151208.n.7"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
     expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
     msg = {
         "msg": {
@@ -61,6 +62,7 @@ class TestPungiKojiComplete(Base):
     expected_subti = "pungi-koji compose of Fedora-24-20151208.n.7 just finished"
     expected_link = "http://kojipkgs.fedoraproject.org/" + \
         "compose//rawhide/Fedora-24-20151208.n.7"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
     expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
     msg = {
         "msg": {
@@ -88,6 +90,7 @@ class TestPungiPhaseStart(Base):
         "Fedora-24-20151208.n.7 compose"
     expected_link = "http://kojipkgs.fedoraproject.org/" + \
         "compose//rawhide/Fedora-24-20151208.n.7"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
     expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
     msg = {
         "i": 1,
@@ -115,6 +118,7 @@ class TestPungiCreateISOTargets(Base):
     expected_subti = "pungi-koji assigned 3 createiso targets"
     expected_link = "http://kojipkgs.fedoraproject.org/" + \
         "compose//rawhide/Fedora-24-20151208.n.7"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
     expected_objects = set([
         "mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose/Server/"
         "armhfp/iso/Fedora-24-20151208.n.7-Server-armhfp-dvd1.iso",
@@ -154,6 +158,7 @@ class TestPungiCreateISOWin(Base):
             "Server/i386/iso/Fedora-24-20151208.n.7-Server-i386-dvd1.iso"
     expected_link = "http://kojipkgs.fedoraproject.org/" + \
         "compose//rawhide/Fedora-24-20151208.n.7"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
     expected_objects = set([
         "mnt/koji/compose/rawhide/Fedora-24-20151208.n.7/compose/Server/"
         "i386/iso/Fedora-24-20151208.n.7-Server-i386-dvd1.iso",
@@ -191,6 +196,7 @@ class TestPungiOstree(Base):
         "fedora-atomic/25/x86_64/docker-host"
     expected_link = "http://kojipkgs.fedoraproject.org/" + \
         "compose//branched/Fedora-25-20161002.n.0"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
     expected_objects = set([
         "rawhide/Fedora-25-20161002/n/0"
     ])

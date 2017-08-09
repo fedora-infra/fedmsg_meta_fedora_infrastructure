@@ -122,7 +122,11 @@ class AskbotProcessor(BaseProcessor):
         return objs
 
     def link(self, msg, **config):
-        tmpl = "https://ask.fedoraproject.org/question/{pk}/"
+        if 'stg' in msg['topic']:
+            tmpl = "https://ask.stg.fedoraproject.org/question/{pk}/"
+        else:
+            tmpl = "https://ask.fedoraproject.org/question/{pk}/"
+
         pk = msg['msg']['topmost_post_id']
         post = ""
 

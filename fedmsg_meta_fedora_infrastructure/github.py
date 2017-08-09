@@ -78,6 +78,8 @@ class GithubProcessor(BaseProcessor):
             return msg['msg']['compare']
         if 'comment' in msg['msg']:
             return msg['msg']['comment']['html_url']
+        if 'review' in msg['msg']:
+            return msg['msg']['review']['html_url']
         if 'pull_request' in msg['msg']:
             return msg['msg']['pull_request']['html_url']
         if 'issue' in msg['msg']:
@@ -177,6 +179,22 @@ class GithubProcessor(BaseProcessor):
             else:
                 tmpl = self._('{user} {action} issue #{n} on {repo}')
                 return tmpl.format(user=user, action=action, n=n, repo=repo)
+        elif ('github.pull_request_review' in msg['topic'] and
+                'github.pull_request_review_comment' not in msg['topic']):
+            n = msg['msg']['pull_request']['number']
+            state = msg['msg']['review']['state']
+            if state == 'pending':
+                tmpl = self._('{user} commented on PR #{n} on {repo} which is '
+                              'in {state} state')
+            if state == 'approved':
+                tmpl = self._('{user} {state} the changes on PR #{n} on '
+                              '{repo}')
+            if state == 'changes_requested':
+                state = 'requested changes'
+                tmpl = self._('{user} {state} on PR #{n} on {repo}')
+            if state == 'commented':
+                tmpl = self._('{user} {state} on PR #{n} on {repo}')
+            return tmpl.format(user=user, n=n, repo=repo, state=state)
         elif 'github.pull_request_review_comment' in msg['topic']:
             n = msg['msg']['pull_request']['number']
             tmpl = self._('{user} commented on PR #{n} on {repo}')
@@ -254,6 +272,7 @@ class GithubProcessor(BaseProcessor):
             'github.fork': 'forks',
             'github.status': 'status',
             'github.pull_request': 'pull',
+            'github.pull_request_review': 'pull',
             'github.pull_request_review_comment': 'pull',
             'github.commit_comment': 'tree',
             'github.release': 'releases',
@@ -286,7 +305,7 @@ class GithubProcessor(BaseProcessor):
             except KeyError:
                 n = msg['msg']['issue']['number']
             items = ['%s' % n]
-        elif suffix == 'github.pull_request_review_comment':
+        elif 'github.pull_request_review' in suffix:
             n = msg['msg']['pull_request']['number']
             items = ['%s' % n]
         elif suffix == 'github.fork':
