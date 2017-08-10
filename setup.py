@@ -117,6 +117,7 @@ entry_points = {
         "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
         "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
         "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
+        "ci=fedmsg_meta_fedora_infrastructure.centos_ci:CentosCiProcessor",
     ]
 }
 
