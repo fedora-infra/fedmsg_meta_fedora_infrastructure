@@ -117,12 +117,13 @@ entry_points = {
         "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
         "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
         "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
+        "ci=fedmsg_meta_fedora_infrastructure.centos_ci:CentosCiProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.19.0',
+    version='0.20.0',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
