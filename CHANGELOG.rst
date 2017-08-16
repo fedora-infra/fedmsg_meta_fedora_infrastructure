@@ -1,3 +1,14 @@
+0.20.0
+------
+
+Pull Requests
+
+- (@mizdebsk)       #426 Add processor for new Koschei message topic
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/426
+- (@pypingou)       #437 Add processor for the fedmsg messages published by
+  ci.centos.org
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/437
+
 0.19.0
 ------
 
