@@ -132,6 +132,9 @@ class ComposeProcessor(BaseProcessor):
                 except TypeError:
                     base = "https://dl.fedoraproject.org/pub/" + \
                         "fedora/linux/development"
+                except ValueError:
+                    base = "https://github.com/fedora-infra/" + \
+                        "fedmsg_meta_fedora_infrastructure/?WHOKNOWS&"
                 else:
                     base = "https://dl.fedoraproject.org/pub/" + \
                         "fedora/linux/releases"
