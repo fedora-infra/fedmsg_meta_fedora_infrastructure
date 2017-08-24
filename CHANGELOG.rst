@@ -1,3 +1,13 @@
+0.21.0
+------
+
+Pull Requests
+
+- (@ralphbean)      #440 Test and handle output from "modular" compose messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/440
+- (@pypingou)       #441 Add support for the CI messages: ci.pipeline.complete
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/441
+
 0.20.0
 ------
 
