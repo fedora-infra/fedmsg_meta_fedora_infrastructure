@@ -111,6 +111,11 @@ class ComposeProcessor(BaseProcessor):
         return tmpl.format(branch=branch, arch=arch)
 
     def link(self, msg, **config):
+        branch = msg['msg'].get('branch', 'not-a-number')
+        if 'Modular' in branch:
+            base = "https://kojipkgs.fedoraproject.org/compose/"
+            return base + msg['msg']['compose_id']
+
         arch = msg['msg'].get('arch', '')
         if arch:
             base = "https://dl.fedoraproject.org/pub/" + \
@@ -122,7 +127,6 @@ class ComposeProcessor(BaseProcessor):
                 base = "https://dl.fedoraproject.org/pub/" + \
                     "fedora/linux/development"
             else:
-                branch = msg['msg'].get('branch', 'not-a-number')
                 try:
                     int(branch)
                 except TypeError:

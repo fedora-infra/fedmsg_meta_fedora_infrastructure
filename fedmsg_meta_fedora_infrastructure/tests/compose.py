@@ -339,6 +339,36 @@ class TestComposeBranchedComplete(Base):
     }
 
 
+class TestModularComposeBranchedComplete(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    produce these messages when they have
+    **finished composing**
+    whatever the current branched distribution version is.  They are published
+    for both primary and secondary architectures.  The example here is of a
+    **primary** arch message for the Modular compose.
+    """
+    expected_title = "compose.27.complete"
+    expected_subti = "Modular-27 compose completed"
+    expected_link = \
+        "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-27-20170821.n.0"
+    expected_objects = set(['27/primary'])
+    msg = {
+        "i": 1,
+        "msg": {
+            "arch": "",
+            "branch": "Modular-27",
+            "compose_id": "Fedora-Modular-27-20170821.n.0",
+            "log": "done"
+        },
+        "msg_id": "2017-12da6801-49af-40ab-82bc-138a54c346ff",
+        "timestamp": 1503339691.0,
+        "topic": "org.fedoraproject.prod.compose.27.complete",
+        "username": "root"
+    }
+
+
+
 class TestComposeEPELBetaComplete(Base):
     """ The `release engineering
     <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
@@ -551,6 +581,33 @@ class TestComposeRawhideComplete(Base):
             "branch": "rawhide",
             "arch": "",
         },
+    }
+
+
+class TestModularComposeRawhideComplete(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    produce these messages when they have
+    **finished** the rawhide compose.  They are published
+    for both primary and secondary architectures.  The example here is of a
+    **primary** arch message for the **Modular** compose.
+    """
+    expected_title = "compose.rawhide.complete"
+    expected_subti = "Modular-Rawhide compose completed"
+    expected_objects = set(['rawhide/primary'])
+    expected_link = \
+        "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-Rawhide-20170821.n.0"
+    msg = {
+        "i": 1,
+        "msg": {
+            "arch": "",
+            "branch": "Modular-Rawhide",
+            "compose_id": "Fedora-Modular-Rawhide-20170821.n.0",
+            "log": "done"
+        },
+        "msg_id": "2017-857e93ea-3d46-4d8c-abc6-d50faeae313c",
+        "timestamp": 1503339696.0,
+        "topic": "org.fedoraproject.prod.compose.rawhide.complete",
     }
 
 

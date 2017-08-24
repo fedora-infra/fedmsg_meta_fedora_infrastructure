@@ -39,12 +39,23 @@ class CentosCiProcessor(BaseProcessor):
         branch = msg['msg']['branch']
         pkg = msg['msg']['repo']
         namespace = msg['msg']['namespace']
-        status = None
+        status = msg['msg']['status']
 
         if 'ci.pipeline.package.ignore' in msg['topic']:
             tmpl = self._(
                 'Commit "{commit}" of package {ns}/{pkg} is being '
                 'ignored by the CI pipeline on branch {branch}')
+
+        elif 'ci.pipeline.complete' in msg['topic']:
+            if status.lower() == 'success':
+                status = 'passed'
+            elif status.lower() == 'aborted':
+                status = 'was aborted on'
+            else:
+                status = 'failed'
+            tmpl = self._(
+                'Commit "{commit}" of package {ns}/{pkg} {status}'
+                ' the CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.package.complete' in msg['topic']:
             tmpl = self._(

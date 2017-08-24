@@ -785,6 +785,142 @@ class TestPackageTestFunctionalComplete(Base):
       }
     }
 
+
+class TestCompleteSuccess(Base):
+    """ These messages are published when the CI pipeline announces having
+    completed successfully running the entire pipeline on a package.
+    """
+
+    expected_title = "ci.pipeline.complete"
+    expected_subti = 'Commit "591b0d2f" of package rpms/vim passed the CI pipeline on branch f26'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '0a3d99117b8b56a071b50877c98db3dccbae292f188ef1a1c5b77f66d60c57fa'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['fedora-atomic'])
+    expected_objects = set(
+        ['rpms/vim/'
+         '591b0d2fc67a45e4ad13bdc3e312d5554852426a/'
+         'f26/complete'])
+    msg = {
+      "i": 1,
+      "timestamp": 1501741048,
+      "msg_id": "2017-b420134c-0e39-4f70-8e5f-0975d7019e4b",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.complete",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "91",
+        "username": "fedora-atomic",
+        "rev": "591b0d2fc67a45e4ad13bdc3e312d5554852426a",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/",
+        "namespace": "rpms",
+        "CI_NAME": "ci-pipeline-f26",
+        "repo": "vim",
+        "topic": "org.centos.prod.ci.pipeline.complete",
+        "status": "SUCCESS",
+        "test_guidance": "''",
+        "branch": "f26",
+        "package_url": "http://artifacts.ci.centos.org/fedora-atomic/f26/repo/vim_repo/",
+        "ref": "fedora/f26/x86_64/atomic-host"
+      }
+    }
+
+
+class TestCompleteAborted(Base):
+    """ These messages are published when the CI pipeline announces having
+    aborted a run of the pipeline on a package.
+    """
+
+    expected_title = "ci.pipeline.complete"
+    expected_subti = 'Commit "591b0d2f" of package rpms/vim was aborted on the CI pipeline on branch f26'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '0a3d99117b8b56a071b50877c98db3dccbae292f188ef1a1c5b77f66d60c57fa'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['fedora-atomic'])
+    expected_objects = set(
+        ['rpms/vim/'
+         '591b0d2fc67a45e4ad13bdc3e312d5554852426a/'
+         'f26/complete'])
+    msg = {
+      "i": 1,
+      "timestamp": 1501741048,
+      "msg_id": "2017-b420134c-0e39-4f70-8e5f-0975d7019e4b",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.complete",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "91",
+        "username": "fedora-atomic",
+        "rev": "591b0d2fc67a45e4ad13bdc3e312d5554852426a",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/",
+        "namespace": "rpms",
+        "CI_NAME": "ci-pipeline-f26",
+        "repo": "vim",
+        "topic": "org.centos.prod.ci.pipeline.complete",
+        "status": "ABORTED",
+        "test_guidance": "''",
+        "branch": "f26",
+        "package_url": "http://artifacts.ci.centos.org/fedora-atomic/f26/repo/vim_repo/",
+        "ref": "fedora/f26/x86_64/atomic-host"
+      }
+    }
+
+
+class TestCompleteFailed(Base):
+    """ These messages are published when the CI pipeline announces having
+    failed a run of the pipeline on a package.
+    """
+
+    expected_title = "ci.pipeline.complete"
+    expected_subti = 'Commit "591b0d2f" of package rpms/vim failed the CI pipeline on branch f26'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '0a3d99117b8b56a071b50877c98db3dccbae292f188ef1a1c5b77f66d60c57fa'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['fedora-atomic'])
+    expected_objects = set(
+        ['rpms/vim/'
+         '591b0d2fc67a45e4ad13bdc3e312d5554852426a/'
+         'f26/complete'])
+    msg = {
+      "i": 1,
+      "timestamp": 1501741048,
+      "msg_id": "2017-b420134c-0e39-4f70-8e5f-0975d7019e4b",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.complete",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "91",
+        "username": "fedora-atomic",
+        "rev": "591b0d2fc67a45e4ad13bdc3e312d5554852426a",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/",
+        "namespace": "rpms",
+        "CI_NAME": "ci-pipeline-f26",
+        "repo": "vim",
+        "topic": "org.centos.prod.ci.pipeline.complete",
+        "status": "FAILEd",
+        "test_guidance": "''",
+        "branch": "f26",
+        "package_url": "http://artifacts.ci.centos.org/fedora-atomic/f26/repo/vim_repo/",
+        "ref": "fedora/f26/x86_64/atomic-host"
+      }
+    }
+
+
 add_doc(locals())
 
 
