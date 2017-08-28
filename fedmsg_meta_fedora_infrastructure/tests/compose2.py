@@ -216,4 +216,39 @@ class TestPungiOstree(Base):
     }
 
 
+class TestFailToCompose(Base):
+    """ The `pungi` tool produces these messages when it totally fails to start
+    the compose process.
+    """
+    expected_title = "pungi.compose.fail.to.start"
+    expected_subti = \
+        "failed to compose from fedora-docker.conf: " + \
+        "\"must specify label for a production compose\""
+    expected_link = None
+    msg = {
+        "headers":{},
+        "i":1,
+        "msg":{
+            "command":["/usr/bin/pungi-koji",
+                    "--notification-script=/usr/bin/pungi-fedmsg-notification",
+                    "--config=fedora-docker.conf",
+                    "--old-composes=/mnt/koji/compose/",
+                    "--skip-phase=productimg",
+                    "--skip-phase=pkgset",
+                    "--skip-phase=gather",
+                    "--skip-phase=extra_files",
+                    "--skip-phase=creatrepo",
+                    "--label=",
+                    "--target-dir=/mnt/koji/compose/"],
+            "config":"fedora-docker.conf",
+            "detail":"must specify label for a production compose",
+            "target_dir":"/mnt/koji/compose"
+        },
+        "msg_id":"2017-503fe1ae-a458-49f7-adf6-de32bdf4f856",
+        "timestamp":1503692573.0,
+        "topic":"org.fedoraproject.prod.pungi.compose.fail.to.start",
+        "username":"root"
+    }
+
+
 add_doc(locals())
