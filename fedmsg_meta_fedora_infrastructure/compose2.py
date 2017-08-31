@@ -80,5 +80,5 @@ class PungiKojiProcessor(BaseProcessor):
         elif 'file' in msg['msg']:
             return set([msg['msg']['file'].strip('/')])
         else:
-            compose = msg['msg']['compose_id']
+            compose = msg['msg'].get('compose_id', '')
             return set(["rawhide/" + "/".join(compose.split('.'))])
