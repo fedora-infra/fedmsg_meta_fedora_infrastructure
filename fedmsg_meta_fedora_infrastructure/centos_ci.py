@@ -41,26 +41,32 @@ class CentosCiProcessor(BaseProcessor):
         namespace = msg['msg']['namespace']
         status = msg['msg']['status']
 
-        if 'ci.pipeline.package.ignore' in msg['topic']:
-            tmpl = self._(
-                'Commit "{commit}" of package {ns}/{pkg} is being '
-                'ignored by the CI pipeline on branch {branch}')
-
-        elif 'ci.pipeline.complete' in msg['topic']:
+        def _get_status(status):
             if status.lower() == 'success':
                 status = 'passed'
             elif status.lower() == 'aborted':
                 status = 'was aborted on'
             else:
                 status = 'failed'
+            return status
+
+        if 'ci.pipeline.package.ignore' in msg['topic']:
+            tmpl = self._(
+                'Commit "{commit}" of package {ns}/{pkg} is being '
+                'ignored by the CI pipeline on branch {branch}')
+
+        elif 'ci.pipeline.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
                 'Commit "{commit}" of package {ns}/{pkg} {status}'
                 ' the CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.package.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} completed its build '
+                'Commit {commit} of package {ns}/{pkg} {status} building '
                 'in the CI pipeline on branch {branch}')
+
         elif 'ci.pipeline.package.queued' in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued to be built '
@@ -71,9 +77,11 @@ class CentosCiProcessor(BaseProcessor):
                 'CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.package.test.functional.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} completed its '
+                'Commit {commit} of package {ns}/{pkg} {status} its '
                 'functional tests in the CI pipeline on branch {branch}')
+
         elif 'ci.pipeline.package.test.functional.queued' in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued for '
@@ -84,9 +92,11 @@ class CentosCiProcessor(BaseProcessor):
                 'functional tests in the CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.compose.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} completed a '
+                'Commit {commit} of package {ns}/{pkg} {status} a '
                 'compose in the CI pipeline on branch {branch}')
+
         elif 'ci.pipeline.compose.queued' in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued for a '
@@ -97,9 +107,11 @@ class CentosCiProcessor(BaseProcessor):
                 'compose in the CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.compose.test.integration.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} completed tests as '
+                'Commit {commit} of package {ns}/{pkg} {status} its tests as '
                 'part of a compose in the CI pipeline on branch {branch}')
+
         elif 'ci.pipeline.compose.test.integration.queued' in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued for tests '
@@ -110,9 +122,11 @@ class CentosCiProcessor(BaseProcessor):
                 'part of a compose in the CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.image.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} completed being built '
+                'Commit {commit} of package {ns}/{pkg} {status} being built '
                 'in an image in the CI pipeline on branch {branch}')
+
         elif 'ci.pipeline.image.queued' in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued to be built '
@@ -123,9 +137,11 @@ class CentosCiProcessor(BaseProcessor):
                 'in an image in the CI pipeline on branch {branch}')
 
         elif 'ci.pipeline.image.test.smoke.complete' in msg['topic']:
+            status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} completed tests '
+                'Commit {commit} of package {ns}/{pkg} {status} its tests '
                 'in an image in the CI pipeline on branch {branch}')
+
         elif 'ci.pipeline.image.test.smoke.queued' in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued to be tested '

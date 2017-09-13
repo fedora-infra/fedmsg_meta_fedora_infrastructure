@@ -77,7 +77,7 @@ class TestPackageComplete(Base):
 
     expected_title = "ci.pipeline.package.complete"
     expected_subti = 'Commit 0cc505ca of package rpms/NetworkManager '\
-        'completed its build in the CI pipeline on branch f26'
+        'passed building in the CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/8/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -210,7 +210,7 @@ class TestComposeComplete(Base):
 
     expected_title = "ci.pipeline.compose.complete"
     expected_subti = 'Commit 7327f260 of package rpms/device-mapper-multipath ' \
-        'completed a compose in the CI pipeline on branch master'
+        'passed a compose in the CI pipeline on branch master'
     expected_link = "https://ci.centos.org/job/ci-pipeline-ostree-compose/772/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -232,7 +232,7 @@ class TestComposeComplete(Base):
       "msg": {
         "CI_TYPE": "custom",
         "build_id": "772",
-        "status": "${BUILD_STATUS}",
+        "status": "SUCCESS",
         "username": "fedora-atomic",
         "compose_url": "http://artifacts.ci.centos.org/artifacts/fedora-atomic/master/ostree",
         "rev": "7327f260a8a90058efd576b8ce12d78e403d269d",
@@ -305,7 +305,7 @@ class TestComposeTestIntegrationComplete(Base):
     """
 
     expected_title = "ci.pipeline.compose.test.integration.complete"
-    expected_subti = 'Commit 7b272f5f of package rpms/kernel completed ' \
+    expected_subti = 'Commit 7b272f5f of package rpms/kernel failed its ' \
         'tests as part of a compose in the CI pipeline on branch f26'
     expected_link = "https://ci.centos.org/job/ci-pipeline-atomic-host-tests/377/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
@@ -336,7 +336,7 @@ class TestComposeTestIntegrationComplete(Base):
         "namespace": "rpms",
         "CI_NAME": "ci-pipeline-atomic-host-tests",
         "repo": "kernel",
-        "status": "TODO",
+        "status": "FAILED",
         "topic": "org.centos.prod.ci.pipeline.compose.test.integration.complete",
         "CI_STATUS": "failed",
         "branch": "f26",
@@ -448,7 +448,7 @@ class TestImageComplete(Base):
     """
 
     expected_title = "ci.pipeline.image.complete"
-    expected_subti = 'Commit 77d0810c of package rpms/grub2 completed ' \
+    expected_subti = 'Commit 77d0810c of package rpms/grub2 failed ' \
         'being built in an image in the CI pipeline on branch f25'
     expected_link = "https://ci.centos.org/job/ci-pipeline-ostree-image-compose/123/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
@@ -471,7 +471,7 @@ class TestImageComplete(Base):
       "msg": {
         "CI_TYPE": "custom",
         "build_id": "123",
-        "status": "${BUILD_STATUS}",
+        "status": "FAILED",
         "username": "fedora-atomic",
         "compose_url": "http://artifacts.ci.centos.org/artifacts/fedora-atomic/f25/ostree",
         "rev": "77d0810cf0c2dae524736a0c39decffb95c20f4c",
@@ -551,7 +551,7 @@ class TestImageTestSmokeComplete(Base):
     """
 
     expected_title = "ci.pipeline.image.test.smoke.complete"
-    expected_subti = 'Commit fff28640 of package rpms/nspr completed '\
+    expected_subti = 'Commit fff28640 of package rpms/nspr passed its '\
         'tests in an image in the CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/132/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
@@ -746,7 +746,7 @@ class TestPackageTestFunctionalComplete(Base):
     """
 
     expected_title = "ci.pipeline.package.test.functional.complete"
-    expected_subti = 'Commit 591b0d2f of package rpms/vim completed its '\
+    expected_subti = 'Commit 591b0d2f of package rpms/vim passed its '\
         'functional tests in the CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
