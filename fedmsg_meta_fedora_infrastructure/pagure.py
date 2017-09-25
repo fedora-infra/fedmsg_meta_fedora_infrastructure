@@ -81,6 +81,7 @@ class PagureProcessor(BaseProcessor):
     __name__ = "pagure"
     __description__ = "Pagure forge"
     __link__ = "https://pagure.io"
+    __stg_link__ = "https://stg.pagure.io"
     __docs__ = "https://pagure.io/pagure"
     __obj__ = "Pagure forge"
     __icon__ = ("https://apps.fedoraproject.org/packages/"
@@ -103,7 +104,9 @@ class PagureProcessor(BaseProcessor):
             except KeyError:
                 project = "(unknown)"
 
-        base_url = "https://pagure.io"
+        base_url = self.__link__
+        if '.stg.' in msg['topic']:
+            base_url = self.__stg_link__
 
         tmpl = '{base_url}/{project}'
         if 'pagure.issue' in msg['topic']:
@@ -473,3 +476,23 @@ class PagureProcessor(BaseProcessor):
             ])
 
         return set([])
+
+
+class DistGitPagureProcessor(PagureProcessor):
+    topic_prefix_re = 'org\\.fedoraproject\\.(dev|stg|prod)'
+
+    __name__ = "pagure"
+    __description__ = "Pagure over Dist-git"
+    __link__ = "https://src.fedoraproject.org"
+    __stg_link__ = "https://src.stg.fedoraproject.org"
+    __docs__ = "https://src.fedoraproject.org"
+    __obj__ = "Pagure over Dist-git"
+    __icon__ = ("https://apps.fedoraproject.org/packages/"
+                "images/icons/package_128x128.png")
+
+    conglomerators = [
+        pagure_conglomerator.ByPR,
+        pagure_conglomerator.ByIssue,
+        pagure_conglomerator.ByNewStyleCommit,
+        pagure_conglomerator.ByOldStyleCommit,
+    ]
