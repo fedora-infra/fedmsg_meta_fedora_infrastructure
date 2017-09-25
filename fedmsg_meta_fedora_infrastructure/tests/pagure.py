@@ -1333,8 +1333,8 @@ class TestProjectTagEdited(Base):
 
 
 class TestProjectForked(Base):
-    """ These messages are published when a someone edited a tag of a
-    project on `pagure <https://pagure.io>`_.
+    """ These messages are published when a someone forks a project on
+    `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.forked"
     expected_subti = 'pingou forked fedmsg to fork/pingou/fedmsg'
