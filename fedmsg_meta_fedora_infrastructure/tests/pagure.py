@@ -1333,8 +1333,8 @@ class TestProjectTagEdited(Base):
 
 
 class TestProjectForked(Base):
-    """ These messages are published when a someone edited a tag of a
-    project on `pagure <https://pagure.io>`_.
+    """ These messages are published when a someone forks a project on
+    `pagure <https://pagure.io>`_.
     """
     expected_title = "pagure.project.forked"
     expected_subti = 'pingou forked fedmsg to fork/pingou/fedmsg'
@@ -2475,6 +2475,204 @@ class TestIssueCommentEdit(Base):
         "timestamp":1454009050.0,
         "topic": "io.pagure.prod.pagure.issue.comment.edited",
     }
+
+
+class TestNewProjectDistGit(Base):
+    """ These messages are published when a new project is created on
+    `dist-git <https://src.fedoraproject.org>`_.
+    """
+    expected_title = "pagure.project.new"
+    expected_subti = 'mprahl created a new project "rpms/arachne-pnr"'
+    expected_link = "https://src.fedoraproject.org/rpms/arachne-pnr"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "c67eaa686cc9827d78bcce9aef84e26a944b8fccdb8741c7842dcf561808a7e8" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['mprahl'])
+    expected_objects = set(['project/rpms/arachne-pnr'])
+    msg = {
+          "username": "pagure",
+          "source_name": "datanommer",
+          "i": 1,
+          "timestamp": 1505394473.0,
+          "msg_id": "2017-d5a8da88-bcdc-402b-863a-1545016f2f2c",
+          "crypto": "x509",
+          "topic": "org.fedoraproject.prod.pagure.project.new",
+          "headers": {},
+          "source_version": "0.8.1",
+          "msg": {
+            "project": {
+              "custom_keys": [],
+              "description": "The arachne-pnr package",
+              "parent": None,
+              "date_modified": "1505394470",
+              "access_users": {
+                "admin": [],
+                "commit": [],
+                "ticket": [],
+                "owner": [
+                  "mprahl"
+                ]
+              },
+              "namespace": "rpms",
+              "priorities": {},
+              "id": 22781,
+              "access_groups": {
+                "admin": [],
+                "commit": [],
+                "ticket": []
+              },
+              "milestones": {},
+              "user": {
+                "fullname": "Matt Prahl",
+                "name": "mprahl"
+              },
+              "date_created": "1505394470",
+              "fullname": "rpms/arachne-pnr",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": False,
+                "Web-hooks": None,
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": False,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "pull_requests": True,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "close_status": [],
+              "tags": [],
+              "name": "arachne-pnr"
+            },
+            "agent": "mprahl"
+          }
+        }
+
+
+class TestProjectForkedDistGit(Base):
+    """ These messages are published when a someone forks a project on
+    `dist-git <https://src.fedoraproject.org>`_.
+    """
+    expected_title = "pagure.project.forked"
+    expected_subti = 'puiterwijk forked ipsilon to fork/puiterwijk/rpms/ipsilon'
+    expected_link = "https://src.stg.fedoraproject.org/fork/puiterwijk/rpms/ipsilon"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "983782d075ab4e1fb02a7e7c7ca4d7096f6769bc9fe51b50e80eb012ddebc9ce" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['puiterwijk'])
+    expected_objects = set(['project/fork/puiterwijk/rpms/ipsilon'])
+    msg = {
+          "username": None,
+          "source_name": "datanommer",
+          "i": 1,
+          "timestamp": 1502052155.0,
+          "msg_id": "2017-a992188d-62c4-4c53-aea6-67a82a355b9b",
+          "crypto": None,
+          "topic": "org.fedoraproject.stg.pagure.project.forked",
+          "headers": {},
+          "source_version": "0.7.0",
+          "msg": {
+            "project": {
+              "custom_keys": [],
+              "description": "The ipsilon rpms",
+              "parent": {
+                "custom_keys": [],
+                "description": "The ipsilon rpms",
+                "parent": None,
+                "date_modified": "1501275113",
+                "access_users": {
+                  "admin": [],
+                  "commit": [
+                    "simo"
+                  ],
+                  "ticket": [],
+                  "owner": [
+                    "puiterwijk"
+                  ]
+                },
+                "namespace": "rpms",
+                "priorities": {},
+                "id": 6398,
+                "access_groups": {
+                  "admin": [],
+                  "commit": [],
+                  "ticket": []
+                },
+                "milestones": {},
+                "user": {
+                  "fullname": "Patrick \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Uiterwijk",
+                  "name": "puiterwijk"
+                },
+                "date_created": "1501275113",
+                "fullname": "rpms/ipsilon",
+                "settings": {
+                  "issues_default_to_private": False,
+                  "Minimum_score_to_merge_pull-request": -1,
+                  "pull_request_access_only": False,
+                  "Web-hooks": None,
+                  "fedmsg_notifications": True,
+                  "always_merge": False,
+                  "project_documentation": False,
+                  "Enforce_signed-off_commits_in_pull-request": False,
+                  "pull_requests": True,
+                  "Only_assignee_can_merge_pull-request": False,
+                  "issue_tracker": True
+                },
+                "close_status": [],
+                "tags": [],
+                "name": "ipsilon"
+              },
+              "date_modified": "1502052151",
+              "access_users": {
+                "admin": [],
+                "commit": [],
+                "ticket": [],
+                "owner": [
+                  "puiterwijk"
+                ]
+              },
+              "namespace": "rpms",
+              "priorities": {},
+              "id": 22745,
+              "access_groups": {
+                "admin": [],
+                "commit": [],
+                "ticket": []
+              },
+              "milestones": {},
+              "user": {
+                "fullname": "Patrick \"\u30de\u30eb\u30bf\u30a4\u30f3\u30a2\u30f3\u30c9\u30ec\u30a2\u30b9\" Uiterwijk",
+                "name": "puiterwijk"
+              },
+              "date_created": "1502052151",
+              "fullname": "forks/puiterwijk/rpms/ipsilon",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": False,
+                "Web-hooks": None,
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": False,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "pull_requests": False,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": False
+              },
+              "close_status": [],
+              "tags": [],
+              "name": "ipsilon"
+            },
+            "agent": "puiterwijk"
+          }
+        }
 
 
 add_doc(locals())

@@ -1,3 +1,18 @@
+0.22.0
+------
+
+Pull Requests
+
+- (@pypingou)       #445 Include the outcome when processing .complete messages
+  from the Atomic CI pipeline
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/445
+- (@pypingou)       #447 Add support for fedmsg messages of pagure over dist-git
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/447
+- (@ralphbean)      #448 Qualify the CI pipeline of Atomic CI
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/448
+- (@ralphbean)      #443 Handle pungi.compose.fail.to.start messages.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/443
+
 0.21.0
 ------
 

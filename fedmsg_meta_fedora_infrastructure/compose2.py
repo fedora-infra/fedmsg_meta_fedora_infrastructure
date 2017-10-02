@@ -29,7 +29,7 @@ class PungiKojiProcessor(BaseProcessor):
     __obj__ = "Composes"
 
     def subtitle(self, msg, **config):
-        compose = msg['msg']['compose_id']
+        compose = msg['msg'].get('compose_id')
         if msg['topic'].endswith('pungi.compose.status.change'):
             statuses = {
                 'STARTED': self._('started'),
@@ -69,6 +69,11 @@ class PungiKojiProcessor(BaseProcessor):
                           'ostree commit {commitid} for {arch} {ref}')
             return tmpl.format(compose=compose, arch=arch, commitid=commitid,
                                ref=ref)
+        elif msg['topic'].endswith('pungi.compose.fail.to.start'):
+            config = msg['msg'].get('config')
+            detail = msg['msg'].get('detail')
+            tmpl = self._('failed to compose from {config}: "{detail}"')
+            return tmpl.format(config=config, detail=detail)
 
     def link(self, msg, **config):
         if 'location' in msg['msg']:
@@ -79,6 +84,6 @@ class PungiKojiProcessor(BaseProcessor):
             return set([d.strip('/') for d in msg['msg']['deliverables']])
         elif 'file' in msg['msg']:
             return set([msg['msg']['file'].strip('/')])
-        else:
+        elif 'compose_id' in msg['msg']:
             compose = msg['msg']['compose_id']
             return set(["rawhide/" + "/".join(compose.split('.'))])

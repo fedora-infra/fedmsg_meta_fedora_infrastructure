@@ -27,13 +27,13 @@ from .common import add_doc
 
 
 class TestPackageIgnore(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     it ignores a commit made on dist-git.
     """
 
     expected_title = "ci.pipeline.package.ignore"
     expected_subti = 'Commit "ada94828" of package rpms/protobuf is being '\
-        'ignored by the CI pipeline on branch f26'
+        'ignored by the Atomic CI pipeline on branch f26'
     expected_link = "https://ci.centos.org/job/ci-pipeline-2-0/47/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -71,13 +71,13 @@ class TestPackageIgnore(Base):
 
 
 class TestPackageComplete(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the build of a package completed.
     """
 
     expected_title = "ci.pipeline.package.complete"
     expected_subti = 'Commit 0cc505ca of package rpms/NetworkManager '\
-        'completed its build in the CI pipeline on branch f26'
+        'passed building in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/8/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -116,13 +116,13 @@ class TestPackageComplete(Base):
 
 
 class TestPackageQueued(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the build of a package is queued.
     """
 
     expected_title = "ci.pipeline.package.queued"
     expected_subti = 'Commit 0cc505ca of package rpms/NetworkManager is '\
-        'queued to be built in the CI pipeline on branch f26'
+        'queued to be built in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-trigger/39/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -160,13 +160,13 @@ class TestPackageQueued(Base):
 
 
 class TestPackageRunning(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the build of a package is running.
     """
 
     expected_title = "ci.pipeline.package.running"
     expected_subti = 'Commit 0cc505ca of package rpms/NetworkManager is '\
-        'being built in the CI pipeline on branch f26'
+        'being built in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/5/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -204,13 +204,13 @@ class TestPackageRunning(Base):
 
 
 class TestComposeComplete(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     a compose containing a specified package has completed.
     """
 
     expected_title = "ci.pipeline.compose.complete"
     expected_subti = 'Commit 7327f260 of package rpms/device-mapper-multipath ' \
-        'completed a compose in the CI pipeline on branch master'
+        'passed a compose in the Atomic CI pipeline on branch master'
     expected_link = "https://ci.centos.org/job/ci-pipeline-ostree-compose/772/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -232,7 +232,7 @@ class TestComposeComplete(Base):
       "msg": {
         "CI_TYPE": "custom",
         "build_id": "772",
-        "status": "${BUILD_STATUS}",
+        "status": "SUCCESS",
         "username": "fedora-atomic",
         "compose_url": "http://artifacts.ci.centos.org/artifacts/fedora-atomic/master/ostree",
         "rev": "7327f260a8a90058efd576b8ce12d78e403d269d",
@@ -252,13 +252,13 @@ class TestComposeComplete(Base):
 
 
 class TestComposeRunning(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     a compose containing a specified package is running.
     """
 
     expected_title = "ci.pipeline.compose.running"
     expected_subti = 'Commit 7327f260 of package rpms/device-mapper-multipath '\
-        'is being part of a compose in the CI pipeline on branch master'
+        'is being part of a compose in the Atomic CI pipeline on branch master'
     expected_link = "https://ci.centos.org/job/ci-pipeline-ostree-compose/772/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -299,14 +299,14 @@ class TestComposeRunning(Base):
 
 
 class TestComposeTestIntegrationComplete(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the integration test of a compose containing a specified package has
     completed.
     """
 
     expected_title = "ci.pipeline.compose.test.integration.complete"
-    expected_subti = 'Commit 7b272f5f of package rpms/kernel completed ' \
-        'tests as part of a compose in the CI pipeline on branch f26'
+    expected_subti = 'Commit 7b272f5f of package rpms/kernel failed its ' \
+        'tests as part of a compose in the Atomic CI pipeline on branch f26'
     expected_link = "https://ci.centos.org/job/ci-pipeline-atomic-host-tests/377/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -336,7 +336,7 @@ class TestComposeTestIntegrationComplete(Base):
         "namespace": "rpms",
         "CI_NAME": "ci-pipeline-atomic-host-tests",
         "repo": "kernel",
-        "status": "TODO",
+        "status": "FAILED",
         "topic": "org.centos.prod.ci.pipeline.compose.test.integration.complete",
         "CI_STATUS": "failed",
         "branch": "f26",
@@ -347,14 +347,14 @@ class TestComposeTestIntegrationComplete(Base):
 
 
 class TestComposeTestIntegrationRunning(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the integration test of a compose containing a specified package are
     running.
     """
 
     expected_title = "ci.pipeline.compose.test.integration.running"
     expected_subti = 'Commit 7b272f5f of package rpms/kernel is being '\
-        'tested as part of a compose in the CI pipeline on branch f26'
+        'tested as part of a compose in the Atomic CI pipeline on branch f26'
     expected_link = "https://ci.centos.org/job/ci-pipeline-atomic-host-tests/377/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -394,14 +394,14 @@ class TestComposeTestIntegrationRunning(Base):
 
 
 class TestComposeTestIntegrationQueued(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the integration test of a compose containing a specified package are
     queued.
     """
 
     expected_title = "ci.pipeline.compose.test.integration.queued"
     expected_subti = 'Commit 77d0810c of package rpms/grub2 is queued for ' \
-        'tests as part of a compose in the CI pipeline on branch f26'
+        'tests as part of a compose in the Atomic CI pipeline on branch f26'
     expected_link = "https://ci.centos.org/job/ci-pipeline-ostree-boot-sanity/537/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -442,14 +442,14 @@ class TestComposeTestIntegrationQueued(Base):
 
 
 class TestImageComplete(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the build of the image generated from the compose containing a specified
     package has completed.
     """
 
     expected_title = "ci.pipeline.image.complete"
-    expected_subti = 'Commit 77d0810c of package rpms/grub2 completed ' \
-        'being built in an image in the CI pipeline on branch f25'
+    expected_subti = 'Commit 77d0810c of package rpms/grub2 failed ' \
+        'being built in an image in the Atomic CI pipeline on branch f25'
     expected_link = "https://ci.centos.org/job/ci-pipeline-ostree-image-compose/123/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -471,7 +471,7 @@ class TestImageComplete(Base):
       "msg": {
         "CI_TYPE": "custom",
         "build_id": "123",
-        "status": "${BUILD_STATUS}",
+        "status": "FAILED",
         "username": "fedora-atomic",
         "compose_url": "http://artifacts.ci.centos.org/artifacts/fedora-atomic/f25/ostree",
         "rev": "77d0810cf0c2dae524736a0c39decffb95c20f4c",
@@ -494,14 +494,14 @@ class TestImageComplete(Base):
 
 
 class TestImageRunning(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the build of the image generated from the compose containing a specified
     package is running.
     """
 
     expected_title = "ci.pipeline.image.running"
     expected_subti = 'Commit 0cc505ca of package rpms/NetworkManager is ' \
-        'being built in an image in the CI pipeline on branch f26'
+        'being built in an image in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/11/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -545,14 +545,14 @@ class TestImageRunning(Base):
 
 
 class TestImageTestSmokeComplete(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the image generated from the compose containing a specified
     package has completed its tests.
     """
 
     expected_title = "ci.pipeline.image.test.smoke.complete"
-    expected_subti = 'Commit fff28640 of package rpms/nspr completed '\
-        'tests in an image in the CI pipeline on branch f26'
+    expected_subti = 'Commit fff28640 of package rpms/nspr passed its '\
+        'tests in an image in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/132/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -596,14 +596,14 @@ class TestImageTestSmokeComplete(Base):
 
 
 class TestImageTestSmokeRunning(Base):
-    """ These messages are published when the CI pipeline announces that
+    """ These messages are published when the Atomic CI pipeline announces that
     the image generated from the compose containing a specified
     package has completed its tests.
     """
 
     expected_title = "ci.pipeline.image.test.smoke.running"
     expected_subti = 'Commit fff28640 of package rpms/nspr is ' \
-        'being tested in an image in the CI pipeline on branch f26'
+        'being tested in an image in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/132/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -651,13 +651,13 @@ class TestImageTestSmokeRunning(Base):
 # https://github.com/CentOS-PaaS-SIG/ci-pipeline/#orgcentosprodcipipelinepackagetestfunctionalqueued
 
 class TestPackageTestFunctionalQueued(Base):
-    """ These messages are published when the CI pipeline announces queuing
+    """ These messages are published when the Atomic CI pipeline announces queuing
     the function tests of a package.
     """
 
     expected_title = "ci.pipeline.package.test.functional.queued"
     expected_subti = 'Commit 591b0d2f of package rpms/vim is queued for '\
-        'functional testing in the CI pipeline on branch f26'
+        'functional testing in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -696,13 +696,13 @@ class TestPackageTestFunctionalQueued(Base):
     }
 
 class TestPackageTestFunctionalRunning(Base):
-    """ These messages are published when the CI pipeline announces running
+    """ These messages are published when the Atomic CI pipeline announces running
     the function tests of a package.
     """
 
     expected_title = "ci.pipeline.package.test.functional.running"
     expected_subti = 'Commit 591b0d2f of package rpms/vim is running its '\
-        'functional tests in the CI pipeline on branch f26'
+        'functional tests in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -741,13 +741,13 @@ class TestPackageTestFunctionalRunning(Base):
     }
 
 class TestPackageTestFunctionalComplete(Base):
-    """ These messages are published when the CI pipeline announces having
+    """ These messages are published when the Atomic CI pipeline announces having
     completed the function tests of a package.
     """
 
     expected_title = "ci.pipeline.package.test.functional.complete"
-    expected_subti = 'Commit 591b0d2f of package rpms/vim completed its '\
-        'functional tests in the CI pipeline on branch f26'
+    expected_subti = 'Commit 591b0d2f of package rpms/vim passed its '\
+        'functional tests in the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -787,12 +787,12 @@ class TestPackageTestFunctionalComplete(Base):
 
 
 class TestCompleteSuccess(Base):
-    """ These messages are published when the CI pipeline announces having
+    """ These messages are published when the Atomic CI pipeline announces having
     completed successfully running the entire pipeline on a package.
     """
 
     expected_title = "ci.pipeline.complete"
-    expected_subti = 'Commit "591b0d2f" of package rpms/vim passed the CI pipeline on branch f26'
+    expected_subti = 'Commit "591b0d2f" of package rpms/vim passed the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -832,12 +832,12 @@ class TestCompleteSuccess(Base):
 
 
 class TestCompleteAborted(Base):
-    """ These messages are published when the CI pipeline announces having
+    """ These messages are published when the Atomic CI pipeline announces having
     aborted a run of the pipeline on a package.
     """
 
     expected_title = "ci.pipeline.complete"
-    expected_subti = 'Commit "591b0d2f" of package rpms/vim was aborted on the CI pipeline on branch f26'
+    expected_subti = 'Commit "591b0d2f" of package rpms/vim was aborted on the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
@@ -877,12 +877,12 @@ class TestCompleteAborted(Base):
 
 
 class TestCompleteFailed(Base):
-    """ These messages are published when the CI pipeline announces having
+    """ These messages are published when the Atomic CI pipeline announces having
     failed a run of the pipeline on a package.
     """
 
     expected_title = "ci.pipeline.complete"
-    expected_subti = 'Commit "591b0d2f" of package rpms/vim failed the CI pipeline on branch f26'
+    expected_subti = 'Commit "591b0d2f" of package rpms/vim failed the Atomic CI pipeline on branch f26'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/job/ci-pipeline-f26/91/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
