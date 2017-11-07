@@ -66,6 +66,7 @@ from fedmsg_meta_fedora_infrastructure.tests.openqa import *
 from fedmsg_meta_fedora_infrastructure.tests.pdc import *
 from fedmsg_meta_fedora_infrastructure.tests.mbs import *
 from fedmsg_meta_fedora_infrastructure.tests.centos_ci import *
+from fedmsg_meta_fedora_infrastructure.tests.waiverdb import *
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
 
