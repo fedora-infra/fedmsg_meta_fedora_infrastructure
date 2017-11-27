@@ -131,7 +131,12 @@ class PagureProcessor(BaseProcessor):
                 return tmpl.format(
                     base_url=base_url, project=project, id=issueid)
         elif 'pagure.pull-request' in msg['topic']:
-            prid = msg['msg']['pullrequest']['id']
+            key = 'pullrequest'
+            for k in ['pullrequest', 'pull_request', 'pull-request']:
+                if k in msg['msg']:
+                    key = k
+                    break
+            prid = msg['msg'][key]['id']
             if 'comment' in msg['topic']:
                 comments = msg['msg']['pullrequest']['comments']
                 if comments:
@@ -239,6 +244,22 @@ class PagureProcessor(BaseProcessor):
             tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
             tmpl = self._(
                 '{user} removed the {tags} tags from ticket {project}#{id}')
+            return tmpl.format(
+                user=user, project=project, id=issueid, tags=tags)
+        elif 'pagure.pull-request.tag.added' in msg['topic']:
+            issueid = msg['msg']['pull_request']['id']
+            tags = msg['msg']['tags']
+            tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
+            tmpl = self._(
+                '{user} tagged pull-request {project}#{id}: {tags}')
+            return tmpl.format(
+                user=user, project=project, id=issueid, tags=tags)
+        elif 'pagure.pull-request.tag.removed' in msg['topic']:
+            issueid = msg['msg']['pull_request']['id']
+            tags = msg['msg']['tags']
+            tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
+            tmpl = self._(
+                '{user} removed the {tags} tags from pull-request {project}#{id}')
             return tmpl.format(
                 user=user, project=project, id=issueid, tags=tags)
         elif 'pagure.issue.assigned.added' in msg['topic']:
@@ -494,8 +515,13 @@ class PagureProcessor(BaseProcessor):
                 'project/%s' % project,
             ])
         elif 'pagure.pull-request' in msg['topic']:
+            key = 'pullrequest'
+            for k in ['pullrequest', 'pull_request', 'pull-request']:
+                if k in msg['msg']:
+                    key = k
+                    break
             return set([
-                'pull-request/%s' % msg['msg']['pullrequest']['id'],
+                'pull-request/%s' % msg['msg'][key]['id'],
                 'project/%s' % project,
             ])
         elif 'pagure.git.receive' in msg['topic']:
