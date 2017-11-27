@@ -2746,6 +2746,240 @@ class TestProjectDeleted(Base):
       }
     }
 
+
+class TestFlagCommitAdd(Base):
+    """ These messages are published when someone adds a flag on a commit
+    made to a project hosted on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.commit.flag.added"
+    expected_subti = "simple-koji-ci added a flag on the commit " + \
+        "54af3859 of the project test"
+    expected_link = "https://pagure.io/test/c/54af3859766332fca930ef46d1ada001c6ed4502"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test'])
+    msg = {
+      "i": 2,
+      "timestamp": 1511780277,
+      "msg_id": "2017-56e00e7e-03d6-4427-9453-b8da4ac98c68",
+      "topic": "io.pagure.dev.pagure.commit.flag.added",
+      "msg": {
+        "repo": {
+          "custom_keys": [
+            [
+              "Reviewed",
+              "boolean"
+            ],
+            [
+              "review status",
+              "list"
+            ]
+          ],
+          "name": "test",
+          "parent": None,
+          "date_modified": "1511180063",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": True,
+            "Web-hooks": "http://127.0.0.1:5005/",
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [
+              "kparal"
+            ],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {
+            "": "",
+            "1": "High",
+            "0": "Urgent",
+            "3": "Low",
+            "2": "Normal",
+            "-1": "Sky falling"
+          },
+          "id": 1,
+          "access_groups": {
+            "admin": [
+              "provenpackager"
+            ],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {
+            "k\u00e4py": "",
+            "2": "",
+            "1.0.1": "",
+            "Caf\u00e9": ""
+          },
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1483532124",
+          "fullname": "test",
+          "url_path": "test",
+          "close_status": [
+            "Fixed",
+            "Invalid",
+            "Duplicate",
+            "Insufficient Data"
+          ],
+          "tags": [],
+          "description": "test project"
+        },
+        "flag": {
+          "comment": "Built successfully",
+          "status": "success",
+          "url": "https://koji.fedoraproject.org/koji/...",
+          "percent": "100",
+          "username": "simple-koji-ci",
+          "commit_hash": "54af3859766332fca930ef46d1ada001c6ed4502",
+          "date_created": "1511776677",
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestFlagCommitUpdate(Base):
+    """ These messages are published when someone updates a flag on a commit
+    made to a project hosted on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.commit.flag.updated"
+    expected_subti = "simple-koji-ci updated its flag on the commit " + \
+        "54af3859 of the project test"
+    expected_link = "https://pagure.io/test/c/54af3859766332fca930ef46d1ada001c6ed4502"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test'])
+    msg = {
+      "i": 1,
+      "timestamp": 1511780070,
+      "msg_id": "2017-0609b359-c0b7-4675-a729-d575144e2a07",
+      "topic": "io.pagure.dev.pagure.commit.flag.updated",
+      "msg": {
+        "repo": {
+          "custom_keys": [
+            [
+              "Reviewed",
+              "boolean"
+            ],
+            [
+              "review status",
+              "list"
+            ]
+          ],
+          "name": "test",
+          "parent": None,
+          "date_modified": "1511180063",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": True,
+            "Web-hooks": "http://127.0.0.1:5005/",
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [
+              "kparal"
+            ],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {
+            "": "",
+            "1": "High",
+            "0": "Urgent",
+            "3": "Low",
+            "2": "Normal",
+            "-1": "Sky falling"
+          },
+          "id": 1,
+          "access_groups": {
+            "admin": [
+              "provenpackager"
+            ],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {
+            "k\u00e4py": "",
+            "2": "",
+            "1.0.1": "",
+            "Caf\u00e9": ""
+          },
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1483532124",
+          "fullname": "test",
+          "url_path": "test",
+          "close_status": [
+            "Fixed",
+            "Invalid",
+            "Duplicate",
+            "Insufficient Data"
+          ],
+          "tags": [],
+          "description": "test project"
+        },
+        "flag": {
+          "comment": "Built successfully",
+          "status": "success",
+          "url": "https://koji.fedoraproject.org/koji/...",
+          "percent": "100",
+          "username": "simple-koji-ci",
+          "commit_hash": "54af3859766332fca930ef46d1ada001c6ed4502",
+          "date_created": "1511365564",
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+
 add_doc(locals())
 
 if __name__ == '__main__':

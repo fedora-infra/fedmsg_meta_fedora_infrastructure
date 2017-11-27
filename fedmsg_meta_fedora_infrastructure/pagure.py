@@ -26,6 +26,7 @@ from fedmsg_meta_fedora_infrastructure.conglomerators.pagure import \
 
 import fedmsg.meta.base
 
+
 def _get_project(msg, key='project'):
     ''' Return the project as `foo` or `user/foo` if the project is a
     fork.
@@ -156,6 +157,12 @@ class PagureProcessor(BaseProcessor):
             return base_url
         elif 'pagure.project' in msg['topic']:
             return tmpl.format(base_url=base_url, project=project)
+        elif 'pagure.commit.flag' in msg['topic']:
+            tmpl += '/c/{commit_hash}'
+            project = _get_project(msg['msg'], 'repo')
+            commit_hash = msg['msg']['flag']['commit_hash']
+            return tmpl.format(
+                base_url=base_url, project=project, commit_hash=commit_hash)
         elif 'pagure.git.receive' in msg['topic']:
             if 'commit' in msg['msg']:
                 project = _get_project(msg['msg']['commit'], key='repo')
@@ -428,6 +435,24 @@ class PagureProcessor(BaseProcessor):
                 '{user} deleted the project "{project}"'
             )
             return tmpl.format(user=user, project=project)
+        elif 'pagure.commit.flag.added' in msg['topic']:
+            tmpl = self._(
+                '{user} added a flag on the commit {commit} of the '
+                'project {project}'
+            )
+            user = msg['msg']['flag']['username']
+            project = _get_project(msg['msg'], key='repo')
+            commit = msg['msg']['flag']['commit_hash'][:8]
+            return tmpl.format(user=user, project=project, commit=commit)
+        elif 'pagure.commit.flag.updated' in msg['topic']:
+            tmpl = self._(
+                '{user} updated its flag on the commit {commit} of the '
+                'project {project}'
+            )
+            user = msg['msg']['flag']['username']
+            project = _get_project(msg['msg'], key='repo')
+            commit = msg['msg']['flag']['commit_hash'][:8]
+            return tmpl.format(user=user, project=project, commit=commit)
 
         else:
             pass
@@ -478,6 +503,11 @@ class PagureProcessor(BaseProcessor):
                 project = _get_project(msg['msg']['commit'], key='repo')
             else:
                 project = _get_project(msg['msg'], key='repo')
+            return set([
+                'project/%s' % project,
+            ])
+        elif 'pagure.commit.flag' in msg['topic']:
+            project = _get_project(msg['msg'], key='repo')
             return set([
                 'project/%s' % project,
             ])
