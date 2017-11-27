@@ -2675,6 +2675,77 @@ class TestProjectForkedDistGit(Base):
         }
 
 
+class TestProjectDeleted(Base):
+    """ These messages are published when someone removes a project on
+    `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.deleted"
+    expected_subti = 'pingou deleted the project "fedocal"'
+    expected_link = "https://pagure.io"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/fedocal'])
+    msg = {
+      "i": 1,
+      "timestamp": 1511774645,
+      "msg_id": "2017-ccf84c90-8da8-47dd-b940-f44973b3fc94",
+      "topic": "io.pagure.dev.pagure.project.deleted",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "name": "fedocal",
+          "parent": None,
+          "date_modified": "1511771023",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": False,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": False,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {},
+          "id": 121,
+          "access_groups": {
+            "admin": [],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {},
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1511771023",
+          "fullname": "fedocal",
+          "url_path": "fedocal",
+          "close_status": [],
+          "tags": [],
+          "description": "rpms/fedocal"
+        },
+        "agent": "pingou"
+      }
+    }
+
 add_doc(locals())
 
 if __name__ == '__main__':

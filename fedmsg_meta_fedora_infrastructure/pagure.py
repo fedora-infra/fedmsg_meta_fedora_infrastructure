@@ -152,6 +152,8 @@ class PagureProcessor(BaseProcessor):
                 tmpl += '/pull-request/{id}'
                 return tmpl.format(
                     base_url=base_url, project=project, id=prid)
+        elif 'pagure.project.deleted' in msg['topic']:
+            return base_url
         elif 'pagure.project' in msg['topic']:
             return tmpl.format(base_url=base_url, project=project)
         elif 'pagure.git.receive' in msg['topic']:
@@ -421,6 +423,11 @@ class PagureProcessor(BaseProcessor):
                     '{user} pushed {n_commits} {commit_lbl} '
                     'to {repo} ({branch})')
                 return _git_receive_v2(msg, tmpl)
+        elif 'pagure.project.deleted' in msg['topic']:
+            tmpl = self._(
+                '{user} deleted the project "{project}"'
+            )
+            return tmpl.format(user=user, project=project)
 
         else:
             pass
