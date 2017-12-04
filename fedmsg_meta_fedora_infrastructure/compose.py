@@ -114,7 +114,7 @@ class ComposeProcessor(BaseProcessor):
         branch = msg['msg'].get('branch', 'not-a-number')
         if 'Modular' in branch:
             base = "https://kojipkgs.fedoraproject.org/compose/"
-            return base + msg['msg']['compose_id']
+            return base + msg['msg'].get('compose_id', '')
 
         arch = msg['msg'].get('arch', '')
         if arch:
