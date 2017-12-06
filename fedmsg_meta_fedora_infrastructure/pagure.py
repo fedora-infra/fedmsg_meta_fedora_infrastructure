@@ -474,6 +474,13 @@ class PagureProcessor(BaseProcessor):
             project = _get_project(msg['msg'], key='repo')
             commit = msg['msg']['flag']['commit_hash'][:8]
             return tmpl.format(user=user, project=project, commit=commit)
+        elif 'pagure.project.user.removed' in msg['topic']:
+            removed_user = msg['msg']['removed_user']
+            tmpl = self._(
+                '{user} removed "{removed_user}" from the project {project}'
+            )
+            return tmpl.format(
+                user=user, project=project, removed_user=removed_user)
 
         else:
             pass

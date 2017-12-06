@@ -3754,6 +3754,79 @@ class TestPullRequestTagRemoved(Base):
     }
 
 
+class TestProjectUserRemoved(Base):
+    """ These messages are published when a someone gave some rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.user.removed"
+    expected_subti = 'pingou removed "ralph" from the project pingoutest'
+    expected_link = "https://pagure.io/pingoutest"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pingoutest'])
+    msg = {
+      "i": 2,
+      "timestamp": 1512574999,
+      "msg_id": "2017-d45576b4-8201-45d6-b498-5019312310c1",
+      "topic": "io.pagure.dev.pagure.project.user.removed",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "name": "pingoutest",
+          "parent": None,
+          "date_modified": "1512571393",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": False,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": False,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {},
+          "id": 103,
+          "access_groups": {
+            "admin": [],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {},
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1504684095",
+          "fullname": "pingoutest",
+          "url_path": "pingoutest",
+          "close_status": [],
+          "tags": [],
+          "description": "bar"
+        },
+        "removed_user": "ralph",
+        "agent": "pingou"
+      }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
