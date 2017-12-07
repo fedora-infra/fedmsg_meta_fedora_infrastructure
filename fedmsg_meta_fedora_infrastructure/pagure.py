@@ -26,6 +26,7 @@ from fedmsg_meta_fedora_infrastructure.conglomerators.pagure import \
 
 import fedmsg.meta.base
 
+
 def _get_project(msg, key='project'):
     ''' Return the project as `foo` or `user/foo` if the project is a
     fork.
@@ -130,7 +131,12 @@ class PagureProcessor(BaseProcessor):
                 return tmpl.format(
                     base_url=base_url, project=project, id=issueid)
         elif 'pagure.pull-request' in msg['topic']:
-            prid = msg['msg']['pullrequest']['id']
+            key = 'pullrequest'
+            for k in ['pullrequest', 'pull_request', 'pull-request']:
+                if k in msg['msg']:
+                    key = k
+                    break
+            prid = msg['msg'][key]['id']
             if 'comment' in msg['topic']:
                 comments = msg['msg']['pullrequest']['comments']
                 if comments:
@@ -152,8 +158,16 @@ class PagureProcessor(BaseProcessor):
                 tmpl += '/pull-request/{id}'
                 return tmpl.format(
                     base_url=base_url, project=project, id=prid)
+        elif 'pagure.project.deleted' in msg['topic']:
+            return base_url
         elif 'pagure.project' in msg['topic']:
             return tmpl.format(base_url=base_url, project=project)
+        elif 'pagure.commit.flag' in msg['topic']:
+            tmpl += '/c/{commit_hash}'
+            project = _get_project(msg['msg'], 'repo')
+            commit_hash = msg['msg']['flag']['commit_hash']
+            return tmpl.format(
+                base_url=base_url, project=project, commit_hash=commit_hash)
         elif 'pagure.git.receive' in msg['topic']:
             if 'commit' in msg['msg']:
                 project = _get_project(msg['msg']['commit'], key='repo')
@@ -230,6 +244,22 @@ class PagureProcessor(BaseProcessor):
             tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
             tmpl = self._(
                 '{user} removed the {tags} tags from ticket {project}#{id}')
+            return tmpl.format(
+                user=user, project=project, id=issueid, tags=tags)
+        elif 'pagure.pull-request.tag.added' in msg['topic']:
+            issueid = msg['msg']['pull_request']['id']
+            tags = msg['msg']['tags']
+            tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
+            tmpl = self._(
+                '{user} tagged pull-request {project}#{id}: {tags}')
+            return tmpl.format(
+                user=user, project=project, id=issueid, tags=tags)
+        elif 'pagure.pull-request.tag.removed' in msg['topic']:
+            issueid = msg['msg']['pull_request']['id']
+            tags = msg['msg']['tags']
+            tags = fedmsg.meta.base.BaseConglomerator.list_to_series(tags)
+            tmpl = self._(
+                '{user} removed the {tags} tags from pull-request {project}#{id}')
             return tmpl.format(
                 user=user, project=project, id=issueid, tags=tags)
         elif 'pagure.issue.assigned.added' in msg['topic']:
@@ -421,6 +451,36 @@ class PagureProcessor(BaseProcessor):
                     '{user} pushed {n_commits} {commit_lbl} '
                     'to {repo} ({branch})')
                 return _git_receive_v2(msg, tmpl)
+        elif 'pagure.project.deleted' in msg['topic']:
+            tmpl = self._(
+                '{user} deleted the project "{project}"'
+            )
+            return tmpl.format(user=user, project=project)
+        elif 'pagure.commit.flag.added' in msg['topic']:
+            tmpl = self._(
+                '{user} added a flag on the commit {commit} of the '
+                'project {project}'
+            )
+            user = msg['msg']['flag']['username']
+            project = _get_project(msg['msg'], key='repo')
+            commit = msg['msg']['flag']['commit_hash'][:8]
+            return tmpl.format(user=user, project=project, commit=commit)
+        elif 'pagure.commit.flag.updated' in msg['topic']:
+            tmpl = self._(
+                '{user} updated its flag on the commit {commit} of the '
+                'project {project}'
+            )
+            user = msg['msg']['flag']['username']
+            project = _get_project(msg['msg'], key='repo')
+            commit = msg['msg']['flag']['commit_hash'][:8]
+            return tmpl.format(user=user, project=project, commit=commit)
+        elif 'pagure.project.user.removed' in msg['topic']:
+            removed_user = msg['msg']['removed_user']
+            tmpl = self._(
+                '{user} removed "{removed_user}" from the project {project}'
+            )
+            return tmpl.format(
+                user=user, project=project, removed_user=removed_user)
 
         else:
             pass
@@ -462,8 +522,13 @@ class PagureProcessor(BaseProcessor):
                 'project/%s' % project,
             ])
         elif 'pagure.pull-request' in msg['topic']:
+            key = 'pullrequest'
+            for k in ['pullrequest', 'pull_request', 'pull-request']:
+                if k in msg['msg']:
+                    key = k
+                    break
             return set([
-                'pull-request/%s' % msg['msg']['pullrequest']['id'],
+                'pull-request/%s' % msg['msg'][key]['id'],
                 'project/%s' % project,
             ])
         elif 'pagure.git.receive' in msg['topic']:
@@ -471,6 +536,11 @@ class PagureProcessor(BaseProcessor):
                 project = _get_project(msg['msg']['commit'], key='repo')
             else:
                 project = _get_project(msg['msg'], key='repo')
+            return set([
+                'project/%s' % project,
+            ])
+        elif 'pagure.commit.flag' in msg['topic']:
+            project = _get_project(msg['msg'], key='repo')
             return set([
                 'project/%s' % project,
             ])

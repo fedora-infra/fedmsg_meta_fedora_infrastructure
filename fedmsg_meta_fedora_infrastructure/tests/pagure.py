@@ -2675,6 +2675,1158 @@ class TestProjectForkedDistGit(Base):
         }
 
 
+class TestProjectDeleted(Base):
+    """ These messages are published when someone removes a project on
+    `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.deleted"
+    expected_subti = 'pingou deleted the project "fedocal"'
+    expected_link = "https://pagure.io"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/fedocal'])
+    msg = {
+      "i": 1,
+      "timestamp": 1511774645,
+      "msg_id": "2017-ccf84c90-8da8-47dd-b940-f44973b3fc94",
+      "topic": "io.pagure.dev.pagure.project.deleted",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "name": "fedocal",
+          "parent": None,
+          "date_modified": "1511771023",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": False,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": False,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {},
+          "id": 121,
+          "access_groups": {
+            "admin": [],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {},
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1511771023",
+          "fullname": "fedocal",
+          "url_path": "fedocal",
+          "close_status": [],
+          "tags": [],
+          "description": "rpms/fedocal"
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestFlagCommitAdd(Base):
+    """ These messages are published when someone adds a flag on a commit
+    made to a project hosted on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.commit.flag.added"
+    expected_subti = "simple-koji-ci added a flag on the commit " + \
+        "54af3859 of the project test"
+    expected_link = "https://pagure.io/test/c/54af3859766332fca930ef46d1ada001c6ed4502"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test'])
+    msg = {
+      "i": 2,
+      "timestamp": 1511780277,
+      "msg_id": "2017-56e00e7e-03d6-4427-9453-b8da4ac98c68",
+      "topic": "io.pagure.dev.pagure.commit.flag.added",
+      "msg": {
+        "repo": {
+          "custom_keys": [
+            [
+              "Reviewed",
+              "boolean"
+            ],
+            [
+              "review status",
+              "list"
+            ]
+          ],
+          "name": "test",
+          "parent": None,
+          "date_modified": "1511180063",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": True,
+            "Web-hooks": "http://127.0.0.1:5005/",
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [
+              "kparal"
+            ],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {
+            "": "",
+            "1": "High",
+            "0": "Urgent",
+            "3": "Low",
+            "2": "Normal",
+            "-1": "Sky falling"
+          },
+          "id": 1,
+          "access_groups": {
+            "admin": [
+              "provenpackager"
+            ],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {
+            "k\u00e4py": "",
+            "2": "",
+            "1.0.1": "",
+            "Caf\u00e9": ""
+          },
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1483532124",
+          "fullname": "test",
+          "url_path": "test",
+          "close_status": [
+            "Fixed",
+            "Invalid",
+            "Duplicate",
+            "Insufficient Data"
+          ],
+          "tags": [],
+          "description": "test project"
+        },
+        "flag": {
+          "comment": "Built successfully",
+          "status": "success",
+          "url": "https://koji.fedoraproject.org/koji/...",
+          "percent": "100",
+          "username": "simple-koji-ci",
+          "commit_hash": "54af3859766332fca930ef46d1ada001c6ed4502",
+          "date_created": "1511776677",
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestFlagCommitUpdate(Base):
+    """ These messages are published when someone updates a flag on a commit
+    made to a project hosted on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.commit.flag.updated"
+    expected_subti = "simple-koji-ci updated its flag on the commit " + \
+        "54af3859 of the project test"
+    expected_link = "https://pagure.io/test/c/54af3859766332fca930ef46d1ada001c6ed4502"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test'])
+    msg = {
+      "i": 1,
+      "timestamp": 1511780070,
+      "msg_id": "2017-0609b359-c0b7-4675-a729-d575144e2a07",
+      "topic": "io.pagure.dev.pagure.commit.flag.updated",
+      "msg": {
+        "repo": {
+          "custom_keys": [
+            [
+              "Reviewed",
+              "boolean"
+            ],
+            [
+              "review status",
+              "list"
+            ]
+          ],
+          "name": "test",
+          "parent": None,
+          "date_modified": "1511180063",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": True,
+            "Web-hooks": "http://127.0.0.1:5005/",
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [
+              "kparal"
+            ],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {
+            "": "",
+            "1": "High",
+            "0": "Urgent",
+            "3": "Low",
+            "2": "Normal",
+            "-1": "Sky falling"
+          },
+          "id": 1,
+          "access_groups": {
+            "admin": [
+              "provenpackager"
+            ],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {
+            "k\u00e4py": "",
+            "2": "",
+            "1.0.1": "",
+            "Caf\u00e9": ""
+          },
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1483532124",
+          "fullname": "test",
+          "url_path": "test",
+          "close_status": [
+            "Fixed",
+            "Invalid",
+            "Duplicate",
+            "Insufficient Data"
+          ],
+          "tags": [],
+          "description": "test project"
+        },
+        "flag": {
+          "comment": "Built successfully",
+          "status": "success",
+          "url": "https://koji.fedoraproject.org/koji/...",
+          "percent": "100",
+          "username": "simple-koji-ci",
+          "commit_hash": "54af3859766332fca930ef46d1ada001c6ed4502",
+          "date_created": "1511365564",
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestPullRequestTagAdded(Base):
+    """ These messages are published when someone adds one or more flags to
+    a pull-request of a project hosted on `pagure <https://pagure.io>`.
+    """
+    expected_title = "pagure.pull-request.tag.added"
+    expected_subti = "pingou tagged pull-request test#35: " + \
+        "easyfix and pending_review"
+    expected_link = "https://pagure.io/test/pull-request/35"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['pull-request/35', 'project/test'])
+    msg = {
+      "i": 1,
+      "timestamp": 1511780892,
+      "msg_id": "2017-dbc72067-b054-4ae7-bf21-b272f41df9ba",
+      "topic": "io.pagure.dev.pagure.pull-request.tag.added",
+      "msg": {
+        "project": {
+          "custom_keys": [
+            [
+              "Reviewed",
+              "boolean"
+            ],
+            [
+              "review status",
+              "list"
+            ]
+          ],
+          "name": "test",
+          "parent": None,
+          "date_modified": "1511180063",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": True,
+            "Web-hooks": "http://127.0.0.1:5005/",
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [
+              "kparal"
+            ],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {
+            "": "",
+            "1": "High",
+            "0": "Urgent",
+            "3": "Low",
+            "2": "Normal",
+            "-1": "Sky falling"
+          },
+          "id": 1,
+          "access_groups": {
+            "admin": [
+              "provenpackager"
+            ],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {
+            "k\u00e4py": "",
+            "2": "",
+            "1.0.1": "",
+            "Caf\u00e9": ""
+          },
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1483532124",
+          "fullname": "test",
+          "url_path": "test",
+          "close_status": [
+            "Fixed",
+            "Invalid",
+            "Duplicate",
+            "Insufficient Data"
+          ],
+          "tags": [],
+          "description": "test project"
+        },
+        "tags": [
+          "pending_review",
+          "easyfix"
+        ],
+        "agent": "pingou",
+        "pull_request": {
+          "status": "Open",
+          "last_updated": "1509442215",
+          "branch_from": "another_branch",
+          "uid": "f2996c6121b644e3a44c838c51c7d21e",
+          "title": "Some more commits",
+          "initial_comment": None,
+          "comments": [
+            {
+              "comment": "rebased onto 9470011f46a3a3d4ea08873bc5373936a47cc7ee",
+              "parent": None,
+              "notification": True,
+              "tree": None,
+              "filename": None,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1507698376",
+              "commit": None,
+              "line": None,
+              "id": 42,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            },
+            {
+              "comment": "This is madness!",
+              "parent": None,
+              "notification": False,
+              "tree": "9f38e1c9ad5c4dd1a53abd14dd51832f8402080f",
+              "filename": "test",
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1507698412",
+              "commit": "734156dc73cccb9703067e6366f3d09266e090dd",
+              "line": 5,
+              "id": 43,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            },
+            {
+              "comment": "foo!",
+              "parent": None,
+              "notification": False,
+              "tree": None,
+              "filename": None,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1507728997",
+              "commit": None,
+              "line": None,
+              "id": 44,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            }
+          ],
+          "id": 35,
+          "project": {
+            "custom_keys": [
+              [
+                "Reviewed",
+                "boolean"
+              ],
+              [
+                "review status",
+                "list"
+              ]
+            ],
+            "name": "test",
+            "parent": None,
+            "date_modified": "1511180063",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": True,
+              "Web-hooks": "http://127.0.0.1:5005/",
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "pull_requests": True,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "access_users": {
+              "admin": [
+                "kparal"
+              ],
+              "commit": [],
+              "ticket": [],
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {
+              "": "",
+              "1": "High",
+              "0": "Urgent",
+              "3": "Low",
+              "2": "Normal",
+              "-1": "Sky falling"
+            },
+            "id": 1,
+            "access_groups": {
+              "admin": [
+                "provenpackager"
+              ],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {
+              "k\u00e4py": "",
+              "2": "",
+              "1.0.1": "",
+              "Caf\u00e9": ""
+            },
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1483532124",
+            "fullname": "test",
+            "url_path": "test",
+            "close_status": [
+              "Fixed",
+              "Invalid",
+              "Duplicate",
+              "Insufficient Data"
+            ],
+            "tags": [],
+            "description": "test project"
+          },
+          "commit_stop": "39ccbc360a3f30e7dc87c1f8fb138175e27a1e8f",
+          "repo_from": {
+            "custom_keys": [],
+            "name": "test",
+            "parent": {
+              "custom_keys": [
+                [
+                  "Reviewed",
+                  "boolean"
+                ],
+                [
+                  "review status",
+                  "list"
+                ]
+              ],
+              "name": "test",
+              "parent": None,
+              "date_modified": "1511180063",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": True,
+                "Web-hooks": "http://127.0.0.1:5005/",
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "pull_requests": True,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "access_users": {
+                "admin": [
+                  "kparal"
+                ],
+                "commit": [],
+                "ticket": [],
+                "owner": [
+                  "pingou"
+                ]
+              },
+              "namespace": None,
+              "priorities": {
+                "": "",
+                "1": "High",
+                "0": "Urgent",
+                "3": "Low",
+                "2": "Normal",
+                "-1": "Sky falling"
+              },
+              "id": 1,
+              "access_groups": {
+                "admin": [
+                  "provenpackager"
+                ],
+                "commit": [],
+                "ticket": []
+              },
+              "milestones": {
+                "k\u00e4py": "",
+                "2": "",
+                "1.0.1": "",
+                "Caf\u00e9": ""
+              },
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              },
+              "date_created": "1483532124",
+              "fullname": "test",
+              "url_path": "test",
+              "close_status": [
+                "Fixed",
+                "Invalid",
+                "Duplicate",
+                "Insufficient Data"
+              ],
+              "tags": [],
+              "description": "test project"
+            },
+            "date_modified": "1497361621",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": False,
+              "Web-hooks": None,
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": False,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "pull_requests": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": False
+            },
+            "access_users": {
+              "admin": [],
+              "commit": [],
+              "ticket": [],
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {},
+            "id": 45,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1497361621",
+            "fullname": "forks/pingou/test",
+            "url_path": "fork/pingou/test",
+            "close_status": [],
+            "tags": [],
+            "description": "test project"
+          },
+          "updated_on": "1497361679",
+          "assignee": None,
+          "commit_start": "9470011f46a3a3d4ea08873bc5373936a47cc7ee",
+          "branch": "master",
+          "date_created": "1497361679",
+          "remote_git": None,
+          "closed_at": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        }
+      }
+    }
+
+
+class TestPullRequestTagRemoved(Base):
+    """ These messages are published when someone adds one or more flags to
+    a pull-request of a project hosted on `pagure <https://pagure.io>`.
+    """
+    expected_title = "pagure.pull-request.tag.removed"
+    expected_subti = "pingou removed the easyfix tags from " + \
+        "pull-request test#35"
+    expected_link = "https://pagure.io/test/pull-request/35"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['pull-request/35', 'project/test'])
+    msg = {
+      "username": "pierrey",
+      "i": 2,
+      "timestamp": 1511781374,
+      "msg_id": "2017-d6885143-fd11-4966-9278-48cf97706180",
+      "topic": "io.pagure.dev.pagure.pull-request.tag.removed",
+      "msg": {
+        "project": {
+          "custom_keys": [
+            [
+              "Reviewed",
+              "boolean"
+            ],
+            [
+              "review status",
+              "list"
+            ]
+          ],
+          "name": "test",
+          "parent": None,
+          "date_modified": "1511180063",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": True,
+            "Web-hooks": "http://127.0.0.1:5005/",
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [
+              "kparal"
+            ],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {
+            "": "",
+            "1": "High",
+            "0": "Urgent",
+            "3": "Low",
+            "2": "Normal",
+            "-1": "Sky falling"
+          },
+          "id": 1,
+          "access_groups": {
+            "admin": [
+              "provenpackager"
+            ],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {
+            "k\u00e4py": "",
+            "2": "",
+            "1.0.1": "",
+            "Caf\u00e9": ""
+          },
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1483532124",
+          "fullname": "test",
+          "url_path": "test",
+          "close_status": [
+            "Fixed",
+            "Invalid",
+            "Duplicate",
+            "Insufficient Data"
+          ],
+          "tags": [],
+          "description": "test project"
+        },
+        "tags": [
+          "easyfix"
+        ],
+        "agent": "pingou",
+        "pull_request": {
+          "status": "Open",
+          "last_updated": "1511777292",
+          "branch_from": "another_branch",
+          "uid": "f2996c6121b644e3a44c838c51c7d21e",
+          "title": "Some more commits",
+          "initial_comment": None,
+          "comments": [
+            {
+              "comment": "rebased onto 9470011f46a3a3d4ea08873bc5373936a47cc7ee",
+              "parent": None,
+              "notification": True,
+              "tree": None,
+              "filename": None,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1507698376",
+              "commit": None,
+              "line": None,
+              "id": 42,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            },
+            {
+              "comment": "This is madness!",
+              "parent": None,
+              "notification": False,
+              "tree": "9f38e1c9ad5c4dd1a53abd14dd51832f8402080f",
+              "filename": "test",
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1507698412",
+              "commit": "734156dc73cccb9703067e6366f3d09266e090dd",
+              "line": 5,
+              "id": 43,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            },
+            {
+              "comment": "foo!",
+              "parent": None,
+              "notification": False,
+              "tree": None,
+              "filename": None,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1507728997",
+              "commit": None,
+              "line": None,
+              "id": 44,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            },
+            {
+              "comment": "**Metadata Update from @pingou**:\n- Pull-request tagged with: blue, green",
+              "parent": None,
+              "notification": True,
+              "tree": None,
+              "filename": None,
+              "edited_on": None,
+              "editor": None,
+              "date_created": "1511777292",
+              "commit": None,
+              "line": None,
+              "id": 50,
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              }
+            }
+          ],
+          "id": 35,
+          "project": {
+            "custom_keys": [
+              [
+                "Reviewed",
+                "boolean"
+              ],
+              [
+                "review status",
+                "list"
+              ]
+            ],
+            "name": "test",
+            "parent": None,
+            "date_modified": "1511180063",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": True,
+              "Web-hooks": "http://127.0.0.1:5005/",
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "pull_requests": True,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "access_users": {
+              "admin": [
+                "kparal"
+              ],
+              "commit": [],
+              "ticket": [],
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {
+              "": "",
+              "1": "High",
+              "0": "Urgent",
+              "3": "Low",
+              "2": "Normal",
+              "-1": "Sky falling"
+            },
+            "id": 1,
+            "access_groups": {
+              "admin": [
+                "provenpackager"
+              ],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {
+              "k\u00e4py": "",
+              "2": "",
+              "1.0.1": "",
+              "Caf\u00e9": ""
+            },
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1483532124",
+            "fullname": "test",
+            "url_path": "test",
+            "close_status": [
+              "Fixed",
+              "Invalid",
+              "Duplicate",
+              "Insufficient Data"
+            ],
+            "tags": [],
+            "description": "test project"
+          },
+          "commit_stop": "39ccbc360a3f30e7dc87c1f8fb138175e27a1e8f",
+          "repo_from": {
+            "custom_keys": [],
+            "name": "test",
+            "parent": {
+              "custom_keys": [
+                [
+                  "Reviewed",
+                  "boolean"
+                ],
+                [
+                  "review status",
+                  "list"
+                ]
+              ],
+              "name": "test",
+              "parent": None,
+              "date_modified": "1511180063",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": True,
+                "Web-hooks": "http://127.0.0.1:5005/",
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "pull_requests": True,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "access_users": {
+                "admin": [
+                  "kparal"
+                ],
+                "commit": [],
+                "ticket": [],
+                "owner": [
+                  "pingou"
+                ]
+              },
+              "namespace": None,
+              "priorities": {
+                "": "",
+                "1": "High",
+                "0": "Urgent",
+                "3": "Low",
+                "2": "Normal",
+                "-1": "Sky falling"
+              },
+              "id": 1,
+              "access_groups": {
+                "admin": [
+                  "provenpackager"
+                ],
+                "commit": [],
+                "ticket": []
+              },
+              "milestones": {
+                "k\u00e4py": "",
+                "2": "",
+                "1.0.1": "",
+                "Caf\u00e9": ""
+              },
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              },
+              "date_created": "1483532124",
+              "fullname": "test",
+              "url_path": "test",
+              "close_status": [
+                "Fixed",
+                "Invalid",
+                "Duplicate",
+                "Insufficient Data"
+              ],
+              "tags": [],
+              "description": "test project"
+            },
+            "date_modified": "1497361621",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": False,
+              "Web-hooks": None,
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": False,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "pull_requests": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": False
+            },
+            "access_users": {
+              "admin": [],
+              "commit": [],
+              "ticket": [],
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {},
+            "id": 45,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1497361621",
+            "fullname": "forks/pingou/test",
+            "url_path": "fork/pingou/test",
+            "close_status": [],
+            "tags": [],
+            "description": "test project"
+          },
+          "updated_on": "1497361679",
+          "assignee": None,
+          "commit_start": "9470011f46a3a3d4ea08873bc5373936a47cc7ee",
+          "branch": "master",
+          "date_created": "1497361679",
+          "remote_git": None,
+          "closed_at": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        }
+      }
+    }
+
+
+class TestProjectUserRemoved(Base):
+    """ These messages are published when a someone gave some rights on a
+    project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.project.user.removed"
+    expected_subti = 'pingou removed "ralph" from the project pingoutest'
+    expected_link = "https://pagure.io/pingoutest"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pingoutest'])
+    msg = {
+      "i": 2,
+      "timestamp": 1512574999,
+      "msg_id": "2017-d45576b4-8201-45d6-b498-5019312310c1",
+      "topic": "io.pagure.dev.pagure.project.user.removed",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "name": "pingoutest",
+          "parent": None,
+          "date_modified": "1512571393",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": False,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": False,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "access_users": {
+            "admin": [],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "priorities": {},
+          "id": 103,
+          "access_groups": {
+            "admin": [],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {},
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1504684095",
+          "fullname": "pingoutest",
+          "url_path": "pingoutest",
+          "close_status": [],
+          "tags": [],
+          "description": "bar"
+        },
+        "removed_user": "ralph",
+        "agent": "pingou"
+      }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
