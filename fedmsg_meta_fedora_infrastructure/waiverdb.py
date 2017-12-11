@@ -28,7 +28,7 @@ class WaiverDBProcessor(BaseProcessor):
     __docs__ = ("https://fedoraproject.org/wiki/Infrastructure/"
                 "Factory2/Focus/WaiverDB")
     __obj__ = "New result waivers"
-    __icon__ = "https://apps.fedoraproject.org/img/icons/taskotron.png"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/waiverdb.png"
 
     def subtitle(self, msg, **config):
         tmpl = self._('{username} waived result {result_id} '

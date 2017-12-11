@@ -41,7 +41,7 @@ class TestNewWaiver(Base):
     expected_link = (
         'https://waiverdb-web-waiverdb.app.os.fedoraproject.org/'
         'api/v1.0/waivers/8')
-    expected_icon = 'https://apps.fedoraproject.org/img/icons/taskotron.png'
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/waiverdb.png'
     expected_secondary_icon = (
         'https://seccdn.libravatar.org/avatar/'
         '9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c'
