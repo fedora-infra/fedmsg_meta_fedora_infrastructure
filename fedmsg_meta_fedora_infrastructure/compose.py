@@ -27,88 +27,125 @@ class ComposeProcessor(BaseProcessor):
     __docs__ = "https://pagure.io/docs/releng"
     __obj__ = "Composes"
 
+    # dicts mapping topic substrings to subtitle event texts
+    # These are the old 'make-updates' topics
+    makeupevents = {
+        '.make-updates.':       "",
+        '.cloudimg-build.':     " building images for",
+        '.mash-atomic':         " Atomic updates mash for",
+        '.atomic-lorax':        " Atomic lorax run for",
+        '.cloudimg-checksum.':  " image checksum generation for",
+        '.cloudimg-staging.':   " master mirror publication for",
+    }
+    # as these events only existed prior to pungi 4 and the creation
+    # of different 'dists', we can always treat the shortname / dist
+    # as 'Fedora' for these
+    oldevents = {
+        '.mash.':               " mashing",
+        '.pungify.':            " building boot.iso for",
+        '.image.':              " building other images for",
+    }
+    oldevents.update(makeupevents)
+    # These ones existed after pungi 4, so we cannot make inferences
+    # about the dist / shortname; bare 'start' and 'complete' are
+    # implicitly in this set too
+    events = {
+        '.rsync.':              " master mirror publication for",
+    }
+    allevents = dict()
+    allevents.update(oldevents)
+    allevents.update(events)
+
     def subtitle(self, msg, **config):
 
+        # decide what event we're dealing with
+        gotevent = False
+        for event in self.allevents:
+            if event in msg['topic']:
+                gotevent = True
+                evtext = self.allevents[event]
+                # allow definition of event to leak
+                break
+        if not gotevent:
+            # assume this is an overall compose start/done event
+            event = 'compose'
+            evtext = ''
+
+        # discover the release number, if we can
+        release = "(unknown release)"
         try:
-            branch = msg['msg']['branch']
+            # 'branch' key is usually the release identifier (number or
+            # 'rawhide' or 'bikeshed'), but for a while for modular
+            # composes it was 'Modular-(release)', so handle that
+            release = msg['msg']['branch'].split('Modular-')[-1].capitalize()
         except KeyError:
             # Some old messages in datanommer don't have that branch field,
             # so we have to extract it from the topic.
-            branch = msg['topic'].split('.')[-3]
-            if branch == 'compose':
-                branch = msg['topic'].split('.')[-2]
+            comps = msg['topic'].split('.')
+            if 'rawhide' in comps:
+                release = "Rawhide"
+            elif 'epelbeta' in comps:
+                release = "EPEL Beta"
+            else:
+                # I'm not sure this is ever actually the case - a message with
+                # a release number in the topic, but no 'branch' key - but
+                # just in case, let's handle it
+                for comp in comps:
+                    if len(comp) == 2 and comp.isdigit():
+                        release = comp
+                        break
 
+        # for old secondary arches, discover the arch and pad it
         arch = msg['msg'].get('arch', '')
         arch = arch and ' (%s)' % arch
 
-        if msg['topic'].endswith('.rsync.start'):
-            tmpl = self._(
-                "started rsyncing {branch} compose{arch}")
-        elif msg['topic'].endswith('.rsync.complete'):
-            tmpl = self._(
-                "finished rsync of {branch} compose{arch}")
-        elif msg['topic'].endswith('.mash.start'):
-            tmpl = self._(
-                "{branch} compose{arch} started mashing")
-        elif msg['topic'].endswith('.mash.complete'):
-            tmpl = self._(
-                "{branch} compose{arch} finished mashing")
-        elif msg['topic'].endswith('.pungify.start'):
-            tmpl = self._(
-                "started building boot.iso for {branch}{arch}")
-        elif msg['topic'].endswith('.pungify.complete'):
-            tmpl = self._(
-                "finished building boot.iso for {branch}{arch}")
-
-        elif msg['topic'].endswith('make-updates.start'):
-            tmpl = self._("started a run of F{branch} make-updates")
-        elif msg['topic'].endswith('make-updates.start'):
-            tmpl = self._("finished a run of F{branch} make-updates")
-
-        elif msg['topic'].endswith('cloudimg-build.start'):
-            tmpl = self._("started the cloudimg-build phase of "
-                          "a F{branch} make-updates run")
-        elif msg['topic'].endswith('cloudimg-build.done'):
-            tmpl = self._("the cloudimg-build phase of "
-                          "a F{branch} make-updates run completed")
-
-        elif msg['topic'].endswith('mash-atomic.start'):
-            tmpl = self._("started the mash-atomic phase of "
-                          "a F{branch} make-updates run")
-        elif msg['topic'].endswith('mash-atomic.stop'):  # yes, stop, not done.
-            tmpl = self._("the mash-atomic phase of "
-                          "a F{branch} make-updates run completed")
-
-        elif msg['topic'].endswith('atomic-lorax.start'):
-            tmpl = self._("started the atomic-lorax phase of "
-                          "a F{branch} make-updates run")
-        elif msg['topic'].endswith('atomic-lorax.done'):
-            tmpl = self._("the atomic-lorax phase of "
-                          "a F{branch} make-updates run completed")
-
-        elif msg['topic'].endswith('cloudimg-checksum.start'):
-            tmpl = self._("started the cloudimg-checksum phase of "
-                          "a F{branch} make-updates run")
-        elif msg['topic'].endswith('cloudimg-checksum.done'):
-            tmpl = self._("the cloudimg-checksum phase of "
-                          "a F{branch} make-updates run completed")
-
-        elif msg['topic'].endswith('cloudimg-staging.start'):
-            tmpl = self._("started the cloudimg-staging phase of "
-                          "a F{branch} make-updates run")
-        elif msg['topic'].endswith('cloudimg-staging.done'):
-            tmpl = self._("the cloudimg-staging phase of "
-                          "a F{branch} make-updates run completed")
-
-        elif msg['topic'].endswith('.start'):
-            tmpl = self._("{branch} compose{arch} started")
-        elif msg['topic'].endswith('.complete'):
-            tmpl = self._("{branch} compose{arch} completed")
-
+        # set up compose ID text, if we have one
+        if event in self.makeupevents:
+            comptext = "post-release Cloud/Atomic/Docker respin compose"
         else:
-            tmpl = self._("(unhandled releng compose message)")
+            comptext = "compose"
+        cid = msg['msg'].get('compose_id', '')
+        if cid:
+            comptext += " %s" % cid
 
-        return tmpl.format(branch=branch, arch=arch)
+        # Try to figure out the 'shortname', if we can, which differentiates
+        # various types of compose
+        try:
+            short = msg['msg']['short']
+        except KeyError:
+            # default value
+            short = 'Fedora'
+            # this identifies modular composes before we added 'short' key
+            if 'modular' in msg['msg'].get('branch', '').lower():
+                short = 'Fedora-Modular'
+            # these are known ambiguous: these messages could be for a
+            # branched compose (Fedora), or a post-release Fedora-Atomic,
+            # Fedora-Cloud or Fedora-Docker respin. If the message has a
+            # compose_id but not a short, it must be for Fedora (we fixed
+            # inclusion of compose_id for the other shortnames at the
+            # same time we added the short key). If the message has an
+            # arch it must be for Fedora (separate secondary arch composes
+            # went away with the Pungi 4 migration which added shortnames).
+            # 'branched' messages must be for Fedora as we switched to
+            # numeric topics with the Pungi 4 migration.
+            if release.isdigit() and event not in self.oldevents:
+                if 'compose_id' not in msg['msg'] and not arch and 'branched' not in msg['topic']:
+                    short = 'Fedora, Fedora-Atomic, Fedora-Cloud or Fedora-Docker'
+
+        # Set the 'action' text; note we do not use the 'log' value
+        # here because it's sometimes a lie, e.g. mash-atomic.stop
+        # messages have their 'log' value as 'start'
+        action = 'Did something to do with'
+        actsplit = msg['topic'].split('.')[-1]
+        if actsplit == 'start':
+            action = 'Started'
+        elif actsplit in ('complete', 'done', 'stop'):
+            action = 'Completed'
+
+        # Finally, construct the message
+        tmpl = "{action}{evtext} {short} {release}{arch} {comptext}"
+        return tmpl.format(action=action, evtext=evtext, short=short, release=release,
+                           arch=arch, comptext=comptext)
 
     def link(self, msg, **config):
         branch = msg['msg'].get('branch', 'not-a-number')
