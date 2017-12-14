@@ -120,6 +120,7 @@ entry_points = {
         "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
         "ci=fedmsg_meta_fedora_infrastructure.centos_ci:CentosCiProcessor",
         "waiverdb=fedmsg_meta_fedora_infrastructure.waiverdb:WaiverDBProcessor",
+        "gw=fedmsg_meta_fedora_infrastructure.greenwave:GreenwaveProcessor",
     ]
 }
 
