@@ -34,7 +34,7 @@ class TestLegacyPreArchComposeBranchedComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.complete"
-    expected_subti = "18 compose completed"
+    expected_subti = "Completed Fedora 18 compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
     expected_objects = set(['branched/primary'])
@@ -57,7 +57,7 @@ class TestLegacyPreArchComposeBranchedStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.start"
-    expected_subti = "18 compose started"
+    expected_subti = "Started Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -78,7 +78,7 @@ class TestLegacyPreArchComposeBranchedMashStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.mash.start"
-    expected_subti = "18 compose started mashing"
+    expected_subti = "Started mashing Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -99,7 +99,7 @@ class TestLegacyPreArchComposeBranchedMashComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.mash.complete"
-    expected_subti = "18 compose finished mashing"
+    expected_subti = "Completed mashing Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -120,7 +120,7 @@ class TestLegacyPreArchComposeBranchedPungifyStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.pungify.start"
-    expected_subti = "started building boot.iso for 18"
+    expected_subti = "Started building boot.iso for Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -141,7 +141,7 @@ class TestLegacyPreArchComposeBranchedPungifyComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.pungify.complete"
-    expected_subti = "finished building boot.iso for 18"
+    expected_subti = "Completed building boot.iso for Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -162,7 +162,7 @@ class TestLegacyPreArchComposeBranchedRsyncStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.branched.rsync.start"
-    expected_subti = "started rsyncing 18 compose"
+    expected_subti = "Started master mirror publication for Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -184,7 +184,7 @@ class TestLegacyPreArchComposeBranchedRsyncComplete(Base):
     """
     expected_title = "compose.branched.rsync.complete"
     expected_subti = \
-        "finished rsync of 18 compose"
+        "Completed master mirror publication for Fedora 18 compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
     expected_objects = set(['branched/primary'])
@@ -209,7 +209,7 @@ class TestLegacyPreArchComposeRawhideComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "rawhide compose completed"
+    expected_subti = "Completed Fedora Rawhide compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
@@ -232,7 +232,7 @@ class TestLegacyPreArchComposeRawhideStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.start"
-    expected_subti = "rawhide compose started"
+    expected_subti = "Started Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -253,7 +253,7 @@ class TestLegacyPreArchComposeRawhideMashStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.mash.start"
-    expected_subti = "rawhide compose started mashing"
+    expected_subti = "Started mashing Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -274,7 +274,7 @@ class TestLegacyPreArchComposeRawhideMashComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.mash.complete"
-    expected_subti = "rawhide compose finished mashing"
+    expected_subti = "Completed mashing Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -295,7 +295,7 @@ class TestLegacyPreArchComposeRawhideRsyncStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.rsync.start"
-    expected_subti = "started rsyncing rawhide compose"
+    expected_subti = "Started master mirror publication for Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -316,7 +316,7 @@ class TestLegacyPreArchComposeRawhideRsyncComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.rsync.complete"
-    expected_subti = "finished rsync of rawhide compose"
+    expected_subti = "Completed master mirror publication for Fedora Rawhide compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
@@ -338,7 +338,7 @@ class TestLegacyPreShortComposeRawhideStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.start"
-    expected_subti = "rawhide compose started"
+    expected_subti = "Started Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -360,7 +360,7 @@ class TestLegacyPreCidComposeRawhideRsyncStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.rsync.start"
-    expected_subti = "started rsyncing rawhide compose"
+    expected_subti = "Started master mirror publication for Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -382,7 +382,7 @@ class TestLegacyPreCidComposeRawhideRsyncComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.rsync.complete"
-    expected_subti = "finished rsync of rawhide compose"
+    expected_subti = "Completed master mirror publication for Fedora Rawhide compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
@@ -406,7 +406,7 @@ class TestLegacyPreCidComposeRawhideComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "rawhide compose completed"
+    expected_subti = "Completed Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -430,7 +430,7 @@ class TestLegacyPreShortComposeRawhideRsyncStart(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.rsync.start"
-    expected_subti = "started rsyncing rawhide compose"
+    expected_subti = "Started master mirror publication for Fedora Rawhide compose Fedora-Rawhide-20171204.n.0"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -453,7 +453,8 @@ class TestLegacyPreShortComposeRawhideRsyncComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.rsync.complete"
-    expected_subti = "finished rsync of rawhide compose"
+    expected_subti = ("Completed master mirror publication for Fedora Rawhide compose "
+                      "Fedora-Rawhide-20171203.n.0")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
@@ -478,7 +479,7 @@ class TestLegacyPreShortComposeRawhideComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "rawhide compose completed"
+    expected_subti = "Completed Fedora Rawhide compose Fedora-Rawhide-20171204.n.0"
     expected_objects = set(['rawhide/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -503,7 +504,7 @@ class TestLegacyModularComposeRawhideComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "Modular-Rawhide compose completed"
+    expected_subti = "Completed Fedora-Modular Rawhide compose Fedora-Modular-Rawhide-20170821.n.0"
     expected_objects = set(['rawhide/primary'])
     expected_link = \
         "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-Rawhide-20170821.n.0"
@@ -534,7 +535,7 @@ class TestSecondaryArchComposeBranchedComplete(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.complete"
-    expected_subti = "18 compose (arm) completed"
+    expected_subti = "Completed Fedora 18 (arm) compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/18"
@@ -562,7 +563,7 @@ class TestSecondaryArchComposeBranchedStart(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.start"
-    expected_subti = "18 compose (arm) started"
+    expected_subti = "Started Fedora 18 (arm) compose"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -587,7 +588,7 @@ class TestSecondaryArchComposeBranchedMashStart(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.mash.start"
-    expected_subti = "18 compose (arm) started mashing"
+    expected_subti = "Started mashing Fedora 18 (arm) compose"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -612,7 +613,7 @@ class TestSecondaryArchComposeBranchedMashComplete(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.mash.complete"
-    expected_subti = "18 compose (arm) finished mashing"
+    expected_subti = "Completed mashing Fedora 18 (arm) compose"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -637,7 +638,7 @@ class TestSecondaryArchComposeBranchedPungifyStart(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.pungify.start"
-    expected_subti = "started building boot.iso for 18 (arm)"
+    expected_subti = "Started building boot.iso for Fedora 18 (arm) compose"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -662,12 +663,62 @@ class TestSecondaryArchComposeBranchedPungifyComplete(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.pungify.complete"
-    expected_subti = "finished building boot.iso for 18 (arm)"
+    expected_subti = "Completed building boot.iso for Fedora 18 (arm) compose"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.complete",
+        "msg": {
+            "log": "done",
+            "branch": "18",
+            "arch": "arm",
+        },
+    }
+
+
+class TestSecondaryArchComposeBranchedImageStart(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they had
+    **started building live, cloud and disk images for**
+    a secondary arch compose for a Branched release. Since the Pungi 4
+    migration, all arches are included in the same compose process.
+    """
+    # no need to include both this and the primary arch test in the docs
+    nodoc = True
+    expected_title = "compose.branched.image.start"
+    expected_subti = "Started building other images for Fedora 18 (arm) compose"
+    expected_objects = set(['branched/arm'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.branched.image.start",
+        "msg": {
+            "log": "start",
+            "branch": "18",
+            "arch": "arm",
+        },
+    }
+
+
+class TestSecondaryArchComposeBranchedImageComplete(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they had
+    **finished building live, cloud and disk images for**
+    a secondary arch compose for a Branched release. Since the Pungi 4
+    migration, all arches are included in the same compose process.
+    """
+    # no need to include both this and the primary arch test in the docs
+    nodoc = True
+    expected_title = "compose.branched.image.complete"
+    expected_subti = "Completed building other images for Fedora 18 (arm) compose"
+    expected_objects = set(['branched/arm'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.branched.image.complete",
         "msg": {
             "log": "done",
             "branch": "18",
@@ -687,7 +738,7 @@ class TestSecondaryArchComposeBranchedRsyncStart(Base):
     # no need to include both this and the primary arch test in the docs
     nodoc = True
     expected_title = "compose.branched.rsync.start"
-    expected_subti = "started rsyncing 18 compose (arm)"
+    expected_subti = "Started master mirror publication for Fedora 18 (arm) compose"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -713,7 +764,7 @@ class TestSecondaryArchComposeBranchedRsyncComplete(Base):
     nodoc = True
     expected_title = "compose.branched.rsync.complete"
     expected_subti = \
-        "finished rsync of 18 compose (arm)"
+        "Completed master mirror publication for Fedora 18 (arm) compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/18"
@@ -741,7 +792,7 @@ class TestLegacySecondaryArchComposeRawhideComplete(Base):
     migration, all arches are included in the same compose process.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "rawhide compose (arm) completed"
+    expected_subti = "Completed Fedora Rawhide (arm) compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/rawhide"
@@ -767,7 +818,7 @@ class TestLegacySecondaryArchComposeRawhideStart(Base):
     migration, all arches are included in the same compose process.
     """
     expected_title = "compose.rawhide.start"
-    expected_subti = "rawhide compose (arm) started"
+    expected_subti = "Started Fedora Rawhide (arm) compose"
     expected_objects = set(['rawhide/arm'])
     msg = {
         "i": 1,
@@ -790,7 +841,7 @@ class TestLegacySecondaryArchComposeRawhideMashStart(Base):
     migration, all arches are included in the same compose process.
     """
     expected_title = "compose.rawhide.mash.start"
-    expected_subti = "rawhide compose (arm) started mashing"
+    expected_subti = "Started mashing Fedora Rawhide (arm) compose"
     expected_objects = set(['rawhide/arm'])
     msg = {
         "i": 1,
@@ -813,7 +864,7 @@ class TestLegacySecondaryArchComposeRawhideMashComplete(Base):
     migration, all arches are included in the same compose process.
     """
     expected_title = "compose.rawhide.mash.complete"
-    expected_subti = "rawhide compose (arm) finished mashing"
+    expected_subti = "Completed mashing Fedora Rawhide (arm) compose"
     expected_objects = set(['rawhide/arm'])
     msg = {
         "i": 1,
@@ -836,7 +887,7 @@ class TestLegacySecondaryArchComposeRawhideRsyncStart(Base):
     migration, all arches are included in the same compose process.
     """
     expected_title = "compose.rawhide.rsync.start"
-    expected_subti = "started rsyncing rawhide compose (arm)"
+    expected_subti = "Started master mirror publication for Fedora Rawhide (arm) compose"
     expected_objects = set(['rawhide/arm'])
     msg = {
         "i": 1,
@@ -860,7 +911,7 @@ class TestLegacySecondaryArchComposeRawhideRsyncComplete(Base):
     """
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = \
-        "finished rsync of rawhide compose (arm)"
+        "Completed master mirror publication for Fedora Rawhide (arm) compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
         "development/rawhide"
@@ -892,7 +943,7 @@ class TestComposeBranchedComplete(Base):
     'compose.27.complete').
     """
     expected_title = "compose.branched.complete"
-    expected_subti = "18 compose completed"
+    expected_subti = "Completed Fedora 18 compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
     expected_objects = set(['branched/primary'])
@@ -921,7 +972,7 @@ class TestComposeBranchedStart(Base):
     'compose.27.start').
     """
     expected_title = "compose.branched.start"
-    expected_subti = "18 compose started"
+    expected_subti = "Started Fedora 18 compose"
     expected_link = "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
     expected_objects = set(['branched/primary'])
     msg = {
@@ -948,7 +999,7 @@ class TestComposeBranchedMashStart(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.branched.mash.start"
-    expected_subti = "18 compose started mashing"
+    expected_subti = "Started mashing Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -974,7 +1025,7 @@ class TestComposeBranchedMashComplete(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.branched.mash.complete"
-    expected_subti = "18 compose finished mashing"
+    expected_subti = "Completed mashing Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -992,7 +1043,7 @@ class TestComposeBranchedPungifyStart(Base):
     """ The `release engineering
     <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     used to produce these messages when they
-    **started to pungify**
+    **started creating a boot.iso for**
     whatever the current branched distribution version was. They were published
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary). Messages
@@ -1000,7 +1051,7 @@ class TestComposeBranchedPungifyStart(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.branched.pungify.start"
-    expected_subti = "started building boot.iso for 18"
+    expected_subti = "Started building boot.iso for Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -1018,7 +1069,7 @@ class TestComposeBranchedPungifyComplete(Base):
     """ The `release engineering
     <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
     used to produce these messages when they
-    **finished pungifying**
+    **finished creating a boot.iso for**
     whatever the current branched distribution version was. They were published
     for both primary and secondary architectures.  The example here is of a
     **primary** arch message (the empty string signifies primary). Messages
@@ -1026,12 +1077,64 @@ class TestComposeBranchedPungifyComplete(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.branched.pungify.complete"
-    expected_subti = "finished building boot.iso for 18"
+    expected_subti = "Completed building boot.iso for Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.branched.pungify.complete",
+        "msg": {
+            "log": "done",
+            "branch": "18",
+            "arch": "",
+        },
+    }
+
+
+class TestComposeBranchedImageStart(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they
+    **started building live, cloud and disk images for**
+    whatever the current branched distribution version was. They were published
+    for both primary and secondary architectures.  The example here is of a
+    **primary** arch message (the empty string signifies primary). Messages
+    with this topic are not currently published, and there are no image build
+    messages published by the current compose process.
+    """
+    expected_title = "compose.branched.image.start"
+    expected_subti = "Started building other images for Fedora 18 compose"
+    expected_objects = set(['branched/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.branched.image.start",
+        "msg": {
+            "log": "start",
+            "branch": "18",
+            "arch": "",
+        },
+    }
+
+
+class TestComposeBranchedImageComplete(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they
+    **finished building live, cloud and disk images for**
+    whatever the current branched distribution version was. They were published
+    for both primary and secondary architectures.  The example here is of a
+    **primary** arch message (the empty string signifies primary). Messages
+    with this topic are not currently published, and there are no image build
+    messages published by the current compose process.
+    """
+    expected_title = "compose.branched.image.complete"
+    expected_subti = "Completed building other images for Fedora 18 compose"
+    expected_objects = set(['branched/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.branched.image.complete",
         "msg": {
             "log": "done",
             "branch": "18",
@@ -1053,7 +1156,7 @@ class TestComposeBranchedRsyncStart(Base):
     'compose.27.rsync.start').
     """
     expected_title = "compose.branched.rsync.start"
-    expected_subti = "started rsyncing 18 compose"
+    expected_subti = "Started master mirror publication for Fedora 18 compose"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -1081,7 +1184,7 @@ class TestComposeBranchedRsyncComplete(Base):
     """
     expected_title = "compose.branched.rsync.complete"
     expected_subti = \
-        "finished rsync of 18 compose"
+        "Completed master mirror publication for Fedora 18 compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
     expected_objects = set(['branched/primary'])
@@ -1111,7 +1214,7 @@ class TestComposeRawhideMashStart(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.rawhide.mash.start"
-    expected_subti = "rawhide compose started mashing"
+    expected_subti = "Started mashing Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -1137,7 +1240,7 @@ class TestComposeRawhideMashComplete(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.rawhide.mash.complete"
-    expected_subti = "rawhide compose finished mashing"
+    expected_subti = "Completed mashing Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -1163,7 +1266,7 @@ class TestComposeRawhidePungifyStart(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.rawhide.pungify.start"
-    expected_subti = "started building boot.iso for rawhide"
+    expected_subti = "Started building boot.iso for Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -1189,12 +1292,64 @@ class TestComposeRawhidePungifyComplete(Base):
     messages published by the current compose process.
     """
     expected_title = "compose.rawhide.pungify.complete"
-    expected_subti = "finished building boot.iso for rawhide"
+    expected_subti = "Completed building boot.iso for Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
         "topic": "org.fedoraproject.prod.compose.rawhide.pungify.complete",
+        "msg": {
+            "log": "done",
+            "branch": "rawhide",
+            "arch": "",
+        },
+    }
+
+
+class TestComposeRawhideImageStart(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they
+    **started building live, cloud and disk images for**
+    for the rawhide compose. They were published
+    for both primary and secondary architectures.  The example here is of a
+    **primary** arch message (the empty string signifies primary). Messages
+    with this topic are not currently published, and there are no image build
+    messages published by the current compose process.
+    """
+    expected_title = "compose.rawhide.image.start"
+    expected_subti = "Started building other images for Fedora Rawhide compose"
+    expected_objects = set(['rawhide/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.rawhide.image.start",
+        "msg": {
+            "log": "start",
+            "branch": "rawhide",
+            "arch": "",
+        },
+    }
+
+
+class TestComposeRawhideImageComplete(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they
+    **finished building live, cloud and disk images for**
+    for the rawhide compose. They were published
+    for both primary and secondary architectures.  The example here is of a
+    **primary** arch message (the empty string signifies primary). Messages
+    with this topic are not currently published, and there are no image build
+    messages published by the current compose process.
+    """
+    expected_title = "compose.rawhide.image.complete"
+    expected_subti = "Completed building other images for Fedora Rawhide compose"
+    expected_objects = set(['rawhide/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.rawhide.image.complete",
         "msg": {
             "log": "done",
             "branch": "rawhide",
@@ -1211,7 +1366,7 @@ class TestComposeRawhideStart(Base):
     produce these messages when they have **started** the rawhide compose.
     """
     expected_title = "compose.rawhide.start"
-    expected_subti = "rawhide compose started"
+    expected_subti = "Started Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -1221,7 +1376,6 @@ class TestComposeRawhideStart(Base):
             "log": "start",
             "branch": "rawhide",
             "arch": "",
-            "compose_id": "Fedora-Rawhide-20171215.n.0",
             "short": "Fedora",
         },
     }
@@ -1234,7 +1388,8 @@ class TestComposeRawhideRsyncStart(Base):
     a completed rawhide compose.
     """
     expected_title = "compose.rawhide.rsync.start"
-    expected_subti = "started rsyncing rawhide compose"
+    expected_subti = \
+        "Started master mirror publication for Fedora Rawhide compose Fedora-Rawhide-20171215.n.0"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -1257,7 +1412,8 @@ class TestComposeRawhideRsyncComplete(Base):
     a completed rawhide compose.
     """
     expected_title = "compose.rawhide.rsync.complete"
-    expected_subti = "finished rsync of rawhide compose"
+    expected_subti = ("Completed master mirror publication for Fedora Rawhide compose "
+                      "Fedora-Rawhide-20171215.n.0")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
@@ -1282,7 +1438,7 @@ class TestComposeRawhideComplete(Base):
     a rawhide compose.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "rawhide compose completed"
+    expected_subti = "Completed Fedora Rawhide compose Fedora-Rawhide-20171215.n.0"
     expected_objects = set(['rawhide/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -1309,7 +1465,7 @@ class TestComposeBikeshedStart(Base):
     (basically like a Rawhide compose, but for modular).
     """
     expected_title = "compose.bikeshed.start"
-    expected_subti = "bikeshed compose started"
+    expected_subti = "Started Fedora-Modular Bikeshed compose"
     expected_objects = set(['bikeshed/primary'])
     msg = {
         "i": 1,
@@ -1332,7 +1488,8 @@ class TestComposeBikeshedComplete(Base):
     (basically like a Rawhide compose, but for modular).
     """
     expected_title = "compose.bikeshed.complete"
-    expected_subti = "bikeshed compose completed"
+    expected_subti = \
+        "Completed Fedora-Modular Bikeshed compose Fedora-Modular-Bikeshed-20171208.n.0"
     expected_objects = set(['bikeshed/primary'])
     msg = {
         "i": 1,
@@ -1360,7 +1517,7 @@ class TestLegacyPre201712ComposeBikeshedComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.bikeshed.complete"
-    expected_subti = "Modular-Bikeshed compose completed"
+    expected_subti = "Completed Fedora-Modular Bikeshed compose"
     expected_objects = set(['bikeshed/primary'])
     msg = {
         "i": 1,
@@ -1388,7 +1545,7 @@ class TestComposeNumericStart(Base):
     based on the release, this one is only an example.
     """
     expected_title = "compose.28.start"
-    expected_subti = "28 compose started"
+    expected_subti = "Started Fedora 28 compose"
     expected_objects = set(['28/primary'])
     msg = {
         "i": 1,
@@ -1398,7 +1555,6 @@ class TestComposeNumericStart(Base):
             "log": "start",
             "branch": "28",
             "arch": "",
-            "compose_id": "Fedora-28-20171215.n.0",
             "short": "Fedora",
         },
     }
@@ -1414,7 +1570,8 @@ class TestComposeNumericRsyncStart(Base):
     based on the release, this one is only an example.
     """
     expected_title = "compose.28.rsync.start"
-    expected_subti = "started rsyncing 28 compose"
+    expected_subti = ("Started master mirror publication for Fedora-Atomic 28 compose "
+                      "Fedora-Atomic-28-20171215.n.0")
     expected_objects = set(['28/primary'])
     msg = {
         "i": 1,
@@ -1440,7 +1597,8 @@ class TestComposeNumericRsyncComplete(Base):
     based on the release, this one is only an example.
     """
     expected_title = "compose.28.rsync.complete"
-    expected_subti = "finished rsync of 28 compose"
+    expected_subti = ("Completed master mirror publication for Fedora-Cloud 28 compose "
+                      "Fedora-Cloud-28-20171215.n.0")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/28"
     expected_objects = set(['28/primary'])
@@ -1468,7 +1626,7 @@ class TestComposeNumericComplete(Base):
     based on the release, this one is only an example.
     """
     expected_title = "compose.28.complete"
-    expected_subti = "28 compose completed"
+    expected_subti = "Completed Fedora-Docker 28 compose Fedora-Docker-28-20171215.n.0"
     expected_objects = set(['28/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/28"
@@ -1498,7 +1656,7 @@ class TestComposeNumericModularComplete(Base):
     # no need to doc this, previous class is the doc
     nodoc = True
     expected_title = "compose.28.complete"
-    expected_subti = "28 compose completed"
+    expected_subti = "Completed Fedora-Modular 28 compose Fedora-Modular-28-20171215.n.0"
     expected_objects = set(['28/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/28"
@@ -1531,7 +1689,7 @@ class TestLegacyPre201712ComposeNumericComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.23.complete"
-    expected_subti = "23 compose completed"
+    expected_subti = "Completed Fedora, Fedora-Atomic, Fedora-Cloud or Fedora-Docker 23 compose"
     expected_objects = set(['23/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
@@ -1563,7 +1721,7 @@ class TestLegacyPre201712ComposeNumericModularComplete(Base):
     stored, forever, in datanommer.
     """
     expected_title = "compose.27.complete"
-    expected_subti = "Modular-27 compose completed"
+    expected_subti = "Completed Fedora-Modular 27 compose Fedora-Modular-27-20171123.n.1"
     expected_objects = set(['27/primary'])
     expected_link = \
         "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-27-20171123.n.1"
@@ -1596,7 +1754,7 @@ class TestComposeMakeUpdatesStarted(Base):
     """
     expected_title = "compose.23.make-updates.start"
     expected_subti = \
-        "started a run of F23 make-updates"
+        "Started Fedora 23 post-release Cloud/Atomic/Docker respin compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
     expected_objects = set(['23/primary'])
@@ -1625,7 +1783,7 @@ class TestComposeCloudImgBuildComplete(Base):
     """
     expected_title = "compose.23.cloudimg-build.done"
     expected_subti = \
-        "the cloudimg-build phase of a F23 make-updates run completed"
+        "Completed building images for Fedora 23 post-release Cloud/Atomic/Docker respin compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
     expected_objects = set(['23/primary'])
@@ -1654,8 +1812,8 @@ class TestComposeMashAtomicComplete(Base):
     """
     # yes, 'stop'
     expected_title = "compose.23.mash-atomic.stop"
-    expected_subti = \
-        "the mash-atomic phase of a F23 make-updates run completed"
+    expected_subti = ("Completed Atomic updates mash for Fedora 23 post-release "
+                      "Cloud/Atomic/Docker respin compose")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
     expected_objects = set(['23/primary'])
@@ -1685,7 +1843,7 @@ class TestComposeAtomicLoraxComplete(Base):
     """
     expected_title = "compose.23.atomic-lorax.done"
     expected_subti = \
-        "the atomic-lorax phase of a F23 make-updates run completed"
+        "Completed Atomic lorax run for Fedora 23 post-release Cloud/Atomic/Docker respin compose"
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
     expected_objects = set(['23/primary'])
@@ -1713,8 +1871,8 @@ class TestComposeCloudImgChecksumStarted(Base):
     Fedora 23:
     """
     expected_title = "compose.23.cloudimg-checksum.start"
-    expected_subti = \
-        "started the cloudimg-checksum phase of a F23 make-updates run"
+    expected_subti = ("Started image checksum generation for Fedora 23 post-release "
+                      "Cloud/Atomic/Docker respin compose")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
     expected_objects = set(['23/primary'])
@@ -1742,8 +1900,8 @@ class TestComposeCloudImgStagingComplete(Base):
     Fedora 23:
     """
     expected_title = "compose.23.cloudimg-staging.done"
-    expected_subti = \
-        "the cloudimg-staging phase of a F23 make-updates run completed"
+    expected_subti = ("Completed master mirror publication for Fedora 23 post-release "
+                      "Cloud/Atomic/Docker respin compose")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
     expected_objects = set(['23/primary'])
@@ -1760,13 +1918,40 @@ class TestComposeCloudImgStagingComplete(Base):
 ## MISCELLANEOUS MESSAGES
 
 
+class TestComposeEPELBetaStarted(Base):
+    """ The `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
+    used to produce these messages when they had **started** an EPEL 7
+    Beta compose (while RHEL 7 was in Beta state).
+    """
+    expected_title = "compose.epelbeta.start"
+    # arguably we should do some magic in the processor to use
+    # something other than 'Fedora' as the shortname here, but as
+    # these are historical messages, it doesn't seem worth the work
+    expected_subti = "Started Fedora EPEL Beta compose"
+    expected_link = "https://dl.fedoraproject.org/pub/epel/beta/7/"
+    expected_objects = set(['epelbeta/primary'])
+    msg = {
+        "i": 1,
+        "timestamp": 1344447839.891876,
+        "topic": "org.fedoraproject.prod.compose.epelbeta.start",
+        "msg": {
+            "log": "start",
+        },
+    }
+
+
 class TestComposeEPELBetaComplete(Base):
     """ The `release engineering
     <https://fedoraproject.org/wiki/ReleaseEngineering>`_ "compose" scripts
-    produce these messages when they have **finished composing** the EPEL beta.
+    used to produce these messages when they had **finished** an EPEL 7
+    Beta compose (while RHEL 7 was in Beta state).
     """
     expected_title = "compose.epelbeta.complete"
-    expected_subti = "epelbeta compose completed"
+    # arguably we should do some magic in the processor to use
+    # something other than 'Fedora' as the shortname here, but as
+    # these are historical messages, it doesn't seem worth the work
+    expected_subti = "Completed Fedora EPEL Beta compose"
     expected_link = "https://dl.fedoraproject.org/pub/epel/beta/7/"
     expected_objects = set(['epelbeta/primary'])
     msg = {
