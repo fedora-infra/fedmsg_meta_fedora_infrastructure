@@ -158,7 +158,7 @@ def make_topics_doc(output_dir):
                 continue
 
             # You can also exclude a test from the docs with nodoc = True
-            if getattr(cls, 'nodoc', False) is True:
+            if getattr(cls.context, 'nodoc', False) is True:
                 continue
 
             modname = topic.split('.')[0]

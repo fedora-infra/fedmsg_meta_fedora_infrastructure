@@ -119,12 +119,14 @@ entry_points = {
         "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
         "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
         "ci=fedmsg_meta_fedora_infrastructure.centos_ci:CentosCiProcessor",
+        "waiverdb=fedmsg_meta_fedora_infrastructure.waiverdb:WaiverDBProcessor",
+        "gw=fedmsg_meta_fedora_infrastructure.greenwave:GreenwaveProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.22.0',
+    version='0.23.0',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,

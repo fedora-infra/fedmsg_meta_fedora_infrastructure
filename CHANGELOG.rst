@@ -1,3 +1,25 @@
+0.23.0
+------
+
+Pull Requests
+
+- (@ralphbean)      #451 Target py3.6
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/451
+- (@pypingou)       #453 Add support for the new pagure messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/453
+- (@ralphbean)      #452 WaiverDB processor.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/452
+- (@adamwill)       #455 Substantial rewrite + extension of compose.* tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/455
+- (@ralphbean)      #456 An icon for waiverdb.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/456
+- (@adamwill)       #457 Fix `nodoc` to exclude test class from topic list
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/457
+- (@ralphbean)      #450 A first pass at greenwave handling.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/450
+- (@adamwill)       #459 Revise subtitles for compose.* messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/459
+
 0.22.0
 ------
 
