@@ -36,7 +36,7 @@ class TestLegacyPreArchComposeBranchedComplete(Base):
     expected_title = "compose.branched.complete"
     expected_subti = "Completed Fedora 18 compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -185,8 +185,7 @@ class TestLegacyPreArchComposeBranchedRsyncComplete(Base):
     expected_title = "compose.branched.rsync.complete"
     expected_subti = \
         "Completed master mirror publication for Fedora 18 compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -210,8 +209,7 @@ class TestLegacyPreArchComposeRawhideComplete(Base):
     """
     expected_title = "compose.rawhide.complete"
     expected_subti = "Completed Fedora Rawhide compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -317,8 +315,7 @@ class TestLegacyPreArchComposeRawhideRsyncComplete(Base):
     """
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "Completed master mirror publication for Fedora Rawhide compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -383,8 +380,7 @@ class TestLegacyPreCidComposeRawhideRsyncComplete(Base):
     """
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = "Completed master mirror publication for Fedora Rawhide compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -408,8 +404,7 @@ class TestLegacyPreCidComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete"
     expected_subti = "Completed Fedora Rawhide compose"
     expected_objects = set(['rawhide/primary'])
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     msg = {
         "i": 1,
         "timestamp": 1344447839.891876,
@@ -455,8 +450,7 @@ class TestLegacyPreShortComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = ("Completed master mirror publication for Fedora Rawhide compose "
                       "Fedora-Rawhide-20171203.n.0")
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -481,8 +475,7 @@ class TestLegacyPreShortComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete"
     expected_subti = "Completed Fedora Rawhide compose Fedora-Rawhide-20171204.n.0"
     expected_objects = set(['rawhide/primary'])
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     msg = {
         "i": 1,
         "timestamp": 1512398352.0,
@@ -506,8 +499,7 @@ class TestLegacyModularComposeRawhideComplete(Base):
     expected_title = "compose.rawhide.complete"
     expected_subti = "Completed Fedora-Modular Rawhide compose Fedora-Modular-Rawhide-20170821.n.0"
     expected_objects = set(['rawhide/primary'])
-    expected_link = \
-        "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-Rawhide-20170821.n.0"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     msg = {
         "i": 1,
         "msg": {
@@ -536,9 +528,7 @@ class TestSecondaryArchComposeBranchedComplete(Base):
     nodoc = True
     expected_title = "compose.branched.complete"
     expected_subti = "Completed Fedora 18 (arm) compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
-        "development/18"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -765,9 +755,7 @@ class TestSecondaryArchComposeBranchedRsyncComplete(Base):
     expected_title = "compose.branched.rsync.complete"
     expected_subti = \
         "Completed master mirror publication for Fedora 18 (arm) compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
-        "development/18"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/arm'])
     msg = {
         "i": 1,
@@ -793,9 +781,7 @@ class TestLegacySecondaryArchComposeRawhideComplete(Base):
     """
     expected_title = "compose.rawhide.complete"
     expected_subti = "Completed Fedora Rawhide (arm) compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
-        "development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['rawhide/arm'])
     msg = {
         "i": 1,
@@ -912,9 +898,7 @@ class TestLegacySecondaryArchComposeRawhideRsyncComplete(Base):
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = \
         "Completed master mirror publication for Fedora Rawhide (arm) compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora-secondary/" + \
-        "development/rawhide"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['rawhide/arm'])
     msg = {
         "i": 1,
@@ -944,8 +928,7 @@ class TestComposeBranchedComplete(Base):
     """
     expected_title = "compose.branched.complete"
     expected_subti = "Completed Fedora 18 compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -973,7 +956,7 @@ class TestComposeBranchedStart(Base):
     """
     expected_title = "compose.branched.start"
     expected_subti = "Started Fedora 18 compose"
-    expected_link = "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -1185,8 +1168,7 @@ class TestComposeBranchedRsyncComplete(Base):
     expected_title = "compose.branched.rsync.complete"
     expected_subti = \
         "Completed master mirror publication for Fedora 18 compose"
-    expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/development/18"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['branched/primary'])
     msg = {
         "i": 1,
@@ -1389,7 +1371,7 @@ class TestComposeRawhideRsyncStart(Base):
     """
     expected_title = "compose.rawhide.rsync.start"
     expected_subti = \
-        "Started master mirror publication for Fedora Rawhide compose Fedora-Rawhide-20171215.n.0"
+        "Started master mirror publication for Fedora Rawhide compose Fedora-Rawhide-20180126.n.0"
     expected_objects = set(['rawhide/primary'])
     msg = {
         "i": 1,
@@ -1399,7 +1381,7 @@ class TestComposeRawhideRsyncStart(Base):
             "log": "start",
             "branch": "rawhide",
             "arch": "",
-            "compose_id": "Fedora-Rawhide-20171215.n.0",
+            "compose_id": "Fedora-Rawhide-20180126.n.0",
             "short": "Fedora",
         },
     }
@@ -1413,7 +1395,7 @@ class TestComposeRawhideRsyncComplete(Base):
     """
     expected_title = "compose.rawhide.rsync.complete"
     expected_subti = ("Completed master mirror publication for Fedora Rawhide compose "
-                      "Fedora-Rawhide-20171215.n.0")
+                      "Fedora-Rawhide-20180126.n.0")
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
     expected_objects = set(['rawhide/primary'])
@@ -1425,8 +1407,9 @@ class TestComposeRawhideRsyncComplete(Base):
             "log": "done",
             "branch": "rawhide",
             "arch": "",
-            "compose_id": "Fedora-Rawhide-20171215.n.0",
+            "compose_id": "Fedora-Rawhide-20180126.n.0",
             "short": "Fedora",
+            "location": "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide",
         },
     }
 
@@ -1438,7 +1421,7 @@ class TestComposeRawhideComplete(Base):
     a rawhide compose.
     """
     expected_title = "compose.rawhide.complete"
-    expected_subti = "Completed Fedora Rawhide compose Fedora-Rawhide-20171215.n.0"
+    expected_subti = "Completed Fedora Rawhide compose Fedora-Rawhide-20180126.n.0"
     expected_objects = set(['rawhide/primary'])
     expected_link = \
         "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide"
@@ -1450,8 +1433,9 @@ class TestComposeRawhideComplete(Base):
             "log": "done",
             "branch": "rawhide",
             "arch": "",
-            "compose_id": "Fedora-Rawhide-20171215.n.0",
+            "compose_id": "Fedora-Rawhide-20180126.n.0",
             "short": "Fedora",
+            "location": "https://dl.fedoraproject.org/pub/fedora/linux/development/rawhide",
         },
     }
 
@@ -1598,9 +1582,9 @@ class TestComposeNumericRsyncComplete(Base):
     """
     expected_title = "compose.28.rsync.complete"
     expected_subti = ("Completed master mirror publication for Fedora-Cloud 28 compose "
-                      "Fedora-Cloud-28-20171215.n.0")
+                      "Fedora-Cloud-28-20180126.n.0")
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/28"
+        "https://kojipkgs.fedoraproject.org/compose/Fedora-Cloud-28-20180126.n.0"
     expected_objects = set(['28/primary'])
     msg = {
         "i": 1,
@@ -1610,8 +1594,9 @@ class TestComposeNumericRsyncComplete(Base):
             "log": "done",
             "branch": "28",
             "arch": "",
-            "compose_id": "Fedora-Cloud-28-20171215.n.0",
+            "compose_id": "Fedora-Cloud-28-20180126.n.0",
             "short": "Fedora-Cloud",
+            "location": "https://kojipkgs.fedoraproject.org/compose/Fedora-Cloud-28-20180126.n.0",
         },
     }
 
@@ -1626,10 +1611,10 @@ class TestComposeNumericComplete(Base):
     based on the release, this one is only an example.
     """
     expected_title = "compose.28.complete"
-    expected_subti = "Completed Fedora-Docker 28 compose Fedora-Docker-28-20171215.n.0"
+    expected_subti = "Completed Fedora-Docker 28 compose Fedora-Docker-28-20180126.n.0"
     expected_objects = set(['28/primary'])
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/28"
+        "https://kojipkgs.fedoraproject.org/compose/Fedora-Docker-28-20180126.n.0"
     msg = {
         "i": 1,
         "timestamp": 1512398352.0,
@@ -1638,8 +1623,9 @@ class TestComposeNumericComplete(Base):
             "log": "done",
             "branch": "28",
             "arch": "",
-            "compose_id": "Fedora-Docker-28-20171215.n.0",
+            "compose_id": "Fedora-Docker-28-20180126.n.0",
             "short": "Fedora-Docker",
+            "location": "https://kojipkgs.fedoraproject.org/compose/Fedora-Docker-28-20180126.n.0",
         },
     }
 
@@ -1656,10 +1642,10 @@ class TestComposeNumericModularComplete(Base):
     # no need to doc this, previous class is the doc
     nodoc = True
     expected_title = "compose.28.complete"
-    expected_subti = "Completed Fedora-Modular 28 compose Fedora-Modular-28-20171215.n.0"
+    expected_subti = "Completed Fedora-Modular 28 compose Fedora-Modular-28-20180126.n.0"
     expected_objects = set(['28/primary'])
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/28"
+        "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-28-20180126.n.0"
     msg = {
         "i": 1,
         "timestamp": 1512398352.0,
@@ -1668,8 +1654,9 @@ class TestComposeNumericModularComplete(Base):
             "log": "done",
             "branch": "28",
             "arch": "",
-            "compose_id": "Fedora-Modular-28-20171215.n.0",
+            "compose_id": "Fedora-Modular-28-20180126.n.0",
             "short": "Fedora-Modular",
+            "location": "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-28-20180126.n.0",
         },
     }
 
@@ -1692,7 +1679,7 @@ class TestLegacyPre201712ComposeNumericComplete(Base):
     expected_subti = "Completed Fedora, Fedora-Atomic, Fedora-Cloud or Fedora-Docker 23 compose"
     expected_objects = set(['23/primary'])
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     msg = {
         "i": 1,
         "timestamp": 1464301992.0,
@@ -1724,7 +1711,7 @@ class TestLegacyPre201712ComposeNumericModularComplete(Base):
     expected_subti = "Completed Fedora-Modular 27 compose Fedora-Modular-27-20171123.n.1"
     expected_objects = set(['27/primary'])
     expected_link = \
-        "https://kojipkgs.fedoraproject.org/compose/Fedora-Modular-27-20171123.n.1"
+        "https://kojipkgs.fedoraproject.org/compose/"
     msg = {
         "i": 1,
         "timestamp": 1511450794.0,
@@ -1756,7 +1743,7 @@ class TestComposeMakeUpdatesStarted(Base):
     expected_subti = \
         "Started Fedora 23 post-release Cloud/Atomic/Docker respin compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['23/primary'])
     msg = {
         "i": 1,
@@ -1785,7 +1772,7 @@ class TestComposeCloudImgBuildComplete(Base):
     expected_subti = \
         "Completed building images for Fedora 23 post-release Cloud/Atomic/Docker respin compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['23/primary'])
     msg = {
         "i": 1,
@@ -1815,7 +1802,7 @@ class TestComposeMashAtomicComplete(Base):
     expected_subti = ("Completed Atomic updates mash for Fedora 23 post-release "
                       "Cloud/Atomic/Docker respin compose")
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['23/primary'])
     msg = {
         "i": 1,
@@ -1845,7 +1832,7 @@ class TestComposeAtomicLoraxComplete(Base):
     expected_subti = \
         "Completed Atomic lorax run for Fedora 23 post-release Cloud/Atomic/Docker respin compose"
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['23/primary'])
     msg = {
         "i": 1,
@@ -1874,7 +1861,7 @@ class TestComposeCloudImgChecksumStarted(Base):
     expected_subti = ("Started image checksum generation for Fedora 23 post-release "
                       "Cloud/Atomic/Docker respin compose")
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['23/primary'])
     msg = {
         "i": 1,
@@ -1903,7 +1890,7 @@ class TestComposeCloudImgStagingComplete(Base):
     expected_subti = ("Completed master mirror publication for Fedora 23 post-release "
                       "Cloud/Atomic/Docker respin compose")
     expected_link = \
-        "https://dl.fedoraproject.org/pub/fedora/linux/releases/23"
+        "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['23/primary'])
     msg = {
         "i": 1,
@@ -1929,7 +1916,7 @@ class TestComposeEPELBetaStarted(Base):
     # something other than 'Fedora' as the shortname here, but as
     # these are historical messages, it doesn't seem worth the work
     expected_subti = "Started Fedora EPEL Beta compose"
-    expected_link = "https://dl.fedoraproject.org/pub/epel/beta/7/"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['epelbeta/primary'])
     msg = {
         "i": 1,
@@ -1952,7 +1939,7 @@ class TestComposeEPELBetaComplete(Base):
     # something other than 'Fedora' as the shortname here, but as
     # these are historical messages, it doesn't seem worth the work
     expected_subti = "Completed Fedora EPEL Beta compose"
-    expected_link = "https://dl.fedoraproject.org/pub/epel/beta/7/"
+    expected_link = "https://kojipkgs.fedoraproject.org/compose/"
     expected_objects = set(['epelbeta/primary'])
     msg = {
         "i": 1,
