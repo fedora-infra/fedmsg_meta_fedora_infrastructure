@@ -148,32 +148,7 @@ class ComposeProcessor(BaseProcessor):
                            arch=arch, comptext=comptext)
 
     def link(self, msg, **config):
-        branch = msg['msg'].get('branch', 'not-a-number')
-        if 'Modular' in branch:
-            base = "https://kojipkgs.fedoraproject.org/compose/"
-            return base + msg['msg'].get('compose_id', '')
-
-        arch = msg['msg'].get('arch', '')
-        if arch:
-            base = "https://dl.fedoraproject.org/pub/" + \
-                "fedora-secondary/development"
-        else:
-            if 'epelbeta' in msg['topic']:
-                base = "https://dl.fedoraproject.org/pub/epel/beta/7"
-            elif 'branched' in msg['topic'] or 'rawhide' in msg['topic']:
-                base = "https://dl.fedoraproject.org/pub/" + \
-                    "fedora/linux/development"
-            else:
-                try:
-                    int(branch)
-                except TypeError:
-                    base = "https://dl.fedoraproject.org/pub/" + \
-                        "fedora/linux/development"
-                else:
-                    base = "https://dl.fedoraproject.org/pub/" + \
-                        "fedora/linux/releases"
-
-        return base + "/" + msg['msg'].get('branch', '')
+        return msg['msg'].get('location', 'https://kojipkgs.fedoraproject.org/compose/')
 
     def objects(self, msg, **config):
         branch = msg['topic'].split('.')[4]

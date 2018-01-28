@@ -46,6 +46,8 @@ class CentosCiProcessor(BaseProcessor):
                 status = 'passed'
             elif status.lower() == 'aborted':
                 status = 'was aborted on'
+            elif status.lower() == 'unstable':
+                status = 'errored'
             else:
                 status = 'failed'
             return status
