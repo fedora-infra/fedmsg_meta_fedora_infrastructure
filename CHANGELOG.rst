@@ -1,3 +1,12 @@
+0.23.1
+------
+
+Pull Requests
+
+- (@pypingou)       #460 Add support for unstable runs/results in the Atomic CI pipeline
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/460
+- (@adamwill)            Let the compose message get their links from the messages
+
 0.23.0
 ------
 
