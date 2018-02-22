@@ -116,7 +116,11 @@ class TestHubsConglomerateHubUpdatedAgent(
         'subjective': "You changed hub abompard's configuration 2 times",
         'link': 'https://hubs.fedoraproject.org/u/abompard/',
         'icon': 'https://hubs.fedoraproject.org/static/img/favicon.png',
-        'secondary_icon': 'https://hubs.fedoraproject.org/static/img/favicon.png',
+        'secondary_icon': (
+            'https://seccdn.libravatar.org/avatar/'
+            'f0c54afccefcf4bc888e0d37618a8598602a668e4ffc2e433b551ca19fc164d8'
+            '?s=64&d=retro'
+        ),
         'start_time': 1519204726.0,
         'end_time': 1519204746.0,
         'timestamp': 1519204736.0,
@@ -252,7 +256,11 @@ class TestHubsConglomerateWidgetUpdatedAgent(
                     "\"Library\" on hub abompard 2 times",
         'link': 'https://hubs.fedoraproject.org/u/abompard/',
         'icon': 'https://hubs.fedoraproject.org/static/img/favicon.png',
-        'secondary_icon': 'https://hubs.fedoraproject.org/static/img/favicon.png',
+        'secondary_icon': (
+            'https://seccdn.libravatar.org/avatar/'
+            'f0c54afccefcf4bc888e0d37618a8598602a668e4ffc2e433b551ca19fc164d8'
+            '?s=64&d=retro'
+        ),
         'start_time': 1519308843.0,
         'end_time': 1519308844.0,
         'timestamp': 1519308843.5,

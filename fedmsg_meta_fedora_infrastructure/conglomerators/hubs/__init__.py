@@ -18,6 +18,7 @@
 # Authors:  Aurelien Bompard <abompard@fedoraproject.org>
 #
 import fedmsg.meta.base
+from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
 class HubUpdated(fedmsg.meta.base.BaseConglomerator):
@@ -45,7 +46,10 @@ class HubUpdated(fedmsg.meta.base.BaseConglomerator):
             subjective = subtitle
         tmpl['subtitle'] = subtitle.format(hub=hub, agent=agent, N=N)
         tmpl['subjective'] = subjective.format(hub=hub, N=N)
-        tmpl['secondary_icon'] = self.processor.__icon__
+        if agent:
+            tmpl['secondary_icon'] = avatar_url(agent)
+        else:
+            tmpl['secondary_icon'] = self.processor.__icon__
         tmpl['link'] = first_msg.get("hub_url")
         return tmpl
 
@@ -87,6 +91,9 @@ class WidgetUpdated(fedmsg.meta.base.BaseConglomerator):
         tmpl['subtitle'] = subtitle.format(
             hub=hub, widget=widget, agent=agent, N=N)
         tmpl['subjective'] = subjective.format(hub=hub, widget=widget, N=N)
-        tmpl['secondary_icon'] = self.processor.__icon__
+        if agent:
+            tmpl['secondary_icon'] = avatar_url(agent)
+        else:
+            tmpl['secondary_icon'] = self.processor.__icon__
         tmpl['link'] = first_msg.get("hub_url")
         return tmpl
