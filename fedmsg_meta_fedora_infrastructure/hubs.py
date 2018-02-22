@@ -37,6 +37,19 @@ class HubsProcessor(BaseProcessor):
         hubs_conglomerator.WidgetUpdated,
     ]
 
+    def handle_msg(self, msg, **config):
+        result = super(HubsProcessor, self).handle_msg(msg, **config)
+        if result is None:
+            return None
+        # Ignore stream hub actions, it's kind of private anyway.
+        if msg["msg"].get("hub_type") == "stream":
+            return None
+        ## Ignore a user's action on their own hub
+        #if (msg["msg"].get("hub_type") == "user" and
+        #    msg["msg"].get("hub_name") == msg["msg"].get("username")):
+        #    return None
+        return result
+
     def subtitle(self, msg, **config):
         if 'hubs.user.created' in msg['topic']:
             user = msg['msg']["username"]
@@ -111,11 +124,14 @@ class HubsProcessor(BaseProcessor):
         return None
 
     def usernames(self, msg, **config):
+        usernames = set()
         user = msg['msg'].get("username")
         if user:
-            return set([user])
-        else:
-            return set()
+            usernames.add(user)
+        hub = msg['msg'].get("hub_name")
+        if hub and msg['msg'].get("hub_type") == "user":
+            usernames.add(hub)
+        return usernames
 
     def objects(self, msg, **config):
         result = set()

@@ -37,7 +37,7 @@ class HubUpdated(fedmsg.meta.base.BaseConglomerator):
         tmpl['subtitle'] = subtitle.format(hub=hub, N=N)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = self.processor.__icon__
-        tmpl['link'] = first_msg["hub_url"]
+        tmpl['link'] = first_msg.get("hub_url")
         return tmpl
 
 
@@ -65,5 +65,5 @@ class WidgetUpdated(fedmsg.meta.base.BaseConglomerator):
         tmpl['subtitle'] = subtitle.format(hub=hub, widget=widget, N=N)
         tmpl['subjective'] = tmpl['subtitle']
         tmpl['secondary_icon'] = self.processor.__icon__
-        tmpl['link'] = first_msg["hub_url"]
+        tmpl['link'] = first_msg.get("hub_url")
         return tmpl

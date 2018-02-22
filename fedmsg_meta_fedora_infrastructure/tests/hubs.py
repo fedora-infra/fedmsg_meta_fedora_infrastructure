@@ -22,8 +22,8 @@
 import unittest
 
 from fedmsg_meta_fedora_infrastructure.tests.base import Base
-
 from fedmsg_meta_fedora_infrastructure.tests.common import add_doc
+from fedmsg.tests.test_meta import TestUnhandled
 
 
 HUBS_ICON = "https://hubs.fedoraproject.org/static/img/favicon.png"
@@ -196,6 +196,19 @@ class TestHubsWidgetUpdated(Base):
             u'hub_name': u'infra',
             u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
             u'widget_label': u'Issues',
+        }
+    }
+
+
+class TestHubsStreamHubCreated(TestUnhandled):
+    expected_title = "hubs.hub.created"
+    msg = {
+        u'i': 1,
+        u'timestamp': 1344432054.8098609,
+        u'topic': u'org.fedoraproject.stg.hubs.hub.created',
+        u'msg': {
+            u'hub_name': u'ralph',
+            u'hub_type': u'stream',
         }
     }
 
