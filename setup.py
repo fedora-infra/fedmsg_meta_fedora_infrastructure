@@ -122,6 +122,7 @@ entry_points = {
         "waiverdb=fedmsg_meta_fedora_infrastructure.waiverdb:WaiverDBProcessor",
         "gw=fedmsg_meta_fedora_infrastructure.greenwave:GreenwaveProcessor",
         "rats=fedmsg_meta_fedora_infrastructure.rats:RatsProcessor",
+        "hubs=fedmsg_meta_fedora_infrastructure.hubs:HubsProcessor",
     ]
 }
 
