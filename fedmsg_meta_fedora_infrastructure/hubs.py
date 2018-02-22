@@ -61,29 +61,79 @@ class HubsProcessor(BaseProcessor):
             hub = msg['msg']["hub_name"]
             user = msg['msg']["username"]
             role = msg['msg']["role"]
-            tmpl = self._(
-                "{user} has joined hub {hub} as {role}"
-            )
-            return tmpl.format(user=user, hub=hub, role=role)
+            agent = msg['msg'].get("agent")
+            if user == agent:
+                if role == "stargazer":
+                    tmpl = self._(
+                        "{agent} is now watching hub {hub}"
+                    )
+                elif role == "subscriber":
+                    tmpl = self._(
+                        "{agent} has subscribed to hub {hub}"
+                    )
+                else:
+                    tmpl = self._(
+                        "{agent} has joined hub {hub} as {role}"
+                    )
+            elif agent:
+                tmpl = self._(
+                    "{agent} has added {user} to hub {hub} as {role}"
+                )
+            else:
+                tmpl = self._(
+                    "{user} has joined hub {hub} as {role}"
+                )
+            return tmpl.format(user=user, hub=hub, role=role, agent=agent)
         elif 'hubs.user.role.changed' in msg['topic']:
             hub = msg['msg']["hub_name"]
             user = msg['msg']["username"]
             old_role = msg['msg']["old_role"]
             role = msg['msg']["role"]
-            tmpl = self._(
-                "{user}'s role on hub {hub} changed from {old_role} "
-                "to {role}"
-            )
+            agent = msg['msg'].get("agent")
+            if user == agent:
+                tmpl = self._(
+                    "{user}'s role on hub {hub} changed from {old_role} "
+                    "to {role}"
+                )
+            elif agent:
+                tmpl = self._(
+                    "{agent} has changed {user}'s role on hub {hub} from "
+                    "{old_role} to {role}"
+                )
+            else:
+                tmpl = self._(
+                    "{user}'s role on hub {hub} changed from {old_role} "
+                    "to {role}"
+                )
             return tmpl.format(
-                user=user, hub=hub, role=role, old_role=old_role)
+                user=user, hub=hub, role=role, old_role=old_role, agent=agent)
         elif 'hubs.user.role.removed' in msg['topic']:
             hub = msg['msg']["hub_name"]
             user = msg['msg']["username"]
             role = msg['msg']["role"]
-            tmpl = self._(
-                "{user}'s role {role} on hub {hub} was removed"
-            )
-            return tmpl.format(user=user, hub=hub, role=role)
+            agent = msg['msg'].get("agent")
+            if user == agent:
+                if role == "stargazer":
+                    tmpl = self._(
+                        "{agent} is not watching hub {hub} anymore"
+                    )
+                elif role == "subscriber":
+                    tmpl = self._(
+                        "{agent} has unsubscribed from hub {hub}"
+                    )
+                else:
+                    tmpl = self._(
+                        "{agent} has left the hub {hub} (they were a {role})"
+                    )
+            elif agent:
+                tmpl = self._(
+                    "{agent} has removed {user}'s role {role} on hub {hub}"
+                )
+            else:
+                tmpl = self._(
+                    "{user}'s role {role} on hub {hub} was removed"
+                )
+            return tmpl.format(user=user, hub=hub, role=role, agent=agent)
         elif 'hubs.hub.created' in msg['topic']:
             hub = msg['msg']["hub_name"]
             tmpl = self._(
@@ -92,22 +142,38 @@ class HubsProcessor(BaseProcessor):
             return tmpl.format(hub=hub)
         elif 'hubs.hub.updated' in msg['topic']:
             hub = msg['msg']["hub_name"]
-            tmpl = self._(
-                "Hub {hub}'s configuration was changed"
-            )
-            return tmpl.format(hub=hub)
+            agent = msg['msg'].get("agent")
+            if agent:
+                tmpl = self._(
+                    "{agent} changed hub {hub}'s configuration"
+                )
+            else:
+                tmpl = self._(
+                    "Hub {hub}'s configuration was changed"
+                )
+            return tmpl.format(hub=hub, agent=agent)
         elif 'hubs.widget.updated' in msg['topic']:
             hub = msg['msg']["hub_name"]
             widget = msg['msg']["widget_label"]
-            tmpl = self._(
-                "On hub {hub}, the configuration for widget \"{widget}\" "
-                "was changed"
-            )
-            return tmpl.format(hub=hub, widget=widget)
+            agent = msg['msg'].get("agent")
+            if agent:
+                tmpl = self._(
+                    "{agent} changed the configuration for widget "
+                    "\"{widget}\" on hub {hub}"
+                )
+            else:
+                tmpl = self._(
+                    "On hub {hub}, the configuration for widget \"{widget}\" "
+                    "was changed"
+                )
+            return tmpl.format(hub=hub, widget=widget, agent=agent)
         else:
             raise NotImplementedError("%r" % msg)
 
     def secondary_icon(self, msg, **config):
+        agent = msg['msg'].get("agent")
+        if agent:
+            return avatar_url(agent)
         user = msg['msg'].get("username")
         if user:
             return avatar_url(user)
@@ -128,6 +194,9 @@ class HubsProcessor(BaseProcessor):
         user = msg['msg'].get("username")
         if user:
             usernames.add(user)
+        agent = msg['msg'].get("agent")
+        if agent:
+            usernames.add(agent)
         hub = msg['msg'].get("hub_name")
         if hub and msg['msg'].get("hub_type") == "user":
             usernames.add(hub)
@@ -141,4 +210,7 @@ class HubsProcessor(BaseProcessor):
         user = msg['msg'].get("username")
         if user:
             result.add("users/{}".format(user))
+        agent = msg['msg'].get("agent")
+        if agent:
+            result.add("users/{}".format(agent))
         return result

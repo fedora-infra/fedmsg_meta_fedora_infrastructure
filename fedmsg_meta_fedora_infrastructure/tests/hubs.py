@@ -71,6 +71,51 @@ class TestHubsUserRoleAdded(Base):
     msg = {
         u'topic': u'org.fedoraproject.stg.hubs.user.role.added',
         u'msg': {
+            u'agent': u'ralph',
+            u'username': u'ralph',
+            u'hub_name': u'infra',
+            u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
+            u'role': u'member',
+        }
+    }
+
+
+class TestHubsUserRoleAddedSelf(Base):
+    expected_title = "hubs.user.role.added"
+    expected_subti = "ralph has subscribed to hub infra"
+    expected_icon = HUBS_ICON
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['users/ralph', 'hubs/infra'])
+    expected_link = "https://hubs.fedoraproject.org/t/infra/"
+    msg = {
+        u'topic': u'org.fedoraproject.stg.hubs.user.role.added',
+        u'msg': {
+            u'agent': u'ralph',
+            u'username': u'ralph',
+            u'hub_name': u'infra',
+            u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
+            u'role': u'subscriber',
+        }
+    }
+
+
+class TestHubsUserRoleAddedAgent(Base):
+    expected_title = "hubs.user.role.added"
+    expected_subti = "pingou has added ralph to hub infra as member"
+    expected_icon = HUBS_ICON
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph', 'pingou'])
+    expected_objects = set(['users/ralph', 'users/pingou', 'hubs/infra'])
+    expected_link = "https://hubs.fedoraproject.org/t/infra/"
+    msg = {
+        u'topic': u'org.fedoraproject.stg.hubs.user.role.added',
+        u'msg': {
+            u'agent': u'pingou',
             u'username': u'ralph',
             u'hub_name': u'infra',
             u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
@@ -132,6 +177,50 @@ class TestHubsUserRoleRemoved(Base):
     }
 
 
+class TestHubsUserRoleRemovedSelf(Base):
+    expected_title = "hubs.user.role.removed"
+    expected_subti = "ralph has left the hub infra (they were a owner)"
+    expected_icon = HUBS_ICON
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['users/ralph', 'hubs/infra'])
+    expected_link = "https://hubs.fedoraproject.org/t/infra/"
+    msg = {
+        u'topic': u'org.fedoraproject.stg.hubs.user.role.removed',
+        u'msg': {
+            u'agent': u'ralph',
+            u'username': u'ralph',
+            u'hub_name': u'infra',
+            u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
+            u'role': u'owner',
+        }
+    }
+
+
+class TestHubsUserRoleRemovedAgent(Base):
+    expected_title = "hubs.user.role.removed"
+    expected_subti = "pingou has removed ralph's role owner on hub infra"
+    expected_icon = HUBS_ICON
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph', 'pingou'])
+    expected_objects = set(['users/ralph', 'users/pingou', 'hubs/infra'])
+    expected_link = "https://hubs.fedoraproject.org/t/infra/"
+    msg = {
+        u'topic': u'org.fedoraproject.stg.hubs.user.role.removed',
+        u'msg': {
+            u'agent': u'pingou',
+            u'username': u'ralph',
+            u'hub_name': u'infra',
+            u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
+            u'role': u'owner',
+        }
+    }
+
+
 class TestHubsHubCreated(Base):
     """
     `Fedora Hubs <https://hubs.fedoraproject.org>`_ publishes messages on
@@ -176,6 +265,27 @@ class TestHubsHubUpdated(Base):
     }
 
 
+class TestHubsHubUpdatedAgent(Base):
+    expected_title = "hubs.hub.updated"
+    expected_subti = "ralph changed hub infra's configuration"
+    expected_icon = HUBS_ICON
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_objects = set(['users/ralph', 'hubs/infra'])
+    expected_link = "https://hubs.fedoraproject.org/t/infra/"
+    msg = {
+        u'i': 1,
+        u'timestamp': 1344432054.8098609,
+        u'topic': u'org.fedoraproject.stg.hubs.hub.updated',
+        u'msg': {
+            u'agent': u'ralph' ,
+            u'hub_name': u'infra' ,
+            u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
+        }
+    }
+
+
 class TestHubsWidgetUpdated(Base):
     """
     `Fedora Hubs <https://hubs.fedoraproject.org>`_ publishes messages on
@@ -193,6 +303,30 @@ class TestHubsWidgetUpdated(Base):
         u'timestamp': 1344432054.8098609,
         u'topic': u'org.fedoraproject.stg.hubs.widget.updated',
         u'msg': {
+            u'hub_name': u'infra',
+            u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
+            u'widget_label': u'Issues',
+        }
+    }
+
+
+class TestHubsWidgetUpdatedAgent(Base):
+    expected_title = "hubs.widget.updated"
+    expected_subti = "ralph changed the configuration for widget " + \
+        "\"Issues\" on hub infra"
+    expected_icon = HUBS_ICON
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
+    expected_objects = set(['users/ralph', 'hubs/infra'])
+    expected_link = "https://hubs.fedoraproject.org/t/infra/"
+    msg = {
+        u'i': 1,
+        u'timestamp': 1344432054.8098609,
+        u'topic': u'org.fedoraproject.stg.hubs.widget.updated',
+        u'msg': {
+            u'agent': u'ralph',
             u'hub_name': u'infra',
             u'hub_url': u"https://hubs.fedoraproject.org/t/infra/",
             u'widget_label': u'Issues',
