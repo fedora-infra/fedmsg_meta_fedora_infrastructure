@@ -112,10 +112,24 @@ class PagureProcessor(BaseProcessor):
         tmpl = '{base_url}/{project}'
         if 'pagure.issue' in msg['topic']:
             issueid = msg['msg']['issue']['id']
-            if 'comment' in msg['topic']:
-                if 'comment' in msg['msg']:
-                    # This is for an edited issue..
+            if 'comment.edited' in msg['topic']:
+                # This is for an edited issue..
+                comment = msg['msg'].get('comment')
+                comment_id = None
+                if comment:
+                    comment_id = comment.get('id')
+                if comment_id and project != "(unknown)":
+                    tmpl += '/issue/{id}#comment-{comment}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=issueid,
+                        comment=comment_id)
+                elif project != "(unknown)":
+                    tmpl += '/issue/{id}'
+                    return tmpl.format(
+                        base_url=base_url, project=project, id=issueid)
+                else:
                     return base_url
+            elif 'comment.added' in msg['topic']:
                 comments = msg['msg']['issue']['comments']
                 if comments:
                     tmpl += '/issue/{id}#comment-{comment}'
