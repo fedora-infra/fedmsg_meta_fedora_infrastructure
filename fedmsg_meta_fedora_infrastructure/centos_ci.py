@@ -24,11 +24,11 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
-class CentosCiProcessor(BaseProcessor):
+class AtomicCiProcessor(BaseProcessor):
     topic_prefix_re = 'org\\.centos\\.(dev|stage|prod)'
 
     __name__ = "ci"
-    __description__ = "The CentOS Continuous Integration System"
+    __description__ = "The Atomic Continuous Integration pipeline"
     __link__ = "http://ci.centos.org/"
     __icon__ = "https://ci.centos.org/static/ec6de755/images/headshot.png"
     __docs__ = "https://github.com/CentOS-PaaS-SIG/ci-pipeline/"
