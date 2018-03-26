@@ -212,3 +212,17 @@ class AtomicCiProcessor(BaseProcessor):
         actions = msg['topic'].split('.pipeline.', 1)[1].split('.')
 
         return set(['/'.join([namespace, pkg, commit, branch] + actions)])
+
+
+class AllpackagesCiProcessor(AtomicCiProcessor):
+    topic_prefix_re = 'org\\.centos\\.(dev|stage|prod)'
+
+    __name__ = "allpackages"
+    __description__ = "The CentOS Continuous Integration pipeline for all " \
+        "packages"
+    __link__ = "http://ci.centos.org/"
+    __icon__ = "https://ci.centos.org/static/ec6de755/images/headshot.png"
+    __docs__ = "https://github.com/CentOS-PaaS-SIG/ci-pipeline/"
+    __obj__ = "CI AllPackages Results"
+
+    pipeline_name = 'All Packages CI'

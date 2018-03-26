@@ -119,6 +119,7 @@ entry_points = {
         "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
         "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
         "ci=fedmsg_meta_fedora_infrastructure.centos_ci:AtomicCiProcessor",
+        "allpackages_ci=fedmsg_meta_fedora_infrastructure.centos_ci:AllpackagesCiProcessor",
         "waiverdb=fedmsg_meta_fedora_infrastructure.waiverdb:WaiverDBProcessor",
         "gw=fedmsg_meta_fedora_infrastructure.greenwave:GreenwaveProcessor",
         "rats=fedmsg_meta_fedora_infrastructure.rats:RatsProcessor",
