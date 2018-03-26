@@ -440,7 +440,6 @@ class TestComposeTestIntegrationQueued(Base):
     }
 
 
-
 class TestImageComplete(Base):
     """ These messages are published when the Atomic CI pipeline announces that
     the build of the image generated from the compose containing a specified
@@ -695,6 +694,7 @@ class TestPackageTestFunctionalQueued(Base):
       }
     }
 
+
 class TestPackageTestFunctionalRunning(Base):
     """ These messages are published when the Atomic CI pipeline announces running
     the function tests of a package.
@@ -739,6 +739,7 @@ class TestPackageTestFunctionalRunning(Base):
         "ref": "fedora/f26/x86_64/atomic-host"
       }
     }
+
 
 class TestPackageTestFunctionalComplete(Base):
     """ These messages are published when the Atomic CI pipeline announces having
