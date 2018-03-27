@@ -24,15 +24,17 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 from fedmsg_meta_fedora_infrastructure.fasshim import avatar_url
 
 
-class CentosCiProcessor(BaseProcessor):
+class AtomicCiProcessor(BaseProcessor):
     topic_prefix_re = 'org\\.centos\\.(dev|stage|prod)'
 
     __name__ = "ci"
-    __description__ = "The CentOS Continuous Integration System"
+    __description__ = "The Atomic Continuous Integration pipeline"
     __link__ = "http://ci.centos.org/"
     __icon__ = "https://ci.centos.org/static/ec6de755/images/headshot.png"
     __docs__ = "https://github.com/CentOS-PaaS-SIG/ci-pipeline/"
     __obj__ = "CI Results"
+
+    pipeline_name = 'Atomic CI'
 
     def subtitle(self, msg, **config):
         commit = msg['msg']['rev'][:8]
@@ -52,106 +54,124 @@ class CentosCiProcessor(BaseProcessor):
                 status = 'failed'
             return status
 
-        if 'ci.pipeline.package.ignore' in msg['topic']:
+        if '%s.pipeline.package.ignore' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit "{commit}" of package {ns}/{pkg} is being '
-                'ignored by the Atomic CI pipeline on branch {branch}')
+                'ignored by the {pipeline_name} pipeline on branch {branch}')
 
-        elif 'ci.pipeline.complete' in msg['topic']:
+        elif '%s.pipeline.complete' % self.__name__ in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
                 'Commit "{commit}" of package {ns}/{pkg} {status}'
-                ' the Atomic CI pipeline on branch {branch}')
+                ' the {pipeline_name} pipeline on branch {branch}')
 
-        elif 'ci.pipeline.package.complete' in msg['topic']:
+        elif '%s.pipeline.package.complete' % self.__name__ in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} {status} building '
-                'in the Atomic CI pipeline on branch {branch}')
+                'in the {pipeline_name} pipeline on branch {branch}')
 
-        elif 'ci.pipeline.package.queued' in msg['topic']:
+        elif '%s.pipeline.package.queued' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued to be built '
-                'in the Atomic CI pipeline on branch {branch}')
-        elif 'ci.pipeline.package.running' in msg['topic']:
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being built in the '
-                'Atomic CI pipeline on branch {branch}')
+                'in the {pipeline_name} pipeline on branch {branch}')
 
-        elif 'ci.pipeline.package.test.functional.complete' in msg['topic']:
+        elif '%s.pipeline.package.running' % self.__name__ in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} is being built in '
+                'the {pipeline_name} pipeline on branch {branch}')
+
+        elif '%s.pipeline.package.test.functional.complete' % self.__name__ in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} {status} its '
-                'functional tests in the Atomic CI pipeline on branch {branch}')
+                'functional tests in the {pipeline_name} pipeline on '
+                'branch {branch}')
 
-        elif 'ci.pipeline.package.test.functional.queued' in msg['topic']:
+        elif '%s.pipeline.package.test.functional.queued' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued for '
-                'functional testing in the Atomic CI pipeline on branch {branch}')
-        elif 'ci.pipeline.package.test.functional.running' in msg['topic']:
+                'functional testing in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.package.test.functional.running' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is running its '
-                'functional tests in the Atomic CI pipeline on branch {branch}')
+                'functional tests in the {pipeline_name} pipeline on '
+                'branch {branch}')
 
-        elif 'ci.pipeline.compose.complete' in msg['topic']:
+        elif '%s.pipeline.compose.complete' % self.__name__ in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} {status} a '
-                'compose in the Atomic CI pipeline on branch {branch}')
+                'compose in the {pipeline_name} pipeline on branch {branch}')
 
-        elif 'ci.pipeline.compose.queued' in msg['topic']:
+        elif '%s.pipeline.compose.queued' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued for a '
-                'compose in the Atomic CI pipeline on branch {branch}')
-        elif 'ci.pipeline.compose.running' in msg['topic']:
+                'compose in the {pipeline_name} pipeline on branch {branch}')
+
+        elif '%s.pipeline.compose.running' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is being part of a '
-                'compose in the Atomic CI pipeline on branch {branch}')
+                'compose in the {pipeline_name} pipeline on branch {branch}')
 
-        elif 'ci.pipeline.compose.test.integration.complete' in msg['topic']:
-            status = _get_status(status)
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} its tests as '
-                'part of a compose in the Atomic CI pipeline on branch {branch}')
-
-        elif 'ci.pipeline.compose.test.integration.queued' in msg['topic']:
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued for tests '
-                'as part of a compose in the Atomic CI pipeline on branch {branch}')
-        elif 'ci.pipeline.compose.test.integration.running' in msg['topic']:
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being tested as '
-                'part of a compose in the Atomic CI pipeline on branch {branch}')
-
-        elif 'ci.pipeline.image.complete' in msg['topic']:
-            status = _get_status(status)
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} being built '
-                'in an image in the Atomic CI pipeline on branch {branch}')
-
-        elif 'ci.pipeline.image.queued' in msg['topic']:
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued to be built '
-                'in an image in the Atomic CI pipeline on branch {branch}')
-        elif 'ci.pipeline.image.running' in msg['topic']:
-            tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being built '
-                'in an image in the Atomic CI pipeline on branch {branch}')
-
-        elif 'ci.pipeline.image.test.smoke.complete' in msg['topic']:
+        elif '%s.pipeline.compose.test.integration.complete' % self.__name__ in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} {status} its tests '
-                'in an image in the Atomic CI pipeline on branch {branch}')
+                'as part of a compose in the {pipeline_name} pipeline on '
+                'branch {branch}')
 
-        elif 'ci.pipeline.image.test.smoke.queued' in msg['topic']:
+        elif '%s.pipeline.compose.test.integration.queued' % self.__name__ in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} is queued for tests '
+                'as part of a compose in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.compose.test.integration.running' % self.__name__ in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} is being tested as '
+                'part of a compose in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.image.complete' % self.__name__ in msg['topic']:
+            status = _get_status(status)
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} {status} being built '
+                'in an image in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.image.queued' % self.__name__ in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} is queued to be built '
+                'in an image in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.image.running' % self.__name__ in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} is being built '
+                'in an image in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.image.test.smoke.complete' % self.__name__ in msg['topic']:
+            status = _get_status(status)
+            tmpl = self._(
+                'Commit {commit} of package {ns}/{pkg} {status} its tests '
+                'in an image in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.image.test.smoke.queued' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is queued to be tested '
-                'in an image in the Atomic CI pipeline on branch {branch}')
-        elif 'ci.pipeline.image.test.smoke.running' in msg['topic']:
+                'in an image in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.pipeline.image.test.smoke.running' % self.__name__ in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is being tested '
-                'in an image in the Atomic CI pipeline on branch {branch}')
+                'in an image in the {pipeline_name} pipeline on '
+                'branch {branch}')
 
         else:
             tmpl = ""
@@ -162,6 +182,7 @@ class CentosCiProcessor(BaseProcessor):
             pkg=pkg,
             branch=branch,
             status=status,
+            pipeline_name=self.pipeline_name
         )
 
     def secondary_icon(self, msg, **config):
@@ -191,3 +212,17 @@ class CentosCiProcessor(BaseProcessor):
         actions = msg['topic'].split('.pipeline.', 1)[1].split('.')
 
         return set(['/'.join([namespace, pkg, commit, branch] + actions)])
+
+
+class AllpackagesCiProcessor(AtomicCiProcessor):
+    topic_prefix_re = 'org\\.centos\\.(dev|stage|prod)'
+
+    __name__ = "allpackages"
+    __description__ = "The CentOS Continuous Integration pipeline for all " \
+        "packages"
+    __link__ = "http://ci.centos.org/"
+    __icon__ = "https://ci.centos.org/static/ec6de755/images/headshot.png"
+    __docs__ = "https://github.com/CentOS-PaaS-SIG/ci-pipeline/"
+    __obj__ = "CI AllPackages Results"
+
+    pipeline_name = 'All Packages CI'

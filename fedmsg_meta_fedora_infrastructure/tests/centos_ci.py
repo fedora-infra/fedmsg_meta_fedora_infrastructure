@@ -440,7 +440,6 @@ class TestComposeTestIntegrationQueued(Base):
     }
 
 
-
 class TestImageComplete(Base):
     """ These messages are published when the Atomic CI pipeline announces that
     the build of the image generated from the compose containing a specified
@@ -695,6 +694,7 @@ class TestPackageTestFunctionalQueued(Base):
       }
     }
 
+
 class TestPackageTestFunctionalRunning(Base):
     """ These messages are published when the Atomic CI pipeline announces running
     the function tests of a package.
@@ -739,6 +739,7 @@ class TestPackageTestFunctionalRunning(Base):
         "ref": "fedora/f26/x86_64/atomic-host"
       }
     }
+
 
 class TestPackageTestFunctionalComplete(Base):
     """ These messages are published when the Atomic CI pipeline announces having
@@ -970,6 +971,113 @@ class TestCompleteError(Base):
         "ref": "fedora/f26/x86_64/atomic-host"
       }
     }
+
+
+class TestAllPackagesPackageRunning(Base):
+    """ These messages are published when the Allpackages CI pipeline
+    announces that the build of a package is running.
+    """
+
+    expected_title = "allpackages.pipeline.package.running"
+    expected_subti = 'Commit 35cdcb6a of package rpms/gdb is '\
+        'being built in the All Packages CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/upstream-fedora-f28-pipeline/detail/" \
+        "upstream-fedora-f28-pipeline/335/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/gdb/35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
+         'f28/package/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1522054091.0,
+      "msg_id": "2018-cfb9a40e-3220-4dcf-a5aa-270a6cee975c",
+      "crypto": "x509",
+      "topic": "org.centos.prod.allpackages.pipeline.package.running",
+      "headers": {},
+      "source_version": "0.8.2",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "335",
+        "original_spec_nvr": "",
+        "username": "jankratochvil",
+        "nvr": "",
+        "rev": "35cdcb6a32562b632c075f2fd42793f7492dcdb3",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/upstream-fedora-f28-pipeline/detail/upstream-fedora-f28-pipeline/335/pipeline/",
+        "namespace": "rpms",
+        "CI_NAME": "upstream-fedora-f28-pipeline",
+        "repo": "gdb",
+        "topic": "org.centos.prod.allpackages.pipeline.package.running",
+        "status": "SUCCESS",
+        "branch": "f28",
+        "test_guidance": "''",
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesCompleteSuccess(Base):
+    """ These messages are published when the All Packages CI pipeline
+    announces having completed successfully running the entire pipeline
+    on a package.
+    """
+
+    expected_title = "allpackages.pipeline.complete"
+    expected_subti = 'Commit "35cdcb6a" of package rpms/gdb passed the ' \
+        'All Packages CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/upstream-fedora-f28-pipeline/detail/" \
+        "upstream-fedora-f28-pipeline/335/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/gdb/'
+         '35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
+         'f28/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1522055492.0,
+      "msg_id": "2018-1436f172-aa90-49f2-9ff0-9b34608f38e8",
+      "crypto": "x509",
+      "topic": "org.centos.prod.allpackages.pipeline.complete",
+      "headers": {},
+      "source_version": "0.8.2",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "335",
+        "original_spec_nvr": "",
+        "username": "jankratochvil",
+        "nvr": "",
+        "rev": "35cdcb6a32562b632c075f2fd42793f7492dcdb3",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/upstream-fedora-f28-pipeline/detail/upstream-fedora-f28-pipeline/335/pipeline/",
+        "namespace": "rpms",
+        "CI_NAME": "upstream-fedora-f28-pipeline",
+        "repo": "gdb",
+        "topic": "org.centos.prod.allpackages.pipeline.complete",
+        "status": "SUCCESS",
+        "branch": "f28",
+        "test_guidance": "''",
+        "ref": "x86_64"
+      }
+    }
+
 
 add_doc(locals())
 
