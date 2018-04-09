@@ -1,3 +1,19 @@
+0.24.0
+------
+
+Pull Requests
+
+- (@pypingou)       #461 Add support for RATS messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/461
+- (@pypingou)       #467 Fix the URL on messages about edited comment in pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/467
+- (@pypingou)       #470 Add support for the the allpackages messages sent from
+  ci.centos.oro
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/470
+- (@pypingou)       #472 Add support for the new topic of the allpackages CI
+  pipeline
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/472
+
 0.23.1
 ------
 
