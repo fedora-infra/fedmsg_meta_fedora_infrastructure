@@ -2380,7 +2380,7 @@ class TestIssueDrop(Base):
     }
 
 
-class TestIssueCommentEdit(Base):
+class LegacyTestIssueCommentEdit(Base):
     """ These messages are published when someone edits a comment on a ticket
     on `pagure <https://pagure.io>`_.
     """
@@ -2476,6 +2476,155 @@ class TestIssueCommentEdit(Base):
         "topic": "io.pagure.prod.pagure.issue.comment.edited",
     }
 
+
+class TestIssueCommentEdit(Base):
+    """ These messages are published when someone edits a comment on a ticket
+    on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.issue.comment.edited"
+    expected_subti = 'churchyard edited a comment on ticket design#541: ' + \
+        '"New Fedora Loves Python Brochure"'
+    expected_link = "https://pagure.io/design/issue/541#comment-499092"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "132a6c64fa9fbe9311973f5c5c6a70942b256d23d62be638718fe091076731cf" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['churchyard'])
+    expected_objects = set(['project/design', 'issue/541'])
+    msg = {
+          "username": "git",
+          "i": 1,
+          "timestamp": 1521016485.0,
+          "msg_id": "2018-e3e2f800-fbe2-4841-a0cb-c0bb0f71bbca",
+          "topic": "io.pagure.prod.pagure.issue.comment.edited",
+          "headers": {},
+          "source_version": "0.8.2",
+          "msg": {
+            "comment": {
+              "comment": "No I don't. I took the design as per "
+                  "https://pagure.io/fedora-design/"
+                  "fedora-loves-python-brochure/pull-request/2, I've "
+                  "installed all the fonts and exported a regular PDF from "
+                  "Inkscape. I gave it to the printer via @kmrstiko "
+                  "(if anyone knows what you've asked, it's her). Turned "
+                  "out pretty good https://twitter.com/FedoraCZ/status/"
+                  "972061153709953025",
+              "parent": None,
+              "notification": False,
+              "edited_on": "1521016484",
+              "editor": {
+                "fullname": "Miro Hron\u010dok",
+                "name": "churchyard"
+              },
+              "date_created": "1521016453",
+              "id": 499092,
+              "user": {
+                "fullname": "Miro Hron\u010dok",
+                "name": "churchyard"
+              }
+            },
+            "project": {
+              "custom_keys": [],
+              "description": "Fedora Design Team, the Fedora Project's "
+                  "in-house creative agency covering everything from logos "
+                  "and branding, to icons, to print media and swag design, "
+                  "to UX design a usability testing and assessment.",
+              "parent": None,
+              "date_modified": "1513082697",
+              "access_users": {
+                "admin": [
+                  "ryanlerch",
+                  "mleonova",
+                  "gnokii",
+                  "mciahdenn"
+                ],
+                "commit": [],
+                "ticket": [],
+                "owner": [
+                  "duffy"
+                ]
+              },
+              "namespace": None,
+              "url_path": "design",
+              "priorities": {},
+              "id": 1115,
+              "access_groups": {
+                "admin": [],
+                "commit": [
+                  "fedora-design"
+                ],
+                "ticket": []
+              },
+              "milestones": {
+                "mizmo active work queue": ""
+              },
+              "user": {
+                "fullname": "M\u00e1ir\u00edn Duffy",
+                "name": "duffy"
+              },
+              "date_created": "1473343869",
+              "fullname": "design",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": False,
+                "Web-hooks": None,
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "pull_requests": True,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "close_status": [
+                "Invalid",
+                "Insufficient data",
+                "Fixed",
+                "Duplicate"
+              ],
+              "tags": [
+                "artwork",
+                "design",
+                "UX",
+                "creative"
+              ],
+              "name": "design"
+            },
+            "issue": {
+              "status": "Open",
+              "priority": None,
+              "last_updated": "1521016484",
+              "blocks": [],
+              "tags": [
+                "triaged"
+              ],
+              "title": "New Fedora Loves Python Brochure",
+              "milestone": None,
+              "comments": [],
+              "id": 541,
+              "content": "We'd like to have a new **Fedora \u2665 Python** "
+                  "Brochure",
+              "assignee": {
+                "fullname": "Ryan Lerch",
+                "name": "ryanlerch"
+              },
+              "depends": [],
+              "private": False,
+              "date_created": "1502196615",
+              "closed_at": None,
+              "close_status": None,
+              "custom_fields": [],
+              "user": {
+                "fullname": "Miro Hron\u010dok",
+                "name": "churchyard"
+              }
+            },
+            "agent": "churchyard"
+          }
+        }
 
 class TestNewProjectDistGit(Base):
     """ These messages are published when a new project is created on

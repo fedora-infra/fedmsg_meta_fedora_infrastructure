@@ -118,15 +118,18 @@ entry_points = {
         "openqa=fedmsg_meta_fedora_infrastructure.openqa:OpenQAProcessor",
         "pdc=fedmsg_meta_fedora_infrastructure.pdc:PDCProcessor",
         "mbs=fedmsg_meta_fedora_infrastructure.mbs:MBSProcessor",
-        "ci=fedmsg_meta_fedora_infrastructure.centos_ci:CentosCiProcessor",
+        "old_allpackages_ci=fedmsg_meta_fedora_infrastructure.centos_ci:OldAllpackagesCiProcessor",
+        "allpackages_ci=fedmsg_meta_fedora_infrastructure.centos_ci:AllpackagesCiProcessor",
+        "ci=fedmsg_meta_fedora_infrastructure.centos_ci:AtomicCiProcessor",
         "waiverdb=fedmsg_meta_fedora_infrastructure.waiverdb:WaiverDBProcessor",
         "gw=fedmsg_meta_fedora_infrastructure.greenwave:GreenwaveProcessor",
+        "rats=fedmsg_meta_fedora_infrastructure.rats:RatsProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.23.1',
+    version='0.24.0',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
