@@ -1,3 +1,11 @@
+0.24.1
+------
+
+Pull Requests
+
+- (@pypingou)       #461 Fix the processor for the allpackages CI pipeline
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/476
+
 0.24.0
 ------
 
