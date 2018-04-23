@@ -121,6 +121,124 @@ class LegacyTestBodhiUpdateComplete(Base):
     }
 
 
+class LegacyTestBodhiRequestMultiplePackagesPerUpdate(Base):
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic whenever a *user* requests that an update
+    be pushed to the testing repository. Some updates may contain *multiple
+    packages*, which can be a little tricky if you're not ready for it.  Here's
+    an example of that:
+
+    .. note:: This is the old format used for specifying multiple packages.
+    """
+    expected_title = "bodhi.update.request.testing"
+    expected_subti = "lmacken submitted " + \
+        "gnome-settings-daemon-3.6.1-1.fc18,contr..." + \
+        " to testing"
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
+        "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "0d574577afa8deac19df2673cdea9aef45549ff8fac798ddaba61541c69e185a?s=64&d=retro"
+    expected_usernames = set(['lmacken', 'hadess'])
+    expected_packages = set(['gnome-settings-daemon', 'control-center'])
+    expected_objects = set([
+        'packages/gnome-settings-daemon',
+        'packages/control-center',
+    ])
+
+    msg = {
+        "topic": "org.fedoraproject.prod.bodhi.update.request.testing",
+        "msg": {
+            'agent': 'lmacken',
+            "update": {
+                "status": "pending",
+                "critpath": False,
+                "stable_karma": 3,
+                "date_pushed": None,
+                "title": "gnome-settings-daemon-3.6.1-1.fc18," +
+                "control-center-3.6.1-1.fc18",
+                "nagged": None,
+                "comments": [
+                    {
+                        "group": None,
+                        "author": "bodhi",
+                        "text": "This update has been submitted for "
+                        "testing by hadess. ",
+                        "karma": 0,
+                        "anonymous": False,
+                        "timestamp": 1349718539.0,
+                        "update_title": "gnome-settings-daemon-3.6.1-1.fc18," +
+                        "control-center-3.6.1-1.fc18"
+                    }
+                ],
+                "updateid": None,
+                "type": "bugfix",
+                "close_bugs": True,
+                "date_submitted": 1349718534.0,
+                "unstable_karma": -3,
+                "release": {
+                    "dist_tag": "f18",
+                    "locked": True,
+                    "long_name": "Fedora 18",
+                    "name": "F18",
+                    "id_prefix": "FEDORA"
+                },
+                "approved": None,
+                "builds": [
+                    {
+                        "nvr": "gnome-settings-daemon-3.6.1-1.fc18",
+                        "package": {
+                            "suggest_reboot": False,
+                            "committers": [
+                                "hadess",
+                                "ofourdan",
+                                "mkasik",
+                                "cosimoc"
+                            ],
+                            "name": "gnome-settings-daemon"
+                        }
+                    }, {
+                        "nvr": "control-center-3.6.1-1.fc18",
+                        "package": {
+                            "suggest_reboot": False,
+                            "committers": [
+                                "ctrl-center-team",
+                                "ofourdan",
+                                "ssp",
+                                "ajax",
+                                "alexl",
+                                "jrb",
+                                "mbarnes",
+                                "caolanm",
+                                "davidz",
+                                "mclasen",
+                                "rhughes",
+                                "hadess",
+                                "johnp",
+                                "caillon",
+                                "whot",
+                                "rstrode"
+                            ],
+                            "name": "control-center"
+                        }
+                    }
+                ],
+                "date_modified": None,
+                "notes": "This update fixes numerous bugs in the new Input " +
+                "Sources support, the Network panel and adds a help " +
+                "screen accessible via Wacom tablets's buttons.",
+                "request": "testing",
+                "bugs": [],
+                "critpath_approved": False,
+                "karma": 0,
+                "submitter": "hadess"
+            }
+        },
+        "i": 2,
+        "timestamp": 1349718539.0,
+    }
+
+
 class TestBodhiUpdateEject(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever an update
@@ -208,10 +326,10 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """
     expected_title = "bodhi.update.request.testing"
     expected_subti = "lmacken submitted " + \
-        "gnome-settings-daemon-3.6.1-1.fc18,contr..." + \
+        "gnome-settings-daemon-3.6.1-1.fc18 contr..." + \
         " to testing"
     expected_link = "https://bodhi.fedoraproject.org/updates/" + \
-        "gnome-settings-daemon-3.6.1-1.fc18,control-center-3.6.1-1.fc18"
+        "gnome-settings-daemon-3.6.1-1.fc18 control-center-3.6.1-1.fc18"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "0d574577afa8deac19df2673cdea9aef45549ff8fac798ddaba61541c69e185a?s=64&d=retro"
@@ -231,7 +349,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
                 "critpath": False,
                 "stable_karma": 3,
                 "date_pushed": None,
-                "title": "gnome-settings-daemon-3.6.1-1.fc18," +
+                "title": "gnome-settings-daemon-3.6.1-1.fc18 " +
                 "control-center-3.6.1-1.fc18",
                 "nagged": None,
                 "comments": [
@@ -243,7 +361,7 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
                         "karma": 0,
                         "anonymous": False,
                         "timestamp": 1349718539.0,
-                        "update_title": "gnome-settings-daemon-3.6.1-1.fc18," +
+                        "update_title": "gnome-settings-daemon-3.6.1-1.fc18 " +
                         "control-center-3.6.1-1.fc18"
                     }
                 ],
