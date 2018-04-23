@@ -1164,6 +1164,142 @@ class TestBodhiKarmaThresholdStable(Base):
     }
 
 
+class TestBodhiUpdateRequirementsMetStable(Base):
+    """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ publishes these
+    messages when an update reaches the stable testing threshold.
+    """
+    expected_title = "bodhi.update.requirements_met.stable"
+    expected_subti = "python-josepy-1.1.0-1.fc28 reached the stable " + \
+        "testing threshold"
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
+        "FEDORA-2018-e1f68e9766"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "c183d834af77a3a5f71c9fc16ee1ce3aba3a279a1fea9a814a5cad4c641a3cdd" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['elyscape'])
+    expected_packages = set(['python-josepy'])
+    expected_objects = set(['packages/python-josepy'])
+    msg = {
+        "username": "bodhi",
+        "i": 1,
+        "timestamp": 1524333630,
+        "msg_id": "2018-a3a06a6c-77da-4093-aafe-1e96a26a74bc",
+        "topic": "org.fedoraproject.dev.bodhi.update.requirements_met.stable",
+        "msg": {
+            "update": {
+                "alias": "FEDORA-2018-e1f68e9766",
+                "autokarma": True,
+                "bugs": [],
+                "builds": [
+                    {
+                        "ci_url": None,
+                        "epoch": 0,
+                        "nvr": "python-josepy-1.1.0-1.fc28",
+                        "release_id": 21,
+                        "signed": True,
+                        "type": "rpm"
+                    }
+                ],
+                "close_bugs": False,
+                "comments": [
+                    {
+                        "anonymous": False,
+                        "bug_feedback": [],
+                        "id": 771029,
+                        "karma": 0,
+                        "karma_critpath": 0,
+                        "testcase_feedback": [],
+                        "text": "This update has reached 3 days in testing " +
+                        "and can be pushed to stable now if the maintainer " +
+                        "wishes",
+                        "timestamp": "2018-04-21 18:00:24",
+                        "update_id": 112982,
+                        "user": {
+                            "avatar": None,
+                            "email": None,
+                            "groups": [],
+                            "id": 91,
+                            "name": "bodhi",
+                            "openid": None,
+                            "show_popups": True},
+                            "user_id": 91
+                    }
+                ],
+                "compose": None,
+                "content_type": "rpm",
+                "critpath": False,
+                "date_approved": None,
+                "date_modified": None,
+                "date_pushed": "2018-04-18 16:19:48",
+                "date_stable": None,
+                "date_submitted": "2018-04-17 18:20:04",
+                "date_testing": "2018-04-18 16:19:48",
+                "greenwave_summary_string": "all required tests passed",
+                "karma": 0,
+                "locked": False,
+                "meets_testing_requirements": True,
+                "notes": "Update to 1.1.0.",
+                "old_updateid": None,
+                "pushed": True,
+                "release": {
+                    "branch": "f28",
+                    "candidate_tag": "f28-updates-candidate",
+                    "composes": [
+                        {
+                            "content_type": "rpm",
+                            "release_id": 21,
+                            "request": "testing",
+                            "security": True
+                        }
+                    ],
+                    "dist_tag": "f28",
+                    "id_prefix": "FEDORA",
+                    "long_name": "Fedora 28",
+                    "name": "F28",
+                    "override_tag": "f28-override",
+                    "pending_signing_tag": "f28-signing-pending",
+                    "pending_stable_tag": "f28-updates-pending",
+                    "pending_testing_tag": "f28-updates-testing-pending",
+                    "stable_tag": "f28-updates",
+                    "state": "current",
+                    "testing_tag": "f28-updates-testing",
+                    "version": "28"
+                },
+                "request": None,
+                "require_bugs": True,
+                "require_testcases": True,
+                "requirements": "",
+                "severity": "unspecified",
+                "stable_karma": 1,
+                "status": "testing",
+                "submitter": "elyscape",
+                "suggest": "unspecified",
+                "test_cases": [],
+                "test_gating_status": "passed",
+                "title": "python-josepy-1.1.0-1.fc28",
+                "type": "enhancement",
+                "unstable_karma": -1,
+                "updateid": "FEDORA-2018-e1f68e9766",
+                "url": "https://bodhi.fedoraproject.org/updates/" +
+                "FEDORA-2018-e1f68e9766",
+                "user": {
+                    "avatar": None,
+                    "groups": [
+                        {
+                            "name": "packager"
+                        }
+                    ],
+                    "id": 3225,
+                    "name": "elyscape",
+                    "openid": None,
+                    "show_popups": True
+                }
+            }
+        }
+    }
+
+
 class TestBodhiErrataPublish(Base):
     """ `Bodhi2 <https://bodhi.fedoraproject.org>`_, along with many
     other services, moved away from sending its own email notifications to
