@@ -75,7 +75,7 @@ class BodhiProcessor(BaseProcessor):
         """ Take an update, and return the package name """
         # TODO -- make this unnecessary by having bodhi emit the
         # package name (and not just the update name) to begin with.
-        return [build.rsplit('-', 2)[0] for build in update.split(',')]
+        return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', update)]
 
     def title_or_alias(self, msg):
         value = msg['msg']['update'].get('alias')
