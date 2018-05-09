@@ -23,9 +23,8 @@ from fedmsg_meta_fedora_infrastructure import BaseProcessor
 class FedimgProcessor(BaseProcessor):
     __name__ = "fedimg"
     __description__ = "The Fedora cloud image service"
-    __link__ = "https://github.com/oddshocks/fedimg"
-    __docs__ = "https://fedoraproject.org/wiki/Features/" + \
-               "FirstClassCloudImages/KojiPlan"
+    __link__ = "https://github.com/fedora-infra/fedimg"
+    __docs__ = "https://fedimg.readthedocs.io"
     __obj__ = "New cloud image upload"
     __icon__ = "https://apps.fedoraproject.org/img/icons/fedimg.png"
 
