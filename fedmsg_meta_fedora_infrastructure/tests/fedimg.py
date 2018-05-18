@@ -1,5 +1,5 @@
 # This file is part of fedmsg.
-# Copyright (C) 2014 Red Hat, Inc.
+# Copyright (C) 2014-2018 Red Hat, Inc.
 #
 # fedmsg is free software; you can redistribute it and/or
 # modify it under the terms of the GNU Lesser General Public
@@ -16,7 +16,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
 # Authors:  David Gay <oddshocks@riseup.net>
-#
+#           Sayan Chowdhury <sayanchowdhury@fedoraproject.org>
 """ Tests for Fedimg messages """
 
 import unittest
@@ -37,7 +37,7 @@ class TestImageUploadStart(Base):
     image_name = "Fedora-Cloud-Base-24-20160710.0.x86_64"
     dest = "EC2-eu-west-1"
     expected_subti = "{0} started uploading to {1}".format(image_name,
-                                                                 dest)
+                                                           dest)
     expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
     expected_secondary_icon = None
     expected_packages = set([])
@@ -107,7 +107,84 @@ class TestImageUploadComplete(Base):
     }
 
 
-class TestImageTestStart(Base):
+class TestImagePublish(Base):
+    """ These messages are published when an image and snapshot is made public.
+    """
+
+    expected_title = "fedimg.image.publish"
+    image_name = "Fedora-Atomic-27-20180507.0.x86_64"
+    dest = "eu-west-2"
+    ami_id = 'ami-d813f1bf'
+    virt_type = 'hvm'
+    vol_type = 'gp2'
+    expected_subti = "{0} published in region, {1} ({2}, {3}, {4})".format(
+            image_name, dest, ami_id, virt_type, vol_type)
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([])
+    msg = {
+        u'i': 1,
+        u'msg': {
+            "compose": "Fedora-Atomic-27-20180507.0",
+            "service": "EC2",
+            "extra": {
+              "virt_type": "hvm",
+              "id": "ami-d813f1bf",
+              "vol_type": "gp2"
+            },
+            "destination": "eu-west-2",
+            "image_name": "Fedora-Atomic-27-20180507.0.x86_64",
+            "image_url": None
+        },
+        u'topic': u'org.fedoraproject.stg.fedimg.image.publish',
+        u'username': u'fedimg',
+        u'timestamp': 1371498303.125771,
+    }
+
+
+class TestImageCopy(Base):
+    """ These messages are published when an image has been copied to other
+        region from the base region."""
+
+    expected_title = "fedimg.image.copy"
+    image_name = "Fedora-Atomic-27-20180507.0.x86_64"
+    dest = "us-west-2"
+    ami_id = 'ami-2e80f656'
+    source_image_id = 'ami-991999e6'
+    virt_type = 'hvm'
+    vol_type = 'gp2'
+    expected_subti = ("{0} copied to {1} using source image, {5} "
+                      "({2}, {3}, {4})").format(image_name, dest, ami_id,
+                                                virt_type, vol_type,
+                                                source_image_id)
+    expected_icon = 'https://apps.fedoraproject.org/img/icons/fedimg.png'
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set([])
+    expected_objects = set([])
+    msg = {
+        u'i': 1,
+        u'msg': {
+            "service": "EC2",
+            "destination": "us-west-2",
+            "image_name": "Fedora-Atomic-27-20180507.0.x86_64",
+            "compose_id": "Fedora-Atomic-27-20180507.0",
+            "extra": {
+                "virt_type": "hvm",
+                "source_image_id": "ami-991999e6",
+                "id": "ami-2e80f656",
+                "vol_type": "gp2"
+            }
+        },
+        u'topic': u'org.fedoraproject.stg.fedimg.image.copy',
+        u'username': u'fedimg',
+        u'timestamp': 1371498303.125771,
+    }
+
+
+class LegacyTestImageTestStart(Base):
     """ These messages are published when an image test has started.
         At this point, Fedimg tries to start an instance of a
         image that it registered in the previous step, and check
@@ -152,7 +229,7 @@ class TestImageTestStart(Base):
 
 
 class LegacyTestImageUploadStart(Base):
-    """ These messages are published when an image upload has started. 
+    """ These messages are published when an image upload has started.
         At this point, Fedimg has picked up a completed Koji
         createImage task and will begin the process of registering
         the .raw.xz file as as an image with a cloud provider. """
