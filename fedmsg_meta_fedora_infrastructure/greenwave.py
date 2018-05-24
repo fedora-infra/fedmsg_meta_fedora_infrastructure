@@ -32,17 +32,17 @@ class GreenwaveProcessor(BaseProcessor):
 
     @staticmethod
     def satisfied(msg):
-        try:
-            # https://pagure.io/greenwave/pull-request/100
-            return msg['msg']['policies_satisfied']
-        except KeyError:
-            return msg['msg']['policies_satisified']
+        return msg['msg']['policies_satisfied']
 
     def link(self, msg, **config):
         subject = msg['msg']['subject']
         if subject:
             base = "https://taskotron.fedoraproject.org/resultsdb/results"
-            query = urlencode(msg['msg']['subject'][0])
+            # we want to be sure that we always have the same parameter order
+            query = urlencode(sorted(
+                [(k, v) for k, v in msg['msg']['subject'][0].items()],
+                key=lambda tup: tup[0]
+            ))
             return base + "?" + query
 
     def subtitle(self, msg, **config):

@@ -52,7 +52,7 @@ class TestGreenwaveDecisionChange(Base):
         "crypto": "x509",
         "topic": "org.fedoraproject.prod.greenwave.decision.update",
         "msg": {
-            "policies_satisified": True,
+            "policies_satisfied": True,
             "decision_context": "bodhi_update_push_stable",
             "product_version": "fedora-27",
             "applicable_policies": [
@@ -67,7 +67,7 @@ class TestGreenwaveDecisionChange(Base):
             ],
             "summary": "all required tests passed",
             "previous": {
-                "policies_satisified": False,
+                "policies_satisfied": False,
                 "summary": "1 of 2 required tests not found",
                 "unsatisfied_requirements": [
                     {
