@@ -1,3 +1,21 @@
+0.25.0
+------
+
+Pull Requests
+
+- (@elyscape)       #477 Fix Bodhi package splitter
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/477
+- (@elyscape)       -    Support bodhi.update.requirements_met.stable
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/commit/4f507279
+- (@sayanchowdhury) #479 fedimg: Update the metadata of the FedimgProcessor
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/479
+- (@sayanchowdhury) #480 fedimg: Add the processors for image.copy &
+  image.publish, including tests
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/480
+- (@sayanchowdhury) #481 fedimg: Update the region compatible with the current
+  message structure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/481
+
 0.24.1
 ------
 
