@@ -75,7 +75,7 @@ class BodhiProcessor(BaseProcessor):
         """ Take an update, and return the package name """
         # TODO -- make this unnecessary by having bodhi emit the
         # package name (and not just the update name) to begin with.
-        return [build.rsplit('-', 2)[0] for build in update.split(',')]
+        return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', update)]
 
     def title_or_alias(self, msg):
         value = msg['msg']['update'].get('alias')
@@ -247,6 +247,11 @@ class BodhiProcessor(BaseProcessor):
             title = truncate(msg['msg']['update']['title'])
             status = msg['msg']['status']
             return tmpl.format(title=title, status=status)
+        elif 'bodhi.update.requirements_met' in msg['topic']:
+            status = msg['topic'].split('.')[-1]
+            title = truncate(msg['msg']['update']['title'])
+            tmpl = self._("{title} reached the {status} testing threshold")
+            return tmpl.format(title=title, status=status)
         elif 'bodhi.errata.publish' in msg['topic']:
             return msg['msg']['subject']
 
@@ -264,6 +269,8 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.eject' in msg['topic']:
             return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.karma.threshold' in msg['topic']:
+            return tmpl.format(title=self.title_or_alias(msg))
+        elif 'bodhi.update.requirements_met' in msg['topic']:
             return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.errata.publish' in msg['topic']:
             return tmpl.format(title=self.title_or_alias(msg))
@@ -305,6 +312,8 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.eject' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.update.karma.threshold' in msg['topic']:
+            return set(self._u2p(msg['msg']['update']['title']))
+        elif 'bodhi.update.requirements_met' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.errata.publish' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
@@ -387,6 +396,11 @@ class BodhiProcessor(BaseProcessor):
                 self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.update.karma.threshold' in msg['topic']:
+            return set([
+                'packages/' + p for p in
+                self._u2p(msg['msg']['update']['title'])
+            ])
+        elif 'bodhi.update.requirements_met' in msg['topic']:
             return set([
                 'packages/' + p for p in
                 self._u2p(msg['msg']['update']['title'])
