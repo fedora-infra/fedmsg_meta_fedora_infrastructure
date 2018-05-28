@@ -2188,6 +2188,634 @@ class TestPullRequestFlagUpdated(Base):
         }
 
 
+class TestPullRequestAssignedAdded(Base):
+    """ These messages are published when a someone assigns to someone a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.request.assigned.added"
+    expected_subti = 'pingou assigned PR pagure#3246 to pingou'
+    expected_link = "https://pagure.io/pagure/pull-request/3246"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pagure', 'pull-request/3246'])
+    msg = {
+      "username": "git",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1527501832.0,
+      "msg_id": "2018-376ab989-dfcb-4cfa-a138-a2766c24b189",
+      "crypto": "x509",
+      "topic": "io.pagure.dev.pagure.request.assigned.added",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "description": "A git centered forge",
+          "parent": None,
+          "date_modified": "1526655561",
+          "access_users": {
+            "admin": [],
+            "commit": [],
+            "ticket": [],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "url_path": "pagure",
+          "priorities": {},
+          "id": 10,
+          "access_groups": {
+            "admin": [],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {},
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1431549490",
+          "fullname": "pagure",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": False,
+            "stomp_notifications": False,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "notify_on_commit_flag": False,
+            "notify_on_pull-request_flag": False,
+            "roadmap_on_issues_page": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "close_status": [
+            "Invalid",
+            "Insufficient data",
+            "Fixed",
+            "Duplicate",
+            "Won't Fix"
+          ],
+          "tags": [
+            "pagure",
+            "fedmsg"
+          ],
+          "name": "pagure"
+        },
+        "request": {
+          "status": "Open",
+          "last_updated": "1527501830",
+          "branch_from": "reactions",
+          "uid": "d7e37ef0385e43778e6f70737912528f",
+          "commit_stop": "0ff0e98d48c4124f47e4d912182a9a856ef0d90d",
+          "initial_comment": "A user can select from a predefined list of reactions for a comment.  There can be multiple reactions from the same person on a single comment, but only one of each type.\r\n\r\nFixes: https://pagure.io/pagure/issue/812\r\n\r\nThis is still work in progress. I'm posting it here to get some feedback.\r\n\r\n* Is this way of storing the reactions reasonable?\r\n  \r\n    If it used user ids instead, it could display up-to-date name. But if a user is deleted, it would be more tricky. (Can a user be deleted? What happens to their comments then?)\r\n\r\n* Is a predefined list of reactions good enough? Or should it support any emoji as suggested by @jflory7?\r\n\r\n* Should only one reaction per comment per user be allowed?",
+          "title": "WIP: Add comment reactions",
+          "comments": [],
+          "id": 3246,
+          "project": {
+            "custom_keys": [],
+            "description": "A git centered forge",
+            "parent": None,
+            "date_modified": "1526655561",
+            "access_users": {
+              "admin": [
+                "ryanlerch"
+              ],
+              "commit": [
+                "puiterwijk"
+              ],
+              "ticket": [
+                "vivekanand1101",
+                "jcline",
+                "farhaan",
+                "lslebodn",
+                "cverna",
+                "mprahl"
+              ],
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "url_path": "pagure",
+            "priorities": {},
+            "id": 10,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1431549490",
+            "fullname": "pagure",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": False,
+              "stomp_notifications": False,
+              "Web-hooks": None,
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "notify_on_commit_flag": False,
+              "notify_on_pull-request_flag": False,
+              "roadmap_on_issues_page": False,
+              "pull_requests": True,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "close_status": [
+              "Invalid",
+              "Insufficient data",
+              "Fixed",
+              "Duplicate",
+              "Won't Fix"
+            ],
+            "tags": [
+              "pagure",
+              "fedmsg"
+            ],
+            "name": "pagure"
+          },
+          "assignee": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "repo_from": {
+            "custom_keys": [],
+            "description": "A git centered forge",
+            "parent": {
+              "custom_keys": [],
+              "description": "A git centered forge",
+              "parent": None,
+              "date_modified": "1526655561",
+              "access_users": {
+                "admin": [
+                  "ryanlerch"
+                ],
+                "commit": [
+                  "puiterwijk"
+                ],
+                "ticket": [
+                  "vivekanand1101",
+                  "jcline",
+                  "farhaan",
+                  "lslebodn",
+                  "cverna",
+                  "mprahl"
+                ],
+                "owner": [
+                  "pingou"
+                ]
+              },
+              "namespace": None,
+              "url_path": "pagure",
+              "priorities": {},
+              "id": 10,
+              "access_groups": {
+                "admin": [],
+                "commit": [],
+                "ticket": []
+              },
+              "milestones": {},
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              },
+              "date_created": "1431549490",
+              "fullname": "pagure",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": False,
+                "stomp_notifications": False,
+                "Web-hooks": None,
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "notify_on_commit_flag": False,
+                "notify_on_pull-request_flag": False,
+                "roadmap_on_issues_page": False,
+                "pull_requests": True,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "close_status": [
+                "Invalid",
+                "Insufficient data",
+                "Fixed",
+                "Duplicate",
+                "Won't Fix"
+              ],
+              "tags": [
+                "pagure",
+                "fedmsg"
+              ],
+              "name": "pagure"
+            },
+            "date_modified": "1450686367",
+            "access_users": {
+              "admin": [],
+              "commit": [],
+              "ticket": [],
+              "owner": [
+                "lsedlar"
+              ]
+            },
+            "namespace": None,
+            "url_path": "fork/lsedlar/pagure",
+            "priorities": {},
+            "id": 293,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Lubom\u00edr Sedl\u00e1\u0159",
+              "name": "lsedlar"
+            },
+            "date_created": "1450686367",
+            "fullname": "forks/lsedlar/pagure",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": False,
+              "stomp_notifications": True,
+              "Web-hooks": None,
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "notify_on_commit_flag": False,
+              "notify_on_pull-request_flag": False,
+              "roadmap_on_issues_page": False,
+              "pull_requests": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": False
+            },
+            "close_status": [
+              "Invalid",
+              "Insufficient data",
+              "Fixed",
+              "Duplicate"
+            ],
+            "tags": [],
+            "name": "pagure"
+          },
+          "cached_merge_status": "FFORWARD",
+          "updated_on": "1526584967",
+          "commit_start": "7924676a7b6d1f8f3296b359d008991ecf0820f5",
+          "branch": "master",
+          "date_created": "1526584967",
+          "closed_at": None,
+          "remote_git": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Lubom\u00edr Sedl\u00e1\u0159",
+            "name": "lsedlar"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
+class TestPullRequestAssignedReset(Base):
+    """ These messages are published when a someone resets the assignee of
+    a pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.request.assigned.reset"
+    expected_subti = 'pingou reset the assignee of PR pagure#3246'
+    expected_link = "https://pagure.io/pagure/pull-request/3246"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/pagure', 'pull-request/3246'])
+    msg = {
+      "username": "git",
+      "i": 1,
+      "timestamp": 1527502215.0,
+      "msg_id": "2018-2330c3c2-d524-418e-ab09-d4dd0a3ac4de",
+      "crypto": "x509",
+      "topic": "io.pagure.dev.pagure.request.assigned.reset",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "project": {
+          "custom_keys": [],
+          "description": "A git centered forge",
+          "parent": None,
+          "date_modified": "1526655561",
+          "access_users": {
+            "admin": [
+              "ryanlerch"
+            ],
+            "commit": [
+              "puiterwijk"
+            ],
+            "ticket": [
+              "lslebodn",
+              "mprahl",
+              "farhaan",
+              "cverna",
+              "jcline",
+              "vivekanand1101"
+            ],
+            "owner": [
+              "pingou"
+            ]
+          },
+          "namespace": None,
+          "url_path": "pagure",
+          "priorities": {},
+          "id": 10,
+          "access_groups": {
+            "admin": [],
+            "commit": [],
+            "ticket": []
+          },
+          "milestones": {},
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          },
+          "date_created": "1431549490",
+          "fullname": "pagure",
+          "settings": {
+            "issues_default_to_private": False,
+            "Minimum_score_to_merge_pull-request": -1,
+            "pull_request_access_only": False,
+            "stomp_notifications": False,
+            "Web-hooks": None,
+            "fedmsg_notifications": True,
+            "always_merge": False,
+            "project_documentation": True,
+            "Enforce_signed-off_commits_in_pull-request": False,
+            "notify_on_commit_flag": False,
+            "notify_on_pull-request_flag": False,
+            "roadmap_on_issues_page": False,
+            "pull_requests": True,
+            "Only_assignee_can_merge_pull-request": False,
+            "issue_tracker": True
+          },
+          "close_status": [
+            "Invalid",
+            "Insufficient data",
+            "Fixed",
+            "Duplicate",
+            "Won't Fix"
+          ],
+          "tags": [
+            "pagure",
+            "fedmsg"
+          ],
+          "name": "pagure"
+        },
+        "request": {
+          "status": "Open",
+          "last_updated": "1527502213",
+          "branch_from": "reactions",
+          "uid": "d7e37ef0385e43778e6f70737912528f",
+          "commit_stop": "0ff0e98d48c4124f47e4d912182a9a856ef0d90d",
+          "initial_comment": "A user can select from a predefined list of reactions for a comment.  There can be multiple reactions from the same person on a single comment, but only one of each type.\r\n\r\nFixes: https://pagure.io/pagure/issue/812\r\n\r\nThis is still work in progress. I'm posting it here to get some feedback.\r\n\r\n* Is this way of storing the reactions reasonable?\r\n  \r\n    If it used user ids instead, it could display up-to-date name. But if a user is deleted, it would be more tricky. (Can a user be deleted? What happens to their comments then?)\r\n\r\n* Is a predefined list of reactions good enough? Or should it support any emoji as suggested by @jflory7?\r\n\r\n* Should only one reaction per comment per user be allowed?",
+          "title": "WIP: Add comment reactions",
+          "comments": [],
+          "id": 3246,
+          "project": {
+            "custom_keys": [],
+            "description": "A git centered forge",
+            "parent": None,
+            "date_modified": "1526655561",
+            "access_users": {
+              "admin": [
+                "ryanlerch"
+              ],
+              "commit": [
+                "puiterwijk"
+              ],
+              "ticket": [
+                "lslebodn",
+                "mprahl",
+                "farhaan",
+                "cverna",
+                "jcline",
+                "vivekanand1101"
+              ],
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "url_path": "pagure",
+            "priorities": {},
+            "id": 10,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1431549490",
+            "fullname": "pagure",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": False,
+              "stomp_notifications": False,
+              "Web-hooks": None,
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "notify_on_commit_flag": False,
+              "notify_on_pull-request_flag": False,
+              "roadmap_on_issues_page": False,
+              "pull_requests": True,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": True
+            },
+            "close_status": [
+              "Invalid",
+              "Insufficient data",
+              "Fixed",
+              "Duplicate",
+              "Won't Fix"
+            ],
+            "tags": [
+              "pagure",
+              "fedmsg"
+            ],
+            "name": "pagure"
+          },
+          "assignee": None,
+          "repo_from": {
+            "custom_keys": [],
+            "description": "A git centered forge",
+            "parent": {
+              "custom_keys": [],
+              "description": "A git centered forge",
+              "parent": None,
+              "date_modified": "1526655561",
+              "access_users": {
+                "admin": [
+                  "ryanlerch"
+                ],
+                "commit": [
+                  "puiterwijk"
+                ],
+                "ticket": [
+                  "lslebodn",
+                  "mprahl",
+                  "farhaan",
+                  "cverna",
+                  "jcline",
+                  "vivekanand1101"
+                ],
+                "owner": [
+                  "pingou"
+                ]
+              },
+              "namespace": None,
+              "url_path": "pagure",
+              "priorities": {},
+              "id": 10,
+              "access_groups": {
+                "admin": [],
+                "commit": [],
+                "ticket": []
+              },
+              "milestones": {},
+              "user": {
+                "fullname": "Pierre-YvesChibon",
+                "name": "pingou"
+              },
+              "date_created": "1431549490",
+              "fullname": "pagure",
+              "settings": {
+                "issues_default_to_private": False,
+                "Minimum_score_to_merge_pull-request": -1,
+                "pull_request_access_only": False,
+                "stomp_notifications": False,
+                "Web-hooks": None,
+                "fedmsg_notifications": True,
+                "always_merge": False,
+                "project_documentation": True,
+                "Enforce_signed-off_commits_in_pull-request": False,
+                "notify_on_commit_flag": False,
+                "notify_on_pull-request_flag": False,
+                "roadmap_on_issues_page": False,
+                "pull_requests": True,
+                "Only_assignee_can_merge_pull-request": False,
+                "issue_tracker": True
+              },
+              "close_status": [
+                "Invalid",
+                "Insufficient data",
+                "Fixed",
+                "Duplicate",
+                "Won't Fix"
+              ],
+              "tags": [
+                "pagure",
+                "fedmsg"
+              ],
+              "name": "pagure"
+            },
+            "date_modified": "1450686367",
+            "access_users": {
+              "admin": [],
+              "commit": [],
+              "ticket": [],
+              "owner": [
+                "lsedlar"
+              ]
+            },
+            "namespace": None,
+            "url_path": "fork/lsedlar/pagure",
+            "priorities": {},
+            "id": 293,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Lubom\u00edr Sedl\u00e1\u0159",
+              "name": "lsedlar"
+            },
+            "date_created": "1450686367",
+            "fullname": "forks/lsedlar/pagure",
+            "settings": {
+              "issues_default_to_private": False,
+              "Minimum_score_to_merge_pull-request": -1,
+              "pull_request_access_only": False,
+              "stomp_notifications": True,
+              "Web-hooks": None,
+              "fedmsg_notifications": True,
+              "always_merge": False,
+              "project_documentation": True,
+              "Enforce_signed-off_commits_in_pull-request": False,
+              "notify_on_commit_flag": False,
+              "notify_on_pull-request_flag": False,
+              "roadmap_on_issues_page": False,
+              "pull_requests": False,
+              "Only_assignee_can_merge_pull-request": False,
+              "issue_tracker": False
+            },
+            "close_status": [
+              "Invalid",
+              "Insufficient data",
+              "Fixed",
+              "Duplicate"
+            ],
+            "tags": [],
+            "name": "pagure"
+          },
+          "cached_merge_status": "FFORWARD",
+          "updated_on": "1526584967",
+          "commit_start": "7924676a7b6d1f8f3296b359d008991ecf0820f5",
+          "branch": "master",
+          "date_created": "1526584967",
+          "closed_at": None,
+          "remote_git": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Lubom\u00edr Sedl\u00e1\u0159",
+            "name": "lsedlar"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
 class LegacyTestGitCommit(Base):
     """ These messages are published when a someone updates a flag on a
     pull-request on a project on `pagure <https://pagure.io>`_.
@@ -2625,6 +3253,7 @@ class TestIssueCommentEdit(Base):
             "agent": "churchyard"
           }
         }
+
 
 class TestNewProjectDistGit(Base):
     """ These messages are published when a new project is created on
