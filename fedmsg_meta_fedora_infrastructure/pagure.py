@@ -172,6 +172,11 @@ class PagureProcessor(BaseProcessor):
                 tmpl += '/pull-request/{id}'
                 return tmpl.format(
                     base_url=base_url, project=project, id=prid)
+        elif 'pagure.request' in msg['topic']:
+            prid = msg['msg']['request']['id']
+            tmpl += '/pull-request/{id}'
+            return tmpl.format(
+                    base_url=base_url, project=project, id=prid)
         elif 'pagure.project.deleted' in msg['topic']:
             return base_url
         elif 'pagure.project' in msg['topic']:
@@ -456,6 +461,22 @@ class PagureProcessor(BaseProcessor):
             )
             return tmpl.format(
                 username=username, id=prid, comment=comment, project=project)
+        elif 'pagure.request.assigned.added' in msg['topic']:
+            prid = msg['msg']['request']['id']
+            assignee = ''
+            if msg['msg']['request']['assignee']:
+                assignee = ' to {0}'.format(
+                    msg['msg']['request']['assignee']['name']
+                )
+            tmpl = self._(
+                '{user} assigned PR {project}#{id}{assignee}')
+            return tmpl.format(
+                user=user, project=project, id=prid, assignee=assignee)
+        elif 'pagure.request.assigned.reset' in msg['topic']:
+            prid = msg['msg']['request']['id']
+            tmpl = self._(
+                '{user} reset the assignee of PR {project}#{id}')
+            return tmpl.format(user=user, project=project, id=prid)
         elif 'pagure.git.receive' in msg['topic']:
             if 'commit' in msg['msg']:
                 tmpl = self._('{user} pushed to {repo} ({branch}). "{summary}"')
@@ -543,6 +564,11 @@ class PagureProcessor(BaseProcessor):
                     break
             return set([
                 'pull-request/%s' % msg['msg'][key]['id'],
+                'project/%s' % project,
+            ])
+        elif 'pagure.request' in msg['topic']:
+            return set([
+                'pull-request/%s' % msg['msg']['request']['id'],
                 'project/%s' % project,
             ])
         elif 'pagure.git.receive' in msg['topic']:
