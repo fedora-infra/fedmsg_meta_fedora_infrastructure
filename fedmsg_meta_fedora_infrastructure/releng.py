@@ -29,7 +29,10 @@ class RelengProcessor(BaseProcessor):
     __icon__ = "https://apps.fedoraproject.org/img/icons/atomic.png"
 
     def subtitle(self, msg, **config):
-        release = msg['msg']['atomic_raw'].get('release', '')
+        if 'x86_64' in msg['msg'].keys():
+            release = msg['msg']['x86_64']['atomic_raw'].get('release', '')
+        else:
+            release = msg['msg']['atomic_raw'].get('release', '')
         if msg['topic'].endswith('.releng.atomic.twoweek.begin'):
             tmpl = self._("Release engineering scripts started evaluating a "
                           "new set of builds for a Fedora {release} Atomic "
@@ -49,7 +52,10 @@ class RelengProcessor(BaseProcessor):
         return self.__icon__
 
     def objects(self, msg, **config):
-        return set([
-            "%s/%s" % (msg['msg'][key]['release'], key)
-            for key in msg['msg'] if key.startswith('atomic_')
-        ])
+        if 'x86_64' in msg['msg'].keys():
+            return set(msg['msg'].keys())
+        else:
+            return set([
+                "%s/%s" % (msg['msg'][key]['release'], key)
+                for key in msg['msg'] if key.startswith('atomic_')
+            ])
