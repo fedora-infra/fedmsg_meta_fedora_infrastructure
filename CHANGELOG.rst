@@ -1,3 +1,15 @@
+0.26.0
+------
+
+ Pull Requests
+
+ - (@pypingou)      #487 Add support for fedmsg message from pagure about PR
+   assignee
+   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/487
+ - (@sinnykumari)   #488 Update releng.atomic.twoweek fedmsg doc with multi-arch
+   content
+   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/488
+
 0.25.0
 ------
 
