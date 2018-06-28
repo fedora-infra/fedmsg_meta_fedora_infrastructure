@@ -978,7 +978,7 @@ class LegacyTestAllPackagesPackageRunning(Base):
     announces that the build of a package is running.
     """
 
-    expected_title = "allpackages.pipeline.package.running"
+    expected_title = "allpackages-build.pipeline.package.running"
     expected_subti = 'Commit 35cdcb6a of package rpms/gdb is '\
         'being built in the All Packages CI pipeline on branch f28'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
@@ -1001,7 +1001,7 @@ class LegacyTestAllPackagesPackageRunning(Base):
       "timestamp": 1522054091.0,
       "msg_id": "2018-cfb9a40e-3220-4dcf-a5aa-270a6cee975c",
       "crypto": "x509",
-      "topic": "org.centos.prod.allpackages.pipeline.package.running",
+      "topic": "org.centos.prod.allpackages-build.pipeline.package.running",
       "headers": {},
       "source_version": "0.8.2",
       "msg": {
@@ -1016,7 +1016,7 @@ class LegacyTestAllPackagesPackageRunning(Base):
         "namespace": "rpms",
         "CI_NAME": "upstream-fedora-f28-pipeline",
         "repo": "gdb",
-        "topic": "org.centos.prod.allpackages.pipeline.package.running",
+        "topic": "org.centos.prod.allpackages-build.pipeline.package.running",
         "status": "SUCCESS",
         "branch": "f28",
         "test_guidance": "''",
@@ -1031,7 +1031,7 @@ class LegacyTestAllPackagesCompleteSuccess(Base):
     on a package.
     """
 
-    expected_title = "allpackages.pipeline.complete"
+    expected_title = "allpackages-build.pipeline.complete"
     expected_subti = 'Commit "35cdcb6a" of package rpms/gdb passed the ' \
         'All Packages CI pipeline on branch f28'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
@@ -1055,7 +1055,7 @@ class LegacyTestAllPackagesCompleteSuccess(Base):
       "timestamp": 1522055492.0,
       "msg_id": "2018-1436f172-aa90-49f2-9ff0-9b34608f38e8",
       "crypto": "x509",
-      "topic": "org.centos.prod.allpackages.pipeline.complete",
+      "topic": "org.centos.prod.allpackages-build.pipeline.complete",
       "headers": {},
       "source_version": "0.8.2",
       "msg": {
@@ -1070,7 +1070,7 @@ class LegacyTestAllPackagesCompleteSuccess(Base):
         "namespace": "rpms",
         "CI_NAME": "upstream-fedora-f28-pipeline",
         "repo": "gdb",
-        "topic": "org.centos.prod.allpackages.pipeline.complete",
+        "topic": "org.centos.prod.allpackages-build.pipeline.complete",
         "status": "SUCCESS",
         "branch": "f28",
         "test_guidance": "''",
@@ -1084,7 +1084,7 @@ class TestAllPackagesPackageRunning(Base):
     announces that the build of a package is running.
     """
 
-    expected_title = "ci.pipeline.allpackages.package.running"
+    expected_title = "ci.pipeline.allpackages-build.package.running"
     expected_subti = 'Commit 35cdcb6a of package rpms/gdb is '\
         'being built in the All Packages CI pipeline on branch f28'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
@@ -1099,7 +1099,7 @@ class TestAllPackagesPackageRunning(Base):
     expected_usernames = set(['jankratochvil'])
     expected_objects = set(
         ['rpms/gdb/35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
-         'f28/allpackages/package/running'])
+         'f28/allpackages-build/package/running'])
     msg = {
       "username": None,
       "source_name": "datanommer",
@@ -1107,7 +1107,7 @@ class TestAllPackagesPackageRunning(Base):
       "timestamp": 1522054091.0,
       "msg_id": "2018-cfb9a40e-3220-4dcf-a5aa-270a6cee975c",
       "crypto": "x509",
-      "topic": "org.centos.prod.ci.pipeline.allpackages.package.running",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.running",
       "headers": {},
       "source_version": "0.8.2",
       "msg": {
@@ -1122,7 +1122,7 @@ class TestAllPackagesPackageRunning(Base):
         "namespace": "rpms",
         "CI_NAME": "upstream-fedora-f28-pipeline",
         "repo": "gdb",
-        "topic": "org.centos.prod.ci.pipeline.allpackages.package.running",
+        "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.running",
         "status": "SUCCESS",
         "branch": "f28",
         "test_guidance": "''",
@@ -1137,7 +1137,7 @@ class TestAllPackagesCompleteSuccess(Base):
     on a package.
     """
 
-    expected_title = "ci.pipeline.allpackages.complete"
+    expected_title = "ci.pipeline.allpackages-build.complete"
     expected_subti = 'Commit "35cdcb6a" of package rpms/gdb passed the ' \
         'All Packages CI pipeline on branch f28'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
@@ -1153,7 +1153,7 @@ class TestAllPackagesCompleteSuccess(Base):
     expected_objects = set(
         ['rpms/gdb/'
          '35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
-         'f28/allpackages/complete'])
+         'f28/allpackages-build/complete'])
     msg = {
       "username": None,
       "source_name": "datanommer",
@@ -1161,7 +1161,7 @@ class TestAllPackagesCompleteSuccess(Base):
       "timestamp": 1522055492.0,
       "msg_id": "2018-1436f172-aa90-49f2-9ff0-9b34608f38e8",
       "crypto": "x509",
-      "topic": "org.centos.prod.ci.pipeline.allpackages.complete",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.complete",
       "headers": {},
       "source_version": "0.8.2",
       "msg": {
@@ -1176,7 +1176,7 @@ class TestAllPackagesCompleteSuccess(Base):
         "namespace": "rpms",
         "CI_NAME": "upstream-fedora-f28-pipeline",
         "repo": "gdb",
-        "topic": "org.centos.prod.ci.pipeline.allpackages.complete",
+        "topic": "org.centos.prod.ci.pipeline.allpackages-build.complete",
         "status": "SUCCESS",
         "branch": "f28",
         "test_guidance": "''",

@@ -57,8 +57,8 @@ class AtomicCiProcessor(BaseProcessor):
         name = self.__name__
         pipeline_name = self.pipeline_name
 
-        if '%s.allpackages' % name in msg['topic']:
-            name = "ci.pipeline.allpackages"
+        if '%s.allpackages-build' % name in msg['topic']:
+            name = "ci.pipeline.allpackages-build"
             pipeline_name = 'All Packages CI'
 
         if '%s.package.ignore' % name in msg['topic']:
