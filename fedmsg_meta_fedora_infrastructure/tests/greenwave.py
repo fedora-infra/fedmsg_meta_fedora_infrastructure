@@ -31,8 +31,85 @@ class TestGreenwaveDecisionChange(Base):
     <http://fedoraproject.org/wiki/Infrastructure/Factory2/Focus/Greenwave>`_
     when some event causes it to change its decision about an artifacts.
 
-    Here we have an example of a positive decision change on whether or not
-    Bodhi should allow libmtp-1.1.14-1.fc27 to go to the stable repos.
+    Here we have an example of a negative decision change on whether or not
+    Bodhi should allow a compose to go to the stable repos.
+    """
+    expected_title = "greenwave.decision.update"
+    expected_subti = (
+        'greenwave says NO-GO on Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box '
+        'for "rawhide_compose_sync_to_mirrors" (fedora-rawhide)'
+    )
+    expected_link = "https://taskotron.fedoraproject.org/resultsdb/" + \
+        "results?item=Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box&type=compose"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/greenwave.png"
+    expected_secondary_icon = None
+    expected_packages = set()
+
+    msg = {
+      "username": "greenwave",
+      "source_name": "datanommer",
+      "i": 21,
+      "timestamp": 1532672809.0,
+      "msg_id": "2018-3f0f22f8-6f94-4d8a-95c6-399ffdcf1ada",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.greenwave.decision.update",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "subject_type": "compose",
+        "policies_satisfied": False,
+        "decision_context": "rawhide_compose_sync_to_mirrors",
+        "product_version": "fedora-rawhide",
+        "applicable_policies": [
+          "openqa_important_stuff_for_rawhide"
+        ],
+        "unsatisfied_requirements": [
+          {
+            "testcase": "compose.cloud.all",
+            "item": {
+              "item": "Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box",
+              "type": "compose"
+            },
+            "result_id": 23066919,
+            "scenario": None,
+            "type": "test-result-failed"
+          }
+        ],
+        "subject_identifier": "Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box",
+        "previous": {
+          "summary": "1 of 1 required test results missing",
+          "policies_satisfied": False,
+          "unsatisfied_requirements": [
+            {
+              "subject_type": "compose",
+              "scenario": None,
+              "testcase": "compose.cloud.all",
+              "item": {
+                "item": "Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box",
+                "type": "compose"
+              },
+              "subject_identifier": "Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box",
+              "type": "test-result-missing"
+            }
+          ],
+          "applicable_policies": [
+            "openqa_important_stuff_for_rawhide"
+          ]
+        },
+        "summary": "1 of 1 required tests failed",
+        "subject": [
+          {
+            "item": "Fedora-Cloud-Base-Vagrant-Rawhide-20180726.n.2.x86_64.vagrant-libvirt.box",
+            "type": "compose"
+          }
+        ]
+      }
+    }
+
+
+class TestGreenwaveDecisionChangeOld(Base):
+    """
+    Old message format published by Greenwave 0.7.1 and below.
     """
     expected_title = "greenwave.decision.update"
     expected_subti = "greenwave is a GO on libmtp-1.1.14-1.fc27 for " + \
