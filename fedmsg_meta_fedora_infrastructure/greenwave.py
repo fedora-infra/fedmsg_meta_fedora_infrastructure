@@ -42,7 +42,7 @@ class GreenwaveProcessor(BaseProcessor):
         subject = msg['msg']['subject']
         if subject:
             base = "https://taskotron.fedoraproject.org/resultsdb/results"
-            query = urlencode(msg['msg']['subject'][0])
+            query = urlencode(sorted(subject[0].items()))
             return base + "?" + query
 
     def subtitle(self, msg, **config):
