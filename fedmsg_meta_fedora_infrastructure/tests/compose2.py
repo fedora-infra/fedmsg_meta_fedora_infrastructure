@@ -76,6 +76,32 @@ class TestPungiKojiComplete(Base):
     }
 
 
+class TestPungiKojiTerminated(Base):
+    """ In 2016, the `release engineering
+    <https://fedoraproject.org/wiki/ReleaseEngineering>`_ team started moving
+    the compose process to ``pungi4``, which emits messages like this as it
+    does its composition work.
+
+    Here's an example message published when a compose processed is killed.
+    """
+    expected_title = "pungi.compose.status.change"
+    expected_subti = "pungi-koji compose of Fedora-24-20151208.n.7 was terminated"
+    expected_link = "http://kojipkgs.fedoraproject.org/" + \
+        "compose//rawhide/Fedora-24-20151208.n.7"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/pungi.png"
+    expected_objects = set(['rawhide/Fedora-24-20151208/n/7'])
+    msg = {
+        "msg": {
+            "compose_id": "Fedora-24-20151208.n.7",
+            "location": "http://kojipkgs.fedoraproject.org/compose/"
+            "/rawhide/Fedora-24-20151208.n.7/compose",
+            "status": "TERMINATED"
+        },
+        "timestamp": 1449600728.0,
+        "topic": "org.fedoraproject.prod.pungi.compose.status.change"
+    }
+
+
 class TestPungiPhaseStart(Base):
     """ In 2016, the `release engineering
     <https://fedoraproject.org/wiki/ReleaseEngineering>`_ team started moving
