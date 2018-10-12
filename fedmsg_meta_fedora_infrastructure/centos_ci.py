@@ -61,6 +61,10 @@ class AtomicCiProcessor(BaseProcessor):
             name = "ci.pipeline.allpackages"
             pipeline_name = 'All Packages CI'
 
+        elif '%s.container' % name in msg['topic']:
+            name = "ci.pipeline.container"
+            pipeline_name = 'Container CI'
+
         if '%s.package.ignore' % name in msg['topic']:
             tmpl = self._(
                 'Commit "{commit}" of package {ns}/{pkg} is being '
@@ -104,6 +108,25 @@ class AtomicCiProcessor(BaseProcessor):
         elif '%s.package.test.functional.running' % name in msg['topic']:
             tmpl = self._(
                 'Commit {commit} of package {ns}/{pkg} is running its '
+                'functional tests in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.container.test.functional.complete' % name in msg['topic']:
+            status = _get_status(status)
+            tmpl = self._(
+                'Commit {commit} of container {ns}/{pkg} {status} its '
+                'functional tests in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.container.test.functional.queued' % name in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of container {ns}/{pkg} is queued for '
+                'functional testing in the {pipeline_name} pipeline on '
+                'branch {branch}')
+
+        elif '%s.container.test.functional.running' % name in msg['topic']:
+            tmpl = self._(
+                'Commit {commit} of container {ns}/{pkg} is running its '
                 'functional tests in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
@@ -233,3 +256,16 @@ class OldAllpackagesCiProcessor(AtomicCiProcessor):
     __obj__ = "CI AllPackages Results"
 
     pipeline_name = 'All Packages CI'
+
+class OldContainerCiProcessor(AtomicCiProcessor):
+    topic_prefix_re = 'org\\.centos\\.(dev|stage|prod)'
+
+    __name__ = "container.pipeline"
+    __description__ = "The CentOS Continuous Integration pipeline for " \
+        "containers"
+    __link__ = "http://ci.centos.org/"
+    __icon__ = "https://ci.centos.org/static/ec6de755/images/headshot.png"
+    __docs__ = "https://github.com/CentOS-PaaS-SIG/ci-pipeline/"
+    __obj__ = "CI Container Results"
+
+    pipeline_name = 'Container CI'
