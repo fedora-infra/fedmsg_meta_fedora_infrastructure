@@ -1257,7 +1257,7 @@ class TestContainerCompleteSuccess(Base):
     expected_objects = set(
         ['container/tools/'
          '35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
-         'master/container/complete'])
+         'master/container-pr/complete'])
     msg = {
       "username": None,
       "source_name": "datanommer",
