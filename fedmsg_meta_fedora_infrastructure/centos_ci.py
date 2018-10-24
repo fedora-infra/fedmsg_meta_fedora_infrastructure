@@ -62,7 +62,7 @@ class AtomicCiProcessor(BaseProcessor):
             pipeline_name = 'All Packages CI'
 
         elif '%s.container' % name in msg['topic']:
-            name = "ci.pipeline.container"
+            name = "ci.pipeline.container-pr"
             pipeline_name = 'Container CI'
 
         if '%s.package.ignore' % name in msg['topic']:
@@ -75,6 +75,10 @@ class AtomicCiProcessor(BaseProcessor):
             tmpl = self._(
                 'Commit "{commit}" of package {ns}/{pkg} {status}'
                 ' the {pipeline_name} pipeline on branch {branch}')
+            if pipeline_name == 'Container CI':
+                tmpl = self._(
+                    'Commit "{commit}" of container {ns}/{pkg} {status}'
+                    ' the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.package.complete' % name in msg['topic']:
             status = _get_status(status)

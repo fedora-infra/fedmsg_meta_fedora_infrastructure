@@ -1192,20 +1192,21 @@ class TestContainerTestRunning(Base):
 
     expected_title = "ci.pipeline.container-pr.container.test.functional.running"
     expected_subti = 'Commit 35cdcb6a of container container/tools is '\
-        'being built in the Container CI pipeline on master'
+        'running its functional tests in the Container CI pipeline '\
+        'on branch master'
     expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
         "blue/organizations/jenkins/fedcontainer-rawhide-pr-pipeline/detail/" \
         "fedcontainer-rawhide-pr-pipeline/50/pipeline/"
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
     expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
-        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        'b13ed9018e915cdb42f59c1435e3d55bcac2f4d9843cda1a1d978dc6cad09968'\
         '?s=64&d=retro'
     expected_packages = set([])
     expected_usernames = set(['cverna'])
     expected_objects = set(
         ['container/tools/35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
-         'master/container/container/test/functional/running'])
+         'master/container-pr/container/test/functional/running'])
     msg = {
       "username": None,
       "source_name": "datanommer",
@@ -1250,7 +1251,7 @@ class TestContainerCompleteSuccess(Base):
     expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
         "headshot.png"
     expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
-        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        'b13ed9018e915cdb42f59c1435e3d55bcac2f4d9843cda1a1d978dc6cad09968'\
         '?s=64&d=retro'
     expected_packages = set([])
     expected_usernames = set(['cverna'])
