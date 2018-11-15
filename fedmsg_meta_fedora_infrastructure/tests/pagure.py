@@ -4605,6 +4605,235 @@ class TestProjectUserRemoved(Base):
     }
 
 
+class TestPRUpdated(Base):
+    """ These messages are published when a someone adds new commits to a
+    pull-request on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.updated"
+    expected_subti = 'Pull-request #87 has been updated'
+    expected_link = "https://pagure.io/test/pull-request/87"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "00e1e9d0b71103439c0521f7e656b1cb2f608837f444675abe90c0a2c12473ec" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pagure'])
+    expected_objects = set(['project/test', 'pull-request/87'])
+    msg = {
+      "i": 5,
+      "timestamp": 1542280763,
+      "msg_id": "2018-b6349ae1-de63-4ab9-bf3b-3508bdec431d",
+      "topic": "io.pagure.dev.pagure.pull-request.updated",
+      "msg": {
+        "pullrequest": {
+          "status": "Open",
+          "last_updated": "1542280763",
+          "branch_from": "another_branch2",
+          "uid": "36772d8760644fba9c421ac7dd345d94",
+          "date_created": "1542278565",
+          "title": "PR from another_branch2",
+          "initial_comment": None,
+          "comments": [],
+          "id": 87,
+          "project": {
+            "custom_keys": [],
+            "description": "javascript:alert('coin');",
+            "parent": None,
+            "date_modified": "1538491157",
+            "access_users": {
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {},
+            "id": 1,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1483535724",
+            "fullname": "test",
+            "url_path": "test",
+            "close_status": [],
+            "tags": [],
+            "name": "test"
+          },
+          "commit_stop": "5eea7904b69aa3f349a7b1759627f4cfc5f7bee2",
+          "repo_from": {
+            "custom_keys": [],
+            "description": "javascript:alert('coin');",
+            "parent": None,
+            "date_modified": "1538491157",
+            "access_users": {
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {},
+            "id": 1,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1483535724",
+            "fullname": "test",
+            "url_path": "test",
+            "close_status": [],
+            "tags": [],
+            "name": "test"
+          },
+          "cached_merge_status": "unknown",
+          "assignee": None,
+          "commit_start": "87e7f83a1b819643207a5825774bdeb927eb83c7",
+          "branch": "master",
+          "updated_on": "1542278565",
+          "remote_git": None,
+          "closed_at": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "pagure"
+      }
+    }
+
+class TestPRRebased(Base):
+    """ These messages are published when a someone rebases a pull-request
+    on a project on `pagure <https://pagure.io>`_.
+    """
+    expected_title = "pagure.pull-request.rebased"
+    expected_subti = 'Pull-request #87 has been rebased'
+    expected_link = "https://pagure.io/test/pull-request/87"
+    expected_icon = "https://apps.fedoraproject.org/packages/" + \
+        "images/icons/package_128x128.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "01fe73d687f4db328da1183f2a1b5b22962ca9d9c50f0728aafeac974856311c" + \
+        "?s=64&d=retro"
+    expected_packages = set([])
+    expected_usernames = set(['pingou'])
+    expected_objects = set(['project/test', 'pull-request/87'])
+    msg = {
+      "i": 4,
+      "timestamp": 1542281241,
+      "msg_id": "2018-c6d55cee-752b-4d0a-b6a9-f760c25e8787",
+      "topic": "io.pagure.dev.pagure.pull-request.rebased",
+      "msg": {
+        "pullrequest": {
+          "status": "Open",
+          "last_updated": "1542281241",
+          "branch_from": "another_branch2",
+          "uid": "36772d8760644fba9c421ac7dd345d94",
+          "date_created": "1542278565",
+          "title": "PR from another_branch2",
+          "initial_comment": None,
+          "comments": [],
+          "id": 87,
+          "project": {
+            "custom_keys": [],
+            "description": "javascript:alert('coin');",
+            "parent": None,
+            "date_modified": "1538491157",
+            "access_users": {
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {},
+            "id": 1,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1483535724",
+            "fullname": "test",
+            "url_path": "test",
+            "close_status": [
+              "Fixed",
+              "Invalid",
+              "Duplicate",
+              "Insufficient Data"
+            ],
+            "tags": [],
+            "name": "test"
+          },
+          "commit_stop": "bcabb47f7451ac5bc66e8280ecbd7f9a263eeded",
+          "repo_from": {
+            "custom_keys": [],
+            "description": "javascript:alert('coin');",
+            "parent": None,
+            "date_modified": "1538491157",
+            "access_users": {
+              "owner": [
+                "pingou"
+              ]
+            },
+            "namespace": None,
+            "priorities": {},
+            "id": 1,
+            "access_groups": {
+              "admin": [],
+              "commit": [],
+              "ticket": []
+            },
+            "milestones": {},
+            "user": {
+              "fullname": "Pierre-YvesChibon",
+              "name": "pingou"
+            },
+            "date_created": "1483535724",
+            "fullname": "test",
+            "url_path": "test",
+            "close_status": [
+              "Fixed",
+              "Invalid",
+              "Duplicate",
+              "Insufficient Data"
+            ],
+            "tags": [],
+            "name": "test"
+          },
+          "cached_merge_status": "unknown",
+          "assignee": None,
+          "commit_start": "5fa692a10c9abcde555be0e6c3dcfa7c3cc14ef7",
+          "branch": "master",
+          "updated_on": "1542278565",
+          "remote_git": None,
+          "closed_at": None,
+          "closed_by": None,
+          "user": {
+            "fullname": "Pierre-YvesChibon",
+            "name": "pingou"
+          }
+        },
+        "agent": "pingou"
+      }
+    }
+
+
 add_doc(locals())
 
 if __name__ == '__main__':
