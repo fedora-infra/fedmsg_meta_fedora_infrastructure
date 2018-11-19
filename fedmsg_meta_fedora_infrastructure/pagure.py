@@ -442,6 +442,18 @@ class PagureProcessor(BaseProcessor):
             )
             return tmpl.format(
                 user=user, id=prid, project=project, title=title)
+        elif 'pagure.pull-request.updated' in msg['topic']:
+            prid = msg['msg']['pullrequest']['id']
+            tmpl = self._(
+                'Pull-request #{id} has been updated'
+            )
+            return tmpl.format(id=prid)
+        elif 'pagure.pull-request.rebased' in msg['topic']:
+            prid = msg['msg']['pullrequest']['id']
+            tmpl = self._(
+                'Pull-request #{id} has been rebased'
+            )
+            return tmpl.format(id=prid)
         elif 'pagure.pull-request.flag.added' in msg['topic']:
             prid = msg['msg']['pullrequest']['id']
             username = msg['msg']['flag']['username']

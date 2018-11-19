@@ -1185,6 +1185,109 @@ class TestAllPackagesCompleteSuccess(Base):
     }
 
 
+class TestContainerTestRunning(Base):
+    """ These messages are published when the Container CI pipeline
+    announces that the test of a container is running.
+    """
+
+    expected_title = "ci.pipeline.container-pr.container.test.functional.running"
+    expected_subti = 'Commit 35cdcb6a of container container/tools is '\
+        'running its functional tests in the Container CI pipeline '\
+        'on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedcontainer-rawhide-pr-pipeline/detail/" \
+        "fedcontainer-rawhide-pr-pipeline/50/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        'b13ed9018e915cdb42f59c1435e3d55bcac2f4d9843cda1a1d978dc6cad09968'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['cverna'])
+    expected_objects = set(
+        ['container/tools/35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
+         'master/container-pr/container/test/functional/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1522054091.0,
+      "msg_id": "2018-cfb9a40e-3220-4dcf-a5aa-270a6cee975c",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.container-pr.container.test.functional.running",
+      "headers": {},
+      "source_version": "0.8.2",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "50",
+        "username": "cverna",
+        "rev": "35cdcb6a32562b632c075f2fd42793f7492dcdb3",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedcontainer-rawhide-pr-pipeline/detail/fedcontainer-rawhide-pr-pipeline/50/pipeline/",
+        "namespace": "container",
+        "CI_NAME": "fedcontainer-rawhide-pr-pipeline",
+        "repo": "tools",
+        "topic": "org.centos.prod.ci.pipeline.container-pr.container.test.functional.running",
+        "status": "SUCCESS",
+        "branch": "master",
+        "test_guidance": "''",
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestContainerCompleteSuccess(Base):
+    """ These messages are published when the Container CI pipeline
+    announces having completed successfully running the entire pipeline
+    on a container.
+    """
+
+    expected_title = "ci.pipeline.container-pr.complete"
+    expected_subti = 'Commit "35cdcb6a" of container container/tools passed the ' \
+        'Container CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedcontainer-rawhide-pr-pipeline/detail/" \
+        "fedcontainer-rawhide-pr-pipeline/50/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        'b13ed9018e915cdb42f59c1435e3d55bcac2f4d9843cda1a1d978dc6cad09968'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['cverna'])
+    expected_objects = set(
+        ['container/tools/'
+         '35cdcb6a32562b632c075f2fd42793f7492dcdb3/'
+         'master/container-pr/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1522055492.0,
+      "msg_id": "2018-1436f172-aa90-49f2-9ff0-9b34608f38e8",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.container-pr.complete",
+      "headers": {},
+      "source_version": "0.8.2",
+      "msg": {
+        "CI_TYPE": "custom",
+        "build_id": "50",
+        "username": "cverna",
+        "rev": "35cdcb6a32562b632c075f2fd42793f7492dcdb3",
+        "message-content": "",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedcontainer-rawhide-pr-pipeline/detail/fedcontainer-rawhide-pr-pipeline/50/pipeline/",
+        "namespace": "container",
+        "CI_NAME": "upstream-fedora-f28-pipeline",
+        "repo": "tools",
+        "topic": "org.centos.prod.ci.pipeline.container-pr.complete",
+        "status": "SUCCESS",
+        "branch": "master",
+        "test_guidance": "''",
+        "ref": "x86_64"
+      }
+    }
+
+
 add_doc(locals())
 
 

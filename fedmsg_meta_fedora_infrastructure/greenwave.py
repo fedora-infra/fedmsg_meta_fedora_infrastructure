@@ -42,7 +42,7 @@ class GreenwaveProcessor(BaseProcessor):
         subject = msg['msg']['subject']
         if subject:
             base = "https://taskotron.fedoraproject.org/resultsdb/results"
-            query = urlencode(msg['msg']['subject'][0])
+            query = urlencode(sorted(subject[0].items()))
             return base + "?" + query
 
     def subtitle(self, msg, **config):
@@ -55,9 +55,12 @@ class GreenwaveProcessor(BaseProcessor):
             "greenwave {decision} on {item} for "
             "\"{decision_context}\" ({product_version})"
         )
-        subject = msg['msg']['subject']
-        items = [entry.get('item') for entry in subject if entry.get('item')]
-        item = items[0] if items else "\"something\""
+        msg_body = msg['msg']
+        item = msg_body.get('subject_identifier')
+        if not item:
+            subject = msg_body['subject']
+            items = [entry.get('item') for entry in subject if entry.get('item')]
+            item = items[0] if items else "\"something\""
         return tmpl.format(decision=decision, item=item, **msg['msg'])
 
     def secondary_icon(self, msg, **config):
