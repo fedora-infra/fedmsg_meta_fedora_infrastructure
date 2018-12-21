@@ -197,7 +197,7 @@ class PagureProcessor(BaseProcessor):
                 item = msg['msg']['branch']
                 if 'refs/heads/' in item:
                     item = item.replace('refs/heads/', '')
-                tmpl += '/branch/{item}'
+                tmpl += '/tree/{item}'
             return tmpl.format(
                 base_url=base_url, project=project, item=item)
 

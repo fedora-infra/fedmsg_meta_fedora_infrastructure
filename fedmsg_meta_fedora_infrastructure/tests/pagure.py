@@ -2891,7 +2891,7 @@ class TestGitCommit(Base):
     """
     expected_title = "pagure.git.receive"
     expected_subti = 'pingou pushed 3 commits to pagure (master)'
-    expected_link = "https://pagure.io/pagure/branch/master"
+    expected_link = "https://pagure.io/pagure/tree/master"
     expected_icon = "https://apps.fedoraproject.org/packages/" + \
         "images/icons/package_128x128.png"
     expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/' + \
