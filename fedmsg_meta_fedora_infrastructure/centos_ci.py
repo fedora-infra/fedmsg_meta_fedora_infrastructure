@@ -37,11 +37,21 @@ class AtomicCiProcessor(BaseProcessor):
     pipeline_name = 'Atomic CI'
 
     def subtitle(self, msg, **config):
-        commit = msg['msg']['rev'][:8]
-        branch = msg['msg']['branch']
-        pkg = msg['msg']['repo']
-        namespace = msg['msg']['namespace']
-        status = msg['msg']['status']
+        rev = msg['msg']['rev'] or ""
+        if rev.startswith('kojitask-'):
+            revtype = "Koji task"
+            rev = rev.split('kojitask-')[1]
+        elif rev.startswith('PR-'):
+            revtype = "Pull request"
+            rev = rev.split('PR-')[1]
+        else:
+            # I'm assuming there aren't any other types, here...
+            revtype = "Commit"
+            rev = rev[:8]
+        branch = msg['msg']['branch'] or 'unknown_branch'
+        pkg = msg['msg']['repo'] or 'unknown_repo'
+        namespace = msg['msg']['namespace'] or 'unknown_namespace'
+        status = msg['msg']['status'] or 'unknown_status'
 
         def _get_status(status):
             if status.lower() == 'success':
@@ -57,7 +67,17 @@ class AtomicCiProcessor(BaseProcessor):
         name = self.__name__
         pipeline_name = self.pipeline_name
 
-        if '%s.allpackages' % name in msg['topic']:
+        # current allpackages pipelines as of 2019-04-12
+        if '%s.allpackages-build' % name in msg['topic']:
+            name = "ci.pipeline.allpackages-build"
+            pipeline_name = 'All Packages (Build) CI'
+
+        elif '%s.allpackages-pr' % name in msg['topic']:
+            name = "ci.pipeline.allpackages-pr"
+            pipeline_name = 'All Packages (PR) CI'
+
+        # old allpackages pipeline from before PR testing
+        elif '%s.allpackages' % name in msg['topic']:
             name = "ci.pipeline.allpackages"
             pipeline_name = 'All Packages CI'
 
@@ -67,143 +87,143 @@ class AtomicCiProcessor(BaseProcessor):
 
         if '%s.package.ignore' % name in msg['topic']:
             tmpl = self._(
-                'Commit "{commit}" of package {ns}/{pkg} is being '
+                '{revtype} "{rev}" of package {ns}/{pkg} is being '
                 'ignored by the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit "{commit}" of package {ns}/{pkg} {status}'
+                '{revtype} "{rev}" of package {ns}/{pkg} {status}'
                 ' the {pipeline_name} pipeline on branch {branch}')
             if pipeline_name == 'Container CI':
                 tmpl = self._(
-                    'Commit "{commit}" of container {ns}/{pkg} {status}'
+                    '{revtype} "{rev}" of container {ns}/{pkg} {status}'
                     ' the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.package.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} building '
+                '{revtype} {rev} of package {ns}/{pkg} {status} building '
                 'in the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.package.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued to be built '
+                '{revtype} {rev} of package {ns}/{pkg} is queued to be built '
                 'in the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.package.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being built in '
+                '{revtype} {rev} of package {ns}/{pkg} is being built in '
                 'the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.package.test.functional.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} its '
+                '{revtype} {rev} of package {ns}/{pkg} {status} its '
                 'functional tests in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.package.test.functional.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued for '
+                '{revtype} {rev} of package {ns}/{pkg} is queued for '
                 'functional testing in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.package.test.functional.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is running its '
+                '{revtype} {rev} of package {ns}/{pkg} is running its '
                 'functional tests in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.container.test.functional.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of container {ns}/{pkg} {status} its '
+                '{revtype} {rev} of container {ns}/{pkg} {status} its '
                 'functional tests in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.container.test.functional.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of container {ns}/{pkg} is queued for '
+                '{revtype} {rev} of container {ns}/{pkg} is queued for '
                 'functional testing in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.container.test.functional.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of container {ns}/{pkg} is running its '
+                '{revtype} {rev} of container {ns}/{pkg} is running its '
                 'functional tests in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.compose.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} a '
+                '{revtype} {rev} of package {ns}/{pkg} {status} a '
                 'compose in the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.compose.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued for a '
+                '{revtype} {rev} of package {ns}/{pkg} is queued for a '
                 'compose in the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.compose.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being part of a '
+                '{revtype} {rev} of package {ns}/{pkg} is being part of a '
                 'compose in the {pipeline_name} pipeline on branch {branch}')
 
         elif '%s.compose.test.integration.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} its tests '
+                '{revtype} {rev} of package {ns}/{pkg} {status} its tests '
                 'as part of a compose in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.compose.test.integration.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued for tests '
+                '{revtype} {rev} of package {ns}/{pkg} is queued for tests '
                 'as part of a compose in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.compose.test.integration.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being tested as '
+                '{revtype} {rev} of package {ns}/{pkg} is being tested as '
                 'part of a compose in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.image.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} being built '
+                '{revtype} {rev} of package {ns}/{pkg} {status} being built '
                 'in an image in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.image.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued to be built '
+                '{revtype} {rev} of package {ns}/{pkg} is queued to be built '
                 'in an image in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.image.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being built '
+                '{revtype} {rev} of package {ns}/{pkg} is being built '
                 'in an image in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.image.test.smoke.complete' % name in msg['topic']:
             status = _get_status(status)
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} {status} its tests '
+                '{revtype} {rev} of package {ns}/{pkg} {status} its tests '
                 'in an image in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.image.test.smoke.queued' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is queued to be tested '
+                '{revtype} {rev} of package {ns}/{pkg} is queued to be tested '
                 'in an image in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
         elif '%s.image.test.smoke.running' % name in msg['topic']:
             tmpl = self._(
-                'Commit {commit} of package {ns}/{pkg} is being tested '
+                '{revtype} {rev} of package {ns}/{pkg} is being tested '
                 'in an image in the {pipeline_name} pipeline on '
                 'branch {branch}')
 
@@ -211,7 +231,8 @@ class AtomicCiProcessor(BaseProcessor):
             tmpl = ""
 
         return tmpl.format(
-            commit=commit,
+            revtype=revtype,
+            rev=rev,
             ns=namespace,
             pkg=pkg,
             branch=branch,
@@ -220,11 +241,10 @@ class AtomicCiProcessor(BaseProcessor):
         )
 
     def secondary_icon(self, msg, **config):
-        try:
-            user = msg['msg']['username']
-            return avatar_url(user)
-        except KeyError:
-            return None
+        user = msg['msg'].get('username')
+        if user:
+            user = avatar_url(user)
+        return user
 
     def link(self, msg, **config):
         try:
@@ -233,16 +253,16 @@ class AtomicCiProcessor(BaseProcessor):
             return self.__link__
 
     def usernames(self, msg, **config):
-        try:
-            return set([msg['msg']['username']])
-        except KeyError:
-            return set()
+        user = msg['msg'].get('username')
+        if user:
+            return set([user])
+        return set()
 
     def objects(self, msg, **config):
-        namespace = msg['msg']['namespace']
-        pkg = msg['msg']['repo']
-        commit = msg['msg']['rev']
-        branch = msg['msg']['branch']
+        namespace = msg['msg']['namespace'] or 'unknown_namespace'
+        pkg = msg['msg']['repo'] or 'unknown_pkg'
+        commit = msg['msg']['rev'] or 'unknown_rev'
+        branch = msg['msg']['branch'] or 'unknown_branch'
         actions = msg['topic'].split('.pipeline.', 1)[1].split('.')
 
         return set(['/'.join([namespace, pkg, commit, branch] + actions)])
