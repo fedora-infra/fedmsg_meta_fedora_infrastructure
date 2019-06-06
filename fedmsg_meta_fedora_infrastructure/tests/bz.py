@@ -970,10 +970,8 @@ class Test031BugzillaUpdateEmpty(Base):
     """
 
     expected_title = "bugzilla.bug.update"
-    # we should fix this to mark that this is a buggy message, or even
-    # ignore it if that's possible
-    expected_subti = "bmason@redhat.com updated nothing on " + \
-        "RHBZ#837790 'It's impossible to print more than one f...'"
+    expected_subti = "bmason@redhat.com updated nothing? (likely bugzilla sent us a buggy " + \
+        "message) on RHBZ#837790 'It's impossible to print more than one f...'"
     expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=837790"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
