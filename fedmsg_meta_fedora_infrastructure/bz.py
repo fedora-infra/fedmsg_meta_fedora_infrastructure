@@ -176,10 +176,20 @@ class BugzillaProcessor(BaseProcessor):
         return users
 
     def objects(self, msg, **config):
+        product = msg['msg']['bug']['product']
+        component = msg['msg']['bug']['component']
+        # in bugzilla2fedmsg 0.3.1 messages and 0.4+ messages without
+        # backwards compatibility, 'product' and 'component' are dicts
+        # and we have to go one level deeper
+        try:
+            product = product['name']
+            component = component['name']
+        except TypeError:
+            pass
         return set([
             '/'.join([
-                msg['msg']['bug']['product'],
-                msg['msg']['bug']['component'],
+                product,
+                component,
                 str(msg['msg']['bug']['id']),
             ])
         ])
