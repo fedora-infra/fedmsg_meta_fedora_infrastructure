@@ -433,18 +433,34 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     }
 
 
-class TestBodhiMashTaskMashing(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic whenever it starts mashing
-    a particular repository.
+class TestLegacyBodhi2MashTaskStart(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **began** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.start.
+    """
+    expected_title = "bodhi.mashtask.start"
+    expected_subti = "bodhi masher started a push"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set([])
 
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    msg = {
+        'topic': "org.fedoraproject.prod.bodhi.mashtask.start",
+        'msg': {}
+    }
+
+
+class TestLegacyBodhi2MashTaskMashing(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it started mashing
+    a particular repository. Since Bodhi 4.0, this topic is replaced
+    by compose.composing.
     """
     expected_title = "bodhi.mashtask.mashing"
     expected_subti = "bodhi masher started mashing test_repo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
+    expected_packages = set([])
     expected_objects = set(['repos/test_repo'])
 
     msg = {
@@ -457,74 +473,389 @@ class TestBodhiMashTaskMashing(Base):
     }
 
 
-class TestBodhiMashTaskStart(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic whenever it **begins** its work.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
-    """
-    expected_title = "bodhi.mashtask.start"
-    expected_subti = "bodhi masher started a push"
-    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = expected_icon
-    msg = {
-        'topic': "org.fedoraproject.prod.bodhi.mashtask.start",
-        'msg': {}
-    }
-
-
-class TestBodhiMashTaskComplete(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic whenever it **finishes** its work.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
-    """
-    expected_title = "bodhi.mashtask.complete"
-    expected_subti = "bodhi masher failed to mash test_repo"
-    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = expected_icon
-    msg = {
-        'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
-        'msg': {'success': False, 'repo': 'test_repo'}
-    }
-
-
-class TestBodhiMashTaskSyncWaitStart(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic when it begins **waiting to sync**.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+class TestLegacyBodhi2MashTaskSyncWaitStart(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic when it began **waiting to sync**.
+    Since Bodhi 4.0, this topic is replaced by compose.sync.wait.
     """
     expected_title = "bodhi.mashtask.sync.wait"
     expected_subti = "bodhi masher is waiting for test_repo " + \
         "to hit the master mirror"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_objects = set(['repos/test_repo'])
+
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
         'msg': {'repo': 'test_repo'}
     }
 
 
-class TestBodhiMashTaskSyncWaitDone(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic when it finishes syncing.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+class TestLegacyBodhi2MashTaskSyncWaitDone(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic when it finished syncing. Since
+    Bodhi 4.0, this topic is replaced by compose.sync.done.
     """
     expected_title = "bodhi.mashtask.sync.done"
     expected_subti = "bodhi masher finished waiting for test_repo " + \
         "to hit the master mirror"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_objects = set(['repos/test_repo'])
 
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.done",
         'msg': {'repo': 'test_repo'}
+    }
+
+
+class TestLegacyBodhi2MashTaskComplete(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **finished** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.complete.
+    """
+    expected_title = "bodhi.mashtask.complete"
+    expected_subti = "bodhi masher failed to mash test_repo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_objects = set(['repos/test_repo'])
+
+    msg = {
+        'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
+        'msg': {'success': False, 'repo': 'test_repo'}
+    }
+
+
+class TestLegacyBodhi3MashTaskStart(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **began** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.start.
+    """
+    expected_title = "bodhi.mashtask.start"
+    expected_subti = "bodhi masher started a push"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 6,
+      "timestamp": 1559001608.0,
+      "msg_id": "2019-1139e89d-ca7e-4ec1-933f-3bbf47323cf3",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "agent": "releng"
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskMashing(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it started mashing
+    a particular repository. Since Bodhi 4.0, this topic is replaced
+    by compose.composing.
+    """
+    expected_title = "bodhi.mashtask.mashing"
+    expected_subti = "bodhi masher started mashing f29-modular-updates-testing"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-modular-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1559011832.0,
+      "msg_id": "2019-aa0f318e-667a-4119-ba16-ac7433244a39",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.mashing",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-modular-updates-testing",
+        "ctype": "module",
+        "agent": "releng",
+        "updates": [
+          "nodejs-12-2920190525130817.6c81f848",
+          "cri-o-1.14-2920190527085840.6c81f848"
+        ]
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskSyncWaitStart(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic when it began **waiting to sync**.
+    Since Bodhi 4.0, this topic is replaced by compose.sync.wait.
+    """
+    expected_title = "bodhi.mashtask.sync.wait"
+    expected_subti = "bodhi masher is waiting for f29-updates-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 3,
+      "timestamp": 1559015188.0,
+      "msg_id": "2019-85429560-ab56-41b7-9c3d-2004630974ed",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskSyncWaitDone(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic when it finished syncing. Since
+    Bodhi 4.0, this topic is replaced by compose.sync.done.
+    """
+    expected_title = "bodhi.mashtask.sync.done"
+    expected_subti = "bodhi masher finished waiting for f29-updates-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 4,
+      "timestamp": 1559015388.0,
+      "msg_id": "2019-022e4d9a-7af2-41bb-901d-14e0808718cc",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.sync.done",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskComplete(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **finished** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.complete.
+    """
+    expected_title = "bodhi.mashtask.complete"
+    expected_subti = "bodhi masher successfully mashed f29-updates-testing"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 37,
+      "timestamp": 1559015442.0,
+      "msg_id": "2019-dc8c2696-cddc-4e40-87cc-ea5fe25396dd",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "success": True,
+        "ctype": "rpm",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeStart(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic whenever it **begins** a compose run.
+    """
+    expected_title = "bodhi.compose.start"
+    expected_subti = "bodhi composer started a run"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185446,
+      "timestamp": 1559865606.0,
+      "msg_id": "2019-6724c4b9-b954-4263-b305-7dcdd69c361b",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeComposing(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic whenever it starts composing a particular repository.
+    """
+    expected_title = "bodhi.compose.composing"
+    expected_subti = "bodhi rpm compose of repo dist-6E-epel-testing started"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/dist-6E-epel-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185680,
+      "timestamp": 1559871419.0,
+      "msg_id": "2019-9fbd5994-15d2-40f6-a4f3-8d0bc0e37c08",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.composing",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "dist-6E-epel-testing",
+        "ctype": "rpm",
+        "agent": "releng",
+        "updates": [
+          "sec-2.8.2-1.el6"
+        ]
+      }
+    }
+
+
+class TestBodhi4ComposeSyncWait(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic when it begins waiting for a completed repo to sync.
+    """
+    expected_title = "bodhi.compose.sync.wait"
+    expected_subti = "bodhi composer is waiting for dist-6E-epel-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/dist-6E-epel-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185683,
+      "timestamp": 1559871586.0,
+      "msg_id": "2019-39734cc4-d3bd-4961-8303-502e45e6777b",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.sync.wait",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "dist-6E-epel-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeSyncDone(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic when a completed repo finishes syncing.
+    """
+    expected_title = "bodhi.compose.sync.done"
+    expected_subti = "bodhi composer finished waiting for dist-6E-epel-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/dist-6E-epel-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185684,
+      "timestamp": 1559871787.0,
+      "msg_id": "2019-ab499c10-4665-475b-b4b5-483c81a61a60",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.sync.done",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "dist-6E-epel-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeComplete(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes this kind
+    of message when it completes the full compose run for a repository.
+    """
+    expected_title = "bodhi.compose.complete"
+    expected_subti = "bodhi rpm compose of repo f29-updates-testing succeeded"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 184694,
+      "timestamp": 1559791936.0,
+      "msg_id": "2019-e43eb49a-b0da-4fb9-88e9-ef3f5eebc97d",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "success": True,
+        "ctype": "rpm",
+        "agent": "releng"
+      }
     }
 
 
@@ -1596,7 +1927,7 @@ class TestBodhiMashKickooff(Base):
     expected_title = "bodhi.masher.start"
     expected_subti = "ralph requested a mash of 20 updates"
     expected_long_form = mash_list
-    expected_link = None
+    expected_link = "https://bodhi.fedoraproject.org"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \

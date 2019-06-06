@@ -194,12 +194,12 @@ class BodhiProcessor(BaseProcessor):
 
             return tmpl.format(author=author, title=truncate(title),
                                status=status)
+        elif 'bodhi.mashtask.start' in msg['topic']:
+            return self._("bodhi masher started a push")
         elif 'bodhi.mashtask.mashing' in msg['topic']:
             repo = msg['msg'].get('repo')
             tmpl = self._("bodhi masher started mashing {repo}")
             return tmpl.format(repo=repo)
-        elif 'bodhi.mashtask.start' in msg['topic']:
-            return self._("bodhi masher started a push")
         elif 'bodhi.mashtask.complete' in msg['topic']:
             success = msg['msg']['success']
             if success:
@@ -215,6 +215,32 @@ class BodhiProcessor(BaseProcessor):
             return self._("bodhi masher finished waiting for {repo} to "
                           "hit the master mirror").format(
                               repo=msg['msg'].get('repo'))
+        elif 'bodhi.compose.start' in msg['topic']:
+            return self._("bodhi composer started a run")
+        elif 'bodhi.compose.composing' in msg['topic']:
+            ctype = msg['msg'].get('ctype', "unknown type")
+            repo = msg['msg'].get('repo', "unknown repo")
+            tmpl = self._("bodhi {ctype} compose of repo {repo} started")
+            return tmpl.format(ctype=ctype, repo=repo)
+        elif 'bodhi.compose.complete' in msg['topic']:
+            tmpl = self._("bodhi {ctype} compose of repo {repo} {result}")
+            ctype = msg['msg'].get('ctype', "unknown type")
+            repo = msg['msg'].get('repo', "unknown repo")
+            result = msg['msg'].get('success', "completed")
+            if result is True:
+                result = "succeeded"
+            if result is False:
+                result = "failed"
+            return tmpl.format(ctype=ctype, repo=repo, result=result)
+        elif 'bodhi.compose.sync.wait' in msg['topic']:
+            return self._("bodhi composer is waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
+        elif 'bodhi.compose.sync.done' in msg['topic']:
+            return self._("bodhi composer finished waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
+
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             tmpl = self._("{submitter} submitted a buildroot override " +
                           "for {build}")
@@ -308,6 +334,8 @@ class BodhiProcessor(BaseProcessor):
 
             link += msg['msg']['release'] + "/"
             return link
+        else:
+            return "https://bodhi.fedoraproject.org"
 
     def packages(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
@@ -379,8 +407,10 @@ class BodhiProcessor(BaseProcessor):
             product = get_sync_product(msg).lower()
             msg = msg['msg']
             return set(['/'.join([product, msg['repo'], msg['release']])])
-        elif 'bodhi.mashtask.mashing' in msg['topic']:
-            return set(['repos/' + msg['msg'].get('repo')])
+        elif 'bodhi.mashtask' in msg['topic'] and 'repo' in msg['msg']:
+            return set(['repos/' + msg['msg']['repo']])
+        elif 'bodhi.compose' in msg['topic'] and 'repo' in msg['msg']:
+            return set(['repos/' + msg['msg']['repo']])
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
                 'packages/' + p for p in
