@@ -81,7 +81,14 @@ class BugzillaProcessor(BaseProcessor):
         return user, is_fas
 
     def link(self, msg, **config):
-        return msg['msg']['bug']['weburl']
+        url = msg['msg']['bug'].get('weburl')
+        if not url:
+            # bz5 / bugzilla2fedmsg 0.3.1+ messages do not always
+            # provide this. we don't seem to have bugzilla2fedmsg in
+            # staging at all so let's just assume prod.
+            url = "https://bugzilla.redhat.com/show_bug.cgi?id={0}"
+            url = url.format(msg['msg']['bug']['id'])
+        return url
 
     def subtitle(self, msg, **config):
         user, is_fas = self._get_user(msg, **config)
