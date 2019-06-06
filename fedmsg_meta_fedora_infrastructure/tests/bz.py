@@ -689,9 +689,7 @@ class Test031BugzillaUpdate(Base):
         "4eb918bfdb582ba411d577a43ebd63c8?s=64&d=retro")
     expected_packages = set(['pcp'])
     expected_usernames = set([])
-    # this is broken because 'product' and 'component' are dicts in
-    # this type of message, not strings
-    # expected_objects = set(['Fedora/pcp/1649293'])
+    expected_objects = set(['Fedora/pcp/1649293'])
 
     msg = {
       "username": "fedmsg",
@@ -844,9 +842,7 @@ class Test031BugzillaNew(Base):
         "2634daafb32dfee24a61cd573b7ab096?s=64&d=retro")
     expected_packages = set(['vtk'])
     expected_usernames = set([])
-    # this is broken because 'product' and 'component' are dicts in
-    # this type of message, not strings
-    # expected_objects = set(['Fedora/vtk/1717615'])
+    expected_objects = set(['Fedora/vtk/1717615'])
 
     msg = {
       "username": "fedmsg",
@@ -985,9 +981,7 @@ class Test031BugzillaUpdateEmpty(Base):
         "643a2b348a82894fa989d1b2663fb1de?s=64&d=retro")
     expected_packages = set(['cups-pdf'])
     expected_usernames = set([])
-    # this is broken because 'product' and 'component' are dicts in
-    # this type of message, not strings
-    # expected_objects = set(['Fedora/cups-pdf/837790'])
+    expected_objects = set(['Fedora/cups-pdf/837790'])
 
     msg = {
       "username": "fedmsg",
