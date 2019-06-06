@@ -91,24 +91,27 @@ class BugzillaProcessor(BaseProcessor):
         if len(title) > MAX_LEN:
             title = title[:MAX_LEN] + "..."
 
-        if 'bug.update' in msg['topic']:
-            if msg['msg'].get('comment'):
-                tmpl = self._("{user} commented on RHBZ#{idx} '{title}'")
-                return tmpl.format(user=user, idx=idx, title=title)
-            elif msg['msg'].get('event'):
-                fields = [d['field_name'] for d in
-                          msg['msg']['event']['changes']]
-                fields = comma_join(fields)
-                tmpl = self._("{user} updated {fields} "
-                              "on RHBZ#{idx} '{title}'")
-                return tmpl.format(user=user, fields=fields,
-                                   idx=idx, title=title)
-            else:
-                tmpl = self._("{user} updated RHBZ#{idx} '{title}'")
-                return tmpl.format(user=user, idx=idx, title=title)
-
-        elif 'bug.new' in msg['topic']:
+        # bugzilla2fedmsg 0.3.1's 'new bug' detection was broken and
+        # it sent bug.update messages for bug creation events, so we
+        # catch those with the second condition here
+        if 'bug.new' in msg['topic'] or (msg['msg']['event'].get('target') == 'bug' and
+                                         msg['msg']['event'].get('action') == 'create'):
             tmpl = self._("{user} filed a new bug RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, idx=idx, title=title)
+
+        if msg['msg'].get('comment'):
+            tmpl = self._("{user} commented on RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, idx=idx, title=title)
+        elif msg['msg'].get('event'):
+            fields = [d['field_name'] for d in
+                      msg['msg']['event']['changes']]
+            fields = comma_join(fields)
+            tmpl = self._("{user} updated {fields} "
+                          "on RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, fields=fields,
+                               idx=idx, title=title)
+        else:
+            tmpl = self._("{user} updated RHBZ#{idx} '{title}'")
             return tmpl.format(user=user, idx=idx, title=title)
 
     def secondary_icon(self, msg, **config):

@@ -832,12 +832,12 @@ class Test031BugzillaNew(Base):
     not result in a message being emitted at all.
 
     This is an example of the bug 'update' message we get when a new
-    bug is created.
+    bug is created. The processor is able to detect these messages and
+    produce a correct subtitle for them.
     """
 
     expected_title = "bugzilla.bug.update"
-    # we should fix this to detect that it was really a bug creation
-    expected_subti = "vaf0001@uah.edu updated nothing on " + \
+    expected_subti = "vaf0001@uah.edu filed a new bug " + \
         "RHBZ#1717615 'VTK inoperative on NVidia'"
     # this is broken due to lack of expected 'weburl' key
     # expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1717615"
