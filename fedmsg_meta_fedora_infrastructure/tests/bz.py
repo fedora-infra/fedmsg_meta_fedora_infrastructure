@@ -682,9 +682,7 @@ class Test031BugzillaUpdate(Base):
     expected_title = "bugzilla.bug.update"
     expected_subti = "lvrabec@redhat.com updated 'assigned_to', 'bug_status', 'cc', and " + \
         "'component' on RHBZ#1649293 'SELinux is preventing restorecon from 'm...'"
-    # this is broken due to lack of expected 'weburl' key
-    # expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1649293"
-    expected_link = None
+    expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1649293"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -839,9 +837,7 @@ class Test031BugzillaNew(Base):
     expected_title = "bugzilla.bug.update"
     expected_subti = "vaf0001@uah.edu filed a new bug " + \
         "RHBZ#1717615 'VTK inoperative on NVidia'"
-    # this is broken due to lack of expected 'weburl' key
-    # expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1717615"
-    expected_link = None
+    expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=1717615"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
@@ -982,9 +978,7 @@ class Test031BugzillaUpdateEmpty(Base):
     # ignore it if that's possible
     expected_subti = "bmason@redhat.com updated nothing on " + \
         "RHBZ#837790 'It's impossible to print more than one f...'"
-    # this is broken due to lack of expected 'weburl' key
-    # expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=837790"
-    expected_link = None
+    expected_link = "https://bugzilla.redhat.com/show_bug.cgi?id=837790"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bugzilla.png"
     expected_secondary_icon = (
         "https://seccdn.libravatar.org/avatar/"
