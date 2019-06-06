@@ -78,9 +78,18 @@ class BodhiProcessor(BaseProcessor):
         return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', update)]
 
     def title_or_alias(self, msg):
-        value = msg['msg']['update'].get('alias')
+        comment = msg['msg'].get('comment', {})
+        update = msg['msg'].get('update', comment.get('update', {}))
+        # we can't use .get('alias', .get('title')) or similar here
+        # because sometimes the dict has an alias key whose value is
+        # None...
+        value = update.get('alias')
         if not value:
-            value = msg['msg']['update']['title']
+            value = update.get('title')
+        if not value:
+            value = comment.get('update_alias')
+        if not value:
+            value = comment.get('update_title', '')
         return value
 
     def secondary_icon(self, msg, **config):
@@ -138,7 +147,7 @@ class BodhiProcessor(BaseProcessor):
             comment = msg['msg']['comment']
             author = comment['author']
             karma = comment['karma']
-            title = comment['update_title']
+            title = comment.get('update_title', comment.get('update', {}).get('title', ''))
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
             )
@@ -259,7 +268,7 @@ class BodhiProcessor(BaseProcessor):
         prefix = 'https://bodhi.fedoraproject.org'
         tmpl = prefix + "/updates/{title}"
         if 'bodhi.update.comment' in msg['topic']:
-            return tmpl.format(title=msg['msg']['comment']['update_title'])
+            return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.complete' in msg['topic']:
             return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.update.request' in msg['topic']:
@@ -302,7 +311,9 @@ class BodhiProcessor(BaseProcessor):
 
     def packages(self, msg, **config):
         if 'bodhi.update.comment' in msg['topic']:
-            return set(self._u2p(msg['msg']['comment']['update_title']))
+            comment = msg['msg']['comment']
+            title = comment.get('update_title', comment.get('update', {}).get('title', ''))
+            return set(self._u2p(title))
         elif 'bodhi.update.complete' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.update.request' in msg['topic']:
@@ -373,7 +384,7 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
                 'packages/' + p for p in
-                self._u2p(msg['msg']['comment']['update_title'])
+                self.packages(msg, **config)
             ])
         elif 'bodhi.update.complete' in msg['topic']:
             return set([
