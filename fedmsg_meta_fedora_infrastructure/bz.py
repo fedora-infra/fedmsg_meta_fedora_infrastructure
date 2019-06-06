@@ -36,7 +36,9 @@ def comma_join(fields, oxford=True):
         return "'%s'" % field
 
     if not fields:
-        return "nothing"
+        # this indicates a bugzilla bug: see
+        # https://bugzilla.redhat.com/show_bug.cgi?id=1718045
+        return "nothing? (likely bugzilla sent us a buggy message)"
     elif len(fields) == 1:
         return fmt(fields[0])
     elif len(fields) == 2:
