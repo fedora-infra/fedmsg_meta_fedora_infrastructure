@@ -664,10 +664,11 @@ class TestBodhiRequestTesting(Base):
     }
 
 
-class TestBodhiComment(Base):
+class TestLegacy2015BodhiComment(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user **comments** on a bodhi
-    update.
+    update. This is a 2015-era legacy message; I'm not sure precisely what
+    Bodhi version would've emitted a message that looks exactly like this.
     """
     expected_title = "bodhi.update.comment"
     expected_subti = "ralph commented on bodhi update fedmsg-1.0-1 (karma: -1)"
@@ -697,6 +698,150 @@ class TestBodhiComment(Base):
                 "timestamp": 1344344050.0
             }
         }
+    }
+
+
+class TestBodhi4Comment(Base):
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic whenever a user **comments** on a bodhi
+    update.
+    """
+    expected_title = "bodhi.update.comment"
+    expected_subti = "kalev commented on bodhi update xdg-desktop-portal-1.4.2-1.fc30 (karma: 0)"
+    expected_long_form = "Note that this depends on pipewire-0.2.6-1.fc30 which is submitted " + \
+        "separately. I've turned off autopush so that it doesn't go stable before the " + \
+        "required pipewire update."
+    expected_link = "https://bodhi.fedoraproject.org/updates/FEDORA-2019-46910daf41"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "e66f540a8e2d93d96cbba97628e82213a8eed237c744f2ce5184d7c9588a8d18?s=64&d=retro"
+    expected_usernames = set(['kalev'])
+    expected_packages = set(['xdg-desktop-portal'])
+    expected_objects = set(['packages/xdg-desktop-portal'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 37779,
+      "timestamp": 1559062463.0,
+      "msg_id": "2019-509f817a-b6d4-4071-909c-a899f8f2002c",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.update.comment",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "comment": {
+          "bug_feedback": [],
+          "user_id": 285,
+          "timestamp": "2019-05-28 16:54:22",
+          "author": "kalev",
+          "text": "Note that this depends on pipewire-0.2.6-1.fc30 which is submitted separately. I've turned off autopush so that it doesn't go stable before the required pipewire update.",
+          "karma_critpath": 0,
+          "update": {
+            "date_testing": None,
+            "pushed": False,
+            "require_testcases": True,
+            "date_stable": None,
+            "critpath": False,
+            "date_approved": None,
+            "stable_karma": 3,
+            "compose": None,
+            "display_name": "",
+            "severity": "unspecified",
+            "autokarma": False,
+            "title": "xdg-desktop-portal-1.4.2-1.fc30",
+            "suggest": "unspecified",
+            "require_bugs": True,
+            "test_gating_status": "ignored",
+            "type": "enhancement",
+            "close_bugs": True,
+            "meets_testing_requirements": False,
+            "date_submitted": "2019-05-28 16:53:22",
+            "unstable_karma": -3,
+            "date_pushed": None,
+            "user": {
+              "openid": None,
+              "name": "kalev",
+              "email": "klember@redhat.com",
+              "avatar": None,
+              "groups": [
+                {
+                  "name": "provenpackager"
+                },
+                {
+                  "name": "packager"
+                },
+                {
+                  "name": "gnome-sig"
+                }
+              ],
+              "id": 285
+            },
+            "requirements": "",
+            "locked": False,
+            "builds": [
+              {
+                "epoch": 0,
+                "release_id": 28,
+                "type": "rpm",
+                "nvr": "xdg-desktop-portal-1.4.2-1.fc30",
+                "signed": False
+              }
+            ],
+            "date_modified": None,
+            "url": "https://bodhi.fedoraproject.org/updates/FEDORA-2019-46910daf41",
+            "notes": "xdg-desktop-portal 1.4.2 release:\n\n - Translation updates\n - inhibit: Implement session state tracking\n - screencast: Allow selecting source types\n - screencast: Support cursor modes\n - Add a background & autostart portal",
+            "request": "testing",
+            "bugs": [],
+            "alias": "FEDORA-2019-46910daf41",
+            "status": "pending",
+            "karma": 0,
+            "release": {
+              "dist_tag": "f30",
+              "mail_template": "fedora_errata_template",
+              "name": "F30",
+              "composed_by_bodhi": True,
+              "pending_stable_tag": "f30-updates-pending",
+              "composes": [],
+              "long_name": "Fedora 30",
+              "state": "current",
+              "version": "30",
+              "override_tag": "f30-override",
+              "branch": "f30",
+              "id_prefix": "FEDORA",
+              "pending_signing_tag": "f30-signing-pending",
+              "pending_testing_tag": "f30-updates-testing-pending",
+              "testing_tag": "f30-updates-testing",
+              "stable_tag": "f30-updates",
+              "candidate_tag": "f30-updates-candidate"
+            }
+          },
+          "update_alias": "FEDORA-2019-46910daf41",
+          "update_id": 140188,
+          "karma": 0,
+          "testcase_feedback": [],
+          "id": 952088,
+          "user": {
+            "openid": None,
+            "name": "kalev",
+            "email": "klember@redhat.com",
+            "avatar": None,
+            "groups": [
+              {
+                "name": "provenpackager"
+              },
+              {
+                "name": "packager"
+              },
+              {
+                "name": "gnome-sig"
+              }
+            ],
+            "id": 285
+          }
+        },
+        "agent": "kalev"
+      }
     }
 
 
