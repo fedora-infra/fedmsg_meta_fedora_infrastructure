@@ -1247,6 +1247,43 @@ class TestBodhi4ComposeComplete(Base):
     }
 
 
+class TestBodhiRepoDone(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes this kind
+    of message when a repo is created and ready to be signed or
+    otherwise processed. It actually occurs between compose.composing
+    and compose.sync.wait in the overall compose workflow. The format
+    has not changed between Bodhi 3 and Bodhi 4; the Bodhi 1/2 version
+    likely didn't have an 'agent' but was otherwise the same.
+    """
+    expected_title = "bodhi.repo.done"
+    expected_subti = "bodhi repo f29-updates-testing created"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "amqp-bridge", 
+      "source_name": "datanommer", 
+      "i": 185742, 
+      "timestamp": 1559883894.0, 
+      "msg_id": "2019-139ee383-4b15-4ba5-87c1-e366c182bb64", 
+      "crypto": "x509", 
+      "topic": "org.fedoraproject.prod.bodhi.repo.done", 
+      "headers": {}, 
+      "source_version": "0.9.0", 
+      "msg": {
+        "repo": "f29-updates-testing", 
+        "path": "/mnt/koji/compose/updates/Fedora-29-updates-testing-20190607.0", 
+        "agent": "releng"
+      }
+    }
+
+
 class TestBodhiRequestUnpush(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a *user* requests that an update
