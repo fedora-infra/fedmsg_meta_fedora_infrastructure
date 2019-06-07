@@ -282,11 +282,11 @@ class TestBodhiUpdateEject(Base):
     }
 
 
-class TestBodhiUpdateComplete(Base):
+class TestLegacy2015BodhiUpdateComplete(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever an update
     **completes it's push to the testing repository**.  Here's a
-    straightforward example:
+    straightforward example from 2015:
     """
     expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
@@ -316,6 +316,394 @@ class TestBodhiUpdateComplete(Base):
         }
     }
 
+
+class TestBodhi4UpdateComplete(Base):
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic whenever an update
+    **completes its push to the testing repository**.
+    """
+    expected_title = "bodhi.update.complete.testing"
+    expected_subti = "kkeithle's nfs-ganesha-2.7.4-1.fc29 bodhi update " + \
+        "completed push to testing"
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
+        "FEDORA-2019-02cd019281"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "d5ddbcc278179315e29a84b4b8f77b055f4d745c5091a3b7460edbf02b5ce810" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['kkeithle', 'composer'])
+    expected_packages = set(['nfs-ganesha'])
+    expected_objects = set(['packages/nfs-ganesha'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 184693,
+      "timestamp": 1559791912.0,
+      "msg_id": "2019-92fe5e1a-2c84-4251-ba4b-e06ccea43204",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.update.complete.testing",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "update": {
+          "date_testing": "2019-06-06 03:31:44",
+          "pushed": True,
+          "require_testcases": True,
+          "date_stable": None,
+          "critpath": False,
+          "date_approved": None,
+          "stable_karma": 3,
+          "compose": {
+            "release_id": 23,
+            "checkpoints": "{\"determine_and_perform_tag_actions\": true, \"completed_repo\": \"/mnt/koji/compose/updates/Fedora-29-updates-testing-20190606.0\", \"compose_done\": true}",
+            "update_summary": [
+              {
+                "alias": "FEDORA-2019-33649e2e64",
+                "title": "phpMyAdmin-4.9.0.1-1.fc29 and php-phpmyadmin-sql-parser-4.3.2-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-22afc255f6",
+                "title": "python-metakernel-0.24.2-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-9b446c7753",
+                "title": "container-exception-logger-1.0.3-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-e0e0f86a69",
+                "title": "compose-utils-0.1.31-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-3082237808",
+                "title": "earlyoom-1.3-2.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-6dd7e722b7",
+                "title": "php-twig2-2.11.2-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-82ce29e885",
+                "title": "quilter-1.9.0-1.20190605git076ac9e.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-847fc9fe3d",
+                "title": "perl-PPIx-QuoteLike-0.007-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-e0b72241c2",
+                "title": "perl-podlators-4.12-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-cd8f4b9568",
+                "title": "pam-u2f-1.0.8-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-ef33a4a25e",
+                "title": "python-alembic-1.0.10-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-5acf586a26",
+                "title": "js-jquery-file-upload-9.31.0-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-a171291a47",
+                "title": "js-jquery-jstree-3.3.8-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-dadaa4c756",
+                "title": "flat-remix-theme-0.0.20190604-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-5b2fcc8f10",
+                "title": "gnome-chemistry-utils-0.14.17-17.fc29, gnumeric-1.12.45-1.fc29, and 1 more"
+              },
+              {
+                "alias": "FEDORA-2019-492d24f0ef",
+                "title": "kernel-5.1.7-200.fc29 and kernel-headers-5.1.7-200.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-24ba1d4ba0",
+                "title": "mozilla-iot-gateway-0.8.1-2.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-909d49ad06",
+                "title": "flrig-1.3.45-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-e77f7dbb32",
+                "title": "python38-3.8.0~b1-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-dbe5dc1939",
+                "title": "python-giacpy-0.6.8-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-6bc7635438",
+                "title": "libntirpc-1.7.4-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-02cd019281",
+                "title": "nfs-ganesha-2.7.4-1.fc29"
+              }
+            ],
+            "error_message": None,
+            "request": "testing",
+            "state": "notifying",
+            "state_date": "2019-06-06 03:31:44",
+            "content_type": "rpm",
+            "release": {
+              "dist_tag": "f29",
+              "name": "F29",
+              "composed_by_bodhi": True,
+              "pending_stable_tag": "f29-updates-pending",
+              "mail_template": "fedora_errata_template",
+              "long_name": "Fedora 29",
+              "state": "current",
+              "version": "29",
+              "override_tag": "f29-override",
+              "branch": "f29",
+              "id_prefix": "FEDORA",
+              "pending_signing_tag": "f29-signing-pending",
+              "pending_testing_tag": "f29-updates-testing-pending",
+              "testing_tag": "f29-updates-testing",
+              "stable_tag": "f29-updates",
+              "candidate_tag": "f29-updates-candidate"
+            },
+            "date_created": "2019-06-06 00:00:04",
+            "security": True
+          },
+          "display_name": "",
+          "severity": "unspecified",
+          "autokarma": True,
+          "title": "nfs-ganesha-2.7.4-1.fc29",
+          "suggest": "unspecified",
+          "require_bugs": True,
+          "comments": [
+            {
+              "bug_feedback": [],
+              "user_id": 91,
+              "timestamp": "2019-06-05 22:27:12",
+              "text": "This update has been submitted for testing by kkeithle. ",
+              "karma_critpath": 0,
+              "update_id": 140681,
+              "karma": 0,
+              "testcase_feedback": [],
+              "id": 955821,
+              "user": {
+                "openid": None,
+                "name": "bodhi",
+                "email": None,
+                "avatar": None,
+                "groups": [],
+                "id": 91
+              }
+            },
+            {
+              "bug_feedback": [],
+              "user_id": 91,
+              "timestamp": "2019-06-05 22:27:12",
+              "text": "This update test gating status has been changed to 'waiting'.",
+              "karma_critpath": 0,
+              "update_id": 140681,
+              "karma": 0,
+              "testcase_feedback": [],
+              "id": 955822,
+              "user": {
+                "openid": None,
+                "name": "bodhi",
+                "email": None,
+                "avatar": None,
+                "groups": [],
+                "id": 91
+              }
+            },
+            {
+              "bug_feedback": [],
+              "user_id": 91,
+              "timestamp": "2019-06-05 22:27:14",
+              "text": "This update test gating status has been changed to 'ignored'.",
+              "karma_critpath": 0,
+              "update_id": 140681,
+              "karma": 0,
+              "testcase_feedback": [],
+              "id": 955823,
+              "user": {
+                "openid": None,
+                "name": "bodhi",
+                "email": None,
+                "avatar": None,
+                "groups": [],
+                "id": 91
+              }
+            }
+          ],
+          "test_gating_status": "ignored",
+          "updateid": "FEDORA-2019-02cd019281",
+          "test_cases": [],
+          "close_bugs": False,
+          "meets_testing_requirements": False,
+          "date_submitted": "2019-06-05 22:27:12",
+          "unstable_karma": -3,
+          "date_pushed": "2019-06-06 03:31:44",
+          "user": {
+            "openid": None,
+            "name": "kkeithle",
+            "email": "kkeithle@redhat.com",
+            "avatar": None,
+            "groups": [
+              {
+                "name": "packager"
+              }
+            ],
+            "id": 380
+          },
+          "content_type": "rpm",
+          "requirements": "",
+          "locked": True,
+          "builds": [
+            {
+              "epoch": 0,
+              "release_id": 23,
+              "type": "rpm",
+              "nvr": "nfs-ganesha-2.7.4-1.fc29",
+              "signed": True
+            }
+          ],
+          "date_modified": None,
+          "url": "https://bodhi.fedoraproject.org/updates/FEDORA-2019-02cd019281",
+          "type": "bugfix",
+          "notes": "nfs-ganesha 2.7.4 GA",
+          "request": "testing",
+          "bugs": [],
+          "alias": "FEDORA-2019-02cd019281",
+          "status": "testing",
+          "karma": 0,
+          "release": {
+            "dist_tag": "f29",
+            "mail_template": "fedora_errata_template",
+            "name": "F29",
+            "composed_by_bodhi": True,
+            "pending_stable_tag": "f29-updates-pending",
+            "composes": [
+              {
+                "release_id": 23,
+                "checkpoints": "{\"determine_and_perform_tag_actions\": true, \"completed_repo\": \"/mnt/koji/compose/updates/Fedora-29-updates-testing-20190606.0\", \"compose_done\": true}",
+                "update_summary": [
+                  {
+                    "alias": "FEDORA-2019-33649e2e64",
+                    "title": "phpMyAdmin-4.9.0.1-1.fc29 and php-phpmyadmin-sql-parser-4.3.2-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-22afc255f6",
+                    "title": "python-metakernel-0.24.2-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-9b446c7753",
+                    "title": "container-exception-logger-1.0.3-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-e0e0f86a69",
+                    "title": "compose-utils-0.1.31-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-3082237808",
+                    "title": "earlyoom-1.3-2.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-6dd7e722b7",
+                    "title": "php-twig2-2.11.2-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-82ce29e885",
+                    "title": "quilter-1.9.0-1.20190605git076ac9e.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-847fc9fe3d",
+                    "title": "perl-PPIx-QuoteLike-0.007-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-e0b72241c2",
+                    "title": "perl-podlators-4.12-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-cd8f4b9568",
+                    "title": "pam-u2f-1.0.8-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-ef33a4a25e",
+                    "title": "python-alembic-1.0.10-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-5acf586a26",
+                    "title": "js-jquery-file-upload-9.31.0-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-a171291a47",
+                    "title": "js-jquery-jstree-3.3.8-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-dadaa4c756",
+                    "title": "flat-remix-theme-0.0.20190604-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-5b2fcc8f10",
+                    "title": "gnome-chemistry-utils-0.14.17-17.fc29, gnumeric-1.12.45-1.fc29, and 1 more"
+                  },
+                  {
+                    "alias": "FEDORA-2019-492d24f0ef",
+                    "title": "kernel-5.1.7-200.fc29 and kernel-headers-5.1.7-200.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-24ba1d4ba0",
+                    "title": "mozilla-iot-gateway-0.8.1-2.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-909d49ad06",
+                    "title": "flrig-1.3.45-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-e77f7dbb32",
+                    "title": "python38-3.8.0~b1-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-dbe5dc1939",
+                    "title": "python-giacpy-0.6.8-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-6bc7635438",
+                    "title": "libntirpc-1.7.4-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-02cd019281",
+                    "title": "nfs-ganesha-2.7.4-1.fc29"
+                  }
+                ],
+                "error_message": None,
+                "request": "testing",
+                "state": "notifying",
+                "state_date": "2019-06-06 03:31:44",
+                "content_type": "rpm",
+                "date_created": "2019-06-06 00:00:04",
+                "security": True
+              }
+            ],
+            "long_name": "Fedora 29",
+            "state": "current",
+            "version": "29",
+            "override_tag": "f29-override",
+            "branch": "f29",
+            "id_prefix": "FEDORA",
+            "pending_signing_tag": "f29-signing-pending",
+            "pending_testing_tag": "f29-updates-testing-pending",
+            "testing_tag": "f29-updates-testing",
+            "stable_tag": "f29-updates",
+            "candidate_tag": "f29-updates-candidate"
+          }
+        },
+        "agent": "composer"
+      }
+    }
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
@@ -1537,9 +1925,10 @@ class TestBodhiKarmaThresholdStable(Base):
     expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "FEDORA-EPEL-2015-0238"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
-        "images/icons/tzdata.png"
-    expected_usernames = set([])
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
     expected_packages = set(['tzdata'])
     expected_objects = set(['packages/tzdata'])
     msg = {
@@ -1792,9 +2181,10 @@ class TestBodhiErrataPublish(Base):
     expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "tzdata-2014i-1.fc19"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
-        "images/icons/tzdata.png"
-    expected_usernames = set([])
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
     expected_packages = set(['tzdata'])
     expected_objects = set(['packages/tzdata'])
     msg = {
