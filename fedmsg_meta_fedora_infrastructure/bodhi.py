@@ -226,6 +226,10 @@ class BodhiProcessor(BaseProcessor):
             repo = msg['msg'].get('repo', "unknown repo")
             tmpl = self._("bodhi {ctype} compose of repo {repo} started")
             return tmpl.format(ctype=ctype, repo=repo)
+        elif 'bodhi.repo.done' in msg['topic']:
+            repo = msg['msg'].get('repo', "unknown repo")
+            tmpl = self._("bodhi repo {repo} created")
+            return tmpl.format(repo=repo)
         elif 'bodhi.compose.complete' in msg['topic']:
             tmpl = self._("bodhi {ctype} compose of repo {repo} {result}")
             ctype = msg['msg'].get('ctype', "unknown type")
@@ -414,6 +418,8 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.mashtask' in msg['topic'] and 'repo' in msg['msg']:
             return set(['repos/' + msg['msg']['repo']])
         elif 'bodhi.compose' in msg['topic'] and 'repo' in msg['msg']:
+            return set(['repos/' + msg['msg']['repo']])
+        elif 'bodhi.repo.done' in msg['topic'] and 'repo' in msg['msg']:
             return set(['repos/' + msg['msg']['repo']])
         elif 'bodhi.update.comment' in msg['topic']:
             return set([
