@@ -102,6 +102,8 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['agent']
         elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
             username = msg['msg']['update']['submitter']
+        elif 'update' in msg['msg'] and 'user' in msg['msg']['update']:
+            username = msg['msg']['update']['user']
         else:
             username = msg['msg'].get('agent')
 
@@ -155,20 +157,22 @@ class BodhiProcessor(BaseProcessor):
                                title=truncate(title))
 
         elif 'bodhi.update.complete.' in msg['topic']:
-            author = msg['msg']['update']['submitter']
+            update = msg['msg']['update']
+            author = update.get('submitter', update.get('user'))
             if isinstance(author, dict):
                 author = author['name']
-            package = truncate(msg['msg']['update']['title'])
-            status = msg['msg']['update']['status']
+            package = truncate(update['title'])
+            status = update['status']
             tmpl = self._(
                 "{author}'s {package} bodhi update completed push to {status}"
             )
             return tmpl.format(author=author, package=package, status=status)
         elif 'bodhi.update.eject' in msg['topic']:
-            author = msg['msg']['update']['submitter']
+            update = msg['msg']['update']
+            author = update.get('submitter', update.get('user'))
             if isinstance(author, dict):
                 author = author['name']
-            package = truncate(msg['msg']['update']['title'])
+            package = truncate(update['title'])
             repo = msg['msg']['repo']
             reason = msg['msg']['reason']
             tmpl = self._(
@@ -375,7 +379,7 @@ class BodhiProcessor(BaseProcessor):
 
         for obj in ['update', 'override']:
             try:
-                username = msg['msg'][obj]['submitter']
+                username = msg['msg'][obj].get('submitter', msg['msg'][obj].get('user'))
                 if isinstance(username, dict):
                     username = username['name']
                 users.append(username)
