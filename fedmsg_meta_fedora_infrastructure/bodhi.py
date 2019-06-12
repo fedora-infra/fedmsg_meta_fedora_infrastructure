@@ -71,6 +71,16 @@ class BodhiProcessor(BaseProcessor):
         bodhi_overrides.ByUserUnTag,
     ]
 
+    def _comment_author(self, msg):
+        """Find the author of the 'comment' dict in the message, if
+        there is one. Otherwise, return None.
+        """
+        comment = msg['msg'].get('comment', {})
+        author = comment.get('user', comment.get('author'))
+        if isinstance(author, dict):
+            author = author.get('name')
+        return author
+
     def _u2p(self, update):
         """ Take an update, and return the package name """
         # TODO -- make this unnecessary by having bodhi emit the
@@ -95,7 +105,7 @@ class BodhiProcessor(BaseProcessor):
     def secondary_icon(self, msg, **config):
         username = ''
         if 'bodhi.update.comment' in msg['topic']:
-            username = msg['msg']['comment']['author']
+            username = self._comment_author(msg)
         elif 'bodhi.buildroot_override' in msg['topic']:
             username = msg['msg']['override']['submitter']
         elif 'bodhi.stack' in msg['topic']:
@@ -147,7 +157,7 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(agent=agent, updates=updates)
         elif 'bodhi.update.comment' in msg['topic']:
             comment = msg['msg']['comment']
-            author = comment['author']
+            author = self._comment_author(msg)
             karma = comment['karma']
             title = comment.get('update_title', comment.get('update', {}).get('title', ''))
             tmpl = self._(
@@ -390,10 +400,7 @@ class BodhiProcessor(BaseProcessor):
             except KeyError:
                 pass
 
-        try:
-            users.append(msg['msg']['comment']['author'])
-        except KeyError:
-            pass
+        users.append(self._comment_author(msg))
 
         if 'comment' in msg['msg']:
             text = msg['msg']['comment']['text']
