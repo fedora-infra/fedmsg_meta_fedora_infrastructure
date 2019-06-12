@@ -81,6 +81,16 @@ class BodhiProcessor(BaseProcessor):
             author = author.get('name')
         return author
 
+    def _update_author(self, msg):
+        """Find the author of the 'update' dict in the message, if
+        there is one. Otherwise, return None.
+        """
+        update = msg['msg'].get('update', {})
+        author = update.get('user', update.get('submitter'))
+        if isinstance(author, dict):
+            author = author.get('name')
+        return author
+
     def _u2p(self, update):
         """ Take an update, and return the package name """
         # TODO -- make this unnecessary by having bodhi emit the
@@ -110,10 +120,8 @@ class BodhiProcessor(BaseProcessor):
             username = msg['msg']['override']['submitter']
         elif 'bodhi.stack' in msg['topic']:
             username = msg['msg']['agent']
-        elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
-            username = msg['msg']['update']['submitter']
-        elif 'update' in msg['msg'] and 'user' in msg['msg']['update']:
-            username = msg['msg']['update']['user']
+        elif self._update_author(msg):
+            username = self._update_author(msg)
         else:
             username = msg['msg'].get('agent')
 
@@ -168,9 +176,7 @@ class BodhiProcessor(BaseProcessor):
 
         elif 'bodhi.update.complete.' in msg['topic']:
             update = msg['msg']['update']
-            author = update.get('submitter', update.get('user'))
-            if isinstance(author, dict):
-                author = author['name']
+            author = self._update_author(msg)
             package = truncate(update['title'])
             status = update['status']
             tmpl = self._(
@@ -179,9 +185,7 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(author=author, package=package, status=status)
         elif 'bodhi.update.eject' in msg['topic']:
             update = msg['msg']['update']
-            author = update.get('submitter', update.get('user'))
-            if isinstance(author, dict):
-                author = author['name']
+            author = self._update_author(msg)
             package = truncate(update['title'])
             repo = msg['msg']['repo']
             reason = msg['msg']['reason']
