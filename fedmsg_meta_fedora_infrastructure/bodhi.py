@@ -53,6 +53,24 @@ def truncate(title):
     return title
 
 
+def titlestring(msg):
+    """ Return a title string for the update. If we can find an
+    update dict and it has a title, return that. Otherwise if we
+    can find a builds dict, synthesize one from that and return
+    it. `title` is not part of the update message schema so we
+    cannot technically rely on it being present, but we use this
+    style of string in several places, so factor out finding it.
+    """
+    comment = msg['msg'].get('comment', {})
+    update = msg['msg'].get('update', comment.get('update', {}))
+    if not update:
+        return comment.get('update_title', '')
+    title = update.get('title')
+    if not title:
+        title = ' '.join([build['nvr'] for build in update.get('builds', [])])
+    return title
+
+
 class BodhiProcessor(BaseProcessor):
     __name__ = "Bodhi"
     __description__ = "the Fedora update system"
@@ -113,11 +131,25 @@ class BodhiProcessor(BaseProcessor):
         else:
             return build
 
-    def _u2p(self, update):
-        """ Take an update, and return the package name """
+    def _u2p(self, nvrstring):
+        """ Take a string - expected to be one or more package NVRs,
+        split by commas or spaces, e.g. an update title - and return
+        a list of just the package names.
+        """
         # TODO -- make this unnecessary by having bodhi emit the
         # package name (and not just the update name) to begin with.
-        return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', update)]
+        return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', nvrstring)]
+
+    @property
+    def _updatetopics(self):
+        """ A bunch of update-related message topics. We use this same
+        set of topics in several places, so it's factored out here.
+        """
+        updatetopics = ['comment', 'complete', 'request', 'edit', 'eject', 'karma.threshold',
+                         'requirements_met']
+        updatetopics = ['bodhi.update.{0}'.format(ut) for ut in updatetopics]
+        updatetopics.extend(['bodhi.errata.publish'])
+        return tuple(updatetopics)
 
     def title_or_alias(self, msg):
         comment = msg['msg'].get('comment', {})
@@ -152,8 +184,8 @@ class BodhiProcessor(BaseProcessor):
             avatar = avatar_url(username)
         else:
             # If we don't have a user, then try with a package
-            if 'update' in msg['msg']:
-                packages = self._u2p(msg['msg']['update']['title'])
+            if titlestring(msg):
+                packages = self._u2p(titlestring(msg))
                 tmpl = 'https://apps.fedoraproject.org/packages/' + \
                     'images/icons/%s.png'
                 if packages:
@@ -196,32 +228,32 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.update.complete.' in msg['topic']:
             update = msg['msg']['update']
             author = self._update_author(msg)
-            package = truncate(update['title'])
+            pkgs = truncate(titlestring(msg))
             status = update['status']
             tmpl = self._(
-                "{author}'s {package} bodhi update completed push to {status}"
+                "{author}'s {pkgs} bodhi update completed push to {status}"
             )
-            return tmpl.format(author=author, package=package, status=status)
+            return tmpl.format(author=author, pkgs=pkgs, status=status)
         elif 'bodhi.update.eject' in msg['topic']:
             update = msg['msg']['update']
             author = self._update_author(msg)
-            package = truncate(update['title'])
+            pkgs = truncate(titlestring(msg))
             repo = msg['msg']['repo']
             reason = msg['msg']['reason']
             tmpl = self._(
-                "{author}'s {package} bodhi update was ejected from "
+                "{author}'s {pkgs} bodhi update was ejected from "
                 "the {repo} mash.  Reason: \"{reason}\"")
-            return tmpl.format(author=author, package=package,
+            return tmpl.format(author=author, pkgs=pkgs,
                                repo=repo, reason=reason)
         elif 'bodhi.update.edit' in msg['topic']:
             author = msg['msg']['agent']
-            update = truncate(msg['msg']['update']['title'])
-            tmpl = self._("{author} edited {update}")
-            return tmpl.format(author=author, update=update)
+            pkgs = truncate(titlestring(msg))
+            tmpl = self._("{author} edited {pkgs}")
+            return tmpl.format(author=author, pkgs=pkgs)
         elif 'bodhi.update.request' in msg['topic']:
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
-            title = msg['msg']['update']['title']
+            title = titlestring(msg)
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
@@ -310,12 +342,12 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(agent=agent, name=name)
         elif 'bodhi.update.karma.threshold' in msg['topic']:
             tmpl = self._("{title} reached the {status} karma threshold")
-            title = truncate(msg['msg']['update']['title'])
+            title = truncate(titlestring(msg))
             status = msg['msg']['status']
             return tmpl.format(title=title, status=status)
         elif 'bodhi.update.requirements_met' in msg['topic']:
             status = msg['topic'].split('.')[-1]
-            title = truncate(msg['msg']['update']['title'])
+            title = truncate(titlestring(msg))
             tmpl = self._("{title} reached the {status} testing threshold")
             return tmpl.format(title=title, status=status)
         elif 'bodhi.errata.publish' in msg['topic']:
@@ -324,21 +356,7 @@ class BodhiProcessor(BaseProcessor):
     def link(self, msg, **config):
         prefix = 'https://bodhi.fedoraproject.org'
         tmpl = prefix + "/updates/{title}"
-        if 'bodhi.update.comment' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.complete' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.request' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.edit' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.eject' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.requirements_met' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.errata.publish' in msg['topic']:
+        if any(utopic in msg['topic'] for utopic in self._updatetopics):
             return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/stacks/{title}".format(
@@ -367,32 +385,18 @@ class BodhiProcessor(BaseProcessor):
             return "https://bodhi.fedoraproject.org"
 
     def packages(self, msg, **config):
-        if 'bodhi.update.comment' in msg['topic']:
-            comment = msg['msg']['comment']
-            title = comment.get('update_title', comment.get('update', {}).get('title', ''))
-            return set(self._u2p(title))
-        elif 'bodhi.update.complete' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.request' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.edit' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.eject' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.requirements_met' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.errata.publish' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
+        if any(utopic in msg['topic'] for utopic in self._updatetopics):
+            return set(self._u2p(titlestring(msg)))
         elif 'bodhi.buildroot_override.' in msg['topic']:
             nvr = self._override_nvr(msg)
             return set(self._u2p(nvr))
         elif 'bodhi.stack' in msg['topic']:
             return set([p['name'] for p in msg['msg']['stack']['packages']])
         elif 'bodhi.masher.start' in msg['topic']:
+            # this is flattening a list-of-lists into a list then turning it
+            # into a set
             return set(sum([
-                self._u2p(update) for update in msg['msg']['updates']
+                self._u2p(update) for update in msg['msg'].get('updates', [])
             ], []))
 
         return set()
@@ -420,55 +424,22 @@ class BodhiProcessor(BaseProcessor):
         return set(users)
 
     def objects(self, msg, **config):
+        # for all of these, 'objects' includes the repo
+        repotopics = ('bodhi.mashtask', 'bodhi.compose', 'bodhi.repo.done')
+        # for all of these, 'objects' includes discoverable package names
+        packagetopics = list(self._updatetopics)
+        packagetopics.append('bodhi.masher.start')
+
         if is_ftp_sync(msg):
             product = get_sync_product(msg).lower()
             msg = msg['msg']
             return set(['/'.join([product, msg['repo'], msg['release']])])
-        elif 'bodhi.mashtask' in msg['topic'] and 'repo' in msg['msg']:
+        elif 'repo' in msg['msg'] and any(rtopic in msg['topic'] for rtopic in repotopics):
             return set(['repos/' + msg['msg']['repo']])
-        elif 'bodhi.compose' in msg['topic'] and 'repo' in msg['msg']:
-            return set(['repos/' + msg['msg']['repo']])
-        elif 'bodhi.repo.done' in msg['topic'] and 'repo' in msg['msg']:
-            return set(['repos/' + msg['msg']['repo']])
-        elif 'bodhi.update.comment' in msg['topic']:
+        elif any(ptopic in msg['topic'] for ptopic in packagetopics):
             return set([
                 'packages/' + p for p in
                 self.packages(msg, **config)
-            ])
-        elif 'bodhi.update.complete' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.request' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.edit' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.eject' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.requirements_met' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.errata.publish' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.buildroot_override.' in msg['topic']:
             nvr = self._override_nvr(msg)
@@ -483,10 +454,5 @@ class BodhiProcessor(BaseProcessor):
                     for p in msg['msg']['stack']['packages']
                 ] + ['stacks/' + msg['msg']['stack']['name']]
             )
-        elif 'bodhi.masher.start' in msg['topic']:
-            packages = sum([self._u2p(u) for u in msg['msg']['updates']], [])
-            return set([
-                'packages/' + package for package in packages
-            ])
 
         return set()
