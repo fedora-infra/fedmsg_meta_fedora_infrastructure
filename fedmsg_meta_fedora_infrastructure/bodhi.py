@@ -91,6 +91,28 @@ class BodhiProcessor(BaseProcessor):
             author = author.get('name')
         return author
 
+    def _override_author(self, msg):
+        """Find the author (submitter) of the 'override' dict in the
+        message, if there is one. Otherwise, return None.
+        """
+        author = None
+        override = msg['msg'].get('override')
+        if override:
+            author = override['submitter']
+        if isinstance(author, dict):
+            author = author['name']
+        return author
+
+    def _override_nvr(self, msg):
+        """Find the NVR of the 'override' dict in the message, if
+        there is one. Otherwise, return None.
+        """
+        build = msg['msg'].get('override', {}).get('build')
+        if isinstance(build, dict):
+            return build.get('nvr')
+        else:
+            return build
+
     def _u2p(self, update):
         """ Take an update, and return the package name """
         # TODO -- make this unnecessary by having bodhi emit the
@@ -117,16 +139,13 @@ class BodhiProcessor(BaseProcessor):
         if 'bodhi.update.comment' in msg['topic']:
             username = self._comment_author(msg)
         elif 'bodhi.buildroot_override' in msg['topic']:
-            username = msg['msg']['override']['submitter']
+            username = self._override_author(msg)
         elif 'bodhi.stack' in msg['topic']:
             username = msg['msg']['agent']
         elif self._update_author(msg):
             username = self._update_author(msg)
         else:
             username = msg['msg'].get('agent')
-
-        if isinstance(username, dict):
-            username = username['name']
 
         avatar = self.__icon__
         if username:
@@ -267,26 +286,16 @@ class BodhiProcessor(BaseProcessor):
             tmpl = self._("{submitter} submitted a buildroot override " +
                           "for {build}")
 
-            submitter = msg['msg']['override']['submitter']
-            build = msg['msg']['override']['build']
-
-            if isinstance(submitter, dict):
-                submitter = submitter['name']
-            if isinstance(build, dict):
-                build = build['nvr']
+            submitter = self._override_author(msg)
+            build = self._override_nvr(msg)
 
             return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.buildroot_override.untag' in msg['topic']:
             tmpl = self._("{submitter} expired a buildroot override " +
                           "for {build}")
 
-            submitter = msg['msg']['override']['submitter']
-            build = msg['msg']['override']['build']
-
-            if isinstance(submitter, dict):
-                submitter = submitter['name']
-            if isinstance(build, dict):
-                build = build['nvr']
+            submitter = self._override_author(msg)
+            build = self._override_nvr(msg)
 
             return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.stack.save' in msg['topic']:
@@ -335,9 +344,7 @@ class BodhiProcessor(BaseProcessor):
             return prefix + "/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
         elif 'bodhi.buildroot_override' in msg['topic']:
-            build = msg['msg']['override']['build']
-            if isinstance(build, dict):
-                build = build['nvr']
+            build = self._override_nvr(msg)
             return prefix + "/overrides/{nvr}".format(nvr=build)
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
@@ -379,9 +386,7 @@ class BodhiProcessor(BaseProcessor):
         elif 'bodhi.errata.publish' in msg['topic']:
             return set(self._u2p(msg['msg']['update']['title']))
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            nvr = msg['msg']['override']['build']
-            if isinstance(nvr, dict):
-                nvr = nvr['nvr']
+            nvr = self._override_nvr(msg)
             return set(self._u2p(nvr))
         elif 'bodhi.stack' in msg['topic']:
             return set([p['name'] for p in msg['msg']['stack']['packages']])
@@ -395,16 +400,9 @@ class BodhiProcessor(BaseProcessor):
     def usernames(self, msg, **config):
         users = []
 
-        for obj in ['update', 'override']:
-            try:
-                username = msg['msg'][obj].get('submitter', msg['msg'][obj].get('user'))
-                if isinstance(username, dict):
-                    username = username['name']
-                users.append(username)
-            except KeyError:
-                pass
-
         users.append(self._comment_author(msg))
+        users.append(self._update_author(msg))
+        users.append(self._override_author(msg))
 
         if 'comment' in msg['msg']:
             text = msg['msg']['comment']['text']
@@ -473,9 +471,7 @@ class BodhiProcessor(BaseProcessor):
                 self._u2p(msg['msg']['update']['title'])
             ])
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            nvr = msg['msg']['override']['build']
-            if isinstance(nvr, dict):
-                nvr = nvr['nvr']
+            nvr = self._override_nvr(msg)
             return set([
                 'packages/' + p for p in
                 self._u2p(nvr)
