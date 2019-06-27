@@ -1267,18 +1267,18 @@ class TestBodhiRepoDone(Base):
     expected_objects = set(['repos/f29-updates-testing'])
 
     msg = {
-      "username": "amqp-bridge", 
-      "source_name": "datanommer", 
-      "i": 185742, 
-      "timestamp": 1559883894.0, 
-      "msg_id": "2019-139ee383-4b15-4ba5-87c1-e366c182bb64", 
-      "crypto": "x509", 
-      "topic": "org.fedoraproject.prod.bodhi.repo.done", 
-      "headers": {}, 
-      "source_version": "0.9.0", 
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185742,
+      "timestamp": 1559883894.0,
+      "msg_id": "2019-139ee383-4b15-4ba5-87c1-e366c182bb64",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.repo.done",
+      "headers": {},
+      "source_version": "0.9.0",
       "msg": {
-        "repo": "f29-updates-testing", 
-        "path": "/mnt/koji/compose/updates/Fedora-29-updates-testing-20190607.0", 
+        "repo": "f29-updates-testing",
+        "path": "/mnt/koji/compose/updates/Fedora-29-updates-testing-20190607.0",
         "agent": "releng"
       }
     }
