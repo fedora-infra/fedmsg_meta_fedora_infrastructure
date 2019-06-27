@@ -2346,10 +2346,13 @@ mash_list = """
 - dnf-plugins-core-0.1.9-1.fc22
 """
 
-class TestBodhiMashKickooff(Base):
+class TestLegacyBodhi2MasherStart(Base):
     """ This message is published by an admin when they send a request to
     the `Bodhi2 <https://bodhi.fedoraproject.org>`_ backend, telling it
-    to start a mash.
+    to start a mash. This is how messages looked before Bodhi commit
+    3b655f23 , which changed the message from including a dict of updates
+    to including a dict of composes. The first release with the change
+    was 3.2.0.
     """
     expected_title = "bodhi.masher.start"
     expected_subti = "ralph requested a mash of 20 updates"
@@ -2435,6 +2438,197 @@ class TestBodhiMashKickooff(Base):
             ],
             "agent": "ralph"
         }
+    }
+
+
+class TestLegacyBodhi320MasherStart(Base):
+    """ This message is published by an admin when they send a request to
+    the `Bodhi 3.2.0+ <https://bodhi.fedoraproject.org>`_ backend, telling it
+    to start a mash.
+    """
+    expected_title = "bodhi.masher.start"
+    expected_subti = "releng requested a mash of some updates"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set([])
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1559001608.0,
+      "msg_id": "2019-13d8e80d-34a3-49d6-9d46-b465d891535d",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.masher.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "resume": False,
+        "api_version": 2,
+        "agent": "releng",
+        "composes": [
+          {
+            "security": True,
+            "release_id": 28,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": True,
+            "release_id": 23,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 21,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 8,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 28,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 8,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 23,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 21,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 10,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 29,
+            "request": "testing",
+            "content_type": "module"
+          },
+          {
+            "security": False,
+            "release_id": 24,
+            "request": "testing",
+            "content_type": "module"
+          }
+        ]
+      }
+    }
+
+
+class TestBodhi4ComposerStart(Base):
+    """ This message is published by an admin when they send a request to
+    the `Bodhi 4+ <https://bodhi.fedoraproject.org>`_ backend, telling it
+    to start a mash. It is exactly like bodhi.masher.start from Bodhi
+    3.2.0+, just with the name changed to bodhi.composer.start.
+    """
+    expected_title = "bodhi.composer.start"
+    expected_subti = "releng requested a mash of some updates"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set([])
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 226693,
+      "timestamp": 1561593605.0,
+      "msg_id": "2019-d3041ae5-2b13-4269-944e-cee4d8238c87",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.composer.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "resume": False,
+        "api_version": 2,
+        "agent": "releng",
+        "composes": [
+          {
+            "security": True,
+            "release_id": 8,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": True,
+            "release_id": 23,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": True,
+            "release_id": 28,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 29,
+            "request": "stable",
+            "content_type": "module"
+          },
+          {
+            "security": False,
+            "release_id": 24,
+            "request": "stable",
+            "content_type": "module"
+          },
+          {
+            "security": False,
+            "release_id": 28,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 23,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 31,
+            "request": "testing",
+            "content_type": "flatpak"
+          },
+          {
+            "security": False,
+            "release_id": 8,
+            "request": "testing",
+            "content_type": "rpm"
+          }
+        ]
+      }
     }
 
 
