@@ -2438,6 +2438,109 @@ class TestBodhiMashKickooff(Base):
     }
 
 
+class TestBodhiUpdateFedoraSync(Base):
+    """These messages are published by the new-updates-sync script,
+    which lives in the ansible infra repo in the bodhi backend role,
+    after it syncs the packages from a Fedora updates compose to the
+    master mirror.
+    """
+    expected_title = "bodhi.updates.fedora.sync"
+    expected_subti = "New Fedora 29 updates-testing content synced out " + \
+        "(1 GiB changed with 1259 files deleted)"
+    expected_link = "https://download.fedoraproject.org/pub/fedora/linux/updates/testing/29/Everything/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_usernames = set([])
+    expected_objects = set(['fedora/updates-testing/29'])
+    msg = {
+      "username": "ftpsync",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1561603095.0,
+      "msg_id": "2019-2656349c-2c41-48bd-9b66-31b3cd9a5aa9",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.updates.fedora.sync",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "deleted": "1259",
+        "release": "29",
+        "raw_bytes": "2116251621",
+        "bytes": "1 GiB",
+        "repo": "updates-testing"
+      }
+    }
+
+
+class TestBodhiUpdateFedoraSyncModular(Base):
+    """These messages are published by the new-updates-sync script,
+    which lives in the ansible infra repo in the bodhi backend role,
+    after it syncs the packages from a Fedora updates compose to the
+    master mirror. This is how the messages for modular update
+    composes look.
+    """
+    nodoc = True
+    expected_title = "bodhi.updates.fedora.sync"
+    expected_subti = "New Fedora 30 updates modular content synced out " + \
+        "(404 MiB changed with 412 files deleted)"
+    expected_link = "https://download.fedoraproject.org/pub/fedora/linux/updates/30/Modular/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_usernames = set([])
+    expected_objects = set(['fedora/updates/30'])
+    msg = {
+      "username": "ftpsync",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1561595377.0,
+      "msg_id": "2019-b7ddfebc-cff4-4dc1-a078-bcf50379b875",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.updates.fedora.sync",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "deleted": "412",
+        "release": "30m",
+        "raw_bytes": "424030490",
+        "bytes": "404 MiB",
+        "repo": "updates"
+      }
+    }
+
+
+class TestBodhiUpdateEPELSync(Base):
+    """These messages are published by the new-updates-sync script,
+    which lives in the ansible infra repo in the bodhi backend role,
+    after it syncs the packages from an EPEL updates compose to the
+    master mirror.
+    """
+    expected_title = "bodhi.updates.epel.sync"
+    expected_subti = "New EPEL 7 epel-testing content synced out " + \
+        "(505 MiB changed with 74 files deleted)"
+    expected_link = "https://download.fedoraproject.org/pub/epel/testing/7/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_usernames = set([])
+    expected_objects = set(['epel/epel-testing/7'])
+    msg = {
+      "username": "ftpsync",
+      "source_name": "datanommer",
+      "i": 3,
+      "timestamp": 1561597841.0,
+      "msg_id": "2019-a31ad980-b626-4685-8aa5-fd4a61a85fb4",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.updates.epel.sync",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "deleted": "74",
+        "release": "7",
+        "raw_bytes": "530049354",
+        "bytes": "505 MiB",
+        "repo": "epel-testing"
+      }
+    }
+
 add_doc(locals())
 
 if __name__ == '__main__':

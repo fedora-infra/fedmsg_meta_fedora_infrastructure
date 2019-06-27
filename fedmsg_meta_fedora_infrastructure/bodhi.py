@@ -43,7 +43,24 @@ def get_sync_product(msg):
     return product
 
 
+def get_sync_release(msg):
+    """Return the release for an ftpsync message, determining if we're
+    modular along the way. Returns the release and a boolean for "are
+    we modular"
+    """
+    modular = False
+    release = msg['msg']['release']
+    if release.endswith('m'):
+        modular = True
+        release = release.rstrip('m')
+    return (release, modular)
+
+
 def is_ftp_sync(msg):
+    """Identify update sync messages. These are not published by bodhi
+    itself but by the new-updates-sync script, which lives in the
+    ansible infra repo in the bodhi backend role.
+    """
     return 'bodhi.updates.' in msg['topic'] and msg['topic'].endswith('.sync')
 
 
@@ -204,11 +221,16 @@ class BodhiProcessor(BaseProcessor):
     def subtitle(self, msg, **config):
         if is_ftp_sync(msg):
             product = get_sync_product(msg)
+            (truerelease, modular) = get_sync_release(msg)
+            if modular:
+                modular = " modular"
+            else:
+                modular = ""
             msg = msg['msg']
             tmpl = self._(
-                'New {product} {release} {repo} content synced out '
+                'New {product} {truerelease} {repo}{modular} content synced out '
                 '({bytes} changed with {deleted} files deleted)')
-            return tmpl.format(product=product, **msg)
+            return tmpl.format(product=product, truerelease=truerelease, modular=modular, **msg)
         elif 'bodhi.masher.start' in msg['topic']:
             agent = msg['msg']['agent']
             updates = len(msg['msg']['updates'])
@@ -367,6 +389,7 @@ class BodhiProcessor(BaseProcessor):
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
             repo = msg['msg']['repo']
+            (release, ismodular) = get_sync_release(msg)
             product = get_sync_product(msg).lower()
             link += product + "/"
 
@@ -379,7 +402,15 @@ class BodhiProcessor(BaseProcessor):
             if repo.endswith('testing'):
                 link += "testing/"
 
-            link += msg['msg']['release'] + "/"
+            link += release + "/"
+
+            if ismodular:
+                link += "Modular/"
+            elif release.isdigit():
+                if (product == 'fedora' and int(release) > 27) or (product == 'epel' and
+                                                                   int(release) > 7):
+                    link += "Everything/"
+
             return link
         else:
             return "https://bodhi.fedoraproject.org"
@@ -432,8 +463,9 @@ class BodhiProcessor(BaseProcessor):
 
         if is_ftp_sync(msg):
             product = get_sync_product(msg).lower()
+            (release, _) = get_sync_release(msg)
             msg = msg['msg']
-            return set(['/'.join([product, msg['repo'], msg['release']])])
+            return set(['/'.join([product, msg['repo'], release])])
         elif 'repo' in msg['msg'] and any(rtopic in msg['topic'] for rtopic in repotopics):
             return set(['repos/' + msg['msg']['repo']])
         elif any(ptopic in msg['topic'] for ptopic in packagetopics):
