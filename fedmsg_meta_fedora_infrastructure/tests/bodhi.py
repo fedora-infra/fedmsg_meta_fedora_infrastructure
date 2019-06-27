@@ -1724,11 +1724,13 @@ class LegacyTestBodhiOverrideUntagged(Base):
     }
 
 
-class TestBodhiStackSave(Base):
+class TestLegacyBodhiStackSave(Base):
     """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ introduced the
     concept of *stacks* of packages that can be grouped for to share
-    requirements.  That system publishes messages like this anytime a user
-    **modifies or creates a new stack**.
+    requirements.  That system published messages like this anytime a user
+    **modified or created a new stack**. This mechanism was removed from
+    Bodhi in January 2019 and exactly one message of this type was ever
+    published in production.
     """
     expected_title = "bodhi.stack.save"
     expected_subti = "ralph updated the \"hacking\" stack"
@@ -1782,11 +1784,12 @@ class TestBodhiStackSave(Base):
     }
 
 
-class TestBodhiStackDelete(Base):
+class TestLegacyBodhiStackDelete(Base):
     """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ introduced the
     concept of *stacks* of packages that can be grouped for to share
-    requirements.  That system publishes messages like this anytime a user
-    **deletes a stack**.
+    requirements.  That system published messages like this anytime a user
+    **deleted a stack**. This mechanism was removed from Bodhi in January
+    2019 and no messages of this type were ever published in production.
     """
     expected_title = "bodhi.stack.delete"
     expected_subti = "ralph deleted the \"hacking\" stack"
