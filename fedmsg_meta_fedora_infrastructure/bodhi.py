@@ -215,8 +215,9 @@ class BodhiProcessor(BaseProcessor):
             return msg['msg']['comment']['text']
         elif 'bodhi.errata.publish' in msg['topic']:
             return msg['msg']['body']
-        elif 'bodhi.masher.start' in msg['topic']:
-            return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
+        elif 'bodhi.masher.start' in msg['topic'] or 'bodhi.composer.start' in msg['topic']:
+            if 'updates' in msg['msg']:
+                return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
 
     def subtitle(self, msg, **config):
         if is_ftp_sync(msg):
@@ -231,11 +232,18 @@ class BodhiProcessor(BaseProcessor):
                 'New {product} {truerelease} {repo}{modular} content synced out '
                 '({bytes} changed with {deleted} files deleted)')
             return tmpl.format(product=product, truerelease=truerelease, modular=modular, **msg)
-        elif 'bodhi.masher.start' in msg['topic']:
+        elif 'bodhi.masher.start' in msg['topic'] or 'bodhi.composer.start' in msg['topic']:
             agent = msg['msg']['agent']
-            updates = len(msg['msg']['updates'])
-            tmpl = self._("{agent} requested a mash of {updates} updates")
-            return tmpl.format(agent=agent, updates=updates)
+            if 'updates' in msg['msg']:
+                # pre-Bodhi 3.2.0
+                updates = len(msg['msg']['updates'])
+                tmpl = self._("{agent} requested a mash of {updates} updates")
+                return tmpl.format(agent=agent, updates=updates)
+            else:
+                # post-Bodhi 3.2.0. These messages are fairly useless:
+                # https://github.com/fedora-infra/bodhi/issues/3360
+                tmpl = self._("{agent} requested a mash of some updates")
+                return tmpl.format(agent=agent)
         elif 'bodhi.update.comment' in msg['topic']:
             comment = msg['msg']['comment']
             author = self._comment_author(msg)
