@@ -1,3 +1,19 @@
+0.28.0
+------
+
+Pull Requests
+
+- (@pypingou)       #493 Port fedmsg_meta to the new URL structure used by pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/493
+- (@AdamWill)       #496 Fix CI pipeline processor for current messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/496
+- (@AdamWill)       #497 Bz revamp
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/497
+- (@AdamWill)       #498 Bodhi 4 fix
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/498
+- (@AdamWill)       #499 Bodhi schema compliance + more
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/499
+
 0.27.0
 ------
 
