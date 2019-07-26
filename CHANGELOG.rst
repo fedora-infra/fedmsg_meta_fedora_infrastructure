@@ -1,30 +1,30 @@
 0.27.0
 ------
 
- Pull Requests
+Pull Requests
 
- - (@lubomir)       #483 Handle Pungi compose being terminated
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/483
- - (@hluk)          #489  greenwave: Fix subtitle for new messages
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/489
- - (@hluk)          #490 greenwave: Generate same link for results
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/490
- - (@johnbieren)    #491 Add container pipeline topics
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/491
- - (@pypingou)      #492 Add support for the new messages sent by pagure
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/492
+- (@lubomir)        #483 Handle Pungi compose being terminated
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/483
+- (@hluk)           #489  greenwave: Fix subtitle for new messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/489
+- (@hluk)           #490 greenwave: Generate same link for results
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/490
+- (@johnbieren)     #491 Add container pipeline topics
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/491
+- (@pypingou)       #492 Add support for the new messages sent by pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/492
 
 0.26.0
 ------
 
  Pull Requests
 
- - (@pypingou)      #487 Add support for fedmsg message from pagure about PR
-   assignee
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/487
- - (@sinnykumari)   #488 Update releng.atomic.twoweek fedmsg doc with multi-arch
-   content
-   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/488
+- (@pypingou)       #487 Add support for fedmsg message from pagure about PR
+  assignee
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/487
+- (@sinnykumari)    #488 Update releng.atomic.twoweek fedmsg doc with multi-arch
+  content
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/488
 
 0.25.0
 ------
