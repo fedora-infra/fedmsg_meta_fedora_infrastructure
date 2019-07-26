@@ -26,9 +26,9 @@ from fedmsg.tests.test_meta import Base
 from .common import add_doc
 
 
-class TestPackageIgnore(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    it ignores a commit made on dist-git.
+class LegacyTestPackageIgnore(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that it ignored a commit made on dist-git.
     """
 
     expected_title = "ci.pipeline.package.ignore"
@@ -70,9 +70,9 @@ class TestPackageIgnore(Base):
     }
 
 
-class TestPackageComplete(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the build of a package completed.
+class LegacyTestPackageComplete(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the build of a package completed.
     """
 
     expected_title = "ci.pipeline.package.complete"
@@ -115,9 +115,9 @@ class TestPackageComplete(Base):
     }
 
 
-class TestPackageQueued(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the build of a package is queued.
+class LegacyTestPackageQueued(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the build of a package was queued.
     """
 
     expected_title = "ci.pipeline.package.queued"
@@ -159,9 +159,9 @@ class TestPackageQueued(Base):
     }
 
 
-class TestPackageRunning(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the build of a package is running.
+class LegacyTestPackageRunning(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the build of a package was running.
     """
 
     expected_title = "ci.pipeline.package.running"
@@ -203,9 +203,10 @@ class TestPackageRunning(Base):
     }
 
 
-class TestComposeComplete(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    a compose containing a specified package has completed.
+class LegacyTestComposeComplete(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that a compose containing a specified package
+    had completed.
     """
 
     expected_title = "ci.pipeline.compose.complete"
@@ -251,9 +252,10 @@ class TestComposeComplete(Base):
     }
 
 
-class TestComposeRunning(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    a compose containing a specified package is running.
+class LegacyTestComposeRunning(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that a compose containing a specified package
+    was running.
     """
 
     expected_title = "ci.pipeline.compose.running"
@@ -298,10 +300,10 @@ class TestComposeRunning(Base):
     }
 
 
-class TestComposeTestIntegrationComplete(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the integration test of a compose containing a specified package has
-    completed.
+class LegacyTestComposeTestIntegrationComplete(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the integration test of a compose
+    containing a specified package had completed.
     """
 
     expected_title = "ci.pipeline.compose.test.integration.complete"
@@ -346,10 +348,10 @@ class TestComposeTestIntegrationComplete(Base):
     }
 
 
-class TestComposeTestIntegrationRunning(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the integration test of a compose containing a specified package are
-    running.
+class LegacyTestComposeTestIntegrationRunning(Base):
+    """ These messages are published when an older version of the CI
+    pipeline announced that the integration test of a compose
+    containing a specified package was running.
     """
 
     expected_title = "ci.pipeline.compose.test.integration.running"
@@ -393,10 +395,10 @@ class TestComposeTestIntegrationRunning(Base):
     }
 
 
-class TestComposeTestIntegrationQueued(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the integration test of a compose containing a specified package are
-    queued.
+class LegacyTestComposeTestIntegrationQueued(Base):
+    """ These messages are published when an older version of the CI
+    pipeline announced that  the integration test of a compose
+    containing a specified package was queued.
     """
 
     expected_title = "ci.pipeline.compose.test.integration.queued"
@@ -440,10 +442,10 @@ class TestComposeTestIntegrationQueued(Base):
     }
 
 
-class TestImageComplete(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the build of the image generated from the compose containing a specified
-    package has completed.
+class LegacyTestImageComplete(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the build of the image generated from the
+    compose containing a specified package had completed.
     """
 
     expected_title = "ci.pipeline.image.complete"
@@ -492,10 +494,10 @@ class TestImageComplete(Base):
     }
 
 
-class TestImageRunning(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the build of the image generated from the compose containing a specified
-    package is running.
+class LegacyTestImageRunning(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the build of the image generated from the
+    compose containing a specified package was running.
     """
 
     expected_title = "ci.pipeline.image.running"
@@ -543,10 +545,10 @@ class TestImageRunning(Base):
     }
 
 
-class TestImageTestSmokeComplete(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the image generated from the compose containing a specified
-    package has completed its tests.
+class LegacyTestImageTestSmokeComplete(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the image generated from the compose
+    containing a specified package had completed its tests.
     """
 
     expected_title = "ci.pipeline.image.test.smoke.complete"
@@ -594,10 +596,10 @@ class TestImageTestSmokeComplete(Base):
     }
 
 
-class TestImageTestSmokeRunning(Base):
-    """ These messages are published when the Atomic CI pipeline announces that
-    the image generated from the compose containing a specified
-    package has completed its tests.
+class LegacyTestImageTestSmokeRunning(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced that the image generated from the compose
+    containing a specified package had completed its tests.
     """
 
     expected_title = "ci.pipeline.image.test.smoke.running"
@@ -649,9 +651,9 @@ class TestImageTestSmokeRunning(Base):
 # on real messages, fingers crossed
 # https://github.com/CentOS-PaaS-SIG/ci-pipeline/#orgcentosprodcipipelinepackagetestfunctionalqueued
 
-class TestPackageTestFunctionalQueued(Base):
-    """ These messages are published when the Atomic CI pipeline announces queuing
-    the function tests of a package.
+class LegacyTestPackageTestFunctionalQueued(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced queueing the functional tests of a package.
     """
 
     expected_title = "ci.pipeline.package.test.functional.queued"
@@ -695,9 +697,9 @@ class TestPackageTestFunctionalQueued(Base):
     }
 
 
-class TestPackageTestFunctionalRunning(Base):
-    """ These messages are published when the Atomic CI pipeline announces running
-    the function tests of a package.
+class LegacyTestPackageTestFunctionalRunning(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced running the functional tests of a package.
     """
 
     expected_title = "ci.pipeline.package.test.functional.running"
@@ -741,9 +743,10 @@ class TestPackageTestFunctionalRunning(Base):
     }
 
 
-class TestPackageTestFunctionalComplete(Base):
-    """ These messages are published when the Atomic CI pipeline announces having
-    completed the function tests of a package.
+class LegacyTestPackageTestFunctionalComplete(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced having completed the functional tests of a
+    package.
     """
 
     expected_title = "ci.pipeline.package.test.functional.complete"
@@ -787,9 +790,10 @@ class TestPackageTestFunctionalComplete(Base):
     }
 
 
-class TestCompleteSuccess(Base):
-    """ These messages are published when the Atomic CI pipeline announces having
-    completed successfully running the entire pipeline on a package.
+class LegacyTestCompleteSuccess(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced having completed running the entire pipeline
+    on a package.
     """
 
     expected_title = "ci.pipeline.complete"
@@ -832,9 +836,10 @@ class TestCompleteSuccess(Base):
     }
 
 
-class TestCompleteAborted(Base):
-    """ These messages are published when the Atomic CI pipeline announces having
-    aborted a run of the pipeline on a package.
+class LegacyTestCompleteAborted(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced having aborted a run of the pipeline on a
+    package.
     """
 
     expected_title = "ci.pipeline.complete"
@@ -877,11 +882,11 @@ class TestCompleteAborted(Base):
     }
 
 
-class TestCompleteFailed(Base):
-    """ These messages are published when the Atomic CI pipeline announces having
-    failed a run of the pipeline on a package.
+class LegacyTestCompleteFailed(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced having failed a run of the pipeline on a package.
 
-    This means the pipeline failed to run the tests (as opposed to run the
+    This meant the pipeline failed to run the tests (as opposed to run the
     tests but these failed).
     """
 
@@ -925,12 +930,14 @@ class TestCompleteFailed(Base):
     }
 
 
-class TestCompleteError(Base):
-    """ These messages are published when the Atomic CI pipeline announces having
-    errored a run of the pipeline on a package.
+class LegacyTestCompleteError(Base):
+    """ These messages were published when an older version of the CI
+    pipeline announced having errored a run of the pipeline on a
+    package.
 
-    This means the pipeline could run the tests but the tests themselves failed
-    (as opposed to the pipeline failed to run the tests).
+    This meant the pipeline could run the tests but the tests
+    themselves failed (as opposed to the pipeline failed to run the
+    tests).
     """
 
     expected_title = "ci.pipeline.complete"
@@ -973,9 +980,10 @@ class TestCompleteError(Base):
     }
 
 
-class LegacyTestAllPackagesPackageRunning(Base):
-    """ These messages are published when the Allpackages CI pipeline
-    announces that the build of a package is running.
+class Legacy1TestAllPackagesPackageRunning(Base):
+    """ These messages were published on the old topic when the All
+    Packages CI pipeline (from before the split between 'build' and
+    'pr' pipelines) announced that the build of a package was running.
     """
 
     expected_title = "allpackages.pipeline.package.running"
@@ -1025,10 +1033,11 @@ class LegacyTestAllPackagesPackageRunning(Base):
     }
 
 
-class LegacyTestAllPackagesCompleteSuccess(Base):
-    """ These messages are published when the All Packages CI pipeline
-    announces having completed successfully running the entire pipeline
-    on a package.
+class Legacy1TestAllPackagesCompleteSuccess(Base):
+    """ These messages were published on the old topic when the All
+    Packages CI pipeline (from before the split between 'build' and
+    'pr' pipelines) announced having completed successfully running
+    the entire pipeline on a package.
     """
 
     expected_title = "allpackages.pipeline.complete"
@@ -1079,9 +1088,10 @@ class LegacyTestAllPackagesCompleteSuccess(Base):
     }
 
 
-class TestAllPackagesPackageRunning(Base):
-    """ These messages are published when the Allpackages CI pipeline
-    announces that the build of a package is running.
+class Legacy2TestAllPackagesPackageRunning(Base):
+    """ These messages were published when the All Packages CI pipeline
+    (from before the split between 'build' and 'pr' pipelines)
+    announced that the build of a package was running.
     """
 
     expected_title = "ci.pipeline.allpackages.package.running"
@@ -1131,9 +1141,10 @@ class TestAllPackagesPackageRunning(Base):
     }
 
 
-class TestAllPackagesCompleteSuccess(Base):
-    """ These messages are published when the All Packages CI pipeline
-    announces having completed successfully running the entire pipeline
+class Legacy2TestAllPackagesCompleteSuccess(Base):
+    """ These messages were published when the All Packages CI pipeline
+    (from before the split between 'build' and 'pr' pipelines)
+    announced having completed successfully running the entire pipeline
     on a package.
     """
 
@@ -1180,6 +1191,1112 @@ class TestAllPackagesCompleteSuccess(Base):
         "status": "SUCCESS",
         "branch": "f28",
         "test_guidance": "''",
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageIgnored(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the build of a package has been ignored.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.ignored"
+    expected_subti = 'Koji task "34128170" of package unknown_namespace/pytest is '\
+        'being ignored by the All Packages (Build) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-task-pipeline-trigger/detail/" \
+        "fedora-task-pipeline-trigger/5742/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['unknown_namespace/pytest/kojitask-34128170/master/allpackages-build/package/ignored'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555083483.0,
+      "msg_id": "2019-607fbb14-eb51-4423-a0a1-d7df3f0fdc04",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.ignored",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "5742",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-task-pipeline-trigger/detail/fedora-task-pipeline-trigger/5742/pipeline/",
+        "nvr": "",
+        "rev": "kojitask-34128170",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.ignored",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": None,
+        "repo": "pytest",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageIgnored(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that a pull request for a package has been
+    ignored.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.ignored"
+    expected_subti = 'Pull request "1" of package rpms/toolbox is '\
+        'being ignored by the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-pr-comment-trigger/detail/" \
+        "fedora-pr-comment-trigger/2854/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/toolbox/PR-1/master/allpackages-pr/package/ignored'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555083162.0,
+      "msg_id": "2019-c944485a-c647-4dec-82aa-b8b83c0e8553",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.ignored",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "2854",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-pr-comment-trigger/detail/fedora-pr-comment-trigger/2854/pipeline/",
+        "nvr": "",
+        "rev": "PR-1",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.ignored",
+        "username": None,
+        "comment_id": "23810",
+        "namespace": "rpms",
+        "repo": "toolbox",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": "",
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageQueued(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the build of a package is queued.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.queued"
+    expected_subti = 'Koji task 34126640 of package unknown_namespace/nmstate is '\
+        'queued to be built in the All Packages (Build) CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-build-pipeline-trigger/detail/" \
+        "fedora-build-pipeline-trigger/264227/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['unknown_namespace/nmstate/kojitask-34126640/f28/allpackages-build/package/queued'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074142.0,
+      "msg_id": "2019-8a7b8304-75c3-42b8-b57c-d3fc7b88bc83",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.queued",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "264227",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-build-pipeline-trigger/detail/fedora-build-pipeline-trigger/264227/pipeline/",
+        "nvr": "",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.queued",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": None,
+        "repo": "nmstate",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageFunctionalQueued(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the functional testing build of a package
+    is queued.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.test.functional.queued"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate is queued '\
+        'for functional testing in the All Packages (Build) CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/package/test/functional/queued'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074463.0,
+      "msg_id": "2019-27d3db55-9f06-4546-9971-cdc44e0c785e",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.test.functional.queued",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.test.functional.queued",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildImageQueued(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the build of an image containing a package
+    build is queued.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.image.queued"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate is '\
+        'queued to be built in an image in the All Packages (Build) CI pipeline '\
+        'on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/image/queued'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074216.0,
+      "msg_id": "2019-ea702b9d-bdaf-4684-9306-34ee62c13126",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.image.queued",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "type": "qcow2",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.image.queued",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageQueued(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that a pull request for a package is queued.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.queued"
+    expected_subti = 'Pull request 19 of package rpms/selinux-policy is '\
+        'queued to be built in the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-pr-new-trigger/detail/" \
+        "fedora-pr-new-trigger/13631/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/selinux-policy/PR-19/master/allpackages-pr/package/queued'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555083159.0,
+      "msg_id": "2019-e65e8421-390d-4f19-b114-78e6584bcbe3",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.queued",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "13631",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-pr-new-trigger/detail/fedora-pr-new-trigger/13631/pipeline/",
+        "nvr": "",
+        "rev": "PR-19",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.queued",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "selinux-policy",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": "",
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageFunctionalQueued(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that the functional testing build of a pull
+    request for a package is queued.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.test.functional.queued"
+    expected_subti = 'Pull request 105 of package rpms/python3 is queued '\
+        'for functional testing in the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1167/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python3/PR-105/master/allpackages-pr/package/test/functional/queued'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555060917.0,
+      "msg_id": "2019-dba7d16a-510e-41f5-9c70-42aa42d92429",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.test.functional.queued",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1167",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1167/pipeline/",
+        "nvr": "python3-3.7.3-2.fc31.pr.4229607131614fc0a723aa38ea21b892",
+        "rev": "PR-105",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.test.functional.queued",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python3",
+        "original_spec_nvr": "python3-3.7.3-2.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRImageQueued(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that the build of an image containing a pull
+    request for a package is queued.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.image.queued"
+    expected_subti = 'Pull request 105 of package rpms/python3 is '\
+        'queued to be built in an image in the All Packages (PR) CI pipeline '\
+        'on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1167/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python3/PR-105/master/allpackages-pr/image/queued'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555060689.0,
+      "msg_id": "2019-420f348a-f62d-4e7c-b57c-1ddeb320c03c",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.image.queued",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1167",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1167/pipeline/",
+        "type": "qcow2",
+        "nvr": "python3-3.7.3-2.fc31.pr.4229607131614fc0a723aa38ea21b892",
+        "rev": "PR-105",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.image.queued",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python3",
+        "original_spec_nvr": "python3-3.7.3-2.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageRunning(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the build of a package is running.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.running"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate is '\
+        'being built in the All Packages (Build) CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/package/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074192.0,
+      "msg_id": "2019-d5d09d7f-29a1-49f8-bb79-5107df7838fd",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.running",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "nvr": "",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.running",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageFunctionalRunning(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the functional testing build of a package
+    is running.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.test.functional.running"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate is running its '\
+        'functional tests in the All Packages (Build) CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/package/test/functional/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074470.0,
+      "msg_id": "2019-72d436cb-c5e3-439a-87ce-4b1f6a162957",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.test.functional.running",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.test.functional.running",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildImageRunning(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the build of an image containing a package
+    build is running.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.image.running"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate is '\
+        'being built in an image in the All Packages (Build) CI pipeline '\
+        'on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/image/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074222.0,
+      "msg_id": "2019-a3efac22-0512-4251-92f5-9b3bd6365dc6",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.image.running",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "type": "''",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.image.running",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageRunning(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that a pull request for a package is running.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.running"
+    expected_subti = 'Pull request 19 of package rpms/selinux-policy is '\
+        'being built in the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1168/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/selinux-policy/PR-19/master/allpackages-pr/package/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555083213.0,
+      "msg_id": "2019-5d7755f0-14f4-4de7-a927-824d7a068825",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.running",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1168",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1168/pipeline/",
+        "nvr": "",
+        "rev": "PR-19",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.running",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "selinux-policy",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageFunctionalRunning(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that the functional testing build of a pull
+    request for a package is running.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.test.functional.running"
+    expected_subti = 'Pull request 105 of package rpms/python3 is running its '\
+        'functional tests in the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1167/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python3/PR-105/master/allpackages-pr/package/test/functional/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555060923.0,
+      "msg_id": "2019-a5cfb619-fa0b-4f34-a286-7e216d846c66",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.test.functional.running",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1167",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1167/pipeline/",
+        "nvr": "python3-3.7.3-2.fc31.pr.4229607131614fc0a723aa38ea21b892",
+        "rev": "PR-105",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.test.functional.running",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python3",
+        "original_spec_nvr": "python3-3.7.3-2.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRImageRunning(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that the build of an image containing a pull
+    request for a package is running.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.image.running"
+    expected_subti = 'Pull request 105 of package rpms/python3 is '\
+        'being built in an image in the All Packages (PR) CI pipeline '\
+        'on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1167/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python3/PR-105/master/allpackages-pr/image/running'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555060695.0,
+      "msg_id": "2019-37db7e9b-7dde-41c7-bdaa-eee2863ca30a",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.image.running",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1167",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1167/pipeline/",
+        "type": "''",
+        "nvr": "python3-3.7.3-2.fc31.pr.4229607131614fc0a723aa38ea21b892",
+        "rev": "PR-105",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.image.running",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python3",
+        "original_spec_nvr": "python3-3.7.3-2.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageCompleteSuccess(Base):
+    """ These messages are published when the All Packages (build) CI
+    pipeline announces that the build of a package completed.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.complete"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate passed ' \
+        'building in the All Packages (Build) CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(['rpms/nmstate/kojitask-34126640/f28/allpackages-build/package/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074209.0,
+      "msg_id": "2019-5e1ebd5f-7ee2-4cfb-b37f-92daa80260dd",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.complete",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildPackageFunctionalCompleteSuccess(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the functional testing build of a package
+    has completed.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.package.test.functional.complete"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate passed its '\
+        'functional tests in the All Packages (Build) CI pipeline on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/package/test/functional/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074628.0,
+      "msg_id": "2019-9762bda3-5c5b-4890-9f44-94c134b5b67e",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.package.test.functional.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.package.test.functional.complete",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildImageCompleteSuccess(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces that the build of an image containing a package
+    has completed.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.image.complete"
+    expected_subti = 'Koji task 34126640 of package rpms/nmstate passed '\
+        'being built in an image in the All Packages (Build) CI pipeline '\
+        'on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/image/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074363.0,
+      "msg_id": "2019-00a1eb4e-5159-49cd-a230-3436af472461",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.image.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "type": "qcow2",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.image.complete",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageCompleteFailure(Base):
+    """ These messages are published when the All Packages (PR) CI
+    pipeline announces that the build of a pull request for a package
+    completed.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.complete"
+    expected_subti = 'Pull request 19 of package rpms/selinux-policy failed ' \
+        'building in the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1168/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/selinux-policy/PR-19/master/allpackages-pr/package/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555083574.0,
+      "msg_id": "2019-4e3896db-a922-4663-862b-e80ee213bac6",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1168",
+        "status": "FAILURE",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1168/pipeline/",
+        "nvr": "",
+        "rev": "PR-19",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.complete",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "selinux-policy",
+        "original_spec_nvr": "",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRPackageFunctionalCompleteSuccess(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that the functional testing build of a pull
+    request for a package has completed.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.package.test.functional.complete"
+    expected_subti = 'Pull request 105 of package rpms/python3 passed its '\
+        'functional tests in the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1167/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python3/PR-105/master/allpackages-pr/package/test/functional/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555062557.0,
+      "msg_id": "2019-0fa8c562-edec-495e-b558-1cfb82e76fb0",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.test.functional.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1167",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1167/pipeline/",
+        "nvr": "python3-3.7.3-2.fc31.pr.4229607131614fc0a723aa38ea21b892",
+        "rev": "PR-105",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.package.test.functional.complete",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python3",
+        "original_spec_nvr": "python3-3.7.3-2.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRImageCompleteSuccess(Base):
+    """ These messages are published when the Allpackages (PR) CI
+    pipeline announces that the build of an image containing a pull
+    request for a package has completed.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.image.complete"
+    expected_subti = 'Pull request 105 of package rpms/python3 passed '\
+        'being built in an image in the All Packages (PR) CI pipeline '\
+        'on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1167/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python3/PR-105/master/allpackages-pr/image/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555060816.0,
+      "msg_id": "2019-16f053b2-794d-4695-8ae5-62d874f91ab5",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.image.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1167",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1167/pipeline/",
+        "type": "qcow2",
+        "nvr": "python3-3.7.3-2.fc31.pr.4229607131614fc0a723aa38ea21b892",
+        "rev": "PR-105",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.image.complete",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python3",
+        "original_spec_nvr": "python3-3.7.3-2.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesBuildCompleteSuccess(Base):
+    """ These messages are published when the Allpackages (build) CI
+    pipeline announces having completed running the entire pipeline
+    on a build of a package.
+    """
+
+    expected_title = "ci.pipeline.allpackages-build.complete"
+    expected_subti = 'Koji task "34126640" of package rpms/nmstate passed '\
+        'the All Packages (Build) CI pipeline '\
+        'on branch f28'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-f28-build-pipeline/detail/" \
+        "fedora-f28-build-pipeline/384/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = 'https://seccdn.libravatar.org/avatar/'\
+        '4a5e1bf0da6d9dfba3e0dc300fe58f6fc7d064df703eafbf2502dd900f69c1b4'\
+        '?s=64&d=retro'
+    expected_packages = set([])
+    expected_usernames = set(['jankratochvil'])
+    expected_objects = set(
+        ['rpms/nmstate/kojitask-34126640/f28/allpackages-build/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1555074635.0,
+      "msg_id": "2019-72768646-f42c-47fe-a033-8c3b9581ad7e",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-build.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "384",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-f28-build-pipeline/detail/fedora-f28-build-pipeline/384/pipeline/",
+        "nvr": "nmstate-0.0.5-2.fc28",
+        "rev": "kojitask-34126640",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-build.complete",
+        "username": "jankratochvil",
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "nmstate",
+        "original_spec_nvr": "nmstate-0.0.5-2.fc28",
+        "test_guidance": "''",
+        "branch": "f28",
+        "scratch": False,
+        "ref": "x86_64"
+      }
+    }
+
+
+class TestAllPackagesPRCompleteSuccess(Base):
+    """ These messages are published when the All Packages (PR) CI
+    pipeline announces having completed running the entire pipeline
+    on a pull request for a package.
+    """
+
+    expected_title = "ci.pipeline.allpackages-pr.complete"
+    expected_subti = 'Pull request "11" of package rpms/python38 passed ' \
+        'the All Packages (PR) CI pipeline on branch master'
+    expected_link = "https://jenkins-continuous-infra.apps.ci.centos.org/" \
+        "blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/" \
+        "fedora-rawhide-pr-pipeline/1165/pipeline/"
+    expected_icon = "https://ci.centos.org/static/ec6de755/images/" \
+        "headshot.png"
+    expected_secondary_icon = None
+    expected_packages = set([])
+    expected_usernames = set()
+    expected_objects = set(
+        ['rpms/python38/PR-11/master/allpackages-pr/complete'])
+    msg = {
+      "username": None,
+      "source_name": "datanommer",
+      "i": 0,
+      "timestamp": 1554997291.0,
+      "msg_id": "2019-b9387d85-612c-48d2-98e3-cb824b772e4e",
+      "crypto": "x509",
+      "topic": "org.centos.prod.ci.pipeline.allpackages-pr.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "build_id": "1165",
+        "status": "SUCCESS",
+        "build_url": "https://jenkins-continuous-infra.apps.ci.centos.org/blue/organizations/jenkins/fedora-rawhide-pr-pipeline/detail/fedora-rawhide-pr-pipeline/1165/pipeline/",
+        "nvr": "python38-3.8.0~a3-1.fc31.pr.69dff692474b47c5b91beec249cb4cad",
+        "rev": "PR-11",
+        "ci_topic": "org.centos.prod.ci.pipeline.allpackages-pr.complete",
+        "username": None,
+        "comment_id": None,
+        "namespace": "rpms",
+        "repo": "python38",
+        "original_spec_nvr": "python38-3.8.0~a3-1.fc31",
+        "test_guidance": "''",
+        "branch": "master",
+        "scratch": True,
         "ref": "x86_64"
       }
     }

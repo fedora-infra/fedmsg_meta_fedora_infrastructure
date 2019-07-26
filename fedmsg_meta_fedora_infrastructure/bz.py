@@ -36,7 +36,9 @@ def comma_join(fields, oxford=True):
         return "'%s'" % field
 
     if not fields:
-        return "nothing"
+        # this indicates a bugzilla bug: see
+        # https://bugzilla.redhat.com/show_bug.cgi?id=1718045
+        return "nothing? (likely bugzilla sent us a buggy message)"
     elif len(fields) == 1:
         return fmt(fields[0])
     elif len(fields) == 2:
@@ -81,7 +83,14 @@ class BugzillaProcessor(BaseProcessor):
         return user, is_fas
 
     def link(self, msg, **config):
-        return msg['msg']['bug']['weburl']
+        url = msg['msg']['bug'].get('weburl')
+        if not url:
+            # bz5 / bugzilla2fedmsg 0.3.1+ messages do not always
+            # provide this. we don't seem to have bugzilla2fedmsg in
+            # staging at all so let's just assume prod.
+            url = "https://bugzilla.redhat.com/show_bug.cgi?id={0}"
+            url = url.format(msg['msg']['bug']['id'])
+        return url
 
     def subtitle(self, msg, **config):
         user, is_fas = self._get_user(msg, **config)
@@ -91,24 +100,27 @@ class BugzillaProcessor(BaseProcessor):
         if len(title) > MAX_LEN:
             title = title[:MAX_LEN] + "..."
 
-        if 'bug.update' in msg['topic']:
-            if msg['msg'].get('comment'):
-                tmpl = self._("{user} commented on RHBZ#{idx} '{title}'")
-                return tmpl.format(user=user, idx=idx, title=title)
-            elif msg['msg'].get('event'):
-                fields = [d['field_name'] for d in
-                          msg['msg']['event']['changes']]
-                fields = comma_join(fields)
-                tmpl = self._("{user} updated {fields} "
-                              "on RHBZ#{idx} '{title}'")
-                return tmpl.format(user=user, fields=fields,
-                                   idx=idx, title=title)
-            else:
-                tmpl = self._("{user} updated RHBZ#{idx} '{title}'")
-                return tmpl.format(user=user, idx=idx, title=title)
-
-        elif 'bug.new' in msg['topic']:
+        # bugzilla2fedmsg 0.3.1's 'new bug' detection was broken and
+        # it sent bug.update messages for bug creation events, so we
+        # catch those with the second condition here
+        if 'bug.new' in msg['topic'] or (msg['msg']['event'].get('target') == 'bug' and
+                                         msg['msg']['event'].get('action') == 'create'):
             tmpl = self._("{user} filed a new bug RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, idx=idx, title=title)
+
+        if msg['msg'].get('comment'):
+            tmpl = self._("{user} commented on RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, idx=idx, title=title)
+        elif msg['msg'].get('event'):
+            fields = [d['field_name'] for d in
+                      msg['msg']['event']['changes']]
+            fields = comma_join(fields)
+            tmpl = self._("{user} updated {fields} "
+                          "on RHBZ#{idx} '{title}'")
+            return tmpl.format(user=user, fields=fields,
+                               idx=idx, title=title)
+        else:
+            tmpl = self._("{user} updated RHBZ#{idx} '{title}'")
             return tmpl.format(user=user, idx=idx, title=title)
 
     def secondary_icon(self, msg, **config):
@@ -166,10 +178,20 @@ class BugzillaProcessor(BaseProcessor):
         return users
 
     def objects(self, msg, **config):
+        product = msg['msg']['bug']['product']
+        component = msg['msg']['bug']['component']
+        # in bugzilla2fedmsg 0.3.1 messages and 0.4+ messages without
+        # backwards compatibility, 'product' and 'component' are dicts
+        # and we have to go one level deeper
+        try:
+            product = product['name']
+            component = component['name']
+        except TypeError:
+            pass
         return set([
             '/'.join([
-                msg['msg']['bug']['product'],
-                msg['msg']['bug']['component'],
+                product,
+                component,
                 str(msg['msg']['bug']['id']),
             ])
         ])

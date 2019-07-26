@@ -43,13 +43,48 @@ def get_sync_product(msg):
     return product
 
 
+def get_sync_release(msg):
+    """Return the release for an ftpsync message, determining if we're
+    modular along the way. Returns the release and a boolean for "are
+    we modular"
+    """
+    modular = False
+    release = msg['msg']['release']
+    if release.endswith('m'):
+        modular = True
+        release = release.rstrip('m')
+    return (release, modular)
+
+
 def is_ftp_sync(msg):
+    """Identify update sync messages. These are not published by bodhi
+    itself but by the new-updates-sync script, which lives in the
+    ansible infra repo in the bodhi backend role.
+    """
     return 'bodhi.updates.' in msg['topic'] and msg['topic'].endswith('.sync')
 
 
 def truncate(title):
     if len(title) >= 40:
         title = title[:40] + "..."
+    return title
+
+
+def titlestring(msg):
+    """ Return a title string for the update. If we can find an
+    update dict and it has a title, return that. Otherwise if we
+    can find a builds dict, synthesize one from that and return
+    it. `title` is not part of the update message schema so we
+    cannot technically rely on it being present, but we use this
+    style of string in several places, so factor out finding it.
+    """
+    comment = msg['msg'].get('comment', {})
+    update = msg['msg'].get('update', comment.get('update', {}))
+    if not update:
+        return comment.get('update_title', '')
+    title = update.get('title')
+    if not title:
+        title = ' '.join([build['nvr'] for build in update.get('builds', [])])
     return title
 
 
@@ -71,41 +106,103 @@ class BodhiProcessor(BaseProcessor):
         bodhi_overrides.ByUserUnTag,
     ]
 
-    def _u2p(self, update):
-        """ Take an update, and return the package name """
+    def _comment_author(self, msg):
+        """Find the author of the 'comment' dict in the message, if
+        there is one. Otherwise, return None.
+        """
+        comment = msg['msg'].get('comment', {})
+        author = comment.get('user', comment.get('author'))
+        if isinstance(author, dict):
+            author = author.get('name')
+        return author
+
+    def _update_author(self, msg):
+        """Find the author of the 'update' dict in the message, if
+        there is one. Otherwise, return None.
+        """
+        update = msg['msg'].get('update', {})
+        author = update.get('user', update.get('submitter'))
+        if isinstance(author, dict):
+            author = author.get('name')
+        return author
+
+    def _override_author(self, msg):
+        """Find the author (submitter) of the 'override' dict in the
+        message, if there is one. Otherwise, return None.
+        """
+        author = None
+        override = msg['msg'].get('override')
+        if override:
+            author = override['submitter']
+        if isinstance(author, dict):
+            author = author['name']
+        return author
+
+    def _override_nvr(self, msg):
+        """Find the NVR of the 'override' dict in the message, if
+        there is one. Otherwise, return None.
+        """
+        build = msg['msg'].get('override', {}).get('build')
+        if isinstance(build, dict):
+            return build.get('nvr')
+        else:
+            return build
+
+    def _u2p(self, nvrstring):
+        """ Take a string - expected to be one or more package NVRs,
+        split by commas or spaces, e.g. an update title - and return
+        a list of just the package names.
+        """
         # TODO -- make this unnecessary by having bodhi emit the
         # package name (and not just the update name) to begin with.
-        return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', update)]
+        return [build.rsplit('-', 2)[0] for build in re.split('[ ,]', nvrstring)]
+
+    @property
+    def _updatetopics(self):
+        """ A bunch of update-related message topics. We use this same
+        set of topics in several places, so it's factored out here.
+        """
+        updatetopics = ['comment', 'complete', 'request', 'edit', 'eject', 'karma.threshold',
+                         'requirements_met']
+        updatetopics = ['bodhi.update.{0}'.format(ut) for ut in updatetopics]
+        updatetopics.extend(['bodhi.errata.publish'])
+        return tuple(updatetopics)
 
     def title_or_alias(self, msg):
-        value = msg['msg']['update'].get('alias')
+        comment = msg['msg'].get('comment', {})
+        update = msg['msg'].get('update', comment.get('update', {}))
+        # we can't use .get('alias', .get('title')) or similar here
+        # because sometimes the dict has an alias key whose value is
+        # None...
+        value = update.get('alias')
         if not value:
-            value = msg['msg']['update']['title']
+            value = update.get('title')
+        if not value:
+            value = comment.get('update_alias')
+        if not value:
+            value = comment.get('update_title', '')
         return value
 
     def secondary_icon(self, msg, **config):
         username = ''
         if 'bodhi.update.comment' in msg['topic']:
-            username = msg['msg']['comment']['author']
+            username = self._comment_author(msg)
         elif 'bodhi.buildroot_override' in msg['topic']:
-            username = msg['msg']['override']['submitter']
+            username = self._override_author(msg)
         elif 'bodhi.stack' in msg['topic']:
             username = msg['msg']['agent']
-        elif 'update' in msg['msg'] and 'submitter' in msg['msg']['update']:
-            username = msg['msg']['update']['submitter']
+        elif self._update_author(msg):
+            username = self._update_author(msg)
         else:
             username = msg['msg'].get('agent')
-
-        if isinstance(username, dict):
-            username = username['name']
 
         avatar = self.__icon__
         if username:
             avatar = avatar_url(username)
         else:
             # If we don't have a user, then try with a package
-            if 'update' in msg['msg']:
-                packages = self._u2p(msg['msg']['update']['title'])
+            if titlestring(msg):
+                packages = self._u2p(titlestring(msg))
                 tmpl = 'https://apps.fedoraproject.org/packages/' + \
                     'images/icons/%s.png'
                 if packages:
@@ -118,27 +215,40 @@ class BodhiProcessor(BaseProcessor):
             return msg['msg']['comment']['text']
         elif 'bodhi.errata.publish' in msg['topic']:
             return msg['msg']['body']
-        elif 'bodhi.masher.start' in msg['topic']:
-            return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
+        elif 'bodhi.masher.start' in msg['topic'] or 'bodhi.composer.start' in msg['topic']:
+            if 'updates' in msg['msg']:
+                return "\n- " + "\n- ".join(msg['msg']['updates']) + "\n"
 
     def subtitle(self, msg, **config):
         if is_ftp_sync(msg):
             product = get_sync_product(msg)
+            (truerelease, modular) = get_sync_release(msg)
+            if modular:
+                modular = " modular"
+            else:
+                modular = ""
             msg = msg['msg']
             tmpl = self._(
-                'New {product} {release} {repo} content synced out '
+                'New {product} {truerelease} {repo}{modular} content synced out '
                 '({bytes} changed with {deleted} files deleted)')
-            return tmpl.format(product=product, **msg)
-        elif 'bodhi.masher.start' in msg['topic']:
+            return tmpl.format(product=product, truerelease=truerelease, modular=modular, **msg)
+        elif 'bodhi.masher.start' in msg['topic'] or 'bodhi.composer.start' in msg['topic']:
             agent = msg['msg']['agent']
-            updates = len(msg['msg']['updates'])
-            tmpl = self._("{agent} requested a mash of {updates} updates")
-            return tmpl.format(agent=agent, updates=updates)
+            if 'updates' in msg['msg']:
+                # pre-Bodhi 3.2.0
+                updates = len(msg['msg']['updates'])
+                tmpl = self._("{agent} requested a mash of {updates} updates")
+                return tmpl.format(agent=agent, updates=updates)
+            else:
+                # post-Bodhi 3.2.0. These messages are fairly useless:
+                # https://github.com/fedora-infra/bodhi/issues/3360
+                tmpl = self._("{agent} requested a mash of some updates")
+                return tmpl.format(agent=agent)
         elif 'bodhi.update.comment' in msg['topic']:
             comment = msg['msg']['comment']
-            author = comment['author']
+            author = self._comment_author(msg)
             karma = comment['karma']
-            title = comment['update_title']
+            title = comment.get('update_title', comment.get('update', {}).get('title', ''))
             tmpl = self._(
                 "{author} commented on bodhi update {title} (karma: {karma})"
             )
@@ -146,36 +256,34 @@ class BodhiProcessor(BaseProcessor):
                                title=truncate(title))
 
         elif 'bodhi.update.complete.' in msg['topic']:
-            author = msg['msg']['update']['submitter']
-            if isinstance(author, dict):
-                author = author['name']
-            package = truncate(msg['msg']['update']['title'])
-            status = msg['msg']['update']['status']
+            update = msg['msg']['update']
+            author = self._update_author(msg)
+            pkgs = truncate(titlestring(msg))
+            status = update['status']
             tmpl = self._(
-                "{author}'s {package} bodhi update completed push to {status}"
+                "{author}'s {pkgs} bodhi update completed push to {status}"
             )
-            return tmpl.format(author=author, package=package, status=status)
+            return tmpl.format(author=author, pkgs=pkgs, status=status)
         elif 'bodhi.update.eject' in msg['topic']:
-            author = msg['msg']['update']['submitter']
-            if isinstance(author, dict):
-                author = author['name']
-            package = truncate(msg['msg']['update']['title'])
+            update = msg['msg']['update']
+            author = self._update_author(msg)
+            pkgs = truncate(titlestring(msg))
             repo = msg['msg']['repo']
             reason = msg['msg']['reason']
             tmpl = self._(
-                "{author}'s {package} bodhi update was ejected from "
+                "{author}'s {pkgs} bodhi update was ejected from "
                 "the {repo} mash.  Reason: \"{reason}\"")
-            return tmpl.format(author=author, package=package,
+            return tmpl.format(author=author, pkgs=pkgs,
                                repo=repo, reason=reason)
         elif 'bodhi.update.edit' in msg['topic']:
             author = msg['msg']['agent']
-            update = truncate(msg['msg']['update']['title'])
-            tmpl = self._("{author} edited {update}")
-            return tmpl.format(author=author, update=update)
+            pkgs = truncate(titlestring(msg))
+            tmpl = self._("{author} edited {pkgs}")
+            return tmpl.format(author=author, pkgs=pkgs)
         elif 'bodhi.update.request' in msg['topic']:
             status = msg['topic'].split('.')[-1]
             author = msg['msg'].get('agent')
-            title = msg['msg']['update']['title']
+            title = titlestring(msg)
             if status in ('unpush', 'obsolete', 'revoke'):
                 # make our status past-tense
                 status = status + (status[-1] == 'e' and 'd' or 'ed')
@@ -185,12 +293,12 @@ class BodhiProcessor(BaseProcessor):
 
             return tmpl.format(author=author, title=truncate(title),
                                status=status)
+        elif 'bodhi.mashtask.start' in msg['topic']:
+            return self._("bodhi masher started a push")
         elif 'bodhi.mashtask.mashing' in msg['topic']:
             repo = msg['msg'].get('repo')
             tmpl = self._("bodhi masher started mashing {repo}")
             return tmpl.format(repo=repo)
-        elif 'bodhi.mashtask.start' in msg['topic']:
-            return self._("bodhi masher started a push")
         elif 'bodhi.mashtask.complete' in msg['topic']:
             success = msg['msg']['success']
             if success:
@@ -206,30 +314,50 @@ class BodhiProcessor(BaseProcessor):
             return self._("bodhi masher finished waiting for {repo} to "
                           "hit the master mirror").format(
                               repo=msg['msg'].get('repo'))
+        elif 'bodhi.compose.start' in msg['topic']:
+            return self._("bodhi composer started a run")
+        elif 'bodhi.compose.composing' in msg['topic']:
+            ctype = msg['msg'].get('ctype', "unknown type")
+            repo = msg['msg'].get('repo', "unknown repo")
+            tmpl = self._("bodhi {ctype} compose of repo {repo} started")
+            return tmpl.format(ctype=ctype, repo=repo)
+        elif 'bodhi.repo.done' in msg['topic']:
+            repo = msg['msg'].get('repo', "unknown repo")
+            tmpl = self._("bodhi repo {repo} created")
+            return tmpl.format(repo=repo)
+        elif 'bodhi.compose.complete' in msg['topic']:
+            tmpl = self._("bodhi {ctype} compose of repo {repo} {result}")
+            ctype = msg['msg'].get('ctype', "unknown type")
+            repo = msg['msg'].get('repo', "unknown repo")
+            result = msg['msg'].get('success', "completed")
+            if result is True:
+                result = "succeeded"
+            if result is False:
+                result = "failed"
+            return tmpl.format(ctype=ctype, repo=repo, result=result)
+        elif 'bodhi.compose.sync.wait' in msg['topic']:
+            return self._("bodhi composer is waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
+        elif 'bodhi.compose.sync.done' in msg['topic']:
+            return self._("bodhi composer finished waiting for {repo} to "
+                          "hit the master mirror").format(
+                              repo=msg['msg'].get('repo'))
+
         elif 'bodhi.buildroot_override.tag' in msg['topic']:
             tmpl = self._("{submitter} submitted a buildroot override " +
                           "for {build}")
 
-            submitter = msg['msg']['override']['submitter']
-            build = msg['msg']['override']['build']
-
-            if isinstance(submitter, dict):
-                submitter = submitter['name']
-            if isinstance(build, dict):
-                build = build['nvr']
+            submitter = self._override_author(msg)
+            build = self._override_nvr(msg)
 
             return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.buildroot_override.untag' in msg['topic']:
             tmpl = self._("{submitter} expired a buildroot override " +
                           "for {build}")
 
-            submitter = msg['msg']['override']['submitter']
-            build = msg['msg']['override']['build']
-
-            if isinstance(submitter, dict):
-                submitter = submitter['name']
-            if isinstance(build, dict):
-                build = build['nvr']
+            submitter = self._override_author(msg)
+            build = self._override_nvr(msg)
 
             return tmpl.format(submitter=submitter, build=build)
         elif 'bodhi.stack.save' in msg['topic']:
@@ -244,12 +372,12 @@ class BodhiProcessor(BaseProcessor):
             return tmpl.format(agent=agent, name=name)
         elif 'bodhi.update.karma.threshold' in msg['topic']:
             tmpl = self._("{title} reached the {status} karma threshold")
-            title = truncate(msg['msg']['update']['title'])
+            title = truncate(titlestring(msg))
             status = msg['msg']['status']
             return tmpl.format(title=title, status=status)
         elif 'bodhi.update.requirements_met' in msg['topic']:
             status = msg['topic'].split('.')[-1]
-            title = truncate(msg['msg']['update']['title'])
+            title = truncate(titlestring(msg))
             tmpl = self._("{title} reached the {status} testing threshold")
             return tmpl.format(title=title, status=status)
         elif 'bodhi.errata.publish' in msg['topic']:
@@ -258,33 +386,18 @@ class BodhiProcessor(BaseProcessor):
     def link(self, msg, **config):
         prefix = 'https://bodhi.fedoraproject.org'
         tmpl = prefix + "/updates/{title}"
-        if 'bodhi.update.comment' in msg['topic']:
-            return tmpl.format(title=msg['msg']['comment']['update_title'])
-        elif 'bodhi.update.complete' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.request' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.edit' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.eject' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.update.requirements_met' in msg['topic']:
-            return tmpl.format(title=self.title_or_alias(msg))
-        elif 'bodhi.errata.publish' in msg['topic']:
+        if any(utopic in msg['topic'] for utopic in self._updatetopics):
             return tmpl.format(title=self.title_or_alias(msg))
         elif 'bodhi.stack' in msg['topic']:
             return prefix + "/stacks/{title}".format(
                 title=msg['msg']['stack']['name'])
         elif 'bodhi.buildroot_override' in msg['topic']:
-            build = msg['msg']['override']['build']
-            if isinstance(build, dict):
-                build = build['nvr']
+            build = self._override_nvr(msg)
             return prefix + "/overrides/{nvr}".format(nvr=build)
         elif is_ftp_sync(msg):
             link = "https://download.fedoraproject.org/pub/"
             repo = msg['msg']['repo']
+            (release, ismodular) = get_sync_release(msg)
             product = get_sync_product(msg).lower()
             link += product + "/"
 
@@ -297,36 +410,32 @@ class BodhiProcessor(BaseProcessor):
             if repo.endswith('testing'):
                 link += "testing/"
 
-            link += msg['msg']['release'] + "/"
+            link += release + "/"
+
+            if ismodular:
+                link += "Modular/"
+            elif release.isdigit():
+                if (product == 'fedora' and int(release) > 27) or (product == 'epel' and
+                                                                   int(release) > 7):
+                    link += "Everything/"
+
             return link
+        else:
+            return "https://bodhi.fedoraproject.org"
 
     def packages(self, msg, **config):
-        if 'bodhi.update.comment' in msg['topic']:
-            return set(self._u2p(msg['msg']['comment']['update_title']))
-        elif 'bodhi.update.complete' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.request' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.edit' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.eject' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.update.requirements_met' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
-        elif 'bodhi.errata.publish' in msg['topic']:
-            return set(self._u2p(msg['msg']['update']['title']))
+        if any(utopic in msg['topic'] for utopic in self._updatetopics):
+            return set(self._u2p(titlestring(msg)))
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            nvr = msg['msg']['override']['build']
-            if isinstance(nvr, dict):
-                nvr = nvr['nvr']
+            nvr = self._override_nvr(msg)
             return set(self._u2p(nvr))
         elif 'bodhi.stack' in msg['topic']:
             return set([p['name'] for p in msg['msg']['stack']['packages']])
         elif 'bodhi.masher.start' in msg['topic']:
+            # this is flattening a list-of-lists into a list then turning it
+            # into a set
             return set(sum([
-                self._u2p(update) for update in msg['msg']['updates']
+                self._u2p(update) for update in msg['msg'].get('updates', [])
             ], []))
 
         return set()
@@ -334,19 +443,9 @@ class BodhiProcessor(BaseProcessor):
     def usernames(self, msg, **config):
         users = []
 
-        for obj in ['update', 'override']:
-            try:
-                username = msg['msg'][obj]['submitter']
-                if isinstance(username, dict):
-                    username = username['name']
-                users.append(username)
-            except KeyError:
-                pass
-
-        try:
-            users.append(msg['msg']['comment']['author'])
-        except KeyError:
-            pass
+        users.append(self._comment_author(msg))
+        users.append(self._update_author(msg))
+        users.append(self._override_author(msg))
 
         if 'comment' in msg['msg']:
             text = msg['msg']['comment']['text']
@@ -364,56 +463,26 @@ class BodhiProcessor(BaseProcessor):
         return set(users)
 
     def objects(self, msg, **config):
+        # for all of these, 'objects' includes the repo
+        repotopics = ('bodhi.mashtask', 'bodhi.compose', 'bodhi.repo.done')
+        # for all of these, 'objects' includes discoverable package names
+        packagetopics = list(self._updatetopics)
+        packagetopics.append('bodhi.masher.start')
+
         if is_ftp_sync(msg):
             product = get_sync_product(msg).lower()
+            (release, _) = get_sync_release(msg)
             msg = msg['msg']
-            return set(['/'.join([product, msg['repo'], msg['release']])])
-        elif 'bodhi.mashtask.mashing' in msg['topic']:
-            return set(['repos/' + msg['msg'].get('repo')])
-        elif 'bodhi.update.comment' in msg['topic']:
+            return set(['/'.join([product, msg['repo'], release])])
+        elif 'repo' in msg['msg'] and any(rtopic in msg['topic'] for rtopic in repotopics):
+            return set(['repos/' + msg['msg']['repo']])
+        elif any(ptopic in msg['topic'] for ptopic in packagetopics):
             return set([
                 'packages/' + p for p in
-                self._u2p(msg['msg']['comment']['update_title'])
-            ])
-        elif 'bodhi.update.complete' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.request' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.edit' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.eject' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.karma.threshold' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.update.requirements_met' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
-            ])
-        elif 'bodhi.errata.publish' in msg['topic']:
-            return set([
-                'packages/' + p for p in
-                self._u2p(msg['msg']['update']['title'])
+                self.packages(msg, **config)
             ])
         elif 'bodhi.buildroot_override.' in msg['topic']:
-            nvr = msg['msg']['override']['build']
-            if isinstance(nvr, dict):
-                nvr = nvr['nvr']
+            nvr = self._override_nvr(msg)
             return set([
                 'packages/' + p for p in
                 self._u2p(nvr)
@@ -425,10 +494,5 @@ class BodhiProcessor(BaseProcessor):
                     for p in msg['msg']['stack']['packages']
                 ] + ['stacks/' + msg['msg']['stack']['name']]
             )
-        elif 'bodhi.masher.start' in msg['topic']:
-            packages = sum([self._u2p(u) for u in msg['msg']['updates']], [])
-            return set([
-                'packages/' + package for package in packages
-            ])
 
         return set()

@@ -282,11 +282,11 @@ class TestBodhiUpdateEject(Base):
     }
 
 
-class TestBodhiUpdateComplete(Base):
+class TestLegacy2015BodhiUpdateComplete(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever an update
     **completes it's push to the testing repository**.  Here's a
-    straightforward example:
+    straightforward example from 2015:
     """
     expected_title = "bodhi.update.complete.testing"
     expected_subti = "ralph's fedmsg-0.2.7-2.el6 bodhi update " + \
@@ -316,6 +316,394 @@ class TestBodhiUpdateComplete(Base):
         }
     }
 
+
+class TestBodhi4UpdateComplete(Base):
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic whenever an update
+    **completes its push to the testing repository**.
+    """
+    expected_title = "bodhi.update.complete.testing"
+    expected_subti = "kkeithle's nfs-ganesha-2.7.4-1.fc29 bodhi update " + \
+        "completed push to testing"
+    expected_link = "https://bodhi.fedoraproject.org/updates/" + \
+        "FEDORA-2019-02cd019281"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "d5ddbcc278179315e29a84b4b8f77b055f4d745c5091a3b7460edbf02b5ce810" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['kkeithle', 'composer'])
+    expected_packages = set(['nfs-ganesha'])
+    expected_objects = set(['packages/nfs-ganesha'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 184693,
+      "timestamp": 1559791912.0,
+      "msg_id": "2019-92fe5e1a-2c84-4251-ba4b-e06ccea43204",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.update.complete.testing",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "update": {
+          "date_testing": "2019-06-06 03:31:44",
+          "pushed": True,
+          "require_testcases": True,
+          "date_stable": None,
+          "critpath": False,
+          "date_approved": None,
+          "stable_karma": 3,
+          "compose": {
+            "release_id": 23,
+            "checkpoints": "{\"determine_and_perform_tag_actions\": true, \"completed_repo\": \"/mnt/koji/compose/updates/Fedora-29-updates-testing-20190606.0\", \"compose_done\": true}",
+            "update_summary": [
+              {
+                "alias": "FEDORA-2019-33649e2e64",
+                "title": "phpMyAdmin-4.9.0.1-1.fc29 and php-phpmyadmin-sql-parser-4.3.2-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-22afc255f6",
+                "title": "python-metakernel-0.24.2-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-9b446c7753",
+                "title": "container-exception-logger-1.0.3-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-e0e0f86a69",
+                "title": "compose-utils-0.1.31-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-3082237808",
+                "title": "earlyoom-1.3-2.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-6dd7e722b7",
+                "title": "php-twig2-2.11.2-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-82ce29e885",
+                "title": "quilter-1.9.0-1.20190605git076ac9e.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-847fc9fe3d",
+                "title": "perl-PPIx-QuoteLike-0.007-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-e0b72241c2",
+                "title": "perl-podlators-4.12-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-cd8f4b9568",
+                "title": "pam-u2f-1.0.8-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-ef33a4a25e",
+                "title": "python-alembic-1.0.10-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-5acf586a26",
+                "title": "js-jquery-file-upload-9.31.0-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-a171291a47",
+                "title": "js-jquery-jstree-3.3.8-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-dadaa4c756",
+                "title": "flat-remix-theme-0.0.20190604-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-5b2fcc8f10",
+                "title": "gnome-chemistry-utils-0.14.17-17.fc29, gnumeric-1.12.45-1.fc29, and 1 more"
+              },
+              {
+                "alias": "FEDORA-2019-492d24f0ef",
+                "title": "kernel-5.1.7-200.fc29 and kernel-headers-5.1.7-200.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-24ba1d4ba0",
+                "title": "mozilla-iot-gateway-0.8.1-2.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-909d49ad06",
+                "title": "flrig-1.3.45-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-e77f7dbb32",
+                "title": "python38-3.8.0~b1-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-dbe5dc1939",
+                "title": "python-giacpy-0.6.8-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-6bc7635438",
+                "title": "libntirpc-1.7.4-1.fc29"
+              },
+              {
+                "alias": "FEDORA-2019-02cd019281",
+                "title": "nfs-ganesha-2.7.4-1.fc29"
+              }
+            ],
+            "error_message": None,
+            "request": "testing",
+            "state": "notifying",
+            "state_date": "2019-06-06 03:31:44",
+            "content_type": "rpm",
+            "release": {
+              "dist_tag": "f29",
+              "name": "F29",
+              "composed_by_bodhi": True,
+              "pending_stable_tag": "f29-updates-pending",
+              "mail_template": "fedora_errata_template",
+              "long_name": "Fedora 29",
+              "state": "current",
+              "version": "29",
+              "override_tag": "f29-override",
+              "branch": "f29",
+              "id_prefix": "FEDORA",
+              "pending_signing_tag": "f29-signing-pending",
+              "pending_testing_tag": "f29-updates-testing-pending",
+              "testing_tag": "f29-updates-testing",
+              "stable_tag": "f29-updates",
+              "candidate_tag": "f29-updates-candidate"
+            },
+            "date_created": "2019-06-06 00:00:04",
+            "security": True
+          },
+          "display_name": "",
+          "severity": "unspecified",
+          "autokarma": True,
+          "title": "nfs-ganesha-2.7.4-1.fc29",
+          "suggest": "unspecified",
+          "require_bugs": True,
+          "comments": [
+            {
+              "bug_feedback": [],
+              "user_id": 91,
+              "timestamp": "2019-06-05 22:27:12",
+              "text": "This update has been submitted for testing by kkeithle. ",
+              "karma_critpath": 0,
+              "update_id": 140681,
+              "karma": 0,
+              "testcase_feedback": [],
+              "id": 955821,
+              "user": {
+                "openid": None,
+                "name": "bodhi",
+                "email": None,
+                "avatar": None,
+                "groups": [],
+                "id": 91
+              }
+            },
+            {
+              "bug_feedback": [],
+              "user_id": 91,
+              "timestamp": "2019-06-05 22:27:12",
+              "text": "This update test gating status has been changed to 'waiting'.",
+              "karma_critpath": 0,
+              "update_id": 140681,
+              "karma": 0,
+              "testcase_feedback": [],
+              "id": 955822,
+              "user": {
+                "openid": None,
+                "name": "bodhi",
+                "email": None,
+                "avatar": None,
+                "groups": [],
+                "id": 91
+              }
+            },
+            {
+              "bug_feedback": [],
+              "user_id": 91,
+              "timestamp": "2019-06-05 22:27:14",
+              "text": "This update test gating status has been changed to 'ignored'.",
+              "karma_critpath": 0,
+              "update_id": 140681,
+              "karma": 0,
+              "testcase_feedback": [],
+              "id": 955823,
+              "user": {
+                "openid": None,
+                "name": "bodhi",
+                "email": None,
+                "avatar": None,
+                "groups": [],
+                "id": 91
+              }
+            }
+          ],
+          "test_gating_status": "ignored",
+          "updateid": "FEDORA-2019-02cd019281",
+          "test_cases": [],
+          "close_bugs": False,
+          "meets_testing_requirements": False,
+          "date_submitted": "2019-06-05 22:27:12",
+          "unstable_karma": -3,
+          "date_pushed": "2019-06-06 03:31:44",
+          "user": {
+            "openid": None,
+            "name": "kkeithle",
+            "email": "kkeithle@redhat.com",
+            "avatar": None,
+            "groups": [
+              {
+                "name": "packager"
+              }
+            ],
+            "id": 380
+          },
+          "content_type": "rpm",
+          "requirements": "",
+          "locked": True,
+          "builds": [
+            {
+              "epoch": 0,
+              "release_id": 23,
+              "type": "rpm",
+              "nvr": "nfs-ganesha-2.7.4-1.fc29",
+              "signed": True
+            }
+          ],
+          "date_modified": None,
+          "url": "https://bodhi.fedoraproject.org/updates/FEDORA-2019-02cd019281",
+          "type": "bugfix",
+          "notes": "nfs-ganesha 2.7.4 GA",
+          "request": "testing",
+          "bugs": [],
+          "alias": "FEDORA-2019-02cd019281",
+          "status": "testing",
+          "karma": 0,
+          "release": {
+            "dist_tag": "f29",
+            "mail_template": "fedora_errata_template",
+            "name": "F29",
+            "composed_by_bodhi": True,
+            "pending_stable_tag": "f29-updates-pending",
+            "composes": [
+              {
+                "release_id": 23,
+                "checkpoints": "{\"determine_and_perform_tag_actions\": true, \"completed_repo\": \"/mnt/koji/compose/updates/Fedora-29-updates-testing-20190606.0\", \"compose_done\": true}",
+                "update_summary": [
+                  {
+                    "alias": "FEDORA-2019-33649e2e64",
+                    "title": "phpMyAdmin-4.9.0.1-1.fc29 and php-phpmyadmin-sql-parser-4.3.2-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-22afc255f6",
+                    "title": "python-metakernel-0.24.2-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-9b446c7753",
+                    "title": "container-exception-logger-1.0.3-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-e0e0f86a69",
+                    "title": "compose-utils-0.1.31-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-3082237808",
+                    "title": "earlyoom-1.3-2.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-6dd7e722b7",
+                    "title": "php-twig2-2.11.2-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-82ce29e885",
+                    "title": "quilter-1.9.0-1.20190605git076ac9e.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-847fc9fe3d",
+                    "title": "perl-PPIx-QuoteLike-0.007-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-e0b72241c2",
+                    "title": "perl-podlators-4.12-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-cd8f4b9568",
+                    "title": "pam-u2f-1.0.8-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-ef33a4a25e",
+                    "title": "python-alembic-1.0.10-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-5acf586a26",
+                    "title": "js-jquery-file-upload-9.31.0-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-a171291a47",
+                    "title": "js-jquery-jstree-3.3.8-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-dadaa4c756",
+                    "title": "flat-remix-theme-0.0.20190604-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-5b2fcc8f10",
+                    "title": "gnome-chemistry-utils-0.14.17-17.fc29, gnumeric-1.12.45-1.fc29, and 1 more"
+                  },
+                  {
+                    "alias": "FEDORA-2019-492d24f0ef",
+                    "title": "kernel-5.1.7-200.fc29 and kernel-headers-5.1.7-200.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-24ba1d4ba0",
+                    "title": "mozilla-iot-gateway-0.8.1-2.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-909d49ad06",
+                    "title": "flrig-1.3.45-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-e77f7dbb32",
+                    "title": "python38-3.8.0~b1-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-dbe5dc1939",
+                    "title": "python-giacpy-0.6.8-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-6bc7635438",
+                    "title": "libntirpc-1.7.4-1.fc29"
+                  },
+                  {
+                    "alias": "FEDORA-2019-02cd019281",
+                    "title": "nfs-ganesha-2.7.4-1.fc29"
+                  }
+                ],
+                "error_message": None,
+                "request": "testing",
+                "state": "notifying",
+                "state_date": "2019-06-06 03:31:44",
+                "content_type": "rpm",
+                "date_created": "2019-06-06 00:00:04",
+                "security": True
+              }
+            ],
+            "long_name": "Fedora 29",
+            "state": "current",
+            "version": "29",
+            "override_tag": "f29-override",
+            "branch": "f29",
+            "id_prefix": "FEDORA",
+            "pending_signing_tag": "f29-signing-pending",
+            "pending_testing_tag": "f29-updates-testing-pending",
+            "testing_tag": "f29-updates-testing",
+            "stable_tag": "f29-updates",
+            "candidate_tag": "f29-updates-candidate"
+          }
+        },
+        "agent": "composer"
+      }
+    }
 
 class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
@@ -433,18 +821,34 @@ class TestBodhiRequestMultiplePackagesPerUpdate(Base):
     }
 
 
-class TestBodhiMashTaskMashing(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic whenever it starts mashing
-    a particular repository.
+class TestLegacyBodhi2MashTaskStart(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **began** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.start.
+    """
+    expected_title = "bodhi.mashtask.start"
+    expected_subti = "bodhi masher started a push"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set([])
 
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+    msg = {
+        'topic': "org.fedoraproject.prod.bodhi.mashtask.start",
+        'msg': {}
+    }
+
+
+class TestLegacyBodhi2MashTaskMashing(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it started mashing
+    a particular repository. Since Bodhi 4.0, this topic is replaced
+    by compose.composing.
     """
     expected_title = "bodhi.mashtask.mashing"
     expected_subti = "bodhi masher started mashing test_repo"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
+    expected_packages = set([])
     expected_objects = set(['repos/test_repo'])
 
     msg = {
@@ -457,74 +861,426 @@ class TestBodhiMashTaskMashing(Base):
     }
 
 
-class TestBodhiMashTaskStart(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic whenever it **begins** its work.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
-    """
-    expected_title = "bodhi.mashtask.start"
-    expected_subti = "bodhi masher started a push"
-    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = expected_icon
-    msg = {
-        'topic': "org.fedoraproject.prod.bodhi.mashtask.start",
-        'msg': {}
-    }
-
-
-class TestBodhiMashTaskComplete(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic whenever it **finishes** its work.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
-    """
-    expected_title = "bodhi.mashtask.complete"
-    expected_subti = "bodhi masher failed to mash test_repo"
-    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = expected_icon
-    msg = {
-        'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
-        'msg': {'success': False, 'repo': 'test_repo'}
-    }
-
-
-class TestBodhiMashTaskSyncWaitStart(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic when it begins **waiting to sync**.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+class TestLegacyBodhi2MashTaskSyncWaitStart(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic when it began **waiting to sync**.
+    Since Bodhi 4.0, this topic is replaced by compose.sync.wait.
     """
     expected_title = "bodhi.mashtask.sync.wait"
     expected_subti = "bodhi masher is waiting for test_repo " + \
         "to hit the master mirror"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_objects = set(['repos/test_repo'])
+
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
         'msg': {'repo': 'test_repo'}
     }
 
 
-class TestBodhiMashTaskSyncWaitDone(Base):
-    """ The `Bodhi Masher <https://bodhi.fedoraproject.org>`_
-    publishes messages on this topic when it finishes syncing.
-
-    Note that, these messages are broken (serverside) due to `this
-    issue <https://github.com/fedora-infra/fedmsg/issues/115>`_.
+class TestLegacyBodhi2MashTaskSyncWaitDone(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic when it finished syncing. Since
+    Bodhi 4.0, this topic is replaced by compose.sync.done.
     """
     expected_title = "bodhi.mashtask.sync.done"
     expected_subti = "bodhi masher finished waiting for test_repo " + \
         "to hit the master mirror"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_objects = set(['repos/test_repo'])
 
     msg = {
         'topic': "org.fedoraproject.prod.bodhi.mashtask.sync.done",
         'msg': {'repo': 'test_repo'}
+    }
+
+
+class TestLegacyBodhi2MashTaskComplete(Base):
+    """ The `Bodhi 2 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **finished** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.complete.
+    """
+    expected_title = "bodhi.mashtask.complete"
+    expected_subti = "bodhi masher failed to mash test_repo"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = expected_icon
+    expected_packages = set([])
+    expected_objects = set(['repos/test_repo'])
+
+    msg = {
+        'topic': "org.fedoraproject.prod.bodhi.mashtask.complete",
+        'msg': {'success': False, 'repo': 'test_repo'}
+    }
+
+
+class TestLegacyBodhi3MashTaskStart(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **began** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.start.
+    """
+    expected_title = "bodhi.mashtask.start"
+    expected_subti = "bodhi masher started a push"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 6,
+      "timestamp": 1559001608.0,
+      "msg_id": "2019-1139e89d-ca7e-4ec1-933f-3bbf47323cf3",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "agent": "releng"
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskMashing(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it started mashing
+    a particular repository. Since Bodhi 4.0, this topic is replaced
+    by compose.composing.
+    """
+    expected_title = "bodhi.mashtask.mashing"
+    expected_subti = "bodhi masher started mashing f29-modular-updates-testing"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-modular-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1559011832.0,
+      "msg_id": "2019-aa0f318e-667a-4119-ba16-ac7433244a39",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.mashing",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-modular-updates-testing",
+        "ctype": "module",
+        "agent": "releng",
+        "updates": [
+          "nodejs-12-2920190525130817.6c81f848",
+          "cri-o-1.14-2920190527085840.6c81f848"
+        ]
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskSyncWaitStart(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic when it began **waiting to sync**.
+    Since Bodhi 4.0, this topic is replaced by compose.sync.wait.
+    """
+    expected_title = "bodhi.mashtask.sync.wait"
+    expected_subti = "bodhi masher is waiting for f29-updates-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 3,
+      "timestamp": 1559015188.0,
+      "msg_id": "2019-85429560-ab56-41b7-9c3d-2004630974ed",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.sync.wait",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskSyncWaitDone(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic when it finished syncing. Since
+    Bodhi 4.0, this topic is replaced by compose.sync.done.
+    """
+    expected_title = "bodhi.mashtask.sync.done"
+    expected_subti = "bodhi masher finished waiting for f29-updates-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 4,
+      "timestamp": 1559015388.0,
+      "msg_id": "2019-022e4d9a-7af2-41bb-901d-14e0808718cc",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.sync.done",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestLegacyBodhi3MashTaskComplete(Base):
+    """ The `Bodhi 3 Masher <https://bodhi.fedoraproject.org>`_
+    published messages on this topic whenever it **finished** its work.
+    Since Bodhi 4.0, this topic is replaced by compose.complete.
+    """
+    expected_title = "bodhi.mashtask.complete"
+    expected_subti = "bodhi masher successfully mashed f29-updates-testing"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 37,
+      "timestamp": 1559015442.0,
+      "msg_id": "2019-dc8c2696-cddc-4e40-87cc-ea5fe25396dd",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.mashtask.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "success": True,
+        "ctype": "rpm",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeStart(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic whenever it **begins** a compose run.
+    """
+    expected_title = "bodhi.compose.start"
+    expected_subti = "bodhi composer started a run"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185446,
+      "timestamp": 1559865606.0,
+      "msg_id": "2019-6724c4b9-b954-4263-b305-7dcdd69c361b",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeComposing(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic whenever it starts composing a particular repository.
+    """
+    expected_title = "bodhi.compose.composing"
+    expected_subti = "bodhi rpm compose of repo dist-6E-epel-testing started"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/dist-6E-epel-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185680,
+      "timestamp": 1559871419.0,
+      "msg_id": "2019-9fbd5994-15d2-40f6-a4f3-8d0bc0e37c08",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.composing",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "dist-6E-epel-testing",
+        "ctype": "rpm",
+        "agent": "releng",
+        "updates": [
+          "sec-2.8.2-1.el6"
+        ]
+      }
+    }
+
+
+class TestBodhi4ComposeSyncWait(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic when it begins waiting for a completed repo to sync.
+    """
+    expected_title = "bodhi.compose.sync.wait"
+    expected_subti = "bodhi composer is waiting for dist-6E-epel-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/dist-6E-epel-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185683,
+      "timestamp": 1559871586.0,
+      "msg_id": "2019-39734cc4-d3bd-4961-8303-502e45e6777b",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.sync.wait",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "dist-6E-epel-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeSyncDone(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes messages
+    on this topic when a completed repo finishes syncing.
+    """
+    expected_title = "bodhi.compose.sync.done"
+    expected_subti = "bodhi composer finished waiting for dist-6E-epel-testing " + \
+        "to hit the master mirror"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/dist-6E-epel-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185684,
+      "timestamp": 1559871787.0,
+      "msg_id": "2019-ab499c10-4665-475b-b4b5-483c81a61a60",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.sync.done",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "dist-6E-epel-testing",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhi4ComposeComplete(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes this kind
+    of message when it completes the full compose run for a repository.
+    """
+    expected_title = "bodhi.compose.complete"
+    expected_subti = "bodhi rpm compose of repo f29-updates-testing succeeded"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 184694,
+      "timestamp": 1559791936.0,
+      "msg_id": "2019-e43eb49a-b0da-4fb9-88e9-ef3f5eebc97d",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.compose.complete",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "success": True,
+        "ctype": "rpm",
+        "agent": "releng"
+      }
+    }
+
+
+class TestBodhiRepoDone(Base):
+    """ `Bodhi <https://bodhi.fedoraproject.org>`_ publishes this kind
+    of message when a repo is created and ready to be signed or
+    otherwise processed. It actually occurs between compose.composing
+    and compose.sync.wait in the overall compose workflow. The format
+    has not changed between Bodhi 3 and Bodhi 4; the Bodhi 1/2 version
+    likely didn't have an 'agent' but was otherwise the same.
+    """
+    expected_title = "bodhi.repo.done"
+    expected_subti = "bodhi repo f29-updates-testing created"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set(['repos/f29-updates-testing'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 185742,
+      "timestamp": 1559883894.0,
+      "msg_id": "2019-139ee383-4b15-4ba5-87c1-e366c182bb64",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.repo.done",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "repo": "f29-updates-testing",
+        "path": "/mnt/koji/compose/updates/Fedora-29-updates-testing-20190607.0",
+        "agent": "releng"
+      }
     }
 
 
@@ -664,10 +1420,11 @@ class TestBodhiRequestTesting(Base):
     }
 
 
-class TestBodhiComment(Base):
+class TestLegacy2015BodhiComment(Base):
     """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
     publishes messages on this topic whenever a user **comments** on a bodhi
-    update.
+    update. This is a 2015-era legacy message; I'm not sure precisely what
+    Bodhi version would've emitted a message that looks exactly like this.
     """
     expected_title = "bodhi.update.comment"
     expected_subti = "ralph commented on bodhi update fedmsg-1.0-1 (karma: -1)"
@@ -697,6 +1454,150 @@ class TestBodhiComment(Base):
                 "timestamp": 1344344050.0
             }
         }
+    }
+
+
+class TestBodhi4Comment(Base):
+    """ The `Bodhi Updates System <https://bodhi.fedoraproject.org>`_
+    publishes messages on this topic whenever a user **comments** on a bodhi
+    update.
+    """
+    expected_title = "bodhi.update.comment"
+    expected_subti = "kalev commented on bodhi update xdg-desktop-portal-1.4.2-1.fc30 (karma: 0)"
+    expected_long_form = "Note that this depends on pipewire-0.2.6-1.fc30 which is submitted " + \
+        "separately. I've turned off autopush so that it doesn't go stable before the " + \
+        "required pipewire update."
+    expected_link = "https://bodhi.fedoraproject.org/updates/FEDORA-2019-46910daf41"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "e66f540a8e2d93d96cbba97628e82213a8eed237c744f2ce5184d7c9588a8d18?s=64&d=retro"
+    expected_usernames = set(['kalev'])
+    expected_packages = set(['xdg-desktop-portal'])
+    expected_objects = set(['packages/xdg-desktop-portal'])
+
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 37779,
+      "timestamp": 1559062463.0,
+      "msg_id": "2019-509f817a-b6d4-4071-909c-a899f8f2002c",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.update.comment",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "comment": {
+          "bug_feedback": [],
+          "user_id": 285,
+          "timestamp": "2019-05-28 16:54:22",
+          "author": "kalev",
+          "text": "Note that this depends on pipewire-0.2.6-1.fc30 which is submitted separately. I've turned off autopush so that it doesn't go stable before the required pipewire update.",
+          "karma_critpath": 0,
+          "update": {
+            "date_testing": None,
+            "pushed": False,
+            "require_testcases": True,
+            "date_stable": None,
+            "critpath": False,
+            "date_approved": None,
+            "stable_karma": 3,
+            "compose": None,
+            "display_name": "",
+            "severity": "unspecified",
+            "autokarma": False,
+            "title": "xdg-desktop-portal-1.4.2-1.fc30",
+            "suggest": "unspecified",
+            "require_bugs": True,
+            "test_gating_status": "ignored",
+            "type": "enhancement",
+            "close_bugs": True,
+            "meets_testing_requirements": False,
+            "date_submitted": "2019-05-28 16:53:22",
+            "unstable_karma": -3,
+            "date_pushed": None,
+            "user": {
+              "openid": None,
+              "name": "kalev",
+              "email": "klember@redhat.com",
+              "avatar": None,
+              "groups": [
+                {
+                  "name": "provenpackager"
+                },
+                {
+                  "name": "packager"
+                },
+                {
+                  "name": "gnome-sig"
+                }
+              ],
+              "id": 285
+            },
+            "requirements": "",
+            "locked": False,
+            "builds": [
+              {
+                "epoch": 0,
+                "release_id": 28,
+                "type": "rpm",
+                "nvr": "xdg-desktop-portal-1.4.2-1.fc30",
+                "signed": False
+              }
+            ],
+            "date_modified": None,
+            "url": "https://bodhi.fedoraproject.org/updates/FEDORA-2019-46910daf41",
+            "notes": "xdg-desktop-portal 1.4.2 release:\n\n - Translation updates\n - inhibit: Implement session state tracking\n - screencast: Allow selecting source types\n - screencast: Support cursor modes\n - Add a background & autostart portal",
+            "request": "testing",
+            "bugs": [],
+            "alias": "FEDORA-2019-46910daf41",
+            "status": "pending",
+            "karma": 0,
+            "release": {
+              "dist_tag": "f30",
+              "mail_template": "fedora_errata_template",
+              "name": "F30",
+              "composed_by_bodhi": True,
+              "pending_stable_tag": "f30-updates-pending",
+              "composes": [],
+              "long_name": "Fedora 30",
+              "state": "current",
+              "version": "30",
+              "override_tag": "f30-override",
+              "branch": "f30",
+              "id_prefix": "FEDORA",
+              "pending_signing_tag": "f30-signing-pending",
+              "pending_testing_tag": "f30-updates-testing-pending",
+              "testing_tag": "f30-updates-testing",
+              "stable_tag": "f30-updates",
+              "candidate_tag": "f30-updates-candidate"
+            }
+          },
+          "update_alias": "FEDORA-2019-46910daf41",
+          "update_id": 140188,
+          "karma": 0,
+          "testcase_feedback": [],
+          "id": 952088,
+          "user": {
+            "openid": None,
+            "name": "kalev",
+            "email": "klember@redhat.com",
+            "avatar": None,
+            "groups": [
+              {
+                "name": "provenpackager"
+              },
+              {
+                "name": "packager"
+              },
+              {
+                "name": "gnome-sig"
+              }
+            ],
+            "id": 285
+          }
+        },
+        "agent": "kalev"
+      }
     }
 
 
@@ -823,11 +1724,13 @@ class LegacyTestBodhiOverrideUntagged(Base):
     }
 
 
-class TestBodhiStackSave(Base):
+class TestLegacyBodhiStackSave(Base):
     """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ introduced the
     concept of *stacks* of packages that can be grouped for to share
-    requirements.  That system publishes messages like this anytime a user
-    **modifies or creates a new stack**.
+    requirements.  That system published messages like this anytime a user
+    **modified or created a new stack**. This mechanism was removed from
+    Bodhi in January 2019 and exactly one message of this type was ever
+    published in production.
     """
     expected_title = "bodhi.stack.save"
     expected_subti = "ralph updated the \"hacking\" stack"
@@ -881,11 +1784,12 @@ class TestBodhiStackSave(Base):
     }
 
 
-class TestBodhiStackDelete(Base):
+class TestLegacyBodhiStackDelete(Base):
     """ `Bodhi2 <https://bodhi.fedoraproject.org>`_ introduced the
     concept of *stacks* of packages that can be grouped for to share
-    requirements.  That system publishes messages like this anytime a user
-    **deletes a stack**.
+    requirements.  That system published messages like this anytime a user
+    **deleted a stack**. This mechanism was removed from Bodhi in January
+    2019 and no messages of this type were ever published in production.
     """
     expected_title = "bodhi.stack.delete"
     expected_subti = "ralph deleted the \"hacking\" stack"
@@ -1061,9 +1965,10 @@ class TestBodhiKarmaThresholdStable(Base):
     expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "FEDORA-EPEL-2015-0238"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
-        "images/icons/tzdata.png"
-    expected_usernames = set([])
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
     expected_packages = set(['tzdata'])
     expected_objects = set(['packages/tzdata'])
     msg = {
@@ -1316,9 +2221,10 @@ class TestBodhiErrataPublish(Base):
     expected_link = "https://bodhi.fedoraproject.org/updates/" + \
         "tzdata-2014i-1.fc19"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
-    expected_secondary_icon = "https://apps.fedoraproject.org/packages/" + \
-        "images/icons/tzdata.png"
-    expected_usernames = set([])
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['ralph'])
     expected_packages = set(['tzdata'])
     expected_objects = set(['packages/tzdata'])
     msg = {
@@ -1443,15 +2349,18 @@ mash_list = """
 - dnf-plugins-core-0.1.9-1.fc22
 """
 
-class TestBodhiMashKickooff(Base):
+class TestLegacyBodhi2MasherStart(Base):
     """ This message is published by an admin when they send a request to
     the `Bodhi2 <https://bodhi.fedoraproject.org>`_ backend, telling it
-    to start a mash.
+    to start a mash. This is how messages looked before Bodhi commit
+    3b655f23 , which changed the message from including a dict of updates
+    to including a dict of composes. The first release with the change
+    was 3.2.0.
     """
     expected_title = "bodhi.masher.start"
     expected_subti = "ralph requested a mash of 20 updates"
     expected_long_form = mash_list
-    expected_link = None
+    expected_link = "https://bodhi.fedoraproject.org"
     expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
     expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
         "9c9f7784935381befc302fe3c814f9136e7a33953d0318761669b8643f4df55c" + \
@@ -1534,6 +2443,300 @@ class TestBodhiMashKickooff(Base):
         }
     }
 
+
+class TestLegacyBodhi320MasherStart(Base):
+    """ This message is published by an admin when they send a request to
+    the `Bodhi 3.2.0+ <https://bodhi.fedoraproject.org>`_ backend, telling it
+    to start a mash.
+    """
+    expected_title = "bodhi.masher.start"
+    expected_subti = "releng requested a mash of some updates"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set([])
+    msg = {
+      "username": "apache",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1559001608.0,
+      "msg_id": "2019-13d8e80d-34a3-49d6-9d46-b465d891535d",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.masher.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "resume": False,
+        "api_version": 2,
+        "agent": "releng",
+        "composes": [
+          {
+            "security": True,
+            "release_id": 28,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": True,
+            "release_id": 23,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 21,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 8,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 28,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 8,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 23,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 21,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 10,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 29,
+            "request": "testing",
+            "content_type": "module"
+          },
+          {
+            "security": False,
+            "release_id": 24,
+            "request": "testing",
+            "content_type": "module"
+          }
+        ]
+      }
+    }
+
+
+class TestBodhi4ComposerStart(Base):
+    """ This message is published by an admin when they send a request to
+    the `Bodhi 4+ <https://bodhi.fedoraproject.org>`_ backend, telling it
+    to start a mash. It is exactly like bodhi.masher.start from Bodhi
+    3.2.0+, just with the name changed to bodhi.composer.start.
+    """
+    expected_title = "bodhi.composer.start"
+    expected_subti = "releng requested a mash of some updates"
+    expected_link = "https://bodhi.fedoraproject.org"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://seccdn.libravatar.org/avatar/" + \
+        "05b5fce36707d3f962a8dc03094e41028ac3e765c8c2e182eab96228013ec9c9" + \
+        "?s=64&d=retro"
+    expected_usernames = set(['releng'])
+    expected_packages = set([])
+    expected_objects = set([])
+    msg = {
+      "username": "amqp-bridge",
+      "source_name": "datanommer",
+      "i": 226693,
+      "timestamp": 1561593605.0,
+      "msg_id": "2019-d3041ae5-2b13-4269-944e-cee4d8238c87",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.composer.start",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "resume": False,
+        "api_version": 2,
+        "agent": "releng",
+        "composes": [
+          {
+            "security": True,
+            "release_id": 8,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": True,
+            "release_id": 23,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": True,
+            "release_id": 28,
+            "request": "stable",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 29,
+            "request": "stable",
+            "content_type": "module"
+          },
+          {
+            "security": False,
+            "release_id": 24,
+            "request": "stable",
+            "content_type": "module"
+          },
+          {
+            "security": False,
+            "release_id": 28,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 23,
+            "request": "testing",
+            "content_type": "rpm"
+          },
+          {
+            "security": False,
+            "release_id": 31,
+            "request": "testing",
+            "content_type": "flatpak"
+          },
+          {
+            "security": False,
+            "release_id": 8,
+            "request": "testing",
+            "content_type": "rpm"
+          }
+        ]
+      }
+    }
+
+
+class TestBodhiUpdateFedoraSync(Base):
+    """These messages are published by the new-updates-sync script,
+    which lives in the ansible infra repo in the bodhi backend role,
+    after it syncs the packages from a Fedora updates compose to the
+    master mirror.
+    """
+    expected_title = "bodhi.updates.fedora.sync"
+    expected_subti = "New Fedora 29 updates-testing content synced out " + \
+        "(1 GiB changed with 1259 files deleted)"
+    expected_link = "https://download.fedoraproject.org/pub/fedora/linux/updates/testing/29/Everything/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_usernames = set([])
+    expected_objects = set(['fedora/updates-testing/29'])
+    msg = {
+      "username": "ftpsync",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1561603095.0,
+      "msg_id": "2019-2656349c-2c41-48bd-9b66-31b3cd9a5aa9",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.updates.fedora.sync",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "deleted": "1259",
+        "release": "29",
+        "raw_bytes": "2116251621",
+        "bytes": "1 GiB",
+        "repo": "updates-testing"
+      }
+    }
+
+
+class TestBodhiUpdateFedoraSyncModular(Base):
+    """These messages are published by the new-updates-sync script,
+    which lives in the ansible infra repo in the bodhi backend role,
+    after it syncs the packages from a Fedora updates compose to the
+    master mirror. This is how the messages for modular update
+    composes look.
+    """
+    nodoc = True
+    expected_title = "bodhi.updates.fedora.sync"
+    expected_subti = "New Fedora 30 updates modular content synced out " + \
+        "(404 MiB changed with 412 files deleted)"
+    expected_link = "https://download.fedoraproject.org/pub/fedora/linux/updates/30/Modular/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_usernames = set([])
+    expected_objects = set(['fedora/updates/30'])
+    msg = {
+      "username": "ftpsync",
+      "source_name": "datanommer",
+      "i": 1,
+      "timestamp": 1561595377.0,
+      "msg_id": "2019-b7ddfebc-cff4-4dc1-a078-bcf50379b875",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.updates.fedora.sync",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "deleted": "412",
+        "release": "30m",
+        "raw_bytes": "424030490",
+        "bytes": "404 MiB",
+        "repo": "updates"
+      }
+    }
+
+
+class TestBodhiUpdateEPELSync(Base):
+    """These messages are published by the new-updates-sync script,
+    which lives in the ansible infra repo in the bodhi backend role,
+    after it syncs the packages from an EPEL updates compose to the
+    master mirror.
+    """
+    expected_title = "bodhi.updates.epel.sync"
+    expected_subti = "New EPEL 7 epel-testing content synced out " + \
+        "(505 MiB changed with 74 files deleted)"
+    expected_link = "https://download.fedoraproject.org/pub/epel/testing/7/"
+    expected_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_secondary_icon = "https://apps.fedoraproject.org/img/icons/bodhi.png"
+    expected_usernames = set([])
+    expected_objects = set(['epel/epel-testing/7'])
+    msg = {
+      "username": "ftpsync",
+      "source_name": "datanommer",
+      "i": 3,
+      "timestamp": 1561597841.0,
+      "msg_id": "2019-a31ad980-b626-4685-8aa5-fd4a61a85fb4",
+      "crypto": "x509",
+      "topic": "org.fedoraproject.prod.bodhi.updates.epel.sync",
+      "headers": {},
+      "source_version": "0.9.0",
+      "msg": {
+        "deleted": "74",
+        "release": "7",
+        "raw_bytes": "530049354",
+        "bytes": "505 MiB",
+        "repo": "epel-testing"
+      }
+    }
 
 add_doc(locals())
 
