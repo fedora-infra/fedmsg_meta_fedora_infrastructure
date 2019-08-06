@@ -106,6 +106,41 @@ class TestOpenQACommentDelete(Base):
         "topic": "org.fedoraproject.prod.openqa.comment.delete"
     }
 
+
+class TestOpenQAJobCreate(Base):
+    """openQA emits messages on this topic when a job is created.
+    'remaining' indicates the number of jobs for the same compose that
+    are either running or waiting to start.
+    """
+    expected_title = "openqa.job.create"
+    expected_subti = (
+        "job 429709 (test upgrade_realmd_client on 64bit for disk "
+        "disk_f29_server_3_x86_64.img) created for "
+        "Update-FEDORA-2019-2b7fe4a7de")
+    expected_link = "https://openqa.fedoraproject.org/tests/429709"
+    expected_objects = set(
+        ["Update-FEDORA-2019-2b7fe4a7de",
+         "disk_f29_server_3_x86_64.img"])
+    msg = {
+        "i": 1,
+        "msg": {
+            "remaining": 18,
+            "MACHINE": "64bit",
+            "BUILD": "Update-FEDORA-2019-2b7fe4a7de",
+            "TEST": "upgrade_realmd_client",
+            "HDD_1": "disk_f29_server_3_x86_64.img",
+            "FLAVOR": "updates-server-upgrade",
+            "ARCH": "x86_64",
+            "id": 429709
+        },
+        "source_name": "datanommer",
+        "msg_id": "2019-e367d7e2-26bd-4f80-8d8c-e741e1aeb343",
+        "topic": "org.fedoraproject.prod.openqa.job.create",
+        "timestamp": 1565115372.0,
+        "source_version": "0.9.0"
+    }
+
+
 class TestOpenQAJobDuplicateAuto(Base):
     """openQA emits messages on this topic when a job is duplicated.
     The 'id' is the job that was duplicated, the 'result' is the new
