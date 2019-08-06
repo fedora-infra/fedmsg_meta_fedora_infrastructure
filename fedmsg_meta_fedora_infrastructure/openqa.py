@@ -88,7 +88,10 @@ class OpenQAProcessor(BaseProcessor):
             return msgtmpl.format(result, build)
 
         if msg['topic'].endswith('job.done'):
-            msgtmpl += "completed for {0}, {1} remaining jobs"
+            msgtmpl += "completed "
+            if result:
+                msgtmpl += "with result {0} ".format(result)
+            msgtmpl += "for {0}, {1} remaining jobs"
             return msgtmpl.format(build, remain)
 
         if msg['topic'].endswith('job.create'):
