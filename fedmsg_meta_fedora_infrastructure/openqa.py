@@ -164,10 +164,11 @@ class OpenQAProcessor(BaseProcessor):
         elif 'HDD_1' in msg['msg']:
             objs.append(msg['msg']['HDD_1'])
 
-        if msg['msg'].get('job_id'):
-            objs.append(msg['msg']['job_id'])
-        if msg['msg'].get('group_id'):
-            objs.append(msg['msg']['group_id'])
+        if self._msg_type(msg) == 'comment':
+            if msg['msg'].get('job_id'):
+                objs.append(msg['msg']['job_id'])
+            if msg['msg'].get('group_id'):
+                objs.append(msg['msg']['group_id'])
 
         return set(objs)
 
