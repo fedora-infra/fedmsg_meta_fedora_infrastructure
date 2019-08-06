@@ -91,6 +91,10 @@ class OpenQAProcessor(BaseProcessor):
             msgtmpl += "completed for {0}, {1} remaining jobs"
             return msgtmpl.format(build, remain)
 
+        if msg['topic'].endswith('job.create'):
+            msgtmpl += "created for {0}"
+            return msgtmpl.format(build)
+
     def _subtitle_comment(self, msg, **config):
         # get the info
         extract = msg['msg'].get('text', '')
