@@ -1,3 +1,12 @@
+0.29.0
+------
+
+Pull Requests
+
+- (@AdamWill)       #501 openQA improvements (handle `job.create`, and results
+  for `job.done`)
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/501
+
 0.28.0
 ------
 

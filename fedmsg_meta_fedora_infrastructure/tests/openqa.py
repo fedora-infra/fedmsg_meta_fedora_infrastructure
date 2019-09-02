@@ -106,6 +106,41 @@ class TestOpenQACommentDelete(Base):
         "topic": "org.fedoraproject.prod.openqa.comment.delete"
     }
 
+
+class TestOpenQAJobCreate(Base):
+    """openQA emits messages on this topic when a job is created.
+    'remaining' indicates the number of jobs for the same compose that
+    are either running or waiting to start.
+    """
+    expected_title = "openqa.job.create"
+    expected_subti = (
+        "job 429709 (test upgrade_realmd_client on 64bit for disk "
+        "disk_f29_server_3_x86_64.img) created for "
+        "Update-FEDORA-2019-2b7fe4a7de")
+    expected_link = "https://openqa.fedoraproject.org/tests/429709"
+    expected_objects = set(
+        ["Update-FEDORA-2019-2b7fe4a7de",
+         "disk_f29_server_3_x86_64.img"])
+    msg = {
+        "i": 1,
+        "msg": {
+            "remaining": 18,
+            "MACHINE": "64bit",
+            "BUILD": "Update-FEDORA-2019-2b7fe4a7de",
+            "TEST": "upgrade_realmd_client",
+            "HDD_1": "disk_f29_server_3_x86_64.img",
+            "FLAVOR": "updates-server-upgrade",
+            "ARCH": "x86_64",
+            "id": 429709
+        },
+        "source_name": "datanommer",
+        "msg_id": "2019-e367d7e2-26bd-4f80-8d8c-e741e1aeb343",
+        "topic": "org.fedoraproject.prod.openqa.job.create",
+        "timestamp": 1565115372.0,
+        "source_version": "0.9.0"
+    }
+
+
 class TestOpenQAJobDuplicateAuto(Base):
     """openQA emits messages on this topic when a job is duplicated.
     The 'id' is the job that was duplicated, the 'result' is the new
@@ -221,37 +256,38 @@ class TestOpenQAJobRestart(Base):
 class TestOpenQAJobDoneStaging(Base):
     """openQA emits messages on this topic when a job completes.
     'remaining' indicates the number of jobs for the same compose that
-    are either running or waiting to start. 'result' should indicate
-    the result of the job, but at present it is always None due to
-    upstream openQA issues.
+    are either running or waiting to start. 'result' indicates the
+    result of the job.
     """
     expected_title = "openqa.job.done"
     expected_subti = (
-        "staging job 10826 (test install_xfs on 64bit for iso "
-        "Fedora-Everything-netinst-x86_64-Rawhide-20160323.n.0.iso) completed "
-        "for Fedora-Rawhide-20160323.n.0, 23 remaining jobs")
-    expected_link = "https://openqa.stg.fedoraproject.org/tests/10826"
+        "staging job 582175 (test server_role_deploy_domain_controller on "
+        "64bit for disk disk_f30_server_3_x86_64.img) completed with result "
+        "passed for Update-FEDORA-2019-2b7fe4a7de, 2 remaining jobs")
+    expected_link = "https://openqa.stg.fedoraproject.org/tests/582175"
     expected_objects = set(
-        ["Fedora-Rawhide-20160323.n.0",
-         "Fedora-Everything-netinst-x86_64-Rawhide-20160323.n.0.iso"])
+        ["Update-FEDORA-2019-2b7fe4a7de",
+         "disk_f30_server_3_x86_64.img"])
     msg = {
         "i": 1,
         "msg": {
-            "ARCH": "x86_64",
-            "BUILD": "Fedora-Rawhide-20160323.n.0",
-            "FLAVOR": "universal",
-            "ISO": "Fedora-Everything-netinst-x86_64-Rawhide-20160323.n.0.iso",
-            "MACHINE": "64bit",
-            "TEST": "install_xfs",
-            "id": 10826,
             "newbuild": None,
-            "remaining": 23,
-            "result": None,
+            "remaining": 2,
+            "MACHINE": "64bit",
+            "BUILD": "Update-FEDORA-2019-2b7fe4a7de",
+            "bugref": None,
+            "TEST": "server_role_deploy_domain_controller",
+            "HDD_1": "disk_f30_server_3_x86_64.img",
+            "FLAVOR": "updates-server",
+            "group_id": 2,
+            "ARCH": "x86_64",
+            "id": 582175,
+            "result": "passed"
         },
-        "msg_id": "2016-fb9690a0-96fd-41e7-a532-0547a4b9229b",
+        "msg_id": "2019-50fa56e5-e2bd-4d1d-8381-21476ca51030",
         "source_name": "datanommer",
-        "source_version": "0.6.5",
-        "timestamp": 1458779794.0,
+        "source_version": "0.9.0",
+        "timestamp": 1565118377.0,
         "topic": "org.fedoraproject.stg.openqa.job.done"
     }
 
@@ -396,6 +432,45 @@ class TestLegacyOpenQAJobDoneStaging(Base):
         "msg": {
             "build": "Fedora-Rawhide-20160323.n.0",
             "id": "10826",
+            "newbuild": None,
+            "remaining": 23,
+            "result": None,
+        },
+        "msg_id": "2016-fb9690a0-96fd-41e7-a532-0547a4b9229b",
+        "source_name": "datanommer",
+        "source_version": "0.6.5",
+        "timestamp": 1458779794.0,
+        "topic": "org.fedoraproject.stg.openqa.job.done"
+    }
+
+
+class TestLegacyOpenQAJobDoneStagingResultNone(Base):
+    """openQA emits messages on this topic when a job completes.
+    'remaining' indicates the number of jobs for the same compose that
+    are either running or waiting to start. 'result' should indicate
+    the result of the job, but for some time it was always None due to
+    upstream openQA issues; this tests handling of messages with None
+    result.
+    """
+    expected_title = "openqa.job.done"
+    expected_subti = (
+        "staging job 10826 (test install_xfs on 64bit for iso "
+        "Fedora-Everything-netinst-x86_64-Rawhide-20160323.n.0.iso) completed "
+        "for Fedora-Rawhide-20160323.n.0, 23 remaining jobs")
+    expected_link = "https://openqa.stg.fedoraproject.org/tests/10826"
+    expected_objects = set(
+        ["Fedora-Rawhide-20160323.n.0",
+         "Fedora-Everything-netinst-x86_64-Rawhide-20160323.n.0.iso"])
+    msg = {
+        "i": 1,
+        "msg": {
+            "ARCH": "x86_64",
+            "BUILD": "Fedora-Rawhide-20160323.n.0",
+            "FLAVOR": "universal",
+            "ISO": "Fedora-Everything-netinst-x86_64-Rawhide-20160323.n.0.iso",
+            "MACHINE": "64bit",
+            "TEST": "install_xfs",
+            "id": 10826,
             "newbuild": None,
             "remaining": 23,
             "result": None,
