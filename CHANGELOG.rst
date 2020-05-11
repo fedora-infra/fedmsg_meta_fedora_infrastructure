@@ -1,3 +1,11 @@
+0.30.0
+------
+
+Pull Requests
+
+- (@hanzz)          #502 Add support for ODCS composes.
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/502
+
 0.29.0
 ------
 

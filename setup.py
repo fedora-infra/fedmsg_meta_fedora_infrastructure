@@ -124,12 +124,13 @@ entry_points = {
         "waiverdb=fedmsg_meta_fedora_infrastructure.waiverdb:WaiverDBProcessor",
         "gw=fedmsg_meta_fedora_infrastructure.greenwave:GreenwaveProcessor",
         "rats=fedmsg_meta_fedora_infrastructure.rats:RatsProcessor",
+        "odcs=fedmsg_meta_fedora_infrastructure.odcs:ODCSProcessor",
     ]
 }
 
 setup(
     name='fedmsg_meta_fedora_infrastructure',
-    version='0.29.0',
+    version='0.30.0',
     description=
     "fedmsg metadata providers for Fedora Infrastructure's deployment",
     long_description=long_description,
