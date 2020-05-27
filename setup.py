@@ -43,6 +43,7 @@ except Exception:
 
 install_requires = [
     'fedmsg',
+    'fasjson-client',
     'python-fedora',
     'python-dateutil',
     'pytz'

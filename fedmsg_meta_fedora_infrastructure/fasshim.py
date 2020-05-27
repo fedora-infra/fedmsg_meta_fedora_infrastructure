@@ -1,13 +1,13 @@
 import collections
-import threading
+import logging
 import socket
 import string
+import threading
 from hashlib import sha256, md5
 
 _fas_cache = {}
 _fas_cache_lock = threading.Lock()
 
-import logging
 log = logging.getLogger("moksha.hub")
 
 try:
@@ -38,7 +38,9 @@ hardcoded_avatars = {
     # Ask tflink before actually putting this in place though.  we need
     # a nice small square version.  It'll look great!
     # In the meantime, we can use this temporary logo.
-    'taskotron': 'https://apps.fedoraproject.org/img/icons/taskotron-{size}.png'
+    'taskotron': (
+        'https://apps.fedoraproject.org/img/icons/taskotron-{size}.png'
+    )
 }
 
 
@@ -91,6 +93,52 @@ def avatar_url_from_email(email, size=64, default='retro', dns=False):
         return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
 
+def make_fasjson_cache(**config):
+    global _fas_cache
+    if _fas_cache:
+        return _fas_cache
+
+    log.warn("No previous fasjson cache found. Looking to rebuild.")
+
+    try:
+        import fasjson_client
+    except ImportError:
+        log.warn("No fasjson-client installed.  Not caching fasjson.")
+        raise
+
+    creds = config['fas_credentials']
+
+    default_url = 'https://admin.fedoraproject.org/accounts/'
+
+    try:
+        client = fasjson_client.Client(url=creds.get('base_url', default_url))
+    except fasjson_client.errors.ClientSetupError as e:
+        log.error(
+            "Something went wrong setting up fasjson client with error: %s" % e
+        )
+        return {}
+    try:
+        _add_to_cache(list(client.list_all_entities("users")))
+    except fasjson_client.errors.APIError as e:
+        log.error("Something went wrong building cache with error: %s" % e)
+        return {}
+
+    return _fas_cache
+
+
+def _add_to_cache(users):
+    global _fas_cache
+
+    for user in users:
+        nicks = user.get('ircnicks', [])
+        for nick in nicks:
+            _fas_cache[nick] = user['username']
+
+        emails = user.get('emails', [])
+        for email in emails:
+            _fas_cache[email] = user['username']
+
+
 def make_fas_cache(**config):
     global _fas_cache
     if _fas_cache:
@@ -105,7 +153,7 @@ def make_fas_cache(**config):
         log.warn("No python-fedora installed.  Not caching fas.")
         return {}
 
-    if not 'fas_credentials' in config:
+    if 'fas_credentials' not in config:
         log.warn("No fas_credentials found.  Not caching fas.")
         return {}
 
@@ -155,7 +203,11 @@ def nick2fas(nickname, **config):
     log.debug("Acquiring _fas_cache_lock for nicknames.")
     with _fas_cache_lock:
         log.debug("Got _fas_cache_lock for nicknames.")
-        fas_cache = make_fas_cache(**config)
+        fasjson = config.get('fasjson')
+        if fasjson:
+            fas_cache = make_fasjson_cache(**config)
+        else:
+            fas_cache = make_fas_cache(**config)
         result = fas_cache.get(nickname, nickname)
     log.debug("Released _fas_cache_lock for nicknames.")
     return result
@@ -168,7 +220,11 @@ def email2fas(email, **config):
     log.debug("Acquiring _fas_cache_lock for emails.")
     with _fas_cache_lock:
         log.debug("Got _fas_cache_lock for emails.")
-        fas_cache = make_fas_cache(**config)
+        fasjson = config.get('fasjson')
+        if fasjson:
+            fas_cache = make_fasjson_cache(**config)
+        else:
+            fas_cache = make_fas_cache(**config)
         result = fas_cache.get(email, email)
     log.debug("Released _fas_cache_lock for emails.")
     return result
