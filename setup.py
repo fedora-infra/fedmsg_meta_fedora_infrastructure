@@ -43,7 +43,6 @@ except Exception:
 
 install_requires = [
     'fedmsg',
-    'fasjson-client',
     'python-fedora',
     'python-dateutil',
     'pytz'
@@ -59,6 +58,17 @@ if sys.version_info < (2, 7):
     ])
     tests_require.extend([
         'unittest2',
+    ])
+
+if sys.version_info >= (3, 6):
+    install_requires.append('fasjson-client')
+else:
+    if sys.version_info < (3,):
+        install_requires.append('pyzmq<19')
+    install_requires.extend([
+        'gssapi<1.6.4',
+        'requests-gssapi',
+        'requests',  # keep this last to appease CI
     ])
 
 entry_points = {
