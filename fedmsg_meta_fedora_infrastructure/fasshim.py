@@ -1,5 +1,6 @@
 import collections
 import logging
+import os
 import socket
 import string
 import threading
@@ -100,26 +101,79 @@ def make_fasjson_cache(**config):
 
     log.warn("No previous fasjson cache found. Looking to rebuild.")
 
+    creds = config['fasjson_credentials']
+
+    krb5_principal = creds.get("krb5_principal")
+    krb5_client_ktname = creds.get("krb5_client_ktname")
+    gss_use_proxy = creds.get("gss_use_proxy")
+
+    if krb5_client_ktname:
+        os.environ["KRB5_CLIENT_KTNAME"] = krb5_client_ktname
+
+    if gss_use_proxy:
+        os.environ["GSS_USE_PROXY"] = "yes"
+
+    default_url = 'https://fasjson.fedoraproject.org/v1/'
+    base_url = creds.get('base_url', default_url)
+
     try:
         import fasjson_client
     except ImportError:
-        log.warn("No fasjson-client installed.  Not caching fasjson.")
-        raise
-
-    creds = config['fasjson_credentials']
-
-    default_url = 'https://fasjson.fedoraproject.org/v1/'
-
-    try:
-        client = fasjson_client.Client(url=creds.get('base_url', default_url))
-    except fasjson_client.errors.ClientSetupError as e:
-        log.error(
-            "Something went wrong setting up fasjson client with error: %s" % e
+        fasjson_client = None
+        log.warn(
+            "No fasjson-client installed.  Falling back to querying directly."
         )
-        return {}
+
+    if fasjson_client:
+        try:
+            client = fasjson_client.Client(
+                url=base_url, principal=krb5_principal
+            )
+        except fasjson_client.errors.ClientSetupError as e:
+            log.error(
+                "Error while setting up fasjson client: %s" % e
+            )
+            return {}
+        APIError = fasjson_client.errors.APIError
+    else:
+        import requests
+        import requests.exceptions
+        from requests.compat import urlencode, urljoin
+        from requests_gssapi import HTTPSPNEGOAuth
+
+        # shim inside a shim
+        class Client(object):
+            def __init__(self, url, principal=None):
+                self.url = url
+                self.principal = principal
+
+                gssapi_auth = HTTPSPNEGOAuth(
+                    opportunistic_auth=True, mutual_authentication="OPTIONAL"
+                )
+                self.session = requests.Session()
+                self.session.auth = gssapi_auth
+
+            def list_all_entities(self, ent_name):
+                if not ent_name.endswith("/"):
+                    # avoid redirection round trip
+                    ent_name += "/"
+                endpoint = urljoin(self.url, ent_name)
+
+                # yay, pagination
+                next_page_url = endpoint + "?" + urlencode({"page_number": 1})
+                while next_page_url:
+                    res = self.session.get(next_page_url)
+                    for item in res["result"]:
+                        yield item
+                    next_page_url = res.get("page", {}).get("next_page")
+
+        client = Client(url=base_url, principal=krb5_principal)
+
+        APIError = requests.exceptions.RequestException
+
     try:
         _add_to_cache(list(client.list_all_entities("users")))
-    except fasjson_client.errors.APIError as e:
+    except APIError as e:
         log.error("Something went wrong building cache with error: %s" % e)
         return {}
 
