@@ -106,7 +106,7 @@ def make_fasjson_cache(**config):
         log.warn("No fasjson-client installed.  Not caching fasjson.")
         raise
 
-    creds = config['fas_credentials']
+    creds = config['fasjson_credentials']
 
     default_url = 'https://fasjson.fedoraproject.org/v1/'
 
