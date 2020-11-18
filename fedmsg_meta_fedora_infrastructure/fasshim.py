@@ -108,7 +108,7 @@ def make_fasjson_cache(**config):
 
     creds = config['fas_credentials']
 
-    default_url = 'https://admin.fedoraproject.org/accounts/'
+    default_url = 'https://fasjson.fedoraproject.org/v1/'
 
     try:
         client = fasjson_client.Client(url=creds.get('base_url', default_url))
