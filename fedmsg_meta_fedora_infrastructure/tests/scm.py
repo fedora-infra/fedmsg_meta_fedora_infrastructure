@@ -241,14 +241,70 @@ class TestSCM(Base):
     }
 
 
+class TestSCMWithNamespace(Base):
+    """ Messages like this one are published when somebody runs "fedpkg push"
+    on a package.  Sometimes, the git message may be multiple lines long like:
+    """
+    expected_title = "git.receive"
+    expected_subti = 'mjw pushed to rpms/valgrind (master).  ' + \
+        '"Clear CFLAGS CXXFLAGS LDFLAGS. (..more)"'
+    expected_link = "https://src.fedoraproject.org/rpms/" + \
+        "valgrind/c/" + \
+        "7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1?branch=master"
+    expected_long_form = "This commit already existed in another branch."
+    expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
+    expected_secondary_icon = ("https://seccdn.libravatar.org/avatar/"
+        "0f32874b1ae3083205c874c83cd2d21715c89b8645483f353e90ae499c67c944"
+        "?s=64&d=retro")
+    expected_usernames = set(['mjw'])
+    expected_packages = set(['valgrind'])
+    expected_objects = set(['valgrind/valgrind.spec'])
+
+    msg = {
+        "i": 1,
+        "timestamp": 1344350850.8867381,
+        "topic": "org.fedoraproject.prod.git.receive",
+        "msg": {
+            "commit": {
+                "seen": True,
+                "stats": {
+                    "files": {
+                        "valgrind.spec": {
+                            "deletions": 2,
+                            "lines": 3,
+                            "insertions": 1
+                        }
+                    },
+                    "total": {
+                        "deletions": 2,
+                        "files": 1,
+                        "insertions": 1,
+                        "lines": 3
+                    }
+                },
+                "name": "Mark Wielaard",
+                "rev": "7a98f80d9b61ce167e4ef8129c81ed9284ecf4e1",
+                "summary": "Clear CFLAGS CXXFLAGS LDFLAGS.",
+                "message": """Clear CFLAGS CXXFLAGS LDFLAGS.
+                This is a bit of a hammer.""",
+                "email": "mjw@redhat.com",
+                "username": "mjw",
+                "branch": "master",
+                "repo": "valgrind",
+                "namespace": "rpms",
+            }
+        }
+    }
+
+
 class TestSCMSingleLine(Base):
     """ Messages like this one are published when somebody runs "fedpkg push"
     on a package.  The whole git message is included for each commit.
     """
     expected_title = "git.receive"
-    expected_subti = 'spot pushed to ember (master).  ' + \
+    expected_subti = 'spot pushed to tests/ember (master).  ' + \
         '"another missing patch? ridiculous."'
-    expected_link = "https://src.fedoraproject.org/rpms/" + \
+    expected_link = "https://src.fedoraproject.org/tests/" + \
         "ember/c/" + \
         "aa2df80f3d8dd217c7cbfe2d3451190028f3fe14?branch=master"
     expected_icon = "https://apps.fedoraproject.org/img/icons/git-logo.png"
@@ -256,7 +312,7 @@ class TestSCMSingleLine(Base):
         "1e232310ef80ec8b34b0bc216864efd0d837f419e6988997cda8e98a28be48dd"
         "?s=64&d=retro")
     expected_usernames = set(['spot'])
-    expected_packages = set(['ember'])
+    expected_packages = set()
     expected_objects = set(['ember/ember-0.6.3-gcc47.patch'])
 
     msg = {
@@ -286,6 +342,7 @@ class TestSCMSingleLine(Base):
                 "summary": "another missing patch? ridiculous.",
                 "branch": "master",
                 "repo": "ember",
+                "namespace": "tests",
                 "message": "another missing patch? ridiculous.\n",
                 "email": "spot@fedoraproject.org"
             }
