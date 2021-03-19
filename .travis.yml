@@ -1,16 +1,28 @@
 language: python
-python:
- - "2.7"
- - "3.6"
+
 install:
  - pip install --upgrade setuptools pip
  - python setup.py install
  - pip install arrow
+
 script: python setup.py test
-env: TRAVIS_CI=True
+
+env:
+  global:
+    - PYTHONWARNINGS=always::DeprecationWarning
+    - TRAVIS_CI=True
+  jobs:
+    - TOXENV=lint
+    - TOXENV=py38
+
 notifications:
     email: false
     irc:
         - "irc.freenode.net#fedora-apps"
     on_success: change
     on_failure: change
+
+matrix:
+  allow_failures:
+    - python: 2.7
+
