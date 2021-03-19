@@ -93,6 +93,11 @@ class SCMProcessor(BaseProcessor):
                 repo = '.'.join(msg['topic'].split('.')[5:-1])
 
             try:
+                namespace = msg['msg']['commit']['namespace'] + '/'
+            except KeyError:
+                namespace = ''
+
+            try:
                 user = msg['msg']['commit']['username']
             except KeyError:
                 user = msg['msg']['commit']['email']
@@ -103,8 +108,8 @@ class SCMProcessor(BaseProcessor):
                 summ += " (..more)"
 
             branch = msg['msg']['commit']['branch']
-            tmpl = self._('{user} pushed to {repo} ({branch}).  "{summary}"')
-            return tmpl.format(user=user, repo=repo,
+            tmpl = self._('{user} pushed to {namespace}{repo} ({branch}).  "{summary}"')
+            return tmpl.format(user=user, repo=repo, namespace=namespace,
                                branch=branch, summary=summ)
         elif '.git.branch' in msg['topic']:
             try:
@@ -115,7 +120,7 @@ class SCMProcessor(BaseProcessor):
                 branch = msg['topic'].split('.')[-1]
 
             try:
-                repo = msg['msg']['namespace'] + '/' + repo
+                repo = msg['msg']['commit']['namespace'] + '/' + repo
             except KeyError:
                 pass
 
@@ -211,8 +216,8 @@ class SCMProcessor(BaseProcessor):
     def packages(self, msg, **config):
 
         # If its not an rpms/ thing, then its not a package.
-        if 'namespace' in msg['msg']:
-            if not msg['msg']['namespace'] in ['rpms', 'rpms-checks']:
+        if 'namespace' in msg['msg'].get('commit', []):
+            if not msg['msg']['commit']['namespace'] in ['rpms', 'rpms-checks']:
                 return set()
 
         if 'git.receive' in msg['topic']:
