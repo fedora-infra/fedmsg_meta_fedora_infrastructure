@@ -1,13 +1,14 @@
 import collections
-import threading
+import logging
+import os
 import socket
 import string
+import threading
 from hashlib import sha256, md5
 
 _fas_cache = {}
 _fas_cache_lock = threading.Lock()
 
-import logging
 log = logging.getLogger("moksha.hub")
 
 try:
@@ -38,7 +39,9 @@ hardcoded_avatars = {
     # Ask tflink before actually putting this in place though.  we need
     # a nice small square version.  It'll look great!
     # In the meantime, we can use this temporary logo.
-    'taskotron': 'https://apps.fedoraproject.org/img/icons/taskotron-{size}.png'
+    'taskotron': (
+        'https://apps.fedoraproject.org/img/icons/taskotron-{size}.png'
+    )
 }
 
 
@@ -91,6 +94,107 @@ def avatar_url_from_email(email, size=64, default='retro', dns=False):
         return "https://seccdn.libravatar.org/avatar/%s?%s" % (hash, query)
 
 
+def make_fasjson_cache(**config):
+    global _fas_cache
+    if _fas_cache:
+        return _fas_cache
+
+    log.warn("No previous fasjson cache found. Looking to rebuild.")
+
+    creds = config['fasjson_credentials']
+
+    krb5_principal = creds.get("krb5_principal")
+    krb5_client_ktname = creds.get("krb5_client_ktname")
+    gss_use_proxy = creds.get("gss_use_proxy")
+
+    if krb5_client_ktname:
+        os.environ["KRB5_CLIENT_KTNAME"] = krb5_client_ktname
+
+    if gss_use_proxy:
+        os.environ["GSS_USE_PROXY"] = "yes"
+
+    # the base URL shouldn't contain the API version, the fasjson client takes
+    # care of it
+    default_url = 'https://fasjson.fedoraproject.org/'
+    base_url = creds.get('base_url', default_url)
+
+    try:
+        import fasjson_client
+    except ImportError:
+        fasjson_client = None
+        log.warn(
+            "No fasjson-client installed.  Falling back to querying directly."
+        )
+
+    if fasjson_client:
+        try:
+            client = fasjson_client.Client(
+                url=base_url, principal=krb5_principal
+            )
+        except fasjson_client.errors.ClientSetupError as e:
+            log.error(
+                "Error while setting up fasjson client: %s" % e
+            )
+            return {}
+        APIError = fasjson_client.errors.APIError
+    else:
+        import requests
+        import requests.exceptions
+        from requests.compat import urlencode, urljoin
+        from requests_gssapi import HTTPSPNEGOAuth
+
+        # shim inside a shim
+        class Client(object):
+            def __init__(self, url, principal=None):
+                self.url = url.rstrip("/") + "/v1/"
+                self.principal = principal
+
+                gssapi_auth = HTTPSPNEGOAuth(
+                    opportunistic_auth=True, mutual_authentication="OPTIONAL"
+                )
+                self.session = requests.Session()
+                self.session.auth = gssapi_auth
+
+            def list_all_entities(self, ent_name):
+                if not ent_name.endswith("/"):
+                    # avoid redirection round trip
+                    ent_name += "/"
+                endpoint = urljoin(self.url, ent_name)
+
+                # yay, pagination
+                next_page_url = endpoint + "?" + urlencode({"page_number": 1})
+                while next_page_url:
+                    res = self.session.get(next_page_url)
+                    for item in res["result"]:
+                        yield item
+                    next_page_url = res.get("page", {}).get("next_page")
+
+        client = Client(url=base_url, principal=krb5_principal)
+
+        APIError = requests.exceptions.RequestException
+
+    try:
+        _add_to_cache(list(client.list_all_entities("users")))
+    except APIError as e:
+        log.error("Something went wrong building cache with error: %s" % e)
+        return {}
+
+    return _fas_cache
+
+
+def _add_to_cache(users):
+    global _fas_cache
+
+    for user in users:
+        nicks = user.get('ircnicks', [])
+        for nick in nicks:
+            _fas_cache[nick] = user['username']
+
+        emails = user.get('emails', [])
+        for email in emails:
+            _fas_cache[email] = user['username']
+
+
 def make_fas_cache(**config):
     global _fas_cache
     if _fas_cache:
@@ -105,7 +209,7 @@ def make_fas_cache(**config):
         log.warn("No python-fedora installed.  Not caching fas.")
         return {}
 
-    if not 'fas_credentials' in config:
+    if 'fas_credentials' not in config:
         log.warn("No fas_credentials found.  Not caching fas.")
         return {}
 
@@ -155,7 +259,11 @@ def nick2fas(nickname, **config):
     log.debug("Acquiring _fas_cache_lock for nicknames.")
     with _fas_cache_lock:
         log.debug("Got _fas_cache_lock for nicknames.")
-        fas_cache = make_fas_cache(**config)
+        fasjson = config.get('fasjson')
+        if fasjson:
+            fas_cache = make_fasjson_cache(**config)
+        else:
+            fas_cache = make_fas_cache(**config)
         result = fas_cache.get(nickname, nickname)
     log.debug("Released _fas_cache_lock for nicknames.")
     return result
@@ -168,7 +276,11 @@ def email2fas(email, **config):
     log.debug("Acquiring _fas_cache_lock for emails.")
     with _fas_cache_lock:
         log.debug("Got _fas_cache_lock for emails.")
-        fas_cache = make_fas_cache(**config)
+        fasjson = config.get('fasjson')
+        if fasjson:
+            fas_cache = make_fasjson_cache(**config)
+        else:
+            fas_cache = make_fas_cache(**config)
         result = fas_cache.get(email, email)
     log.debug("Released _fas_cache_lock for emails.")
     return result

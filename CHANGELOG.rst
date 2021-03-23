@@ -1,3 +1,13 @@
+0.31.0
+------
+
+Pull Requests
+
+- (@StephenCoady)   #503 added ability to use fasjson when provided with config
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/503
+- (@pypingou)       #504 Add information about the namespace in the short description of git messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/504
+
 0.30.0
 ------
 
