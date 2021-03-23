@@ -113,7 +113,9 @@ def make_fasjson_cache(**config):
     if gss_use_proxy:
         os.environ["GSS_USE_PROXY"] = "yes"
 
-    default_url = 'https://fasjson.fedoraproject.org/v1/'
+    # the base URL shouldn't contain the API version, the fasjson client takes
+    # care of it
+    default_url = 'https://fasjson.fedoraproject.org/'
     base_url = creds.get('base_url', default_url)
 
     try:
@@ -144,7 +146,7 @@ def make_fasjson_cache(**config):
         # shim inside a shim
         class Client(object):
             def __init__(self, url, principal=None):
-                self.url = url
+                self.url = url.rstrip("/") + "/v1/"
                 self.principal = principal
 
                 gssapi_auth = HTTPSPNEGOAuth(
