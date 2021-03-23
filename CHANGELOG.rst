@@ -1,3 +1,13 @@
+0.31.0
+------
+
+Pull Requests
+
+- (@StephenCoady)   #503 added ability to use fasjson when provided with config
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/503
+- (@pypingou)       #504 Add information about the namespace in the short description of git messages
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/504
+
 0.30.0
 ------
 
@@ -183,6 +193,18 @@ Pull Requests
   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/433
 - (@pypingou)       #436, Adjust the scm links to the deployment of pagure over dist-git
   https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/436
+
+0.18.0
+------
+
+Pull Requests
+
+- (@pypingou)       #383, Perform 26 smaller queries instead of 1 to retrieve the entire list of users
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/383
+- (@pypingou)       #396, Fix something we faced in FMN stg, copr messages where the agent is None
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/396
+- (@vivekanand1101) #397, Adjust after diff access levels in pagure
+  https://github.com/fedora-infra/fedmsg_meta_fedora_infrastructure/pull/397
 
 0.18.0
 ------
