@@ -33,8 +33,8 @@ class AnityaProcessor(BaseProcessor):
     __link__ = "https://release-monitoring.org"
     __docs__ = "https://github.com/fedora-infra/anitya"
     __obj__ = "Upstream Releases"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
 
     def _get_user(self, msg, **config):
         try:
