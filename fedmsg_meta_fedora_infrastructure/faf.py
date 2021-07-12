@@ -34,7 +34,7 @@ class FAFProcessor(BaseProcessor):
     __link__ = "https://retrace.fedoraproject.org"
     __obj__ = "New and significant crashes"
     __docs__ = "https://github.com/abrt/faf/wiki"
-    __icon__ = "https://apps.fedoraproject.org/packages/images/icons/abrt.png"
+    __icon__ = "https://apps.fedoraproject.org/img/icons/abrt.png"
 
     def long_form(self, msg, **config):
         return _long_template.format(**{

@@ -44,8 +44,8 @@ class PkgdbProcessor(BaseProcessor):
     __link__ = "https://admin.fedoraproject.org/pkgdb"
     __docs__ = "https://fedorahosted.org/packagedb/"
     __obj__ = "Package ACL Updates"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
     conglomerators = [
         pkgdb_acls.BySubject,
         pkgdb_acls.ByPackage,

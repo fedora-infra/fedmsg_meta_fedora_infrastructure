@@ -35,8 +35,8 @@ class RatsProcessor(BaseProcessor):
     __link__ = "https://pagure.io/rats"
     __docs__ = "https://pagure.io/rats"
     __obj__ = "RATS"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
 
     def link(self, msg, **config):
         if 'test.simple-koji-ci' in msg['topic']:

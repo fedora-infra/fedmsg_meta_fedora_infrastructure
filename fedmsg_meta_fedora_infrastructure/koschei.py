@@ -26,7 +26,7 @@ class KoscheiProcessor(BaseProcessor):
     __link__ = "https://apps.fedoraproject.org/koschei"
     __docs__ = "https://apps.fedoraproject.org/koschei/documentation"
     __obj__ = "Watched packages"
-    __icon__ = ("https://fedoraproject.org/w/uploads/e/e9/Koschei.png")
+    __icon__ = ("https://apps.fedoraproject.org/img/icons/koschei.png")
 
     def subtitle(self, msg, **config):
         # Emitted by Koschei whenever state of package changes, for

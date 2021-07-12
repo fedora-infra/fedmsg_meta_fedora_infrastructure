@@ -85,8 +85,8 @@ class PagureProcessor(BaseProcessor):
     __stg_link__ = "https://stg.pagure.io"
     __docs__ = "https://pagure.io/pagure"
     __obj__ = "Pagure forge"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
 
     conglomerators = [
         pagure_conglomerator.ByPR,
@@ -609,8 +609,8 @@ class DistGitPagureProcessor(PagureProcessor):
     __stg_link__ = "https://src.stg.fedoraproject.org"
     __docs__ = "https://src.fedoraproject.org"
     __obj__ = "Pagure over Dist-git"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
 
     conglomerators = [
         pagure_conglomerator.ByPR,

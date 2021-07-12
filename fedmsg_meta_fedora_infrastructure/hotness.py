@@ -27,8 +27,8 @@ class HotnessProcessor(BaseProcessor):
     __link__ = "https://release-monitoring.org"
     __docs__ = "https://fedoraproject.org/wiki/Upstream_release_monitoring"
     __obj__ = "Fresh Builds & Bugs"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
 
     def subtitle(self, msg, **config):
         if 'hotness.update.bug.file' in msg['topic']:

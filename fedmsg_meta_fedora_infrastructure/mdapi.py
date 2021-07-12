@@ -102,8 +102,8 @@ class MdapiProcessor(BaseProcessor):
     __link__ = "https://apps.fedoraproject.org/mdapi"
     __docs__ = "https://apps.fedoraproject.org/mdapi"
     __obj__ = "Medata API update"
-    __icon__ = ("https://apps.fedoraproject.org/packages/"
-                "images/icons/package_128x128.png")
+    __icon__ = ("https://apps.fedoraproject.org/"
+                "img/icons/package_128x128.png")
 
     def subtitle(self, msg, **config):
         if 'mdapi.repo.update' in msg['topic']:
