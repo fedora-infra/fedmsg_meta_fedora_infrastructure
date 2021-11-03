@@ -96,6 +96,7 @@ class BugzillaProcessor(BaseProcessor):
         user, is_fas = self._get_user(msg, **config)
         idx = msg['msg'].get('bug', {}).get('id')
         title = msg['msg'].get('bug', {}).get('summary')
+        event = msg['msg'].get('event', {})
 
         if len(title) > MAX_LEN:
             title = title[:MAX_LEN] + "..."
@@ -103,17 +104,17 @@ class BugzillaProcessor(BaseProcessor):
         # bugzilla2fedmsg 0.3.1's 'new bug' detection was broken and
         # it sent bug.update messages for bug creation events, so we
         # catch those with the second condition here
-        if 'bug.new' in msg['topic'] or (msg['msg']['event'].get('target') == 'bug' and
-                                         msg['msg']['event'].get('action') == 'create'):
+        if 'bug.new' in msg['topic'] or (event.get('target') == 'bug' and
+                                         event.get('action') == 'create'):
             tmpl = self._("{user} filed a new bug RHBZ#{idx} '{title}'")
             return tmpl.format(user=user, idx=idx, title=title)
 
         if msg['msg'].get('comment'):
             tmpl = self._("{user} commented on RHBZ#{idx} '{title}'")
             return tmpl.format(user=user, idx=idx, title=title)
-        elif msg['msg'].get('event'):
+        elif event:
             fields = [d['field_name'] for d in
-                      msg['msg']['event']['changes']]
+                      event['changes']]
             fields = comma_join(fields)
             tmpl = self._("{user} updated {fields} "
                           "on RHBZ#{idx} '{title}'")
