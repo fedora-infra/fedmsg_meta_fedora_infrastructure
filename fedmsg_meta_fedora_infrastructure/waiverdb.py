@@ -31,9 +31,34 @@ class WaiverDBProcessor(BaseProcessor):
     __icon__ = "https://apps.fedoraproject.org/img/icons/waiverdb.png"
 
     def subtitle(self, msg, **config):
-        tmpl = self._('{username} waived result {result_id} '
-                      '({product_version}): "{comment}"')
-        return tmpl.format(**msg['msg'])
+        if msg['msg'].get('result_id'):
+            # V1
+            tmpl = self._('{username} waived result {result_id} '
+                          '({product_version}): "{comment}"')
+            return tmpl.format(**msg['msg'])
+        else:
+            # V2+
+            username = msg['msg'].get("username", "unknown user")
+            comment = msg['msg'].get("comment", "")
+            subject = msg['msg'].get(
+                "subject_identifier", msg['msg'].get("subject", {}).get("item", "")
+            )
+            subjtype = msg['msg'].get(
+                "subject_type", msg['msg'].get("subject", {}).get("type", "")
+            )
+            scenario = msg['msg'].get("scenario")
+            testcase = msg['msg'].get("testcase", "(no testcase)")
+            if scenario:
+                tmpl = self._(
+                    '{username} waived {testcase} (scenario {scenario}) for '
+                    '{subjtype} {subject}: "{comment}"'
+                )
+            else:
+                tmpl = self._('{username} waived {testcase} for {subjtype} {subject}: "{comment}"')
+            return tmpl.format(
+                username=username, testcase=testcase, scenario=scenario, subjtype=subjtype,
+                subject=subject, comment=comment
+            )
 
     def link(self, msg, **config):
         template = ('https://waiverdb-web-waiverdb.app.os.fedoraproject.org/'
