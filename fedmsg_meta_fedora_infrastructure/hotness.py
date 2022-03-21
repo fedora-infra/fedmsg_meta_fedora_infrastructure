@@ -109,7 +109,7 @@ class HotnessProcessor(BaseProcessor):
                 'rawhide': self._("no rawhide version of the "
                                   "package could be found yet")
             }
-            errmsg = self._('.... I dunno.  Whatever.')
+            errmsg = self._('reason unrecognized: ' + reason)
             return prefix.format(thing=thing) + qualifiers.get(reason, errmsg)
         elif 'hotness.project.map' in msg['topic']:
             original = msg['msg']['trigger']['msg']
